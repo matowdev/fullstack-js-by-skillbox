@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.7. Practice!</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+  <link rel="stylesheet" href="css/practice-style.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="main-title">Зачем нужен кодстайл в веб-вёрстке?</h1>
+
+    <p class="text">Представьте, что к вам подошел иностранец и задал вопрос. Скажем, про <i>тонкий зелёный длинный</i>
+      маленький предмет. Первая мысль, которая приходит в голову: все слова знакомы, но с описанием предмета что-то не
+      так. Интуитивно хочется расставить эти прилагательные по-другому (например, маленький зелёный тонкий длинный). Это
+      называется порядком <strong>однородных</strong> определений.</p>
+    <p class="text">Как и прилагательные в речи, CSS-свойства в коде также могут выглядеть не на своём месте, если их не
+      выстроить в нужном порядке. Порядок свойств позволит программистам, работающим над одним проектом, <b>понимать</b>
+      чужой код и правильно оформлять свой. Осталось договориться о том, как располагать свойства, чтобы не казаться
+      друг другу иностранцами.</p>
+    <p class="text">Для такой цели и был придуман <b>кодстайл</b> (набор правил и соглашений, используемых при написании
+      исходного кода на некотором языке программирования).</p>
+
+    <!-- Пример оформления цитаты/высказывания, при известном авторе -->
+    <p class="text quote-text">
+      <q class="quote">Исходный код - это ответственность, а не актив!</q>
+      <cite class="quote-author"> - Эрик Ли.</cite>
+    </p>
+
+    <!-- Пример организации "базовых" ссылок/переходов, на старонние сайты -->
+    <p class="text">У многих крупных компаний, таких как <a target="_blank" href="https://yandex.by/">Yandex!</a>,
+      <a target="_blank" href="https://www.google.by/">Google!</a>, рекомендации по оформлению кода опубликованы и
+      доступны всем желающим. В фирмах поменьше могут быть внутренние инструкции, иногда единый стиль кода
+      оговаривается устно (бывает и такое).</p>
+    <p class="text">Наш курс по веб-вёрстке - не исключение, в нём также есть правила оформления. Он делится на три
+      части, о которых ниже.</p>
+
+    <!-- Пример взаимодействия с изображением -->
+    <figure class="img-group">
+      <img src="https://blog.maxgraph.ru/vyshel-moj-kodstajl/img/codeguide.png">
+      <figcaption class="img-group-text">Как выглядит наш сайт кодстайла?</figcaption>
+    </figure>
+
+    <h2 class="second-title">HTML</h2>
+
+    <p class="text">Первая из частей - <b>HTML</b>. Это начальная стадия соблюдения кодстайла, ведь любой сайт вы
+      начинаете "писать" именно с этого <b>языка</b>. Давайте посмотрим, на основные правила:</p>
+
+    <ul class="list">
+      <li class="list-item">Теги и их атрибуты пишутся строчными буквами.</li>
+      <li class="list-item">Для значений атрибутов всегда используются двойные кавычки.</li>
+      <li class="list-item">Для отступов у вложенных элементов, используется табуляция (рекомендуется выставлять размер
+        табуляции - 2).</li>
+      <li class="list-item">Используйте в качестве "основного" селектора - class.</li>
+      <li class="list-item">Закрывающий слэш (пара) у/для одиночных тегов, как: img, br и т.п., далее не ставится.</li>
+    </ul>
+
+    <p class="text">Это лишь выжимка "основного" из всех правил, обязательно ознакомьтесь со всеми правилами и
+      применяйте их.</p>
+
+    <h2 class="second-title">CSS</h2>
+
+    <p class="text">В CSS3 правил больше, потому что синтаксис там посложнее. Одно из <b>важных</b>, которое
+      действительно поможет вам сохранить ваш код в "идеальном виде" - <b>порядок свойств.</b> Давайте посмотрим, как
+      это выглядит:</p>
+
+    <!-- Пример организации таблицы -->
+    <!-- border="2" cellspacing="0" cellpadding="6" width="800" -->
+    <table class="table">
+      <caption class="table-caption">Порядок написания CSS-свойств</caption>
+      <thead>
+        <tr>
+          <th class="table-cell table-header">Порядок:</th>
+          <th class="table-cell table-header">Группа свойств:</th>
+          <th class="table-cell table-header">Используемые свойства:</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="table-cell">1.</td>
+          <td class="table-cell">Позиционирование.</td>
+          <td class="table-cell">
+            position: relative;<br>
+            left: 0;<br>
+            right: 0;<br>
+            top: 0;<br>
+            bottom: 0;<br>
+          </td>
+        </tr>
+        <tr>
+          <td class="table-cell">2.</td>
+          <td class="table-cell">Блочная модель.</td>
+          <td class="table-cell">
+            display: flex;<br>
+            align-items: center;<br>
+            margin: 10px;<br>
+            padding: 10px 20px;<br>
+            border: 1px solid red;<br>
+            width: 200px;<br>
+            height: 100px;<br>
+            box-sizing: border-box;<br>
+          </td>
+        </tr>
+        <tr>
+          <td class="table-cell">3.</td>
+          <td class="table-cell">Типографика.</td>
+          <td class="table-cell">
+            font-family: Arial;<br>
+            font-size: 25px;<br>
+            font-style: italic;<br>
+            text-decoration: none;<br>
+            color: red;<br>
+          </td>
+        </tr>
+        <tr>
+          <td class="table-cell">4.</td>
+          <td class="table-cell">Оформление.</td>
+          <td class="table-cell">
+            background: red;<br>
+            opacity: 1;<br>
+          </td>
+        </tr>
+        <tr>
+          <td class="table-cell">5.</td>
+          <td class="table-cell">Анимации.</td>
+          <td class="table-cell">
+            transform: translateX(5px);<br>
+            animation: shake 0.3s infinite;<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="second-title">Powerful JS!</h2>
+
+    <p class="text">Правила <b>JS</b> не сильно отличаются от HTML и CSS, разве что само применение зависит от итогового
+      синтаксиса. Например, есть такие правила, присущие только для JS, как:</p>
+
+    <ol class="list">
+      <li class="list-item">В массивах первое и последнее значения не отделяется пробелом, после каждой запятой
+        необходимо ставить пробел.</li>
+      <li class="list-item">В однострочных объектах и при деструктуризации фигурные скобки не должны отделяться
+        пробелами от содержимого.</li>
+      <li class="list-item">Запрещено объявлять переменные, имена которых совпадают с именами используемых в коде
+        лейблов, а так же ключевыми словами, которые используются самим <b>Javascript.</b></li>
+    </ol>
+
+    <p class="text">Ну а полный кодстайл вы можете (и очень рекомендуется) изучить по <a target="_blank"
+        href="https://codeguide.maxgraph.ru/">ссылке.</a></p>
+  </div>
+</body>
+
+</html>

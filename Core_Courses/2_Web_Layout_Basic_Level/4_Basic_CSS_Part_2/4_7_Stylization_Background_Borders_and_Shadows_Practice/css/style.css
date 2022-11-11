@@ -1,0 +1,161 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  height: 4000px;
+}
+
+div {
+  margin-bottom: 30px;
+}
+
+/* 1. and a., b. */
+/* Организация "видимой" рамки/границы, у/для блока, т.е. шорткат-свойство: border => for ex. */
+.border {
+  display: inline-block;
+  /* margin-right: 25px; */
+  width: 300px;
+  height: 300px;
+  /* border-width: 5px; */
+  /* border-style: dashed; */
+  /* border-color: darkblue; */
+  /* border: 5px dashed darkblue; */ /* "короткая" форма, нативно */
+  outline: 5px dashed darkblue; /* не учитывается, в "базовом" потоке/при рендеринге, т.е. размер/толщина не "приклеится" */
+}
+
+/* 2. and a. */
+/* Закругление углов у рамки/границы, т.е. свойство: border-radius => for ex. */
+.border-radius {
+  display: inline-block;
+  position: relative;
+  left: -75px;
+  bottom: 35px;
+  width: 200px;
+  height: 200px;
+  border: 5px dashed red;
+  /* border-top-left-radius: 30px; */
+  /* border-top-right-radius: 30px; */
+  /* border-bottom-right-radius: 30px; */
+  /* border-bottom-left-radius: 30px; */
+  /* border-radius: 30px; */ /* шорткат */
+  /* border-radius: 10px 30%; */
+  border-radius: 50% / 50%; /* круг или элептическое округление */
+}
+
+/* 3. and a. */
+/* Отработка тени (иллюзии объёма), для блоков/элементов, т.е. свойство: box-shadow => for ex. */
+.box-shadow {
+  width: 200px;
+  height: 200px;
+  /* border: 7px solid darkolivegreen; */
+  /* box-shadow: inset 7px 9px darkgray; */ /* тени "в нутри", благодаря "ключевому" слову: inset */
+  /* box-shadow: 5px 3px #000; */ /* "Стандартное" исполнение, т.е. тени "с наружи" */
+  /* box-shadow: 5px 3px 10px #000; */ /* 3-е значенье, есть организация: "размытия" или тени, как в "физическом" мире */
+  box-shadow: 5px 3px 33px #000;
+}
+
+/* 4. and a., b. */
+/* Организация/добавление теней буквам (шрифту), т.е. текстовому контенту => for ex. */
+.text-shadow {
+  width: 200px;
+  height: 135px;
+  /* text-shadow: 5px 3px 1px lightseagreen; */
+  text-shadow: 0px 0px 3px darkorchid; /* Эффект свечения, как-бы неон */
+}
+
+/* 5. and a., ex. */
+/* Отработка/указание цвета фона блока/элемента, т.е. свойство: background-color => for ex. */
+.background-color {
+  width: 100px;
+  height: 100px;
+  /* background-color: green; */
+  /* background-color: #f5df4d; */
+  background-color: rgb(9, 196, 253);
+}
+/* Example: */
+/* Когда "лучше" отрабатывать, значение, не: transparent? */
+.background-color-example {
+  padding: 20px;
+  width: 300px;
+  height: 300px;
+  background-color: #333;
+  background-image: url("https://c4.wallpaperflare.com/wallpaper/125/955/691/moon-dark-sky-clouds-wallpaper-preview.jpg");
+}
+.text {
+  margin: 0;
+  color: #fff;
+  font: 20px sans-serif;
+}
+
+/* 6. and a. */
+/* Добавление фоновой картинки, в "нутрь" блока/элемента, т.е. свойство: background-img => for ex. */
+.background-img {
+  display: block;
+  border: 3px solid dimgray;
+  width: 400px;
+  height: 400px;
+  box-shadow: 9px 7px darkgray;
+  background-image: url("https://img2.fonwall.ru/o/db/city-dark-night-road.jpeg?route=mid&h=750");
+  /* background-image: none; */
+}
+
+/* 7. and a. */
+/* Позиционирование фоновой картинки, в рамках блока, т.е. свойство: background-position => for ex. */
+.background-position {
+  display: block;
+  border: 3px solid dimgray;
+  width: 400px;
+  height: 400px;
+  box-shadow: 9px 7px darkgray;
+  background-image: url("https://img2.fonwall.ru/o/db/city-dark-night-road.jpeg?route=mid&h=750");
+  /* background-position: center; */ /* второе значение: centre, можно не указывать, т.к. 2-ое по default, всегда centre */
+  background-position: 23px 56%; /* при таком/схожем смещении картинки/изображения => можно увидеть отработку, свойства: background-repeat */
+}
+
+/* 8. and a. */
+/* Логика повтора/занятия освободившегося места, в блоке, фоновым изображением, т.е. свойство: background-repeat => for ex. */
+.background-repeat {
+  display: block;
+  border: 3px solid rgb(41, 48, 83);
+  width: 400px;
+  height: 400px;
+  box-shadow: 9px 7px rgb(10, 39, 94);
+  background-image: url("https://live.staticflickr.com/7703/17274164320_fc24141c99_b.jpg");
+  background-position: 55px 55px; /* организация смещения */
+  background-repeat: no-repeat; /* не повторение картинки */
+}
+
+/* 9. and a. */
+/* Изменение размера фонового изображения, в блоке, т.е. свойство: background-size => for ex. */
+.background-size {
+  display: block;
+  border: 3px solid rgb(41, 48, 83);
+  width: 400px;
+  height: 400px;
+  box-shadow: 9px 7px rgb(10, 39, 94);
+  background-image: url("https://live.staticflickr.com/7703/17274164320_fc24141c99_b.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  /* background-size: cover; */ /* картинка, будет: автоматически подстраиваться, под размеры */
+  /* background-size: contain; */ /* не зависимо, от размера HD/Full HD => целостным/понятным изображением, "полностью" в блок */
+  /* background-size: 250px 250px; */ /* двойное/указание "конкретно", для оси: x and y */
+  background-size: 100% auto; /* двойное/комбинированное указание, с "ключевым" словом: auto (есть вариации) */
+}
+
+/* 10. and a. */
+/* Отработка "всех" свойств, для фона, разом, т.е. шорткат-свойство: background => for ex. */
+.background {
+  display: block;
+  border: 3px solid rgb(194, 199, 221);
+  width: 400px;
+  height: 400px;
+  box-shadow: 9px 7px rgb(160, 164, 172);
+  /* background-image: url("https://cdn5.vectorstock.com/i/1000x1000/10/69/night-city-vector-14931069.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; */
+  background: transparent
+    url("https://cdn5.vectorstock.com/i/1000x1000/10/69/night-city-vector-14931069.jpg")
+    no-repeat center / cover; /* Шорткат */
+}

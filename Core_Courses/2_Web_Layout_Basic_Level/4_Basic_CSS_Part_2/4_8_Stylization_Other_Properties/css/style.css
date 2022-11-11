@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  height: 4000px;
+}
+
+div {
+  margin-bottom: 20px;
+}
+
+/* 1. and a. */
+/* Отработка границы/рамки блока/элемента, без увеличения "фактического" размера, т.е. cвойство: outline => for ex. */
+.outline {
+  margin-bottom: 220px;
+  width: 200px;
+  /* outline: 2px solid red; */ /* стандартная реализация */
+  outline: 200px solid darkcyan; /* вот "такая/грамадная", в не потока, граница/рамка */
+}
+
+/* 2. and a. */
+/* Организация "невидимости" блока/элемента, для "глаз пользователя", т.е. свойство: visibility => for ex. */
+a {
+  /* opacity: 0; */
+  visibility: hidden; /* взаимодействие со скрытым объектом, не возможно, в отличии от opacity: 0; */
+}
+
+/* 3. and a. */
+/* Взаимодействие, с маркерами списков (ol, ul) их стилизация/отсуствие, т.е. свойство: list-style => for ex. */
+.list-style {
+  font: 35px sans-serif;
+  text-shadow: 5px -5px lightgoldenrodyellow;
+  list-style: none; /* как есть, "затирание" маркеров */
+}
+
+/* 4. and a. */
+/* Определение "стилизации" или "внешнего вида", курсора мыши (при наведении), т.е. свойство: cursor => for ex. */
+.cursor {
+  box-shadow: 7px -5px lightgreen;
+  font: 25px sans-serif;
+  cursor: pointer; /* самый узнаваемый/распространённый курсор - "рука, с указательным пальцем", т.е. можно прожимать */
+}

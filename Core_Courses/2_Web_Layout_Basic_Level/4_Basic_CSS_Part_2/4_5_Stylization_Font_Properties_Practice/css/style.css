@@ -1,0 +1,47 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  height: 4000px;
+}
+
+div {
+  margin-bottom: 10px;
+}
+
+/* 1. */
+/* Свойство: font-family, т.е. выбор "семейства шрифта" (как основнова/начало) => for ex. */
+.font-family__and {
+  width: 600px;
+  /* font-family: Verdana; */
+  font-family: Verdana, Geneva, Tahoma, sans-serif; /* Рекомендуется, отрабатывать именно так (2-3 варианта) + вариация (на худой.. хотя-бы) */
+}
+/* a. */
+/* Свойство: font-size, т.е. размер шрифта */
+.font-family__and {
+  /* font-size: 3em; */ /* 1em or 16px - это "стандартный" размер текста, в Chrome, т.е. у Родителя/<body /> */
+  /* font-size: 150%; */
+  /* font-size: small; */
+  font-size: 30px; /* как правило, "задают" так */
+}
+/* b. */
+/* Свойство: font-style, т.е. начертание/наклон шрифта */
+.font-family__and {
+  /* font-style: oblique; */ /* "принудительное" наклонение */
+  font-style: italic; /* как правило.. */
+}
+/* c. */
+/* Свойство: font-weight, т.е. насыщенность/толщина шрифта */
+.font-family__and {
+  /* font-weight: lighter; */ /* шрифт будет "тонше/легче", чем у Родителя */
+  /* font-weight: 400; */ /* значение в 400, соответсвует: normal (default) */
+  font-weight: bold; /* соответсвует: 700 */
+}
+
+/* 2.a. */
+/* Шорткат-свойство: font, т.е. отработка "выше" рассмотренных, font-свойств и line-height => одной строкой */
+.font {
+  width: 600px;
+  font: 100 25px / 1.5 Arial; /* толщина шрифта, размер шрифта / высота между строк и семейство шрифта */
+}

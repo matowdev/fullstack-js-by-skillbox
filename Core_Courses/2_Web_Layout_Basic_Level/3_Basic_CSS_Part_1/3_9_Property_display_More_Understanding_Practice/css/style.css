@@ -1,0 +1,100 @@
+/* For all */
+* {
+  box-sizing: border-box; /* как, правило! */
+}
+
+/* 1.a. and 1.b. */
+/* Позиционирование элементов => следующих друг за другом, for ex. */
+/* inlien then inline-element */
+.inline_then_inline_1 {
+  background-color: lightgoldenrodyellow;
+}
+.inline_then_inline_2 {
+  background-color: lightcoral;
+}
+/* block then inline-element */
+.block_then_inline_1 {
+  background-color: lightcyan;
+  display: block;
+  margin-top: 20px;
+  width: 200px;
+}
+.block_then_inline_2 {
+  background-color: lightcoral;
+}
+
+/* 2. and 2.a. */
+/* Позиционирование: block/inline-block-элементов => следующих друг за другом, при организации "сеточной Вёрстки", for ex. */
+.parent {
+  width: 1000px;
+  margin: 0 auto;
+  margin-top: 20px;
+  background-color: rgb(137, 236, 212);
+}
+.inherited_element {
+  display: inline-block;
+  /* width: 330px; */
+  /* Изменяем значение, widht (у наследуемых), на: 333px => да-бы, уточнить, будут ли "в ряд", в пределах 1000 Родителя */
+  width: 333px;
+  /* border: 3px solid rgb(8, 114, 150); */
+  /* Свойство: outline => как контур/линия, не влияющая, на "общий" размер, блока/контейнера, т.е. без: px => for ex. */
+  outline: 3px solid rgb(179, 145, 241);
+}
+/* 2.b. */
+/* Отработа хака, т.е. удаление/затирание "мифического" отступа, for ex. */
+.parent_2 {
+  font-size: 0; /* Сразу это: свойство/значение отработать, нужно.. */
+  width: 1000px;
+  margin: 0 auto;
+  margin-top: 20px;
+  background-color: rgb(240, 236, 13);
+}
+.inherited_element_2 {
+  font-size: 14px; /* Затем, вот это/здесь (продублировать) и значение, задать: положительное/явное */
+  display: inline-block;
+  width: 333px;
+  outline: 3px solid rgb(142, 210, 255);
+}
+/* 2.c. */
+/* Взаимодействия с "сеточной" вёрсткой, после отработки хака, т.е. отработка псевдокласса :not(), for ex. */
+.parent_3 {
+  font-size: 0;
+  width: 1000px;
+  margin: 0 auto;
+  margin-top: 20px;
+  background-color: rgb(25, 204, 135);
+}
+.inherited_element_3 {
+  font-size: 14px;
+  display: inline-block;
+  width: 320px; /* Изменили на 320px, обратно */
+  outline: 3px solid rgb(255, 131, 48);
+}
+/* Отработка псевдокласса/вариации :not(:last-child) => для "всех" кроме, последнего, т.е. 3-я колонка, не отступает 20px */
+/* При этом, в сумме, осуществляется "выборка" всей - 1000px, Родителя */
+.inherited_element_3:not(:last-child) {
+  margin-right: 20px;
+}
+/* 2.d. */
+/* Отработка псевдокласса/значения :nth-child(3n) => вместо, логики :not(:last-child), for ex. */
+/* + содействие, с "new" свойством: vertical-align => которое доступно, только, для: inline and inline-block элементов, for ex */
+.parent_4 {
+  font-size: 0;
+  width: 1000px;
+  margin: 0 auto;
+  margin-top: 20px;
+  background-color: rgb(167, 192, 245);
+}
+.inherited_element_4 {
+  font-size: 16px;
+  display: inline-block;
+  width: 320px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  outline: 3px solid rgb(124, 247, 236);
+  vertical-align: top; /* "new" свойство */
+}
+/* Замена :not(:last-child) на.. */
+.inherited_element_4:nth-child(3n) {
+  margin-right: 0;
+}

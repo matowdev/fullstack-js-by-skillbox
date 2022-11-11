@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>9.3. Tags for Media Content!</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <p class="content">Media content</p>
+    <div class="media">
+      <!-- video -->
+      <div class="video">
+        <p class="media-desc">Watch "Big Buck Bunny":</p>
+        <video controls src="https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4"
+          poster="https://peach.blender.org/wp-content/uploads/title_anouncement.jpg?x11217" width="620">
+          Sorry, your browser doesn't support embedded videos, but don't worry, you can
+          <a href="https://archive.org/details/BigBuckBunny_124">download it</a>
+          and watch it with your favorite video player!
+        </video>
+      </div>
+      <!-- audio -->
+      <div class="audio">
+        <figure>
+          <figcaption>Listen to the T-Rex:</figcaption>
+          <audio controls src="http://www.40calgames.com/cstrike/sound/ambience/mtrex.wav">
+            Sorry, your browser doesn't support embedded audio, but don't worry, you can download it!
+            <a href="http://www.40calgames.com/cstrike/sound/ambience/mtrex.wav">Download audio</a>
+          </audio>
+        </figure>
+      </div>
+      <!-- source -->
+      <!-- <div class="source">
+        <p class="media-desc">Touch the Sun:</p>
+        <video controls poster="video/poster.png" width="480">
+          <source src="video/video.webm" type="video/webm">
+          <source src="video/video.mp4" type="video/mp4">
+        </video>
+      </div> -->
+      <!-- iframe -->
+      <div class="iframe">
+        <p class="media-desc">Visit a Greenwich Park:</p>
+        <iframe class="iframe-map" id="inlineFrameExample" title="Inline Frame Example" width="300" height="310"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik">
+        </iframe>
+
+        <!-- <iframe id="inlineFrameExample" title="Inline Frame Map" width="560" height="400" frameborder="1"
+          allowfullscreen="true" src="https://yandex.ru/map-widget/v1/-/CBFkaYSE0A">
+        </iframe> -->
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

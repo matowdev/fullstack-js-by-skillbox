@@ -1,0 +1,63 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  height: 4000px;
+}
+
+/* 1. */
+/* Как есть "обтекание", по правому/левому краю, т.е. свойство: float => for ex. */
+.image {
+  margin-right: 30px;
+  max-width: 300px;
+  float: left;
+  /* float: right; */
+}
+/* 1.a. */
+/* "Устаревший" способ верстания, посредством float-поведения, т.е. расположение 3-х блоков, горизонтально => for ex. */
+.parent {
+  width: 600px;
+  margin: 0 auto;
+}
+.block {
+  width: 33%;
+  height: 300px;
+  outline: 3px solid darkgreen;
+  background-color: lightgoldenrodyellow;
+  float: left; /* 1 строка/запись и => блоки в ряд.. */
+}
+
+/* 2. */
+/* Взаимодействие, со свойством: overflow, с его значениями (по очереди) => for ex. */
+.overflow {
+  width: 400px;
+  height: 100px;
+  outline: 3px solid darkred;
+  /* overflow: visible; */ /* значение, по default */
+  /* overflow: hidden; */ /* "обрезает" контент, согласно рамок/размеров контейнера/Родителя, без добавления скролла */
+  /* overflow: scroll; */ /* организует скролл-бары/прокрутки, для Родителя, согласно его размеров, в любом случае */
+  /* overflow: auto; */ /* согласно данного значения => по-сути браузер, будет автоматически устанавливать скролл-бары, где нужно, исходя из размеров Родителя и "общего" контента. Оптимальный вариант! */
+  overflow-x: scroll; /* можно и так отрабатывать, принудительно/самостоятельно выставлять/убирать скроллы */
+  overflow-y: hidden;
+}
+
+/* 3. */
+/* Взаимодействие, с "интересным" свойством: z-index, т.е. как-бы 3D позиционирование => for ex. */
+.block2 {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+}
+.z-index-1 {
+  background-color: lightcoral;
+  top: 10px;
+  right: 10px;
+  z-index: 1; /* таким образом, принудительно/переопределим, кто будет "выше" => в "пироге со слоями" */
+}
+.z-index-2 {
+  background-color: lightseagreen;
+  top: 40px;
+  right: 40px;
+  /* z-index: -1; */ /* возможно и так, переопределить */
+}

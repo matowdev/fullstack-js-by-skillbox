@@ -1,0 +1,109 @@
+/* 1. and 1.a. */
+/* Синтаксис: margin => "в общем", возможные варианты, по колличеству значений */
+.margin_block_1 {
+  display: inline-block;
+  background-color: lightcyan;
+  margin: 10px; /* Отработка: одного "общего" значения, для "всех" сторон */
+}
+.margin_block_2 {
+  display: inline-block;
+  background-color: lightseagreen;
+  margin: 20px 20px; /* двух "парных" значений (вертикаль/горизонталь) */
+}
+.margin_block_3 {
+  display: inline-block;
+  background-color: lightpink;
+  margin: 5px 30px 15px; /* трёх "отдельных/парных-горизонтальных" значений */
+}
+.margin_block_4 {
+  display: inline-block;
+  background-color: lightblue;
+  margin: 10px 20px 30px 40px; /* четырёх "поочерёдных" значений */
+}
+/* "Точечная" организация отступов (обычно используются, по-отдельности) */
+.margin_block_5 {
+  display: inline-block;
+  background-color: lightslategrey;
+  margin-top: 5px;
+  margin-right: 10px;
+  margin-bottom: 15px;
+  margin-left: 20px;
+}
+
+/* 2. and 2.a. */
+/* Взаимодействие: со свойством: padding (полная аналогия с margin) только, для "внутренних" отступов */
+.padding_block_1 {
+  display: inline-block;
+  background-color: greenyellow;
+  color: darkred;
+  margin-bottom: 30px;
+  padding: 40px 30px 20px 10px;
+}
+
+/* 3. and 3.a. */
+/* Пример: поведения свойств: margin and padding => для, ссылки, т.е. для inline-элементов "в целом" */
+/* А что-бы не усложнять "поведение" в потоке, лучше разместить ссылку в div или span, ну или переопределить и => работать с block-элементом (его правилами) */
+a {
+  background: cyan;
+  margin-top: 20px; /* не отрабатывает, хоть и указанно */
+  margin-bottom: 20px; /* не отрабатывает (по-сути, вертикаль), хоть и указанно */
+  margin-right: 30px; /* отрабатывает */
+  margin-left: 30px; /* отрабатывает */
+  padding-top: 30px; /* отрабатывает, как и указанно */
+  padding-bottom: 30px; /* отрабатывает, как и указанно */
+  padding-right: 30px; /* отрабатывает */
+  padding-left: 30px; /* отрабатывает */
+}
+/* 3.b. */
+/* Пример: схлопывания "внешних" отступов, у свойств/значений: margin (margin collapsing) */
+.margin_collapsing_1 {
+  background-color: lightgray;
+  margin-top: 40px; /* для красоты, отступим от ссылки (выше идущей) */
+  margin-bottom: 50px;
+}
+.margin_collapsing_2 {
+  background-color: lightgray;
+  margin-top: 30px; /* здесь, по-сути, может быть 0, т.к. применяется "большее" значение, т.е. 50px из margin-botton, соседа выше */
+}
+
+/* 4. and 4.a. */
+/* Синтаксис: border => "в общем", формы/записи варианты/отработки */
+/* Определение границы/рамки, "по-отдельности", т.е. через под-свойства */
+.border_block_1 {
+  margin-top: 20px; /* для красоты отступили, от верхне-идущего */
+  margin-bottom: 5px; /* -- */
+  border-width: 2px; /* значения, могут быть => для каждой стороны, т.е. согласно, уже "привычной" схемы/часовой/вертикальной/горизонтальной */
+  border-style: dotted; /* значения, по аналогии, как "выше" */
+  border-color: lightskyblue; /* по аналогии */
+}
+/* "Упращенная" форма, т.е. "просто" через "основное" слово/свойство */
+.border_block_2 {
+  margin-bottom: 10px;
+  border: 3px solid lightpink;
+}
+/* "Точеная" отработка => через "основопологающие", слова-приставки, от "основы" border */
+.border_block_3 {
+  border-top: 4px dashed darkgreen;
+  border-right: 5px solid darkslateblue;
+  border-bottom: 8px double darkkhaki;
+  border-left: 3px inset darkslategray;
+}
+
+/* 5. and 5.a. */
+/* "Важные" свойства: width and height => особенности */
+.width_height_block_1 {
+  margin-top: 10px;
+  border: 2px solid darkred; /* так "спциально", границей, по тексту, определим/покажем размер/форму блока/контейнера */
+  width: 300px;
+  height: 100px;
+}
+/* 5.b. */
+/* Как-бы "универсальные" под-свойства: max(min)-width and max(min)-height, есть то-же придел */
+.max_min_width_height_block_2 {
+  margin-top: 70px;
+  background-color: lightgoldenrodyellow;
+  max-width: 1000px;
+  min-width: 320px;
+  max-height: 500px; /* просто, для примера, а так если, для текстового-блока => это свойство, вообще не нужно, т.к. текста, может быть "очень-очень" много */
+  min-height: 200px; /* для этого свойтва => рекомендуется именно, это значение, 200px (от преподавателя) */
+}

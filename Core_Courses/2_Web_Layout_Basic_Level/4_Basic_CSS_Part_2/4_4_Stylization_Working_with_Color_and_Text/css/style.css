@@ -1,0 +1,133 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  height: 4000px;
+}
+
+div {
+  margin-bottom: 10px;
+}
+
+/* 1. */
+/*  Стилизация контента/текста, т.е. отработка свойства: color => посредством, разных значений => for ex. */
+.color-option-1 {
+  color: lightseagreen; /* "просто" через, как есть названия/имена цветов */
+}
+.color-option-2 {
+  color: inherit; /* через, ключевое слово: inherit, что => значит: наследовать, т.е. цвет/стилизация, будет наследоваться/браться от Родителя/крайнего (момент вложенности) */
+}
+.color-option-3 {
+  color: initial; /* через, ключевое слово: initial, что => значит: первоначальный, т.е. по-сути, тому или иному, будет возвращён, "первозданный" чёрный */
+}
+.color-option-4 {
+  color: #556b2f; /* через, hex-кодирование (наиболее популярный способ) */
+}
+.color-option-5 {
+  color: rgb(65, 105, 225); /* через, специфику: rgb (red, green, blue) */
+}
+.color-option-6 {
+  /* color: rgba(255, 230, 0, 0); */ /* через, специфику: rgba (red, green, blue + alpha), т.е. "крайний" параметр: a (alpfa) по-сути, это прозрачность, от 0 до 1 диапазон */
+  color: transparent; /* альтернатива, записи "как, выше", когда/если: a (alfa) = 0, т.е. когда "полная" прозраность */
+}
+
+/* 2. */
+/* Прозрачность, для "любых" элементов/блоков и их под-блоков, т.е. как есть, свойство: opacity => for ex. */
+.opacity-block {
+  margin-top: 10px;
+  width: 100px;
+  height: 100px;
+  background-color: lightcoral;
+  opacity: 0.3; /* диапазон: от 0 до 1 */
+}
+
+/* 4. */
+/* "Разнообразные" декоративные линии, для текста, т.е. свойство: text-decoration с разными значениями => for ex. */
+.text-decoration-1 {
+  text-decoration: none; /* Значение по default (кроме, ссылок) */
+}
+.text-decoration-2 {
+  text-decoration: underline; /* нижнее подчёркивание */
+  color: lightskyblue;
+}
+.text-decoration-3 {
+  text-decoration: line-through; /* перечёркивание/зачёркивание текста */
+  color: lightcoral;
+}
+.text-decoration-4 {
+  text-decoration: overline; /* линия над текстом */
+  color: lightgreen;
+}
+
+/* 5. */
+/* "Горизонтальное" выравнивание текста (в блоке), т.е. свойство: text-align, со значениями => for ex. */
+.text-align {
+  border: 2px solid darkviolet;
+  /* text-align: left; */ /* по default */
+  /* text-align: right; */ /* выравнивание, по правому краю */
+  /* text-align: center; */ /* по центру */
+  text-align: justify; /* по ширине, блока */
+}
+
+/* 6. */
+/*  Трансформирование текста, т.е. перевод в "верхний" или "нижний" регистры и т.п., согласно значений => for ex. */
+.text-transform {
+  color: darkred;
+  /* text-transform: none; */ /* по default */
+  /* text-transform: uppercase;  */ /* верхний регистр */
+  /* text-transform: lowercase; */ /* нихний регистр */
+  text-transform: capitalize; /* каждое слово, будет начинаться с заглавной буквы */
+}
+
+/* 7. */
+/* Как есть, интерлиньяж, т.е. свойство: line-height => for ex. */
+.line-height {
+  border: 2px solid darkgoldenrod;
+  width: 300px;
+  font-size: 20px; /* таким образом => для наглядности, "принудительно" зададим размер шрифта */
+  /* line-height: 10px; */ /* нативно должно быть понятно */
+  /* line-height: 130%; */
+  line-height: 3.5;
+}
+
+/* 8. */
+/* Устанока интервалов, между символами в тексте, т.е. свойство: letter-spacing, со значениями => for ex. */
+.letter-spacing {
+  color: darkblue;
+  font-size: 20px;
+  /* letter-spacing: 1em; */
+  letter-spacing: 10px;
+}
+
+/* 9. */
+/* Взаимодействие, с логикой переноса слов, т.е. свойство: white-space => for ex. */
+.white-spase {
+  border: 4px double lightseagreen;
+  width: 300px;
+  font-size: 20px;
+  color: rgba(143, 48, 10, 0.801);
+  /* white-space: nowrap; */ /* таким образом, исключаются "все" переносы, по тексту => текст "идёт" одной строкой */
+  white-space: pre; /* имитирует поведение, тега <pre />, т.е. "всё" как в коде */
+}
+
+/* 10. */
+/*  Отработка длины пробела, т.е. свойство: word-spacing => for ex. */
+.word-spacing {
+  width: 500px;
+  color: blueviolet;
+  word-spacing: 49px;
+}
+
+/* 11. */
+/* Example of a "stylish" inscription */
+.examle {
+  width: 300px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: -1px;
+  text-indent: 1em;
+}

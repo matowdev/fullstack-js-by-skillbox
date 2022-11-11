@@ -1,0 +1,38 @@
+/* 2. and 2.a. */
+/* Отработка: background-color => наглядно, покажет размеры контейнеров, на странице */
+div,
+span {
+  background-color: lightcyan;
+}
+
+/* 2.b. */
+/* Пример: переопределения поведения, элементов/контейнеров => на странице */
+div {
+  display: inline;
+}
+span {
+  display: block;
+}
+
+/* 3. */
+/* Пример: "затирания" элемента/контейнера из "общего" "страничного потока" */
+div {
+  display: none;
+}
+
+/* 4. */
+/* Пример: отработки свойства/значения: display: inline-block, среди других вариантов */
+.inline {
+  margin-bottom: 30px;
+}
+.block {
+  margin-bottom: 30px;
+}
+.inline-block {
+  display: inline-block;
+  margin-bottom: 30px;
+}
+div,
+span {
+  background-color: lightgray;
+}

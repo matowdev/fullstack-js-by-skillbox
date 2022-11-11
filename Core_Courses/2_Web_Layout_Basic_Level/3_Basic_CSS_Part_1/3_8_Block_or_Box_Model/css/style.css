@@ -1,0 +1,44 @@
+/* 1. */
+/* "В общем" блочная модель or box model */
+.box_model {
+  background-color: lightskyblue;
+  width: 400px;
+  border: 5px dashed darkkhaki;
+  padding: 20px;
+}
+
+/* 2. */
+/* Свойство: border-radius, for ex. */
+.border_radius {
+  background-color: lightseagreen;
+  margin-top: 20px;
+  width: 400px;
+  border: 5px solid lightcoral;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+/* 3. */
+/* Свойство: box-sizing, for ex. */
+/* content-box */
+.box_sizing_content_box {
+  background-color: lightgoldenrodyellow;
+  margin-top: 20px;
+  width: 400px;
+  border: 7px dotted black;
+  padding: 20px;
+  box-sizing: content-box;
+}
+/* border-box */
+.box_sizing_border_box {
+  background-color: lightpink;
+  margin-top: 20px;
+  width: 400px;
+  border: 7px dotted black;
+  padding: 20px;
+  box-sizing: border-box;
+}
+/* Отработка, через "общий" селектор: * => как вариант */
+* {
+  box-sizing: border-box;
+}

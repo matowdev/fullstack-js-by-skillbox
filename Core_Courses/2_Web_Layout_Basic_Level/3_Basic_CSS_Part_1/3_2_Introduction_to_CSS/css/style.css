@@ -1,0 +1,7 @@
+body,
+h2 {
+  display: block;
+  background-color: beige;
+  color: blue;
+  font-size: 35px;
+}

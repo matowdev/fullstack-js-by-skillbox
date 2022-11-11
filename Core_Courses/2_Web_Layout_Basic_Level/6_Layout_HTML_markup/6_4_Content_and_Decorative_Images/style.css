@@ -1,0 +1,13 @@
+.bg-search {
+  display: inline-block;
+  margin-right: 15px;
+  padding-left: 20px;
+  background: url(search_icon.svg) no-repeat left / 18px;
+}
+
+.view {
+  font-weight: 600;
+  font-size: 18px;
+  color: lightskyblue;
+  text-shadow: 1px 1px 2px lightgoldenrodyellow;
+}

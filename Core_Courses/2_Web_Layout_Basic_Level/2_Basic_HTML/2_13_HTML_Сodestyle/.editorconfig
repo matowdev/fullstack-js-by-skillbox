@@ -1,0 +1,15 @@
+[*]
+# Внимание! параметр: charset => со значением: utf-8, "грозная" штука, т.к. по default, для всех расширений, регламентирует, отработку: "двойных" кавычек, а не 'одинарных'! Соответсвенно, нужно или удалять, его вовсе или отдельно доуказывать: quote_type = single, как для JavaScript, например.
+charset = utf-8
+indent_style = space
+indent_size = 2
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.html]
+
+[*.css]
+indent_size = 3
+
+[*.js]
+quote_type = single

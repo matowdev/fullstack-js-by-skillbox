@@ -1,0 +1,143 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+body {
+  font-family: "font", sans-serif;
+  background-color: #f1f1f1;
+  height: 4000px;
+}
+
+/* ----- Header -----  */
+
+.header {
+  margin-bottom: 70px;
+  padding-top: 30px;
+}
+
+.container {
+  margin: 0 auto;
+  width: 1170px;
+  max-width: 100%;
+}
+
+.header-top {
+  margin-bottom: 30px;
+}
+
+.logo {
+  margin-right: 40px;
+}
+
+.list {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* так/здесь решено с переполнением списка => с центрированием */
+  list-style: none;
+}
+
+.item {
+  display: inherit;
+  padding-bottom: 17px;
+}
+
+.item1 {
+  margin-right: 600px;
+}
+
+.address {
+  white-space: nowrap;
+}
+
+.header-bottom {
+  background-color: #fff;
+}
+
+.header-bottom__list {
+  display: inline-block;
+  margin: 0;
+  margin-right: 114px;
+  padding: 0;
+  padding-left: 45px;
+  list-style: none;
+}
+
+.header-bottom__item {
+  padding: 27px 0 27px;
+  display: inherit;
+}
+
+.header-bottom__item:not(:last-child) {
+  margin-right: 45px;
+}
+
+.header-bottom__btn-1 {
+  margin-right: 40px;
+}
+
+/* ----- Main / section -----  */
+
+.left-right {
+  height: 540px;
+  outline: 2px solid red;
+  font-size: 0;
+}
+
+.left {
+  display: inline-block;
+  margin-right: 24px;
+  width: 573px;
+  height: 540px;
+  overflow: hidden; /* так/здесь решено с переполнением левого div (с двумя article) */
+  outline: 3px dotted blue;
+  font-weight: 700;
+  font-size: 16px;
+  color: #000;
+}
+
+.art-left1 {
+  margin-bottom: 24px;
+  width: 573px;
+  height: 258px;
+  outline: 5px solid violet;
+}
+
+.art-left2 {
+  width: 573px;
+  height: 258px;
+  outline: 5px solid cyan;
+}
+
+.right {
+  display: inline-block;
+  width: 573px;
+  height: 540px;
+  overflow: hidden; /* так/здесь решено с переполнением правого div (с одним article) */
+  /* т.е. данные/такие указания (этого свойства/значения) нужно делать/параллельно и именно здесь, да-бы ни какой из блоков/div's => собрата не выдавливал, не смещал из Отцовского div.. не зависисмо от наполнения, от внутренних articles!!! */
+  outline: 4px dashed green;
+  font-weight: 700;
+  font-size: 16px;
+  color: #000;
+}
+
+.art-right1 {
+  width: 573px;
+  height: 540px;
+  outline: 8px dashed yellow;
+}

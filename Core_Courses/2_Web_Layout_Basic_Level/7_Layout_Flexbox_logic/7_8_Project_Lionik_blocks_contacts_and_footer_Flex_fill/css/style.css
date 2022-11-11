@@ -1,0 +1,288 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+body {
+  min-width: 1200px; /* Вот/так специально: mim-width, т.е. если с телефонов/заход, то/будет в уменьшенном размере, с возможностью приближения */
+  height: 3500px;
+  font-family: "font", sans-serif;
+}
+
+/* glob */
+
+.list-reset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.btn-reset {
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.flex {
+  display: flex;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 15px;
+  width: 1200px;
+}
+
+.section-title {
+  margin: 0;
+  margin-bottom: 40px;
+}
+
+.section-desc {
+  margin: 0;
+  margin-bottom: 50px;
+}
+
+.section-offset {
+  padding-top: 87px;
+  padding-bottom: 160px;
+}
+
+/* header */
+
+.header {
+  padding: 36px 0;
+}
+
+.header-container {
+  align-items: center;
+}
+
+.header-logo {
+  margin-right: auto;
+}
+
+.header-nav {
+  margin-right: 52px;
+}
+
+.header-list__item:not(:last-child) {
+  margin-right: 52px;
+}
+
+/* main: hero */
+
+.hero {
+  padding: 100px 0; /* 0 т.к. за horizontal отвечает container */
+}
+
+.hero-content {
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 50%; /* пока 50% -> позже/точнее */
+}
+
+.hero-title {
+  margin: 0;
+  margin-bottom: 25px;
+}
+
+.hero-desc {
+  margin: 0;
+  margin-bottom: 34px;
+}
+
+.hero-btn {
+  margin-bottom: 14px;
+}
+
+/* main: services */
+
+.services-title {
+  text-align: center;
+}
+
+.services-desc {
+  text-align: center;
+}
+
+.services-item {
+  flex-direction: column;
+  align-items: center;
+  padding: 30px; /* пока всем сторонам по 30px, т.е. и вертикали -> позже/точнее */
+  width: 270px;
+  outline: 2px solid red;
+}
+
+.services-item:not(:nth-child(4n)) {
+  margin-right: 30px;
+}
+
+.services-item__icon {
+  margin-bottom: 25px;
+}
+
+.services-item__title {
+  margin: 0;
+  margin-bottom: 15px;
+}
+
+.services-item__desc {
+  margin: 0;
+  text-align: center;
+}
+
+/* main: articles */
+
+.articles-list {
+  flex-wrap: wrap;
+}
+
+.articles-item {
+  border-radius: 0px 5px 5px 0px;
+  width: 570px;
+  outline: 2px solid red;
+}
+
+.articles-item:nth-child(-n + 2) {
+  margin-bottom: 30px;
+}
+
+/* .articles-item:nth-child(odd) {
+  margin-right: 30px;
+} */
+
+/* or */
+
+.articles-item:not(:nth-child(2n)) {
+  margin-right: 30px;
+}
+
+.blog-preview__image {
+  width: 170px;
+  /* height: 180px; */
+  object-fit: cover; /* как Гласит.. Doca, данное свойство будет работать, только/если присуствует/указан, хотя бы один размер, для изображения/img, т.е. или ширины, или высоты, нет ни одного.. сори */
+}
+
+.blog-preview__text {
+  padding: 23px 160px 38px 30px;
+}
+
+.blog-preview__time {
+  display: block;
+  margin-bottom: 5px; /* на время */
+}
+
+.blog-preview__title {
+  margin: 0;
+  margin-bottom: 15px;
+}
+
+.blog-preview__desc {
+  margin: 0;
+}
+
+/* main: clients */
+
+.clients-item {
+  flex-direction: column;
+  padding: 50px 36px;
+  padding-bottom: 30px; /* здесь же и переназначим -> так проще */
+  width: 370px;
+  outline: 2px solid red;
+}
+
+.clients-item:not(:nth-child(3n)) {
+  margin-right: 30px;
+}
+
+.clients-item__desc {
+  margin: 0;
+  margin-bottom: 30px;
+}
+
+.clients-user {
+  margin-top: auto; /* это гарантия того, что данный блок/div => будет/всегда внизу карточки/края */
+  align-items: center;
+}
+
+.clients-user__avatar {
+  flex-shrink: 0; /* да-бы аватар/блок под/этот аватар, никогда не сжимался */
+  margin-right: 17px;
+  width: 67px;
+}
+
+.clients-name {
+  margin-bottom: 5px; /* хоть и/в проекте как-бы нет/совсем отступа, лучше сделать */
+}
+
+/* main: contacts */
+
+.contacts-address {
+  font-style: normal;
+}
+
+.contacts-item {
+  flex-direction: column;
+  width: 370px;
+  outline: 2px solid red;
+}
+
+.contacts-item:not(:nth-child(3n)) {
+  margin-right: 30px;
+}
+
+.contacts-item__caption {
+  margin-bottom: 30px;
+}
+
+.contacts-item__text {
+  margin: 0;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 21px;
+}
+
+.contacts-item__link:not(:last-child) {
+  margin-bottom: 5px;
+}
+
+/* footer */
+
+.footer {
+  padding: 45px 0;
+}
+
+.footer-container {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-left,
+.footer-right {
+  align-items: center;
+}
+
+.footer-logo {
+  margin-right: 25px;
+}
+
+.footer-item:not(:last-child) {
+  margin-right: 28px;
+}

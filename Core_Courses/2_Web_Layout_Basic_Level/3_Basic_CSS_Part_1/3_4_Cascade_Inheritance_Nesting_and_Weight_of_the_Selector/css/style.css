@@ -1,0 +1,43 @@
+/* 1.a.b.*/
+/* т.е. данные {стили}, будут применяться, только к тем, тегам: div, которые явл. дочерними/вложенными элементами => тегов/тега с атрибутом/значением: class="parent1" (in html) */
+.parent1 div {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  background-color: darkcyan;
+}
+
+/* 2.a. */
+/* т.е. чии правила, применятся/отработают, в итоге? что там с "весом" селекторов? */
+#element a {
+  color: darkorange;
+}
+.parent2 a {
+  color: blue;
+}
+#element .parent2 a {
+  color: darkred;
+}
+/* 2.b. */
+/* т.е. таким образом => исключаем фактор "веса", всё строго через: .class */
+.link-one {
+  color: darkmagenta;
+}
+.link-two {
+  color: darkkhaki;
+}
+
+/* 3.a. */
+/* т.е. => в html-file, произайдёт переопределение стиля/правила */
+body {
+  background-color: whitesmoke;
+}
+h1 {
+  color: slateblue;
+  font-size: 30px;
+}
+/* 3.b. */
+/* т.е. => посредством, добавления: модификатора - !important => к элементу/значению: color => "затирается" вес атрибута: style, in html-file */
+h2 {
+  color: greenyellow !important;
+}

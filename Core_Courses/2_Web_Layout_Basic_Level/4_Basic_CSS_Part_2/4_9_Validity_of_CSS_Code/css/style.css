@@ -1,0 +1,36 @@
+/* 1. and a. */
+/* Валидация CSS-кода (из пред. занятия) */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  height: 4000px;
+}
+
+div {
+  margin-bottom: 20px;
+}
+
+.outline {
+  margin-bottom: 220px;
+  width: 200px;
+  outline: 200px solid darkcyan; /* вот "такая/грамадная", в не потока, граница/рамка */
+}
+
+a {
+  visibility: hidden; /* взаимодействие со скрытым объектом, не возможно, в отличии от opacity: 0; */
+}
+
+.list-style {
+  font: 35px sans-serif;
+  text-shadow: 5px -5px lightgoldenrodyellow;
+  list-style: none; /* как есть, "затирание" маркеров */
+}
+
+.cursor {
+  box-shadow: 7px -5px lightgreen;
+  font: 25px sans-serif;
+  cursor: pointer; /* самый узнаваемый/распространённый курсор - "рука, с указательным пальцем", т.е. можно прожимать */
+}

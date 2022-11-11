@@ -1,0 +1,73 @@
+/* 3.a., 3.b. */
+/* Позиционирование, отработка свойства/значения - position: relative; для одного блока, из 2-х (соглано приоритета отработки) => for ex. */
+.block {
+  display: inline-block;
+  margin: 10px;
+  width: 100px;
+  height: 100px;
+  background-color: lightseagreen;
+}
+.relative {
+  position: relative;
+  background-color: lightskyblue;
+}
+.block {
+  top: 5px;
+  left: 50px;
+}
+
+/* 3.c. */
+/* Позиционирование, отработка свойства/значения - position: absolute; для одного блока, из 2-х => for ex. */
+.block2 {
+  display: inline-block;
+  margin: 10px;
+  width: 100px;
+  height: 100px;
+  background-color: lightpink;
+}
+.absolute {
+  position: absolute;
+  background-color: lightgoldenrodyellow;
+}
+.block2 {
+  top: 5px;
+  left: 50px;
+}
+
+/* Расположение: "сам по себе", position: absolute; => for ex. */
+.block3 {
+  display: inline-block;
+  margin: 10px;
+  width: 100px;
+  height: 100px;
+  background-color: lightslategray;
+}
+.absolute2 {
+  position: absolute;
+  right: 100px;
+  top: 132px;
+}
+
+/* Позиционирование, блока-absolute => когда Родитель position: relative, for ex. */
+.block4 {
+  display: inline-block;
+  border: 4px dashed darkslateblue;
+  width: 700px;
+  height: 400px;
+  background-color: lightsteelblue;
+}
+.relative2 {
+  position: relative;
+}
+.block5 {
+  display: inline-block;
+  border: 9px double darkturquoise;
+  width: 150px;
+  height: 150px;
+  background-color: lightgreen;
+}
+.absolute3 {
+  position: absolute;
+  top: 120px;
+  left: 270px;
+}

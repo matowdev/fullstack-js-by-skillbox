@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3.4. Cascade and Inheritance/nesting. Weight of the Selector! </title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <!-- 1.a.b. -->
+  <div class="parent1">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+  <!-- 2.a. -->
+  <div id="element">
+    <a href="#">Link 1</a>
+    <div class="parent2">
+      <li><a href="#">Link 2</a></li>
+      <li><a href="#">Link 3</a></li>
+    </div>
+  </div>
+  <!-- 2.b. -->
+  <div id="element2">
+    <a href="#" class="link-one">Link 4</a>
+    <div>
+      <li><a href="#" class="link-two">Link 5</a></li>
+      <li><a href="#" class="link-two">Link 6</a></li>
+    </div>
+  </div>
+
+  <!-- 3.a. -->
+  <!-- т.е. => посредством: style, происходит переопределение, стиля/правила: color, не учитывая css-file -->
+  <h1 style="color: mediumseagreen;">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
+  <!-- 3.b. -->
+  <!-- т.е. => в css-file, произайдёт переопределение стиля/правила, посредством: модификатора -->
+  <h2 style="color: darkgoldenrod;">Lorem ipsum dolor sit amet.</h2>
+  <!-- модификатор: !important, можно отрабатывать и в html-документе, это/так будет "наивысший" приоритет -->
+  <!-- <h2 style="color: darkgoldenrod !important;">Lorem ipsum dolor sit amet.</h2> -->
+</body>
+
+</html>

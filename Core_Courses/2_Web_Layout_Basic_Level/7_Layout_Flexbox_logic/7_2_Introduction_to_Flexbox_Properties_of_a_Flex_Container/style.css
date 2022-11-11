@@ -1,0 +1,64 @@
+body {
+  height: 1000px;
+  background-color: azure;
+}
+
+.container {
+  padding-top: 30px;
+  margin: 0 auto;
+  width: 1170px;
+  max-width: 100%;
+  background-color: azure;
+}
+
+.flex-container--ul {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0;
+  margin-bottom: 50px;
+  padding: 0;
+  list-style-type: none;
+}
+
+.flex-item--li {
+  display: inherit;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  border-radius: 65px 5px;
+  font-style: oblique;
+  font-weight: 700;
+  font-size: 77px;
+  color: darkred;
+  background-color: lightseagreen;
+}
+
+/* ----- */
+
+.parent {
+  display: flex;
+  /* flex-direction: row-reverse; */
+  /* flex-direction: column; */
+  /* flex-wrap: wrap; */
+  /* flex-wrap: nowrap; */
+  /* flex-wrap: wrap-reverse; */
+  /* justify-content: space-between; */
+  /* justify-content: space-around; */
+  /* justify-content: space-evenly; */
+  /* justify-content: flex-end; */
+  /* align-items: center; */
+  /* align-items: flex-end; */
+  height: 300px;
+  outline: 5px solid lightgoldenrodyellow;
+}
+
+.children {
+  height: 150px;
+  background-color: powderblue;
+  margin: 10px;
+  padding: 20px;
+  font-style: oblique;
+  font-weight: 500;
+  font-size: 18px;
+}
