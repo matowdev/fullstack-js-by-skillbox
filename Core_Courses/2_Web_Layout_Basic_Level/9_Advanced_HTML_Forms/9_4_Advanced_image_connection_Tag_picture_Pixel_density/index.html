@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>9.4. Advanced image connection. Tag picture. Pixel density!</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container flex">
+    <p class="desc">tag/container:<em>picture</em>, for Ex.</p>
+    <div class="webp-jpg">
+      <picture>
+        <source srcset="image/yoda_webp.webp" type="image/webp">
+        <img src="image/yoda_jpg.jpg" width="400" alt="Hello Yoda!">
+      </picture>
+    </div>
+
+    <div class="retina-2x">
+      <picture>
+        <source srcset="image/work_2x.jpg 2x">
+        <img src="image/work.jpg" alt="Work process..">
+      </picture>
+    </div>
+  </div>
+</body>
+
+</html>
