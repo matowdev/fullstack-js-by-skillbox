@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>9.5. Narrow tags, like: base, details and summary, mark, blockquote, canvas!</title>
+  <!-- Tag: <base>, it is recommended to unfold exactly in <head /> -->
+  <base target="_blank">
+  <!-- <base target="_top" href="https://example.com/"> -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <!-- Pair tag's: <details /> and <summary /> -->
+    <details>
+      <summary>Details:</summary>
+      Something small enough to escape casual notice..
+    </details>
+
+    <!-- Tag: <mark /> -->
+    <p class="p-mark">Lorem ipsum dolor sit amet consectetur <mark>adipisicing elit</mark>. Explicabo, repellat quas
+      doloremque reprehenderit voluptate temporibus.</p>
+
+    <!-- Tag's: <blockquote /> and <cite /> -->
+    <figure>
+      <blockquote cite="https://www.huxley.net/bnw/four.html">
+        <p>Words can be like X-rays, if you use them properly - they'll go through anything. You read and you're
+          pierced.</p>
+      </blockquote>
+      <figcaption>- Aldous Huxley, <cite>Brave New World</cite></figcaption>
+    </figure>
+
+    <!-- Tag: <canvas /> + JS -->
+    <canvas width="300" height="300">
+      An alternative text describing what your canvas displays.
+    </canvas>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+
+</html>

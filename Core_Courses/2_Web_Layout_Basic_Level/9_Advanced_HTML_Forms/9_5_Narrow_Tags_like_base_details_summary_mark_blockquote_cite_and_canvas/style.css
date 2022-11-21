@@ -1,0 +1,109 @@
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  height: 1000px;
+}
+
+.container {
+  margin: 30px auto;
+  padding: 0 15px;
+  width: 1200px;
+}
+
+details {
+  margin-bottom: 30px;
+  border: 2px solid #aaa;
+  border-radius: 4px;
+  padding: 0.5em 0.5em 0;
+  width: 200px;
+  color: #fff;
+  background-color: lightgray;
+}
+
+summary {
+  margin: -0.5em -0.5em 0;
+  padding: 0.5em;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+details[open] {
+  padding: 0.5em;
+}
+
+details[open] summary {
+  border-bottom: 2px solid #aaa;
+  margin-bottom: 0.5em;
+}
+
+.p-mark {
+  margin-bottom: 30px;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+/* mark {
+  background-color: lightblue;
+} */
+
+figure {
+  margin: 0;
+  margin-bottom: 30px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+}
+
+blockquote {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+blockquote p {
+  border-radius: 5px;
+  padding: 15px;
+  font-weight: 400;
+  font-size: 20px;
+  background: #eee;
+}
+
+blockquote p::before {
+  content: open-quote;
+}
+
+blockquote p::after {
+  content: close-quote;
+}
