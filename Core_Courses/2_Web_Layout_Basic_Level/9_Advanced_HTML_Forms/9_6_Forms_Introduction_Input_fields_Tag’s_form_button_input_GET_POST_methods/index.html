@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>9.6. Forms. Introduction. Input fields. Tags: form, button, input. GET / POST methods!</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <!-- form/ex. logic -->
+    <form class="form flex" action="https://jsonplaceholder.typicode.com/posts" method="post"
+      enctype="application/x-www-form-urlencoded">
+
+      <!-- input/for text -->
+      <label class="label" for="name">Text:</label>
+      <input class="input" type="text">
+      <!-- input/for number -->
+      <label class="label" for="name">Number:</label>
+      <input class="input" type="number">
+      <!-- input/for email -->
+      <label class="label" for="name">Email:</label>
+      <input class="input" type="email">
+      <!-- input/for tel -->
+      <label class="label" for="name">Phone number:</label>
+      <input class="input" type="tel">
+      <!-- input/for password -->
+      <label class="label" for="name">Password:</label>
+      <input class="input" type="password">
+      <!-- input/for date -->
+      <label class="label" for="name">Date:</label>
+      <input class="input" type="date">
+      <!-- input/for search -->
+      <label class="label" for="name">Search:</label>
+      <input class="input" type="search">
+      <!-- input/for file selections -->
+      <label class="label" for="name">Choose file:</label>
+      <input class="input" type="file" accept="image/png, image/jpeg">
+      <!-- input/for hidden (some information) -->
+      <label class="label hidden" for="name">Hidden..?</label>
+      <input class="input" type="hidden" value="777">
+      <hr>
+
+      <!-- additional attributes for/with <input /> -->
+      <!-- required -->
+      <label class="label" for="name">Add. required:</label>
+      <input class="input" type="text" required>
+      <!-- maxlenght -->
+      <label class="label" for="name">Add. maxlenght:</label>
+      <input class="input" type="text" maxlength="5" required>
+      <!-- min/max (for number) -->
+      <label class="label" for="name">Add. min/max:</label>
+      <input class="input" type="number" min="1" max="11">
+      <!-- placeholder -->
+      <label class="label" for="name">Add. placeholder:</label>
+      <input class="input last" type="text" placeholder="Enter some text.." required>
+
+      <!-- button/submit -->
+      <button class="btn" type="submit">Send..?</button>
+    </form>
+  </div>
+</body>
+
+</html>
