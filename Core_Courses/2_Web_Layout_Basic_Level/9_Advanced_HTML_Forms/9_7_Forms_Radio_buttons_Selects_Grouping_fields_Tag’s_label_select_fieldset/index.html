@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>9.7. Forms. Radio buttons, Selects, Grouping fields. Tags: label, select, fieldset!</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <form class="form" action="https://jsonplaceholder.typicode.com/posts" method="post">
+
+      <!-- fieldset/semantic and visual grouping of input/selection elements -->
+      <fieldset class="fieldset flex">
+        <legend class="legend-fieldset">Various forms</legend>
+
+        <div class="radio-group">
+          <!-- input/radio buttons -->
+          <input class="radio" type="radio" checked name="gender" value="male"><span class="radio-desc">Male</span>
+          <!-- label/wrapper for input. caption/title -->
+          <label>
+            <input class="radio" type="radio" name="gender" value="female"><span class="radio-desc">Female</span>
+          </label>
+          <input class="radio" type="radio" name="gender" value="undecided"><span
+            class="radio-desc radio-desc__undecided">Undecided</span>
+        </div>
+
+        <!-- textarea/multi-line information -->
+        <textarea class="textarea" name="message" placeholder="Enter the message.."></textarea>
+
+        <!-- select/options menu or drop-down list -->
+        <select class="select" name="seasons">
+          <option value="">Please make a choice..</option>
+          <option value="winter">Winter</option>
+          <option value="spring">Spring</option>
+          <option value="summer" disabled>Summer</option>
+          <option value="autumn">Autumn</option>
+        </select>
+
+        <button class="btn" type="submit">Submit</button>
+      </fieldset>
+    </form>
+  </div>
+</body>
+
+</html>

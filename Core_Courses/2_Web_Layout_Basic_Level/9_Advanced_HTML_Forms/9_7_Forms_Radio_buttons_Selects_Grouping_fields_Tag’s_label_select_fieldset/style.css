@@ -1,0 +1,80 @@
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  margin: 30px auto;
+  padding: 0 15px;
+  width: 1200px;
+  height: 1000px;
+}
+
+.form {
+  padding: 20px;
+}
+
+.fieldset {
+  border-radius: 5px;
+  padding: 25px;
+  width: 400px;
+}
+
+.legend-fieldset {
+  padding: 0 25px 0;
+  font-size: 18px;
+  text-shadow: 0 1px 10px rgb(195, 49, 5);
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.radio-group {
+  margin-bottom: 20px;
+}
+
+.radio {
+  margin-right: 10px;
+}
+
+.radio-desc {
+  font-weight: 600;
+  font-size: 20px;
+  color: darkgreen;
+}
+
+.radio-desc__undecided {
+  color: gray;
+}
+
+.textarea {
+  margin-bottom: 20px;
+  border-radius: 5px;
+  width: 300px;
+}
+
+.select {
+  margin-bottom: 20px;
+  border-radius: 5px;
+  width: 300px;
+  height: 35px;
+  text-shadow: 0 1px 10px darkkhaki;
+}
+
+.btn {
+  border-radius: 10px;
+  border-color: lightgrey;
+  padding: 5px 10px;
+  width: 100px;
+  font-weight: 400;
+  font-size: 20px;
+  text-shadow: 0 1px 10px rgb(72, 191, 246);
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #fff;
+  text-shadow: 0 1px 10px rgb(195, 49, 5);
+}
