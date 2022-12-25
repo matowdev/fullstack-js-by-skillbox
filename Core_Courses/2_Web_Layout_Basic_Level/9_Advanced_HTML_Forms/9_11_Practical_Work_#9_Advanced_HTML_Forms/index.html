@@ -366,9 +366,9 @@
       <section id="want-tour" class="bm-margin want-tour">
         <h2 class="want-tour__title">Хочу тур</h2>
         <div class="want-tour__form--wrapper">
-          <form action="https://jsonplaceholder.typicode.com/posts" method="post" class="want-tour__form">
-            <div class="want-tour__form--select-input__group">
-              <div class="want-tour__form--select">
+          <form action="https://jsonplaceholder.typicode.com/posts" method="post" class="flex want-tour__form">
+            <div class="flex want-tour__form--select-input__group">
+              <div class="flex want-tour__form--select">
                 <label class="form-label" for="city">Город вылета</label>
                 <select class="form-select" name="Departure city" id="city">
                   <option class="form-select__option" value="St. Petersburg" selected>Санкт-Петербург</option>
@@ -381,7 +381,7 @@
                   <option class="form-select__option" value="Samara">Самара</option>
                 </select>
               </div>
-              <div class="want-tour__form--select">
+              <div class="flex want-tour__form--select">
                 <label class="form-label" for="country">Страна</label>
                 <select class="form-select" name="Host country" id="country">
                   <option class="form-select__option" value="Australia" selected>Австралия</option>
@@ -419,6 +419,44 @@
       <!-- 7 -->
       <section id="contacts" class="contacts">
         <h2 class="section-title contacts-title">Контакты</h2>
+        <div class="flex contacts-info">
+          <div class="flex contacts-info__left">
+            <address class="info-left__address--group">
+              <ul class="flex list-reset info-left__address--list">
+                <li class="flex info-left__address--item address-item__location">
+                  <strong class="address-item__caption">Адрес</strong>
+                  <p class="paragraph-reset address-item__text">Москва, улица Юности, <br>дом 5,&nbsp;строение&nbsp;4,
+                    офис&nbsp;2</p>
+                </li>
+                <li class="flex info-left__address--item address-item__phone">
+                  <strong class="address-item__caption">Телефоны</strong>
+                  <div class="flex address-item__link--wraper">
+                    <a href="tel:+74995356434" class="address-item__link">+7 (499) 535-64-34</a>
+                    <a href="tel:+74950050544" class="address-item__link">+7 (495) 005-05-44</a>
+                  </div>
+                </li>
+                <li class="flex info-left__address--item address-item__mail">
+                  <strong class="address-item__caption">Email</strong>
+                  <div class="flex address-item__link--wraper">
+                    <a href="mailto:lg.oona@mail.ru" class="address-item__link">lg.oona@mail.ru</a>
+                    <span class="address-item__link--desc">по&nbsp;вопросам бронирования</span>
+                    <a href="mailto:hotels.ln@mail.ru" class="address-item__link">hotels.ln@mail.ru</a>
+                    <span class="address-item__link--desc">по&nbsp;вопросам сотрудничества</span>
+                  </div>
+                </li>
+                <li class="flex info-left__address--item address-item__schedule">
+                  <strong class="address-item__caption">График</strong>
+                  <p class="paragraph-reset address-item__text">Понедельник-пятница, с&nbsp;10:00 до&nbsp;19:00</p>
+                </li>
+              </ul>
+            </address>
+            <button class="btn-reset btn info-left__button">Построить маршрут</button>
+          </div>
+          <div class="contacts-info__right">
+            <img src="img/main-section-contacts_right_bg.jpg" alt="Lagoona Reception!"
+              class="contacts-info__right--img" />
+          </div>
+        </div>
       </section>
     </main>
 
