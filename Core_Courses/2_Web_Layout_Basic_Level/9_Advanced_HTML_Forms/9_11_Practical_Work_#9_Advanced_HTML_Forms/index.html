@@ -402,12 +402,12 @@
               <div class="want-tour__form--input">
                 <label class="form-label" for="nights">Ночей</label>
                 <input class="form-input input-decoration form-input__number" type="number" name="Number of nights"
-                  id="nights" value="6" min="6" max="21">
+                  id="nights" value="6" min="6" max="21" required>
               </div>
               <div class="want-tour__form--input">
                 <label class="form-label" for="tourists">Туристы</label>
                 <input class="form-input input-decoration form-input__number" type="number" name="Number of tourists"
-                  id="tourists" value="2" min="1" max="10">
+                  id="tourists" value="2" min="1" max="10" required>
               </div>
             </div>
             <div class="want-tour__form--button">
@@ -439,9 +439,9 @@
                   <strong class="address-item__caption">Email</strong>
                   <div class="flex address-item__link--wraper">
                     <a href="mailto:lg.oona@mail.ru" class="address-item__link">lg.oona@mail.ru</a>
-                    <span class="address-item__link--desc">по&nbsp;вопросам бронирования</span>
+                    <small class="address-item__link--desc">по&nbsp;вопросам бронирования</small>
                     <a href="mailto:hotels.ln@mail.ru" class="address-item__link">hotels.ln@mail.ru</a>
-                    <span class="address-item__link--desc">по&nbsp;вопросам сотрудничества</span>
+                    <small class="address-item__link--desc">по&nbsp;вопросам сотрудничества</small>
                   </div>
                 </li>
                 <li class="flex info-left__address--item address-item__schedule">
@@ -450,11 +450,13 @@
                 </li>
               </ul>
             </address>
-            <button class="btn-reset btn info-left__button">Построить маршрут</button>
+            <button class="btn-reset btn info-left__button"
+              onclick="window.location.href='https://www.google.com/maps/@55.2042686,30.2199525,10.82z';">Построить
+              маршрут</button>
           </div>
           <div class="contacts-info__right">
             <img src="img/main-section-contacts_right_bg.jpg" alt="Lagoona Reception!"
-              class="contacts-info__right--img" />
+              class="contacts-info__right--img">
           </div>
         </div>
       </section>
@@ -466,7 +468,8 @@
           &laquo;Лагуна Хотелс&raquo;</p>
         <p class="paragraph-reset footer-info__text">Представленная на&nbsp;сайте информация носит справочный характер
           и&nbsp;не&nbsp;является публичной офертой</p>
-        <a href="#" class="footer-info__link--agreement">Пользовательское соглашение</a>
+        <a href="https://devby.io/be/pages/agreement" target="_blank"
+          class="footer-info__link--agreement">Пользовательское соглашение</a>
       </div>
       <address class="footer-address__group">
         <ul class="list-reset flex footer-address__list">
@@ -486,13 +489,13 @@
       </address>
       <ul class="list-reset flex footer-socials__list">
         <li class="flex footer-socials__item">
-          <a href="#" class="footer-socials__item--link socials-link__ow"></a>
+          <a href="https://theowl.eu/en/" target="_blank" class="footer-socials__item--link socials-link__ow"></a>
         </li>
         <li class="flex footer-socials__item">
-          <a href="#" class="footer-socials__item--link socials-link__ok"></a>
+          <a href="https://ok.ru/" target="_blank" class="footer-socials__item--link socials-link__ok"></a>
         </li>
         <li class="flex footer-socials__item">
-          <a href="#" class="footer-socials__item--link socials-link__vk"></a>
+          <a href="https://vk.com/" target="_blank" class="footer-socials__item--link socials-link__vk"></a>
         </li>
       </ul>
     </footer>
