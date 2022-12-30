@@ -744,10 +744,11 @@ body {
   flex-direction: column;
   justify-content: space-between;
   width: 375px;
-  height: 528px;
+  min-height: 528px;
 }
 
 .info-left__address--group {
+  margin-bottom: 45px;
   font-style: normal;
 }
 
@@ -759,8 +760,7 @@ body {
 .info-left__address--item {
   flex-wrap: wrap;
   justify-content: space-between;
-  /* width: 375px; */
-  height: 72px;
+  min-height: 72px;
   border-bottom: 1px solid #e9e9e9;
 }
 
@@ -772,11 +772,8 @@ body {
   color: #000;
 }
 
-.address-item__caption:hover {
-  color: #cc9933;
-}
-
 .address-item__text {
+  margin-bottom: 23px;
   width: 229px;
   font-style: normal;
   font-weight: 400;
@@ -787,6 +784,7 @@ body {
 
 .address-item__link--wraper {
   flex-direction: column;
+  margin-bottom: 23px;
   width: 229px;
 }
 
@@ -799,7 +797,7 @@ body {
 }
 
 .address-item__mail {
-  height: 122px;
+  min-height: 122px;
 }
 
 .address-item__link--desc {
@@ -819,11 +817,12 @@ body {
 
 .contacts-info__right {
   width: 653px;
-  height: 528px;
+  min-height: 528px;
 }
 
 .contacts-info__right--img {
   border-radius: 10px;
+  height: 100%;
 }
 
 /* footer */
@@ -856,7 +855,7 @@ body {
   row-gap: 38px;
   margin-right: 125px;
   width: 302px;
-  height: 251px;
+  min-height: 251px;
 }
 
 .footer-info__text {
@@ -908,6 +907,10 @@ body {
   color: #cc9933;
 }
 
+.footer-address__item--link:hover {
+  color: #fff;
+}
+
 .footer-socials__list {
   flex-direction: column;
   row-gap: 20px;
@@ -924,12 +927,27 @@ body {
     contain;
 }
 
+.socials-link__ow:hover {
+  background: url("../img/footer-socials-link-ow_active.svg") no-repeat center /
+    contain;
+}
+
 .socials-link__ok {
   background: url("../img/footer-socials-link-ok.svg") no-repeat center /
     contain;
 }
 
+.socials-link__ok:hover {
+  background: url("../img/footer-socials-link-ok_active.svg") no-repeat center /
+    contain;
+}
+
 .socials-link__vk {
   background: url("../img/footer-socials-link-vk.svg") no-repeat center /
+    contain;
+}
+
+.socials-link__vk:hover {
+  background: url("../img/footer-socials-link-vk_active.svg") no-repeat center /
     contain;
 }
