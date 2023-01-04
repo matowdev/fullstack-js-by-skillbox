@@ -46,34 +46,11 @@ body {
   width: 1200px;
 }
 
-.left-view {
+.view {
   padding: 30px;
   min-width: 535px;
   min-height: 800px;
   outline: 1px solid lightgrey;
-}
-
-.left-view__title {
-  margin-left: 10px;
-  padding: 20px 0 0 0;
-  font-size: 25px;
-  text-align: center;
-  color: grey;
-}
-
-.right-view {
-  padding: 30px;
-  min-width: 535px;
-  min-height: 800px;
-  outline: 1px solid lightgrey;
-}
-
-.right-view__title {
-  margin-left: 10px;
-  padding: 20px 0 0 0;
-  font-size: 25px;
-  text-align: center;
-  color: grey;
 }
 
 .desc {
@@ -95,7 +72,7 @@ body {
 /* sign " , " comma, as an enumeration */
 .child-1,
 .child-2 {
-  background-color: yellow;
+  background-color: lightyellow;
 }
 
 /* sign "space" (selection of all elements/with .child) */
@@ -119,6 +96,14 @@ body {
   background-color: lightsalmon;
 }
 
+.title {
+  margin-left: 10px;
+  padding: 20px 0 0 0;
+  font-size: 25px;
+  text-align: center;
+  color: grey;
+}
+
 .wrapper-links {
   display: flex;
   flex-direction: column;
@@ -137,10 +122,28 @@ body {
 
 /* selectors by attribute [conditions] / for ex.: */
 /* condition: a[href] / availability of the attribute.. in general */
-.link-1[href] {
+a[href] {
+  background-color: lightyellow;
+}
+
+/* condition: a[href="https://www.google.com/"] attribute.. specific value/path */
+a[href="https://www.google.com/"]
+{
   background-color: lightcyan;
 }
-/* condition: a[href="https://www.google.com/"] ..specific value/path */
-/* condition: a[href*="login"] ..specifying " * ", stylization by a certain word / by a certain line */
-/* condition: a[href^="http://"] ..specifying " ^ ", styling at the corresponding beginning of the address/line */
-/* condition: a[href$=".pdf"] ..specifying " $ ", definition of extension, stylization by ending */
+
+/* condition: a[href*="login"] attribute and the indication " * ", stylization by a certain word / by a certain line */
+a[href*="login"] {
+  background-color: lightpink;
+}
+
+/* condition: a[href^="http://"] .." ^ ", styling at the corresponding beginning of the address/line */
+a[href^="http://"]
+{
+  background-color: lightgray;
+}
+
+/* condition: a[href$=".pdf"] .." $ ", definition of extension, stylization by ending */
+a[href$=".pdf"] {
+  background-color: lightsalmon;
+}
