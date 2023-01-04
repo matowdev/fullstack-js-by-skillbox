@@ -11,8 +11,68 @@
 
 <body>
   <div class="container">
-    <!-- combinatorial selectors / for ex.: -->
-    <!-- selectors by attribute [conditions] / for ex.: -->
+    <div class="left-view">
+      <!-- for combinatorial selectors -->
+      <h2 class="desc">Selector by comma:</h2>
+      <div class="parent parent-1">
+        <div class="child child-1"></div>
+        <div class="child child-2"></div>
+      </div>
+
+      <h2 class="desc">Selector "space":</h2>
+      <div class="parent parent-2">
+        <div class="child"></div>
+        <div class="child"></div>
+      </div>
+
+      <h2 class="desc">Selector "more":</h2>
+      <div class="parent parent-3">
+        <div class="child"></div>
+        <div class="child">
+          <div class="child"></div>
+        </div>
+      </div>
+
+      <h2 class="desc">Selector "tilde":</h2>
+      <div class="parent parent-4">
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+      </div>
+
+      <h2 class="desc">Selector "plus":</h2>
+      <div class="parent parent-5">
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child child-14"></div>
+        <div class="child child-15"></div>
+      </div>
+
+      <p class="left-view__title">combinatorial selectors</p>
+    </div>
+
+    <div class="right-view">
+      <!-- for selectors by attribute [conditions] -->
+      <div class="wrapper-links">
+        <p class="desc">Condition: a[href]</p>
+        <a href="#" class="link link-1">Link 1</a>
+
+        <p class="desc">Condition: a[href="https://www.google.com/"]</p>
+        <a href="https://www.google.com/" class="link link-2" target="_blank">Link 2</a>
+
+        <p class="desc">Condition: a[href*="login"]</p>
+        <a href="https://www.site.com/login" class="link link-3" target="_blank">Link 3</a>
+
+        <p class="desc">Condition: a[href^="http://"]</p>
+        <a href="http://www.yahoo.com/" class="link link-4" target="_blank">Link 4</a>
+
+        <p class="desc">Condition: a[href$=".pdf"]</p>
+        <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/PDF_file_icon.svg/1667px-PDF_file_icon.svg.png"
+          download="" class="link link-5" target="_blank">Link 5 / download</a>
+      </div>
+      <p class="left-view__title">selectors by attribute</p>
+    </div>
   </div>
 </body>
 
