@@ -70,12 +70,8 @@ body {
 
 .div {
   margin-bottom: 20px;
-  padding: 5px 0 0 10px;
+  padding: 5px 10px;
   min-height: 30px;
-}
-
-.text {
-  margin-bottom: 10px;
 }
 
 /* interaction with Global words -> for ex.: */
@@ -142,10 +138,16 @@ a {
 
 /* revert logic */
 .div-revert {
+  margin-bottom: 0;
+  font-size: 30px;
   background-color: lightsteelblue;
   color: #fff;
 }
 
-h1 {
-  font-weight: 300;
+/* .caption-revert {
+  font-weight: 600;
+} */
+
+.caption-revert {
+  font-weight: revert;
 }
