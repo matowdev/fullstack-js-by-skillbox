@@ -1,0 +1,151 @@
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  height: 1500px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 30px auto;
+  padding: 0 15px;
+  width: 1200px;
+}
+
+.title {
+  margin-bottom: 10px;
+  padding-left: 10px;
+  font-size: 25px;
+  color: grey;
+}
+
+.ex-wrapper {
+  padding: 30px;
+  width: 50%;
+  outline: 1px solid lightgrey;
+}
+
+.desc {
+  margin-bottom: 10px;
+  padding-left: 5px;
+  font-weight: 400;
+  font-size: 22px;
+  letter-spacing: 2px;
+  text-shadow: 0 1px 10px lightslategray;
+}
+
+.div {
+  margin-bottom: 20px;
+  padding: 5px 0 0 10px;
+  min-height: 30px;
+}
+
+.text {
+  margin-bottom: 10px;
+}
+
+/* interaction with Global words -> for ex.: */
+/* initial logic */
+.div-initial {
+  background-color: lightcoral;
+  color: #fff;
+}
+
+/* .div-initial {
+  color: initial;
+  display: initial;
+} */
+
+/* inherit logic */
+ul {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: lightgoldenrodyellow;
+}
+
+li {
+  color: lightseagreen;
+}
+
+a {
+  color: inherit;
+}
+
+/* unset logic */
+.div-unset {
+  background-color: lightslategray;
+  color: #fff;
+}
+
+/* .div-unset {
+  color: unset;
+  display: unset;
+} */
+
+/* all/unset logic */
+.div-all__unset {
+  margin-bottom: 20px;
+  background-color: lightpink;
+  color: #fff;
+}
+
+.text-style {
+  font-weight: 600;
+  font-size: 3em;
+  background-color: lightsalmon;
+}
+
+/* .text-reset {
+  font-weight: inherit;
+  font-size: inherit;
+  color: initial;
+  background-color: initial;
+} */
+
+.text-all__unset {
+  all: unset;
+}
+
+/* revert logic */
+.div-revert {
+  background-color: lightsteelblue;
+  color: #fff;
+}
+
+h1 {
+  font-weight: 300;
+}
