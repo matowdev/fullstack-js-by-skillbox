@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10.4. Pseudo-classes as :hover, :focus, :active, :valid/invalid, :not and etc.!</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <h2 class="title">Pseudo-classes:</h2>
+    <div class="ex-wrapper">
+      <!-- 1. -->
+      <h3 class="desc">:hover</h3>
+      <div class="div element-hover"></div>
+
+      <!-- 2. -->
+      <h3 class="desc">:focus</h3>
+      <input class="input input-focus" type="text">
+
+      <!-- 3. -->
+      <h3 class="desc">:active</h3>
+      <input class="input input-active" type="text">
+
+      <!-- 4. -->
+      <h3 class="desc">:checked</h3>
+      <div class="checked-wrapper">
+        <input class="input-checked" type="radio" name="check">
+        <input class="input-checked" type="radio" name="check">
+      </div>
+
+      <!-- 5. -->
+      <h3 class="desc">:disabled</h3>
+      <button class="btn-disabled" disabled>Click..</button>
+
+      <!-- 6. -->
+      <h3 class="desc">:valid / :invalid</h3>
+      <input class="input input-valid__invalid" type="email" placeholder="Enter your email.." required>
+    </div>
+  </div>
+</body>
+
+</html>
