@@ -35,7 +35,7 @@ img {
 }
 
 body {
-  height: 1500px;
+  height: 1800px;
 }
 
 .container {
@@ -71,8 +71,6 @@ body {
 .div {
   margin-bottom: 20px;
   cursor: pointer;
-  /* padding: 5px 10px;
-  min-height: 30px; */
 }
 
 .input {
@@ -144,9 +142,10 @@ body {
   margin-bottom: 20px;
   padding: 10px;
   border-radius: 5px;
-  min-width: 100px;
+  width: 100%;
   min-height: 50px;
   font-size: 20px;
+  cursor: pointer;
   color: lightcoral;
   box-shadow: 0 1px 10px lightslategray;
 }
@@ -170,4 +169,118 @@ body {
 
 .input-valid__invalid:invalid {
   outline: 4px solid lightgoldenrodyellow;
+}
+
+/* :nth-child / :nth-last-child / :first-child / :last-child */
+.child {
+  border-radius: 5px;
+  text-align: center;
+  width: 300px;
+  font-size: 18px;
+  outline: 1px solid lightgrey;
+}
+
+.child:not(:last-child) {
+  margin-bottom: 5px;
+}
+
+.child:nth-child(3) {
+  background-color: lightgoldenrodyellow;
+}
+
+.child:nth-last-child(2) {
+  background-color: lightpink;
+}
+
+.child:first-child {
+  background-color: lightblue;
+}
+
+.child:last-child {
+  background-color: lightsalmon;
+}
+
+/* :nth-child (n) */
+.child-n {
+  border-radius: 5px;
+  padding-right: 20px;
+  text-align: end;
+  width: 300px;
+  font-size: 18px;
+  outline: 1px solid lightgrey;
+}
+
+.child-n:not(:last-child) {
+  margin-bottom: 5px;
+}
+
+.child-n:nth-child(2n) {
+  background-color: lightsteelblue;
+}
+
+.child-n:nth-child(2n + 1) {
+  background-color: lightgoldenrodyellow;
+}
+
+.child-n:nth-child(-n + 3) {
+  background-color: lightgreen;
+}
+
+/* :nth-child / with nav */
+.nav {
+  margin-bottom: 20px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  padding-left: 20px;
+  width: 300px;
+  height: 30px;
+  cursor: pointer;
+  outline: 1px solid lightgrey;
+}
+
+.item > a {
+  text-decoration: none;
+  font-size: 18px;
+  color: lightslategrey;
+}
+
+/* that's not right.. */
+a:nth-child(2) {
+  color: #fff;
+  background-color: lightskyblue;
+}
+
+/* that's right.. */
+li:nth-child(2) a {
+  color: #fff;
+  background-color: lightslategrey;
+}
+
+/* :not */
+.child-not {
+  border-radius: 5px;
+  padding-left: 20px;
+  width: 300px;
+  font-weight: 600;
+  font-size: 18px;
+  color: lightslategrey;
+  outline: 1px solid lightgrey;
+}
+
+.child-not:not(:last-child) {
+  margin-bottom: 5px;
+}
+
+.child-not:not(:nth-child(3)) {
+  background-color: lightblue;
 }
