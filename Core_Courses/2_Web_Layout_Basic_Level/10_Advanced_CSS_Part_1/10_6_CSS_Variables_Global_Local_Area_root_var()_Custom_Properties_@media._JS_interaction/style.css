@@ -71,6 +71,7 @@ body {
 
 .div {
   margin-bottom: 20px;
+  border-radius: 5px;
   padding: 10px;
   width: 100%;
   text-align: justify;
@@ -85,6 +86,57 @@ body {
 .ex-element__1 {
   color: var(--text-color);
   font-size: var(--text-size);
-  border-radius: 5px;
   background-color: #e7eaef;
+}
+
+/* local application / within a single element */
+/* two classes belonging to the same element/tag, as a result variables can be accessed.. (without :root) */
+.element {
+  --color-text: #5ba199;
+  --size-text: 20px;
+}
+
+.ex-element__2 {
+  color: var(--color-text);
+  font-size: var(--size-text);
+  background-color: #e5e3e4;
+}
+
+/* local application / declared there, applied here */
+/* if variables are declared outside (without :root) in this/another element, they cannot be executed */
+.ex-element__3 {
+  color: var(--color-text);
+  font-size: var(--size-text);
+  background-color: #e0efea;
+}
+
+/* variables and @media queries -> for ex.: */
+:root {
+  --media-color-text: #015366;
+  --media-size-text: 22px;
+}
+
+.ex-element__4 {
+  color: var(--media-color-text);
+  font-size: var(--media-size-text);
+  background-color: #f5f6ed;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --media-color-text: #8fa2ca;
+    --media-size-text: 15px;
+  }
+}
+
+/* variables and JS.. interaction/opportunity -> for ex.: */
+:root {
+  --js-text-color: #d36d88;
+  --js-text-size: 23px;
+}
+
+.ex-element__5 {
+  color: var(--js-text-color);
+  font-size: var(--js-text-size);
+  background-color: #eaeeef;
 }
