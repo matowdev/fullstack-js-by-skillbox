@@ -323,7 +323,7 @@ body {
 }
 
 .blog-preview__text {
-  padding: 23px 160px 38px 30px;
+  padding: 23px 156px 38px 30px;
 }
 
 .blog-preview__time {
@@ -341,6 +341,7 @@ body {
   font-weight: 600;
   font-size: 20px;
   line-height: 130%;
+  white-space: nowrap;
   color: #1c1c1c;
 }
 
