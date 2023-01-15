@@ -1,0 +1,643 @@
+@font-face {
+  font-family: "OpenSans";
+  src: local("OpenSans-Light"),
+    url("../fonts/OpenSansLight.woff2") format("woff2"),
+    url("../fonts/OpenSansLight.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OpenSans";
+  src: local("OpenSans-Regular"),
+    url("../fonts/OpenSansRegular.woff2") format("woff2"),
+    url("../fonts/OpenSansRegular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OpenSans";
+  src: local("OpenSans-SemiBold"),
+    url("../fonts/OpenSansSemiBold.woff2") format("woff2"),
+    url("../fonts/OpenSansSemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* @font-face {
+  font-family: "OpenSans";
+  src: url("../fonts/OpenSansLight.woff2");
+  src: local("OpenSans Light"), local("OpenSans-Light"),
+    url("../fonts/OpenSansLight.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OpenSans";
+  src: url("../fonts/OpenSansRegular.woff2");
+  src: local("OpenSans Regular"), local("OpenSans-Regular"),
+    url("../fonts/OpenSansRegular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OpenSans";
+  src: url("../fonts/OpenSansSemiBold.woff2");
+  src: local("OpenSans SemiBold"), local("OpenSans-SemiBold"),
+    url("../fonts/OpenSansSemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+} */
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+body {
+  min-width: 1200px; /* Вот/так специально: mim-width, т.е. если с телефонов/заход, то/будет в уменьшенном размере, с возможностью приближения */
+  height: 3500px;
+  font-family: "OpenSans", sans-serif;
+  /* font-weight: 400; */
+}
+
+/* glob */
+
+.list-reset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.btn-reset {
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.flex {
+  display: flex;
+}
+
+.btn {
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 20px;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: #3172b9;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 15px;
+  width: 1200px;
+  max-width: 100%;
+}
+
+.section-title {
+  margin: 0;
+  margin-bottom: 40px;
+  font-weight: 300;
+  font-size: 36px;
+  line-height: 130%;
+  color: #1c1c1c;
+}
+
+.section-desc {
+  margin: 0;
+  margin-bottom: 50px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #787878;
+}
+
+.section-offset {
+  padding-top: 87px;
+  padding-bottom: 160px;
+}
+
+/* header */
+
+.header {
+  border-bottom: 1px solid #c4c4c4;
+  padding: 36px 0;
+  background-color: #fff;
+}
+
+.header-container {
+  align-items: center;
+}
+
+.header-logo {
+  margin-right: auto;
+}
+
+.header-nav {
+  margin-right: 52px;
+}
+
+.header-list__item:not(:last-child) {
+  margin-right: 52px;
+}
+
+.header-link {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 20px;
+  color: #1c1c1c;
+}
+
+.header-btn {
+  padding: 15px 35px;
+  min-width: 150px;
+}
+
+/* main: hero */
+
+.hero {
+  padding: 100px 0; /* 0 т.к. за horizontal отвечает container */
+  background: url("../img/hero-hends-bg.jpg") no-repeat center / cover;
+}
+
+.hero-content {
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 50%; /* пока 50% -> позже/точнее */
+}
+
+.hero-title {
+  margin: 0;
+  margin-bottom: 25px;
+  font-weight: 300;
+  font-size: 40px;
+  line-height: 130%;
+  color: #1c1c1c;
+}
+
+.hero-desc {
+  margin: 0;
+  margin-bottom: 34px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 155%;
+  color: #787878;
+}
+
+.hero-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-btn {
+  margin-bottom: 14px;
+  padding: 20px 60px;
+  min-width: 250px;
+}
+
+.hero-secure {
+  padding-left: 25px;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 155%;
+  text-transform: uppercase;
+  color: #787878;
+  background: url("../img/hero-secure-icon.svg") no-repeat left / 14px 17px;
+}
+
+/* main: services */
+
+.services {
+  border-bottom: 1px solid #c4c4c4;
+}
+
+.services-title {
+  text-align: center;
+}
+
+.services-desc {
+  text-align: center;
+}
+
+.services-item {
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #e4e4e4;
+  border-radius: 5px;
+  padding: 60px 30px;
+  min-width: 270px;
+}
+
+.services-item:not(:nth-child(4n)) {
+  margin-right: 30px;
+}
+
+.services-item__icon {
+  margin-bottom: 25px;
+}
+
+.services-item__title {
+  margin: 0;
+  margin-bottom: 15px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 130%;
+  color: #1c1c1c;
+}
+
+.services-item__desc {
+  margin: 0;
+  text-align: center;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  color: #787878;
+}
+
+/* main: articles */
+
+.articles {
+  border-bottom: 1px solid #dadada;
+}
+
+.articles-list {
+  flex-wrap: wrap;
+}
+
+.articles-item {
+  border-radius: 0px 5px 5px 0px;
+  width: 570px;
+}
+
+.articles-item:nth-child(-n + 2) {
+  margin-bottom: 30px;
+}
+
+/* .articles-item:nth-child(odd) {
+  margin-right: 30px;
+} */
+
+/* or */
+
+.articles-item:not(:nth-child(2n)) {
+  margin-right: 30px;
+}
+
+.blog-preview {
+  border: 1px solid #e4e4e4;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.blog-preview__image {
+  width: 170px;
+  /* height: 180px; */
+  object-fit: cover; /* как Гласит.. Doca, данное свойство будет работать, только/если присуствует/указан, хотя бы один размер, для изображения/img, т.е. или ширины, или высоты, нет ни одного.. сори */
+}
+
+.blog-preview__text {
+  padding: 23px 156px 38px 30px;
+}
+
+.blog-preview__time {
+  display: block;
+  margin-bottom: 5px; /* на время */
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 150%;
+  color: #787878;
+}
+
+.blog-preview__title {
+  margin: 0;
+  margin-bottom: 15px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 130%;
+  white-space: nowrap;
+  color: #1c1c1c;
+}
+
+.blog-preview__desc {
+  margin: 0;
+  max-width: 210px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  color: #787878;
+}
+
+/* main: clients */
+
+.clients {
+  border-bottom: 1px solid #dadada;
+}
+
+.clients-item {
+  flex-direction: column;
+  border: 1px solid #e4e4e4;
+  border-radius: 5px;
+  padding: 50px 36px;
+  padding-bottom: 30px; /* здесь же и переназначим -> так проще */
+  width: 370px;
+}
+
+.clients-item:not(:nth-child(3n)) {
+  margin-right: 30px;
+}
+
+.clients-item__desc {
+  margin: 0;
+  margin-bottom: 30px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 180%;
+  color: #787878;
+}
+
+.clients-user {
+  margin-top: auto; /* это гарантия того, что данный блок/div => будет/всегда внизу карточки/края */
+  border-top: 1px solid #dadada;
+  padding-top: 28px;
+  width: 100%;
+  align-items: center;
+}
+
+.clients-user__avatar {
+  flex-shrink: 0; /* да-бы аватар/блок под/этот аватар, никогда не сжимался */
+  margin-right: 17px;
+  width: 67px;
+}
+
+.clients-user__avatar img {
+  border: 2px solid #317289;
+  border-radius: 100%;
+  width: 100%;
+  height: 100%;
+}
+
+.clients-name {
+  margin-bottom: 5px; /* хоть и/в проекте как-бы нет/совсем отступа, лучше сделать */
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 180%;
+  color: #1c1c1c;
+}
+
+.clients-position {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 180%;
+  color: #787878;
+}
+
+/* main: contacts */
+
+.contacts {
+  border-bottom: 1px solid #dadada;
+}
+
+.contacts-address {
+  font-style: normal;
+}
+
+.contacts-item {
+  flex-direction: column;
+  padding-top: 48px;
+  width: 370px;
+  background-position: left top;
+  background-repeat: no-repeat;
+  background-size: 29px 29px;
+}
+
+.contacts-item:not(:nth-child(3n)) {
+  margin-right: 30px;
+}
+
+.contacts-item__location {
+  background-image: url("../img/contacts-icon-location.svg");
+}
+
+.contacts-item__phone {
+  background-image: url("../img/contacts-icon-phone.svg");
+}
+
+.contacts-item__mail {
+  background-image: url("../img/contacts-icon-mail.svg");
+}
+
+.contacts-item__caption {
+  margin-bottom: 30px;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 180%;
+  color: #1c1c1c;
+}
+
+.contacts-item__text {
+  margin: 0;
+  max-width: 215px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 180%;
+  color: #787878;
+}
+
+.contacts-item__link {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 180%;
+  color: #787878;
+}
+
+/* main: join-us */
+
+.join-us {
+  border-bottom: 1px solid #c4c4c4;
+}
+
+.join-us__title {
+  text-align: center;
+}
+
+.join-us__desc {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.join-us__form {
+  padding: 0 55px 0;
+}
+
+.form-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 19px;
+}
+
+.form-left {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 19px;
+  width: 49%;
+}
+
+.form-input {
+  box-sizing: border-box;
+  border: 1px solid #dadada;
+  border-radius: 50px;
+  padding: 16px 28px;
+  width: 251px;
+  height: 60px;
+}
+
+.form-select {
+  box-sizing: border-box;
+  border: 1px solid #dadada;
+  border-radius: 50px;
+  padding: 16px 28px;
+  width: 251px;
+  height: 60px;
+}
+
+.form-right {
+  width: 49%;
+}
+
+.form-textarea {
+  box-sizing: border-box;
+  border: 1px solid #dadada;
+  border-radius: 20px;
+  padding: 16px 28px;
+  width: 100%;
+  height: 100%;
+  resize: none; /* new */
+}
+
+.form-bottom {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.form-bottom__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-bottom__btn {
+  margin-bottom: 9px;
+  border-radius: 50px;
+  padding: 20px 0 20px;
+  min-width: 230px;
+}
+
+.form-botton__label {
+  font-size: 12px;
+  line-height: 16px;
+  color: #787878;
+}
+
+.form-botton__label input {
+  margin-right: 8px;
+}
+
+.form-botton__label a {
+  border-bottom: 1px solid #317289;
+  color: #317289;
+}
+
+/* footer */
+
+.footer {
+  padding: 45px 0;
+}
+
+.footer-container {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-left,
+.footer-right {
+  align-items: center;
+}
+
+.footer-logo {
+  margin-right: 25px;
+}
+
+.footer-copy {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #787878;
+}
+
+.footer-nav {
+  margin-right: 56px;
+}
+
+.footer-item:not(:last-child) {
+  margin-right: 28px;
+}
+
+.footer-link {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 20px;
+  color: #787878;
+}
+
+.social-item:not(:last-child) {
+  margin-right: 32px;
+}
+
+.social-link {
+  display: block;
+  width: 24px;
+  height: 24px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.social-link__tw {
+  background-image: url("../img/footer-socials-link-twitter.svg");
+}
+
+.social-link__linkedin {
+  background-image: url("../img/footer-socials-link-linkedin.svg");
+}
+
+.social-link__Gmail {
+  background-image: url("../img/footer-socials-link-Gmail.svg");
+}
