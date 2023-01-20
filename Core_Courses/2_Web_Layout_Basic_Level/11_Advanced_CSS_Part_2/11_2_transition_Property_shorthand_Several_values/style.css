@@ -1,0 +1,120 @@
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  height: 1800px;
+}
+
+/* glob */
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 30px auto;
+  padding: 0 15px;
+  width: 1200px;
+}
+
+.title {
+  margin-bottom: 10px;
+  padding-left: 10px;
+  font-size: 30px;
+  color: grey;
+}
+
+.title-effect {
+  text-shadow: 0 1px 10px lightskyblue;
+}
+
+.ex-wrapper {
+  padding: 30px;
+  width: 50%;
+  outline: 1px solid lightgrey;
+}
+
+.desc {
+  margin-bottom: 10px;
+  padding-left: 5px;
+  font-weight: 400;
+  font-size: 25px;
+  letter-spacing: 2px;
+  text-shadow: 0 1px 10px lightslategray;
+}
+
+.div {
+  margin-bottom: 20px;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  text-align: justify;
+}
+
+/* transition logic.. interaction/components: */
+.ex-element__1 {
+  font-size: 18px;
+  background-color: #eef6f9;
+}
+
+.ex-element__1:hover {
+  color: #a0835c;
+  /* transition-property: color;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0.5s; */
+  transition: color 0.5s ease-in-out 0.5s;
+}
+
+/* multiple meanings.. comma ( , ) separated */
+.ex-element__2 {
+  background-color: #fcfdff;
+}
+
+.btn {
+  border: none;
+  padding: 10px 15px;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 1px 10px #cbc7d3;
+  /* transition-property: color, background-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out; */
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.btn:hover {
+  color: #c0c7cf;
+  background-color: #495b71;
+  box-shadow: 0 1px 10px #7f6761;
+}
