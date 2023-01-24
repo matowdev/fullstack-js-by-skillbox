@@ -36,58 +36,222 @@ img {
 
 body {
   height: 1500px;
+  font-family: "Open Sans", sans-serif;
 }
 
 /* glob */
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  row-gap: 20px;
   margin: 30px auto;
   padding: 0 15px;
   width: 1200px;
 }
 
-.view {
-  padding: 30px;
-  width: 570px;
-  outline: 1px solid lightgrey;
+.top-bottom__view {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  border-radius: 5px;
+  padding: 25px;
+  outline: 1px solid lightgray;
 }
 
-.desc {
-  margin: 0 0 10px 0;
+.elements-wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.elements-title {
   padding-left: 10px;
-  font-weight: 400;
-  font-size: 22px;
-  text-shadow: 0 1px 10px lightslategray;
+  font-size: 20px;
 }
 
-.div {
-  margin-bottom: 20px;
+.top-elements {
+  display: flex;
+  column-gap: 20px;
+}
+
+.element {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
   padding: 10px;
-  text-align: justify;
+  width: 208px;
+  height: 208px;
+  font-weight: bold;
+  font-size: 18px;
+  color: lightslategray;
+  cursor: help;
+  box-shadow: 0 1px 10px lightslategrey;
+  transition: transform 0.3s;
 }
 
-.title {
+.top-bottom__desc {
+  margin: 0 auto;
   font-size: 25px;
-  text-align: center;
   color: grey;
+  text-shadow: 0 1px 10px lightslategrey;
 }
 
-/* top */
-/* */
+/* transform property.. it's transforms functions -> for ex.: */
 
-/* */
+/* transform: translate() */
+.title-1 {
+  text-shadow: 0 1px 10px lightblue;
+}
 
-/* */
+.element_translate {
+  background-color: lightblue;
+}
 
-/* */
+.translate:hover {
+  transform: translate(5px, 10px);
+}
 
-/* bottom */
-/*  */
+.translateX:hover {
+  transform: translateX(-25px);
+}
 
-/* */
+.translateY:hover {
+  transform: translateY(50px);
+}
 
-/* */
+/* transform: matrix() */
+.title-2 {
+  text-shadow: 0 1px 10px lightgoldenrodyellow;
+}
 
-/* */
+.top-elements__2 {
+  width: 436px;
+}
+
+.element-matrix {
+  flex-grow: 1;
+  background-color: lightgoldenrodyellow;
+}
+
+.matrix:hover {
+  transform: matrix(1.2, 0, 0.5, 1.2, 50, 10);
+}
+
+/* transform: rotate() */
+.title-3 {
+  text-shadow: 0 1px 10px lightgreen;
+}
+
+.top-elements__3 {
+  width: 436px;
+}
+
+.element-rotate {
+  flex-grow: 1;
+  background-color: lightgreen;
+}
+
+.rotate:hover {
+  transform: rotate(180deg);
+}
+
+/* transform: scale() */
+.title-4 {
+  text-shadow: 0 1px 10px lightsalmon;
+}
+
+.element_scale {
+  background-color: lightsalmon;
+}
+
+.scale:hover {
+  transform: scale(0.5, 0.3);
+}
+
+.scaleX:hover {
+  transform: scaleX(1.5);
+}
+
+.scaleY:hover {
+  transform: scaleY(1.3);
+}
+
+/* transform: skew() */
+.title-5 {
+  text-shadow: 0 1px 10px lightsteelblue;
+}
+
+.top-elements__5 {
+  width: 1120px;
+}
+
+.element_skew {
+  flex-grow: 1;
+  background-color: lightsteelblue;
+}
+
+.skew:hover {
+  transform: skew(-10deg, 20deg);
+}
+
+.skewX:hover {
+  transform: skewX(10deg);
+}
+
+.skewY:hover {
+  transform: skewY(15deg);
+}
+
+/* some transforms functions / interfacing with btn -> for ex.: */
+
+/* Adding.. transform: translate(); */
+.btn-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title-btn {
+  margin: 0 auto;
+  text-shadow: 0 1px 10px lightcoral;
+}
+
+.bottom-elements {
+  display: flex;
+  width: 550px;
+}
+
+.btn-translate {
+  position: relative;
+  margin: 0 auto;
+  border: none;
+  border-radius: 100px;
+  padding: 17px 34px;
+  font-weight: 700;
+  font-size: 18px;
+  cursor: pointer;
+  color: lightcoral;
+  background-color: lightslategray;
+  box-shadow: 0 1px 10px lightslategrey;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.btn-translate::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border: 3px solid lightcoral;
+  border-radius: 100px;
+  width: calc(100% + 12px);
+  height: calc(100% + 12px);
+  opacity: 0;
+  transform: translate(-50%, -50%);
+}
+
+.btn-translate:focus::after {
+  opacity: 1;
+}
+
+/* Adding.. transform: scale(); */
