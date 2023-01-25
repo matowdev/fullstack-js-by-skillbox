@@ -35,7 +35,7 @@ img {
 }
 
 body {
-  height: 1500px;
+  height: 1700px;
   font-family: "Open Sans", sans-serif;
 }
 
@@ -92,6 +92,7 @@ body {
 
 .top-bottom__desc {
   margin: 0 auto;
+  padding: 20px;
   font-size: 25px;
   color: grey;
   text-shadow: 0 1px 10px lightslategrey;
@@ -203,16 +204,38 @@ body {
   transform: skewY(15deg);
 }
 
-/* some transforms functions / interfacing with btn -> for ex.: */
+/* property: transform-origin */
+.title-6 {
+  text-shadow: 0 1px 10px lightslategray;
+}
 
-/* Adding.. transform: translate(); */
+.top-elements__6 {
+  width: 1120px;
+}
+
+.element-origin {
+  flex-grow: 1;
+}
+
+.transform-origin:hover {
+  color: lightslategray;
+  transform-origin: center;
+  transform: scale(0.5, 0.3);
+}
+
+/* some transforms functions / interfacing with btn -> for ex.: */
+.bottom-view {
+  row-gap: 40px;
+}
+
+/* Without.. transform: translate(); */
 .btn-wrapper {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.title-btn {
+.title-btn__1 {
   margin: 0 auto;
   text-shadow: 0 1px 10px lightcoral;
 }
@@ -222,36 +245,140 @@ body {
   width: 550px;
 }
 
-.btn-translate {
+.btn-translate__without {
   position: relative;
   margin: 0 auto;
   border: none;
-  border-radius: 100px;
+  border-radius: 5px;
   padding: 17px 34px;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 22px;
   cursor: pointer;
   color: lightcoral;
-  background-color: lightslategray;
+  background-color: #fff;
   box-shadow: 0 1px 10px lightslategrey;
-  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-.btn-translate::after {
+.btn-translate__without::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border: 3px solid lightskyblue;
+  border-radius: 5px;
+  width: calc(100% + 12px);
+  height: calc(100% + 12px);
+  opacity: 0;
+}
+
+.btn-translate__without:hover {
+  box-shadow: 0 1px 10px lightskyblue;
+}
+
+.btn-translate__without:focus::after {
+  opacity: 1;
+}
+
+/* With.. transform: scale(-50%, -50%); */
+.title-btn__2 {
+  margin: 0 auto;
+  text-shadow: 0 1px 10px lightskyblue;
+}
+
+.btn-translate__with {
+  position: relative;
+  margin: 0 auto;
+  border: none;
+  border-radius: 5px;
+  padding: 17px 34px;
+  font-weight: 700;
+  font-size: 22px;
+  cursor: pointer;
+  color: lightskyblue;
+  background-color: #fff;
+  box-shadow: 0 1px 10px lightslategrey;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.btn-translate__with::after {
   content: "";
   position: absolute;
   left: 50%;
   top: 50%;
   border: 3px solid lightcoral;
-  border-radius: 100px;
+  border-radius: 5px;
   width: calc(100% + 12px);
   height: calc(100% + 12px);
   opacity: 0;
   transform: translate(-50%, -50%);
 }
 
-.btn-translate:focus::after {
+.btn-translate__with:hover {
+  box-shadow: 0 1px 10px lightcoral;
+}
+
+.btn-translate__with:focus::after {
   opacity: 1;
 }
 
-/* Adding.. transform: scale(); */
+/* ----- */
+
+/* Without.. transform: skew(); for span */
+.title-btn__3 {
+  margin: 0 auto;
+  text-shadow: 0 1px 10px lightcoral;
+}
+
+.btn-skew__without {
+  position: relative;
+  margin: 0 auto;
+  border: none;
+  border-radius: 5px;
+  padding: 17px 34px;
+  font-weight: 700;
+  font-size: 22px;
+  cursor: pointer;
+  color: lightcoral;
+  background-color: #fff;
+  box-shadow: 0 1px 10px lightslategrey;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.btn-skew__without:hover {
+  color: lightskyblue;
+  box-shadow: 0 1px 10px lightskyblue;
+  transform: skewX(-25deg);
+}
+
+/* With.. transform: skew(25deg); for span */
+.title-btn__4 {
+  margin: 0 auto;
+  text-shadow: 0 1px 10px lightskyblue;
+}
+
+.btn-skew__with {
+  position: relative;
+  margin: 0 auto;
+  border: none;
+  border-radius: 5px;
+  padding: 17px 34px;
+  font-weight: 700;
+  font-size: 22px;
+  cursor: pointer;
+  color: lightskyblue;
+  background-color: #fff;
+  box-shadow: 0 1px 10px lightslategrey;
+  transition: transform 0.1s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.btn-skew__with:hover {
+  color: lightcoral;
+  box-shadow: 0 1px 10px lightcoral;
+  transform: skewX(-25deg);
+}
+
+.btn-skew__with:hover span {
+  display: inline-block;
+  transform: skewX(25deg);
+}

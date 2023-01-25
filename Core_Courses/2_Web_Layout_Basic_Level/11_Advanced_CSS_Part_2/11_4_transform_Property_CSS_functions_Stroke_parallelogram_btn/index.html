@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>11.4. Property: transform, its values. CSS functions. Stroke, parallelogram.. btn!</title>
+  <title>11.4. Property: transform, its values. CSS functions. Stroke, parallelogram.. btn, span!</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
@@ -57,24 +57,50 @@
           <div class="element element_skew skewY">skewY(15deg);</div>
         </div>
       </div>
+      <!-- 6. -->
+      <div class="elements-wrapper">
+        <h3 class="elements-title title-6">Property transform-origin:</h3>
+        <div class="top-elements top-elements__6">
+          <div class="element element-origin transform-origin">transform-origin: center;<br>transform: scale(0.5, 0.3);
+          </div>
+        </div>
+      </div>
+
       <p class="top-bottom__desc">transform property / transforms functions</p>
     </div>
 
     <div class="top-bottom__view bottom-view">
       <!-- some transforms functions / interfacing with a button: -->
-      <!-- 1. -->
+      <!-- Without / with.. transform: translate(); -->
       <div class="btn-wrapper">
-        <h3 class="elements-title title-btn">Adding.. transform: translate();</h3>
+        <h3 class="elements-title title-btn__1">Without.. transform: translate();</h3>
         <div class="bottom-elements">
-          <button class="btn-translate">Click me..</button>
+          <button class="btn-translate__without">Click me..</button>
         </div>
       </div>
+      <!-- with.. -->
       <div class="btn-wrapper">
-        <h3 class="elements-title title-btn">Adding.. transform: scale();</h3>
+        <h3 class="elements-title title-btn__2">With.. transform: translate(-50%, -50%);</h3>
         <div class="bottom-elements">
-          <!-- <button class="btn-scale">No.. Click me!</button> -->
+          <button class="btn-translate__with">No.. Click me!</button>
         </div>
       </div>
+
+      <!-- Without / with.. transform: skew(); for <span> -->
+      <div class="btn-wrapper">
+        <h3 class="elements-title title-btn__3">Without.. transform: skew(); for span</h3>
+        <div class="bottom-elements">
+          <button class="btn-skew__without">Hover me..</button>
+        </div>
+      </div>
+      <!-- with.. -->
+      <div class="btn-wrapper">
+        <h3 class="elements-title title-btn__4">With.. transform: skew(25deg); for span</h3>
+        <div class="bottom-elements">
+          <button class="btn-skew__with"><span>No.. Hover me!</span></button>
+        </div>
+      </div>
+
       <p class="top-bottom__desc">some transforms functions / interfacing with a buttons</p>
     </div>
   </div>
