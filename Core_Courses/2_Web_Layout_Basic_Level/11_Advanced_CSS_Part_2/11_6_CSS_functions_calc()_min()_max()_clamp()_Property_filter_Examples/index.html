@@ -5,31 +5,26 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>11.5. CSS gradients. Function: linear-gradient(). Definition of colour proportions. Adding degree/deg
-    component!</title>
+  <title>11.6. CSS functions: calc(), min(), max(), clamp(). Property: filter.. functionality.
+    Examples of interaction!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
   <div class="container">
-    <h2 class="title"><span class="title-effect">linear-gradient()</span> funstion:</h2>
+    <h2 class="title"><span class="title-effect">CSS</span> funstions:</h2>
     <div class="ex-wrapper">
+      <!-- calc(), for ex.: -->
       <!-- 1. -->
-      <div class="element">
-        <h3 class="desc">The simplest example</h3>
-        <div class="gradient gradient__1"></div>
-      </div>
-
-      <!-- 2. -->
-      <div class="element">
-        <h3 class="desc">Defining colour proportions</h3>
-        <div class="gradient gradient__2"></div>
-      </div>
-
-      <!-- 3. -->
-      <div class="element">
-        <h3 class="desc">Adding degree component</h3>
-        <div class="gradient gradient__3"></div>
+      <div class="element element-1">
+        <h3 class="subtitle"><span class="subtitle-effect">calc()</span>, for example:</h3>
+        <p class="desc">calculating/placing 3 equal blocks</p>
+        <div class="block block-element__1">--</div>
+        <div class="block block-element__1">width: calc(100% / 3);</div>
+        <div class="block block-element__1">--</div>
       </div>
     </div>
 </body>

@@ -36,6 +36,7 @@ img {
 
 body {
   height: 1000px;
+  font-family: "Open Sans", sans-serif;
 }
 
 /* glob */
@@ -60,66 +61,64 @@ body {
 
 .ex-wrapper {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   border-radius: 5px;
   padding: 30px;
   width: 100%;
   outline: 1px solid lightgrey;
-  box-shadow: 0 1px 10px lightslategray;
+  /* box-shadow: 0 1px 10px lightslategray; */
 }
 
 .element {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
+  /* flex-direction: column; */
+  /* align-items: center; */
   row-gap: 15px;
+  width: 100%;
 }
 
-.desc {
+.subtitle {
+  padding-left: 10px;
+  width: 100%;
   font-weight: 400;
   font-size: 22px;
   letter-spacing: 2px;
   text-shadow: 0 1px 10px lightslategray;
 }
 
-.gradient {
-  display: inline-block;
+.subtitle-effect {
+  text-shadow: 0 1px 10px lightcoral;
+}
+
+.desc {
+  padding-left: 10px;
+  width: 100%;
+  font-size: 18px;
+  letter-spacing: 2px;
+  text-shadow: 0 1px 10px lightgray;
+}
+
+.block {
   border-radius: 5px;
-  width: 300px;
-  height: 300px;
-  cursor: help;
+  padding: 20px;
+  /* width: 300px; */
+  height: 100px;
   outline: 1px solid lightgrey;
-  box-shadow: 0 1px 10px lightslategray;
-  transition: box-shadow 0.3s ease-in-out;
+  /* box-shadow: 0 1px 10px lightslategray; */
+  /* transition: box-shadow 0.3s ease-in-out; */
 }
 
-/* simplest example */
-.gradient__1 {
-  background-image: linear-gradient(lightskyblue, lightgrey);
+/*  */
+.block-element__1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(100% / 3);
+  text-shadow: 0 1px 10px lightgray;
+  outline: 1px solid lightcoral;
 }
 
-.gradient__1:hover {
-  box-shadow: 0 1px 10px lightskyblue;
-}
+/*  */
 
-/* defining colour proportions */
-.gradient__2 {
-  background-image: linear-gradient(
-    lightseagreen 25%,
-    lightsteelblue 50%,
-    lightgoldenrodyellow 75%
-  );
-}
-
-.gradient__2:hover {
-  box-shadow: 0 1px 10px lightsteelblue;
-}
-
-/* Adding degree/deg component */
-.gradient__3 {
-  background-image: linear-gradient(90deg, lightsalmon, lightsteelblue);
-}
-
-.gradient__3:hover {
-  box-shadow: 0 1px 10px lightsalmon;
-}
+/*  */
