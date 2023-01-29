@@ -15,16 +15,66 @@
 
 <body>
   <div class="container">
-    <h2 class="title"><span class="title-effect">CSS</span> funstions:</h2>
+    <h2 class="title"><span class="title-effect__1">CSS</span> funstions.. <span class="title-effect__2">filter</span>
+      property:</h2>
     <div class="ex-wrapper">
-      <!-- calc(), for ex.: -->
+      <!-- Function/value: calc()  -->
       <!-- 1. -->
       <div class="element element-1">
-        <h3 class="subtitle"><span class="subtitle-effect">calc()</span>, for example:</h3>
+        <h3 class="subtitle"><span class="subtitle-effect__1">calc()</span>, for example:</h3>
         <p class="desc">calculating/placing 3 equal blocks</p>
         <div class="block block-element__1">--</div>
         <div class="block block-element__1">width: calc(100% / 3);</div>
         <div class="block block-element__1">--</div>
+      </div>
+
+      <!-- 2. -->
+      <div class="element element-2">
+        <p class="desc">calculating/placing a fixed block and a block under all/other space</p>
+        <div class="block block-element__2 element__2-1">--</div>
+        <div class="block block-element__2 element__2-2">width: calc(100% - 370px);</div>
+      </div>
+
+      <!-- 3. -->
+      <div class="element element-3">
+        <p class="desc">a grid of blocks, with fixed indents.. entering a variable</p>
+        <div class="block block-element__3">--</div>
+        <div class="block block-element__3">width: calc((100% - (var(--gap) * 2)) / 3);</div>
+        <div class="block block-element__3">--</div>
+        <div class="block block-element__3">--</div>
+        <div class="block block-element__3">--</div>
+        <div class="block block-element__3">--</div>
+      </div>
+
+      <!-- Useful functions/values like: min(), max(), clamp() -->
+      <!-- 1. -->
+      <div class="element element-4">
+        <h3 class="subtitle"><span class="subtitle-effect__1">min()</span>, for example:</h3>
+        <p class="desc">determine the min-size of the element/block based on the size of the site/parent</p>
+        <div class="block block-element__4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, eos
+          voluptatum accusantium optio necessitatibus facere inventore corrupti possimus, itaque non exercitationem.
+          Ipsam voluptatum distinctio consectetur!</div>
+        <p class="element-4__desc">width: min(50%, 700px);</p>
+      </div>
+
+      <!-- 2. -->
+      <div class="element element-5">
+        <h3 class="subtitle"><span class="subtitle-effect__1">max()</span>, for example:</h3>
+        <p class="desc">determine the max right indent for an element/block</p>
+        <div class="block block-element__5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, eos
+          voluptatum accusantium optio necessitatibus facere inventore corrupti possimus, itaque non exercitationem.
+          Ipsam voluptatum distinctio consectetur!</div>
+        <p class="element-5__desc">margin-right: max(9%, 50px);</p>
+      </div>
+
+      <!-- Property: filter, its/some functions/values: blur(), grayscale(), invert() -->
+      <!-- 1. -->
+      <div class="element element-7">
+        <h3 class="subtitle">Property <span class="subtitle-effect__2">filter</span>, for example:</h3>
+        <p class="desc">calculating/placing 3 equal blocks</p>
+        <div class="block block-element__7">--</div>
+        <div class="block block-element__7">width: calc(100% / 3);</div>
+        <div class="block block-element__7">--</div>
       </div>
     </div>
 </body>

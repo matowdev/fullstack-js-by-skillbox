@@ -35,7 +35,7 @@ img {
 }
 
 body {
-  height: 1000px;
+  height: 3000px;
   font-family: "Open Sans", sans-serif;
 }
 
@@ -55,12 +55,18 @@ body {
   color: grey;
 }
 
-.title-effect {
+.title-effect__1 {
   text-shadow: 0 1px 10px lightskyblue;
+}
+
+.title-effect__2 {
+  text-shadow: 0 1px 10px lightgreen;
 }
 
 .ex-wrapper {
   display: flex;
+  flex-wrap: wrap;
+  row-gap: 25px;
   /* justify-content: space-between; */
   border-radius: 5px;
   padding: 30px;
@@ -87,8 +93,12 @@ body {
   text-shadow: 0 1px 10px lightslategray;
 }
 
-.subtitle-effect {
+.subtitle-effect__1 {
   text-shadow: 0 1px 10px lightcoral;
+}
+
+.subtitle-effect__2 {
+  text-shadow: 0 1px 10px lightgreen;
 }
 
 .desc {
@@ -109,7 +119,8 @@ body {
   /* transition: box-shadow 0.3s ease-in-out; */
 }
 
-/*  */
+/* calc() function, for ex.: */
+/* calculating/placing 3 equal blocks */
 .block-element__1 {
   display: flex;
   justify-content: center;
@@ -119,6 +130,82 @@ body {
   outline: 1px solid lightcoral;
 }
 
-/*  */
+/* calculating/placing a fixed block and a block under all/other space */
+.block-element__2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0 1px 10px lightgray;
+  outline: 1px solid lightcoral;
+}
 
-/*  */
+.element__2-1 {
+  width: 370px;
+}
+
+.element__2-2 {
+  width: calc(100% - 370px);
+}
+
+/* a grid of blocks, with fixed indents.. entering a variable */
+.block-element__3 {
+  --gap: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin-bottom: var(--gap); */
+  width: calc((100% - (var(--gap) * 2)) / 3);
+  text-shadow: 0 1px 10px lightgray;
+  outline: 1px solid lightcoral;
+}
+
+.block-element__3:not(:nth-child(3n + 1)) {
+  margin-right: var(--gap);
+}
+
+/* <!-- useful functions/values, for ex.: --> */
+/* min() */
+.block-element__4 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: min(50%, 700px);
+  height: auto;
+  text-shadow: 0 1px 10px lightgray;
+  outline: 1px solid lightcoral;
+}
+
+.element-4__desc {
+  align-self: center;
+  padding-left: 150px;
+  font-size: 18px;
+}
+
+/* max() */
+.block-element__5 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: max(9%, 50px);
+  width: 600px;
+  height: auto;
+  text-shadow: 0 1px 10px lightgray;
+  outline: 1px solid lightcoral;
+}
+
+.element-5__desc {
+  align-self: center;
+  /* padding-left: 100px; */
+  font-size: 18px;
+}
+
+/* clamp() */
+
+/* filter property, its/some functions/values, for ex.: */
+/* blur() */
+
+/* grayscale() */
+
+/* invert() */
