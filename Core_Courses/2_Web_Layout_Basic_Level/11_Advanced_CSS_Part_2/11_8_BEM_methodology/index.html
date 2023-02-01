@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>11.8. BEM methodology!</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <h2 class="title"><span class="title-effect">BEM</span> methodology</h2>
+    <div class="blocks-wrapper">
+      <!-- BEM methodology.. naming for example: -->
+      <!-- 1. -->
+      <div class="block">
+        <h3 class="block__subtitle"><span class="block__subtitle_effect">Naming..</span> one main block:</h3>
+        <nav class="block__nav">
+          <ul class="block__nav-list">
+            <li class="block__nav-item"><a href="https://en.bem.info/methodology/"
+                class="block__nav-link block__nav-link_active" target="_blank">BEM</a></li>
+            <li class="block__nav-item "><a href="https://en.bem.info/methodology/quick-start/"
+                class="block__nav-link block__nav-link_active" target="_blank">Quick start</a></li>
+            <li class="block__nav-item"><a href="https://en.bem.info/methodology/html/"
+                class="block__nav-link block__nav-link_active" target="_blank">HTML with BEM</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- 2. -->
+      <h3 class="subtitle"><span class="subtitle-effect">Naming..</span> block/element at the same time, two
+        navigations:</h3>
+      <header class="header">
+        <nav class="nav header__nav" title="Main menu">
+          <ul class="nav__list">
+            <li class="nav__item"><a href="#" class="nav__link nav__link_hover">Menu item.. header</a></li>
+            <li class="nav__item"><a href="#" class="nav__link nav__link_hover">Menu item.. header</a></li>
+            <li class="nav__item"><a href="#" class="nav__link nav__link_hover">Menu item.. header</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <footer class="footer">
+        <nav class="nav footer__nav" title="Secondary menu">
+          <ul class="nav__list">
+            <li class="nav__item"><a href="#" class="nav__link nav__link_hover">Menu item.. footer</a></li>
+            <li class="nav__item"><a href="#" class="nav__link nav__link_hover">Menu item.. footer</a></li>
+            <li class="nav__item"><a href="#" class="nav__link nav__link_hover">Menu item.. footer</a></li>
+          </ul>
+        </nav>
+      </footer>
+    </div>
+
+
+    <p class="text">**Examples of names, according to the BEM methodology.. <span class="text-effect">View page source /
+        DevTools</span></p>
+  </div>
+</body>
+
+</html>
