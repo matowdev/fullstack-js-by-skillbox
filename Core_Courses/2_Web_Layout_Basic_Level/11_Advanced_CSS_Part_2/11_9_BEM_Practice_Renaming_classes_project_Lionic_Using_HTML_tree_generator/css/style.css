@@ -831,6 +831,10 @@ body {
   color: #787878;
 }
 
+.footer__nav .nav__link:hover {
+  color: #71a7e2;
+}
+
 .social__item:not(:last-child) {
   margin-right: 32px;
 }
