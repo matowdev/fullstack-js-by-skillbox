@@ -578,6 +578,7 @@ body {
 
 .contacts__item {
   flex-direction: column;
+  align-items: flex-start;
   padding-top: 48px;
   width: 370px;
   background-position: left top;
@@ -624,14 +625,6 @@ body {
   line-height: 180%;
   color: #787878;
   transition: color 0.3s ease-in-out;
-}
-
-.item-link-phone {
-  width: 121px;
-}
-
-.item-link-mail {
-  width: 157px;
 }
 
 .contacts__item-link:focus {
