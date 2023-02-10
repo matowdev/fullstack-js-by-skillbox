@@ -172,7 +172,7 @@ body {
 }
 
 .header__top-num:focus {
-  border-radius: 1px;
+  /* border-radius: 1px; */
   color: var(--gold-normal);
   outline: 1px solid var(--gold-normal);
   outline-offset: 10px;
@@ -204,7 +204,7 @@ body {
 }
 
 .header__top-personal:focus {
-  border-radius: 1px;
+  /* border-radius: 1px; */
   color: var(--gold-normal);
   outline: 1px solid var(--gold-normal);
   outline-offset: 10px;
@@ -268,7 +268,7 @@ body {
 }
 
 .nav__link-nav:focus {
-  border-radius: 1px;
+  /* border-radius: 1px; */
   color: var(--gold-normal);
   outline: 1px solid var(--gold-normal);
   outline-offset: 10px;
@@ -970,7 +970,7 @@ body {
 }
 
 .address-item__link:focus {
-  border-radius: 1px;
+  /* border-radius: 1px; */
   color: var(--gold-normal);
   outline: 1px solid var(--gold-normal);
   outline-offset: 1px;
@@ -1044,7 +1044,7 @@ body {
 
 .footer__info {
   flex-direction: column;
-  /* flex-shrink: 0; */
+  align-items: flex-start;
   row-gap: 38px;
   margin-right: 125px;
   width: 302px;
@@ -1068,8 +1068,28 @@ body {
   transition: color 0.2s ease-in-out;
 }
 
+.footer__info-link-agreement:focus {
+  /* border-radius: 1px; */
+  color: var(--gold-normal);
+  outline: 1px solid #fff;
+  outline-offset: 4px;
+}
+
 .footer__info-link-agreement:hover {
   color: #fff;
+}
+
+.footer__info-link-agreement:hover:focus {
+  outline: 1px solid var(--gold-normal);
+}
+
+.footer__info-link-agreement:active {
+  color: var(--gold-dark);
+  outline: none;
+}
+
+.footer__info-link-agreement:focus:active {
+  outline: none;
 }
 
 .footer-address-group {
@@ -1083,6 +1103,7 @@ body {
 
 .footer-address__item {
   flex-direction: column;
+  align-items: flex-start;
 }
 
 .footer-address__item-text {
@@ -1102,8 +1123,28 @@ body {
   transition: color 0.2s ease-in-out;
 }
 
+.footer-address__item-link:focus {
+  /* border-radius: 1px; */
+  color: var(--gold-normal);
+  outline: 1px solid #fff;
+  outline-offset: 1px;
+}
+
 .footer-address__item-link:hover {
   color: #fff;
+}
+
+.footer-address__item-link:focus:hover {
+  outline: 1px solid var(--gold-normal);
+}
+
+.footer-address__item-link:active {
+  color: var(--gold-dark);
+  outline: none;
+}
+
+.footer-address__item-link:focus:active {
+  outline: none;
 }
 
 .footer__socials-list {
