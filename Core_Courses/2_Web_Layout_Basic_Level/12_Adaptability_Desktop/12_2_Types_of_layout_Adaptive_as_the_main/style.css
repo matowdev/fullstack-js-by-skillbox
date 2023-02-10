@@ -1,0 +1,162 @@
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  height: 1800px;
+}
+
+/* variables */
+:root {
+  --element-width: 200px;
+  --element-height: 200px;
+  --gap: 20px;
+}
+
+/* glob */
+.container {
+  margin: 30px auto;
+  padding: 0 15px;
+  max-width: 1200px;
+}
+
+.title {
+  margin-bottom: 10px;
+  padding-left: 10px;
+  font-size: 30px;
+  color: grey;
+}
+
+.title-effect {
+  text-shadow: 0 1px 10px lightskyblue;
+}
+
+.blocks-wrapper {
+  margin-bottom: 10px;
+  padding: 30px;
+  outline: 1px solid lightgrey;
+}
+
+.block__desc {
+  margin-bottom: 10px;
+  padding-left: 5px;
+  font-weight: 400;
+  font-size: 25px;
+  letter-spacing: 2px;
+  text-shadow: 0 1px 10px lightslategray;
+}
+
+.div {
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 1px 10px lightslategray;
+}
+
+.block__element {
+  margin-bottom: 20px;
+  font-size: 0;
+}
+
+/* types of layout: */
+
+/* fixed.. */
+.fixed {
+  width: 900px;
+}
+
+.block__element-1 {
+  display: inline-block;
+  width: var(--element-width);
+  height: var(--element-height);
+  background-color: #bbc6c8;
+}
+
+.block__element-1:not(:last-child) {
+  margin-right: 20px;
+}
+
+.element-1 {
+  background-color: #fff;
+  outline: 1px solid #bbc6c8;
+}
+
+/* rubber.. */
+.rubber {
+  min-width: calc(var(--element-width) * 2);
+}
+
+.block__element-2 {
+  display: inline-block;
+  width: calc((100% - (var(--gap) * 2)) / 3);
+  height: var(--element-height);
+  background-color: #e5e3e4;
+}
+
+.block__element-2:not(:last-child) {
+  margin-right: 20px;
+}
+
+/* adaptive.. */
+.adaptive {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.block__element-3 {
+  min-width: var(--element-width);
+  min-height: var(--element-height);
+  background-color: #ddbeaa;
+}
+
+@media (max-width: 768px) {
+  .block__element-3 {
+    width: calc(var(--element-width) * 2);
+  }
+}
+
+.desc {
+  display: inline-block;
+  width: 1170px;
+  font-style: italic;
+  font-size: 20px;
+  text-align: center;
+}
+
+@media (max-width: 990px) {
+  .desc {
+    color: #fff;
+  }
+}
