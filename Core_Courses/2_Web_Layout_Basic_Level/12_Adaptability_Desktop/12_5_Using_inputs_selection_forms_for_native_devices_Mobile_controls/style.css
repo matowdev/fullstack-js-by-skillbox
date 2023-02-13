@@ -1,0 +1,154 @@
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  height: 1800px;
+}
+
+/* glob */
+
+.container {
+  margin: 30px auto;
+  padding: 0 15px;
+  max-width: 1200px;
+}
+
+.title {
+  margin-bottom: 10px;
+  padding-left: 10px;
+  font-size: 30px;
+  color: grey;
+}
+
+.title-effect {
+  text-shadow: 0 1px 10px #8a9b6e;
+}
+
+.blocks-wrapper {
+  margin-bottom: 10px;
+  border-radius: 5px;
+  padding: 30px;
+  width: 55%;
+  outline: 1px solid lightgrey;
+}
+
+.block__desc {
+  margin-bottom: 10px;
+  padding-left: 5px;
+  font-weight: 400;
+  font-size: 25px;
+  letter-spacing: 2px;
+  text-shadow: 0 1px 10px lightslategray;
+}
+
+.block__element {
+  margin-bottom: 20px;
+}
+
+.input {
+  border-radius: 5px;
+  border-color: lightslategray;
+  padding: 10px;
+  width: 300px;
+  height: 40px;
+  font-size: 20px;
+  background-color: #f8f9fb;
+}
+
+/* input/select forms.. mobile controls: */
+
+/* input/text */
+.block__element-1 {
+  background-color: #edf2f7;
+}
+
+/* input/tel or number */
+.block__element-2 {
+  margin-bottom: 10px;
+  background-color: #f8f9fb;
+}
+
+.block__element-2-1 {
+  background-color: #f8f9fb;
+}
+
+/* input/email */
+.block__element-3 {
+  background-color: #edf2f7;
+}
+
+/* input/password */
+.block__element-4 {
+  background-color: #f8f9fb;
+}
+
+/* input/date or datetime */
+.block__element-5 {
+  background-color: #edf2f7;
+}
+
+/* input/file.. accept="image/*" capture */
+.block__element-6 {
+  height: 50px;
+  outline: 1px solid lightgrey;
+  background-color: #f8f9fb;
+}
+
+/* input/file.. accept="audio/*" capture */
+.block__element-7 {
+  height: 50px;
+  outline: 1px solid lightgrey;
+  background-color: #edf2f7;
+}
+
+/* select.. */
+.block__element-8 {
+  border-radius: 5px;
+  width: 200px;
+  height: 40px;
+  font-size: 18px;
+  background-color: #b5c6b8;
+}
+
+/* --- */
+
+.desc {
+  display: inline-block;
+  width: 640px;
+  font-style: italic;
+  font-size: 20px;
+  text-align: center;
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>12.5. Using input/selection forms for native devices. Mobile controls!</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="title">Input/select forms.. <span class="title-effect">mobile controls:</span></h1>
+    <div class="block blocks-wrapper">
+
+      <!-- Input/select forms.. mobile controls: -->
+      <!-- 1. -->
+      <h2 class="block__desc">input.. type="text"</h2>
+      <div class="block__element text">
+        <input class="input block__element-1" type="text" placeholder="Some text..">
+      </div>
+
+      <!-- 2. -->
+      <h2 class="block__desc">input.. type="tel or number" </h2>
+      <div class="block__element tel-number">
+        <input class="input block__element-2" type="tel" placeholder="Enter your phone..">
+        <input class="input block__element-2-1" type="number" placeholder="Some number..">
+      </div>
+
+      <!-- 3. -->
+      <h2 class="block__desc">input.. type="email"</h2>
+      <div class="block__element email">
+        <input class="input block__element-3" type="email" placeholder="Enter your email..">
+      </div>
+
+      <!-- 4. -->
+      <h2 class="block__desc">input.. type="password"</h2>
+      <div class="block__element password">
+        <input class="input block__element-4" type="password" placeholder="Enter your password..">
+      </div>
+
+      <!-- 5. -->
+      <h2 class="block__desc">input.. type="date"</h2>
+      <div class="block__element date-datetime">
+        <input class="input block__element-5" type="date">
+      </div>
+
+      <!-- 6. -->
+      <h2 class="block__desc">input.. type="file" accept="img/*" (capture)</h2>
+      <div class="block__element file">
+        <input class="input block__element-6" type="file" accept="image/*">
+      </div>
+
+      <!-- 7. -->
+      <h2 class="block__desc">input.. type="file" accept="audio/*" (capture)</h2>
+      <div class="block__element file">
+        <input class="input block__element-7" type="file" accept="audio/*">
+      </div>
+
+      <!-- 8. -->
+      <h2 class="block__desc">select..</h2>
+      <div class="block__element select">
+        <select class="select block__element-8" name="select" id="select">
+          <option value="selection 1">Option 1..</option>
+          <option value="selection 2">Option 2..</option>
+          <option value="selection 3">Option 3..</option>
+        </select>
+      </div>
+    </div>
+    <span class="desc">**desktop / mobile layout.. can be different behavior</span>
+  </div>
+</body>
+
+</html>
