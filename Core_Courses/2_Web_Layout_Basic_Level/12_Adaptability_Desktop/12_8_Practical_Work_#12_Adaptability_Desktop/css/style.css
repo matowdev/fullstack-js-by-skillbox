@@ -1,32 +1,52 @@
-/* @font-face {
-  font-family: "Muller";
-  src: url("../fonts/MullerRegular.woff2");
-  src: local("Muller Regular"), local("Muller-Regular"),
-    url("../fonts/MullerRegular.woff2") format("woff2");
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/MontserratRegular.woff2");
+  src: local("Montserrat Regular"), local("Montserrat-Regular"),
+    url("../fonts/MontserratRegular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Muller";
-  src: url("../fonts/MullerMedium.woff2t");
-  src: local("Muller Medium"), local("Muller-Medium"),
-    url("../fonts/MullerMedium.woff2") format("woff2");
+  font-family: "Montserrat";
+  src: url("../fonts/MontserratMedium.woff2");
+  src: local("Montserrat Medium"), local("Montserrat-Medium"),
+    url("../fonts/MontserratMedium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Muller";
-  src: url("../fonts/MullerBold.woff2");
-  src: local("Muller Bold"), local("Muller-Bold"),
-    url("../fonts/MullerBold.woff2") format("woff2");
+  font-family: "Montserrat";
+  src: url("../fonts/MontserratSemiBold.woff2");
+  src: local("Montserrat SemiBold"), local("Montserrat-SemiBold"),
+    url("../fonts/MontserratSemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/MontserratBold.woff2");
+  src: local("Montserrat Bold"), local("Montserrat-Bold"),
+    url("../fonts/MontserratBold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
-} */
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/MontserratExtraBold.woff2");
+  src: local("Montserrat ExtraBold"), local("Montserrat-ExtraBold"),
+    url("../fonts/MontserratExtraBold.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
 
 html {
   box-sizing: border-box;
@@ -50,15 +70,24 @@ img {
 /* variables */
 
 :root {
-  --gold-light: #f0bf5f;
-  --gold-normal: #cc9933;
-  --gold-dark: #a47312;
+  --orange-light: #ffb84d;
+  --orange-normal: #ff9900;
+  --orange-dark: #e1670e;
+  --gray-light: #666;
+  --gray-normal: #414141;
+  --gray-dark: #000;
 }
 
 /* glob */
 
+.flex {
+  display: flex;
+}
+
 .page {
   min-width: 320px;
+  height: 5750px;
+  font-family: "Montserrat", sans-serif;
   background-color: #e5e5e5;
 }
 
@@ -81,4 +110,97 @@ img {
   padding: 14px 0 14px;
   box-shadow: 0px 5px 40px rgba(0, 0, 0, 0.1);
   background: #fff;
+}
+
+.header__container {
+  display: flex;
+  align-items: center;
+}
+
+.header__logo {
+  margin-right: auto;
+}
+
+.header__nav {
+  margin-right: 260px;
+}
+
+.nav__list {
+  display: flex;
+  align-items: center;
+  column-gap: 85px;
+}
+
+.nav__item {
+  gap: 7px;
+}
+
+.nav__link {
+  position: relative;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  color: var(--gray-dark);
+  transition: color 0.2s ease-in-out;
+}
+
+.nav__link_state:focus {
+  outline: 2px solid var(--orange-normal);
+  outline-offset: 5px;
+}
+
+.nav__link_state:active {
+  color: var(--orange-dark);
+  outline: none;
+}
+
+.nav__link_state::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -7px;
+  width: 100%;
+  height: 2px;
+  background-color: var(--orange-normal);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.nav__link_state:hover::after {
+  opacity: 1;
+}
+
+.nav__link_state:focus::after {
+  opacity: 0;
+}
+
+.nav__link_state:active::after {
+  background-color: var(--orange-dark);
+  opacity: 1;
+  outline: none;
+}
+
+.header__search {
+  width: 24px;
+  height: 24px;
+  background: url("../img/header_search_black.svg") no-repeat center / 24px;
+  transition: color 0.2s ease-in-out, background 0.2s ease-in-out;
+}
+
+.header__search_state:focus {
+  outline: 2px solid var(--orange-normal);
+  outline-offset: 4px;
+}
+
+.header__search_state:hover {
+  background: url("../img/header_search_light.svg") no-repeat center / 24px;
+}
+
+.header__search_state:focus:hover {
+  background: url("../img/header_search_black.svg") no-repeat center / 24px;
+}
+
+.header__search_state:active:focus {
+  background: url("../img/header_search_light.svg") no-repeat center / 24px;
+  outline: none;
 }
