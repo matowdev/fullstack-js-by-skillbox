@@ -10,7 +10,7 @@
 
 @font-face {
   font-family: "Muller";
-  src: url("../fonts/MullerMedium.woff2t");
+  src: url("../fonts/MullerMedium.woff2");
   src: local("Muller Medium"), local("Muller-Medium"),
     url("../fonts/MullerMedium.woff2") format("woff2");
   font-weight: 500;
