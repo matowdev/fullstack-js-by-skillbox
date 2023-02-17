@@ -13,33 +13,58 @@
 </head>
 
 <body class="page">
-  <header class="header">
+  <header class="header page__header">
     <div class="container header__container">
       <a class="logo header__logo" href="#">
         <img src="img/Euclid_logo.svg" alt="Euclid logo!">
       </a>
-      <nan class="nav header__nav">
-        <ul class="list-reset nav__list">
+      <nav class="nav header__nav" title="Главное меню">
+        <ul class="nav__list">
           <li class="nav__item">
-            <a class="nav__link nav__link_state" href="#">О&nbsp;нас</a>
+            <a class="nav__link" href="#">О&nbsp;нас</a>
           </li>
           <li class="nav__item">
-            <a class="nav__link nav__link_state" href="#">Проекты</a>
+            <a class="nav__link" href="#">Проекты</a>
           </li>
           <li class="nav__item">
-            <a class="nav__link nav__link_state" href="#">Этапы</a>
+            <a class="nav__link" href="#">Этапы</a>
           </li>
           <li class="nav__item">
-            <a class="nav__link nav__link_state" href="#">Отзывы</a>
+            <a class="nav__link" href="#">Отзывы</a>
           </li>
           <li class="nav__item">
-            <a class="nav__link nav__link_state" href="#">Контакты</a>
+            <a class="nav__link" href="#">Контакты</a>
           </li>
         </ul>
-      </nan>
-      <a class="search header__search header__search_state" href="#"></a>
+      </nav>
+      <a class="search header__search" href="#">
+        <svg class="search__svg search__svg_state" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <rect width="7.56126" height="1.89031"
+            transform="matrix(0.713342 0.700816 -0.713342 0.700816 18.6064 17.3762)" />
+          <path
+            d="M20.9303 10.7726C20.9303 16.1533 16.4855 20.5452 10.9652 20.5452C5.44478 20.5452 1 16.1533 1 10.7726C1 5.39198 5.44478 1 10.9652 1C16.4855 1 20.9303 5.39198 20.9303 10.7726Z"
+            stroke-width="2" />
+        </svg>
+      </a>
     </div>
   </header>
+
+  <main class="main page__main">
+    <!-- 1. -->
+    <section class="hero main__hero" id="hero">
+      <div class="container hero__container">
+        <article class="intro hero__intro">
+          <h1 class="intro__title">Проектные решения любой сложности</h1>
+          <p class="intro__desc">Есть над чем задуматься: базовые сценарии поведения пользователей
+            и&nbsp;по&nbsp;сей день остаются уделом проектантов</p>
+          <button class="btn-reset btn intro__button"
+            onclick="window.location.href='https://habr.com/ru/company/lanit/blog/515452/';">Заказать
+            расчёт</button>
+        </article>
+      </div>
+    </section>
+  </main>
 </body>
 
 </html>
