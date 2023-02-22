@@ -250,7 +250,7 @@ img {
   outline: none;
 }
 
-.header__search {
+.search {
   /* display: flex;
   justify-content: center;
   align-items: center; */
@@ -258,12 +258,12 @@ img {
   height: 24px;
 }
 
-.header__search:focus {
+.search:focus {
   outline: 2px solid var(--orange-normal);
   outline-offset: 5px;
 }
 
-.header__search:focus:active {
+.search:focus:active {
   outline: none;
 }
 
@@ -282,12 +282,12 @@ img {
   stroke: var(--orange-normal);
 }
 
-.header__search:focus .search__svg_state:hover {
+.search:focus .search__svg_state:hover {
   fill: transparent;
   stroke: var(--black-color);
 }
 
-.header__search:focus .search__svg_state:active {
+.search:focus .search__svg_state:active {
   fill: transparent;
   stroke: var(--orange-dark);
 }
@@ -493,7 +493,76 @@ img {
 
 /* workflow / sec. #3 */
 
+.main__workflow {
+  margin-bottom: 100px;
+}
+
+.workflow__title {
+  margin-bottom: 50px;
+}
+
+.steps-list {
+  column-gap: 85px;
+}
+
+.workflow__steps-list {
+  margin-bottom: 45px;
+}
+
+.steps-list__link {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: var(--black-color);
+  transition: color 0.2s ease-in-out;
+}
+
+.steps-list__link:focus {
+  outline: 2px solid var(--orange-normal);
+  outline-offset: 5px;
+}
+
+.steps-list__link:hover {
+  color: var(--orange-normal);
+}
+
+.steps-list__link:focus:hover {
+  color: var(--black-color);
+}
+
+.steps-list__link:focus:active {
+  color: var(--orange-dark);
+  outline: none;
+}
+
+.steps-list__link_selected {
+  color: var(--orange-dark);
+}
+
+.steps-list__link_selected:focus {
+  color: var(--orange-dark);
+  outline: none;
+}
+
+.steps-list__link_selected:hover {
+  color: var(--orange-dark);
+}
+
+.steps-list__link_selected:focus:hover {
+  color: var(--orange-dark);
+}
+
+.steps-desc {
+  justify-content: space-between;
+}
+
+.left-part {
+  width: 758px;
+  min-height: 470px;
+}
+
 .left-part__subtitle {
+  margin-bottom: 8px;
   font-weight: 700;
   font-size: 24px;
   line-height: 133%;
@@ -501,8 +570,46 @@ img {
 }
 
 .left-part__text {
+  margin-bottom: 18px;
   font-weight: 400;
   font-size: 16px;
   line-height: 200%;
   color: var(--black-color);
+}
+
+.left-part__btns {
+  column-gap: 32px;
+}
+
+.btn_black {
+  min-width: 147px;
+  font-weight: 400;
+  color: var(--black-color);
+  outline: 1px solid var(--black-color);
+}
+
+.btn_black:focus {
+  color: var(--white-color);
+  background-color: var(--gray-light);
+  outline: none;
+}
+
+.btn_black:hover {
+  color: var(--white-color);
+  background-color: var(--gray-light);
+  outline: none;
+}
+
+.btn_black:active {
+  color: var(--white-color);
+  background-color: var(--black-color);
+  outline: none;
+}
+
+.right-part {
+  border-radius: 32px;
+  width: 870px;
+  min-height: 460px;
+  overflow: hidden;
+  background: url("../img/workflow_step_1_bg.jpg") no-repeat center / cover;
 }

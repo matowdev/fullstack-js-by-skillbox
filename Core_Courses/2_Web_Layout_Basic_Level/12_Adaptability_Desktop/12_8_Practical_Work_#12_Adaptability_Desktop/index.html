@@ -118,30 +118,38 @@
     <section class="workflow main__workflow" id="workflow">
       <div class="container workflow__container">
         <h2 class="section-title workflow__title">Как мы&nbsp;работаем</h2>
-        <ul class="steps-list workflow__steps-list">
-          <li class="steps-list__item steps-list__item_selected">1&nbsp;шаг</li>
-          <li class="steps-list__item">2&nbsp;шаг</li>
-          <li class="steps-list__item">3&nbsp;шаг</li>
-          <li class="steps-list__item">4&nbsp;шаг</li>
+        <ul class="flex steps-list workflow__steps-list">
+          <li class="steps-list__item">
+            <a class="steps-list__link steps-list__link_selected" href="#step-1">1&nbsp;шаг</a>
+          </li>
+          <li class="steps-list__item">
+            <a class="steps-list__link" href="#">2&nbsp;шаг</a>
+          </li>
+          <li class="steps-list__item">
+            <a class="steps-list__link" href="#">3&nbsp;шаг</a>
+          </li>
+          <li class="steps-list__item">
+            <a class="steps-list__link" href="#">4&nbsp;шаг</a>
+          </li>
         </ul>
-        <div class="steps-desc workflow__steps-desc">
-          <article class="left-part steps-desc__left-part">
+        <article class="flex steps-desc workflow__steps-desc" id="step-1">
+          <div class="left-part steps-desc__left-part">
             <h3 class="left-part__subtitle">Проводим консультацию</h3>
-            <p class="left-part__text">Влечёт за&nbsp;собой процесс внедрения и&nbsp;модернизации приоритизации разума
-              над эмоциями. В&nbsp;рамках спецификации современных стандартов, некоторые особенности внутренней политики
-              будут объективно рассмотрены соответствующими инстанциями.
-              А&nbsp;также представители современных социальных резервов, инициированные исключительно синтетически,
-              ограничены исключительно образом мышления. Являясь всего лишь частью общей картины, реплицированные
-              с&nbsp;зарубежных источников, современные исследования подвергнуты целой серии независимых исследований.
-              Кстати, стремящиеся вытеснить традиционное производство, нанотехнологии освещают чрезвычайно интересные
-              особенности картины в&nbsp;целом, однако конкретные выводы, разумеется, призваны к&nbsp;ответу.</p>
-            <div class="left-part__btns">
+            <p class="left-part__text">Влечёт за&nbsp;собой процесс внедрения и&nbsp;модернизации приоритизации
+              разума<br> над эмоциями. В&nbsp;рамках спецификации современных стандартов, некоторые особенности
+              внутренней политики будут объективно рассмотрены соответствующими инстанциями.<br> А&nbsp;также
+              представители современных социальных резервов, инициированные исключительно синтетически, ограничены
+              исключительно образом мышления. Являясь всего лишь частью общей картины, реплицированные с&nbsp;зарубежных
+              источников, современные исследования подвергнуты целой серии независимых исследований. Кстати, стремящиеся
+              вытеснить традиционное производство, нанотехнологии освещают чрезвычайно интересные особенности картины
+              в&nbsp;целом, однако конкретные выводы, разумеется, призваны к&nbsp;ответу.</p>
+            <div class="flex left-part__btns">
               <a class="btn" href="#">Подробнее</a>
               <a class="btn btn_transparent btn_black" href="#">Договор</a>
             </div>
-          </article>
-          <div class="steps-desc__right-part"></div>
-        </div>
+          </div>
+          <div class="right-part steps-desc__right-part"></div>
+        </article>
       </div>
     </section>
   </main>
