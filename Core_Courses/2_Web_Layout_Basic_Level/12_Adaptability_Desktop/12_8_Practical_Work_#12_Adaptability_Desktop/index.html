@@ -45,6 +45,7 @@
           <path
             d="M20.9303 10.7726C20.9303 16.1533 16.4855 20.5452 10.9652 20.5452C5.44478 20.5452 1 16.1533 1 10.7726C1 5.39198 5.44478 1 10.9652 1C16.4855 1 20.9303 5.39198 20.9303 10.7726Z"
             stroke-width="2" />
+          <title>Поиск</title>
         </svg>
       </a>
     </div>
@@ -152,6 +153,7 @@
             <source srcset="img/workflow_step_1_photo.avif" type="image/avif" />
             <source srcset="img/workflow_step_1_photo.webp" type="image/webp" />
             <img class="right-part__image" src="img/workflow_step_1_photo.jpg" alt="Workflow photo 1">
+            <!-- the avif format takes precedence, according to DevTools/Network -->
           </picture>
         </article>
       </div>
@@ -160,15 +162,41 @@
     <section class="questions main__questions" id="questions">
       <div class="container questions__container">
         <h2 class="section-title questions__title">Часто задаваемые вопросы</h2>
-        <div class="toggle questions__toggle">
-          <div class="flex toggle__item">
-            <a class="toggle__link" href="">Из&nbsp;чего формируется конечная стоимость проекта?</a>
-            <span class="toggle__element"></span>
+        <div class="acc questions__acc">
+          <div class="flex acc__item">
+            <a class="flex acc__link" href="#">
+              <strong class="acc__caption-question">Из&nbsp;чего формируется конечная стоимость проекта?</strong>
+              <span class="acc__element"></span>
+            </a>
           </div>
-          <div class="toggle__item"></div>
-          <div class="toggle__item"></div>
-          <div class="toggle__item"></div>
-          <div class="toggle__item"></div>
+          <div class="flex acc__item">
+            <a class="flex acc__link" href="#">
+              <strong class="acc__caption-question">У&nbsp;меня есть свой проект. Сможем&nbsp;ли мы&nbsp;его
+                доработать&nbsp;/ реализовать?</strong>
+              <span class="acc__element"></span>
+            </a>
+          </div>
+          <div class="flex acc__item">
+            <a class="flex acc__link" href="#">
+              <strong class="acc__caption-question">Я&nbsp;выбираю между разными компаниями. В&nbsp;чём ваше
+                отличие?</strong>
+              <span class="acc__element"></span>
+            </a>
+          </div>
+          <div class="flex acc__item">
+            <a class="flex acc__link" href="#">
+              <strong class="acc__caption-question">Могу&nbsp;ли я&nbsp;делегировать вам работу&nbsp;/ согласование
+                с&nbsp;подрядчиком&nbsp;/ организацией?</strong>
+              <span class="acc__element"></span>
+            </a>
+          </div>
+          <div class="flex acc__item">
+            <a class="flex acc__link" href="#">
+              <strong class="acc__caption-question">Могу&nbsp;ли я&nbsp;вернуть деньги на&nbsp;каком-либо из&nbsp;этапов
+                работ?</strong>
+              <span class="acc__element"></span>
+            </a>
+          </div>
         </div>
       </div>
     </section>

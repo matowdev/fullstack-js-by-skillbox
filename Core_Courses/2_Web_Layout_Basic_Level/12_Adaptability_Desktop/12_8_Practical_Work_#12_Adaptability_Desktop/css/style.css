@@ -628,38 +628,107 @@ img {
   margin-bottom: 32px;
 }
 
-.toggle {
+.acc__item {
   position: relative;
-}
-
-.toggle__item {
-  justify-content: space-between;
   align-items: center;
-  border-top: 1px solid #cacaca;
-  border-bottom: 1px solid #cacaca;
   min-height: 112px;
 }
 
-.toggle__link {
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 133%;
-  color: var(--black-color);
+.acc__link {
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-height: 100%;
 }
 
-.toggle__link::after {
+.acc__link::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-bottom: 1px solid #cacaca;
+  width: 100%;
+  /* height: 100%; */
+  transition: border-color 0.2s ease-in-out;
+}
+
+.acc__link::after {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
+  border-top: 1px solid #cacaca;
   width: 100%;
   height: 100%;
+  transition: border-color 0.2s ease-in-out;
 }
 
-.toggle__element {
+/* .acc__link:nth-child(n + 1):nth-child(-n + 3)::after {
+  border-top: none;
+} */
+
+.acc__link:focus::before {
+  border-color: var(--orange-normal);
+}
+
+.acc__link:hover::before {
+  border-color: var(--orange-normal);
+}
+
+.acc__link:active::before {
+  border-color: var(--black-color);
+}
+
+.acc__link:focus::after {
+  border-color: var(--orange-normal);
+}
+
+.acc__link:hover::after {
+  border-color: var(--orange-normal);
+}
+
+.acc__link:active::after {
+  border-color: var(--black-color);
+}
+
+.acc__caption-question {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 133%;
+  color: var(--black-color);
+  transition: color 0.2s ease-in-out, background 0.2s ease-in-out;
+}
+
+.acc__link:focus .acc__caption-question {
+  color: var(--orange-normal);
+}
+
+.acc__link:hover .acc__caption-question {
+  border-color: var(--orange-normal);
+  color: var(--orange-normal);
+}
+
+.acc__link:active .acc__caption-question {
+  color: var(--black-color);
+}
+
+.acc__element {
   width: 50px;
   height: 50px;
-  background: url("../img/questions_element.svg") no-repeat center / 50px;
+  background: url("../img/questions_svg_main.svg") no-repeat center / 50px;
+  transition: color 0.2s ease-in-out, background 0.2s ease-in-out;
 }
 
-/* состояния элемента/круга с плюсом.. буду менять через подгрузку "нового" bg */
+.acc__link:focus .acc__element {
+  background: url("../img/questions_svg_focus_hover.svg") no-repeat center /
+    50px;
+}
+
+.acc__link:hover .acc__element {
+  background: url("../img/questions_svg_focus_hover.svg") no-repeat center /
+    50px;
+}
+
+.acc__link:active .acc__element {
+  background: url("../img/questions_svg_active.svg") no-repeat center / 50px;
+}
