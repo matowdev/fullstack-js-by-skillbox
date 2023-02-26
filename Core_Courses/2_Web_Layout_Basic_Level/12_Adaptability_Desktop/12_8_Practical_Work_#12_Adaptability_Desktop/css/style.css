@@ -109,7 +109,7 @@ img {
 
 .page {
   min-width: 320px;
-  height: 5750px;
+  min-height: 5750px;
   font-family: "Montserrat", sans-serif;
   background-color: var(--white-color);
 }
@@ -749,4 +749,21 @@ img {
 .acc__link_bottom {
   border-bottom: 1px solid #cacaca;
   padding: 10px 0 18px;
+}
+
+/* footer */
+
+.footer {
+  padding: 50px 75px;
+  min-height: 594px;
+  background-color: var(--black-color);
+}
+
+.footer__container {
+  /* align-items: center; */
+}
+
+.block-nav {
+  flex-direction: column;
+  outline: 1px solid red;
 }
