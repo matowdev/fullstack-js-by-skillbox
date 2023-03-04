@@ -345,17 +345,6 @@ img {
   line-height: 28px;
 }
 
-.intro__slider {
-  justify-content: center;
-  align-items: center;
-  column-gap: 20px;
-}
-
-.slider__input {
-  width: 15px;
-  height: 15px;
-}
-
 /* about-us / sec. #2 */
 
 .main__about-us {
