@@ -151,6 +151,7 @@ img {
   text-align: center;
   color: var(--white-color);
   background-color: var(--orange-normal);
+  outline: none;
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
@@ -177,6 +178,10 @@ img {
   color: var(--black-color);
 }
 
+/* .dispaly-none {
+  display: none;
+} */
+
 /* header */
 
 .header {
@@ -187,7 +192,7 @@ img {
 }
 
 .page__header {
-  margin-bottom: 46px;
+  margin-bottom: 23px;
 }
 
 .header__container {
@@ -297,8 +302,9 @@ img {
 
 /* hero / sec. #1 */
 
-.main__hero {
-  margin-bottom: 51px;
+.hero {
+  padding-top: 23px;
+  padding-bottom: 25px;
 }
 
 .hero__title {
@@ -347,8 +353,9 @@ img {
 
 /* about-us / sec. #2 */
 
-.main__about-us {
-  margin-bottom: 101px;
+.about-us {
+  padding-top: 26px;
+  padding-bottom: 50px;
 }
 
 .about-us__title {
@@ -495,8 +502,9 @@ img {
 
 /* workflow / sec. #3 */
 
-.main__workflow {
-  margin-bottom: 111px;
+.workflow {
+  padding-top: 51px;
+  padding-bottom: 55px;
 }
 
 .workflow__title {
@@ -535,23 +543,6 @@ img {
 .steps-list__link:focus:active {
   color: var(--orange-dark);
   outline: none;
-}
-
-.steps-list__link_selected {
-  color: var(--orange-dark);
-}
-
-.steps-list__link_selected:focus {
-  color: var(--orange-dark);
-  outline: none;
-}
-
-.steps-list__link_selected:hover {
-  color: var(--orange-dark);
-}
-
-.steps-list__link_selected:focus:hover {
-  color: var(--orange-dark);
 }
 
 .steps-desc {
@@ -623,8 +614,9 @@ img {
 
 /* questions / sec. #4 */
 
-.main__questions {
-  margin-bottom: 96px;
+.questions {
+  padding-top: 56px;
+  padding-bottom: 96px;
 }
 
 .questions__title {
