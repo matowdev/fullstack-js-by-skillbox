@@ -149,7 +149,7 @@
           <picture class="flex right-part steps-desc__right-part">
             <source srcset="img/workflow_step_1_photo.avif" type="image/avif">
             <source srcset="img/workflow_step_1_photo.webp" type="image/webp">
-            <img class="right-part__image" src="img/workflow_step_1_photo.jpg" alt="Workflow photo 1">
+            <img class="right-part__image" src="img/workflow_step_1_photo.jpg" alt="At work Our employees! Photo №1">
             <!-- the avif format takes precedence, according to DevTools/Network -->
           </picture>
         </article>
@@ -159,42 +159,38 @@
     <section class="questions main__questions" id="questions">
       <div class="container questions__container">
         <h2 class="section-title questions__title">Часто задаваемые вопросы</h2>
-        <div class="acc questions__acc">
-          <div class="flex acc__item">
-            <a class="flex acc__link acc__link_top" href="#">
-              <strong class="acc__caption-question">Из&nbsp;чего формируется конечная стоимость проекта?</strong>
-              <span class="acc__element"></span>
-            </a>
-          </div>
-          <div class="flex acc__item">
-            <a class="flex acc__link" href="#">
-              <strong class="acc__caption-question">У&nbsp;меня есть свой проект. Сможем&nbsp;ли мы&nbsp;его
-                доработать&nbsp;/ реализовать?</strong>
-              <span class="acc__element"></span>
-            </a>
-          </div>
-          <div class="flex acc__item">
-            <a class="flex acc__link" href="#">
-              <strong class="acc__caption-question">Я&nbsp;выбираю между разными компаниями. В&nbsp;чём ваше
-                отличие?</strong>
-              <span class="acc__element"></span>
-            </a>
-          </div>
-          <div class="flex acc__item">
-            <a class="flex acc__link" href="#">
-              <strong class="acc__caption-question">Могу&nbsp;ли я&nbsp;делегировать вам работу&nbsp;/ согласование
-                с&nbsp;подрядчиком&nbsp;/ организацией?</strong>
-              <span class="acc__element"></span>
-            </a>
-          </div>
-          <div class="flex acc__item">
-            <a class="flex acc__link acc__link_bottom" href="#">
-              <strong class="acc__caption-question">Могу&nbsp;ли я&nbsp;вернуть деньги на&nbsp;каком-либо из&nbsp;этапов
-                работ?</strong>
-              <span class="acc__element"></span>
-            </a>
-          </div>
-        </div>
+        <ul class="accordion questions__accordion">
+          <li class="accordion__item">
+            <h3 class="accordion__item-caption">
+              <button class="btn-reset accordion__item-btn">Из&nbsp;чего формируется конечная стоимость
+                проекта?</button>
+            </h3>
+          </li>
+          <li class="accordion__item">
+            <h3 class="accordion__item-caption">
+              <button class="btn-reset accordion__item-btn">У&nbsp;меня есть свой проект. Сможем&nbsp;ли мы&nbsp;его
+                доработать&nbsp;/ реализовать?</button>
+            </h3>
+          </li>
+          <li class="accordion__item">
+            <h3 class="accordion__item-caption">
+              <button class="btn-reset accordion__item-btn">Я&nbsp;выбираю между разными компаниями. В&nbsp;чём ваше
+                отличие?</button>
+            </h3>
+          </li>
+          <li class="accordion__item">
+            <h3 class="accordion__item-caption">
+              <button class="btn-reset accordion__item-btn">Могу&nbsp;ли я&nbsp;делегировать вам работу&nbsp;/
+                согласование с&nbsp;подрядчиком&nbsp;/ организацией?</button>
+            </h3>
+          </li>
+          <li class="accordion__item">
+            <h3 class="accordion__item-caption">
+              <button class="btn-reset accordion__item-btn">Могу&nbsp;ли я&nbsp;вернуть деньги на&nbsp;каком-либо
+                из&nbsp;этапов работ?</button>
+            </h3>
+          </li>
+        </ul>
       </div>
     </section>
   </main>
@@ -203,7 +199,7 @@
     <div class="flex container footer__container">
       <div class="flex left-group footer__left-group">
         <a class="logo left-group__logo" href="#">
-          <img src="img/euclid_logo_light.svg" alt="Euclid logo!">
+          <img src="img/euclid_logo_light.svg" alt="Euclid: Project systems. Logo!">
         </a>
         <nav class="nav left-group__nav" title="Второстепенное меню">
           <ul class="flex nav__list">
