@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>13.3. Adaptivity of images. Tag: picture. Attribute: media!</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="container__title">Adaptivity of images:</h1>
+    <div class="elements-wrapper container__elements-wrapper">
+      <!-- tag: <picture /> with attribute: media="" -->
+      <picture class="elements-wrapper__pictures">
+        <source
+          srcset="https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?cs=srgb&dl=pexels-pixabay-36717.jpg&fm=jpg"
+          media="(max-width: 1200px)">
+        <source
+          srcset="https://images.pexels.com/photos/36487/above-adventure-aerial-air.jpg?cs=srgb&dl=pexels-bess-hamiti-36487.jpg&fm=jpg"
+          media="(max-width: 1500px)">
+        <img src="https://wallpapercave.com/wp/rhS7Qoe.png" alt="feature">
+      </picture>
+    </div>
+    <p class="container__signature"><span class="container__signature-effect">**</span>to see the changes, use
+      DevTools/Toggle device toolbar.. increase/decrease screen resolution</p>
+  </div>
+</body>
+
+</html>
