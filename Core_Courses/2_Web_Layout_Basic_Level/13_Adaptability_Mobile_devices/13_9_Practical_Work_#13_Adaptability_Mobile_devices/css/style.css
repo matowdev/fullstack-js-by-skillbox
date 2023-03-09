@@ -736,6 +736,10 @@ img {
   color: var(--orange-dark);
 }
 
+.left-group .nav__link:active {
+  color: var(--orange-dark);
+}
+
 .socials-list {
   column-gap: 25px;
 }
@@ -770,6 +774,10 @@ img {
 }
 
 .item-link:focus-visible .item-link__svg:active {
+  fill: var(--orange-dark);
+}
+
+.item-link__svg:active {
   fill: var(--orange-dark);
 }
 
