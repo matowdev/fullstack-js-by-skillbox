@@ -1,0 +1,173 @@
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  height: 800px;
+}
+
+/* glob */
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 30px 50px;
+  width: 1270px;
+}
+
+.container__title {
+  margin-bottom: 10px;
+  padding-left: 10px;
+  font-size: 30px;
+  text-shadow: 0 1px 10px lightslategray;
+  color: grey;
+}
+
+.elements-wrapper {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  padding: 30px;
+  width: 100%;
+  height: auto;
+  outline: 1px solid lightgrey;
+}
+
+.container__elements-wrapper {
+  margin-bottom: 10px;
+}
+
+.elements-wrapper_group {
+  display: flex;
+  /* justify-content: space-between; */
+}
+
+/* style priority.. @media at the end: */
+
+@media (max-width: 1500px) {
+  .block {
+    font-size: 30px;
+  }
+}
+
+.block {
+  width: 300px;
+  font-size: 20px;
+  border: 1px solid red;
+  padding: 10px;
+}
+
+/* organization of interactive elements.. increase of the pressing area: */
+
+.div {
+  padding: 10px;
+  width: 300px;
+  outline: 2px solid red;
+}
+
+.search {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  background-image: url("https://cdn-icons-png.flaticon.com/512/54/54481.png");
+  border: none;
+  background-position: center;
+  background-size: cover;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.search::after {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: -5px;
+  right: -5px;
+  bottom: -5px;
+}
+
+/* the "Show more" button.. exclude a long column: */
+
+/* .parent {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.child {
+  width: 30%;
+  min-height: 300px;
+  border: 1px solid #000;
+  margin-bottom: 30px;
+}
+
+button {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .child {
+    width: 100%;
+  }
+
+  .child:nth-child(n + 4) {
+    display: none;
+  }
+
+  button {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 320px;
+  }
+} */
+
+/* --- */
+
+.container__signature {
+  font-style: italic;
+  font-size: 18px;
+  text-align: center;
+}
+
+.container__signature-effect {
+  text-shadow: 0 1px 10px lightcoral;
+}
