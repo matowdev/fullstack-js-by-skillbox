@@ -5,6 +5,10 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap"
+    rel="stylesheet">
   <title>13.5. Concept: "best practices". Recommendations!</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -12,33 +16,39 @@
 <body>
   <div class="container">
     <h1 class="container__title">"Best Practices.."</h1>
-    <div class="elements-wrapper container__elements-wrapper">
-      <div class="elements-wrapper_group">
-        <!-- style priority -->
-        <div class="block">
-          <p>Далеко-далеко за словесными горами, в стране гласных и согласных живут рыбные тексты.</p>
-        </div>
-        <!-- organization of interactive elements: -->
-        <div class="div">
-          <button class="search"></button>
-        </div>
+    <div class="elements container__elements">
+
+      <!-- organization of interactive elements: -->
+      <h2 class="elements__subtitle">Organization of interactive elements.. increase of the pressing area:</h2>
+      <div class="interactive elements__interactive">
+        <button class="interactive__search"></button>
       </div>
+
+      <!-- style priority -->
+      <h2 class="elements__subtitle">Style priority.. @media at the end:</h2>
+      <div class="media elements__media">
+        <p class="media__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa sequi iste aut provident
+          tempora nesciunt!</p>
+      </div>
+
       <!-- the "Show more" button: -->
-      <!-- <div class="parent">
-        <div class="child"></div>
-        <div class="child"></div>
-        <div class="child"></div>
-        <div class="child"></div>
-        <div class="child"></div>
-        <div class="child"></div>
-        <div class="child"></div>
-        <div class="child"></div>
-        <div class="child"></div>
-        <button>Показать еще</button>
-      </div> -->
+      <h2 class="elements__subtitle">The "Show more" button.. exclude a long column:</h2>
+      <div class="more elements__more">
+        <div class="more__itme"></div>
+        <div class="more__itme"></div>
+        <div class="more__itme"></div>
+        <div class="more__itme"></div>
+        <div class="more__itme"></div>
+        <div class="more__itme"></div>
+        <div class="more__itme"></div>
+        <div class="more__itme"></div>
+        <div class="more__itme"></div>
+        <button class="more__btn">Show more?</button>
+      </div>
     </div>
-    <p class="container__signature"><span class="container__signature-effect">**</span>to see the changes, use
-      DevTools/Toggle device toolbar.. increase/decrease screen resolution</p>
+
+    <p class="container__signature"><span class="container__signature-effect">**</span><strong>first</strong> point the
+      cursor, then change the resolution in DevTools/Toggle device toolbar..</p>
   </div>
 </body>
 

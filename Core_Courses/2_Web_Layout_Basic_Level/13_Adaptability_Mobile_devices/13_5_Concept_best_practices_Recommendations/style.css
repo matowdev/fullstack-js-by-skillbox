@@ -36,6 +36,7 @@ img {
 
 body {
   height: 800px;
+  font-family: "Roboto Mono", monospace;
 }
 
 /* glob */
@@ -44,19 +45,26 @@ body {
   flex-direction: column;
   margin-right: auto;
   margin-left: auto;
-  padding: 30px 50px;
+  padding: 40px 50px;
   width: 1270px;
 }
 
 .container__title {
   margin-bottom: 10px;
   padding-left: 10px;
+  width: 30%;
   font-size: 30px;
-  text-shadow: 0 1px 10px lightslategray;
-  color: grey;
+  text-shadow: 0 1px 10px #f7c815;
+  color: #583e26;
+  cursor: help;
+  transition: color 0.2s ease-in-out;
 }
 
-.elements-wrapper {
+.container__title:hover {
+  color: #9c4a1a;
+}
+
+.elements {
   display: flex;
   flex-direction: column;
   border-radius: 5px;
@@ -66,108 +74,163 @@ body {
   outline: 1px solid lightgrey;
 }
 
-.container__elements-wrapper {
-  margin-bottom: 10px;
-}
-
-.elements-wrapper_group {
-  display: flex;
-  /* justify-content: space-between; */
-}
-
-/* style priority.. @media at the end: */
-
-@media (max-width: 1500px) {
-  .block {
-    font-size: 30px;
+@media (max-width: 768px) {
+  .elements {
+    width: 50%;
   }
 }
 
-.block {
-  width: 300px;
-  font-size: 20px;
-  border: 1px solid red;
-  padding: 10px;
+.container__elements {
+  margin-bottom: 15px;
+}
+
+.elements__subtitle {
+  margin-bottom: 15px;
+  padding-left: 5px;
+  text-shadow: 0 1px 10px lightslategray;
 }
 
 /* organization of interactive elements.. increase of the pressing area: */
 
-.div {
-  padding: 10px;
+.interactive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
   width: 300px;
-  outline: 2px solid red;
 }
 
-.search {
+.elements__interactive {
+  margin-bottom: 20px;
+}
+
+.interactive__search {
   position: relative;
-  width: 20px;
-  height: 20px;
-  background-image: url("https://cdn-icons-png.flaticon.com/512/54/54481.png");
   border: none;
-  background-position: center;
-  background-size: cover;
-  background-color: transparent;
+  width: 70px;
+  height: 70px;
+  background: url("https://cdn-icons-png.flaticon.com/512/54/54481.png")
+    no-repeat center / cover;
   cursor: pointer;
 }
 
-.search::after {
+.interactive__search::after {
   content: "";
   position: absolute;
-  left: -5px;
-  top: -5px;
-  right: -5px;
-  bottom: -5px;
+  left: -15px;
+  top: -15px;
+  right: -15px;
+  bottom: -15px;
+}
+
+.interactive__search:hover::after {
+  border-radius: 5px;
+  outline: 2px solid #ec9704;
+}
+
+/* style priority.. @media at the end: */
+
+/* @media (min-width: 1000px) {
+  .media {
+    font-size: 30px;
+  }
+} */
+
+.media {
+  border: 3px solid #ec9704;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  font-size: 20px;
+  cursor: crosshair;
+}
+
+@media (min-width: 1000px) {
+  .media {
+    font-size: 30px;
+  }
+}
+
+.elements__media {
+  margin-bottom: 20px;
 }
 
 /* the "Show more" button.. exclude a long column: */
 
-/* .parent {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 15px;
+.more {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  row-gap: 50px;
 }
 
-.child {
+.elements__more {
+  margin-bottom: 10px;
+}
+
+.more__itme {
+  border: 2px solid #a78b71;
+  border-radius: 5px;
   width: 30%;
   min-height: 300px;
-  border: 1px solid #000;
-  margin-bottom: 30px;
+  cursor: help;
+  box-shadow: 0 1px 10px #9c4a1a;
+  transition: background-color 0.3s ease-in-out;
 }
 
-button {
+.more__itme:hover {
+  background-color: #ec9704;
+}
+
+.more__btn {
   display: none;
 }
 
 @media (max-width: 768px) {
-  .child {
+  .more__itme {
     width: 100%;
   }
 
-  .child:nth-child(n + 4) {
+  .more__itme:nth-child(n + 4) {
     display: none;
   }
 
-  button {
+  .more__btn {
     display: block;
-    width: 100%;
     margin: 0 auto;
-    max-width: 320px;
+    border: none;
+    border-radius: 5px;
+    width: 50%;
+    min-height: 50px;
+    font-family: "Roboto Mono", monospace;
+    font-size: 20px;
+    color: #9c4a1a;
+    background-color: #ec9704;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   }
-} */
+
+  .more__btn:hover {
+    background-color: #f7c815;
+    box-shadow: 0 1px 10px #583e26;
+  }
+}
 
 /* --- */
 
 .container__signature {
+  width: auto;
   font-style: italic;
-  font-size: 18px;
+  font-size: 20px;
   text-align: center;
 }
 
 .container__signature-effect {
-  text-shadow: 0 1px 10px lightcoral;
+  text-shadow: 0 1px 10px #f7c815;
+}
+
+@media (max-width: 768px) {
+  .container__signature {
+    width: 50%;
+  }
 }
