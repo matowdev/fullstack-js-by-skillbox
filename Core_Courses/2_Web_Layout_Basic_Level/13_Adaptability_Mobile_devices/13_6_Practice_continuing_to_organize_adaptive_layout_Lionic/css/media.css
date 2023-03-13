@@ -1,0 +1,12 @@
+@media (max-width: 1024px) {
+  .form__input,
+  .form__select {
+    width: 100%;
+  }
+}
+
+@media (max-width: 992px) {
+  .header__nav {
+    display: none;
+  }
+}
