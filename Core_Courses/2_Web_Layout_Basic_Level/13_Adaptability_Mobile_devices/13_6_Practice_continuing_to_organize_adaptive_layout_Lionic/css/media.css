@@ -6,7 +6,140 @@
 }
 
 @media (max-width: 992px) {
+  /* header */
+
   .header__nav {
     display: none;
+  }
+
+  .header__btn {
+    margin-right: 7px;
+    padding: 12px 35px;
+  }
+
+  /* ! burger */
+
+  .burger {
+    position: relative;
+    display: block;
+    border: 1px solid currentColor;
+    border-radius: 3px;
+    width: 40px;
+    height: 40px;
+    color: #3172b9;
+  }
+
+  .burger__line {
+    position: absolute;
+    left: 50%;
+    border-radius: inherit;
+    width: 20px;
+    height: 2px;
+    background-color: currentColor;
+    transform: translateX(-50%);
+  }
+
+  .burger__line:nth-child(1) {
+    top: 13px;
+  }
+
+  .burger__line:nth-child(2) {
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  .burger__line:nth-child(3) {
+    bottom: 13px;
+  }
+
+  /* main: hero */
+
+  .hero__content {
+    width: 75%;
+  }
+
+  /* main: services */
+
+  .services__list {
+    flex-wrap: wrap;
+  }
+
+  .services__item {
+    margin-bottom: var(--gap);
+    width: calc((100% - (var(--gap))) / 2);
+  }
+
+  .services__item:not(:nth-child(4n)) {
+    margin-right: 0;
+  }
+
+  .services__item:not(:nth-child(2n)) {
+    margin-right: var(--gap);
+  }
+
+  /* main: clients */
+
+  .clients__item {
+    padding: 20px;
+  }
+
+  /* main: join-us */
+
+  .join-us__form {
+    padding: 0;
+  }
+
+  /* footer */
+
+  .footer__container {
+    flex-direction: column;
+  }
+
+  .footer__left {
+    margin-bottom: var(--gap);
+  }
+}
+
+@media (max-width: 768px) {
+  /* main: articles */
+
+  .blog-preview__link {
+    flex-direction: column;
+  }
+
+  .blog-preview__image {
+    border-radius: 5px;
+    width: 100%;
+  }
+
+  .blog-preview__text {
+    padding: 23px;
+  }
+
+  /* main: clients */
+
+  .clients__list {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .clients__item {
+    margin-bottom: var(--gap);
+    width: calc((100% - (var(--gap))) / 2);
+  }
+
+  .clients__item:not(:nth-child(3n)) {
+    margin-right: 0;
+  }
+
+  /* footer */
+
+  .footer__nav .nav__item:not(:last-child) {
+    margin-right: 16px;
+  }
+
+  .footer__nav .nav__link {
+    font-weight: 400;
+    font-size: 12px;
   }
 }

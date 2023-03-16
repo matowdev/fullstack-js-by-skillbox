@@ -181,6 +181,10 @@ body {
   padding-bottom: 160px;
 }
 
+.burger {
+  display: none;
+}
+
 /* header */
 
 .header {
@@ -259,7 +263,7 @@ body {
 .hero__content {
   flex-direction: column;
   align-items: flex-start;
-  max-width: 50%; /* пока 50% -> позже/точнее */
+  width: 50%;
 }
 
 .hero__content-title {
@@ -386,7 +390,6 @@ body {
 .articles__item {
   border-radius: 0px 5px 5px 0px;
   width: calc((100% - (var(--gap) * 1)) / 2);
-  /* min-height: 180px; */
 }
 
 .articles__item:nth-child(-n + 2) {
@@ -406,6 +409,7 @@ body {
 .blog-preview {
   border: 1px solid #e4e4e4;
   border-radius: 5px;
+  height: 100%;
   overflow: hidden;
 }
 
@@ -819,8 +823,7 @@ body {
 }
 
 .footer__nav {
-  margin-right: 56px;
-  text-align: center;
+  margin-right: 40px;
 }
 
 .footer__nav .nav__item:not(:last-child) {
