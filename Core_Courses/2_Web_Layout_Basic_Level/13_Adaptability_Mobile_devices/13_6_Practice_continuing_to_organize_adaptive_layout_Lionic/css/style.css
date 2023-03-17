@@ -79,7 +79,7 @@ img {
 
 body {
   min-width: 320px;
-  height: 3500px;
+  min-height: 3500px;
   font-family: "OpenSans", sans-serif;
 }
 
@@ -667,7 +667,7 @@ body {
   text-align: center;
 }
 
-.join-us__desc_hidden {
+.join-us__desc-hidden {
   display: none;
 }
 
