@@ -114,6 +114,7 @@ img {
   min-height: auto;
   font-family: "Montserrat", sans-serif;
   background-color: var(--white-color);
+  zoom: 0.8;
 }
 
 .container {
