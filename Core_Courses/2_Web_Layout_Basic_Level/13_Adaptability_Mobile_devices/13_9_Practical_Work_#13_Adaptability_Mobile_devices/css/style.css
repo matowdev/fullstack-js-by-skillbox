@@ -118,6 +118,15 @@ img {
   /* zoom: 0.8; */
 }
 
+.page__title {
+  margin-bottom: 20px;
+  padding-left: 66px;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 59px;
+  color: var(--black-color);
+}
+
 .container {
   margin-right: auto;
   margin-left: auto;
@@ -211,6 +220,11 @@ img {
 
 .header__nav {
   margin-right: 262px;
+}
+
+.nav__title {
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .nav__list {
