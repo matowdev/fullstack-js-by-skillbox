@@ -214,8 +214,10 @@ img {
 }
 
 .header__logo {
+  flex-shrink: 0;
   margin-right: auto;
   padding-left: 2px;
+  padding-right: 85px;
 }
 
 .header__nav {
@@ -228,8 +230,9 @@ img {
 }
 
 .nav__list {
+  flex-wrap: wrap;
   align-items: center;
-  column-gap: 85px;
+  gap: 10px 85px;
 }
 
 .nav__link {
@@ -599,7 +602,9 @@ img {
 }
 
 .left-part__btns {
-  column-gap: 33px;
+  gap: 23px 33px;
+  flex-wrap: wrap;
+  width: inherit;
   padding-left: var(--gap-left);
 }
 
@@ -637,7 +642,7 @@ img {
 .right-part__image {
   align-self: flex-end;
   border-radius: var(--main-radius);
-  /* height: calc((100% * 1) - 8px); */
+  height: calc((100% * 1) - 8px);
   /* object-fit: cover; */
 }
 
@@ -672,14 +677,19 @@ img {
   border-color: var(--orange-normal);
 }
 
+.accordion__item-caption {
+  font-size: 24px;
+  line-height: 136%;
+}
+
 .accordion__item-btn {
   position: relative;
   display: block;
   padding: 39px 90px 39px 3px;
   width: 100%;
   font-weight: 700;
-  font-size: 24px;
-  line-height: 136%;
+  font-size: inherit;
+  line-height: inherit;
   text-align: left;
   color: var(--black-color);
   outline: none;
@@ -910,7 +920,10 @@ img {
 
 .footer__right-text {
   width: 363px;
-  min-height: 320px;
+  /* min-height: 320px; */
+  max-height: 320px;
+  height: auto;
+  overflow-y: auto;
   font-weight: 400;
   font-size: 16px;
   line-height: 200%;
