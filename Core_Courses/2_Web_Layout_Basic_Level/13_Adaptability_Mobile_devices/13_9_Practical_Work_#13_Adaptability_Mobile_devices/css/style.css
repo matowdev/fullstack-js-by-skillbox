@@ -221,7 +221,7 @@ img {
 }
 
 .header__nav {
-  margin-right: calc(85px + (262 - 85) * ((100vw - 1024px) / (1920 - 1024)));
+  margin-right: 262px;
 }
 
 .nav__title {
@@ -232,7 +232,7 @@ img {
 .nav__list {
   flex-wrap: wrap;
   align-items: center;
-  column-gap: calc(35px + (85 - 35) * ((100vw - 1024px) / (1920 - 1024)));
+  column-gap: 85px;
 }
 
 .nav__link {
@@ -400,7 +400,6 @@ img {
 }
 
 .more {
-  /* flex-wrap: wrap; */
   gap: 32px;
   width: 100%;
 }
@@ -467,37 +466,34 @@ img {
 }
 
 .more__right {
-  /* width: 870px; */
+  width: 870px;
   min-height: 622px;
 }
 
 .benefits-list {
   flex-direction: column;
-  /* justify-content: center; */
-  /* align-items: center; */
-  /* width: 870px; */
+  max-width: 870px;
   row-gap: 30px;
 }
 
 .benefits-list__item {
-  display: inline-block;
-  /* justify-content: space-between; */
+  flex-wrap: wrap;
+  justify-content: center;
+  row-gap: 20px;
   border: 1px solid var(--gray-light);
   border-radius: var(--main-radius);
   width: 100%;
-  /* min-height: 295px; */
+  min-height: 295px;
 }
 
 .benefits-1 {
-  flex-wrap: wrap;
-  /* padding: 65px 111px 64px 59px; */
-  /* padding: 65px 0 64px 59px; */
+  padding: 65px 111px 64px 59px;
+  /* padding-right: calc(39px + (111 - 39) * ((100vw - 1024px) / (3840 - 1024))); */
 }
 
 .benefits-1::before {
   content: "";
   flex-shrink: 0;
-  display: inline-flex;
   margin-right: 50px;
   width: 190px;
   height: 165px;
@@ -505,11 +501,10 @@ img {
 }
 
 .benefits-list__item-group {
-  display: inline-flex;
   flex-direction: column;
   row-gap: 8px;
   max-width: 452px;
-  /* min-height: 165px; */
+  min-height: 165px;
 }
 
 .benefits-list__item-subtitle {
@@ -527,15 +522,13 @@ img {
 }
 
 .benefits-2 {
-  flex-wrap: wrap;
-  /* padding: 66px 111px 64px 59px; */
-  /* padding: 66px 0 64px 59px; */
+  padding: 65px 111px 64px 59px;
+  /* padding-right: calc(39px + (111 - 39) * ((100vw - 1024px) / (3840 - 1024))); */
 }
 
 .benefits-2::before {
   content: "";
   flex-shrink: 0;
-  display: inline-flex;
   margin-right: 50px;
   width: 190px;
   height: 165px;
