@@ -122,7 +122,6 @@
   }
 
   .more__left {
-    /* width: 924px; */
     width: 100%;
     min-height: 640px;
   }
@@ -224,6 +223,10 @@
     padding-bottom: 39px;
   }
 
+  .accordion__item-btn::after {
+    margin-right: 0;
+  }
+
   /* footer */
 
   .footer__container {
@@ -250,5 +253,249 @@
   .form .btn {
     padding: 18px 33px;
     min-width: 244px;
+  }
+}
+
+@media (max-width: 992px) {
+  /* variables */
+  :root {
+    --new-radius: 24px;
+  }
+
+  /* header */
+
+  .header {
+    padding-top: 11px;
+    padding-bottom: 10px;
+  }
+
+  /* !Burger */
+
+  .burger__line:nth-child(3) {
+    bottom: 0px;
+    transform: translateX(-50%) translateY(-39%);
+  }
+
+  /* main */
+
+  /* hero / sec. #1 */
+
+  .hero {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .intro {
+    border-radius: var(--new-radius);
+    padding: 160px 40px 30px 40px;
+    min-height: 662px;
+  }
+
+  .intro__content {
+    margin-bottom: 115px;
+    max-width: 588px;
+    min-height: 342px;
+  }
+
+  .intro__title {
+    margin-bottom: 16px;
+    font-size: 50px;
+    line-height: 61px;
+    color: var(--white-color);
+  }
+
+  .intro__desc {
+    margin-bottom: 60px;
+    font-size: 18px;
+    line-height: 22px;
+    color: var(--white-color);
+  }
+
+  /* about-us / sec. #2 */
+
+  .about-us {
+    padding-top: 15px;
+    padding-bottom: 40px;
+  }
+
+  .about-us__desc {
+    margin-bottom: 55px;
+  }
+
+  .more__left {
+    border-radius: var(--new-radius);
+    min-height: 650px;
+  }
+
+  .info {
+    border-radius: var(--new-radius);
+    padding: 34px 40px 34px 40px;
+  }
+
+  .info__text {
+    width: 366px;
+  }
+
+  .more__right {
+    min-height: 502px;
+  }
+
+  .benefits-list__item {
+    align-items: center;
+    border-radius: var(--new-radius);
+    min-height: 235px;
+  }
+
+  .benefits-1 {
+    padding: 34px 44px 33px 40px;
+  }
+
+  .benefits-1::before {
+    margin-right: 15px;
+    margin-bottom: 2px;
+    width: 114px;
+    height: 99px;
+  }
+
+  .benefits-2 {
+    padding: 34px 46px 33px 40px;
+  }
+
+  .benefits-2::before {
+    margin-right: 15px;
+    margin-bottom: 1px;
+    width: 114px;
+    height: 99px;
+  }
+
+  /* workflow / sec. #3 */
+
+  .workflow {
+    padding-top: 40px;
+    padding-bottom: 25px;
+  }
+
+  .steps-list {
+    justify-content: space-between;
+  }
+
+  .workflow__steps-list {
+    margin-bottom: 49px;
+  }
+
+  .steps-desc {
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+  }
+
+  .steps-desc__left-part {
+    margin-right: 0;
+  }
+
+  .left-part__text {
+    margin-bottom: 25px;
+    max-width: 667px;
+  }
+
+  .right-part {
+    width: 668px;
+    min-height: 284px;
+  }
+
+  .steps-desc__right-part {
+    margin-bottom: 38px;
+  }
+
+  .right-part__image {
+    align-self: flex-start;
+    border-radius: var(--new-radius);
+    width: 100%;
+    height: 284px;
+  }
+
+  /* questions / sec. #4 */
+
+  .questions {
+    padding-top: 24px;
+    padding-bottom: 111px;
+  }
+
+  .questions__title {
+    margin-bottom: 33px;
+  }
+
+  /* !Уточнить, может что-то указывать не нужно?  */
+
+  .accordion__item-btn {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    max-height: 126px;
+  }
+
+  .item-btn-1 {
+    padding-top: 38px;
+    padding-bottom: 40px;
+  }
+
+  .item-btn-2 {
+    padding-bottom: 31px;
+  }
+
+  .move-word {
+    margin-right: 54px;
+  }
+
+  .item-btn-3 {
+    padding-bottom: 31px;
+  }
+
+  .item-btn-4 {
+    padding-top: 29px;
+    padding-bottom: 30px;
+  }
+
+  .item-btn-5 {
+    padding-top: 30px;
+    padding-bottom: 31px;
+  }
+
+  .accordion__item-btn::after {
+    margin-right: -1px;
+  }
+
+  .item-btn-3::after {
+    top: 45%;
+  }
+
+  .item-btn-5::after {
+    top: 46%;
+  }
+
+  /* footer */
+
+  .footer {
+    padding-bottom: 0;
+    min-height: 792px;
+  }
+
+  .footer__container {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+
+  .left-group {
+    min-height: 148px;
+  }
+
+  .left-group__logo {
+    margin-bottom: 10px;
+  }
+
+  .center-group__form {
+    margin-bottom: 50px;
+  }
+
+  .left-group__nav {
+    display: none;
   }
 }
