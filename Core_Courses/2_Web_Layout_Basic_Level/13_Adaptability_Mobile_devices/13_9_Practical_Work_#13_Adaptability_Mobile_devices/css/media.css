@@ -333,7 +333,7 @@
   }
 
   .info__text {
-    width: 366px;
+    width: calc(366px + (533 - 366) * ((100vw - 768px) / (992 - 768)));
   }
 
   .more__right {
@@ -348,24 +348,26 @@
 
   .benefits-1 {
     padding: 34px 44px 33px 40px;
+    padding-left: calc(40px + (80 - 40) * ((100vw - 768px) / (992 - 768)));
   }
 
   .benefits-1::before {
-    margin-right: 15px;
+    margin-right: calc(15px + (50 - 15) * ((100vw - 768px) / (992 - 768)));
     margin-bottom: 2px;
-    width: 114px;
-    height: 99px;
+    width: calc(114px + (190 - 114) * ((100vw - 768px) / (992 - 768)));
+    height: calc(99px + (165 - 99) * ((100vw - 768px) / (992 - 768)));
   }
 
   .benefits-2 {
     padding: 34px 46px 33px 40px;
+    padding-left: calc(40px + (80 - 40) * ((100vw - 768px) / (992 - 768)));
   }
 
   .benefits-2::before {
-    margin-right: 15px;
+    margin-right: calc(15px + (50 - 15) * ((100vw - 768px) / (992 - 768)));
     margin-bottom: 1px;
-    width: 114px;
-    height: 99px;
+    width: calc(114px + (190 - 114) * ((100vw - 768px) / (992 - 768)));
+    height: calc(99px + (165 - 99) * ((100vw - 768px) / (992 - 768)));
   }
 
   /* workflow / sec. #3 */
@@ -377,6 +379,8 @@
 
   .steps-list {
     justify-content: space-between;
+    padding-left: calc(0px + (50 - 0) * ((100vw - 768px) / (992 - 768)));
+    padding-right: calc(0px + (50 - 0) * ((100vw - 768px) / (992 - 768)));
   }
 
   .workflow__steps-list {
@@ -388,18 +392,23 @@
     flex-wrap: wrap;
   }
 
+  .left-part {
+    max-width: calc(667px + (892 - 667) * ((100vw - 768px) / (992 - 768)));
+    min-height: calc(369px + (381 - 369) * ((100vw - 768px) / (992 - 768)));
+  }
+
   .steps-desc__left-part {
     margin-right: 0;
   }
 
   .left-part__text {
     margin-bottom: 25px;
-    max-width: 667px;
+    max-width: calc(667px + (892 - 667) * ((100vw - 768px) / (992 - 768)));
   }
 
   .right-part {
-    width: 668px;
-    min-height: 284px;
+    width: calc(668px + (892 - 668) * ((100vw - 768px) / (992 - 768)));
+    min-height: calc(284px + (384 - 284) * ((100vw - 768px) / (992 - 768)));
   }
 
   .steps-desc__right-part {
@@ -410,7 +419,7 @@
     align-self: flex-start;
     border-radius: var(--new-radius);
     width: 100%;
-    height: 284px;
+    height: calc(284px + (384 - 284) * ((100vw - 768px) / (992 - 768)));
   }
 
   /* questions / sec. #4 */
@@ -423,8 +432,6 @@
   .questions__title {
     margin-bottom: 33px;
   }
-
-  /* !Уточнить, может что-то указывать не нужно?  */
 
   .accordion__item-btn {
     padding-top: 30px;
@@ -451,7 +458,6 @@
 
   .item-btn-4 {
     padding-top: 29px;
-    padding-bottom: 30px;
   }
 
   .item-btn-5 {
@@ -487,15 +493,56 @@
     min-height: 148px;
   }
 
+  .left-group__nav {
+    display: none;
+  }
+
   .left-group__logo {
     margin-bottom: 10px;
   }
 
-  .center-group__form {
-    margin-bottom: 50px;
+  .center-group {
+    width: calc(570px + (675 - 570) * ((100vw - 768px) / (992 - 768)));
+    max-width: calc(541px + (675 - 541) * ((100vw - 768px) / (992 - 768)));
   }
 
-  .left-group__nav {
-    display: none;
+  .center-group__title {
+    padding-left: calc(0px + (210 - 0) * ((100vw - 768px) / (992 - 768)));
   }
+
+  .center-group__form {
+    margin-bottom: 50px;
+    padding-left: calc(0px + (210 - 0) * ((100vw - 768px) / (992 - 768)));
+  }
+}
+
+@media (max-width: 768px) {
+}
+
+@media (max-width: 576px) {
+  /* glob */
+  .container {
+    padding-right: 35px;
+    padding-left: 35px;
+  }
+}
+
+@media (max-width: 320px) {
+  /* glob */
+  /* .container {
+    padding-right: 15px;
+    padding-left: 15px;
+  } */
+
+  /* header */
+
+  /* .header {
+    padding-top: 17px;
+    padding-bottom: 17px;
+  }
+
+  .header__logo {
+    width: 110px;
+    height: 35px;
+  } */
 }
