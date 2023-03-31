@@ -517,14 +517,53 @@
 }
 
 @media (max-width: 768px) {
+  /* glob */
+  /* .container {
+    padding-right: calc(35px + (50 - 35) * ((100vw - 576px) / (768 - 576)));
+    padding-left: calc(35px + (50 - 35) * ((100vw - 576px) / (768 - 576)));
+  } */
+
+  /* header */
+
+  /* .intro__title {
+    font-size: calc(35px + (50 - 35) * ((100vw - 576px) / (768 - 576)));
+    line-height: calc(40px + (61 - 40) * ((100vw - 576px) / (768 - 576)));
+  } */
+
+  /* main */
+
+  /* hero / sec. #1 */
+
+  /* .info {
+    flex-wrap: wrap;
+  } */
+
+  /* !Внимание.. для calc() согласно медиа px следует выставлять в скобках px!*/
+
+  .info__text {
+    /* width: 366px; */
+    /* width: calc(455px + (366 - 455) * ((100vw - 576px) / (768 - 576))); */
+  }
+
+  /* .benefits-1::before {
+    width: 114px;
+    height: 99px;
+    margin-right: 16px;
+  } */
+
+  /* .benefits-2::before {
+    width: 114px;
+    height: 99px;
+    margin-right: 16px;
+  } */
 }
 
 @media (max-width: 576px) {
   /* glob */
-  .container {
+  /* .container {
     padding-right: 35px;
     padding-left: 35px;
-  }
+  } */
 }
 
 @media (max-width: 320px) {
