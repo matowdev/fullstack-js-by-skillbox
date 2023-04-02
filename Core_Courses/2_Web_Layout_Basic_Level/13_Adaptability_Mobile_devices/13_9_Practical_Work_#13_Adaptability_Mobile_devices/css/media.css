@@ -347,7 +347,7 @@
   }
 
   .benefits-1 {
-    padding: 34px 44px 33px 40px;
+    padding: 34px 45px 33px 40px;
     padding-left: calc(40px + (80 - 40) * ((100vw - 768px) / (992 - 768)));
   }
 
@@ -359,7 +359,7 @@
   }
 
   .benefits-2 {
-    padding: 34px 46px 33px 40px;
+    padding: 34px 45px 33px 40px;
     padding-left: calc(40px + (80 - 40) * ((100vw - 768px) / (992 - 768)));
   }
 
@@ -379,6 +379,7 @@
 
   .steps-list {
     justify-content: space-between;
+    column-gap: 0;
     padding-left: calc(0px + (50 - 0) * ((100vw - 768px) / (992 - 768)));
     padding-right: calc(0px + (50 - 0) * ((100vw - 768px) / (992 - 768)));
   }
@@ -518,70 +519,142 @@
 
 @media (max-width: 768px) {
   /* glob */
-  /* .container {
+  .container {
     padding-right: calc(35px + (50 - 35) * ((100vw - 576px) / (768 - 576)));
     padding-left: calc(35px + (50 - 35) * ((100vw - 576px) / (768 - 576)));
-  } */
-
-  /* header */
-
-  /* .intro__title {
-    font-size: calc(35px + (50 - 35) * ((100vw - 576px) / (768 - 576)));
-    line-height: calc(40px + (61 - 40) * ((100vw - 576px) / (768 - 576)));
-  } */
+  }
 
   /* main */
 
   /* hero / sec. #1 */
 
-  /* .info {
-    flex-wrap: wrap;
-  } */
+  .intro {
+    /* padding: 160px 40px 30px 40px; */
+    padding-top: calc(120px + (160 - 120) * ((100vw - 576px) / (768 - 576)));
+    padding-right: calc(30px + (40 - 30) * ((100vw - 576px) / (768 - 576)));
+    padding-bottom: calc(22px + (30 - 22) * ((100vw - 576px) / (768 - 576)));
+    padding-left: calc(30px + (40 - 30) * ((100vw - 576px) / (768 - 576)));
+    /* min-height: 662px; */
+    min-height: calc(532px + (662 - 532) * ((100vw - 576px) / (768 - 576)));
+  }
 
-  /* !Внимание.. для calc() согласно медиа px следует выставлять в скобках px!*/
+  .intro__content {
+    /* margin-bottom: 115px; */
+    margin-bottom: calc(74px + (115 - 74) * ((100vw - 576px) / (768 - 576)));
+    /* max-width: 588px; */
+    max-width: calc(485px + (588 - 485) * ((100vw - 576px) / (768 - 576)));
+    /* min-height: 342px; */
+    min-height: calc(240px + (342 - 240) * ((100vw - 576px) / (768 - 576)));
+  }
+
+  .intro__title {
+    font-size: calc(35px + (50 - 35) * ((100vw - 576px) / (768 - 576)));
+    line-height: calc(40px + (61 - 40) * ((100vw - 576px) / (768 - 576)));
+  }
+
+  .intro__desc {
+    margin-bottom: calc(45px + (60 - 45) * ((100vw - 576px) / (768 - 576)));
+    font-size: calc(16px + (18 - 16) * ((100vw - 576px) / (768 - 576)));
+    line-height: calc(24px + (22 - 24) * ((100vw - 576px) / (768 - 576)));
+  }
+
+  /* about-us / sec. #2 */
+
+  .about-us {
+    padding-bottom: calc(30px + (40 - 30) * ((100vw - 576px) / (768 - 576)));
+  }
+
+  .about-us__desc {
+    margin-bottom: calc(35px + (55 - 35) * ((100vw - 576px) / (768 - 576)));
+  }
+
+  .more__left {
+    /* min-width: 535px; */
+    min-width: calc(518px + (535 - 518) * ((100vw - 576px) / (768 - 576)));
+    /* min-height: 650px; */
+    min-height: calc(500px + (650 - 500) * ((100vw - 576px) / (768 - 576)));
+  }
+
+  .info {
+    flex-wrap: wrap;
+    /* padding: 34px 40px 34px 40px; */
+    padding-right: calc(30px + (40 - 30) * ((100vw - 576px) / (768 - 576)));
+    padding-left: calc(30px + (40 - 30) * ((100vw - 576px) / (768 - 576)));
+  }
 
   .info__text {
     /* width: 366px; */
-    /* width: calc(455px + (366 - 455) * ((100vw - 576px) / (768 - 576))); */
+    width: calc(466px + (366 - 466) * ((100vw - 576px) / (768 - 576)));
   }
 
-  /* .benefits-1::before {
-    width: 114px;
-    height: 99px;
-    margin-right: 16px;
-  } */
+  .benefits-list__item {
+    flex-wrap: wrap;
+    padding-left: 40px;
+  }
 
-  /* .benefits-2::before {
+  .benefits-1::before {
     width: 114px;
     height: 99px;
-    margin-right: 16px;
-  } */
+  }
+
+  .benefits-2::before {
+    width: 114px;
+    height: 99px;
+  }
+
+  .benefits-list__item-group {
+    /* max-width: 452px; */
+    max-width: calc(695px + (452 - 695) * ((100vw - 576px) / (768 - 576)));
+  }
+
+  /* workflow / sec. #3 */
+
+  .workflow {
+    padding-top: calc(30px + (40 - 30) * ((100vw - 576px) / (768 - 576)));
+    /* padding-bottom: 25px; */
+  }
+
+  .workflow__title {
+    margin-bottom: calc(35px + (50 - 35) * ((100vw - 576px) / (768 - 576)));
+  }
+
+  .steps-list {
+    padding-left: calc(0px + (50 - 0) * ((100vw - 768px) / (992 - 768)));
+    padding-right: calc(0px + (50 - 0) * ((100vw - 768px) / (992 - 768)));
+  }
+
+  .workflow__steps-list {
+    margin-bottom: calc(35px + (49 - 35) * ((100vw - 576px) / (768 - 576)));
+  }
+
+  .steps-desc__right-part {
+    margin-bottom: calc(28px + (38 - 28) * ((100vw - 576px) / (768 - 576)));
+  }
 }
 
 @media (max-width: 576px) {
   /* glob */
-  /* .container {
-    padding-right: 35px;
-    padding-left: 35px;
-  } */
-}
-
-@media (max-width: 320px) {
-  /* glob */
-  /* .container {
-    padding-right: 15px;
-    padding-left: 15px;
-  } */
+  .container {
+    padding-right: 25px;
+    padding-left: 25px;
+  }
 
   /* header */
 
-  /* .header {
-    padding-top: 17px;
-    padding-bottom: 17px;
+  .intro__content {
+    align-items: center;
+    text-align: center;
   }
 
-  .header__logo {
-    width: 110px;
-    height: 35px;
-  } */
+  /* main */
+
+  /* hero / sec. #1 */
+
+  .intro__content .btn {
+    padding: 18px 30px;
+    min-width: 220px;
+    min-height: 58px;
+    font-size: 18px;
+    line-height: 21px;
+  }
 }
