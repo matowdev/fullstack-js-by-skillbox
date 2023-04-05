@@ -632,15 +632,15 @@
   }
 
   .left-part {
-    max-width: calc(526px + (667 - 526) * ((100vw - 576px) / (768 - 576)));
+    max-width: calc(506px + (667 - 506) * ((100vw - 576px) / (768 - 576)));
   }
 
   .left-part__text {
-    max-width: calc(526px + (667 - 526) * ((100vw - 576px) / (768 - 576)));
+    max-width: calc(506px + (667 - 506) * ((100vw - 576px) / (768 - 576)));
   }
 
   .right-part {
-    width: calc(525px + (668 - 525) * ((100vw - 576px) / (768 - 576)));
+    width: calc(506px + (668 - 506) * ((100vw - 576px) / (768 - 576)));
     min-height: calc(235px + (284 - 235) * ((100vw - 576px) / (768 - 576)));
   }
 
@@ -793,27 +793,28 @@
   }
 
   .more {
-    position: relative;
+    /* position: relative; */
+    gap: calc(25px + (32 - 25) * ((100vw - 320px) / (576 - 320)));
   }
 
   .more__left {
-    position: relative;
-    top: 0;
+    /* position: relative; */
+    /* top: 0; */
     border-radius: 16px;
     /* min-width: 506px; */
     min-width: calc(290px + (506 - 290) * ((100vw - 320px) / (576 - 320)));
-    min-height: calc(448px + (560 - 435) * ((100vw - 320px) / (576 - 320)));
+    min-height: calc(406px + (540 - 406) * ((100vw - 320px) / (576 - 320)));
     background: url(../img/about_us_left_bg.jpg) no-repeat 0px
       calc(-8px + (0 - (-8)) * ((100vw - 320px) / (576 - 320))) /
-      calc(289px + (506 - 289) * ((100vw - 320px) / (576 - 320)));
+      calc(290px + (506 - 290) * ((100vw - 320px) / (576 - 320)));
     /* outline: 2px solid red; */
   }
 
   .info {
-    position: inherit;
+    /* position: inherit; */
     justify-content: flex-start;
+    align-items: flex-start;
     gap: 0;
-    /* gap: calc(12px + (20 - 12) * ((100vw - 320px) / (576 - 320))); */
     border-radius: 0;
     /* padding: 34px 30px 34px 30px; */
     padding-top: 0;
@@ -823,13 +824,12 @@
     padding-bottom: 0;
     padding-left: 0px;
     /* padding-left: calc(6px + (30 - 6) * ((100vw - 320px) / (576 - 320))); */
-    min-height: calc(245px + (196 - 245) * ((100vw - 320px) / (576 - 320)));
+    min-height: calc(198px + (164 - 198) * ((100vw - 320px) / (576 - 320)));
     background: var(--white-color);
   }
 
   .info__text {
-    /* margin-top: 0; */
-    margin-top: calc(-29px + (0 - (-29)) * ((100vw - 320px) / (576 - 320)));
+    margin-bottom: 6px;
     /* width: 466px; */
     width: calc(284px + (466 - 284) * ((100vw - 320px) / (576 - 320)));
     /* font-weight: 400;
@@ -840,7 +840,6 @@
   }
 
   .more__left-info .btn {
-    margin-top: calc(-69px + (0 - (-69)) * ((100vw - 320px) / (576 - 320)));
     margin-left: 2px;
     border-radius: 8px;
     padding: 10px 42px;
@@ -863,6 +862,163 @@
   .more__left-info .btn:active {
     color: var(--white-color);
   }
+
+  .more__right {
+    /* min-height: 502px; */
+    min-height: calc(558px + (502 - 558) * ((100vw - 320px) / (576 - 320)));
+  }
+
+  .benefits-list {
+    /* row-gap: 32px; */
+    row-gap: calc(23px + (32 - 23) * ((100vw - 320px) / (576 - 320)));
+  }
+
+  .benefits-list__item {
+    align-items: start;
+    /* row-gap: 20px; */
+    row-gap: calc(10px + (20 - 10) * ((100vw - 320px) / (576 - 320)));
+    /* border-radius: var(--new-radius); */
+    /* min-height: 235px; */
+    /* padding: 34px 45px 33px 40px; */
+    padding-top: calc(0px + (34 - 0) * ((100vw - 320px) / (576 - 320)));
+    padding-right: calc(0px + (45 - 0) * ((100vw - 320px) / (576 - 320)));
+    padding-bottom: calc(0px + (35 - 0) * ((100vw - 320px) / (576 - 320)));
+    padding-left: calc(0px + (40 - 0) * ((100vw - 320px) / (576 - 320)));
+    /* width: 506px; */
+    /* width: calc(290px + (506 - 290) * ((100vw - 320px) / (576 - 320))); */
+    /* min-height: 235px; */
+    min-height: calc(259px + (235 - 259) * ((100vw - 320px) / (576 - 320)));
+  }
+
+  .benefits-list__item-group {
+    /* row-gap: 8px; */
+    row-gap: calc(4px + (8 - 4) * ((100vw - 320px) / (576 - 320)));
+    /* min-height: 165px; */
+    min-height: calc(196px + (165 - 196) * ((100vw - 320px) / (576 - 320)));
+  }
+
+  .benefits-1::before {
+    margin-right: 0;
+    width: calc(63px + (98 - 63) * ((100vw - 320px) / (576 - 320)));
+    height: calc(48px + (75 - 48) * ((100vw - 320px) / (576 - 320)));
+    background: url(../img/about_us_right_bg_1_v2.svg) no-repeat center / cover;
+  }
+
+  .benefits-list__item-subtitle {
+    /* font-size: 24px; */
+    /* line-height: 29px; */
+    font-size: calc(18px + (24 - 18) * ((100vw - 320px) / (576 - 320)));
+    line-height: calc(22px + (29 - 22) * ((100vw - 320px) / (576 - 320)));
+  }
+
+  .benefits-list__item-desc {
+    /* font-size: 16px; */
+    font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (576 - 320)));
+  }
+
+  .benefits-2::before {
+    margin-right: 0;
+    margin-bottom: 2px;
+    width: calc(63px + (98 - 63) * ((100vw - 320px) / (576 - 320)));
+    height: calc(48px + (75 - 48) * ((100vw - 320px) / (576 - 320)));
+    background: url(../img/about_us_right_bg_2_v2.svg) no-repeat center / cover;
+  }
+
+  /* workflow / sec. #3 */
+
+  .workflow {
+    /* padding-top: 15px;
+    padding-bottom: 20px; */
+    padding-top: calc(32px + (15 - 32) * ((100vw - 320px) / (576 - 320)));
+    padding-bottom: calc(30px + (20 - 30) * ((100vw - 320px) / (576 - 320)));
+  }
+
+  .workflow__title {
+    margin-bottom: calc(19px + (35 - 19) * ((100vw - 320px) / (576 - 320)));
+  }
+
+  .workflow__steps-list {
+    margin-bottom: calc(15px + (35 - 15) * ((100vw - 320px) / (576 - 320)));
+  }
+
+  .steps-list__link {
+    /* font-size: 18px;
+    line-height: 22px; */
+    font-size: calc(14px + (18 - 14) * ((100vw - 320px) / (576 - 320)));
+    line-height: calc(17px + (22 - 17) * ((100vw - 320px) / (576 - 320)));
+  }
+
+  .left-part {
+    max-width: calc(290px + (506 - 290) * ((100vw - 320px) / (576 - 320)));
+  }
+
+  .left-part__subtitle {
+    /* margin-bottom: 8px; */
+    margin-bottom: calc(11px + (8 - 11) * ((100vw - 320px) / (576 - 320)));
+    /* font-size: 24px; */
+    font-size: calc(18px + (24 - 18) * ((100vw - 320px) / (576 - 320)));
+  }
+
+  .left-part__text {
+    /* margin-bottom: 17px; */
+    max-width: calc(290px + (506 - 290) * ((100vw - 320px) / (576 - 320)));
+    /* font-size: 16px; */
+    font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (576 - 320)));
+  }
+
+  .left-part__btns {
+    flex-wrap: nowrap;
+    align-items: center;
+    /* gap: 23px 33px; */
+    column-gap: calc(10px + (33 - 10) * ((100vw - 320px) / (576 - 320)));
+    height: calc(45px + (60 - 45) * ((100vw - 320px) / (576 - 320)));
+  }
+
+  .left-part__btns .btn {
+    margin-bottom: calc(5px + (0 - 5) * ((100vw - 320px) / (576 - 320)));
+    /* border-radius: 16px; */
+    border-radius: calc(8px + (16 - 8) * ((100vw - 320px) / (576 - 320)));
+    /* padding: 20px 38px; */
+    padding-top: calc(13px + (20 - 13) * ((100vw - 320px) / (576 - 320)));
+    padding-right: calc(44px + (38 - 44) * ((100vw - 320px) / (576 - 320)));
+    padding-bottom: calc(11px + (20 - 11) * ((100vw - 320px) / (576 - 320)));
+    padding-left: calc(44px + (38 - 44) * ((100vw - 320px) / (576 - 320)));
+    /* min-width: 175px; */
+    min-width: calc(162px + (175 - 162) * ((100vw - 320px) / (576 - 320)));
+    /* min-height: 60px; */
+    min-height: calc(39px + (60 - 39) * ((100vw - 320px) / (576 - 320)));
+    /* font-size: 16px; */
+    font-size: calc(12px + (16 - 12) * ((100vw - 320px) / (576 - 320)));
+    /* line-height: 20px; */
+    line-height: calc(15px + (20 - 15) * ((100vw - 320px) / (576 - 320)));
+  }
+
+  /* .btn_transparent {
+    background-color: transparent;
+  } */
+
+  .left-part__btns .btn_black {
+    /* padding: 20px 38px; */
+    padding-right: calc(32px + (38 - 32) * ((100vw - 320px) / (576 - 320)));
+    padding-left: calc(32px + (38 - 32) * ((100vw - 320px) / (576 - 320)));
+    /* min-width: 147px; */
+    min-width: calc(118px + (147 - 118) * ((100vw - 320px) / (576 - 320)));
+  }
+
+  .right-part {
+    border-radius: 16px;
+    width: calc(290px + (506 - 290) * ((100vw - 320px) / (576 - 320)));
+    min-height: calc(160px + (235 - 160) * ((100vw - 320px) / (576 - 320)));
+  }
+
+  .steps-desc__right-part {
+    margin-bottom: calc(20px + (28 - 20) * ((100vw - 320px) / (576 - 320)));
+  }
+
+  .right-part__image {
+    border-radius: 16px;
+    height: calc(160px + (235 - 160) * ((100vw - 320px) / (576 - 320)));
+  }
 }
 
 @media (max-width: 320px) {
@@ -876,5 +1032,17 @@
     min-height: 41px;
     font-size: 12px;
     line-height: 15px;
+  }
+
+  .benefits-list__item {
+    border: none;
+  }
+
+  .benefits-list__item-subtitle {
+    font-weight: 500;
+  }
+
+  .left-part__subtitle {
+    font-weight: 500;
   }
 }

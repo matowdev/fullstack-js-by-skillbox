@@ -661,8 +661,8 @@ img {
 }
 
 .left-part__btns {
-  gap: 23px 33px;
   flex-wrap: wrap;
+  gap: 23px 33px;
   width: inherit;
   padding-left: var(--gap-left);
 }
