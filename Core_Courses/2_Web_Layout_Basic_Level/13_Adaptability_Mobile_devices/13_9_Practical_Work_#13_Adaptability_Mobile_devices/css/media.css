@@ -1,3 +1,95 @@
+/* styles for desktop screens */
+
+@media (max-width: 1600px) {
+  /* glob */
+
+  .dispaly-none {
+    display: none;
+  }
+
+  /* header */
+
+  .header__nav {
+    margin-right: 85px;
+  }
+
+  /* main */
+
+  /* hero / sec. #1 */
+
+  /* about-us / sec. #2 */
+
+  .info {
+    padding-left: 77px;
+  }
+
+  .benefits-list__item {
+    flex-wrap: wrap;
+  }
+
+  .benefits-1 {
+    padding-right: 39px;
+  }
+
+  .benefits-2 {
+    padding-right: 39px;
+  }
+
+  /* workflow / sec. #3 */
+
+  .left-part {
+    max-width: 437px;
+  }
+
+  .steps-desc__left-part {
+    margin-right: 50px;
+  }
+
+  .right-part {
+    flex-shrink: 1;
+  }
+
+  /* questions / sec. #4 */
+
+  /* footer */
+
+  .footer__left-group {
+    margin-right: 33px;
+  }
+
+  .footer__center-group {
+    margin-right: 33px;
+  }
+
+  .footer__right-text {
+    max-height: 320px;
+    height: auto;
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 1366px) {
+  /* header */
+
+  .nav__list {
+    column-gap: 35px;
+  }
+
+  /* main */
+
+  /* hero / sec. #1 */
+
+  /* about-us / sec. #2 */
+
+  /* workflow / sec. #3 */
+
+  /* questions / sec. #4 */
+
+  /* footer */
+}
+
+/* styles for mobile screens */
+
 @media (max-width: 1024px) {
   /* variables */
   :root {
@@ -1165,6 +1257,8 @@
 }
 
 @media (max-width: 320px) {
+  /* !В практике, по Lionic использовали: 1024 - 992 - 768 - 576 - 480, т.е. без 320 - вообще, без calc.. надо его претестировать на плавное сжатие и посмотреть.. так ли всё хорошо! /
+
   /* main */
 
   /* hero / sec. #1 */
