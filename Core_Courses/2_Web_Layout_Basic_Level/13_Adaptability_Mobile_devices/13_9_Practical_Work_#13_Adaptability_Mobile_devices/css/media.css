@@ -458,8 +458,6 @@
   }
 
   .left-part {
-    /* max-width: calc(667px + (892 - 667) * ((100vw - 768px) / (992 - 768)));
-    min-height: calc(369px + (381 - 369) * ((100vw - 768px) / (992 - 768))); */
     max-width: 892px;
   }
 
@@ -469,7 +467,6 @@
 
   .left-part__text {
     margin-bottom: 25px;
-    /* max-width: calc(667px + (892 - 667) * ((100vw - 768px) / (992 - 768))); */
     max-width: 892px;
   }
 
@@ -595,21 +592,16 @@
   /* hero / sec. #1 */
 
   .intro {
-    /* padding: 160px 40px 30px 40px; */
     padding-top: calc(120px + (160 - 120) * ((100vw - 576px) / (768 - 576)));
     padding-right: calc(30px + (40 - 30) * ((100vw - 576px) / (768 - 576)));
     padding-bottom: calc(22px + (30 - 22) * ((100vw - 576px) / (768 - 576)));
     padding-left: calc(30px + (40 - 30) * ((100vw - 576px) / (768 - 576)));
-    /* min-height: 662px; */
     min-height: calc(532px + (662 - 532) * ((100vw - 576px) / (768 - 576)));
   }
 
   .intro__content {
-    /* margin-bottom: 115px; */
     margin-bottom: calc(74px + (115 - 74) * ((100vw - 576px) / (768 - 576)));
-    /* max-width: 588px; */
     max-width: calc(485px + (588 - 485) * ((100vw - 576px) / (768 - 576)));
-    /* min-height: 342px; */
     min-height: calc(240px + (342 - 240) * ((100vw - 576px) / (768 - 576)));
   }
 
@@ -635,15 +627,12 @@
   }
 
   .more__left {
-    /* min-width: 535px; */
     min-width: calc(506px + (535 - 506) * ((100vw - 576px) / (768 - 576)));
-    /* min-height: 650px; */
     min-height: calc(500px + (650 - 500) * ((100vw - 576px) / (768 - 576)));
   }
 
   .info {
     flex-wrap: wrap;
-    /* padding: 34px 40px 34px 40px; */
     padding-right: calc(30px + (40 - 30) * ((100vw - 576px) / (768 - 576)));
     padding-left: calc(30px + (40 - 30) * ((100vw - 576px) / (768 - 576)));
   }
@@ -669,7 +658,6 @@
   }
 
   .benefits-list__item-group {
-    /* max-width: 452px; */
     max-width: calc(695px + (452 - 695) * ((100vw - 576px) / (768 - 576)));
   }
 
@@ -677,7 +665,6 @@
 
   .workflow {
     padding-top: calc(20px + (40 - 20) * ((100vw - 576px) / (768 - 576)));
-    /* padding-bottom: 15px; */
   }
 
   .workflow__title {
@@ -717,26 +704,20 @@
   /* questions / sec. #4 */
 
   .questions {
-    /* padding-bottom: 111px; */
     padding-bottom: calc(80px + (111 - 80) * ((100vw - 576px) / (768 - 576)));
   }
 
   .questions__title {
-    /* margin-bottom: 33px;
-    font-size: 48px;
-    line-height: 59px; */
     margin-bottom: calc(25px + (33 - 25) * ((100vw - 576px) / (768 - 576)));
     font-size: calc(34px + (48 - 34) * ((100vw - 576px) / (768 - 576)));
     line-height: calc(40px + (59 - 40) * ((100vw - 576px) / (768 - 576)));
   }
 
   .accordion__item-btn {
-    /* max-height: 126px; */
     max-height: calc(155px + (126 - 155) * ((100vw - 576px) / (768 - 576)));
   }
 
   .item-btn-1 {
-    /* padding-bottom: 40px; */
     padding-bottom: calc(30px + (40 - 30) * ((100vw - 576px) / (768 - 576)));
   }
 }
@@ -749,8 +730,6 @@
   }
 
   .section-title {
-    /* font-size: 48px;
-    line-height: 59px; */
     font-size: calc(24px + (48 - 24) * ((100vw - 320px) / (576 - 320)));
     line-height: calc(29px + (59 - 29) * ((100vw - 320px) / (576 - 320)));
   }
@@ -758,14 +737,11 @@
   /* header */
 
   .header {
-    /* padding-top: 11px;
-    padding-bottom: 10px; */
     padding-top: calc(17px + (11 - 17) * ((100vw - 320px) / (576 - 320)));
     padding-bottom: calc(17px + (10 - 17) * ((100vw - 320px) / (576 - 320)));
   }
 
   .page__header {
-    /* margin-bottom: 20px; */
     margin-bottom: calc(15px + (20 - 15) * ((100vw - 320px) / (576 - 320)));
   }
 
@@ -777,8 +753,6 @@
   }
 
   .header__logo {
-    /* width: 150px;
-    height: 48px; */
     width: calc(110px + (150 - 110) * ((100vw - 320px) / (576 - 320)));
     height: calc(35px + (48 - 35) * ((100vw - 320px) / (576 - 320)));
   }
@@ -788,49 +762,36 @@
   /* hero / sec. #1 */
 
   .hero {
-    /* padding-top: 20px; */
     padding-top: calc(15px + (20 - 15) * ((100vw - 320px) / (576 - 320)));
-    /* padding-bottom: 20px; */
     padding-bottom: calc(30px + (20 - 30) * ((100vw - 320px) / (576 - 320)));
   }
 
   .intro {
     border-radius: 16px;
-    /* padding: 120px 30px 22px 30px; */
     padding-top: calc(60px + (120 - 60) * ((100vw - 320px) / (576 - 320)));
     padding-right: calc(21px + (30 - 21) * ((100vw - 320px) / (576 - 320)));
     padding-bottom: calc(15px + (22 - 15) * ((100vw - 320px) / (576 - 320)));
     padding-left: calc(22px + (30 - 22) * ((100vw - 320px) / (576 - 320)));
-    /* min-height: 532px; */
     min-height: calc(308px + (532 - 308) * ((100vw - 320px) / (576 - 320)));
   }
 
   .intro__content {
     align-items: center;
     text-align: center;
-    /* margin-bottom: 74px; */
     margin-bottom: calc(34px + (74 - 34) * ((100vw - 320px) / (576 - 320)));
-    /* max-width: 485px; */
     max-width: calc(247px + (485 - 247) * ((100vw - 320px) / (576 - 320)));
-    /* min-height: 240px; */
     min-height: calc(189px + (240 - 189) * ((100vw - 320px) / (576 - 320)));
   }
 
   .intro__title {
-    /* margin-bottom: 16px; */
     margin-bottom: calc(8px + (16 - 8) * ((100vw - 320px) / (576 - 320)));
-    /* font-size: 35px; */
     font-size: calc(20px + (35 - 20) * ((100vw - 320px) / (576 - 320)));
-    /* line-height: 40px; */
     line-height: calc(24px + (40 - 24) * ((100vw - 320px) / (576 - 320)));
   }
 
   .intro__desc {
-    /* margin-bottom: 45px; */
     margin-bottom: calc(32px + (45 - 32) * ((100vw - 320px) / (576 - 320)));
-    /* font-size: 16px; */
     font-size: calc(12px + (16 - 12) * ((100vw - 320px) / (576 - 320)));
-    /* line-height: 24px; */
     line-height: calc(15px + (24 - 15) * ((100vw - 320px) / (576 - 320)));
   }
 
@@ -845,61 +806,41 @@
   /* about-us / sec. #2 */
 
   .about-us {
-    /* padding-top: 15px;
-    padding-bottom: 20px; */
     padding-top: calc(30px + (15 - 30) * ((100vw - 320px) / (576 - 320)));
     padding-bottom: calc(30px + (20 - 30) * ((100vw - 320px) / (576 - 320)));
   }
 
   .about-us__desc {
-    /* margin-bottom: 49px; */
     margin-bottom: calc(14px + (49 - 14) * ((100vw - 320px) / (576 - 320)));
-    /* font-size: 16px; */
     font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (576 - 320)));
   }
 
   .more {
-    /* position: relative; */
     gap: calc(25px + (32 - 25) * ((100vw - 320px) / (576 - 320)));
   }
 
   .more__left {
-    /* position: relative; */
-    /* top: 0; */
     border-radius: 16px;
-    /* min-width: 506px; */
     min-width: calc(290px + (506 - 290) * ((100vw - 320px) / (576 - 320)));
     min-height: calc(406px + (540 - 406) * ((100vw - 320px) / (576 - 320)));
     background: url(../img/about_us_left_bg.jpg) no-repeat 0px
       calc(-8px + (0 - (-8)) * ((100vw - 320px) / (576 - 320))) /
       calc(290px + (506 - 290) * ((100vw - 320px) / (576 - 320)));
-    /* outline: 2px solid red; */
   }
 
   .info {
-    /* position: inherit; */
     justify-content: flex-start;
     align-items: flex-start;
     gap: 0;
     border-radius: 0;
-    /* padding: 34px 30px 34px 30px; */
-    padding-top: 0;
-    /* padding-top: calc(8px + (0 - 8) * ((100vw - 320px) / (576 - 320))); */
-    padding-right: 0;
-    /* padding-right: calc(0px + (30 - 0) * ((100vw - 320px) / (576 - 320))); */
-    padding-bottom: 0;
-    padding-left: 0px;
-    /* padding-left: calc(6px + (30 - 6) * ((100vw - 320px) / (576 - 320))); */
+    padding: 0;
     min-height: calc(198px + (164 - 198) * ((100vw - 320px) / (576 - 320)));
     background: var(--white-color);
   }
 
   .info__text {
     margin-bottom: 6px;
-    /* width: 466px; */
     width: calc(284px + (466 - 284) * ((100vw - 320px) / (576 - 320)));
-    /* font-weight: 400;
-    font-size: 14px; */
     font-weight: 400;
     font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (576 - 320)));
     color: var(--black-color);
@@ -930,36 +871,25 @@
   }
 
   .more__right {
-    /* min-height: 502px; */
     min-height: calc(558px + (502 - 558) * ((100vw - 320px) / (576 - 320)));
   }
 
   .benefits-list {
-    /* row-gap: 32px; */
     row-gap: calc(23px + (32 - 23) * ((100vw - 320px) / (576 - 320)));
   }
 
   .benefits-list__item {
     align-items: start;
-    /* row-gap: 20px; */
     row-gap: calc(10px + (20 - 10) * ((100vw - 320px) / (576 - 320)));
-    /* border-radius: var(--new-radius); */
-    /* min-height: 235px; */
-    /* padding: 34px 45px 33px 40px; */
     padding-top: calc(0px + (34 - 0) * ((100vw - 320px) / (576 - 320)));
     padding-right: calc(0px + (45 - 0) * ((100vw - 320px) / (576 - 320)));
     padding-bottom: calc(0px + (35 - 0) * ((100vw - 320px) / (576 - 320)));
     padding-left: calc(0px + (40 - 0) * ((100vw - 320px) / (576 - 320)));
-    /* width: 506px; */
-    /* width: calc(290px + (506 - 290) * ((100vw - 320px) / (576 - 320))); */
-    /* min-height: 235px; */
     min-height: calc(259px + (235 - 259) * ((100vw - 320px) / (576 - 320)));
   }
 
   .benefits-list__item-group {
-    /* row-gap: 8px; */
     row-gap: calc(4px + (8 - 4) * ((100vw - 320px) / (576 - 320)));
-    /* min-height: 165px; */
     min-height: calc(196px + (165 - 196) * ((100vw - 320px) / (576 - 320)));
   }
 
@@ -971,14 +901,11 @@
   }
 
   .benefits-list__item-subtitle {
-    /* font-size: 24px; */
-    /* line-height: 29px; */
     font-size: calc(18px + (24 - 18) * ((100vw - 320px) / (576 - 320)));
     line-height: calc(22px + (29 - 22) * ((100vw - 320px) / (576 - 320)));
   }
 
   .benefits-list__item-desc {
-    /* font-size: 16px; */
     font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (576 - 320)));
   }
 
@@ -993,8 +920,6 @@
   /* workflow / sec. #3 */
 
   .workflow {
-    /* padding-top: 15px;
-    padding-bottom: 20px; */
     padding-top: calc(32px + (15 - 32) * ((100vw - 320px) / (576 - 320)));
     padding-bottom: calc(31px + (20 - 31) * ((100vw - 320px) / (576 - 320)));
   }
@@ -1008,8 +933,6 @@
   }
 
   .steps-list__link {
-    /* font-size: 18px;
-    line-height: 22px; */
     font-size: calc(14px + (18 - 14) * ((100vw - 320px) / (576 - 320)));
     line-height: calc(17px + (22 - 17) * ((100vw - 320px) / (576 - 320)));
   }
@@ -1019,55 +942,38 @@
   }
 
   .left-part__subtitle {
-    /* margin-bottom: 8px; */
     margin-bottom: calc(11px + (8 - 11) * ((100vw - 320px) / (576 - 320)));
-    /* font-size: 24px; */
     font-size: calc(18px + (24 - 18) * ((100vw - 320px) / (576 - 320)));
   }
 
   .left-part__text {
-    /* margin-bottom: 17px; */
     max-width: calc(290px + (506 - 290) * ((100vw - 320px) / (576 - 320)));
-    /* font-size: 16px; */
     font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (576 - 320)));
   }
 
   .left-part__btns {
     flex-wrap: nowrap;
     align-items: center;
-    /* gap: 23px 33px; */
     column-gap: calc(10px + (33 - 10) * ((100vw - 320px) / (576 - 320)));
     height: calc(45px + (60 - 45) * ((100vw - 320px) / (576 - 320)));
   }
 
   .left-part__btns .btn {
     margin-bottom: calc(4px + (0 - 4) * ((100vw - 320px) / (576 - 320)));
-    /* border-radius: 16px; */
     border-radius: calc(8px + (16 - 8) * ((100vw - 320px) / (576 - 320)));
-    /* padding: 20px 38px; */
     padding-top: calc(13px + (20 - 13) * ((100vw - 320px) / (576 - 320)));
     padding-right: calc(44px + (38 - 44) * ((100vw - 320px) / (576 - 320)));
     padding-bottom: calc(11px + (20 - 11) * ((100vw - 320px) / (576 - 320)));
     padding-left: calc(44px + (38 - 44) * ((100vw - 320px) / (576 - 320)));
-    /* min-width: 175px; */
     min-width: calc(162px + (175 - 162) * ((100vw - 320px) / (576 - 320)));
-    /* min-height: 60px; */
     min-height: calc(39px + (60 - 39) * ((100vw - 320px) / (576 - 320)));
-    /* font-size: 16px; */
     font-size: calc(12px + (16 - 12) * ((100vw - 320px) / (576 - 320)));
-    /* line-height: 20px; */
     line-height: calc(15px + (20 - 15) * ((100vw - 320px) / (576 - 320)));
   }
 
-  /* .btn_transparent {
-    background-color: transparent;
-  } */
-
   .left-part__btns .btn_black {
-    /* padding: 20px 38px; */
     padding-right: calc(32px + (38 - 32) * ((100vw - 320px) / (576 - 320)));
     padding-left: calc(32px + (38 - 32) * ((100vw - 320px) / (576 - 320)));
-    /* min-width: 147px; */
     min-width: calc(118px + (147 - 118) * ((100vw - 320px) / (576 - 320)));
   }
 
@@ -1089,7 +995,6 @@
   /* questions / sec. #4 */
 
   .questions {
-    /* padding-bottom: 80px; */
     padding-bottom: calc(60px + (80 - 60) * ((100vw - 320px) / (576 - 320)));
   }
 
@@ -1100,46 +1005,33 @@
   .accordion__item-btn {
     padding-top: calc(31px + (30 - 31) * ((100vw - 320px) / (576 - 320)));
     padding-right: calc(33px + (90 - 33) * ((100vw - 320px) / (576 - 320)));
-    /* font-size: 20px;
-    line-height: 32px; */
     font-size: calc(14px + (20 - 14) * ((100vw - 320px) / (576 - 320)));
     line-height: calc(24px + (32 - 24) * ((100vw - 320px) / (576 - 320)));
   }
 
   .item-btn-1 {
-    /* padding-bottom: 30px; */
     padding-bottom: calc(29px + (30 - 29) * ((100vw - 320px) / (576 - 320)));
   }
 
   .item-btn-2 {
-    /* padding-bottom: 31px; */
     padding-bottom: calc(29px + (31 - 29) * ((100vw - 320px) / (576 - 320)));
   }
 
   .item-btn-3 {
-    /* padding-bottom: 31px; */
     padding-bottom: calc(29px + (31 - 29) * ((100vw - 320px) / (576 - 320)));
   }
 
   .item-btn-4 {
-    /* padding-top: 29px; */
     padding-top: calc(31px + (29 - 31) * ((100vw - 320px) / (576 - 320)));
   }
 
   .item-btn-5 {
-    /* padding-bottom: 31px; */
     padding-bottom: calc(29px + (31 - 29) * ((100vw - 320px) / (576 - 320)));
   }
 
   .accordion__item-btn::after {
-    /* content: "";
-    position: absolute;
-    right: 0; */
     top: 50%;
-    /* margin-right: -4px; */
     margin-right: calc(0px + ((-4) - 0) * ((100vw - 320px) / (576 - 320)));
-    /* width: 50px;
-    height: 50px; */
     width: calc(30px + (50 - 30) * ((100vw - 320px) / (576 - 320)));
     height: calc(30px + (50 - 30) * ((100vw - 320px) / (576 - 320)));
     background-image: url("data:image/svg+xml,%3Csvg width='' height='' viewBox='0 0 50 50' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cellipse cx='25' cy='25' rx='25' ry='25' fill='%23CACACA'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M25.0571 24.0571L25.0571 9L25.9429 9L25.9429 24.0571L33.8835 24.0571L41 24.0571L41 24.9429L25.9429 24.9429L25.9429 40L25.0571 40L25.0571 24.9429L10 24.9429L10 24.0571L25.0571 24.0571Z' fill='black'/%3E%3C/svg%3E%0A");
@@ -1154,85 +1046,63 @@
   /* footer */
 
   .footer {
-    /* padding-top: 52px; */
     padding-top: calc(33px + (52 - 33) * ((100vw - 320px) / (576 - 320)));
-    /* min-height: 792px; */
     min-height: calc(628px + (792 - 628) * ((100vw - 320px) / (576 - 320)));
   }
 
   .left-group {
-    /* width: 367px; */
     width: calc(131px + (367 - 131) * ((100vw - 320px) / (576 - 320)));
-    /* min-height: 148px; */
     min-height: calc(99px + (148 - 99) * ((100vw - 320px) / (576 - 320)));
   }
 
   .left-group__logo {
-    /* margin-bottom: 10px; */
     margin-bottom: calc(12px + (10 - 12) * ((100vw - 320px) / (576 - 320)));
   }
 
   .socials-list {
-    /* column-gap: 25px; */
     column-gap: calc(16px + (25 - 16) * ((100vw - 320px) / (576 - 320)));
   }
 
   .item-link {
-    /* width: 60px;
-    height: 60px; */
     width: calc(40px + (60 - 40) * ((100vw - 320px) / (576 - 320)));
     height: calc(40px + (60 - 40) * ((100vw - 320px) / (576 - 320)));
   }
 
   .center-group {
     position: relative;
-    /* width: calc(570px + (675 - 570) * ((100vw - 320px) / (576 - 320))); */
-    /* max-width: 541px; */
     max-width: calc(290px + (508 - 290) * ((100vw - 320px) / (576 - 320)));
-    /* min-height: 494px; */
     min-height: calc(433px + (494 - 433) * ((100vw - 320px) / (576 - 320)));
   }
 
   .center-group__title {
-    /* margin-bottom: 24px; */
     margin-bottom: calc(21px + (24 - 21) * ((100vw - 320px) / (576 - 320)));
   }
 
   .form {
-    /* min-width: 410px; */
     min-width: calc(290px + (410 - 290) * ((100vw - 320px) / (576 - 320)));
-    /* min-height: 410px; */
     min-height: calc(384px + (410 - 384) * ((100vw - 320px) / (576 - 320)));
   }
 
   .center-group__form {
-    /* margin-bottom: 50px; */
     margin-bottom: calc(16px + (50 - 16) * ((100vw - 320px) / (576 - 320)));
   }
 
   .form__input {
-    /* padding: 14px 24px; */
     padding-right: calc(20px + (24 - 20) * ((100vw - 320px) / (576 - 320)));
     padding-left: calc(20px + (24 - 20) * ((100vw - 320px) / (576 - 320)));
-    /* font-size: 16px; */
     font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (576 - 320)));
   }
 
   .form__textarea {
-    /* margin-bottom: 31px; */
     margin-bottom: calc(25px + (31 - 25) * ((100vw - 320px) / (576 - 320)));
-    /* padding: 14px 24px; */
     padding-top: calc(16px + (14 - 16) * ((100vw - 320px) / (576 - 320)));
     padding-right: calc(20px + (24 - 20) * ((100vw - 320px) / (576 - 320)));
     padding-left: calc(20px + (24 - 20) * ((100vw - 320px) / (576 - 320)));
-    /* font-size: 16px; */
     font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (576 - 320)));
   }
 }
 
 @media (max-width: 320px) {
-  /* !В практике, по Lionic использовали: 1024 - 992 - 768 - 576 - 480, т.е. без 320 - вообще, без calc.. надо его претестировать на плавное сжатие и посмотреть.. так ли всё хорошо! /
-
   /* main */
 
   /* hero / sec. #1 */

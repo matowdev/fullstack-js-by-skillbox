@@ -195,17 +195,14 @@ img {
 
 .header {
   border-radius: 0px 0px 32px 32px;
-  padding-top: 13px;
-  padding-bottom: 14px;
-  /* padding-top: 10px;
-  padding-bottom: 10px; */
+  padding-top: 11px;
+  padding-bottom: 11px;
   box-shadow: 0px 5px 40px rgba(0, 0, 0, 0.1);
   background: var(--white-color);
 }
 
 .page__header {
-  margin-bottom: 24px;
-  /* margin-bottom: 27px; */
+  margin-bottom: 27px;
 }
 
 .header__container {
@@ -215,7 +212,7 @@ img {
 .header__logo {
   flex-shrink: 0;
   margin-right: auto;
-  /* padding-top: 4px; */
+  padding-top: 3px;
   padding-right: 28px;
   padding-left: 2px;
 }
@@ -332,6 +329,7 @@ img {
 .hero {
   padding-top: 23px;
   padding-bottom: 25px;
+  padding-left: 4px;
 }
 
 .hero__title {
@@ -340,8 +338,8 @@ img {
 
 .intro {
   border-radius: var(--main-radius);
-  padding: 100px 80px 30px 83px;
-  min-height: 620px;
+  padding: 99px 80px 30px 82px;
+  min-height: 619px;
   overflow: hidden;
   background: url("../img/hero_bg_1.jpg") no-repeat center / cover;
 }
@@ -355,7 +353,7 @@ img {
 }
 
 .intro__title {
-  margin-bottom: 24px;
+  margin-bottom: 25px;
   font-weight: 800;
   font-size: 70px;
   line-height: 85px;
@@ -371,9 +369,9 @@ img {
 }
 
 .intro__content .btn {
-  padding: 25px 39px;
+  padding: 24px 39px;
   min-width: 280px;
-  min-height: 78px;
+  min-height: 77px;
   font-size: 23px;
   line-height: 28px;
 }
@@ -382,16 +380,16 @@ img {
 
 .about-us {
   padding-top: 26px;
-  padding-bottom: 50px;
+  padding-bottom: 49px;
 }
 
 .about-us__title {
-  margin-bottom: 20px;
+  margin-bottom: 19px;
   padding-left: var(--gap-left);
 }
 
 .about-us__desc {
-  margin-bottom: 49px;
+  margin-bottom: 50px;
   padding-left: var(--gap-left);
   max-width: 1235px;
   min-height: 192px;
@@ -403,6 +401,7 @@ img {
 
 .more {
   gap: 32px;
+  padding-left: var(--gap-left);
   width: 100%;
 }
 
@@ -475,7 +474,7 @@ img {
 .benefits-list {
   flex-direction: column;
   max-width: 870px;
-  row-gap: 30px;
+  row-gap: 32px;
 }
 
 .benefits-list__item {
@@ -502,7 +501,7 @@ img {
 
 .benefits-list__item-group {
   flex-direction: column;
-  row-gap: 8px;
+  row-gap: 7px;
   max-width: 452px;
   min-height: 165px;
 }
@@ -522,7 +521,7 @@ img {
 }
 
 .benefits-2 {
-  padding: 65px 111px 64px 59px;
+  padding: 64px 111px 64px 59px;
 }
 
 .benefits-2::before {
@@ -542,7 +541,7 @@ img {
 }
 
 .workflow__title {
-  margin-bottom: 50px;
+  margin-bottom: 49px;
   padding-left: var(--gap-left);
 }
 
@@ -551,7 +550,7 @@ img {
 }
 
 .workflow__steps-list {
-  margin-bottom: 45px;
+  margin-bottom: 46px;
   padding-left: var(--gap-left);
 }
 
@@ -589,7 +588,7 @@ img {
 }
 
 .steps-desc__left-part {
-  margin-right: 142px;
+  margin-right: 144px;
 }
 
 .left-part__subtitle {
@@ -651,8 +650,7 @@ img {
 .right-part__image {
   align-self: flex-end;
   border-radius: var(--main-radius);
-  height: calc((100% * 1) - 8px);
-  /* object-fit: cover; */
+  height: calc((100% * 1) - 9px);
 }
 
 /* questions / sec. #4 */
@@ -694,7 +692,7 @@ img {
 .accordion__item-btn {
   position: relative;
   display: block;
-  padding: 39px 90px 39px 3px;
+  padding: 40px 90px 38px 3px;
   width: 100%;
   font-weight: 700;
   font-size: inherit;
