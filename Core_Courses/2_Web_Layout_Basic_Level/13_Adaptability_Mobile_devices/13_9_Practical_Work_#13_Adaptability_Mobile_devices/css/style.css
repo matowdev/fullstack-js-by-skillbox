@@ -92,6 +92,13 @@ img {
 /* variables */
 
 :root {
+  --gap-left: 3px;
+  --main-radius: 32px;
+  --regular: 400;
+  --medium: 500;
+  --semibold: 600;
+  --bold: 700;
+  --extrabold: 800;
   --orange-light: #ffb84d;
   --orange-normal: #ff9900;
   --orange-dark: #e1670e;
@@ -100,8 +107,6 @@ img {
   --gray-dark: #414141;
   --black-color: #000;
   --white-color: #fff;
-  --main-radius: 32px;
-  --gap-left: 3px;
 }
 
 /* glob */
@@ -121,7 +126,7 @@ img {
 .page__title {
   margin-bottom: 20px;
   padding-left: 66px;
-  font-weight: 700;
+  font-weight: var(--bold);
   font-size: 48px;
   line-height: 59px;
   color: var(--black-color);
@@ -158,7 +163,7 @@ img {
   padding: 20px 38px;
   min-width: 175px;
   min-height: 60px;
-  font-weight: 700;
+  font-weight: var(--bold);
   font-size: 16px;
   line-height: 20px;
   text-align: center;
@@ -185,7 +190,7 @@ img {
 }
 
 .section-title {
-  font-weight: 400;
+  font-weight: var(--regular);
   font-size: 48px;
   line-height: 59px;
   color: var(--black-color);
@@ -234,7 +239,7 @@ img {
 
 .nav__link {
   position: relative;
-  font-weight: 600;
+  font-weight: var(--semibold);
   font-size: 18px;
   line-height: 22px;
   color: var(--black-color);
@@ -354,7 +359,7 @@ img {
 
 .intro__title {
   margin-bottom: 25px;
-  font-weight: 800;
+  font-weight: var(--extrabold);
   font-size: 70px;
   line-height: 85px;
   color: var(--white-color);
@@ -362,7 +367,7 @@ img {
 
 .intro__desc {
   margin-bottom: 90px;
-  font-weight: 700;
+  font-weight: var(--bold);
   font-size: 24px;
   line-height: 29px;
   color: var(--white-color);
@@ -393,7 +398,7 @@ img {
   padding-left: var(--gap-left);
   max-width: 1235px;
   min-height: 192px;
-  font-weight: 400;
+  font-weight: var(--regular);
   font-size: 16px;
   line-height: 200%;
   color: var(--black-color);
@@ -432,7 +437,7 @@ img {
 .more__left-title {
   margin-bottom: 20px;
   padding-left: 51px;
-  font-weight: 700;
+  font-weight: var(--bold);
   font-size: 45px;
   line-height: 29px;
   color: var(--orange-normal);
@@ -441,7 +446,7 @@ img {
 .info__text {
   width: 433px;
   min-height: 96px;
-  font-weight: 700;
+  font-weight: var(--bold);
   font-size: 16px;
   line-height: 200%;
   color: var(--white-color);
@@ -507,14 +512,14 @@ img {
 }
 
 .benefits-list__item-subtitle {
-  font-weight: 700;
+  font-weight: var(--bold);
   font-size: 24px;
   line-height: 29px;
   color: var(--black-color);
 }
 
 .benefits-list__item-desc {
-  font-weight: 400;
+  font-weight: var(--regular);
   font-size: 16px;
   line-height: 200%;
   color: var(--black-color);
@@ -555,7 +560,7 @@ img {
 }
 
 .steps-list__link {
-  font-weight: 400;
+  font-weight: var(--regular);
   font-size: 18px;
   line-height: 22px;
   color: var(--black-color);
@@ -594,7 +599,7 @@ img {
 .left-part__subtitle {
   margin-bottom: 8px;
   padding-left: var(--gap-left);
-  font-weight: 700;
+  font-weight: var(--bold);
   font-size: 24px;
   line-height: 133%;
   color: var(--black-color);
@@ -603,7 +608,7 @@ img {
 .left-part__text {
   margin-bottom: 17px;
   padding-left: var(--gap-left);
-  font-weight: 400;
+  font-weight: var(--regular);
   font-size: 16px;
   line-height: 200%;
   color: var(--black-color);
@@ -618,7 +623,7 @@ img {
 
 .btn_black {
   min-width: 147px;
-  font-weight: 400;
+  font-weight: var(--regular);
   color: var(--black-color);
   outline: 1px solid var(--black-color);
 }
@@ -694,7 +699,7 @@ img {
   display: block;
   padding: 40px 90px 38px 3px;
   width: 100%;
-  font-weight: 700;
+  font-weight: var(--bold);
   font-size: inherit;
   line-height: inherit;
   text-align: left;
@@ -861,7 +866,7 @@ img {
   padding: 14px 24px;
   width: 100%;
   min-height: 60px;
-  font-weight: 400;
+  font-weight: var(--regular);
   font-size: 16px;
   line-height: 200%;
   color: var(--gray-light);
@@ -894,7 +899,7 @@ img {
   padding: 14px 24px;
   width: 100%;
   min-height: 150px;
-  font-weight: 400;
+  font-weight: var(--regular);
   font-size: 16px;
   line-height: 200%;
   color: var(--gray-light);
@@ -931,7 +936,7 @@ img {
 .footer__right-text {
   width: 363px;
   min-height: 320px;
-  font-weight: 400;
+  font-weight: var(--regular);
   font-size: 16px;
   line-height: 200%;
   color: var(--gray-light);
