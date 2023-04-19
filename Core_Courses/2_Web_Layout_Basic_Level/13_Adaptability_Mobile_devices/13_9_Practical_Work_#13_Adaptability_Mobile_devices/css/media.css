@@ -675,7 +675,6 @@
   }
 
   .info__text {
-    /* width: 366px; */
     width: calc(466px + (366 - 466) * ((100vw - 576px) / (768 - 576)));
   }
 
@@ -897,8 +896,8 @@
     min-height: 36px;
     font-size: 12px;
     line-height: 15px;
-    color: var(--orange-light);
-    outline: 2px solid var(--orange-normal);
+    color: var(--orange-normal);
+    box-shadow: 0 0 0 2px var(--orange-normal);
   }
 
   .more__left-info .btn:focus-visible {

@@ -171,7 +171,8 @@ img {
   color: var(--white-color);
   background-color: var(--orange-normal);
   outline: none;
-  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
 }
 
 .btn:focus-visible {
@@ -482,19 +483,19 @@ img {
   padding: 17px 36px;
   min-width: 170px;
   min-height: 53px;
-  outline: 3px solid var(--orange-normal);
+  box-shadow: 0 0 0 3px var(--orange-normal);
 }
 
 .more__left-info .btn:focus-visible {
-  outline: none;
+  box-shadow: none;
 }
 
 .more__left-info .btn:hover {
-  outline: none;
+  box-shadow: none;
 }
 
 .more__left-info .btn:active {
-  outline: none;
+  box-shadow: none;
 }
 
 .more__right {
@@ -651,25 +652,25 @@ img {
   min-width: 147px;
   font-weight: var(--regular);
   color: var(--black-color);
-  outline: 1px solid var(--black-color);
+  box-shadow: 0 0 0 1px var(--black-color);
 }
 
 .btn_black:focus-visible {
   color: var(--white-color);
   background-color: var(--gray-normal);
-  outline: none;
+  box-shadow: none;
 }
 
 .btn_black:hover {
   color: var(--white-color);
   background-color: var(--gray-normal);
-  outline: none;
+  box-shadow: none;
 }
 
 .btn_black:active {
   color: var(--white-color);
   background-color: var(--black-color);
-  outline: none;
+  box-shadow: none;
 }
 
 .right-part {
