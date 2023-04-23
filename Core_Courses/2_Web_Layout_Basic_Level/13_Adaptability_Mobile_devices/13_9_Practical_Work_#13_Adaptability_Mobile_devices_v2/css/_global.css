@@ -8,33 +8,15 @@ html {
   box-sizing: inherit;
 }
 
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-ol,
-ul {
-  margin: 0;
-  padding: 0;
-}
-
-ol,
-ul {
-  list-style: none;
-}
-
 a {
-  color: inherit;
   text-decoration: none;
+  color: inherit;
 }
 
-img {
+img,
+svg {
   max-width: 100%;
-  object-fit: cover;
+  height: auto;
 }
 
 .page {
@@ -42,4 +24,25 @@ img {
   font-size: var(--default-fs);
   line-height: var(--default-lh);
   color: var(--black);
+  background-color: var(--white);
+}
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: var(--container-padding);
+  padding-left: var(--container-padding);
+  max-width: var(--container-max-width);
+}
+
+.reset-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reset-btn {
+  border: none;
+  padding: 0;
+  background-color: transparent;
 }

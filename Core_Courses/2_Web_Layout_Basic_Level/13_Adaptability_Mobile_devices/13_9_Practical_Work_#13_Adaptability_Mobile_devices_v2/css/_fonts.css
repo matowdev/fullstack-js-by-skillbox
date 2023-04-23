@@ -27,6 +27,7 @@
   src: url("../fonts/montserrat-600.woff2") format("woff2"),
     url("../fonts/montserrat-600.woff") format("woff");
 }
+
 /* bold - 700 */
 @font-face {
   font-display: swap;
@@ -36,6 +37,7 @@
   src: url("../fonts/montserrat-700.woff2") format("woff2"),
     url("../fonts/montserrat-700.woff") format("woff");
 }
+
 /* extraBold - 800 */
 @font-face {
   font-display: swap;

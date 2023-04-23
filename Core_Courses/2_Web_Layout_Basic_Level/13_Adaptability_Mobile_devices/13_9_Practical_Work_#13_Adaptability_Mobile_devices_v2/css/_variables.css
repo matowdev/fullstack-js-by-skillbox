@@ -11,4 +11,18 @@
 
   /* colors */
   --black: #000;
+  --white: #fff;
+  --orange-light: #ffb84d;
+  --orange-normal: #ff9900;
+  --orange-dark: #e1670e;
+  --gray-light: #cacaca;
+  --gray-normal: #666;
+  --gray-dark: #414141;
+
+  /* container */
+  --container-max-width: 1870px;
+  --container-padding: 50px;
+
+  /* transitions */
+  --short: 0.3s;
 }
