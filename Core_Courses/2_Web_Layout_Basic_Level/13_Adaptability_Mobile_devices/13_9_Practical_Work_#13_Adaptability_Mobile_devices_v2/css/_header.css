@@ -7,6 +7,10 @@
   box-shadow: 0 5px 40px rgba(0, 0, 0, 0.1);
 }
 
+.page__header {
+  margin-bottom: 25px;
+}
+
 .header__container {
   display: flex;
   justify-content: space-between;
@@ -33,6 +37,10 @@
 
 .header__nav {
   align-items: center;
+}
+
+.header__nav-title {
+  margin-right: 80px;
 }
 
 .header__list {

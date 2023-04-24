@@ -1,11 +1,11 @@
 :root {
   /* fonts */
+  --montserrat: "Montserrat";
   --regular: 400;
   --medium: 500;
   --semibold: 600;
   --bold: 700;
   --extrabold: 800;
-
   --default-fs: 16px;
   --default-lh: 32px;
 
@@ -25,4 +25,7 @@
 
   /* transitions */
   --short: 0.3s;
+
+  /* border */
+  --main-radius: 32px;
 }

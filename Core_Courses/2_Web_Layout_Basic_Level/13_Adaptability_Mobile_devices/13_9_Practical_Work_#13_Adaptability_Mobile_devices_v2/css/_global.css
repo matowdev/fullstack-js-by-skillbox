@@ -20,9 +20,10 @@ svg {
 }
 
 .page {
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--montserrat), sans-serif;
   font-size: var(--default-fs);
   line-height: var(--default-lh);
+  height: 4999px;
   color: var(--black);
   background-color: var(--white);
 }
@@ -45,4 +46,32 @@ svg {
   border: none;
   padding: 0;
   background-color: transparent;
+}
+
+.visually-hidden {
+  position: absolute;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.section-title {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-weight: var(--regular);
+  font-size: 48px;
+  line-height: 59px;
+}
+
+.text {
+  margin-top: 0;
+  margin-bottom: 50px;
+}
+
+.text:last-child {
+  margin-bottom: 0;
 }

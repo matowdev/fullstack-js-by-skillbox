@@ -1,0 +1,27 @@
+.btn {
+  display: inline-block;
+  border-radius: 16px;
+  padding: 20px 38px;
+  max-width: 300px;
+  max-height: 120px;
+  font-family: var(--montserrat), sans-serif;
+  font-weight: var(--bold);
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  color: var(--white);
+  background: var(--orange-normal);
+}
+
+.btn:not(:last-child) {
+  margin-right: 20px;
+  margin-bottom: 25px;
+}
+
+.btn_big {
+  padding: 25px 39px;
+  max-width: 400px;
+  max-height: 150px;
+  font-size: 23px;
+  line-height: 28px;
+}

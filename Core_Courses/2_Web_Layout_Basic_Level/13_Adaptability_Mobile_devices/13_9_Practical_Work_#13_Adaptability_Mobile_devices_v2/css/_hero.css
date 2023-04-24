@@ -1,0 +1,48 @@
+.hero {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.hero__wrapper {
+  position: relative;
+  border-radius: var(--main-radius);
+  padding: 100px 80px;
+  overflow: hidden;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 11;
+  max-width: 840px;
+  color: var(--white);
+}
+
+.hero__content-title {
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-weight: var(--extrabold);
+  font-size: 70px;
+  line-height: 85px;
+}
+
+.hero__content-text {
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-weight: var(--bold);
+  font-size: 24px;
+  line-height: 29px;
+}
+
+.hero__content-text:last-of-type {
+  margin-bottom: 89px;
+}
+
+.hero__slider {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--gray-light);
+  background: url("../img/hero_bg_1.jpg") no-repeat center / cover;
+}
