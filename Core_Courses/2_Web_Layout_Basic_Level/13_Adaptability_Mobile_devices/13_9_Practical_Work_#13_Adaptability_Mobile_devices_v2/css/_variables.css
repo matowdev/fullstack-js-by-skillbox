@@ -18,6 +18,7 @@
   --gray-light: #cacaca;
   --gray-normal: #666;
   --gray-dark: #414141;
+  --dark-transp: rgba(0, 0, 0, 0.5);
 
   /* container */
   --container-max-width: 1870px;

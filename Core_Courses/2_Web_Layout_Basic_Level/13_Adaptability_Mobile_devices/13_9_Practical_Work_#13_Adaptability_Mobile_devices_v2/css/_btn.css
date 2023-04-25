@@ -25,3 +25,10 @@
   font-size: 23px;
   line-height: 28px;
 }
+
+.btn_border-accent {
+  border: 3px solid var(--orange-normal);
+  padding: 16px 36px;
+  color: var(--white);
+  background-color: transparent;
+}
