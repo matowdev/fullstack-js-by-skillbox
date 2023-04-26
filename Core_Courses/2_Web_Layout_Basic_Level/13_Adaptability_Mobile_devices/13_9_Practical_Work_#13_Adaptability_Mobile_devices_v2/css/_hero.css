@@ -33,6 +33,11 @@
   line-height: 29px;
 }
 
+.hero__btn:not(:last-child) {
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
 .hero__content-text:last-of-type {
   margin-bottom: 89px;
 }

@@ -11,11 +11,17 @@
   text-align: center;
   color: var(--white);
   background: var(--orange-normal);
+  outline: none;
+  transition: background-color var(--short);
 }
 
-.btn:not(:last-child) {
-  margin-right: 20px;
-  margin-bottom: 25px;
+.btn:hover,
+.btn:focus {
+  background-color: var(--orange-light);
+}
+
+.btn:active {
+  background-color: var(--orange-dark);
 }
 
 .btn_big {
@@ -31,4 +37,35 @@
   padding: 16px 36px;
   color: var(--white);
   background-color: transparent;
+  transition: background-color var(--short), border-color var(--short);
+}
+
+.btn_border-accent:hover,
+.btn_border-accent:focus {
+  background-color: var(--orange-normal);
+}
+
+.btn_border-accent:active {
+  border-color: var(--orange-dark);
+  background-color: var(--orange-dark);
+}
+
+.btn_border {
+  border: 1px solid var(--black);
+  font-weight: var(--regular);
+  color: var(--black);
+  background-color: transparent;
+  transition-property: border-color, color, background-color;
+  transition-duration: var(--short);
+}
+
+.btn_border:hover,
+.btn_border:focus {
+  border-color: var(--gray-normal);
+  color: var(--white);
+  background-color: var(--gray-normal);
+}
+
+.btn_border:active {
+  background-color: var(--black);
 }

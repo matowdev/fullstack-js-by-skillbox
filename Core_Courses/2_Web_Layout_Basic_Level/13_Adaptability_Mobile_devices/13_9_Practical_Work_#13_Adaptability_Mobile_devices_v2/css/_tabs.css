@@ -1,0 +1,77 @@
+.tabs__list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 45px;
+  font-weight: var(--regular);
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.tabs__item:not(:last-child) {
+  padding-right: 85px;
+}
+
+.tabs__item-btn {
+  transition: color var(--short);
+}
+
+.tabs__item-btn.active {
+  color: var(--orange-dark);
+}
+
+.tabs__item-btn:hover {
+  outline: none;
+  cursor: pointer;
+  color: var(--orange-normal);
+}
+
+.tabs__item-btn:focus:not(:hover):not(:active) {
+  outline: 2px solid var(--orange-normal);
+  outline-offset: 5px;
+}
+
+.tabs__item-btn:active {
+  color: var(--orange-dark);
+}
+
+.tabs__content-wrap {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tabs__content-wrap::after {
+  content: "";
+  border-radius: var(--main-radius);
+  margin-top: 10px;
+  width: calc(870 / 1770 * 100%);
+  min-height: 460px;
+  overflow: hidden;
+  background-color: var(--gray-light);
+  background-position: center;
+  background-size: cover;
+}
+
+.tabs__content-wrap_consultation::after {
+  background-image: url("../img/how_step_1_bg.jpg");
+}
+
+.tabs__content {
+  max-width: calc(758 / 1770 * 100%);
+}
+
+.tabs__title {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 24px;
+}
+
+.tabs__btns-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: -22px;
+}
+
+.tabs__btn {
+  margin-right: 32px;
+  margin-bottom: 22px;
+}
