@@ -12,11 +12,12 @@
   color: var(--white);
   background: var(--orange-normal);
   outline: none;
-  transition: background-color var(--short);
+  cursor: pointer;
+  transition: background-color var(--short) ease-in-out;
 }
 
 .btn:hover,
-.btn:focus {
+.btn:focus-visible {
   background-color: var(--orange-light);
 }
 
@@ -37,11 +38,12 @@
   padding: 16px 36px;
   color: var(--white);
   background-color: transparent;
-  transition: background-color var(--short), border-color var(--short);
+  transition: background-color var(--short) ease-in-out,
+    border-color var(--short) ease-in-out;
 }
 
 .btn_border-accent:hover,
-.btn_border-accent:focus {
+.btn_border-accent:focus-visible {
   background-color: var(--orange-normal);
 }
 
@@ -57,10 +59,11 @@
   background-color: transparent;
   transition-property: border-color, color, background-color;
   transition-duration: var(--short);
+  transition-timing-function: ease-in-out;
 }
 
 .btn_border:hover,
-.btn_border:focus {
+.btn_border:focus-visible {
   border-color: var(--gray-normal);
   color: var(--white);
   background-color: var(--gray-normal);

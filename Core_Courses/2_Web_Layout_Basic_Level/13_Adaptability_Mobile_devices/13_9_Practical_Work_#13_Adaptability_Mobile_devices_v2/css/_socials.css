@@ -1,0 +1,34 @@
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.socials__item:not(:last-child) {
+  margin-right: 25px;
+}
+
+.socials__item-link {
+  display: flex;
+  align-items: flex-start;
+  width: 60px;
+  height: 60px;
+}
+
+.socials__item-link {
+  fill: var(--gray-normal);
+  outline: none;
+  transition: fill var(--short) ease-in-out;
+}
+
+.socials__item-link:hover {
+  fill: var(--orange-normal);
+}
+
+.socials__item-link:focus:not(:hover) {
+  outline: 3px solid var(--orange-normal);
+  outline-offset: 5px;
+}
+
+.socials__item-link:active {
+  fill: var(--orange-dark);
+}

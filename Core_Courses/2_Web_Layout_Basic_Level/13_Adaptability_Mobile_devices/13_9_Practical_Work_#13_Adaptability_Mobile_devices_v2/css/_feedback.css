@@ -1,0 +1,103 @@
+.feedback__title {
+  margin-bottom: 25px;
+}
+
+.feedback__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.feedback__input {
+  margin-bottom: 25px;
+  border: none;
+  border-radius: 16px;
+  padding: 14px 24px;
+  line-height: 32px;
+  color: var(--gray-light);
+  background-color: var(--gray-dark);
+  outline: none;
+  transition-property: color, background-color;
+  transition-duration: var(--short);
+  transition-timing-function: ease-in-out;
+}
+
+.feedback__input:hover,
+.feedback__input:focus {
+  background-color: var(--gray-normal);
+}
+
+.feedback__input:focus {
+  color: var(--white);
+}
+
+.feedback__input::placeholder {
+  color: var(--gray-light);
+}
+
+.feedback__input_textarea {
+  margin-bottom: 32px;
+  height: 150px;
+  resize: none;
+}
+
+.feedback__form-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.feedback__submit-btn {
+  flex-shrink: 0;
+  /* margin-right: 22px; */
+  padding: 19px 38px;
+  max-width: 269px;
+  width: 100%;
+}
+
+.feedback__label {
+  line-height: 1;
+  cursor: pointer;
+  transition: color var(--short) ease-in-out;
+}
+
+.feedback__label:hover {
+  color: var(--white);
+}
+
+.feedback__visual-check {
+  position: relative;
+  display: inline-block;
+  border: 1px solid;
+  width: 14px;
+  height: 14px;
+  transition: border-color var(--short) ease-in-out;
+}
+
+.feedback__visual-check::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-bottom: 2px solid var(--green-light);
+  border-left: 2px solid var(--green-light);
+  width: 7px;
+  height: 4px;
+  opacity: 0;
+  transform: translate(-50%, -70%) rotate(-45deg) scale(5);
+  transition-property: opacity, transform;
+  transition-duration: var(--short);
+}
+
+.feedback__visual-check,
+.feedback__visual-text {
+  vertical-align: middle;
+}
+
+.feedback__checkbox:checked ~ .feedback__visual-check::before {
+  opacity: 1;
+  transform: translate(-50%, -70%) rotate(-45deg) scale(1);
+}
+
+.feedback__checkbox:focus ~ .feedback__visual-check {
+  border-color: var(--orange-normal);
+}

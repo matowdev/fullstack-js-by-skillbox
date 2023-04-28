@@ -12,6 +12,7 @@
 }
 
 .tabs__item-btn {
+  outline: none;
   transition: color var(--short);
 }
 
@@ -25,7 +26,7 @@
   color: var(--orange-normal);
 }
 
-.tabs__item-btn:focus:not(:hover):not(:active) {
+.tabs__item-btn:focus-visible:not(:hover):not(:active) {
   outline: 2px solid var(--orange-normal);
   outline-offset: 5px;
 }
