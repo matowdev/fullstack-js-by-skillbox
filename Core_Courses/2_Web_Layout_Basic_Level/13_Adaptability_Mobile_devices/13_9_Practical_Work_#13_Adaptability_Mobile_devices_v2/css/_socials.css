@@ -1,10 +1,7 @@
 .socials {
   display: flex;
   flex-wrap: wrap;
-}
-
-.socials__item:not(:last-child) {
-  margin-right: 25px;
+  gap: 15px 25px;
 }
 
 .socials__item-link {

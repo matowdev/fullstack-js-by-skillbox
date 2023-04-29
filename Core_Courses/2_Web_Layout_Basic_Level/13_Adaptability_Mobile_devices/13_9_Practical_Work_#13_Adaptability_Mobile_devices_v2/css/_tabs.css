@@ -14,6 +14,7 @@
 .tabs__item-btn {
   outline: none;
   transition: color var(--short);
+  line-height: inherit;
 }
 
 .tabs__item-btn.active {
@@ -70,10 +71,5 @@
 .tabs__btns-wrap {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: -22px;
-}
-
-.tabs__btn {
-  margin-right: 32px;
-  margin-bottom: 22px;
+  gap: 22px 32px;
 }

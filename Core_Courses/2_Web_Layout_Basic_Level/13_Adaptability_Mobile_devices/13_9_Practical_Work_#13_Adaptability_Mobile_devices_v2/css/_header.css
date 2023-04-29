@@ -96,9 +96,10 @@
 .header__search-btn {
   width: 24px;
   height: 24px;
+  line-height: 1;
   color: var(--black);
   outline: none;
-  transition: color var(--short);
+  transition: color var(--short) ease-in-out;
 }
 
 .header__search-btn:hover {

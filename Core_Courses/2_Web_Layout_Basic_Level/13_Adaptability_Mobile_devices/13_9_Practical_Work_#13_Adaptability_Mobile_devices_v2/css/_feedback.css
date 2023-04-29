@@ -22,11 +22,11 @@
 }
 
 .feedback__input:hover,
-.feedback__input:focus {
+.feedback__input:focus-visible {
   background-color: var(--gray-normal);
 }
 
-.feedback__input:focus {
+.feedback__input:focus-visible {
   color: var(--white);
 }
 
@@ -98,6 +98,6 @@
   transform: translate(-50%, -70%) rotate(-45deg) scale(1);
 }
 
-.feedback__checkbox:focus ~ .feedback__visual-check {
+.feedback__checkbox:focus-visible ~ .feedback__visual-check {
   border-color: var(--orange-normal);
 }
