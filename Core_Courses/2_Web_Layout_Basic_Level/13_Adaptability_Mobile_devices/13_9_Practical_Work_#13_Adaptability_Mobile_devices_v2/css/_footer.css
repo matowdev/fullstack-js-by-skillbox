@@ -60,3 +60,17 @@
 .footer__about-text {
   margin-top: 87px;
 }
+
+/* media queries */
+
+@media (max-width: 1600px) {
+}
+
+@media (max-width: 1280px) {
+}
+
+@media (max-width: 800px) {
+}
+
+@media (max-width: 576px) {
+}

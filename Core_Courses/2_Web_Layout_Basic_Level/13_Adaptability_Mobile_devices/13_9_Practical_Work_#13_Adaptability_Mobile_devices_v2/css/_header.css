@@ -136,6 +136,10 @@
     display: flex;
   }
 
+  .page__header {
+    margin-bottom: 20px;
+  }
+
   .header__container {
     width: 100%;
   }
@@ -152,5 +156,28 @@
 
   .header__list {
     display: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .header {
+    padding-top: 11px;
+    padding-bottom: 10px;
+    min-height: 69px;
+  }
+}
+
+@media (max-width: 576px) {
+  .header {
+    padding-top: 10px;
+  }
+
+  .page__header {
+    margin-bottom: 15px;
+  }
+
+  .header__logo {
+    width: 110px;
+    min-height: 35px;
   }
 }

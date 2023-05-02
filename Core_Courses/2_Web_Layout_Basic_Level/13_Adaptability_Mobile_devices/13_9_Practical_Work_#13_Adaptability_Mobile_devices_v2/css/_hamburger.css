@@ -2,8 +2,8 @@
   box-sizing: content-box;
   margin-left: -10px;
   border: 0;
-  padding: 10px 10px 1px 10px;
-  font: inherit;
+  padding: 10px 10px;
+  height: 23px;
   background-color: transparent;
   overflow: visible;
   cursor: pointer;
@@ -23,14 +23,15 @@
 .hamburger.is-active .hamburger__inner,
 .hamburger.is-active .hamburger__inner::before,
 .hamburger.is-active .hamburger__inner::after {
-  background-color: var(--black);
+  background-color: var(--gray-dark);
 }
 
 .hamburger__box {
   position: relative;
   display: inline-block;
   width: 30px;
-  height: 23px;
+  height: inherit;
+  line-height: var(--default-lh);
 }
 
 .hamburger__inner {
@@ -43,9 +44,9 @@
 .hamburger__inner::before,
 .hamburger__inner::after {
   position: absolute;
-  width: 30px;
-  height: 3px;
-  background-color: var(--black);
+  width: inherit;
+  height: 4px;
+  background-color: var(--gray-dark);
   transition-property: transform;
   transition-duration: 0.15s;
   transition-timing-function: ease;
@@ -104,4 +105,14 @@
   transform: rotate(-90deg);
   transition: top 0.1s 0.16s cubic-bezier(0.33333, 0, 0.66667, 0.33333),
     transform 0.13s 0.25s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+/* media queries */
+
+@media (max-width: 576px) {
+  .hamburger__inner,
+  .hamburger__inner::before,
+  .hamburger__inner::after {
+    height: 3px;
+  }
 }

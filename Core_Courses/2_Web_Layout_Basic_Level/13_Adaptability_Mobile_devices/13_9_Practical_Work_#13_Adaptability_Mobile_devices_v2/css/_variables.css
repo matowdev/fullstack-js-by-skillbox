@@ -1,4 +1,12 @@
 :root {
+  /* sizes */
+  --page-min-width: 320px;
+  --container-max-width: 1870px;
+  --container-padding: 50px;
+
+  /* borders */
+  --main-radius: 32px;
+
   /* fonts */
   --montserrat: "Montserrat";
   --regular: 400;
@@ -21,13 +29,19 @@
   --dark-transp: rgba(0, 0, 0, 0.5);
   --green-light: #97ee3f;
 
-  /* container */
-  --container-max-width: 1870px;
-  --container-padding: 50px;
-
   /* transitions */
   --short: 0.3s;
+}
 
-  /* border */
-  --main-radius: 32px;
+@media (max-width: 800px) {
+  :root {
+    --main-radius: 24px;
+  }
+}
+
+@media (max-width: 576px) {
+  :root {
+    --container-padding: 15px;
+    --main-radius: 16px;
+  }
 }

@@ -72,3 +72,17 @@
 .btn_border:active {
   background-color: var(--black);
 }
+
+/* media queries */
+
+@media (max-width: 576px) {
+  .btn {
+    border-radius: 8px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .btn_big {
+    padding: 13px 28px;
+  }
+}

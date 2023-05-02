@@ -25,3 +25,17 @@
 .about__card:not(:last-child) {
   margin-bottom: 32px;
 }
+
+/* media queries */
+
+@media (max-width: 1600px) {
+}
+
+@media (max-width: 1280px) {
+}
+
+@media (max-width: 800px) {
+}
+
+@media (max-width: 576px) {
+}
