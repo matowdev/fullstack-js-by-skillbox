@@ -39,7 +39,7 @@
   color: var(--white);
   background-color: transparent;
   transition: background-color var(--short) ease-in-out,
-    border-color var(--short) ease-in-out;
+    border-color var(--short) ease-in-out, color var(--short) ease-in-out;
 }
 
 .btn_border-accent:hover,
@@ -75,6 +75,12 @@
 
 /* media queries */
 
+@media (max-width: 800px) {
+  .btn_border-accent {
+    padding: 17px 36px;
+  }
+}
+
 @media (max-width: 576px) {
   .btn {
     border-radius: 8px;
@@ -84,5 +90,21 @@
 
   .btn_big {
     padding: 13px 28px;
+  }
+
+  .btn_border-accent {
+    border-width: 2px;
+    border-radius: 8px;
+    padding: 10px 42px;
+    color: var(--orange-normal);
+  }
+
+  .btn_border-accent:hover,
+  .btn_border-accent:focus-visible {
+    color: var(--white);
+  }
+
+  .btn_border-accent:active {
+    color: var(--white);
   }
 }

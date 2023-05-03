@@ -43,5 +43,7 @@
   :root {
     --container-padding: 15px;
     --main-radius: 16px;
+    --default-fs: 14px;
+    --default-lh: 28px;
   }
 }
