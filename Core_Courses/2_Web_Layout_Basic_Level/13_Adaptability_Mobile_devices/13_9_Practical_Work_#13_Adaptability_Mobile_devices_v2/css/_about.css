@@ -66,6 +66,7 @@
   }
 
   .about__card_small {
+    margin-bottom: 0;
     width: 100%;
   }
 }
@@ -86,11 +87,11 @@
     padding-bottom: 30px;
   }
 
-  .about__text {
-    margin-bottom: 14px;
+  .about__card_small {
+    margin-bottom: 0;
   }
 
-  .about__column:not(:last-child) {
-    margin-bottom: 33px;
+  .about__text {
+    margin-bottom: 14px;
   }
 }

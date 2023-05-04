@@ -95,7 +95,9 @@
   .btn_border-accent {
     border-width: 2px;
     border-radius: 8px;
-    padding: 10px 42px;
+    padding: 11px 42px 9px 42px;
+    min-width: 162px;
+    min-height: 39px;
     color: var(--orange-normal);
   }
 

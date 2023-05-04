@@ -69,9 +69,17 @@
     padding: 0;
   }
 
+  .card_icon-1[style] {
+    background-image: url("../img/about_card_icon_1_320.svg") !important;
+  }
+
+  .card_icon-2[style] {
+    background-image: url("../img/about_card_icon_2_320.svg") !important;
+  }
+
   .card::before {
-    margin-bottom: 6px;
-    padding-top: 55px;
+    margin-bottom: 12px;
+    padding-top: 49px;
     width: 64px;
   }
 

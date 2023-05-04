@@ -9,14 +9,26 @@
 
 /* media queries */
 
-@media (max-width: 1600px) {
-}
-
 @media (max-width: 1280px) {
+  .how {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 962px) {
+  .how__title {
+    margin-bottom: 49px;
+  }
 }
 
 @media (max-width: 576px) {
+  .how {
+    padding-top: 33px;
+    padding-bottom: 30px;
+  }
+
+  .how__title {
+    margin-bottom: 19px;
+  }
 }
