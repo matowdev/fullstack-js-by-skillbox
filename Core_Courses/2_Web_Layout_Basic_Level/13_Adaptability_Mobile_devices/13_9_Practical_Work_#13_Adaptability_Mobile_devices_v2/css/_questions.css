@@ -9,14 +9,31 @@
 
 /* media queries */
 
-@media (max-width: 1600px) {
-}
-
 @media (max-width: 1280px) {
+  .questions {
+    padding-top: 40px;
+    padding-bottom: 80px;
+  }
 }
 
 @media (max-width: 800px) {
+  .questions {
+    padding-top: 24px;
+    padding-bottom: 49px;
+  }
+
+  .questions__title {
+    margin-bottom: 32.5px;
+  }
 }
 
 @media (max-width: 576px) {
+  .questions {
+    padding-top: 30px;
+    padding-bottom: 60px;
+  }
+
+  .questions__title {
+    margin-bottom: 17px;
+  }
 }

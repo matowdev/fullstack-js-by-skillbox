@@ -42,22 +42,6 @@
   align-items: flex-start;
 }
 
-/* .tabs__content-wrap::after {
-  content: "";
-  border-radius: var(--main-radius);
-  margin-top: 10px;
-  width: calc(870 / 1770 * 100%);
-  min-height: 460px;
-  overflow: hidden;
-  background-color: var(--gray-light);
-  background-position: center;
-  background-size: cover;
-} */
-
-/* .tabs__content-wrap_consultation::after {
-  background-image: url("../img/how_step_1_bg.jpg");
-} */
-
 .tabs__content {
   width: calc(758 / 1770 * 100%);
 }
@@ -76,12 +60,12 @@
 
 .tabs__images-wrap {
   border-radius: var(--main-radius);
-  padding-top: 10px;
+  padding-top: 11px;
   width: calc(870 / 1770 * 100%);
   overflow: hidden;
 }
 
-.tabs_image {
+.tabs__image {
   display: block;
   width: 100%;
 }
@@ -106,7 +90,8 @@
   }
 
   .tabs__images-wrap {
-    padding-top: 11px;
+    display: flex;
+    justify-content: center;
     width: calc(437 / 924 * 100%);
   }
 }
