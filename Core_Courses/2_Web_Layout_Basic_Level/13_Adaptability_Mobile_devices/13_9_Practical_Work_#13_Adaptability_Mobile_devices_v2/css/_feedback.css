@@ -21,7 +21,6 @@
   transition-timing-function: ease-in-out;
 }
 
-.feedback__input:hover,
 .feedback__input:focus-visible {
   background-color: var(--gray-normal);
 }
@@ -58,10 +57,6 @@
   line-height: 1;
   cursor: pointer;
   transition: color var(--short) ease-in-out;
-}
-
-.feedback__label:hover {
-  color: var(--white);
 }
 
 .feedback__visual-check {
@@ -144,4 +139,14 @@
     font-size: 16px;
     line-height: 32px;
   } */
+}
+
+@media (any-hover: hover) {
+  .feedback__input:hover:not(:active) {
+    background-color: var(--gray-normal);
+  }
+
+  .feedback__label:hover:not(:active) {
+    color: var(--white);
+  }
 }

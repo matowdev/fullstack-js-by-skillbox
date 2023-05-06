@@ -78,11 +78,6 @@
   transition: transform var(--short);
 }
 
-.header__item-link:hover::after {
-  height: 2px;
-  transform: scaleX(1);
-}
-
 .header__item-link:focus-visible:not(:hover) {
   outline: 3px solid var(--orange-normal);
   outline-offset: 5px;
@@ -107,11 +102,6 @@
   color: var(--black);
   outline: none;
   transition: color var(--short) ease-in-out;
-}
-
-.header__search-btn:hover {
-  color: var(--orange-normal);
-  cursor: pointer;
 }
 
 .header__search-btn:focus-visible:not(:hover) {
@@ -179,5 +169,17 @@
   .header__logo {
     width: 110px;
     min-height: 35px;
+  }
+}
+
+@media (any-hover: hover) {
+  .header__item-link:hover:not(:active):after {
+    height: 2px;
+    transform: scaleX(1);
+  }
+
+  .header__search-btn:hover:not(:active) {
+    color: var(--orange-normal);
+    cursor: pointer;
   }
 }

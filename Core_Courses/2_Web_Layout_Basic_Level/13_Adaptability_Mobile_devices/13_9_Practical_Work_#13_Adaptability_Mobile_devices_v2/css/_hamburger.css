@@ -12,14 +12,6 @@
   transition-timing-function: linear;
 }
 
-.hamburger:hover {
-  opacity: 0.7;
-}
-
-.hamburger.is-active:hover {
-  opacity: 0.7;
-}
-
 .hamburger.is-active .hamburger__inner,
 .hamburger.is-active .hamburger__inner::before,
 .hamburger.is-active .hamburger__inner::after {

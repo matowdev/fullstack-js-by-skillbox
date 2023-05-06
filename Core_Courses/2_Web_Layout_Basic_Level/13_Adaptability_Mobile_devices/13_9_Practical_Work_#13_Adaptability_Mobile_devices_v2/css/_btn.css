@@ -16,7 +16,6 @@
   transition: background-color var(--short) ease-in-out;
 }
 
-.btn:hover,
 .btn:focus-visible {
   background-color: var(--orange-light);
 }
@@ -42,7 +41,6 @@
     border-color var(--short) ease-in-out, color var(--short) ease-in-out;
 }
 
-.btn_border-accent:hover,
 .btn_border-accent:focus-visible {
   background-color: var(--orange-normal);
 }
@@ -62,7 +60,6 @@
   transition-timing-function: ease-in-out;
 }
 
-.btn_border:hover,
 .btn_border:focus-visible {
   border-color: var(--gray-normal);
   color: var(--white);
@@ -70,6 +67,7 @@
 }
 
 .btn_border:active {
+  color: var(--white);
   background-color: var(--black);
 }
 
@@ -101,12 +99,33 @@
     color: var(--orange-normal);
   }
 
-  .btn_border-accent:hover,
+  @media (any-hover: hover) {
+    .btn_border-accent:hover:not(:active) {
+      color: var(--white);
+    }
+  }
+
   .btn_border-accent:focus-visible {
     color: var(--white);
   }
 
   .btn_border-accent:active {
     color: var(--white);
+  }
+}
+
+@media (any-hover: hover) {
+  .btn:hover:not(:active) {
+    background-color: var(--orange-light);
+  }
+
+  .btn_border-accent:hover:not(:active) {
+    background-color: var(--orange-normal);
+  }
+
+  .btn_border:hover:not(:active) {
+    border-color: var(--gray-normal);
+    color: var(--white);
+    background-color: var(--gray-normal);
   }
 }

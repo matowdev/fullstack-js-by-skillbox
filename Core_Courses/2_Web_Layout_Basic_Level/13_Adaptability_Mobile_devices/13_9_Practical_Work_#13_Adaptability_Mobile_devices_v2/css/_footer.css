@@ -13,7 +13,7 @@
 
 .footer__nav {
   margin-right: 6.5%;
-  /* max-width: 252px; */
+  max-width: 252px;
 }
 
 .footer__logo {
@@ -34,10 +34,6 @@
 .footer__item-link {
   transition: color var(--short);
   outline: none;
-}
-
-.footer__item-link:hover {
-  color: var(--orange-normal);
 }
 
 .footer__item-link:focus-visible:not(:hover) {
@@ -62,6 +58,7 @@
 }
 
 /* media queries */
+
 @media (max-width: 1600px) {
   .footer__about-text {
     margin-top: 40px;
@@ -141,5 +138,11 @@
     margin-bottom: 16px;
     border-bottom: 1px solid var(--gray-dark);
     padding-bottom: 16px;
+  }
+}
+
+@media (any-hover: hover) {
+  .footer__item-link:hover:not(:active) {
+    color: var(--orange-normal);
   }
 }

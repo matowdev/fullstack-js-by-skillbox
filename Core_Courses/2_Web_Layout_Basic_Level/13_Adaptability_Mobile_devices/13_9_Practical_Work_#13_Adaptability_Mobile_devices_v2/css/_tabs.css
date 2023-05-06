@@ -21,12 +21,6 @@
   color: var(--orange-dark);
 }
 
-.tabs__item-btn:hover {
-  outline: none;
-  cursor: pointer;
-  color: var(--orange-normal);
-}
-
 .tabs__item-btn:focus-visible:not(:hover):not(:active) {
   outline: 2px solid var(--orange-normal);
   outline-offset: 5px;
@@ -60,7 +54,7 @@
 
 .tabs__images-wrap {
   border-radius: var(--main-radius);
-  padding-top: 11px;
+  padding-top: 10px;
   width: calc(870 / 1770 * 100%);
   overflow: hidden;
 }
@@ -153,5 +147,13 @@
 
   .tabs__btn_bigger {
     min-width: 162px;
+  }
+}
+
+@media (any-hover: hover) {
+  .tabs__item-btn:hover:not(:active) {
+    outline: none;
+    cursor: pointer;
+    color: var(--orange-normal);
   }
 }

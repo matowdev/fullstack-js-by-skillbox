@@ -17,10 +17,6 @@
   transition: fill var(--short) ease-in-out;
 }
 
-.socials__item-link:hover {
-  fill: var(--orange-normal);
-}
-
 .socials__item-link:focus:not(:hover) {
   outline: 3px solid var(--orange-normal);
   outline-offset: 5px;
@@ -38,5 +34,11 @@
   .socials__item-link {
     width: 40px;
     height: 40px;
+  }
+}
+
+@media (any-hover: hover) {
+  .socials__item-link:hover:not(:active) {
+    fill: var(--orange-normal);
   }
 }
