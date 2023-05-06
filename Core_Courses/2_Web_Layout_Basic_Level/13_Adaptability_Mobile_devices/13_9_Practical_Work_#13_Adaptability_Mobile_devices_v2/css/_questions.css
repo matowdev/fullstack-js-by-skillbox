@@ -12,7 +12,7 @@
 @media (max-width: 1280px) {
   .questions {
     padding-top: 40px;
-    padding-bottom: 80px;
+    padding-bottom: 81px;
   }
 }
 
@@ -27,10 +27,16 @@
   }
 }
 
+@media (max-width: 962px) {
+  .questions {
+    padding-bottom: 109.1px;
+  }
+}
+
 @media (max-width: 576px) {
   .questions {
     padding-top: 30px;
-    padding-bottom: 60px;
+    padding-bottom: 59px;
   }
 
   .questions__title {
