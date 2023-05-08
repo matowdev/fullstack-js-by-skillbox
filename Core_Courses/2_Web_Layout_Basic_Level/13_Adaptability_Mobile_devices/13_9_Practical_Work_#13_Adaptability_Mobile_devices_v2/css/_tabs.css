@@ -7,6 +7,10 @@
   line-height: 22px;
 }
 
+.tabs__item {
+  color: var(--black);
+}
+
 .tabs__item:not(:last-child) {
   padding-right: 85px;
 }
@@ -15,6 +19,7 @@
   outline: none;
   transition: color var(--short);
   line-height: inherit;
+  color: inherit;
 }
 
 .tabs__item-btn.active {

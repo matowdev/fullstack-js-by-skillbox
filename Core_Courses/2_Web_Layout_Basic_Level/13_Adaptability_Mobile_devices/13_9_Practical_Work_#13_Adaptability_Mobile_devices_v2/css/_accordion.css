@@ -33,6 +33,7 @@
   font-size: inherit;
   line-height: inherit;
   text-align: left;
+  color: inherit;
   outline: none;
   transition: color var(--short);
 }

@@ -159,6 +159,7 @@
 
 @media (max-width: 576px) {
   .header {
+    border-radius: 0px 0px 16px 16px;
     padding-top: 10px;
   }
 
