@@ -9,10 +9,6 @@
   /* header */
 
   .header__nav {
-    display: none;
-  }
-
-  .header__nav {
     position: absolute;
     top: 0;
     left: 0;
@@ -89,13 +85,11 @@
     bottom: 11px;
   }
 
-  .burger_active,
-  .burger__line:nth-child(2) {
+  .burger_active > .burger__line:nth-child(2) {
     opacity: 0;
   }
 
-  .burger_active,
-  .burger__line:first-child {
+  .burger_active > .burger__line:first-child {
     top: 50%;
     left: 25%;
     transform: rotate(45deg);
@@ -104,8 +98,7 @@
       left 0.3s ease-in-out;
   }
 
-  .burger_active,
-  .burger__line:last-child {
+  .burger_active > .burger__line:last-child {
     top: 50%;
     left: 25%;
     bottom: auto;
