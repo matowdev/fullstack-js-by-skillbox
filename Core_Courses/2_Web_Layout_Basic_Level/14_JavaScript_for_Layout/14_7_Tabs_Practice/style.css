@@ -1,0 +1,44 @@
+.page {
+  padding: 30px;
+  font-family: "Roboto Mono", monospace;
+  font-size: 22px;
+}
+
+.tabs {
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  margin-bottom: 30px;
+  padding: 0;
+  list-style: none;
+}
+
+.tabs__item-btn {
+  border: none;
+  border-radius: 5px;
+  padding: 15px 35px;
+  font-size: 18px;
+  background-color: transparent;
+  outline: 2px solid lightslategray;
+  box-shadow: 0 1px 10px lightgray;
+  cursor: pointer;
+  transition: outline-color 0.3s ease-in-out;
+}
+
+.tabs__item-btn:hover {
+  outline-color: lightcoral;
+}
+
+.tabs__item-btn_active {
+  color: lightcoral;
+  cursor: not-allowed;
+}
+
+.tabs-content__item {
+  display: none;
+}
+
+.tabs-content__item_active {
+  display: block;
+  color: lightcoral;
+}

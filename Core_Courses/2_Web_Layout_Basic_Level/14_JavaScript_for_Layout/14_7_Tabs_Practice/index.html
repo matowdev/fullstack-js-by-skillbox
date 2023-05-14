@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>14.7. Tab's. Implementation. Practice!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="page">
+  <ul class="tabs page__tabs-nav" title="click?">
+    <li class="tabs__item"><button class="tabs__item-btn tabs__item-btn_active" data-path="one">First tab</button></li>
+    <li class="tabs__item"><button class="tabs__item-btn" data-path="two">Second tab</button></li>
+    <li class="tabs__item"><button class="tabs__item-btn" data-path="three">Third tab</button></li>
+  </ul>
+  <div class="tabs-content page__tabs-content">
+    <div class="tabs-content__item tabs-content__item_active" data-target="one">Lorem ipsum dolor sit amet consectetur
+      adipisicing.</div>
+    <div class="tabs-content__item" data-target="two">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+      Voluptatum, quidem odit? Est hic velit voluptates?</div>
+    <div class="tabs-content__item" data-target="three">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+      Possimus cum, harum ratione temporibus, commodi omnis sunt nihil ex cumque repudiandae saepe tempore aliquid quo
+      quis?</div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+
+</html>
