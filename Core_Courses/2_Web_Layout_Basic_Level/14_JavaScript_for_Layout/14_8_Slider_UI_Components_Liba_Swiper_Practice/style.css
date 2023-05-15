@@ -1,0 +1,46 @@
+img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.page {
+  margin: 0 auto;
+  padding: 30px;
+  width: 1170px;
+  font-family: "Roboto Mono", monospace;
+}
+
+.page__title {
+  font-size: 28px;
+  text-shadow: 0 1px 10px lightslategray;
+}
+
+.swiper {
+  border-radius: 5px;
+}
+
+.swiper-image {
+  border-radius: 5px;
+  box-shadow: 0 1px 10px lightslategray;
+}
+
+.swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet,
+.swiper-pagination-horizontal.swiper-pagination-bullets
+  .swiper-pagination-bullet {
+  margin: 0 10px;
+}
+
+.swiper-pagination-bullet {
+  width: 15px;
+  height: 15px;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: darkred;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: darkred;
+}
