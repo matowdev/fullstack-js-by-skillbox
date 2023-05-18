@@ -1,0 +1,140 @@
+.hero {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.hero__wrapper {
+  position: relative;
+  border-radius: var(--main-radius);
+  padding: 100px 80px;
+  overflow: hidden;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 11;
+  max-width: 840px;
+  color: var(--white);
+}
+
+.hero__content-title {
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-weight: var(--extrabold);
+  font-size: 70px;
+  line-height: 85px;
+}
+
+.hero__content-text {
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-weight: var(--bold);
+  font-size: 24px;
+  line-height: 29px;
+}
+
+.hero__btn:not(:last-child) {
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.hero__content-text:last-of-type {
+  margin-bottom: 89px;
+}
+
+.hero__slider {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--gray-light);
+  background: url("../img/hero_bg_1_1920.jpg") no-repeat center / cover;
+}
+
+/* media queries */
+
+@media (max-width: 1280px) {
+  .hero {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .hero__wrapper {
+    padding: 160px 77px;
+  }
+
+  .hero__content-title {
+    margin-bottom: 16px;
+    font-size: 60px;
+    line-height: 73px;
+  }
+
+  .hero__content-text {
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .hero__content-text:last-of-type {
+    margin-bottom: 60px;
+  }
+
+  .hero__slider {
+    background: url("../img/hero_bg_1_1024.jpg") no-repeat center / cover;
+  }
+}
+
+@media (max-width: 800px) {
+  .hero__wrapper {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+
+  .hero__content-title {
+    font-size: 50px;
+    line-height: 61px;
+  }
+
+  .hero__content-text {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .hero__slider {
+    background: url("../img/hero_bg_1_768.jpg") no-repeat center / cover;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero {
+    padding-top: 15px;
+    padding-bottom: 30px;
+  }
+
+  .hero__wrapper {
+    padding: 60px 22px 59px 22px;
+  }
+
+  .hero__content {
+    text-align: center;
+  }
+
+  .hero__content-title {
+    margin-bottom: 8px;
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .hero__content-text {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .hero__content-text:last-of-type {
+    margin-bottom: 32px;
+  }
+
+  .hero__slider {
+    background: url("../img/hero_bg_1_320.jpg") no-repeat center / cover;
+  }
+}
