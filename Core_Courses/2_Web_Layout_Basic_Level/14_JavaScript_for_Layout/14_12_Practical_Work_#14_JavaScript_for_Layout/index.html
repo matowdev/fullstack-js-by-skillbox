@@ -8,7 +8,10 @@
   <title>14.12. Practical Work #14. JavaScript for Layout!</title>
   <link rel="shortcut icon" href="img/favicon.png" type="image/png">
   <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/swiper.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/swiper.min.js" defer></script>
+  <script src="js/hero-slider.js" defer></script>
 </head>
 
 <body class="page">
@@ -58,7 +61,14 @@
               и&nbsp;по&nbsp;сей день остаются уделом проектантов</p>
             <a class="btn btn_big hero__btn" href="#">Заказать расчёт</a>
           </div>
-          <div class="hero__slider"></div>
+          <div class="swiper hero__slider js-hero-slider">
+            <div class="swiper-wrapper hero__slider-wrapper">
+              <div class="swiper-slide hero__slider-slide hero__slider-slide_one"></div>
+              <div class="swiper-slide hero__slider-slide hero__slider-slide_two"></div>
+              <div class="swiper-slide hero__slider-slide hero__slider-slide_three"></div>
+            </div>
+            <div class="swiper-pagination hero__slider-pagination js-hero-slider-pagination"></div>
+          </div>
         </div>
       </div>
     </section>

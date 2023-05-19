@@ -31,6 +31,16 @@
 
   /* transitions */
   --short: 0.3s;
+
+  /* hero slider */
+  --swiper-pagination-color: var(--white);
+  --swiper-pagination-bottom: 27px;
+  --swiper-pagination-bullet-size: 15px;
+  --swiper-pagination-bullet-width: 15px;
+  --swiper-pagination-bullet-height: 15px;
+  --swiper-pagination-bullet-inactive-color: var(--gray-light);
+  --swiper-pagination-bullet-inactive-opacity: 1;
+  --swiper-pagination-bullet-horizontal-gap: 10px;
 }
 
 @media (max-width: 800px) {
@@ -45,5 +55,10 @@
     --main-radius: 16px;
     --default-fs: 14px;
     --default-lh: 28px;
+
+    --swiper-pagination-bottom: 13px;
+    --swiper-pagination-bullet-size: 10px;
+    --swiper-pagination-bullet-width: 10px;
+    --swiper-pagination-bullet-height: 10px;
   }
 }

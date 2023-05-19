@@ -48,8 +48,34 @@
   right: 0;
   bottom: 0;
   left: 0;
+}
+
+.hero__slider-slide {
   background-color: var(--gray-light);
-  background: url("../img/hero_bg_1_1920.jpg") no-repeat center / cover;
+  background-repeat: no-repeat;
+  background-color: center;
+  background-size: cover;
+}
+
+.hero__slider-slide_one {
+  border-radius: var(--main-radius);
+  background-image: url("../img/hero_bg_1_1920.jpg");
+}
+
+.hero__slider-slide_two {
+  border-radius: var(--main-radius);
+  background-image: url("../img/hero_bg_2_1920.jpg");
+}
+
+.hero__slider-slide_three {
+  border-radius: var(--main-radius);
+  background-image: url("../img/hero_bg_3_1920.jpg");
+}
+
+.hero__slider-pagination {
+  padding-right: 40px;
+  padding-left: 40px;
+  line-height: 1;
 }
 
 /* media queries */
@@ -79,8 +105,16 @@
     margin-bottom: 60px;
   }
 
-  .hero__slider {
-    background: url("../img/hero_bg_1_1024.jpg") no-repeat center / cover;
+  .hero__slider-slide_one {
+    background-image: url("../img/hero_bg_1_1024.jpg");
+  }
+
+  .hero__slider-slide_two {
+    background-image: url("../img/hero_bg_2_1024.jpg");
+  }
+
+  .hero__slider-slide_three {
+    background-image: url("../img/hero_bg_3_1024.jpg");
   }
 }
 
@@ -100,8 +134,16 @@
     line-height: 22px;
   }
 
-  .hero__slider {
-    background: url("../img/hero_bg_1_768.jpg") no-repeat center / cover;
+  .hero__slider-slide_one {
+    background-image: url("../img/hero_bg_1_768.jpg");
+  }
+
+  .hero__slider-slide_two {
+    background-image: url("../img/hero_bg_2_768.jpg");
+  }
+
+  .hero__slider-slide_three {
+    background-image: url("../img/hero_bg_3_768.jpg");
   }
 }
 
@@ -134,7 +176,15 @@
     margin-bottom: 32px;
   }
 
-  .hero__slider {
-    background: url("../img/hero_bg_1_320.jpg") no-repeat center / cover;
+  .hero__slider-slide_one {
+    background-image: url("../img/hero_bg_1_320.jpg");
+  }
+
+  .hero__slider-slide_two {
+    background-image: url("../img/hero_bg_2_320.jpg");
+  }
+
+  .hero__slider-slide_three {
+    background-image: url("../img/hero_bg_3_320.jpg");
   }
 }
