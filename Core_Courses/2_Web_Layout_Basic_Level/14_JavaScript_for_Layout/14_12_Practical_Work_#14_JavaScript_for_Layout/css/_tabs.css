@@ -36,9 +36,15 @@
 }
 
 .tabs__content-wrap {
-  display: flex;
+  display: none;
   justify-content: space-between;
   align-items: flex-start;
+}
+
+.tabs__content-wrap.active {
+  display: flex;
+  animation-name: fade-in;
+  animation-duration: 0.7s;
 }
 
 .tabs__content {

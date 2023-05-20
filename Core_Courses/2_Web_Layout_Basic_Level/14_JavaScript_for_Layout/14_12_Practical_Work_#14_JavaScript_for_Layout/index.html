@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="css/style.css">
   <script src="js/swiper.min.js" defer></script>
   <script src="js/hero-slider.js" defer></script>
+  <script src="js/tabs.js" defer></script>
 </head>
 
 <body class="page">
@@ -122,14 +123,22 @@
     <section class="how main__how" id="how">
       <div class="container how__container">
         <h2 class="section-title how__title">Как мы&nbsp;работаем</h2>
-        <div class="tabs how__tabs">
+        <div class="tabs how__tabs js-tabs-wrap">
           <ul class="reset-list tabs__list">
-            <li class="tabs__item"><button class="reset-btn tabs__item-btn active">1&nbsp;шаг</button></li>
-            <li class="tabs__item"><button class="reset-btn tabs__item-btn">2&nbsp;шаг</button></li>
-            <li class="tabs__item"><button class="reset-btn tabs__item-btn">3&nbsp;шаг</button></li>
-            <li class="tabs__item"><button class="reset-btn tabs__item-btn">4&nbsp;шаг</button></li>
+            <li class="tabs__item">
+              <button class="reset-btn tabs__item-btn active js-tab-btn" data-path="one">1&nbsp;шаг</button>
+            </li>
+            <li class="tabs__item">
+              <button class="reset-btn tabs__item-btn js-tab-btn" data-path="two">2&nbsp;шаг</button>
+            </li>
+            <li class="tabs__item">
+              <button class="reset-btn tabs__item-btn js-tab-btn" data-path="three">3&nbsp;шаг</button>
+            </li>
+            <li class="tabs__item">
+              <button class="reset-btn tabs__item-btn js-tab-btn" data-path="four">4&nbsp;шаг</button>
+            </li>
           </ul>
-          <div class="tabs__content-wrap">
+          <div class="tabs__content-wrap active js-tab-content" data-target="one">
             <div class="tabs__content">
               <h3 class="tabs__title">Проводим консультацию</h3>
               <p class="text tabs__text">Влечёт за&nbsp;собой процесс внедрения и&nbsp;модернизации приоритизации
@@ -151,6 +160,72 @@
                 <source srcset="img/how_step_1_bg_768.jpg" media="(max-width: 962px)">
                 <source srcset="img/how_step_1_bg_1024.jpg" media="(max-width: 1280px)">
                 <img class="tabs__image" src="img/how_step_1_bg_1920.jpg" alt="Conducting a consultation">
+              </picture>
+            </div>
+          </div>
+
+          <div class="tabs__content-wrap js-tab-content" data-target="two">
+            <div class="tabs__content">
+              <h3 class="tabs__title">Составляем смету</h3>
+              <p class="text tabs__text">Внедрения и&nbsp;модернизации приоритизации разума над эмоциями. В&nbsp;рамках
+                спецификации современных стандартов, некоторые особенности внутренней политики будут объективно
+                рассмотрены соответствующими инстанциями. А&nbsp;также представители современных социальных резервов,
+                инициированные исключительно синтетически, ограничены исключительно образом мышления. Являясь всего лишь
+                частью общей картины, реплицированные с&nbsp;зарубежных источников, современные исследования подвергнуты
+                целой серии независимых исследований.</p>
+            </div>
+            <div class="tabs__images-wrap">
+              <picture>
+                <source srcset="img/how_step_2_bg_320.jpg" media="(max-width: 440px)">
+                <source srcset="img/how_step_2_bg_768.jpg" media="(max-width: 962px)">
+                <source srcset="img/how_step_2_bg_1024.jpg" media="(max-width: 1280px)">
+                <img class="tabs__image" src="img/how_step_2_bg_1920.jpg" alt="Conducting a consultation">
+              </picture>
+            </div>
+          </div>
+
+          <div class="tabs__content-wrap js-tab-content" data-target="three">
+            <div class="tabs__content">
+              <h3 class="tabs__title">Привлекаем подрядчиков</h3>
+              <p class="text tabs__text">Идейные соображения высшего порядка, а&nbsp;также новая модель организационной
+                деятельности требует анализа прогресса профессионального сообщества. Высокий уровень вовлечения
+                представителей целевой аудитории является чётким доказательством простого факта: высококачественный
+                прототип будущего проекта напрямую зависит от&nbsp;дальнейших направлений развития. Разнообразный
+                и&nbsp;богатый опыт говорит нам, что новая модель организационной деятельности говорит
+                о&nbsp;возможностях системы массового участия. Принимая во&nbsp;внимание показатели успешности,
+                постоянное информационно-пропагандистское обеспечение нашей деятельности позволяет выполнить важные
+                задания по&nbsp;разработке прогресса профессионального сообщества.</p>
+              <div class="tabs__btns-wrap">
+                <a class="btn tabs__btn tabs__btn_bigger" href="#">Подробнее</a>
+                <a class="btn btn_border tabs__btn" href="#">Договор</a>
+              </div>
+            </div>
+            <div class="tabs__images-wrap">
+              <picture>
+                <source srcset="img/how_step_3_bg_320.jpg" media="(max-width: 440px)">
+                <source srcset="img/how_step_3_bg_768.jpg" media="(max-width: 962px)">
+                <source srcset="img/how_step_3_bg_1024.jpg" media="(max-width: 1280px)">
+                <img class="tabs__image" src="img/how_step_3_bg_1920.jpg" alt="Conducting a consultation">
+              </picture>
+            </div>
+          </div>
+
+          <div class="tabs__content-wrap js-tab-content" data-target="four">
+            <div class="tabs__content">
+              <h3 class="tabs__title">Инспектируем все этапы работ</h3>
+              <p class="text tabs__text">Высокий уровень вовлечения представителей целевой аудитории является чётким
+                доказательством простого факта: высококачественный прототип будущего проекта напрямую зависит
+                от&nbsp;дальнейших направлений развития. Разнообразный и&nbsp;богатый опыт говорит нам, что новая модель
+                организационной деятельности говорит о&nbsp;возможностях системы массового участия. Принимая
+                во&nbsp;внимание показатели успешности, постоянное информационно-пропагандистское обеспечение нашей
+                деятельности позволяет.</p>
+            </div>
+            <div class="tabs__images-wrap">
+              <picture>
+                <source srcset="img/how_step_4_bg_320.jpg" media="(max-width: 440px)">
+                <source srcset="img/how_step_4_bg_768.jpg" media="(max-width: 962px)">
+                <source srcset="img/how_step_4_bg_1024.jpg" media="(max-width: 1280px)">
+                <img class="tabs__image" src="img/how_step_4_bg_1920.jpg" alt="Conducting a consultation">
               </picture>
             </div>
           </div>
