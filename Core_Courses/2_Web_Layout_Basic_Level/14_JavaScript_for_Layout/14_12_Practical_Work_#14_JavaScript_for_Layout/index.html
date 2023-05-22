@@ -16,6 +16,7 @@
   <script src="js/tabs.js" defer></script>
   <script src="libs/accordion.min.js" defer></script>
   <script src="js/questions-acc.js" defer></script>
+  <script src="js/header-burger.js" defer></script>
 </head>
 
 <body class="page">
@@ -23,7 +24,7 @@
 
   <header class="header page__header">
     <div class="container header__container">
-      <button class="reset-btn hamburger hamburger_collapse header__hamburger" type="button">
+      <button class="reset-btn hamburger hamburger_collapse header__hamburger js-burger" type="button">
         <span class="hamburger__box">
           <span class="hamburger__inner"></span>
         </span>
@@ -33,13 +34,15 @@
       </a>
       <nav class="header__nav">
         <h2 class="visually-hidden section-title header__nav-title">Навигация по сайту:</h2>
-        <ul class="reset-list header__list" title="Главное меню">
-          <li class="header__item"><a class="header__item-link" href="#about">О&nbsp;нас</a></li>
-          <li class="header__item"><a class="header__item-link" href="#">Проекты</a></li>
-          <li class="header__item"><a class="header__item-link" href="#how">Этапы</a></li>
-          <li class="header__item"><a class="header__item-link" href="#">Отзывы</a></li>
-          <li class="header__item"><a class="header__item-link" href="#">Контакты</a></li>
-        </ul>
+        <div class="header__nav-wrap js-nav-wrap">
+          <ul class="reset-list header__list" title="Главное меню">
+            <li class="header__item"><a class="header__item-link" href="#about">О&nbsp;нас</a></li>
+            <li class="header__item"><a class="header__item-link" href="#">Проекты</a></li>
+            <li class="header__item"><a class="header__item-link" href="#how">Этапы</a></li>
+            <li class="header__item"><a class="header__item-link" href="#">Отзывы</a></li>
+            <li class="header__item"><a class="header__item-link" href="#">Контакты</a></li>
+          </ul>
+        </div>
         <button class="reset-btn header__search-btn" type="button">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="7.56126" height="1.89031"

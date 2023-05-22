@@ -101,6 +101,12 @@
 
 /* media queries */
 
+@media (max-width: 1280px) {
+  .hamburger {
+    margin-left: -11px;
+  }
+}
+
 @media (max-width: 576px) {
   .hamburger__inner,
   .hamburger__inner::before,
