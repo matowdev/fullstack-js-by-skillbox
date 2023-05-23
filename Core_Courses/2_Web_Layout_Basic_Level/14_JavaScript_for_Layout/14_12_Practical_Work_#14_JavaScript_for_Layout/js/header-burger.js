@@ -59,5 +59,6 @@
     menuClass: 'js-nav-wrap',
     activeClass: 'is-active',
     hiddenClass: 'is-closed',
+    link: 'js-nav-link',
   });
 })();
