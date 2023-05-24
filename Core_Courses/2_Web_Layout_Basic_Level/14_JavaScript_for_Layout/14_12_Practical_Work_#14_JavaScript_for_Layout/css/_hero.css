@@ -53,7 +53,7 @@
 .hero__slider-slide {
   background-color: var(--gray-light);
   background-repeat: no-repeat;
-  background-color: center;
+  background-position: center;
   background-size: cover;
 }
 

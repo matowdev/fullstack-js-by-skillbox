@@ -29,6 +29,7 @@
   margin-right: 14px;
   border: none;
   border-bottom: 1px solid var(--gray-light);
+  border-radius: 0;
   padding-bottom: 5px;
   font-weight: var(--medium);
   font-size: 18px;
