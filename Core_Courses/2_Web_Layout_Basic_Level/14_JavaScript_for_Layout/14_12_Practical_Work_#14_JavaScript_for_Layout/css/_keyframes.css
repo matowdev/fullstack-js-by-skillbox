@@ -33,22 +33,22 @@
 
 @keyframes search-open {
   from {
-    transform: translateY(-50%) scaleX(0);
+    transform: scaleX(0);
     opacity: 0;
   }
   to {
-    transform: translateY(-50%) scaleX(1);
+    transform: scaleX(1);
     opacity: 1;
   }
 }
 
 @keyframes search-close {
   from {
-    transform: translateY(-50%) scaleX(1);
+    transform: scaleX(1);
     opacity: 1;
   }
   to {
-    transform: translateY(-50%) scaleX(0);
+    transform: scaleX(0);
     opacity: 0;
   }
 }
