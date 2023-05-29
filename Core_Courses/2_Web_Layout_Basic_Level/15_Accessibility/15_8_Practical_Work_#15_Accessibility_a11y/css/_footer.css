@@ -1,0 +1,148 @@
+.footer {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  color: var(--gray-light);
+  background-color: var(--black);
+}
+
+.footer__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.footer__nav {
+  margin-right: 6.5%;
+  max-width: 252px;
+}
+
+.footer__logo {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  width: 224px;
+  min-height: 72px;
+}
+
+.footer__list {
+  margin-bottom: 90px;
+  font-weight: var(--semibold);
+  font-size: 18px;
+  line-height: 36px;
+}
+
+.footer__item-link {
+  transition: color var(--short);
+  outline: none;
+}
+
+.footer__item-link:focus-visible:not(:hover) {
+  outline: 3px solid var(--orange-normal);
+  outline-offset: 5px;
+}
+
+.footer__item-link:active {
+  color: var(--orange-dark);
+}
+
+.footer__feedback-form {
+  width: calc(570 / 1770 * 100%);
+}
+
+.footer__about {
+  width: calc(363 / 1770 * 100%);
+}
+
+.footer__about-text {
+  margin-top: 87px;
+}
+
+/* media queries */
+
+@media (max-width: 1600px) {
+  .footer__about-text {
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .footer__container {
+    justify-content: flex-start;
+  }
+
+  .footer__nav {
+    margin-right: calc(132 / 924 * 100%);
+  }
+
+  .footer__feedback-form {
+    width: calc(541 / 924 * 100%);
+  }
+
+  .footer__about {
+    display: none;
+  }
+}
+
+@media (max-width: 1280px) {
+  .footer__nav {
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 962px) {
+  .footer__container {
+    flex-direction: column-reverse;
+  }
+
+  .footer__logo {
+    margin-bottom: 17px;
+  }
+
+  .footer__nav {
+    margin-right: 0;
+  }
+
+  .footer__list {
+    display: none;
+  }
+
+  .footer__feedback-form {
+    margin-bottom: 50px;
+    width: 100%;
+    max-width: 541px;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer {
+    padding-top: 33px;
+    padding-bottom: 30px;
+  }
+
+  .footer__container {
+    align-items: center;
+  }
+
+  .footer__logo {
+    width: 131px;
+    min-height: 42px;
+  }
+
+  .footer__nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer__feedback-form {
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--gray-dark);
+    padding-bottom: 16px;
+  }
+}
+
+@media (any-hover: hover) {
+  .footer__item-link:hover:not(:active) {
+    color: var(--orange-normal);
+  }
+}

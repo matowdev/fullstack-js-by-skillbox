@@ -1,0 +1,65 @@
+:root {
+  /* sizes */
+  --page-min-width: 320px;
+  --container-max-width: 1870px;
+  --container-padding: 50px;
+
+  /* borders */
+  --main-radius: 32px;
+  --form-radius: 24px;
+
+  /* fonts */
+  --montserrat: "Montserrat";
+  --regular: 400;
+  --medium: 500;
+  --semibold: 600;
+  --bold: 700;
+  --extrabold: 800;
+  --default-fs: 16px;
+  --default-lh: 32px;
+
+  /* colors */
+  --black: #000;
+  --white: #fff;
+  --orange-light: #ffb84d;
+  --orange-normal: #ff9900;
+  --orange-dark: #e1670e;
+  --gray-light: #cacaca;
+  --gray-normal: #666;
+  --gray-dark: #414141;
+  --dark-transp: rgba(0, 0, 0, 0.5);
+  --green-light: #97ee3f;
+
+  /* transitions */
+  --short: 0.3s;
+
+  /* hero slider */
+  --swiper-pagination-color: var(--white);
+  --swiper-pagination-bottom: 27px;
+  --swiper-pagination-bullet-size: 15px;
+  --swiper-pagination-bullet-width: 15px;
+  --swiper-pagination-bullet-height: 15px;
+  --swiper-pagination-bullet-inactive-color: var(--gray-light);
+  --swiper-pagination-bullet-inactive-opacity: 1;
+  --swiper-pagination-bullet-horizontal-gap: 10px;
+}
+
+@media (max-width: 800px) {
+  :root {
+    --main-radius: 24px;
+  }
+}
+
+@media (max-width: 576px) {
+  :root {
+    --container-padding: 15px;
+    --main-radius: 16px;
+    --default-fs: 14px;
+    --default-lh: 28px;
+
+    --swiper-pagination-bottom: 13px;
+    --swiper-pagination-bullet-size: 10px;
+    --swiper-pagination-bullet-width: 10px;
+    --swiper-pagination-bullet-height: 10px;
+  }
+}
