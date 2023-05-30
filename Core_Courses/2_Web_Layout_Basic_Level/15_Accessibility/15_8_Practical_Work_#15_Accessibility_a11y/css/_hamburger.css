@@ -7,15 +7,20 @@
   background-color: transparent;
   overflow: visible;
   cursor: pointer;
+  outline: none;
   transition-property: opacity, filter;
   transition-duration: 0.15s;
   transition-timing-function: linear;
 }
 
+.hamburger:focus-visible:not(:hover) {
+  outline: 3px solid var(--orange-normal);
+}
+
 .hamburger.is-active .hamburger__inner,
 .hamburger.is-active .hamburger__inner::before,
 .hamburger.is-active .hamburger__inner::after {
-  background-color: var(--gray-dark);
+  background-color: var(--orange-normal);
 }
 
 .hamburger__box {

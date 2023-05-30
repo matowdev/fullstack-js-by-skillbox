@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>14.12. Practical Work #14. JavaScript for Layout!</title>
+  <title>15.8. Practical Work #15. Accessibility!</title>
   <link rel="shortcut icon" href="img/favicon.png" type="image/png">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="libs/swiper.min.css">
@@ -23,15 +23,15 @@
 <body class="page">
   <h1 class="visually-hidden page__title">Евклид - строим наверняка!</h1>
 
-  <header class="header page__header">
-    <div class="container header__container">
-      <button class="reset-btn hamburger hamburger_collapse header__hamburger js-burger" type="button">
+  <header class="header page__header" aria-label="Верхний колонтитул страницы">
+    <div class="container header__container" aria-label="Шапка сайта">
+      <button class="reset-btn hamburger hamburger_collapse header__hamburger js-burger" type="button" title="Меню">
         <span class="hamburger__box">
           <span class="hamburger__inner"></span>
         </span>
       </button>
       <a class="logo header__logo">
-        <img src="img/euclid_logo_dark.svg" alt="Euclid: Project systems.. Logo" width="225" height="72">
+        <img src="img/euclid_logo_dark.svg" alt="Логотип: Евклид - проектные системы" width="225" height="72">
       </a>
       <nav class="header__nav">
         <h2 class="visually-hidden section-title header__nav-title">Навигация по сайту:</h2>
@@ -57,7 +57,7 @@
         <form class="search-form header__search-form js-search-form"
           action="https://jsonplaceholder.typicode.com/photos" method="get" name="header-search" autocomplete="off">
           <input class="search-form__input" type="text" name="data" placeholder="Что будем искать?" required>
-          <button class="reset-btn search-form__btn search-form__btn_indent" type="submit">
+          <button class="reset-btn search-form__btn search-form__btn_indent" type="submit" aria-label="Поиск">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect width="7.56126" height="1.89031"
                 transform="matrix(0.713342 0.700816 -0.713342 0.700816 18.6064 17.3762)" fill="currentColor" />
@@ -66,7 +66,7 @@
                 stroke="currentColor" stroke-width="2" />
             </svg>
           </button>
-          <button class="reset-btn search-form__btn-close js-close-search" type="button">
+          <button class="reset-btn search-form__btn-close js-close-search" type="button" aria-label="Закрыть">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="8.9541" y="7.30432" width="11.6645" height="2.33291" transform="rotate(45 8.9541 7.30432)"
                 fill="currentColor" />
@@ -80,16 +80,16 @@
     </div>
   </header>
 
-  <main class="main page__main">
+  <main class="main page__main" aria-label="Контент страницы">
     <!-- 1. -->
-    <section class="hero main__hero" id="hero">
+    <section class="hero main__hero" id="hero" aria-label="Секция: Презентация">
       <div class="container hero__container">
         <div class="hero__wrapper">
           <div class="hero__content">
             <h2 class="hero__content-title">Проектные решения любой сложности</h2>
             <p class="hero__content-text">Есть над чем задуматься: базовые сценарии поведения пользователей
               и&nbsp;по&nbsp;сей день остаются уделом проектантов</p>
-            <a class="btn btn_big hero__btn" href="#">Заказать расчёт</a>
+            <a class="btn btn_big hero__btn" href="#" role="button">Заказать расчёт</a>
           </div>
           <div class="swiper hero__slider js-hero-slider">
             <div class="swiper-wrapper hero__slider-wrapper">
@@ -103,25 +103,25 @@
       </div>
     </section>
     <!-- 2. -->
-    <section class="about main__about" id="about">
+    <section class="about main__about" id="about" aria-label="Секция: О нас">
       <div class="container about__container">
         <h2 class="section-title about__title">О&nbsp;нас</h2>
         <p class="text about__text">Также как перспективное планирование создаёт необходимость включения
           в&nbsp;производственный план целого ряда внеочередных мероприятий с&nbsp;учётом комплекса экспериментов,
           поражающих по&nbsp;своей масштабности и&nbsp;грандиозности. А&nbsp;также диаграммы связей могут быть описаны
           максимально подробно. Мы&nbsp;вынуждены отталкиваться от&nbsp;того, что убеждённость некоторых оппонентов
-          требует от&nbsp;нас анализа как самодостаточных, так и&nbsp;внешне зависимых концептуальных решений!
-          Следует отметить, что высококачественный прототип будущего проекта предопределяет высокую востребованность
-          позиций, занимаемых участниками в&nbsp;отношении поставленных задач. Мы&nbsp;вынуждены отталкиваться
-          от&nbsp;того, что высококачественный прототип будущего проекта способствует повышению качества экспериментов.
+          требует от&nbsp;нас анализа как самодостаточных, так и&nbsp;внешне зависимых концептуальных решений! Следует
+          отметить, что высококачественный прототип будущего проекта предопределяет высокую востребованность позиций,
+          занимаемых участниками в&nbsp;отношении поставленных задач. Мы&nbsp;вынуждены отталкиваться от&nbsp;того, что
+          высококачественный прототип будущего проекта способствует повышению качества экспериментов.
         </p>
         <div class="about__cards-wrapper">
           <div class="about__column">
             <div class="card-detail about__card">
               <div class="card-detail__content">
-                <p class="card-detail__text">Принимая во&nbsp;внимание показатели успешности, перспективное
-                  планирование способствует подготовке и&nbsp;реализации новых принципов</p>
-                <a class="btn btn_border-accent card-detail__btn" href="#">Подробнее</a>
+                <p class="card-detail__text" tabindex="0" aria-label="Описание">Принимая во&nbsp;внимание показатели
+                  успешности, перспективное планирование способствует подготовке и&nbsp;реализации новых принципов</p>
+                <a class="btn btn_border-accent card-detail__btn" href="#" role="button">Подробнее</a>
               </div>
             </div>
           </div>
@@ -130,18 +130,16 @@
               style="background-image: url('img/about_card_icon_1.svg');">
               <div class="card__content">
                 <h3 class="card__title">Консультация с&nbsp;широким активом</h3>
-                <p class="text">А&nbsp;также свежий взгляд на&nbsp;привычные вещи&nbsp;&mdash;
-                  безусловно открывает новые горизонты для как самодостаточных, так и&nbsp;внешне зависимых
-                  концептуальных решений</p>
+                <p class="text">А&nbsp;также свежий взгляд на&nbsp;привычные вещи&nbsp;&mdash; безусловно открывает
+                  новые горизонты для как самодостаточных, так и&nbsp;внешне зависимых концептуальных решений</p>
               </div>
             </div>
             <div class="card card_icon-2 about__card about__card_small"
               style="background-image: url('img/about_card_icon_2.svg');">
               <div class="card__content">
                 <h3 class="card__title">В&nbsp;своём стремлении повысить</h3>
-                <p class="text">Качество жизни, они забывают, что сплочённость команды
-                  профессионалов представляет собой интересный эксперимент проверки прогресса профессионального
-                  сообщества</p>
+                <p class="text">Качество жизни, они забывают, что сплочённость команды профессионалов представляет собой
+                  интересный эксперимент проверки прогресса профессионального сообщества</p>
               </div>
             </div>
           </div>
@@ -149,7 +147,7 @@
       </div>
     </section>
     <!-- 3. -->
-    <section class="how main__how" id="how">
+    <section class="how main__how" id="how" aria-label="Секция: Как мы работаем">
       <div class="container how__container">
         <h2 class="section-title how__title">Как мы&nbsp;работаем</h2>
         <div class="tabs how__tabs js-tabs-wrap">
@@ -169,7 +167,7 @@
           </ul>
           <div class="tabs__content-wrap active js-tab-content" data-target="one">
             <div class="tabs__content">
-              <h3 class="tabs__title">Проводим консультацию</h3>
+              <h3 class="tabs__title" tabindex="0">Проводим консультацию</h3>
               <p class="text tabs__text">Влечёт за&nbsp;собой процесс внедрения и&nbsp;модернизации приоритизации
                 разума над эмоциями. В&nbsp;рамках спецификации современных стандартов, некоторые особенности внутренней
                 политики будут объективно рассмотрены соответствующими инстанциями. А&nbsp;также представители
@@ -179,8 +177,8 @@
                 традиционное производство, нанотехнологии освещают чрезвычайно интересные особенности картины
                 в&nbsp;целом, однако конкретные выводы, разумеется, призваны к&nbsp;ответу.</p>
               <div class="tabs__btns-wrap">
-                <a class="btn tabs__btn tabs__btn_bigger" href="#">Подробнее</a>
-                <a class="btn btn_border tabs__btn" href="#">Договор</a>
+                <a class="btn tabs__btn tabs__btn_bigger" href="#" role="button">Подробнее</a>
+                <a class="btn btn_border tabs__btn" href="#" role="button">Договор</a>
               </div>
             </div>
             <div class="tabs__images-wrap">
@@ -188,14 +186,14 @@
                 <source srcset="img/how_step_1_bg_320.jpg" media="(max-width: 440px)">
                 <source srcset="img/how_step_1_bg_768.jpg" media="(max-width: 962px)">
                 <source srcset="img/how_step_1_bg_1024.jpg" media="(max-width: 1280px)">
-                <img class="tabs__image" src="img/how_step_1_bg_1920.jpg" alt="Conducting a consultation">
+                <img class="tabs__image" src="img/how_step_1_bg_1920.jpg" alt="Изображение: Проводим консультацию">
               </picture>
             </div>
           </div>
 
           <div class="tabs__content-wrap js-tab-content" data-target="two">
             <div class="tabs__content">
-              <h3 class="tabs__title">Составляем смету</h3>
+              <h3 class="tabs__title" tabindex="0">Составляем смету</h3>
               <p class="text tabs__text">Внедрения и&nbsp;модернизации приоритизации разума над эмоциями. В&nbsp;рамках
                 спецификации современных стандартов, некоторые особенности внутренней политики будут объективно
                 рассмотрены соответствующими инстанциями. А&nbsp;также представители современных социальных резервов,
@@ -208,14 +206,14 @@
                 <source srcset="img/how_step_2_bg_320.jpg" media="(max-width: 440px)">
                 <source srcset="img/how_step_2_bg_768.jpg" media="(max-width: 962px)">
                 <source srcset="img/how_step_2_bg_1024.jpg" media="(max-width: 1280px)">
-                <img class="tabs__image" src="img/how_step_2_bg_1920.jpg" alt="Conducting a consultation">
+                <img class="tabs__image" src="img/how_step_2_bg_1920.jpg" alt="Изображение: Составляем смету">
               </picture>
             </div>
           </div>
 
           <div class="tabs__content-wrap js-tab-content" data-target="three">
             <div class="tabs__content">
-              <h3 class="tabs__title">Привлекаем подрядчиков</h3>
+              <h3 class="tabs__title" tabindex="0">Привлекаем подрядчиков</h3>
               <p class="text tabs__text">Идейные соображения высшего порядка, а&nbsp;также новая модель организационной
                 деятельности требует анализа прогресса профессионального сообщества. Высокий уровень вовлечения
                 представителей целевой аудитории является чётким доказательством простого факта: высококачественный
@@ -234,14 +232,14 @@
                 <source srcset="img/how_step_3_bg_320.jpg" media="(max-width: 440px)">
                 <source srcset="img/how_step_3_bg_768.jpg" media="(max-width: 962px)">
                 <source srcset="img/how_step_3_bg_1024.jpg" media="(max-width: 1280px)">
-                <img class="tabs__image" src="img/how_step_3_bg_1920.jpg" alt="Conducting a consultation">
+                <img class="tabs__image" src="img/how_step_3_bg_1920.jpg" alt="Изображение: Привлекаем подрядчиков">
               </picture>
             </div>
           </div>
 
           <div class="tabs__content-wrap js-tab-content" data-target="four">
             <div class="tabs__content">
-              <h3 class="tabs__title">Инспектируем все этапы работ</h3>
+              <h3 class="tabs__title" tabindex="0">Инспектируем все этапы работ</h3>
               <p class="text tabs__text">Высокий уровень вовлечения представителей целевой аудитории является чётким
                 доказательством простого факта: высококачественный прототип будущего проекта напрямую зависит
                 от&nbsp;дальнейших направлений развития. Разнообразный и&nbsp;богатый опыт говорит нам, что новая модель
@@ -254,7 +252,8 @@
                 <source srcset="img/how_step_4_bg_320.jpg" media="(max-width: 440px)">
                 <source srcset="img/how_step_4_bg_768.jpg" media="(max-width: 962px)">
                 <source srcset="img/how_step_4_bg_1024.jpg" media="(max-width: 1280px)">
-                <img class="tabs__image" src="img/how_step_4_bg_1920.jpg" alt="Conducting a consultation">
+                <img class="tabs__image" src="img/how_step_4_bg_1920.jpg"
+                  alt="Изображение: Инспектируем все этапы работ">
               </picture>
             </div>
           </div>
@@ -262,7 +261,7 @@
       </div>
     </section>
     <!-- 4. -->
-    <section class="questions main__questions" id="questions">
+    <section class="questions main__questions" id="questions" aria-label="Секция: Часто задаваемые вопросы">
       <div class="container questions__container">
         <h2 class="section-title questions__title">Часто задаваемые вопросы</h2>
         <ul class="reset-list accordion questions__accordion">
@@ -336,11 +335,11 @@
     </section>
   </main>
 
-  <footer class="footer page__footer">
+  <footer class="footer page__footer" aria-label="Нижний колонтитул страницы (подвал сайта)">
     <div class="container footer__container">
       <div class="footer__nav">
         <a class="logo footer__logo">
-          <img src="img/euclid_logo_light.svg" alt="Euclid: Project systems.. Logo" width="224" height="72">
+          <img src="img/euclid_logo_light.svg" alt="Логотип: Евклид - проектные системы" width="224" height="72">
         </a>
         <ul class="reset-list footer__list" title="Второстепенное меню">
           <li class="footer__item"><a class="footer__item-link" href="#about">О&nbsp;нас</a></li>
@@ -351,7 +350,7 @@
           <li class="footer__item"><a class="footer__item-link" href="#">Конфиденциальность</a></li>
           <li class="footer__item"><a class="footer__item-link" href="#">Партнёрское соглашение</a></li>
         </ul>
-        <ul class="reset-list socials footer__socials-list">
+        <ul class="reset-list socials footer__socials-list" aria-label="Социальные сети">
           <li class="socials__item">
             <a class="socials__item-link" href="https://ok.ru/" target="_blank">
               <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
@@ -372,10 +371,10 @@
           </li>
         </ul>
       </div>
-      <section class="feedback footer__feedback-form">
+      <section class="feedback footer__feedback-form" aria-label="Секция: Заполнение данных">
         <h2 class="section-title feedback__title">Оставить заявку</h2>
         <form class="feedback__form" action="https://jsonplaceholder.typicode.com/posts" method="post"
-          name="footer-form" autocomplete="off">
+          name="footer-form" autocomplete="off" aria-label="Все поля обязательны">
           <input class="feedback__input" type="text" name="name" placeholder="Фамилия, имя и&nbsp;отчество*" required>
           <input class="feedback__input" type="email" name="e-mail" placeholder="Email*" required>
           <textarea class="feedback__input feedback__input_textarea" name="message" placeholder="Сообщение"></textarea>
@@ -390,10 +389,10 @@
         </form>
       </section>
       <div class="footer__about">
-        <p class="text footer__about-text">Высокий уровень вовлечения представителей целевой аудитории является чётким
-          доказательством простого факта: разбавленное изрядной долей эмпатии, рациональное мышление позволяет оценить
-          значение модели развития. Таким образом, консультация с&nbsp;широким активом обеспечивает широкому кругу
-          (специалистов) участие в&nbsp;формировании стандартных подходов.</p>
+        <p class="text footer__about-text" aria-label="Пояснение">Высокий уровень вовлечения представителей
+          целевой аудитории является чётким доказательством простого факта: разбавленное изрядной долей эмпатии,
+          рациональное мышление позволяет оценить значение модели развития. Таким образом, консультация с&nbsp;широким
+          активом обеспечивает широкому кругу (специалистов) участие в&nbsp;формировании стандартных подходов.</p>
       </div>
     </div>
   </footer>
