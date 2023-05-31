@@ -16,10 +16,10 @@
 }
 
 .tabs__item-btn {
-  outline: none;
-  transition: color var(--short);
   line-height: inherit;
   color: inherit;
+  outline: none;
+  transition: color var(--short);
 }
 
 .tabs__item-btn.active {
@@ -164,8 +164,8 @@
 
 @media (any-hover: hover) {
   .tabs__item-btn:hover:not(:active) {
+    color: var(--orange-normal);
     outline: none;
     cursor: pointer;
-    color: var(--orange-normal);
   }
 }
