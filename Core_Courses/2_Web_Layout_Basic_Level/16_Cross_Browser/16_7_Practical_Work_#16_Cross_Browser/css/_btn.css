@@ -1,0 +1,131 @@
+.btn {
+  display: inline-block;
+  border-radius: 16px;
+  padding: 20px 38px;
+  max-width: 300px;
+  max-height: 120px;
+  font-family: var(--montserrat), sans-serif;
+  font-weight: var(--bold);
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  color: var(--white);
+  background: var(--orange-normal);
+  outline: none;
+  cursor: pointer;
+  transition: background-color var(--short) ease-in-out;
+}
+
+.btn:focus-visible {
+  background-color: var(--orange-light);
+}
+
+.btn:active {
+  background-color: var(--orange-dark);
+}
+
+.btn_big {
+  padding: 25px 39px;
+  max-width: 400px;
+  max-height: 150px;
+  font-size: 23px;
+  line-height: 28px;
+}
+
+.btn_border-accent {
+  border: 3px solid var(--orange-normal);
+  padding: 16px 36px;
+  color: var(--white);
+  background-color: transparent;
+  transition: background-color var(--short) ease-in-out,
+    border-color var(--short) ease-in-out, color var(--short) ease-in-out;
+}
+
+.btn_border-accent:focus-visible {
+  background-color: var(--orange-normal);
+}
+
+.btn_border-accent:active {
+  border-color: var(--orange-dark);
+  background-color: var(--orange-dark);
+}
+
+.btn_border {
+  border: 1px solid var(--black);
+  font-weight: var(--regular);
+  color: var(--black);
+  background-color: transparent;
+  transition-property: border-color, color, background-color;
+  transition-duration: var(--short);
+  transition-timing-function: ease-in-out;
+}
+
+.btn_border:focus-visible {
+  border-color: var(--gray-normal);
+  color: var(--white);
+  background-color: var(--gray-normal);
+}
+
+.btn_border:active {
+  color: var(--white);
+  background-color: var(--black);
+}
+
+/* media queries */
+
+@media (max-width: 800px) {
+  .btn_border-accent {
+    padding: 17px 36px;
+  }
+}
+
+@media (max-width: 576px) {
+  .btn {
+    border-radius: 8px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .btn_big {
+    padding: 13px 28px;
+  }
+
+  .btn_border-accent {
+    border-width: 2px;
+    border-radius: 8px;
+    padding: 11px 42px 9px 42px;
+    min-width: 162px;
+    min-height: 39px;
+    color: var(--orange-normal);
+  }
+
+  @media (any-hover: hover) {
+    .btn_border-accent:hover:not(:active) {
+      color: var(--white);
+    }
+  }
+
+  .btn_border-accent:focus-visible {
+    color: var(--white);
+  }
+
+  .btn_border-accent:active {
+    color: var(--white);
+  }
+}
+
+@media (any-hover: hover) {
+  .btn:hover:not(:active) {
+    background-color: var(--orange-light);
+  }
+
+  .btn_border-accent:hover:not(:active) {
+    background-color: var(--orange-normal);
+  }
+
+  .btn_border:hover:not(:active) {
+    border-color: var(--gray-normal);
+    color: var(--white);
+    background-color: var(--gray-normal);
+  }
+}

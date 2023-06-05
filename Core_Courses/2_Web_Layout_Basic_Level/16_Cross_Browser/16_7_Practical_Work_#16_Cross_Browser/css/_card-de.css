@@ -1,0 +1,117 @@
+.card-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-radius: var(--main-radius);
+  max-width: 870px;
+  width: 100%;
+  min-height: 622px;
+  overflow: hidden;
+  background-color: var(--gray-light);
+  background: url("../img/about_card-de_bg_1920.jpg") no-repeat center / cover;
+}
+
+.card-detail__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  row-gap: 20px;
+  border-radius: 32px;
+  padding: 50px;
+  color: var(--white);
+  background-color: var(--dark-transp);
+}
+
+.card-detail__text {
+  margin-top: 0;
+  margin-right: 20px;
+  margin-bottom: 0;
+  max-width: 433px;
+  font-weight: var(--bold);
+  outline: none;
+}
+
+/* media queries */
+
+@media (max-width: 1440px) {
+  .card-detail {
+    max-width: 100%;
+  }
+
+  .card-detail__text {
+    max-width: calc(1055 / 1770 * 100%);
+  }
+}
+
+@media (max-width: 1280px) {
+  .card-detail {
+    min-height: 640px;
+    background: url("../img/about_card-de_bg_1024.jpg") no-repeat center / cover;
+  }
+}
+
+@media (max-width: 800px) {
+  .card-detail {
+    min-height: 650px;
+    background: url("../img/about_card-de_bg_768.jpg") no-repeat center / cover;
+  }
+
+  .card-detail__content {
+    border-radius: 24px;
+    padding: 34px 40px;
+  }
+
+  .card-detail__text {
+    max-width: 366px;
+  }
+}
+
+@media (max-width: 660px) {
+  .card-detail__content {
+    flex-wrap: wrap;
+  }
+
+  .card-detail__text {
+    margin-right: 0;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .card-detail {
+    display: block;
+    border-radius: 0;
+    min-height: auto;
+    background-size: 0;
+    background-color: transparent;
+    background-image: url("../img/about_card-de_bg_320.jpg");
+  }
+
+  .card-detail::before {
+    content: "";
+    display: block;
+    margin-bottom: 8px;
+    border-radius: var(--main-radius);
+    padding-top: calc(200 / 290 * 100%);
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--gray-light);
+    background-image: inherit;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .card-detail__content {
+    row-gap: 12px;
+    padding: 0;
+    color: var(--black);
+    background-color: transparent;
+  }
+
+  .card-detail__text {
+    font-weight: var(--regular);
+    font-size: 14px;
+    line-height: 28px;
+  }
+}
