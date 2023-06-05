@@ -1,5 +1,5 @@
 # On the topic:
 
-## Synopsis:
+## Video-lecture / Terms of performance:
 
-[click..](https://www.notion.so/16-5-cross-BrowserStack-am-r-eb085a86297d4987bb5c2b629ab2ebe6)
+[click..](https://go.skillbox.ru/profession/profession-fullstack-js/weblayout/1fee473d-a964-4951-818f-4f28c75f5211/videolesson)
