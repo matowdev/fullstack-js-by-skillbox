@@ -1,5 +1,5 @@
 # On the topic:
 
-## Synopsis:
+## Video-lecture / Terms of performance:
 
-[click..](https://www.notion.so/16-4-cross-Autoprefix-f6b6e73e661f4797b1084619fc4a63a6)
+[click..](https://go.skillbox.ru/profession/profession-fullstack-js/weblayout/0faafb7c-c2eb-4f26-8207-d123f1b0c5d4/videolesson)
