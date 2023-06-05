@@ -1,5 +1,5 @@
 # On the topic:
 
-## Synopsis:
+## Video-lecture / Terms of performance:
 
-[click..](https://www.notion.so/16-3-Default-Normalize-css-Cross-am-r-b0216ccbe1c243bc8e09a656e390b753)
+[click..](https://go.skillbox.ru/profession/profession-fullstack-js/weblayout/a31f2765-a0ca-4db2-9364-ad3e237bf883/videolesson)
