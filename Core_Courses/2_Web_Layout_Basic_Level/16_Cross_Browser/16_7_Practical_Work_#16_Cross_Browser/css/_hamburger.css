@@ -118,4 +118,8 @@
   .hamburger__inner::after {
     height: 3px;
   }
+
+  .hamburger_collapse .hamburger__inner {
+    top: 20px;
+  }
 }

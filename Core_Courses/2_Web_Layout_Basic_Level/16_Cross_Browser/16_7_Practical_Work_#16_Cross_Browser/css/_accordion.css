@@ -40,6 +40,7 @@
 
 .accordion__btn:focus-visible {
   color: var(--orange-normal);
+  outline: none;
   cursor: pointer;
 }
 
