@@ -1,0 +1,122 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --container-max-width: 1200px;
+  --container-padding: 15px;
+  --columns: 12;
+  --gutter: 30px;
+}
+
+.page {
+  height: 900px;
+  font-family: "Roboto Mono", monospace;
+}
+
+.page__title {
+  margin-bottom: 25px;
+  padding-top: 25px;
+  font-size: 26px;
+  text-align: center;
+  text-shadow: 0 1px 10px #852614;
+}
+
+.page__container-grid {
+  margin: 0 auto;
+  padding-right: var(--container-padding);
+  padding-left: var(--container-padding);
+  width: 100%;
+  max-width: var(--container-max-width);
+  outline: 3px solid #b4a8aa;
+}
+
+.grid__row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: calc(var(--container-padding) * -1);
+  margin-left: calc(var(--container-padding) * -1);
+  outline: 3px solid #d0c9d0;
+}
+
+.grid__row:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.grid__col-1,
+.grid__col-2,
+.grid__col-3,
+.grid__col-4,
+.grid__col-5,
+.grid__col-6,
+.grid__col-7,
+.grid__col-8,
+.grid__col-9,
+.grid__col-10,
+.grid__col-11,
+.grid__col-12 {
+  flex-grow: 0;
+  padding-right: calc(var(--gutter) / 2);
+  padding-left: calc(var(--gutter) / 2);
+  height: 150px;
+  color: #852614;
+  background-color: #6a7793;
+  outline: 1px solid #852614;
+}
+
+.grid__col-1 {
+  flex-basis: calc(100% / var(--columns));
+}
+
+.grid__col-2 {
+  flex-basis: calc(calc(100% / var(--columns)) * 2);
+}
+
+.grid__col-3 {
+  flex-basis: calc(calc(100% / var(--columns)) * 3);
+}
+
+.grid__col-4 {
+  flex-basis: calc(calc(100% / var(--columns)) * 4);
+}
+
+.grid__col-5 {
+  flex-basis: calc(calc(100% / var(--columns)) * 5);
+}
+
+.grid__col-6 {
+  flex-basis: calc(calc(100% / var(--columns)) * 6);
+}
+
+.grid__col-7 {
+  flex-basis: calc(calc(100% / var(--columns)) * 7);
+}
+
+.grid__col-8 {
+  flex-basis: calc(calc(100% / var(--columns)) * 8);
+}
+
+.grid__col-9 {
+  flex-basis: calc(calc(100% / var(--columns)) * 9);
+}
+
+.grid__col-10 {
+  flex-basis: calc(calc(100% / var(--columns)) * 10);
+}
+
+.grid__col-11 {
+  flex-basis: calc(calc(100% / var(--columns)) * 11);
+}
+
+.grid__col-12 {
+  flex-basis: 100%;
+}
+
+.grid__content {
+  padding-top: 15px;
+  height: 100%;
+  text-align: center;
+  background-color: #cfd1e0;
+}
