@@ -152,10 +152,7 @@ body {
 }
 
 .container {
-  margin: 0 auto;
-  padding: 0 15px;
   max-width: 1200px;
-  /* max-width: 100%; */
 }
 
 .section-title {
@@ -261,12 +258,6 @@ body {
   background: url("../img/hero-hands-bg.jpg") no-repeat center / cover;
 }
 
-.hero__content {
-  flex-direction: column;
-  align-items: flex-start;
-  width: 50%;
-}
-
 .hero__content-title {
   margin: 0;
   margin-bottom: 25px;
@@ -289,6 +280,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 44%;
 }
 
 .hero__wrapper-btn {
@@ -313,10 +305,7 @@ body {
   border-bottom: 1px solid #c4c4c4;
 }
 
-.services__title {
-  text-align: center;
-}
-
+.services__title,
 .services__desc {
   text-align: center;
 }
@@ -327,17 +316,14 @@ body {
   border: 1px solid #e4e4e4;
   border-radius: 5px;
   padding: 60px 30px;
-  width: calc((100% - (var(--gap) * 3)) / 4);
+  margin-bottom: 30px;
+  /* width: calc((100% - (var(--gap) * 3)) / 4); */
   transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 
 .services__item:hover {
   border-color: #3172b9;
   background-color: #3172b9;
-}
-
-.services__item:not(:nth-child(4n)) {
-  margin-right: var(--gap);
 }
 
 .services__item-icon {
@@ -523,11 +509,7 @@ body {
   border-radius: 5px;
   padding: 50px 36px;
   padding-bottom: 30px; /* здесь же и переназначим -> так проще */
-  width: calc((100% - (var(--gap) * 2)) / 3);
-}
-
-.clients__item:not(:nth-child(3n)) {
-  margin-right: var(--gap);
+  /* width: calc((100% - (var(--gap) * 2)) / 3); */
 }
 
 .clients__item-desc {
@@ -593,14 +575,10 @@ body {
   flex-direction: column;
   align-items: flex-start;
   padding-top: 48px;
-  width: calc((100% - (var(--gap) * 2)) / 3);
+  /* width: calc((100% - (var(--gap) * 2)) / 3); */
   background-position: left top;
   background-repeat: no-repeat;
   background-size: 29px 29px;
-}
-
-.contacts__item:not(:nth-child(3n)) {
-  margin-right: var(--gap);
 }
 
 .contacts__item-location {
