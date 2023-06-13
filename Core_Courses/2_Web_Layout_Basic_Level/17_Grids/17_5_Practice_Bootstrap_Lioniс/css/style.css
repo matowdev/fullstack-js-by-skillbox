@@ -28,36 +28,6 @@
   font-display: swap;
 }
 
-/* @font-face {
-  font-family: "OpenSans";
-  src: url("../fonts/OpenSansLight.woff2");
-  src: local("OpenSans Light"), local("OpenSans-Light"),
-    url("../fonts/OpenSansLight.woff2") format("woff2");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "OpenSans";
-  src: url("../fonts/OpenSansRegular.woff2");
-  src: local("OpenSans Regular"), local("OpenSans-Regular"),
-    url("../fonts/OpenSansRegular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "OpenSans";
-  src: url("../fonts/OpenSansSemiBold.woff2");
-  src: local("OpenSans SemiBold"), local("OpenSans-SemiBold"),
-    url("../fonts/OpenSansSemiBold.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-} */
-
 html {
   box-sizing: border-box;
 }
@@ -175,7 +145,7 @@ body {
 
 .section-offset {
   padding-top: 87px;
-  padding-bottom: 160px;
+  padding-bottom: 130px;
 }
 
 .burger {
@@ -280,7 +250,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 44%;
+  width: 255px;
 }
 
 .hero__wrapper-btn {
@@ -317,7 +287,6 @@ body {
   border-radius: 5px;
   padding: 60px 30px;
   margin-bottom: 30px;
-  /* width: calc((100% - (var(--gap) * 3)) / 4); */
   transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 
@@ -378,21 +347,7 @@ body {
 
 .articles__item {
   border-radius: 0px 5px 5px 0px;
-  width: calc((100% - (var(--gap) * 1)) / 2);
-}
-
-.articles__item:nth-child(-n + 2) {
-  margin-bottom: var(--gap);
-}
-
-/* .articles-item:nth-child(odd) {
-  margin-right: 30px;
-} */
-
-/* or */
-
-.articles__item:not(:nth-child(2n)) {
-  margin-right: var(--gap);
+  margin-bottom: 30px;
 }
 
 .blog-preview {
@@ -459,7 +414,6 @@ body {
 
 .blog-preview__image {
   width: 170px;
-  /* height: 180px; */
   object-fit: cover; /* как Гласит.. Dok, данное свойство будет работать, только/если присутствуете/указан, хотя бы один размер, для изображения/img, т.е. или ширины, или высоты, нет ни одного.. сори */
 }
 
@@ -508,8 +462,7 @@ body {
   border: 1px solid #e4e4e4;
   border-radius: 5px;
   padding: 50px 36px;
-  padding-bottom: 30px; /* здесь же и переназначим -> так проще */
-  /* width: calc((100% - (var(--gap) * 2)) / 3); */
+  margin-bottom: 30px; /* здесь же и переназначим -> так проще */
 }
 
 .clients__item-desc {
@@ -574,8 +527,8 @@ body {
 .contacts__item {
   flex-direction: column;
   align-items: flex-start;
+  margin-bottom: 30px;
   padding-top: 48px;
-  /* width: calc((100% - (var(--gap) * 2)) / 3); */
   background-position: left top;
   background-repeat: no-repeat;
   background-size: 29px 29px;
