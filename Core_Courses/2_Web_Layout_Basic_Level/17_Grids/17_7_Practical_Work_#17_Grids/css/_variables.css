@@ -1,0 +1,20 @@
+:root {
+  /* sizes */
+  --page-min-width: 320px;
+  --container-max-width: 1190px;
+  --container-padding: 40px;
+
+  /* borders */
+  --main-radius: 20px;
+
+  /* fonts */
+  --roboto: "Roboto";
+  --regular: 400;
+  --bold: 700;
+  --default-fs: 16px;
+  --default-lh: 24px;
+
+  /* colors */
+  --white: #fff;
+  --gray-normal: #666;
+}
