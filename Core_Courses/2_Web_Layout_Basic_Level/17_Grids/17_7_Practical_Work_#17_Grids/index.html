@@ -7,14 +7,32 @@
   <title>17.7. Practical Work #17. Grids!</title>
   <link rel="shortcut icon" href="img/favicon.png" type="image/png">
   <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="tool/bootstrap.min.css">
+  <link rel="stylesheet" href="libs/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body class="page">
-  <div class="container">
-    <p>Hello World!</p>
-  </div>
+  <h1 class="visually-hidden page__title"><span class="title-color">Skillbox</span>&nbsp;&mdash; станьте востребованным
+    специалистом! </h1>
+
+  <header class="header page__header" id="header" aria-label="Верхний колонтитул страницы (шапка сайта)">
+    <div class="container header__container" aria-labelledby="header">
+      <a class="header__logo" tabindex="0"><img src="img/Skillbox_logo_light.svg" width="94" height="21"
+          alt="Логотип: Skillbox - образовательная платформа">
+      </a>
+      <nav class="header__nav">
+        <h2 class="visually-hidden section-title header__nav-title">Навигация по сайту:</h2>
+        <div class="header__nav-wrap">
+          <ul class="reset-list header__list" title="Главное меню">
+            <li class="header__item"><a class="header__item-link" href="#">Главная</a></li>
+            <li class="header__item"><a class="header__item-link" href="#">О&nbsp;нас</a></li>
+            <li class="header__item"><a class="header__item-link" href="#">Преподаватели</a></li>
+            <li class="header__item"><a class="header__item-link" href="#">Курсы</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
 </body>
 
 </html>

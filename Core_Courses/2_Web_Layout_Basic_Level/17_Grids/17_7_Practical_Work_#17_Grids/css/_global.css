@@ -9,8 +9,12 @@ html {
 }
 
 a {
-  text-decoration: none;
+  text-decoration: none !important;
   color: inherit;
+}
+
+a:hover {
+  color: var(--white);
 }
 
 img,
@@ -25,8 +29,18 @@ svg {
   font-family: var(--roboto), sans-serif;
   font-size: var(--default-fs);
   line-height: var(--default-lh);
-  color: var(--gray-normal);
+  color: var(--main-gray);
   background-color: var(--white);
+}
+
+.page__title {
+  margin-bottom: 20px;
+  font-weight: var(--bold);
+  text-align: center;
+}
+
+.title-color {
+  color: var(--main-blue);
 }
 
 .container {
@@ -35,4 +49,36 @@ svg {
   padding-right: var(--container-padding);
   padding-left: var(--container-padding);
   max-width: var(--container-max-width);
+}
+
+.visually-hidden {
+  position: absolute;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.section-title {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-weight: var(--bold);
+  font-size: 40px;
+  line-height: 40px;
+  color: var(--plum);
+}
+
+.reset-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reset-btn {
+  border: none;
+  padding: 0;
+  background-color: transparent;
 }
