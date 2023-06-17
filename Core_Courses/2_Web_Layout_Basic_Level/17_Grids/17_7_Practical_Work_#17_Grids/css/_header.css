@@ -79,12 +79,6 @@
 
 /* media queries */
 
-@media (max-width: 991.98px) {
-  .header {
-    padding-top: 28px;
-  }
-}
-
 @media (max-width: 696.98px) {
   .header {
     padding-top: 30px;
@@ -110,6 +104,24 @@
 }
 
 @media (max-width: 536.98px) {
+  .header {
+    min-height: 80px;
+  }
+
+  .header__container {
+    justify-content: space-between;
+    column-gap: 0;
+  }
+
+  .header__logo {
+    margin-bottom: 0;
+    width: 72px;
+    height: 16px;
+  }
+
+  .header__nav {
+    display: none;
+  }
 }
 
 @media (any-hover: hover) {
