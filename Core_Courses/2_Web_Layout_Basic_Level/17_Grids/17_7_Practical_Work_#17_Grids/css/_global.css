@@ -25,7 +25,8 @@ svg {
 
 .page {
   min-width: var(--page-min-width);
-  height: auto;
+  /* height: auto; */
+  height: 1900px;
   font-family: var(--roboto), sans-serif;
   font-size: var(--default-fs);
   line-height: var(--default-lh);
@@ -62,15 +63,6 @@ svg {
   clip: rect(0, 0, 0, 0);
 }
 
-.section-title {
-  margin-top: 0;
-  margin-bottom: 20px;
-  font-weight: var(--bold);
-  font-size: 40px;
-  line-height: 40px;
-  color: var(--plum);
-}
-
 .reset-list {
   margin: 0;
   padding: 0;
@@ -81,4 +73,18 @@ svg {
   border: none;
   padding: 0;
   background-color: transparent;
+}
+
+.section-title {
+  margin-top: 0;
+  margin-bottom: 28px;
+  font-weight: var(--bold);
+  font-size: 40px;
+  line-height: 40px;
+  color: var(--plum);
+}
+
+.text {
+  margin-top: 0;
+  margin-bottom: 50px;
 }

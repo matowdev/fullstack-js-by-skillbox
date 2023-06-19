@@ -13,10 +13,12 @@
   --bold: 700;
   --default-fs: 16px;
   --default-lh: 24px;
+  --btn-lh: 19px;
 
   /* colors */
   --main-gray: #666;
   --main-blue: #3f2aff;
+  --light-blue: #1188e4;
   --celestial: #e4e8f4;
   --plum: #2e2b44;
   --white: #fff;

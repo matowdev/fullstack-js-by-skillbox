@@ -1,0 +1,51 @@
+.btn {
+  display: inline-block;
+  border-radius: var(--main-radius);
+  padding: 21px 59px;
+  max-width: 300px;
+  max-height: 120px;
+  font-family: var(--roboto), sans-serif;
+  font-weight: var(--bold);
+  font-size: var(--default-fs);
+  line-height: var(--btn-lh);
+  text-align: center;
+  color: var(--white);
+  background: var(--main-blue);
+  outline: none;
+  cursor: pointer;
+  transition-property: color, background-color;
+  transition-duration: var(--short);
+  transition-timing-function: ease-in-out;
+}
+
+.btn:focus-visible {
+  background-color: var(--plum);
+}
+
+.btn:active {
+  background-color: var(--plum);
+}
+
+.btn_big {
+  padding: 24px 76px;
+  max-width: 400px;
+  max-height: 150px;
+  font-size: 18px;
+  line-height: 21px;
+}
+
+.btn_big:focus-visible {
+  color: var(--plum);
+  background-color: var(--celestial);
+}
+
+.btn_big:active {
+  color: var(--plum);
+  background-color: var(--celestial);
+}
+
+@media (any-hover: hover) {
+  .btn:hover:not(:active) {
+    background-color: var(--light-blue);
+  }
+}

@@ -1,0 +1,52 @@
+.hero {
+  margin-bottom: 37px;
+  background: radial-gradient(
+    44.07% 44.07% at 67.78% 55.93%,
+    #555681 0%,
+    #212133 100%
+  );
+}
+
+.hero__wrapper {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 136px;
+  padding-bottom: 130px;
+}
+
+.hero__content-title {
+  font-size: 60px;
+  line-height: 60px;
+  color: var(--white);
+}
+
+.hero__content-text {
+  font-weight: var(--regular);
+  font-size: 18px;
+  line-height: 27px;
+  color: var(--white);
+}
+
+.hero__btn:not(:last-child) {
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.hero__content-text:last-of-type {
+  margin-bottom: 62px;
+}
+
+.hero__svg {
+  /* margin-top: -100px; */
+  position: absolute;
+  top: 51%;
+  left: 71.8%;
+  transform: translate(-50%, -50%);
+  width: 633px;
+  min-height: 593px;
+}
+
+/* ! Создать просто контейнер и положить туда png, через calc() попробовать повоспитывать ширину на 992px заменить */
+
+/* media queries */

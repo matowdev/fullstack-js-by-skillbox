@@ -15,6 +15,7 @@
 
 .hamburger:focus-visible:not(:hover) {
   outline: 3px solid var(--white);
+  outline-offset: 7px;
 }
 
 .hamburger.is-active .hamburger__inner,

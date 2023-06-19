@@ -7,8 +7,9 @@
   <title>17.7. Practical Work #17. Grids!</title>
   <link rel="shortcut icon" href="img/favicon.png" type="image/png">
   <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="libs/bootstrap.min.css">
+  <link rel="stylesheet" href="libs/bootstrap-grid.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/header-burger.js" defer></script>
 </head>
 
 <body class="page">
@@ -22,22 +23,39 @@
       </a>
       <nav class="header__nav">
         <h2 class="visually-hidden section-title header__nav-title">Навигация по сайту:</h2>
-        <div class="header__nav-wrap">
+        <div class="header__nav-wrap js-nav-wrap">
           <ul class="reset-list header__list" title="Главное меню">
-            <li class="header__item"><a class="header__item-link" href="#">Главная</a></li>
-            <li class="header__item"><a class="header__item-link" href="#">О&nbsp;нас</a></li>
-            <li class="header__item"><a class="header__item-link" href="#">Преподаватели</a></li>
-            <li class="header__item"><a class="header__item-link" href="#">Курсы</a></li>
+            <li class="header__item"><a class="header__item-link js-nav-link" href="#">Главная</a></li>
+            <li class="header__item"><a class="header__item-link js-nav-link" href="#">О&nbsp;нас</a></li>
+            <li class="header__item"><a class="header__item-link js-nav-link" href="#">Преподаватели</a></li>
+            <li class="header__item"><a class="header__item-link js-nav-link" href="#">Курсы</a></li>
           </ul>
         </div>
       </nav>
-      <button class="reset-btn hamburger hamburger_emphatic header__hamburger accordion" type="button" title="Меню">
+      <button class="reset-btn hamburger hamburger_emphatic header__hamburger js-burger" type="button" title="Меню">
         <span class="hamburger__box">
           <span class="hamburger__inner"></span>
         </span>
       </button>
     </div>
   </header>
+
+  <main class="main page__main" aria-label="Контент страницы">
+    <!-- 1. -->
+    <section class="hero main__hero" id="hero" aria-label="Секция: Презентация">
+      <div class="container hero__container">
+        <div class="hero__wrapper row no-gutters">
+          <div class="hero__content col-lg-5">
+            <h2 class="section-title hero__content-title">Курсы 3D моделирования</h2>
+            <p class="text hero__content-text">Следует отметить, что существующая теория способствует повышению качества
+              благоприятных перспектив. Не&nbsp;следует, однако, забывать.</p>
+            <a class="btn btn_big hero__btn" href="#" role="button">Выбрать курс</a>
+          </div>
+          <div class="hero__svg" style="background-image: url('img/hero_bg_1440.svg');"></div>
+        </div>
+      </div>
+    </section>
+  </main>
 </body>
 
 </html>
