@@ -44,6 +44,15 @@
   background-color: var(--celestial);
 }
 
+/* media queries */
+
+@media (max-width: 991.98px) {
+  .btn_big {
+    padding: 25px 76px 23px 76px;
+    max-width: 350px;
+  }
+}
+
 @media (any-hover: hover) {
   .btn:hover:not(:active) {
     background-color: var(--light-blue);

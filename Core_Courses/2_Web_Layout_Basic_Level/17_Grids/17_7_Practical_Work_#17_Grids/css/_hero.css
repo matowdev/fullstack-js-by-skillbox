@@ -1,5 +1,6 @@
 .hero {
   margin-bottom: 37px;
+  min-height: 626px;
   background: radial-gradient(
     44.07% 44.07% at 67.78% 55.93%,
     #555681 0%,
@@ -8,11 +9,17 @@
 }
 
 .hero__wrapper {
-  position: relative;
-  display: flex;
+  flex-wrap: nowrap;
   justify-content: space-between;
+  margin-left: 2px;
   padding-top: 136px;
-  padding-bottom: 130px;
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 360px;
 }
 
 .hero__content-title {
@@ -38,15 +45,78 @@
 }
 
 .hero__svg {
-  /* margin-top: -100px; */
-  position: absolute;
-  top: 51%;
-  left: 71.8%;
-  transform: translate(-50%, -50%);
-  width: 633px;
+  display: flex;
+  margin-top: -115px;
+  margin-right: -2px;
+  width: 100%;
+  max-width: 633px;
   min-height: 593px;
+  background-image: url("../img/hero_bg_1440.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
-/* ! Создать просто контейнер и положить туда png, через calc() попробовать повоспитывать ширину на 992px заменить */
-
 /* media queries */
+
+@media (max-width: 991.98px) {
+  .hero {
+    margin-bottom: 40px;
+    min-height: 620px;
+  }
+
+  .hero__wrapper {
+    margin-left: 0;
+    padding-top: 130px;
+  }
+
+  .hero__content {
+    min-height: 355px;
+  }
+
+  .hero__content-title {
+    margin-bottom: 16px;
+    font-size: 50px;
+    line-height: 50px;
+  }
+
+  .hero__content-text {
+    width: 100%;
+    /* max-width: 345px; */
+    max-width: calc(991 / 1100 * 100%);
+    /* ! 1100 рабочий размер контейнера без padding's, a 991 точка перехода в media-запрос с которого начинается подготовка к одному из основных/макетных break-поинтов, в данном случае для/к 768px */
+  }
+
+  .hero__svg {
+    margin-top: -30px;
+    margin-right: 0;
+    margin-left: -17px;
+    /* max-width: 330px; */
+    max-width: calc(991 / 1100 * 100%);
+    min-height: 360px;
+    background-image: url("../img/hero_bg_768.svg");
+  }
+}
+
+@media (max-width: 696.98px) {
+  .hero {
+    min-height: 567px;
+    background: radial-gradient(
+      49% 49% at 67.78% 84.57%,
+      #555681 0%,
+      #2e2b44 100%
+    );
+  }
+
+  .hero__wrapper {
+    padding-top: 77px;
+  }
+
+  .hero__content {
+    max-width: 385px;
+  }
+
+  .hero__svg {
+    display: none;
+  }
+}
