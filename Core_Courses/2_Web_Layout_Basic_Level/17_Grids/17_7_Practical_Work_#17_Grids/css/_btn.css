@@ -53,6 +53,16 @@
   }
 }
 
+@media (max-width: 536.98px) {
+  .btn_big {
+    padding: 21px 54px 20px 54px;
+    max-width: 290px;
+    max-height: 100px;
+    font-size: var(--default-fs);
+    line-height: var(--btn-lh);
+  }
+}
+
 @media (any-hover: hover) {
   .btn:hover:not(:active) {
     background-color: var(--light-blue);

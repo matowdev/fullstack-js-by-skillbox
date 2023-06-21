@@ -8,6 +8,7 @@
 .header__container {
   display: flex;
   flex-wrap: wrap;
+  row-gap: 20px;
   justify-content: space-between;
   align-items: center;
   column-gap: 55px;
@@ -87,6 +88,7 @@
 
   .header__container {
     justify-content: center;
+    row-gap: 0;
     column-gap: 70px;
   }
 
@@ -97,6 +99,7 @@
 
 @media (max-width: 536.98px) {
   .header {
+    padding-bottom: 29px;
     min-height: 80px;
   }
 
