@@ -44,23 +44,35 @@
     <!-- 1. -->
     <section class="hero main__hero" id="hero" aria-label="Секция: Презентация">
       <div class="container hero__container">
-        <div class="hero__wrapper row no-gutters">
+        <div class="hero__content-wrapper row no-gutters">
           <div class="hero__content col-12 col-sm-8 col-md-7 col-lg-5">
             <h2 class="section-title hero__content-title">Курсы 3D моделирования</h2>
             <p class="text hero__content-text">Следует отметить, что существующая теория способствует повышению качества
               благоприятных перспектив. Не&nbsp;следует, однако, забывать.</p>
             <a class="btn btn_big hero__btn" href="#" role="button">Выбрать курс</a>
           </div>
-          <div class="hero__svg"></div>
+          <div class="hero__images-wrapper">
+            <picture>
+              <source srcset="img/hero_bg_320.png, img/hero_bg_320_2x.png 2x" media="(max-width: 536.98px)">
+              <source srcset="img/hero_bg_768.png, img/hero_bg_768_2x.png 2x" media="(max-width: 991.98px)">
+              <img class="hero__image" src="img/hero_bg_1440.png" alt="Графика: 3D иллюзия">
+            </picture>
+          </div>
         </div>
       </div>
     </section>
     <!-- 2. -->
     <section class="benefits main__benefits" id="benefits" aria-label="Секция: Преимущества">
       <div class="container benefits__container">
-        <div class="benefits__wrapper row">
-          <div class="benefits__content col"></div>
+        <div class="benefits__content-wrap-desc row no-gutters">
+          <div class="benefits__content-desc col">
+            <h2 class="section-title benefits__content-desc-title">Преимущества обучения в&nbsp;Skillbox</h2>
+            <p class="text benefits__content-desc-text">Имеется спорная точка зрения, гласящая примерно следующее:
+              акционеры крупнейших компаний, которые представляют собой яркий пример континентально-европейского типа
+              политической культуры, будут рассмотрены исключительно в&nbsp;разрезе маркетинговых предпосылок.</p>
+          </div>
         </div>
+        <ul class="benefits__content-wrap-list row no-gutters"></ul>
       </div>
     </section>
   </main>

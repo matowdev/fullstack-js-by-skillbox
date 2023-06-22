@@ -1,5 +1,4 @@
 .hero {
-  margin-bottom: 37px;
   min-height: 626px;
   background: radial-gradient(
     44.07% 44.07% at 67.78% 55.93%,
@@ -8,18 +7,22 @@
   );
 }
 
-.hero__wrapper {
+.main__hero {
+  margin-bottom: 37px;
+}
+
+.hero__content-wrapper {
   flex-wrap: nowrap;
-  justify-content: space-between;
   margin-left: 2px;
   padding-top: 136px;
-  padding-bottom: 50px;
+  padding-bottom: 44px;
 }
 
 .hero__content {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin-right: 15px;
   min-height: 360px;
 }
 
@@ -45,18 +48,19 @@
   margin-bottom: 62px;
 }
 
-.hero__svg {
+.hero__images-wrapper {
   display: flex;
   margin-top: -115px;
   margin-right: -2px;
   margin-bottom: -38px;
-  width: 100%;
   max-width: 633px;
   min-height: 593px;
-  background-image: url("../img/hero_bg_1440.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
+  /* overflow: hidden;
+  object-fit: contain; */
+}
+
+.hero__image {
+  width: 100%;
 }
 
 /* media queries */
@@ -73,6 +77,7 @@
   }
 
   .hero__content {
+    margin-right: 0;
     min-height: 355px;
   }
 
@@ -86,17 +91,16 @@
     width: 100%;
     /* max-width: 345px; */
     max-width: calc(991 / 1100 * 100%);
-    /* ! 1100 рабочий размер контейнера без padding's, a 991 точка перехода в media-запрос с которого начинается подготовка к одному из основных/макетных break-поинтов, в данном случае для/к 768px */
+    /* 1100 рабочий размер контейнера без padding's, a 991 точка перехода в media-запрос с которого начинается подготовка к одному из основных/макетных break-поинтов, в данном случае для/к 768px */
   }
 
-  .hero__svg {
-    margin-top: -30px;
+  .hero__images-wrapper {
+    margin-top: -13px;
     margin-right: 0;
     margin-bottom: 0;
     margin-left: -43px;
     max-width: calc(991 / 1100 * 100%);
     min-height: 360px;
-    background-image: url("../img/hero_bg_768.svg");
   }
 }
 
@@ -110,7 +114,7 @@
     );
   }
 
-  .hero__wrapper {
+  .hero__content-wrapper {
     padding-top: 77px;
   }
 
@@ -118,7 +122,7 @@
     max-width: 385px;
   }
 
-  .hero__svg {
+  .hero__images-wrapper {
     display: none;
   }
 }
@@ -129,7 +133,7 @@
     min-height: 353px;
   }
 
-  .hero__wrapper {
+  .hero__content-wrapper {
     position: relative;
     padding-top: 50px;
   }
@@ -153,14 +157,13 @@
     line-height: 21px;
   }
 
-  .hero__svg {
+  .hero__images-wrapper {
     position: absolute;
-    top: 29px;
-    right: -12px;
+    top: 12px;
+    right: -10px;
     display: flex;
     margin-right: calc(10% - 29px);
-    max-width: 115px;
+    max-width: 112px;
     min-height: 95px;
-    background-image: url("../img/hero_bg_320.svg");
   }
 }
