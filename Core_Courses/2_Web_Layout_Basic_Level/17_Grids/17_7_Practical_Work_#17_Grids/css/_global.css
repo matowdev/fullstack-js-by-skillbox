@@ -88,3 +88,7 @@ svg {
   margin-top: 0;
   margin-bottom: 50px;
 }
+
+.text:last-child {
+  margin-bottom: 0;
+}
