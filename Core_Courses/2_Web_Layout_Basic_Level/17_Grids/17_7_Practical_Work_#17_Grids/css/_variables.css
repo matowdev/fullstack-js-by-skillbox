@@ -19,9 +19,11 @@
   --main-gray: #666;
   --main-blue: #3f2aff;
   --light-blue: #1188e4;
+  --specific-gray: #85859b;
   --celestial: #e4e8f4;
   --plum: #2e2b44;
   --white: #fff;
+  --dark: #212133;
 
   /* transitions */
   --short: 0.3s;

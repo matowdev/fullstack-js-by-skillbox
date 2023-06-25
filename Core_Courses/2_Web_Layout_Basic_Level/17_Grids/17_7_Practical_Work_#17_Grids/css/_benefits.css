@@ -1,6 +1,6 @@
 .benefits {
   padding-top: 37px;
-  padding-bottom: 40px;
+  padding-bottom: 79.5px;
 }
 
 .benefits__desc-wrap {
@@ -142,7 +142,7 @@
 
 @media (max-width: 696.98px) {
   .benefits {
-    padding-bottom: 30px;
+    padding-bottom: 60px;
   }
 
   .benefits__desc-wrap {
@@ -175,7 +175,7 @@
 @media (max-width: 536.98px) {
   .benefits {
     padding-top: 25px;
-    padding-bottom: 25px;
+    padding-bottom: 50px;
   }
 
   .benefits__desc-wrap {

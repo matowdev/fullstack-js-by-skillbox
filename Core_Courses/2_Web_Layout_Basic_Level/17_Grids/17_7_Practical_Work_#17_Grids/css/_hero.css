@@ -1,4 +1,6 @@
 .hero {
+  padding-top: 136px;
+  padding-bottom: 44px;
   min-height: 626px;
   background: radial-gradient(
     44.07% 44.07% at 67.78% 55.93%,
@@ -14,8 +16,6 @@
 .hero__content-wrapper {
   flex-wrap: nowrap;
   margin-left: 2px;
-  padding-top: 136px;
-  padding-bottom: 44px;
 }
 
 .hero__content {
