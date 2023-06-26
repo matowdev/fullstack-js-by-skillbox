@@ -1,6 +1,7 @@
 .benefits {
   padding-top: 37px;
   padding-bottom: 79.5px;
+  min-height: 296px;
 }
 
 .benefits__desc-wrap {
