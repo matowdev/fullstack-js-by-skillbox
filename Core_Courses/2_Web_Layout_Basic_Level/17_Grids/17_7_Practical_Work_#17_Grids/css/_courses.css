@@ -1,5 +1,25 @@
 .courses {
-  padding-top: 80px;
+  padding-top: 75px;
   padding-bottom: 80px;
   min-height: 1048px;
+}
+
+.courses__title {
+  margin-bottom: 23px;
+}
+
+.courses__list {
+  display: flex;
+  gap: 30px;
+}
+
+.courses__list:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+.courses__item {
+  display: flex;
+  border-radius: 22px;
+  max-width: 540px;
+  overflow: hidden;
 }
