@@ -9,8 +9,8 @@
 
 .card__image {
   display: block;
-  border-top-left-radius: 22px;
-  border-top-right-radius: 22px;
+  border-top-left-radius: var(--main-radius);
+  border-top-right-radius: var(--main-radius);
   width: 100%;
   text-align: center;
   object-fit: contain;

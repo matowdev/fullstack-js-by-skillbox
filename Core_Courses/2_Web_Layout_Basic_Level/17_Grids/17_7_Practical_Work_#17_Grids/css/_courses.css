@@ -10,6 +10,7 @@
 
 .courses__list {
   display: flex;
+  flex-wrap: nowrap;
   gap: 30px;
 }
 
@@ -19,7 +20,8 @@
 
 .courses__item {
   display: flex;
-  border-radius: 22px;
-  max-width: 540px;
+  border-radius: var(--main-radius);
+  /* max-width: 540px; */
+  flex: 0 1 540px;
   overflow: hidden;
 }
