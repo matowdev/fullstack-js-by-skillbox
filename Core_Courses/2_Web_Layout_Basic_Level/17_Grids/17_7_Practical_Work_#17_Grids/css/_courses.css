@@ -20,8 +20,52 @@
 
 .courses__item {
   display: flex;
+  flex-shrink: 1;
   border-radius: var(--main-radius);
-  /* max-width: 540px; */
-  flex: 0 1 540px;
+  max-width: 540px;
   overflow: hidden;
+}
+
+/* media queries */
+
+@media (max-width: 991.98px) {
+  .courses {
+    padding-top: 74px;
+  }
+
+  .courses__title {
+    margin-bottom: 23.5px;
+  }
+
+  .courses__item {
+    /* max-width: 330px; */
+  }
+}
+
+@media (max-width: 696.98px) {
+  .courses__item {
+    /* max-width: 240px; */
+    min-height: 653px;
+  }
+
+  .courses__title {
+    margin-bottom: 24px;
+  }
+}
+
+@media (max-width: 536.98px) {
+  .courses {
+    padding-top: 46.5px;
+    padding-bottom: 50px;
+  }
+
+  .courses__title {
+    margin-bottom: 26px;
+    font-size: 20px;
+    line-height: 100%;
+  }
+
+  .courses__list {
+    flex-wrap: wrap;
+  }
 }
