@@ -9,7 +9,10 @@
 }
 
 .courses__list {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
   gap: 30px;
 }
@@ -19,7 +22,10 @@
 }
 
 .courses__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-negative: 1;
   flex-shrink: 1;
   border-radius: var(--main-radius);
   max-width: 540px;
@@ -61,6 +67,7 @@
   }
 
   .courses__list {
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
   }
 }

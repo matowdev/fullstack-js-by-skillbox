@@ -10,12 +10,18 @@
 }
 
 .footer__item-link {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
   align-items: flex-start;
   width: 24px;
   height: 24px;
   color: var(--white);
   outline: none;
+  -webkit-transition: color var(--short);
+  -o-transition: color var(--short);
   transition: color var(--short);
 }
 

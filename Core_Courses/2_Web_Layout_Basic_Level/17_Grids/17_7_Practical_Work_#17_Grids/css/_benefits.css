@@ -9,7 +9,11 @@
 }
 
 .benefits__desc-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   max-width: 775px;
   overflow: hidden;
@@ -18,7 +22,10 @@
 
 .benefits__desc-group::before {
   content: "";
+  -ms-flex-negative: 0;
   flex-shrink: 0;
+  -ms-flex-item-align: center;
+  -ms-grid-row-align: center;
   align-self: center;
   margin-right: 30px;
   padding-top: calc(150 / 775 * 100%);
@@ -42,14 +49,21 @@
 }
 
 .benefits__list {
+  -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
   gap: 30px;
   max-width: calc(1360 / 1440 * 100%);
 }
 
 .benefits__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
   justify-content: flex-start;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   max-width: 350px;
   font-weight: var(--bold);
@@ -65,6 +79,7 @@
 }
 
 .benefits__item svg {
+  -ms-flex-negative: 0;
   flex-shrink: 0;
   margin-right: 29px;
 }
@@ -112,14 +127,25 @@
   }
 
   .benefits__list {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
     max-width: 100%;
   }
 
   .benefits__item {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
     justify-content: flex-start;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
     align-items: flex-start;
     max-width: calc(301 / 991 * 100%);
   }
@@ -208,12 +234,20 @@
   }
 
   .benefits__list {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     gap: 0;
   }
 
   .benefits__item {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
     flex-direction: row;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     max-width: 100%;
   }

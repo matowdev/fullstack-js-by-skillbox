@@ -13,8 +13,14 @@
   background: var(--main-blue);
   outline: none;
   cursor: pointer;
+  -webkit-transition-property: color, background-color;
+  -o-transition-property: color, background-color;
   transition-property: color, background-color;
+  -webkit-transition-duration: var(--short);
+  -o-transition-duration: var(--short);
   transition-duration: var(--short);
+  -webkit-transition-timing-function: ease-in-out;
+  -o-transition-timing-function: ease-in-out;
   transition-timing-function: ease-in-out;
 }
 
