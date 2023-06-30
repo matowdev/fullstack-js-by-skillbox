@@ -224,6 +224,7 @@
 
   .benefits__item_three p {
     margin-bottom: 0px !important;
+    line-height: 119%;
   }
 
   .benefits__item svg {
