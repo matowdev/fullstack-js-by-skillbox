@@ -6,9 +6,20 @@
 }
 
 .teachers__title {
+  display: inline-block;
   margin-bottom: 25px;
   line-height: 95%;
   color: var(--white);
+  outline: none;
+}
+
+.teachers__title:focus-visible:not(:hover) {
+  outline: 3px solid var(--white);
+  outline-offset: 6px;
+}
+
+.teachers__title:active {
+  color: var(--celestial);
 }
 
 .teachers__row-wrap {
@@ -51,6 +62,17 @@
   font-size: 18px;
   line-height: 150%;
   color: var(--white);
+  outline: none;
+}
+
+.strong:focus-visible:not(:hover) {
+  margin-left: 10px;
+  outline: 3px solid var(--white);
+  outline-offset: 5px;
+}
+
+.strong:active {
+  color: var(--celestial);
 }
 
 .teachers__item-about {

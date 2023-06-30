@@ -36,15 +36,10 @@
   .courses__title {
     margin-bottom: 23.5px;
   }
-
-  /* .courses__item {
-    max-width: 330px;
-  } */
 }
 
 @media (max-width: 696.98px) {
   .courses__item {
-    /* max-width: 240px; */
     min-height: 653px;
   }
 

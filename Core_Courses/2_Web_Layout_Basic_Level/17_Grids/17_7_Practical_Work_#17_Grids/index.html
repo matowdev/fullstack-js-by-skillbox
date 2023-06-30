@@ -25,7 +25,7 @@
         <h2 class="visually-hidden section-title header__nav-title">Навигация по сайту:</h2>
         <div class="header__nav-wrap js-nav-wrap">
           <ul class="reset-list header__list" title="Главное меню">
-            <li class="currentColorr__item"><a class="header__item-link js-nav-link" href="#">Главная</a></li>
+            <li class="header__item"><a class="header__item-link js-nav-link" href="#">Главная</a></li>
             <li class="header__item"><a class="header__item-link js-nav-link" href="#">О&nbsp;нас</a></li>
             <li class="header__item"><a class="header__item-link js-nav-link" href="#teachers">Преподаватели</a></li>
             <li class="header__item"><a class="header__item-link js-nav-link" href="#courses">Курсы</a></li>
@@ -168,11 +168,11 @@
       </div>
     </section>
     <!-- 3. -->
-    <section class="teachers main__teachers" id="teachers" aria-label="Секция: Преподаватели курсов">
+    <section class="teachers main__teachers" id="teachers" aria-label="Секция: Учителя">
       <div class="container teachers__container">
-        <h2 class="section-title teachers__title">Преподаватели курсов</h2>
+        <h2 class="section-title teachers__title" tabindex="0">Преподаватели курсов</h2>
         <div class="teachers__row-wrap">
-          <ul class="reset-list teachers__list row d-inline-flex no-gutters">
+          <ul class="reset-list teachers__list row d-inline-flex no-gutters" aria-label="Наши педагоги">
             <li class="teachers__item col-12 col-sm-6 col-xl-6">
               <picture>
                 <source srcset="img/teachers_Petrov_320.jpg, img/teachers_Petrov_320_2x.jpg 2x"
@@ -185,7 +185,7 @@
                   alt="Фото: преподаватель, Владимир Петров">
               </picture>
               <div class="teachers__item-wrap">
-                <strong class="strong">Владимир Петров</strong>
+                <strong class="strong" tabindex="0">Владимир Петров</strong>
                 <p class="text teachers__item-about">Лишь непосредственные участники технического прогресса неоднозначны
                   <span class="about-show">и будут в равной степени предоставлены сами себе.</span><span
                     class="about-hide">и&nbsp;будут в&nbsp;равной степени предоставлены&nbsp;сами себе.</span>
@@ -204,13 +204,13 @@
                   alt="Фото: преподаватель, Денис Сергеев">
               </picture>
               <div class="teachers__item-wrap">
-                <strong class="strong">Денис Сергеев</strong>
+                <strong class="strong" tabindex="0">Денис Сергеев</strong>
                 <p class="text teachers__item-about">Безусловно, разбавленное изрядной долей эмпатии, рациональное
                   мышление.</p>
               </div>
             </li>
           </ul>
-          <ul class="reset-list teachers__list row d-inline-flex no-gutters">
+          <ul class="reset-list teachers__list row d-inline-flex no-gutters" aria-label="Наши педагоги">
             <li class="teachers__item col-12 col-sm-6 col-xl-6">
               <picture>
                 <source srcset="img/teachers_Andreev_320.jpg, img/teachers_Andreev_320_2x.jpg 2x"
@@ -223,7 +223,7 @@
                   alt="Фото: преподаватель, Михаил Андреев">
               </picture>
               <div class="teachers__item-wrap">
-                <strong class="strong">Михаил Андреев</strong>
+                <strong class="strong" tabindex="0">Михаил Андреев</strong>
                 <p class="text teachers__item-about">Ясность нашей позиции очевидна<span class="about-hide">:</span>
                   высокое качество позиционных исследований напрямую зависит от&nbsp;вывода.</p>
               </div>
@@ -240,7 +240,7 @@
                   alt="Фото: преподаватель, Константин Дмитриев">
               </picture>
               <div class="teachers__item-about">
-                <strong class="strong">Константин Дмитриев</strong>
+                <strong class="strong" tabindex="0">Константин Дмитриев</strong>
                 <p class="text teachers__item-about">Мы&nbsp;вынуждены отталкиваться <span class="show-about">от
                     того,</span><span class="hide-about">от&nbsp;того,</span> что существующая теория, в своём
                   классическом представлении.</p>
@@ -254,7 +254,7 @@
     <section class="courses main__courses" id="courses" aria-label="Секция: Каталог курсов">
       <div class="container courses__container">
         <h2 class="section-title courses__title">Курсы</h2>
-        <ul class="reset-list courses__list row no-gutters">
+        <ul class="reset-list courses__list row no-gutters" aria-label="Курс на выбор">
           <li class="courses__item courses__item-one col-12 col-sm-6">
             <article class="card card-one courses__item-card">
               <div class="card__images-wrap">
@@ -303,7 +303,7 @@
             </article>
           </li>
         </ul>
-        <ul class="reset-list courses__list row no-gutters">
+        <ul class="reset-list courses__list row no-gutters" aria-label="Курс на выбор">
           <li class="courses__item courses__item-three col-12 col-sm-6">
             <article class="card card-three courses__item-card">
               <div class="card__images-wrap">
@@ -358,7 +358,7 @@
 
   <footer class="footer page__footer" id="footer" aria-label="Нижний колонтитул страницы (подвал сайта)">
     <div class="container footer__container">
-      <ul class="reset-list footer__socials-list row no-gutters justify-content-center">
+      <ul class="reset-list footer__socials-list row no-gutters justify-content-center" aria-label="Социальные сети">
         <li class="footer__socials-item">
           <a class="footer__item-link link-facebook" href="https://www.facebook.com/" target="_blank">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -426,6 +426,7 @@
       </ul>
     </div>
   </footer>
+
   <span class="company">Skillbox <span class="unicode">&reg;</span> 2023</span>
 </body>
 

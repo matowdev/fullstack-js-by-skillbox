@@ -55,12 +55,13 @@
   margin-bottom: -38px;
   max-width: 633px;
   min-height: 593px;
-  /* overflow: hidden;
-  object-fit: contain; */
+  overflow: hidden;
 }
 
 .hero__image {
   width: 100%;
+  text-align: center;
+  object-fit: contain;
 }
 
 /* media queries */
@@ -89,9 +90,7 @@
 
   .hero__content-text {
     width: 100%;
-    /* max-width: 345px; */
     max-width: calc(991 / 1100 * 100%);
-    /* 1100 рабочий размер контейнера без padding's, a 991 точка перехода в media-запрос с которого начинается подготовка к одному из основных/макетных break-поинтов, в данном случае для/к 768px */
   }
 
   .hero__images-wrapper {
