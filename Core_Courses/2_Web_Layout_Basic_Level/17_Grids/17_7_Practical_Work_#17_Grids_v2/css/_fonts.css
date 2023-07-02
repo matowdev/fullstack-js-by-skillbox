@@ -1,0 +1,17 @@
+/* regular - 400 */
+@font-face {
+  font-display: swap;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/roboto-v30-cyrillic-regular.woff2") format("woff2");
+}
+
+/* bold - 700 */
+@font-face {
+  font-display: swap;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../fonts/roboto-v30-cyrillic-700.woff2") format("woff2");
+}

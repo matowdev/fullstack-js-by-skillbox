@@ -1,0 +1,44 @@
+:root {
+  /* sizes */
+  --page-min-width: 320px;
+  /* --container-max-width: 1188px;
+  --container-padding: 39px; */
+
+  /* borders */
+  --main-radius: 20px;
+
+  /* fonts */
+  --roboto: "Roboto";
+  --regular: 400;
+  --bold: 700;
+  --default-fs: 16px;
+  --default-lh: 24px;
+  --btn-lh: 19px;
+
+  /* colors */
+  --main-gray: #666;
+  --main-blue: #3f2aff;
+  --light-blue: #1188e4;
+  --specific-gray: #85859b;
+  --celestial: #e4e8f4;
+  --plum: #2e2b44;
+  --white: #fff;
+  --dark: #212133;
+  --card-bg: #edf0f9;
+  --link-fill: #fd292f;
+
+  /* transitions */
+  --short: 0.3s;
+}
+
+/* @media (max-width: 696.98px) {
+  :root {
+    --container-padding: 33px;
+  }
+}
+
+@media (max-width: 536.98px) {
+  :root {
+    --container-padding: 15px;
+  }
+} */
