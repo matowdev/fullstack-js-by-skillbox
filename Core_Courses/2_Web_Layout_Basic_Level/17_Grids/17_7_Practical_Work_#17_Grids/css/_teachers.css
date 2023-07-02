@@ -149,11 +149,11 @@
 @media (max-width: 536.98px) {
   .teachers {
     padding-top: 46px;
-    padding-bottom: 42.5px;
+    padding-bottom: 44px;
   }
 
   .teachers__title {
-    margin-bottom: 26px;
+    margin-bottom: 27px;
     font-size: 20px;
     line-height: 100%;
   }
@@ -168,8 +168,24 @@
   }
 
   .teachers__item {
-    row-gap: 32px;
-    max-width: 289px;
+    row-gap: 30px;
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;
+    max-width: 100%;
+  }
+
+  .teachers__item picture {
+    width: 100%;
+  }
+
+  .teachers__item-image {
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;
+  }
+
+  .strong {
+    margin-top: 0.5px;
+    margin-left: 1px;
   }
 
   .teachers__item_down {

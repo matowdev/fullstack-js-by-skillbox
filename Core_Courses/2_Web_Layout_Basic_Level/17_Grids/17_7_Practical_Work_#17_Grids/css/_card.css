@@ -129,9 +129,21 @@
     padding-bottom: 29.5px;
   }
 
+  .card-two {
+    margin-top: 0.5px;
+  }
+
+  .card-three {
+    margin-top: 0.4px;
+  }
+
   .card-three .card__content-wrap {
     padding-top: 30px;
     padding-bottom: 28px;
+  }
+
+  .card-four {
+    margin-top: 0.7px;
   }
 
   .card-four .card__content-wrap {
