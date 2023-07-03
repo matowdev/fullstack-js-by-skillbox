@@ -1,3 +1,7 @@
+* {
+  outline: none;
+}
+
 .page {
   min-width: var(--page-min-width);
   /* height: auto; */
@@ -29,6 +33,8 @@
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
 }
+
+/* ! может что-то не нужно, т.е. вообще не использовалось..?? */
 
 .reset-list {
   margin: 0;

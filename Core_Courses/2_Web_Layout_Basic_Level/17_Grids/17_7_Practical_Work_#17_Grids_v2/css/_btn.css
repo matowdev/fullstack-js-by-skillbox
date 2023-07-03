@@ -1,0 +1,9 @@
+.btn:focus {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.btn:focus-visible:not(:hover) {
+  outline: 2px solid var(--celestial);
+  outline-offset: 3px;
+}

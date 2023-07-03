@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="libs/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <script src="libs/jquery-3.7.0.min.js" defer></script>
+  <script src="libs/bootstrap.min.js" defer></script>
 </head>
 
 <body class="page">
@@ -17,7 +19,33 @@
 
   <header class="header page__header" id="header" aria-label="Верхний колонтитул страницы (шапка сайта)">
     <div class="container header__container" aria-labelledby="header">
-      <div class="test"></div>
+      <nav class="navbar navbar-expand-sm flex-sm-column flex-md-row header__nav">
+        <h2 class="visually-hidden section-title header__nav-title">Навигация по сайту:</h2>
+        <a class="navbar-brand mb-sm-4 header__logo" tabindex="0">
+          <img src="img/Skillbox_logo_small.svg" width="72" height="16"
+            alt="Логотип: Skillbox - образовательная платформа">
+        </a>
+        <button class="btn navbar-toggler navbar-light header__burger" type="button" data-toggle="collapse"
+          data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Кнопка навигации">
+          <span class="navbar-toggler-icon header__burger-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-md-end header__list-wrap" id="navbarNav">
+          <ul class="navbar-nav header__list" title="Главное меню">
+            <li class="nav-item px-sm-3 pr-sm-4 header__item">
+              <a class="nav-link header__item-link" href="#">Главная</a>
+            </li>
+            <li class="nav-item px-sm-3 pr-sm-4 header__item">
+              <a class="nav-link header__item-link" href="#">О&nbsp;нас</a>
+            </li>
+            <li class="nav-item px-sm-3 pr-sm-4 header__item">
+              <a class="nav-link header__item-link" href="#teachers">Преподаватели</a>
+            </li>
+            <li class="nav-item px-sm-3 header__item">
+              <a class="nav-link header__item-link" href="#courses">Курсы</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </div>
   </header>
 </body>
