@@ -2,6 +2,15 @@
   outline: none;
 }
 
+a {
+  text-decoration: none !important;
+  color: inherit;
+}
+
+a:hover {
+  color: var(--white);
+}
+
 .page {
   min-width: var(--page-min-width);
   /* height: auto; */

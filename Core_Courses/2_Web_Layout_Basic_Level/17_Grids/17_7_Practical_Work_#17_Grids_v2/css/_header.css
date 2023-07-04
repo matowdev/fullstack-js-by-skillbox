@@ -6,19 +6,6 @@
   margin-right: 80px;
 }
 
-.header__nav {
-  /* ! может попробовать обойтись внутренними классами ?? */
-  padding-top: 1.5rem;
-  padding-right: 0;
-  padding-bottom: 1.5rem;
-  padding-left: 0;
-}
-
-.header__logo {
-  padding: 0;
-  padding-bottom: 3px;
-}
-
 .header__logo:focus-visible {
   outline: 2px solid var(--celestial);
   outline-offset: 4px;
@@ -35,12 +22,6 @@
   color: inherit;
 }
 
-.header__burger {
-  /* ! и здесь может отступ справа можно внутренними.. */
-  margin-right: 8px;
-  padding: 0;
-}
-
 .header__burger .header__burger-icon {
   width: 1.2em;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
@@ -53,20 +34,19 @@
 /* media queries */
 
 @media (min-width: 576px) {
-  .header__nav {
-    padding-bottom: 1.3rem;
-  }
-
-  .header__logo {
-    margin-right: 0;
-    padding-top: 3px;
-    padding-bottom: 0;
-  }
-
   .header__logo img {
-    src: url("../img/Skillbox_logo_light.svg");
     width: 94px;
     height: 21px;
+  }
+
+  .header__list-wrap {
+    margin-bottom: -1px;
+  }
+}
+
+@media (min-width: 768px) {
+  .header__list-wrap {
+    margin-bottom: 0;
   }
 }
 
