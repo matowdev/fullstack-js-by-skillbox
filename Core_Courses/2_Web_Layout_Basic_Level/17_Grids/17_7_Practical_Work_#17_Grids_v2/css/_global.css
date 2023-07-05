@@ -1,14 +1,5 @@
-* {
-  outline: none;
-}
-
 a {
   text-decoration: none !important;
-  color: inherit;
-}
-
-a:hover {
-  color: var(--white);
 }
 
 .page {

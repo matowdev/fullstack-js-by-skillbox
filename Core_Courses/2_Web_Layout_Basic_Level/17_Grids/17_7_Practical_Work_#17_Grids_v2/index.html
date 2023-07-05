@@ -32,25 +32,51 @@
         <div
           class="collapse navbar-collapse navbar-nav-scroll w-100 justify-content-md-end align-self-md-start header__list-wrap"
           id="navbarNav">
-          <ul class="navbar-nav w-100 justify-content-sm-between justify-content-md-end header__list"
+          <ul class="navbar-nav w-100 align-items-start justify-content-sm-between justify-content-md-end header__list"
             title="Главное меню">
             <li class="nav-item pl-sm-3 pl-md-0 header__item">
-              <a class="nav-link pl-sm-1 pt-md-1 pr-md-5 pb-md-3 header__item-link" href="#">Главная</a>
+              <a class="nav-link mb-3 ml-2 py-1 mb-sm-0 ml-sm-0 py-sm-2 pl-sm-1 pt-md-1 pr-md-5 pb-md-3 header__item-link"
+                href="#">Главная</a>
             </li>
             <li class="nav-item header__item">
-              <a class="nav-link pt-md-1 pr-md-5 pb-md-3 header__item-link" href="#">О&nbsp;нас</a>
+              <a class="nav-link mb-3 ml-2 py-1 mb-sm-0 ml-sm-0 py-sm-2 pt-md-1 pr-md-5 pb-md-3 header__item-link"
+                href="#">О&nbsp;нас</a>
             </li>
             <li class="nav-item header__item">
-              <a class="nav-link pt-md-1 pr-md-5 pb-md-3 header__item-link" href="#teachers">Преподаватели</a>
+              <a class="nav-link mb-3 ml-2 py-1 mb-sm-0 ml-sm-0 py-sm-2 pt-md-1 pr-md-5 pb-md-3 header__item-link"
+                href="#teachers">Преподаватели</a>
             </li>
             <li class="nav-item pr-sm-3 pr-md-0 header__item">
-              <a class="nav-link pr-sm-1 pt-md-1 pb-md-3 header__item-link" href="#courses">Курсы</a>
+              <a class="nav-link mb-3 ml-2 py-1 mb-sm-0 ml-sm-0 py-sm-2 pr-sm-1 pt-md-1 pb-md-3 header__item-link"
+                href="#courses">Курсы</a>
             </li>
           </ul>
         </div>
       </nav>
     </div>
   </header>
+
+  <main class="main page__main" aria-label="Контент страницы">
+    <!-- 1. -->
+    <section class="hero main__hero" id="hero" aria-label="Секция: Презентация">
+      <div class="container position-relative hero__container">
+        <div class="row hero__row">
+          <div class="col hero__content-wrap">
+            <div class="py-5 hero__content">
+              <h2 class="w-75 mb-1 hero__content-title">Курсы 3D моделирования</h2>
+              <p class="mb-5 text hero__content-text">Следует отметить, что существующая теория способствует повышению
+                качества благоприятных перспектив. Не&nbsp;следует, однако, забывать.</p>
+              <a class="btn btn-primary btn-lg hero__btn" href="#courses" role="button">Выбрать курс</a>
+            </div>
+          </div>
+          <div class="col hero__image-wrap">
+            <div class="hero__image"></div>
+          </div>
+        </div>
+        <div class="position-absolute d-flex hero__cube"></div>
+      </div>
+    </section>
+  </main>
 </body>
 
 </html>
