@@ -57,14 +57,14 @@ a {
   color: var(--plum);
 }
 
-.text {
+/* .text {
   margin-top: 0;
   margin-bottom: 30px;
 }
 
 .text:last-child {
   margin-bottom: 0;
-}
+} */
 
 .company {
   display: block;
