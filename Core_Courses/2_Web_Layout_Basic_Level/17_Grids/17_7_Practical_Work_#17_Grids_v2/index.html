@@ -19,36 +19,29 @@
 
   <header class="header page__header" id="header" aria-label="Верхний колонтитул страницы (шапка сайта)">
     <div class="container header__container" aria-labelledby="header">
-      <nav class="navbar navbar-expand-sm px-0 py-4 flex-sm-column flex-md-row pb-md-3 header__nav">
+      <nav class="navbar navbar-expand-sm px-0 header__nav">
         <h2 class="visually-hidden section-title header__nav-title">Навигация по сайту:</h2>
-        <a class="navbar-brand d-flex mr-sm-0 mb-sm-3 pb-sm-2 mb-md-0 align-self-md-start header__logo" tabindex="0">
+        <a class="navbar-brand mr-0 p-0 header__logo" tabindex="0">
           <img src="img/Skillbox_logo_small.svg" width="72" height="16"
             alt="Логотип: Skillbox - образовательная платформа">
         </a>
-        <button class="btn navbar-toggler mr-2 p-0 navbar-light header__burger" type="button" data-toggle="collapse"
+        <button class="btn navbar-toggler navbar-light p-0 mr-2 header__burger" type="button" data-toggle="collapse"
           data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Кнопка навигации">
           <span class="navbar-toggler-icon header__burger-icon"></span>
         </button>
-        <div
-          class="collapse navbar-collapse navbar-nav-scroll w-100 justify-content-md-end align-self-md-start header__list-wrap"
-          id="navbarNav">
-          <ul class="navbar-nav w-100 align-items-start justify-content-sm-between justify-content-md-end header__list"
-            title="Главное меню">
-            <li class="nav-item pl-sm-3 pl-md-0 header__item">
-              <a class="nav-link mb-3 ml-2 py-1 mb-sm-0 ml-sm-0 py-sm-2 pl-sm-1 pt-md-1 pr-md-5 pb-md-3 header__item-link"
-                href="#">Главная</a>
+        <div class="collapse navbar-collapse navbar-nav-scroll header__list-wrap" id="navbarNav">
+          <ul class="navbar-nav align-items-start p-0 header__list" title="Главное меню">
+            <li class="nav-item header__item">
+              <a class="nav-link p-1 header__item-link" href="#">Главная</a>
             </li>
             <li class="nav-item header__item">
-              <a class="nav-link mb-3 ml-2 py-1 mb-sm-0 ml-sm-0 py-sm-2 pt-md-1 pr-md-5 pb-md-3 header__item-link"
-                href="#">О&nbsp;нас</a>
+              <a class="nav-link p-1 header__item-link" href="#">О&nbsp;нас</a>
             </li>
             <li class="nav-item header__item">
-              <a class="nav-link mb-3 ml-2 py-1 mb-sm-0 ml-sm-0 py-sm-2 pt-md-1 pr-md-5 pb-md-3 header__item-link"
-                href="#teachers">Преподаватели</a>
+              <a class="nav-link p-1 header__item-link header__item-link_down" href="#teachers">Преподаватели</a>
             </li>
-            <li class="nav-item pr-sm-3 pr-md-0 header__item">
-              <a class="nav-link mb-3 ml-2 py-1 mb-sm-0 ml-sm-0 py-sm-2 pr-sm-1 pt-md-1 pb-md-3 header__item-link"
-                href="#courses">Курсы</a>
+            <li class="nav-item header__item">
+              <a class="nav-link p-1 header__item-link header__item-link_right" href="#courses">Курсы</a>
             </li>
           </ul>
         </div>
@@ -61,7 +54,7 @@
     <section class="hero main__hero" id="hero" aria-label="Секция: Презентация">
       <div class="container position-relative hero__container">
         <div class="row hero__row">
-          <div class="col col-sm-8 col-md-6 col-lg-5 hero__content-wrap">
+          <div class="col-sm-8 col-md-6 col-lg-5 hero__content-wrap">
             <div class="py-5 mt-sm-4 mt-md-5 hero__content">
               <h2 class="mb-1 mb-sm-3 mb-lg-4 hero__content-title">Курсы 3D моделирования</h2>
               <p class="mb-5 pb-sm-3 text hero__content-text">Следует отметить, что существующая теория способствует
@@ -74,6 +67,19 @@
           </div>
         </div>
         <div class="position-absolute d-flex hero__cube"></div>
+      </div>
+    </section>
+    <!-- 2. -->
+    <section class="benefits main__benefits" id="benefits" aria-label="Секция: Преимущества">
+      <div class="container benefits__container">
+        <div class="row benefits__row">
+          <div class="col benefits__content-wrap">
+            <div class="benefits__content">
+              <h2 class="benefits__content-title"></h2>
+              <p class="benefits__content-text"></p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>

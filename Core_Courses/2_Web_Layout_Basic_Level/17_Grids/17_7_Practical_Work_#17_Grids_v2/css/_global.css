@@ -34,20 +34,6 @@ a {
   clip: rect(0, 0, 0, 0);
 }
 
-/* ! может что-то не нужно, т.е. вообще не использовалось..?? */
-
-.reset-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.reset-btn {
-  border: none;
-  padding: 0;
-  background-color: transparent;
-}
-
 .section-title {
   margin-top: 0;
   margin-bottom: 28px;
@@ -57,14 +43,10 @@ a {
   color: var(--plum);
 }
 
-/* .text {
-  margin-top: 0;
-  margin-bottom: 30px;
+.text:not(:last-of-type) {
+  padding-bottom: 15px !important;
+  margin-bottom: 0 !important;
 }
-
-.text:last-child {
-  margin-bottom: 0;
-} */
 
 .company {
   display: block;

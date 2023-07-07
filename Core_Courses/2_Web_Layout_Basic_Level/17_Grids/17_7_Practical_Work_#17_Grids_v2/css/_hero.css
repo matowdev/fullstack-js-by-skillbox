@@ -22,10 +22,6 @@
   color: var(--white);
 }
 
-.hero__content-text:last-of-type {
-  margin-bottom: 30px;
-}
-
 .hero__btn {
   margin-top: -2.2px;
   margin-bottom: 2px;
@@ -101,6 +97,14 @@
 }
 
 @media (min-width: 768px) {
+  .hero {
+    background: radial-gradient(
+      44.07% 44.07% at 67.78% 55.93%,
+      #555681 0%,
+      #212133 100%
+    );
+  }
+
   .hero__content {
     min-height: 572px;
   }
