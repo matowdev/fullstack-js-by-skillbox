@@ -44,8 +44,9 @@ a {
 }
 
 .text:not(:last-of-type) {
-  padding-bottom: 15px !important;
   margin-bottom: 0 !important;
+  padding-top: 5px !important;
+  padding-bottom: 12px !important;
 }
 
 .company {
