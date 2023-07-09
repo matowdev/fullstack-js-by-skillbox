@@ -34,15 +34,6 @@ a {
   clip: rect(0, 0, 0, 0);
 }
 
-.section-title {
-  margin-top: 0;
-  margin-bottom: 28px;
-  font-weight: var(--bold);
-  font-size: 40px;
-  line-height: 40px;
-  color: var(--plum);
-}
-
 .text:not(:last-of-type) {
   margin-bottom: 0 !important;
   padding-top: 5px !important;

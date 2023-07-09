@@ -1,0 +1,127 @@
+.benefits__image-wrap {
+  display: none;
+}
+
+.benefits__content {
+  padding-top: 50px;
+  margin-bottom: 8px;
+}
+
+.benefits__content-title {
+  margin-bottom: 2px;
+  font-weight: var(--bold);
+  font-size: 20px;
+  line-height: 130%;
+  color: var(--plum);
+}
+
+.benefits__content-text {
+  margin-bottom: 0;
+}
+
+.benefits__list {
+  padding-top: 15px;
+  margin-bottom: 50px;
+  row-gap: 30px;
+}
+
+.benefits__item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-weight: var(--bold);
+  line-height: 120%;
+}
+
+.benefits__item > svg {
+  flex-shrink: 0;
+  margin-right: 29px;
+  color: var(--main-blue);
+}
+
+.benefits__item-text {
+  margin-bottom: 0;
+}
+
+/* media queries */
+
+@media (min-width: 576px) {
+  .benefits__image-wrap {
+    display: flex;
+  }
+
+  .benefits__image {
+    width: 100%;
+  }
+
+  .benefits__image::before {
+    content: "";
+    display: inherit;
+    padding-top: 197%;
+    width: inherit;
+    background: url("../img/benefits_icon_576.svg") no-repeat center / contain;
+  }
+
+  .benefits__content {
+    padding-top: 80px;
+  }
+
+  .benefits__content-title {
+    margin-bottom: 18px;
+    font-size: 40px;
+    line-height: 40px;
+  }
+
+  .benefits__list {
+    padding-top: 15px;
+    column-gap: 30px;
+  }
+
+  .benefits__item {
+    flex-direction: column;
+    align-items: flex-start;
+    flex-basis: 150px;
+  }
+
+  .benefits__item > svg {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
+
+@media (min-width: 768px) {
+  .benefits__image::before {
+    padding-top: 139%;
+    background: url("../img/benefits_icon_768.svg") no-repeat bottom / contain;
+  }
+
+  .benefits__content-title {
+    margin-bottom: 17px;
+  }
+
+  .benefits__item {
+    flex-basis: 210px;
+  }
+
+  .benefits__item > svg {
+    margin-bottom: 11px;
+  }
+}
+
+@media (min-width: 992px) {
+  .benefits__image::before {
+    padding-top: 149%;
+    background: url("../img/benefits_icon_1440.svg") no-repeat bottom / contain;
+  }
+
+  .benefits__item {
+    flex-direction: row;
+    align-items: center;
+    flex-basis: 350px;
+  }
+
+  .benefits__item > svg {
+    margin-right: 30px;
+    margin-bottom: 0;
+  }
+}

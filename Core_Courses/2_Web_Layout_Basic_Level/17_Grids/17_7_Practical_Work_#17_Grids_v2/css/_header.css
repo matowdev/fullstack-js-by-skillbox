@@ -41,6 +41,7 @@
 }
 
 .header__list {
+  align-items: flex-start;
   font-weight: var(--regular);
   font-size: 18px;
   line-height: 20px;

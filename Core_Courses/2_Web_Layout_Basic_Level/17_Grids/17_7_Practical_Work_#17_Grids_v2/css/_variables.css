@@ -1,8 +1,6 @@
 :root {
   /* sizes */
   --page-min-width: 320px;
-  /* --container-max-width: 1188px;
-  --container-padding: 39px; */
 
   /* borders */
   --main-radius: 20px;
@@ -30,15 +28,3 @@
   /* transitions */
   --short: 0.3s;
 }
-
-/* @media (max-width: 696.98px) {
-  :root {
-    --container-padding: 33px;
-  }
-}
-
-@media (max-width: 536.98px) {
-  :root {
-    --container-padding: 15px;
-  }
-} */
