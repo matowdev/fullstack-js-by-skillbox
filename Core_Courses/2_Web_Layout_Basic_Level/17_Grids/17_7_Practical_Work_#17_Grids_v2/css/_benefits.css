@@ -114,10 +114,24 @@
     background: url("../img/benefits_icon_1440.svg") no-repeat bottom / contain;
   }
 
+  .benefits__content {
+    padding-top: 74px;
+  }
+
+  .benefits__content-title {
+    max-width: 475px;
+    margin-bottom: 17px;
+  }
+
   .benefits__item {
     flex-direction: row;
     align-items: center;
     flex-basis: 350px;
+  }
+
+  .benefits__item-text_offset {
+    margin-top: 3px;
+    margin-left: -4px;
   }
 
   .benefits__item > svg {
