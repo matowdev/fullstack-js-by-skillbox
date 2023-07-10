@@ -181,7 +181,7 @@
   }
 }
 
-@media (min-width: 1140px) {
+@media (min-width: 1200px) {
   .hero__image::before {
     margin-left: 2px;
   }

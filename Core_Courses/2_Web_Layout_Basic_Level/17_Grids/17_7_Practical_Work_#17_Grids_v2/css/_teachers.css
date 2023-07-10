@@ -1,0 +1,78 @@
+.teachers {
+  background: var(--dark);
+}
+
+.teachers__card-wrap:not(:last-child) {
+  margin-bottom: 23px !important;
+}
+
+.teachers__card-wrap:last-child {
+  padding-bottom: 42px !important;
+}
+
+.teachers__title {
+  display: inline-block;
+  margin-top: 47px;
+  margin-bottom: 27px;
+  font-weight: var(--bold);
+  font-size: 20px;
+  line-height: 100%;
+  color: var(--white);
+  outline: none;
+}
+
+.teachers__title:focus-visible:not(:hover) {
+  outline: 3px solid var(--white);
+  outline-offset: 8px;
+}
+
+.teachers__title:active {
+  color: var(--celestial);
+}
+
+.teachers__card {
+  border-top-left-radius: calc(43 / 575 * 100%);
+  border-top-right-radius: calc(43 / 575 * 100%);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  background-color: transparent;
+  overflow: hidden;
+}
+
+.teachers__card-image {
+  margin-bottom: 31px;
+  text-align: center;
+  object-fit: contain;
+  box-shadow: 0 1px 10px var(--specific-gray);
+}
+
+.teachers__card-title {
+  display: inline-block;
+  margin-bottom: 7px;
+  font-weight: var(--bold);
+  font-size: 18px;
+  line-height: 150%;
+  color: var(--white);
+  outline: none;
+}
+
+.teachers__card-title:focus-visible:not(:hover) {
+  margin-left: 10px;
+  outline: 3px solid var(--white);
+  outline-offset: 4px;
+}
+
+.teachers__card-title:active {
+  color: var(--celestial);
+}
+
+.teachers__card-text {
+  font-weight: var(--regular);
+  line-height: 150%;
+  color: var(--specific-gray);
+}
+
+/* media queries */
+
+@media (min-width: 576px) {
+}
