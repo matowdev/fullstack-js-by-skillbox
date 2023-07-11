@@ -74,6 +74,7 @@
 
   .benefits__list {
     padding-top: 15px;
+    margin-bottom: 56px;
     column-gap: 30px;
   }
 
@@ -99,6 +100,10 @@
     margin-bottom: 17px;
   }
 
+  .benefits__list {
+    margin-bottom: 76px;
+  }
+
   .benefits__item {
     flex-basis: 210px;
   }
@@ -121,6 +126,10 @@
   .benefits__content-title {
     max-width: 475px;
     margin-bottom: 17px;
+  }
+
+  .benefits__list {
+    margin-bottom: 80px;
   }
 
   .benefits__item {
