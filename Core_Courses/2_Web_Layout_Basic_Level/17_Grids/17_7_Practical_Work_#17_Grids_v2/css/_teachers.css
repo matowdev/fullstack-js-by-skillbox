@@ -2,14 +2,6 @@
   background: var(--dark);
 }
 
-.teachers__card-wrap:not(:last-child) {
-  margin-bottom: 23px !important;
-}
-
-.teachers__card-wrap:last-child {
-  padding-bottom: 42px !important;
-}
-
 .teachers__title {
   display: inline-block;
   margin-top: 47px;
@@ -28,6 +20,14 @@
 
 .teachers__title:active {
   color: var(--celestial);
+}
+
+.teachers__card-wrap:not(:last-child) {
+  margin-bottom: 23px !important;
+}
+
+.teachers__card-wrap:last-child {
+  padding-bottom: 42px !important;
 }
 
 .teachers__card {
