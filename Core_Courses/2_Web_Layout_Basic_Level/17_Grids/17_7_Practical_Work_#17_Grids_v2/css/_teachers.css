@@ -13,6 +13,15 @@
   outline: none;
 }
 
+.teachers__title:not(:first-of-type) {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.teachers__title:not(:last-of-type) {
+  margin-bottom: 15px;
+}
+
 .teachers__title:focus-visible:not(:hover) {
   outline: 3px solid var(--white);
   outline-offset: 8px;

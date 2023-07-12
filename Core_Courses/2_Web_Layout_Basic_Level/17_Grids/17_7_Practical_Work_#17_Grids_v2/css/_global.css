@@ -46,6 +46,37 @@ a {
   padding-bottom: 12px !important;
 }
 
+.common-btn {
+  border-radius: var(--main-radius);
+  border-color: transparent !important;
+  font-family: var(--roboto), sans-serif;
+  font-weight: var(--bold);
+  font-size: var(--default-fs);
+  line-height: var(--btn-lh);
+  color: var(--white);
+  background-color: var(--main-blue);
+  outline: none !important;
+  box-shadow: none !important;
+  transition-property: color, background-color;
+  transition-duration: var(--short);
+  transition-timing-function: ease-in-out;
+}
+
+.common-btn:not(:last-child) {
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.common-btn:focus-visible {
+  color: var(--plum);
+  background-color: var(--celestial);
+}
+
+.common-btn:active {
+  color: var(--plum) !important;
+  background-color: var(--celestial) !important;
+}
+
 .company {
   display: block;
   margin-left: -2px;
