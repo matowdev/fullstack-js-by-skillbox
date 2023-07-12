@@ -11,7 +11,7 @@ a {
 .page {
   min-width: var(--page-min-width);
   /* height: auto; */
-  height: 3000px;
+  height: 4000px;
   font-family: var(--roboto), sans-serif;
   font-size: var(--default-fs);
   line-height: var(--default-lh);
@@ -90,4 +90,12 @@ a {
 
 .unicode {
   color: var(--main-blue);
+}
+
+/* media queries */
+
+@media (any-hover: hover) {
+  .common-btn:hover:not(:active) {
+    background-color: var(--light-blue);
+  }
 }
