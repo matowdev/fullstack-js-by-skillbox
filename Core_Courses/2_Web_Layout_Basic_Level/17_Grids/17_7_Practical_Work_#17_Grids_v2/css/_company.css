@@ -1,0 +1,22 @@
+.company {
+  display: block;
+  margin-left: 1px;
+  font-size: 13px;
+  font-weight: var(--regular);
+  line-height: 167%;
+  color: var(--plum);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.unicode {
+  color: var(--main-blue);
+}
+
+/* media queries */
+
+@media (min-width: 992px) {
+  .company {
+    margin-left: -2px;
+  }
+}

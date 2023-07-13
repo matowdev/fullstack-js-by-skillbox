@@ -10,8 +10,7 @@ a {
 
 .page {
   min-width: var(--page-min-width);
-  /* height: auto; */
-  height: 4000px;
+  height: auto;
   font-family: var(--roboto), sans-serif;
   font-size: var(--default-fs);
   line-height: var(--default-lh);

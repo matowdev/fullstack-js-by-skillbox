@@ -1,5 +1,5 @@
 .courses {
-  padding-bottom: 20px;
+  padding-bottom: 19px;
 }
 
 .courses__title {
@@ -108,7 +108,7 @@
 
 @media (min-width: 576px) {
   .courses {
-    padding-bottom: 48px;
+    padding-bottom: 50px;
   }
 
   .courses__title {
@@ -207,6 +207,10 @@
 }
 
 @media (min-width: 992px) {
+  .courses {
+    padding-bottom: 51px;
+  }
+
   .courses__title {
     margin-bottom: 24px;
   }

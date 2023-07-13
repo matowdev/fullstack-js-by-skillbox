@@ -24,8 +24,8 @@
 }
 
 .teachers__title:focus-visible:not(:hover) {
-  outline: 3px solid var(--white);
-  outline-offset: 8px;
+  outline: 2px solid var(--white);
+  outline-offset: 6px;
 }
 
 .teachers__title:active {
@@ -64,8 +64,8 @@
 
 .teachers__card-title:focus-visible:not(:hover) {
   margin-left: 10px;
-  outline: 3px solid var(--white);
-  outline-offset: 4px;
+  outline: 2px solid var(--white);
+  outline-offset: 5px;
 }
 
 .teachers__card-title:active {
@@ -102,9 +102,19 @@
     padding-bottom: 27px;
   }
 
+  .teachers__title:focus-visible:not(:hover) {
+    outline: 3px solid var(--white);
+    outline-offset: 7px;
+  }
+
   .teachers__card {
     border-top-left-radius: calc(63 / 991 * 100%);
     border-top-right-radius: calc(63 / 991 * 100%);
+  }
+
+  .teachers__card-title:focus-visible:not(:hover) {
+    outline: 3px solid var(--white);
+    outline-offset: 6px;
   }
 }
 
