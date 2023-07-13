@@ -151,8 +151,13 @@
     padding-bottom: 30px !important;
   }
 
+  .courses__card-content_fourth-card .courses__card-title {
+    margin-bottom: 9px;
+  }
+
   .courses__card-btn {
-    padding: 20px 47px 19px 48px;
+    padding-right: 47px;
+    padding-left: 48px;
   }
 
   .courses__card-content_third-card .courses__card-btn {
@@ -169,25 +174,31 @@
     min-height: 556px;
   }
 
+  .courses__card-three,
+  .courses__card-four {
+    min-height: 555px;
+  }
+
   .courses__card-content {
     padding-top: 32px !important;
     padding-bottom: 29.5px !important;
   }
 
   .courses__card-content_third-card {
-    padding-bottom: 31px !important;
+    padding-bottom: 30px !important;
   }
 
   .courses__card-content_fourth-card {
-    padding-bottom: 31.5px !important;
+    padding-bottom: 30.5px !important;
   }
 
   .courses__card-title {
-    margin-bottom: 9px;
+    margin-bottom: 10px;
   }
 
   .courses__card-btn {
-    padding: 20px 55px 19px 55px;
+    padding-right: 55px;
+    padding-left: 55px;
   }
 
   .courses__card-content_third-card .courses__card-btn {
@@ -200,11 +211,57 @@
     margin-bottom: 24px;
   }
 
-  .courses__card-info {
-    right: 5.5px;
+  .courses__card-wrap {
+    margin-bottom: 29.5px !important;
   }
 
   .courses__card {
     min-height: 480px;
+  }
+
+  .courses__card-three,
+  .courses__card-four {
+    min-height: 479px;
+  }
+
+  .courses__card-info {
+    right: 5.5px;
+  }
+
+  .courses__card-content {
+    padding-bottom: 30.5px !important;
+    padding-left: 29px !important;
+  }
+
+  .courses__card-content_second-card {
+    padding-bottom: 30px !important;
+  }
+
+  .courses__card-content_third-card {
+    padding-top: 32.5px !important;
+    padding-bottom: 29px !important;
+  }
+
+  .courses__card-content_fourth-card {
+    padding-top: 33.5px !important;
+    padding-bottom: 29.5px !important;
+  }
+
+  .courses__card-title {
+    margin-bottom: 9px;
+    margin-left: 1px;
+  }
+
+  .courses__card-content_fourth-card .courses__card-title {
+    margin-bottom: 8px;
+  }
+
+  .courses__card-btn {
+    padding-right: 59px;
+    padding-left: 59px;
+  }
+
+  .courses__card-content_third-card .courses__card-btn {
+    padding-right: 59px;
   }
 }
