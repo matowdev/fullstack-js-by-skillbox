@@ -79,7 +79,7 @@
 }
 
 .header__burger-icon {
-  transition: rotate var(--short) ease-in-out;
+  transition: transform 0.5s ease-in-out;
 }
 
 /* media queries */
@@ -176,7 +176,7 @@
 
 @media (any-hover: hover) {
   .header__burger .header__burger-icon:hover {
-    rotate: 90deg;
+    transform: rotate(90deg);
     transform-origin: center;
   }
 

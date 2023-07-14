@@ -16,7 +16,9 @@
   height: 24px;
   color: var(--white);
   outline: none;
-  transition: color var(--short);
+  transition-property: transform, color;
+  transition-duration: var(--short);
+  transition-timing-function: ease-in-out;
 }
 
 .footer__item-link:focus-visible:not(:hover) {
@@ -49,6 +51,7 @@
 
 @media (any-hover: hover) {
   .footer__item-link:hover:not(:active) {
+    transform: scale(1.8);
     color: var(--light-blue);
   }
 
