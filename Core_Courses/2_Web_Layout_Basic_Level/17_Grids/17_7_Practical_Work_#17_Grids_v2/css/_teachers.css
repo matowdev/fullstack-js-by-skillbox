@@ -1,12 +1,12 @@
 .teachers {
-  padding-bottom: 19px;
+  padding-top: 47px;
+  padding-bottom: 19.5px;
   background: var(--dark);
 }
 
 .teachers__title {
   display: inline-block;
-  margin-top: 47px;
-  margin-bottom: 27px;
+  margin-bottom: 26px;
   font-weight: var(--bold);
   font-size: 20px;
   line-height: 100%;
@@ -46,10 +46,13 @@
 }
 
 .teachers__card-image {
-  margin-bottom: 31px;
   text-align: center;
   object-fit: contain;
   box-shadow: 0 1px 10px var(--specific-gray);
+}
+
+.teachers__card-content {
+  padding-top: 31px !important;
 }
 
 .teachers__card-title {
@@ -82,11 +85,11 @@
 
 @media (min-width: 576px) {
   .teachers {
+    padding-top: 73px;
     padding-bottom: 51px;
   }
 
   .teachers__title {
-    margin-top: 73px;
     margin-bottom: 24px;
     font-size: 40px;
   }
@@ -120,11 +123,8 @@
 
 @media (min-width: 992px) {
   .teachers {
+    padding-top: 74px;
     padding-bottom: 50px;
-  }
-
-  .teachers__title {
-    margin-top: 74px;
   }
 
   .teachers__card {
