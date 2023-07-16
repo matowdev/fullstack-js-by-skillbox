@@ -1,0 +1,138 @@
+/* glob */
+
+.page {
+  height: 800px;
+  font-family: "Roboto Mono", monospace;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 1440px;
+}
+
+.title {
+  font-size: 28px;
+  color: #72747a;
+}
+
+.title:not(:first-of-type) {
+  margin-top: 0;
+}
+
+.wrap {
+  display: flex;
+  justify-content: center;
+  gap: 20px 65px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  min-width: 580px;
+}
+
+.badly-item,
+.fine-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.subtitle {
+  font-size: 22px;
+  margin-top: 0;
+}
+
+.badly-subtitle {
+  color: #d45f5f;
+}
+
+.fine-subtitle {
+  color: #5d8402;
+}
+
+.btn {
+  border: 1px solid #72747a;
+  border-radius: 4px;
+  padding: 0 16px;
+  min-width: 54px;
+  height: 36px;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+  color: #5f6368;
+  background-color: transparent;
+  cursor: pointer;
+  user-select: none;
+}
+
+.btn:hover {
+  color: #e3caac;
+  background-color: #554853;
+}
+
+/* duration animation */
+
+.item-duration__title {
+  text-shadow: 0 1px 10px #e9a098;
+}
+
+.item-duration__wrap {
+  background-color: #f2f2f2;
+}
+
+.badly-item__duration-btn {
+  transition: background-color 2s, color 2s;
+}
+
+.fine-item__duration-btn {
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* softness animation */
+
+.item-softness__title {
+  text-shadow: 0 1px 10px #bacb4d;
+}
+
+.item-softness__wrap {
+  background-color: #eeecf3;
+}
+
+.badly-item__softness-btn {
+  cursor: not-allowed;
+  animation: anim 1s alternate linear infinite;
+}
+
+.fine-item__softness-btn {
+  cursor: not-allowed;
+  animation: anim 1s alternate ease-in-out infinite;
+}
+
+.item-softness__badly .btn:hover {
+  color: #5f6368;
+  background-color: transparent;
+}
+
+.item-softness__fine .btn:hover {
+  color: #5f6368;
+  background-color: transparent;
+}
+
+/* equal animations */
+
+.item-equal__title {
+  text-shadow: 0 1px 10px #4d8fc3;
+}
+
+.item-equal__wrap {
+  background-color: #f2f2f2;
+}
+
+.badly-item__equal-btn {
+  transition: background-color 0.5s;
+}
+
+.fine-item__equal-btn {
+  transition: background-color 0.5s, color 0.5s, border 0.5s;
+}
