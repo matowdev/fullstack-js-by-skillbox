@@ -1,15 +1,15 @@
 # On the topic:
 
-## Video-lecture / Terms of performance:
+### Video-lecture / Terms of performance:
 
-[click..]()
+[18.9...]()
 
-## A few words:
+### A few words:
 
-## Links:
+### Links:
 
--
+- []()
 
-## Synopsis:
+### Synopsis:
 
 [click..]()
