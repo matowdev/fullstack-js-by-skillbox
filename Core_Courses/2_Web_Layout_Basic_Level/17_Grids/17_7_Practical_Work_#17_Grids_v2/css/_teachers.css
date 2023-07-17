@@ -33,7 +33,7 @@
 }
 
 .teachers__card-wrap {
-  margin-bottom: 23px !important;
+  margin-bottom: 23px;
 }
 
 .teachers__card {
@@ -52,7 +52,7 @@
 }
 
 .teachers__card-content {
-  padding-top: 31px !important;
+  padding: 31px 0 0;
 }
 
 .teachers__card-title {

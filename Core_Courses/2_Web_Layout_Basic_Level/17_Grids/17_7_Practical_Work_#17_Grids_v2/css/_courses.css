@@ -21,7 +21,7 @@
 }
 
 .courses__card-wrap {
-  margin-bottom: 30px !important;
+  margin-bottom: 30px;
 }
 
 .courses__card {
@@ -54,21 +54,21 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 30px 30px !important;
+  padding: 30px 30px;
   background: var(--card-bg);
 }
 
 .courses__card-content_second-card {
-  padding-bottom: 29.5px !important;
+  padding-bottom: 29.5px;
 }
 
 .courses__card-content_third-card {
-  padding-bottom: 29.5px !important;
+  padding-bottom: 29.5px;
 }
 
 .courses__card-content_fourth-card {
-  padding-top: 32px !important;
-  padding-bottom: 31px !important;
+  padding-top: 32px;
+  padding-bottom: 31px;
 }
 
 .courses__card-title {
@@ -117,7 +117,7 @@
   }
 
   .courses__card-wrap {
-    margin-bottom: 29.5px !important;
+    margin-bottom: 29.5px;
   }
 
   .courses__card-info {
@@ -136,19 +136,19 @@
   }
 
   .courses__card-content {
-    padding-top: 31px !important;
-    padding-right: 22px !important;
-    padding-bottom: 30.5px !important;
+    padding-top: 31px;
+    padding-right: 22px;
+    padding-bottom: 30.5px;
   }
 
   .courses__card-content_third-card {
-    padding-top: 30.5px !important;
-    padding-bottom: 29px !important;
+    padding-top: 30.5px;
+    padding-bottom: 29px;
   }
 
   .courses__card-content_fourth-card {
-    padding-top: 32.5px !important;
-    padding-bottom: 30px !important;
+    padding-top: 32.5px;
+    padding-bottom: 30px;
   }
 
   .courses__card-btn {
@@ -168,7 +168,7 @@
 
 @media (min-width: 768px) {
   .courses__card-wrap {
-    margin-bottom: 30.5px !important;
+    margin-bottom: 30.5px;
   }
 
   .courses__card {
@@ -181,16 +181,16 @@
   }
 
   .courses__card-content {
-    padding-top: 32px !important;
-    padding-bottom: 29.5px !important;
+    padding-top: 32px;
+    padding-bottom: 29.5px;
   }
 
   .courses__card-content_third-card {
-    padding-bottom: 30px !important;
+    padding-bottom: 30px;
   }
 
   .courses__card-content_fourth-card {
-    padding-bottom: 30.5px !important;
+    padding-bottom: 30.5px;
   }
 
   .courses__card-title {
@@ -221,7 +221,7 @@
   }
 
   .courses__card-wrap {
-    margin-bottom: 29.5px !important;
+    margin-bottom: 29.5px;
   }
 
   .courses__card {
@@ -238,22 +238,22 @@
   }
 
   .courses__card-content {
-    padding-bottom: 30.5px !important;
-    padding-left: 29px !important;
+    padding-bottom: 30.5px;
+    padding-left: 29px;
   }
 
   .courses__card-content_second-card {
-    padding-bottom: 30px !important;
+    padding-bottom: 30px;
   }
 
   .courses__card-content_third-card {
-    padding-top: 32.5px !important;
-    padding-bottom: 29px !important;
+    padding-top: 32.5px;
+    padding-bottom: 29px;
   }
 
   .courses__card-content_fourth-card {
-    padding-top: 33.5px !important;
-    padding-bottom: 29.5px !important;
+    padding-top: 33.5px;
+    padding-bottom: 29.5px;
   }
 
   .courses__card-title {
