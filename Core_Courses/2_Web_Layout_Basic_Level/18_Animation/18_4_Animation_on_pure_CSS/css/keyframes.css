@@ -1,0 +1,21 @@
+@keyframes twist {
+  0% {
+    left: 0;
+  }
+  20% {
+    left: 100px;
+  }
+  40% {
+    left: 200px;
+  }
+  60% {
+    left: 300px;
+  }
+  80% {
+    left: 400px;
+  }
+  100% {
+    left: 500px;
+    transform: rotate(360deg);
+  }
+}
