@@ -1,21 +1,20 @@
 @keyframes twist {
   0% {
-    left: 0;
+    transform: none;
   }
   20% {
-    left: 100px;
+    transform: translateX(100px) rotate(72deg);
   }
   40% {
-    left: 200px;
+    transform: translateX(200px) rotate(144deg) scale(1.1);
   }
   60% {
-    left: 300px;
+    transform: translateX(300px) rotate(216deg) scale(1.2);
   }
   80% {
-    left: 400px;
+    transform: translateX(400px) rotate(288deg) scale(1.4);
   }
   100% {
-    left: 500px;
-    transform: rotate(360deg);
+    transform: translateX(500px) rotate(360deg) scale(1.6);
   }
 }
