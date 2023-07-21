@@ -187,7 +187,7 @@ body {
 }
 
 .nav__link:focus {
-  outline: 1px solid #71a7e2;
+  outline: 2px solid #71a7e2;
   outline-offset: 6px;
 }
 
@@ -195,25 +195,9 @@ body {
   color: #71a7e2;
 }
 
-.nav__link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -5px;
-  width: 100%;
-  height: 2px;
-  background-color: #3474ba;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-}
-
 .nav__link:active {
   color: #3172b9;
   outline: none;
-}
-
-.nav__link:active::after {
-  opacity: 1;
 }
 
 .header__btn {
@@ -287,6 +271,7 @@ body {
   border-radius: 5px;
   padding: 60px 30px;
   margin-bottom: 30px;
+  cursor: help;
   transition-property: background-color, border-color;
   transition-duration: 0.3s;
   transition-timing-function: ease-in-out;
@@ -478,11 +463,11 @@ body {
 }
 
 .clients__user {
+  align-items: center;
   margin-top: auto; /* это гарантия того, что данный блок/div => будет/всегда внизу карточки/края */
   border-top: 1px solid #dadada;
   padding-top: 28px;
   width: 100%;
-  align-items: center;
 }
 
 .clients__user-avatar {
@@ -535,6 +520,12 @@ body {
   background-position: left top;
   background-repeat: no-repeat;
   background-size: 29px 29px;
+}
+
+.contacts__item .hvr-underline-from-center:before {
+  height: 1px;
+  background: #71a7e2 !important;
+  transition-timing-function: ease-in-out;
 }
 
 .contacts__item-location {
