@@ -1,3 +1,5 @@
+/* glob */
+
 @font-face {
   font-family: "Muller";
   src: url("../fonts/MullerRegular.woff2");
@@ -96,7 +98,7 @@ svg {
   --bg-color: #cee8fa;
 }
 
-/* glob */
+/* helper's */
 
 .list-reset {
   margin: 0;
@@ -169,6 +171,8 @@ svg {
     background-color: var(--gold-normal);
   }
 }
+
+/* page content */
 
 /* header */
 
@@ -744,6 +748,7 @@ svg {
 }
 
 /* benefits / #4 */
+
 .benefits {
   padding-top: 35px;
 }
@@ -758,6 +763,7 @@ svg {
   border-radius: 15px;
   padding: 116px 42px 32px 45px;
   min-height: 276px;
+  cursor: help;
 }
 
 .benefits__item-svg1 {
@@ -834,6 +840,10 @@ svg {
   background-color: #fff;
 }
 
+.accommodation__item-preview {
+  position: relative;
+}
+
 .accommodation__item-image {
   display: block;
   margin-bottom: 32px;
@@ -853,6 +863,7 @@ svg {
 .item-info__price {
   margin-right: auto;
   padding-right: 10px;
+  width: 155px;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -980,6 +991,16 @@ svg {
 @media (max-width: 992px) {
   .accommodation__item {
     flex: 1 1 calc(100% / 2 - 24px * 1 / 2);
+  }
+
+  .accommodation__item-icon {
+    position: absolute;
+    right: 35px;
+    bottom: 45px;
+    width: 88px;
+    height: 88px;
+    background: url("../img/main-section-accommodation__item__icon.png")
+      no-repeat center / cover;
   }
 
   .item-info__price-rating {
