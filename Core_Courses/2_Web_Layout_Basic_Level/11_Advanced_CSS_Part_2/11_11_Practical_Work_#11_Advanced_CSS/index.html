@@ -1,21 +1,20 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- <title>11.11. Practical Work #11. Advanced CSS!</title> -->
-  <title>Lagoona - сеть отелей</title>
+  <title>Lagoona - hotel chain</title>
   <link rel="shortcut icon" type="image/png" href="img/favicon.png">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/style.css">
-  <!-- ! Перевести на английский -->
 </head>
 
 <body class="page">
-  <h1 class="visually-hidden page__title"><span class="title-color">Lagoona</span>&nbsp;&mdash; Вас ждет отпуск вашей
-    мечты!</h1>
+  <h1 class="visually-hidden page__title"><span class="title-color">Lagoona</span>&nbsp;&mdash; You're in for the
+    vacation of your dreams</h1>
 
   <div class="container">
     <header class="bm-margin header">
@@ -24,33 +23,34 @@
           <img src="img/header-logo.svg" alt="Lagoona - сеть отелей" width="261" height="54">
         </a>
         <a class="header__top-links header__top-num" href="tel:+74953225448">+7&nbsp;495 322-54-48</a>
-        <a class="header__top-links header__top-personal" href="#">Личный кабинет</a>
+        <a class="header__top-links header__top-personal" href="#">Personal cabinet</a>
       </div>
       <nav class="flex nav header__bottom-nav" title="Главное меню">
         <ul class="list-reset flex nav__list">
           <li class="nav__item">
-            <a class="nav__link-nav" href="#about-us">О&nbsp;нас</a>
+            <a class="nav__link-nav" href="#about-us">About Us</a>
           </li>
           <li class="nav__item">
-            <a class="nav__link-nav" href="#services">Услуги</a>
+            <a class="nav__link-nav" href="#services">Services</a>
           </li>
           <li class="nav__item">
-            <a class="nav__link-nav" href="#benefits">Преимущества</a>
+            <a class="nav__link-nav" href="#benefits">Benefits</a>
           </li>
           <li class="nav__item">
-            <a class="nav__link-nav" href="#accommodation">Размещение</a>
+            <a class="nav__link-nav" href="#accommodation">Accommodation</a>
           </li>
           <li class="nav__item">
-            <a class="nav__link-nav" href="https://blog.vandrouki.ru/" target="_blank">Блог</a>
+            <a class="nav__link-nav" href="https://blog.vandrouki.ru/" target="_blank"
+              rel="noopener noreferrer">Blog</a>
           </li>
           <li class="nav__item">
-            <a class="nav__link-nav" href="#contacts">Контакты</a>
+            <a class="nav__link-nav" href="#contacts">Contacts</a>
           </li>
         </ul>
         <div class="flex header__bottom-btns">
-          <button class="btn-reset btn header__bottom-btn-1">Хочу тур</button>
-          <button class="btn-reset btn header__bottom-btn-2">Обратный звонок</button>
-          <button class="btn-reset btn header__bottom-btn-3">Документы</button>
+          <button class="btn-reset btn header__bottom-btn-1">Want a tour</button>
+          <button class="btn-reset btn header__bottom-btn-2">We'll call back!</button>
+          <button class="btn-reset btn header__bottom-btn-3">Documents</button>
         </div>
       </nav>
     </header>
@@ -58,51 +58,50 @@
     <main class="main">
       <!-- 1 -->
       <section id="specials" class="bm-margin specials">
-        <h2 class="section-title specials__title">Спецпредложения</h2>
+        <h2 class="section-title specials__title">Special offers</h2>
         <div class="flex specials__cards-offers">
           <div class="cards specials__cards-left-part">
             <article class="cards__left cards__left-1">
-              <h3 class="cards-title cards__left-title">Мальдивские<br> острова</h3>
-              <p class="paragraph-reset cards-price cards__left-price">от&nbsp;55&nbsp;000&nbsp;₽</p>
-              <a class="cards-link-more" href="#">Подробнее</a>
+              <h3 class="cards-title cards__left-title">Maldives<br> Island</h3>
+              <p class="paragraph-reset cards-price cards__left-price">from&nbsp;1&nbsp;900&nbsp;&dollar;</p>
+              <a class="cards-link-more" href="#">Read more</a>
             </article>
             <article class="cards__left cards__left-2">
-              <h3 class="cards-title cards__left-title">Горящий<br> тур на&nbsp;остров Крит</h3>
-              <p class="paragraph-reset cards-price cards__left-price">от&nbsp;30&nbsp;000&nbsp;₽</p>
-              <a class="cards-link-more" href="#">Подробнее</a>
+              <h3 class="cards-title cards__left-title">Hot tour<br> to&nbsp;Crete</h3>
+              <p class="paragraph-reset cards-price cards__left-price">from&nbsp;1&nbsp;000&nbsp;&dollar;</p>
+              <a class="cards-link-more" href="#">Read more</a>
             </article>
           </div>
           <article class="flex specials__cards-right specials__cards-right-1">
-            <h3 class="cards-title specials__cards-right-title">Номера<br> категории<br class="hide"> люкс</h3>
-            <p class="paragraph-reset cards-price specials__cards-right-price">от&nbsp;5&nbsp;000&nbsp;₽</p>
-            <a class="cards-link-more" href="#">Подробнее</a>
+            <h3 class="cards-title specials__cards-right-title">Suites<br> hotel<br class="hide"> rooms</h3>
+            <p class="paragraph-reset cards-price specials__cards-right-price">from&nbsp;190&nbsp;&dollar;</p>
+            <a class="cards-link-more" href="#">Read more</a>
           </article>
         </div>
       </section>
       <!-- 2 -->
       <section id="about-us" class="bm-margin about-us">
-        <h2 class="section-title about-us__title">О&nbsp;нас</h2>
-        <p class="paragraph-reset about-us__desc">
-          Идейные соображения высшего порядка, а&nbsp;также сложившаяся структура организации влечёт за&nbsp;собой
-          процесс внедрения и&nbsp;модернизации системы обучения кадров, соответствует насущным потребностям. Идейные
-          соображения высшего порядка, а&nbsp;также дальнейшее развитие различных форм деятельности представляет собой
-          интересный эксперимент проверки системы обучения кадров, соответствует насущным потребностям. Равным образом
-          сложившаяся структура организации требуют определения и&nbsp;уточнения существенных финансовых
-          и&nbsp;административных условий.</p>
+        <h2 class="section-title about-us__title">About Us</h2>
+        <p class="paragraph-reset about-us__desc">Ideological considerations of the highest order, as well as the
+          established structure of the organization, entail a the process of implementing and modernizing the training
+          system to meet immediate needs. Ideological Higher-order considerations as well as the further development of
+          various forms of activity constitute an system, correspond to urgent needs. An interesting experiment in
+          testing the learning system, meets pressing needs. Similarly larification of essential financial and
+          administrative conditions and administrative conditions.</p>
       </section>
       <!-- 3 -->
       <section id="services" class="bm-margin services">
-        <h2 class="section-title services__title">Услуги</h2>
+        <h2 class="section-title services__title">Services</h2>
         <ul class="list-reset flex services__list">
           <li class="services__item">
             <article class="item-preview services__item-preview">
               <img class="item-preview__image" style="background-color: var(--bg-color);"
                 src="img/main-section-services__item__img1.jpg" alt="Services preview photo: sparkling bubbles">
               <h3 class="h3-reset item-preview__title-link">
-                <a class="item-preview__link" href="#">Эксклюзивное обслуживание</a>
+                <a class="item-preview__link" href="#">Exclusive service</a>
               </h3>
-              <p class="paragraph-reset item-preview__text">Равным образом постоянный количественный рост и&nbsp;сфера
-                нашей активности.</p>
+              <p class="paragraph-reset item-preview__text">In addition, the continued quantitative growth and scale of
+                our operations.</p>
             </article>
           </li>
           <li class="services__item">
@@ -110,10 +109,10 @@
               <img class="item-preview__image" style="background-color: var(--bg-color);"
                 src="img/main-section-services__item__img2.jpg" alt="Services preview photo: set table">
               <h3 class="h3-reset item-preview__title-link">
-                <a class="item-preview__link" href="#">Аренда банкетных залов</a>
+                <a class="item-preview__link" href="#">Rent of banquet halls</a>
               </h3>
-              <p class="paragraph-reset item-preview__text">Значимость этих проблем настолько очевидна, что дальнейшее
-                развитие различных форм.</p>
+              <p class="paragraph-reset item-preview__text">The significance of these problems is so obvious that
+                further development of various forms.</p>
             </article>
           </li>
           <li class="services__item">
@@ -121,10 +120,10 @@
               <img class="item-preview__image" style="background-color: var(--bg-color);"
                 src="img/main-section-services__item__img3.jpg" alt="Services preview photo: recreation area">
               <h3 class="h3-reset item-preview__title-link">
-                <a class="item-preview__link" href="#">Сауны, бассейны, бани, фитнес-залы</a>
+                <a class="item-preview__link" href="#">Saunas, pools, fitness rooms</a>
               </h3>
-              <p class="paragraph-reset item-preview__text">Не&nbsp;следует, однако забывать, что начало повседневной
-                работы по&nbsp;формированию позиции.</p>
+              <p class="paragraph-reset item-preview__text">We must not forget, however, that the beginning of position
+                building.</p>
             </article>
           </li>
           <li class="services__item">
@@ -132,55 +131,55 @@
               <img class="item-preview__image" style="background-color: var(--bg-color);"
                 src="img/main-section-services__item__img4.jpg" alt="Services preview photo: red cars">
               <h3 class="h3-reset item-preview__title-link">
-                <a class="item-preview__link" href="#">Охраняемые автомобильные стоянки</a>
+                <a class="item-preview__link" href="#">Protected parking lots</a>
               </h3>
-              <p class="paragraph-reset item-preview__text">Не&nbsp;следует, однако забывать, что начало повседневной
-                работы по&nbsp;формированию позиции.</p>
+              <p class="paragraph-reset item-preview__text">Overall, our relentless pursuit of progress ensures that our
+                brand remains dynamic, relevant.</p>
             </article>
           </li>
         </ul>
       </section>
       <!-- 4 -->
       <section id="benefits" class="bm-margin benefits">
-        <h2 class="section-title benefits__title">Преимущества</h2>
+        <h2 class="section-title benefits__title">Benefits</h2>
         <ul class="list-reset flex benefits__list">
           <li class="benefits__item benefits__item-svg1">
-            <p class="paragraph-reset benefits__item-text">Идейные соображения высшего порядка,
-              а&nbsp;также постоянный количественный рост</p>
+            <p class="paragraph-reset benefits__item-text">The significance of this is so obvious that the consultation
+              Our experts helps</p>
           </li>
           <li class="benefits__item benefits__item-svg2">
-            <p class="paragraph-reset benefits__item-text">Значимость этих проблем настолько очевидна, что вопрос
-              остаётся открытым</p>
+            <p class="paragraph-reset benefits__item-text">Everyday practice shows that the current the structure of the
+              organization</p>
           </li>
           <li class="benefits__item benefits__item-svg3">
-            <p class="paragraph-reset benefits__item-text">Таким образом реализация плановых заданий играет важную
-              роль для понимания</p>
+            <p class="paragraph-reset benefits__item-text">Daily practice shows that the further development of the
+              various</p>
           </li>
           <li class="benefits__item benefits__item-svg4">
-            <p class="paragraph-reset benefits__item-text">Повседневная практика показывает, что сложившаяся
-              структура организации</p>
+            <p class="paragraph-reset benefits__item-text">The significance of these problems is so obvious that the
+              question it remains open</p>
           </li>
           <li class="benefits__item benefits__item-svg5">
-            <p class="paragraph-reset benefits__item-text">Равным образом рамки и&nbsp;место обучения кадров
-              способствует подготовки сотрудника</p>
+            <p class="paragraph-reset benefits__item-text">Likewise, the framework and place of training promotes the
+              preparation of an employee</p>
           </li>
           <li class="benefits__item benefits__item-svg6">
-            <p class="paragraph-reset benefits__item-text">Консультация с&nbsp;активом влечёт за&nbsp;собой процесс
-              внедрения услуг нашего сервиса</p>
+            <p class="paragraph-reset benefits__item-text">Consultation with the asset entails a process of
+              implementation of our service</p>
           </li>
           <li class="benefits__item benefits__item-svg7">
-            <p class="paragraph-reset benefits__item-text">Повседневная практика показывает, что дальнейшее развитие
-              различных</p>
+            <p class="paragraph-reset benefits__item-text">Thus, the implementation of planned tasks plays an important
+              role for understanding</p>
           </li>
           <li class="benefits__item benefits__item-svg8">
-            <p class="paragraph-reset benefits__item-text">Значимость этого настолько очевидна, что консультация
-              наших экспертов помогает</p>
+            <p class="paragraph-reset benefits__item-text">Ideological considerations of the highest order, as well as
+              constant quantitative growth</p>
           </li>
         </ul>
       </section>
       <!-- 5 -->
       <section id="accommodation" class="bm-margin accommodation">
-        <h2 class="section-title accommodation__title">Размещение</h2>
+        <h2 class="section-title accommodation__title">Accommodation</h2>
         <ul class="list-reset flex accommodation__list">
           <li class="accommodation__item">
             <article class="accommodation__item-preview accommodation-preview-1">
@@ -188,8 +187,8 @@
                 src="img/main-section-accommodation__item__img1.jpg" alt="Hotel/Apartment: Espa ola">
               <div class="item-info accommodation__item-info">
                 <div class="flex item-info__price-rating">
-                  <p class="paragraph-reset item-info__price"><span class="from-price">от</span><span
-                      class="high-price">4&nbsp;698&nbsp;₽</span>/ ночь</p>
+                  <p class="paragraph-reset item-info__price"><span class="from-price">from</span><span
+                      class="high-price">155&nbsp;&dollar;</span>/ night</p>
                   <div class="info-rating item-info__rating">
                     <img class="info-rating__stars" src="img/rating_full_star.png" alt="Rated 4 out of 5" width="14"
                       height="14">
@@ -204,8 +203,8 @@
                   </div>
                 </div>
                 <h3 class="h3-reset item-info__placement">Lagoona espa&ntilde;ola</h3>
-                <p class="paragraph-reset item-info__location">Барселона, Испания</p>
-                <button class="btn-reset btn item-info__btn">Номера</button>
+                <p class="paragraph-reset item-info__location">Barcelona, Spain</p>
+                <button class="btn-reset btn item-info__btn">Rooms</button>
               </div>
               <div class="accommodation__item-icon"></div>
             </article>
@@ -216,8 +215,8 @@
                 src="img/main-section-accommodation__item__img2.jpg" alt="Hotel/Apartment: Son tipicas">
               <div class="item-info accommodation__item-info">
                 <div class="flex item-info__price-rating">
-                  <p class="paragraph-reset item-info__price"><span class="from-price">от</span><span
-                      class="high-price">5&nbsp;148&nbsp;₽</span>/ ночь</p>
+                  <p class="paragraph-reset item-info__price"><span class="from-price">from</span><span
+                      class="high-price">170&nbsp;&dollar;</span>/ night</p>
                   <div class="info-rating item-info__rating">
                     <img class="info-rating__stars" src="img/rating_full_star.png" alt="Rated 4 out of 5" width="14"
                       height="14">
@@ -232,8 +231,8 @@
                   </div>
                 </div>
                 <h3 class="h3-reset item-info__placement">Lagoona son t&iacute;picas</h3>
-                <p class="paragraph-reset item-info__location">Барселона, Испания</p>
-                <button class="btn-reset btn item-info__btn">Номера</button>
+                <p class="paragraph-reset item-info__location">Barcelona, Spain</p>
+                <button class="btn-reset btn item-info__btn">Rooms</button>
               </div>
               <div class="accommodation__item-icon"></div>
             </article>
@@ -244,8 +243,8 @@
                 src="img/main-section-accommodation__item__img3.jpg" alt="Hotel/Apartment: De la guerra">
               <div class="item-info accommodation__item-info">
                 <div class="flex item-info__price-rating">
-                  <p class="paragraph-reset item-info__price"><span class="from-price">от</span><span
-                      class="high-price">6&nbsp;254&nbsp;₽</span>/ ночь</p>
+                  <p class="paragraph-reset item-info__price"><span class="from-price">from</span><span
+                      class="high-price">185&nbsp;&dollar;</span>/ night</p>
                   <div class="info-rating item-info__rating">
                     <img class="info-rating__stars" src="img/rating_full_star.png" alt="Rated 5 out of 5" width="14"
                       height="14">
@@ -260,8 +259,8 @@
                   </div>
                 </div>
                 <h3 class="h3-reset item-info__placement">Lagoona de&nbsp;la&nbsp;guerra</h3>
-                <p class="paragraph-reset item-info__location">Барселона, Испания</p>
-                <button class="btn-reset btn item-info__btn">Номера</button>
+                <p class="paragraph-reset item-info__location">Barcelona, Spain</p>
+                <button class="btn-reset btn item-info__btn">Rooms</button>
               </div>
               <div class="accommodation__item-icon"></div>
             </article>
@@ -272,8 +271,8 @@
                 src="img/main-section-accommodation__item__img4.jpg" alt="Hotel/Apartment: Mentira piadosa">
               <div class="item-info accommodation__item-info">
                 <div class="flex item-info__price-rating">
-                  <p class="paragraph-reset item-info__price"><span class="from-price">от</span><span
-                      class="high-price">6&nbsp;320&nbsp;₽</span>/ ночь</p>
+                  <p class="paragraph-reset item-info__price"><span class="from-price">from</span><span
+                      class="high-price">195&nbsp;&dollar;</span>/ night</p>
                   <div class="info-rating item-info__rating">
                     <img class="info-rating__stars" src="img/rating_full_star.png" alt="Rated 5 out of 5" width="14"
                       height="14">
@@ -288,8 +287,8 @@
                   </div>
                 </div>
                 <h3 class="h3-reset item-info__placement">Lagoona mentira piadosa</h3>
-                <p class="paragraph-reset item-info__location">Барселона, Испания</p>
-                <button class="btn-reset btn item-info__btn">Номера</button>
+                <p class="paragraph-reset item-info__location">Barcelona, Spain</p>
+                <button class="btn-reset btn item-info__btn">Rooms</button>
               </div>
               <div class="accommodation__item-icon"></div>
             </article>
@@ -300,8 +299,8 @@
                 src="img/main-section-accommodation__item__img5.jpg" alt="Hotel/Apartment: Empujar la creatividad">
               <div class="item-info accommodation__item-info">
                 <div class="flex item-info__price-rating">
-                  <p class="paragraph-reset item-info__price"><span class="from-price">от</span><span
-                      class="high-price">6&nbsp;457&nbsp;₽</span>/ ночь</p>
+                  <p class="paragraph-reset item-info__price"><span class="from-price">from</span><span
+                      class="high-price">205&nbsp;&dollar;</span>/ night</p>
                   <div class="info-rating item-info__rating">
                     <img class="info-rating__stars" src="img/rating_full_star.png" alt="Rated 4 out of 5" width="14"
                       height="14">
@@ -316,8 +315,8 @@
                   </div>
                 </div>
                 <h3 class="h3-reset item-info__placement">Lagoona empujar la&nbsp;creatividad</h3>
-                <p class="paragraph-reset item-info__location">Барселона, Испания</p>
-                <button class="btn-reset btn item-info__btn">Номера</button>
+                <p class="paragraph-reset item-info__location">Barcelona, Spain</p>
+                <button class="btn-reset btn item-info__btn">Rooms</button>
               </div>
               <div class="accommodation__item-icon"></div>
             </article>
@@ -328,8 +327,8 @@
                 src="img/main-section-accommodation__item__img6.jpg" alt="Hotel/Apartment: El retorno">
               <div class="item-info accommodation__item-info">
                 <div class="flex item-info__price-rating">
-                  <p class="paragraph-reset item-info__price"><span class="from-price">от</span><span
-                      class="high-price">6&nbsp;320&nbsp;₽</span>/ ночь</p>
+                  <p class="paragraph-reset item-info__price"><span class="from-price">from</span><span
+                      class="high-price">210&nbsp;&dollar;</span>/ night</p>
                   <div class="info-rating item-info__rating">
                     <img class="info-rating__stars" src="img/rating_full_star.png" alt="Rated 4 out of 5" width="14"
                       height="14">
@@ -344,8 +343,8 @@
                   </div>
                 </div>
                 <h3 class="h3-reset item-info__placement">Lagoona el&nbsp;retorno</h3>
-                <p class="paragraph-reset item-info__location">Барселона, Испания</p>
-                <button class="btn-reset btn item-info__btn">Номера</button>
+                <p class="paragraph-reset item-info__location">Barcelona, Spain</p>
+                <button class="btn-reset btn item-info__btn">Rooms</button>
               </div>
               <div class="accommodation__item-icon"></div>
             </article>
@@ -356,8 +355,8 @@
                 src="img/main-section-accommodation__item__img7.jpg" alt="Hotel/Apartment: Mentira piadosa">
               <div class="item-info accommodation__item-info">
                 <div class="flex item-info__price-rating">
-                  <p class="paragraph-reset item-info__price"><span class="from-price">от</span><span
-                      class="high-price">6&nbsp;505&nbsp;₽</span>/ ночь</p>
+                  <p class="paragraph-reset item-info__price"><span class="from-price">from</span><span
+                      class="high-price">215&nbsp;&dollar;</span>/ night</p>
                   <div class="info-rating item-info__rating">
                     <img class="info-rating__stars" src="img/rating_full_star.png" alt="Rated 5 out of 5" width="14"
                       height="14">
@@ -372,8 +371,8 @@
                   </div>
                 </div>
                 <h3 class="h3-reset item-info__placement">Lagoona mentira piadosa</h3>
-                <p class="paragraph-reset item-info__location">Барселона, Испания</p>
-                <button class="btn-reset btn item-info__btn">Номера</button>
+                <p class="paragraph-reset item-info__location">Barcelona, Spain</p>
+                <button class="btn-reset btn item-info__btn">Rooms</button>
               </div>
               <div class="accommodation__item-icon"></div>
             </article>
@@ -384,8 +383,8 @@
                 src="img/main-section-accommodation__item__img8.jpg" alt="Hotel/Apartment: Suerte sigui siempre">
               <div class="item-info accommodation__item-info">
                 <div class="flex item-info__price-rating">
-                  <p class="paragraph-reset item-info__price"><span class="from-price">от</span><span
-                      class="high-price">6&nbsp;824&nbsp;₽</span>/ ночь</p>
+                  <p class="paragraph-reset item-info__price"><span class="from-price">from</span><span
+                      class="high-price">230&nbsp;&dollar;</span>/ night</p>
                   <div class="info-rating item-info__rating">
                     <img class="info-rating__stars" src="img/rating_full_star.png" alt="Rated 4 out of 5" width="14"
                       height="14">
@@ -400,8 +399,8 @@
                   </div>
                 </div>
                 <h3 class="h3-reset item-info__placement">Lagoona suerte sigui&oacute; siempre</h3>
-                <p class="paragraph-reset item-info__location">Барселона, Испания</p>
-                <button class="btn-reset btn item-info__btn">Номера</button>
+                <p class="paragraph-reset item-info__location">Barcelona, Spain</p>
+                <button class="btn-reset btn item-info__btn">Rooms</button>
               </div>
               <div class="accommodation__item-icon"></div>
             </article>
@@ -409,7 +408,7 @@
           <li class="accommodation__item accommodation__item_line">
             <article class="flex preview-all accommodation__item-preview-all">
               <h3 class="h3-reset preview-all__link-title">
-                <a class="preview-all__link" href="#">Посмотреть все варианты</a>
+                <a class="preview-all__link" href="#">View all variants</a>
               </h3>
             </article>
           </li>
@@ -417,72 +416,72 @@
       </section>
       <!-- 6 -->
       <section id="want-tour" class="bm-margin want-tour">
-        <h2 class="want-tour__title">Хочу тур</h2>
+        <h2 class="want-tour__title">Want a tour</h2>
         <div class="want-tour__form-wrapper">
           <form action="https://jsonplaceholder.typicode.com/posts" method="post" class="flex want-tour__form">
             <div class="flex want-tour__form-select-input-group">
               <div class="flex want-tour__form-select">
-                <label class="form-label" for="city">Город вылета</label>
+                <label class="form-label" for="city">Departure city</label>
                 <select class="form-select" name="Departure city" id="city">
-                  <option class="form-select__option" value="St. Petersburg" selected>Санкт-Петербург</option>
-                  <option class="form-select__option" value="Moscow">Москва</option>
-                  <option class="form-select__option" value="Novosibirsk">Новосибирск</option>
-                  <option class="form-select__option" value="Yekaterinburg">Екатеринбург</option>
-                  <option class="form-select__option" value="Kazan">Казань</option>
-                  <option class="form-select__option" value="Nizhny Novgorod">Нижний Новгород</option>
-                  <option class="form-select__option" value="Chelyabinsk">Челябинск</option>
-                  <option class="form-select__option" value="Samara">Самара</option>
+                  <option class="form-select__option" value="St. Petersburg" selected>St. Petersburg</option>
+                  <option class="form-select__option" value="Moscow">Moscow</option>
+                  <option class="form-select__option" value="Novosibirsk">Novosibirsk</option>
+                  <option class="form-select__option" value="Yekaterinburg">Ekaterinburg</option>
+                  <option class="form-select__option" value="Kazan">Kazan</option>
+                  <option class="form-select__option" value="Nizhny Novgorod">Nizhny Novgorod</option>
+                  <option class="form-select__option" value="Chelyabinsk">Chelyabinsk</option>
+                  <option class="form-select__option" value="Samara">Samara</option>
                 </select>
               </div>
               <div class="flex want-tour__form-select">
-                <label class="form-label" for="country">Страна</label>
+                <label class="form-label" for="country">Country</label>
                 <select class="form-select" name="Host country" id="country">
-                  <option class="form-select__option" value="Australia" selected>Австралия</option>
-                  <option class="form-select__option" value="Bhutan">Бутан</option>
-                  <option class="form-select__option" value="Belize">Белиз</option>
-                  <option class="form-select__option" value="Vietnam">Вьетнам</option>
-                  <option class="form-select__option" value="Cambodia">Камбоджа</option>
-                  <option class="form-select__option" value="Myanmar">Мьянма</option>
-                  <option class="form-select__option" value="Bolivia">Боливия</option>
-                  <option class="form-select__option" value="Nepal">Непал</option>
+                  <option class="form-select__option" value="Australia" selected>Australia</option>
+                  <option class="form-select__option" value="Bhutan">Butane</option>
+                  <option class="form-select__option" value="Belize">Belly</option>
+                  <option class="form-select__option" value="Vietnam">Vietnam</option>
+                  <option class="form-select__option" value="Cambodia">Cambodia</option>
+                  <option class="form-select__option" value="Myanmar">Myanmar</option>
+                  <option class="form-select__option" value="Bolivia">Bolivia</option>
+                  <option class="form-select__option" value="Nepal">Nepal</option>
                 </select>
               </div>
               <div class="flex want-tour__form-input">
-                <label class="form-label" for="date">Дата прибытия</label>
+                <label class="form-label" for="date">Arrival date</label>
                 <input class="form-input form-input-date" type="date" name="Arrival date" id="date" value="2023-12-31"
                   min="2023-01-01" max="2025-12-31">
               </div>
               <div class="flex want-tour__form-input">
-                <label class="form-label" for="nights">Ночей</label>
+                <label class="form-label" for="nights">Nights</label>
                 <input class="form-input input-decoration form-input-number" type="number" name="Number of nights"
                   id="nights" value="6" min="6" max="21" required>
               </div>
               <div class="flex want-tour__form-input">
-                <label class="form-label" for="tourists">Туристы</label>
+                <label class="form-label" for="tourists">Tourists</label>
                 <input class="form-input input-decoration form-input-number" type="number" name="Number of tourists"
                   id="tourists" value="2" min="1" max="10" required>
               </div>
             </div>
             <div class="flex want-tour__form-button">
-              <button class="btn-reset btn form-button">Найти</button>
+              <button class="btn-reset btn form-button">Find</button>
             </div>
           </form>
         </div>
       </section>
       <!-- 7 -->
       <section id="contacts" class="contacts">
-        <h2 class="section-title contacts__title">Контакты</h2>
+        <h2 class="section-title contacts__title">Contacts</h2>
         <div class="flex contacts__info">
           <div class="flex info-left contacts__info-left">
             <address class="info-left__address-group">
               <ul class="list-reset flex info-left__address-list">
                 <li class="flex address-item info-left__address-item location">
-                  <strong class="address-item__caption">Адрес</strong>
-                  <p class="paragraph-reset address-item__text">Москва, улица Юности, <br>дом 5,&nbsp;строение&nbsp;4,
-                    офис&nbsp;2</p>
+                  <strong class="address-item__caption">Address</strong>
+                  <p class="paragraph-reset address-item__text">Moscow, Yunosti st., <br>house 5,&nbsp;structure&nbsp;4,
+                    office&nbsp;2</p>
                 </li>
                 <li class="flex address-item info-left__address-item phone">
-                  <strong class="address-item__caption">Телефоны</strong>
+                  <strong class="address-item__caption">Phone</strong>
                   <div class="flex address-item__link-wrapper">
                     <a class="address-item__link" href="tel:+74995356434">+7 (499) 535-64-34</a>
                     <a class="address-item__link" href="tel:+74950050544">+7 (495) 005-05-44</a>
@@ -492,20 +491,20 @@
                   <strong class="address-item__caption">Email</strong>
                   <div class="flex address-item__link-wrapper">
                     <a class="address-item__link" href="mailto:lg.oona@mail.ru">lg.oona@mail.ru</a>
-                    <small class="address-item__link-desc">по&nbsp;вопросам бронирования</small>
+                    <small class="address-item__link-desc">for reservations</small>
                     <a class="address-item__link" href="mailto:hotels.ln@mail.ru">hotels.ln@mail.ru</a>
-                    <small class="address-item__link-desc">по&nbsp;вопросам сотрудничества</small>
+                    <small class="address-item__link-desc">for cooperation</small>
                   </div>
                 </li>
                 <li class="flex address-item info-left__address-item schedule">
-                  <strong class="address-item__caption">График</strong>
-                  <p class="paragraph-reset address-item__text">Понедельник-пятница, с&nbsp;10:00 до&nbsp;19:00</p>
+                  <strong class="address-item__caption">Graphic</strong>
+                  <p class="paragraph-reset address-item__text">Monday - Friday,<br> from&nbsp;10:00 to&nbsp;19:00</p>
                 </li>
               </ul>
             </address>
             <button class="btn-reset btn info-left__button"
-              onclick="window.location.href='https://www.google.com/maps/@55.2042686,30.2199525,10.82z';">Построить
-              маршрут</button>
+              onclick="window.location.href='https://www.google.com/maps/@55.2042686,30.2199525,10.82z';">Navigate your
+              way</button>
           </div>
           <div class="flex contacts__info-right">
             <img class="contacts__info-right-img" style="background-color: var(--bg-color);"
@@ -517,18 +516,18 @@
 
     <footer class="flex footer">
       <div class="flex footer__info">
-        <p class="paragraph-reset footer__info-text">&copy;&nbsp;2012&ndash;2023 Управляющая компания Объединённой сети
-          &laquo;Лагуна Хотелс&raquo;</p>
-        <p class="paragraph-reset footer__info-text">Представленная на&nbsp;сайте информация носит справочный характер
-          и&nbsp;не&nbsp;является публичной офертой</p>
-        <a class="footer__info-link-agreement" href="https://devby.io/be/pages/agreement"
-          target="_blank">Пользовательское соглашение</a>
+        <p class="paragraph-reset footer__info-text">&copy;&nbsp;2012&ndash;2023 The management company of the United
+          Network &laquo;Lagoona Hotels&raquo;</p>
+        <p class="paragraph-reset footer__info-text">The website's information is for reference only, not a public
+          offer.</p>
+        <a class="footer__info-link-agreement" href="https://devby.io/be/pages/agreement" target="_blank">User
+          Agreement</a>
       </div>
       <address class="flex footer-address footer-address-group">
         <ul class="list-reset flex footer-address__list">
           <li class="footer-address__item footer-address__item-location">
-            <p class="paragraph-reset footer-address__item-text">11710, улица Юности, дом 5&nbsp;строение&nbsp;4,
-              офис&nbsp;2</p>
+            <p class="paragraph-reset footer-address__item-text">11710, Yunosti st., house 5,&nbsp;structure&nbsp;4,
+              office&nbsp;2</p>
           </li>
           <li class="flex footer-address__item footer-address__item-phone">
             <a class="footer-address__item-link footer-tel-link" href="tel:+74995356434">+7 (499) 535-64-34</a>

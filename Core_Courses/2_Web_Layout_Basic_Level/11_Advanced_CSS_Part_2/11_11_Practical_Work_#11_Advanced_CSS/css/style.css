@@ -149,6 +149,7 @@ svg {
   font-weight: 400;
   font-size: 16px;
   line-height: 16px;
+  text-align: center;
   color: var(--gold-normal);
   background-color: #ffffff;
   outline: none;
@@ -244,19 +245,19 @@ svg {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  row-gap: 14px;
   border-radius: 15px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  min-height: 70px;
   background-color: #fff;
 }
 
 .nav__list {
-  gap: 0 45px;
+  gap: 14px 45px;
   margin-right: 56px;
   padding-left: 45px;
   font-size: 0;
-}
-
-.nav__item {
-  padding: 27px 0;
 }
 
 .nav__link-nav {
@@ -358,8 +359,8 @@ svg {
 }
 
 .header__bottom-btn-3 {
-  min-width: 130px;
   display: none;
+  min-width: 130px;
 }
 
 @media (max-width: 1200px) {
@@ -461,6 +462,7 @@ svg {
 }
 
 /* main */
+
 /* specials / sec. #1 */
 
 .specials {
@@ -631,6 +633,7 @@ svg {
 }
 
 /* about-us / #2 */
+
 .about-us {
   padding-top: 35px;
 }
@@ -647,6 +650,7 @@ svg {
 }
 
 /* services / #3 */
+
 .services {
   padding-top: 35px;
 }
@@ -822,6 +826,7 @@ svg {
 }
 
 /* accommodation / #5 */
+
 .accommodation {
   margin-bottom: 70px;
   padding-top: 35px;
@@ -838,6 +843,16 @@ svg {
   border-radius: 15px;
   min-height: 440px;
   background-color: #fff;
+}
+
+.accommodation__item-icon {
+  position: absolute;
+  right: 35px;
+  bottom: 45px;
+  width: 88px;
+  height: 88px;
+  background: url("../img/main-section-accommodation__item__icon.png") no-repeat
+    center / cover;
 }
 
 .accommodation__item-preview {
@@ -863,7 +878,7 @@ svg {
 .item-info__price {
   margin-right: auto;
   padding-right: 10px;
-  width: 155px;
+  width: 160px;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -991,16 +1006,6 @@ svg {
 @media (max-width: 992px) {
   .accommodation__item {
     flex: 1 1 calc(100% / 2 - 24px * 1 / 2);
-  }
-
-  .accommodation__item-icon {
-    position: absolute;
-    right: 35px;
-    bottom: 45px;
-    width: 88px;
-    height: 88px;
-    background: url("../img/main-section-accommodation__item__icon.png")
-      no-repeat center / cover;
   }
 
   .item-info__price-rating {
@@ -1294,7 +1299,7 @@ svg {
   text-align: center;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1053px) {
   .address-item__text {
     padding-left: 15px;
   }
@@ -1339,7 +1344,7 @@ svg {
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  line-height: 190%;
+  line-height: 185%;
   color: #fff;
 }
 
