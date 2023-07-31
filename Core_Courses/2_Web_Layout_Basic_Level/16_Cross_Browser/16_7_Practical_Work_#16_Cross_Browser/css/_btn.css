@@ -12,6 +12,7 @@
   color: var(--white);
   background: var(--orange-normal);
   outline: none;
+  box-shadow: none !important;
   cursor: pointer;
   transition: background-color var(--short) ease-in-out;
 }

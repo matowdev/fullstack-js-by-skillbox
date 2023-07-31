@@ -103,6 +103,7 @@
   line-height: 1;
   color: var(--black);
   outline: none;
+  box-shadow: none !important;
   transition: color var(--short) ease-in-out;
 }
 
