@@ -918,6 +918,7 @@ svg {
 
 .item-info__placement {
   margin-bottom: 16px;
+  min-height: 32px;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -1071,7 +1072,6 @@ svg {
 }
 
 .want-tour__form-select-input-group {
-  justify-content: space-evenly;
   flex-grow: 1;
   column-gap: 41px;
 }
@@ -1103,10 +1103,9 @@ svg {
 }
 
 .want-tour__form-input {
-  display: flex;
   flex-direction: column;
-  flex-basis: 121px;
-  max-width: 121px;
+  flex-basis: 130px;
+  max-width: 130px;
 }
 
 .form-input {
@@ -1137,13 +1136,6 @@ svg {
 .form-button {
   padding: 13px 30px;
   min-width: 108px;
-}
-
-@media (max-width: 880px) {
-  .want-tour__form-select-input-group {
-    flex-wrap: wrap;
-    row-gap: 20px;
-  }
 }
 
 @media (max-width: 992px) {
@@ -1179,6 +1171,12 @@ svg {
 
   .form-button {
     min-width: 158px;
+  }
+}
+
+@media (max-width: 880px) {
+  input[type="number"] {
+    max-width: 64px;
   }
 }
 
