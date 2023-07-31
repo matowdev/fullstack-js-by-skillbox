@@ -153,6 +153,7 @@ svg {
   color: var(--gold-normal);
   background-color: #ffffff;
   outline: none;
+  box-shadow: none !important;
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
