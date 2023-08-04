@@ -1,0 +1,18 @@
+:root {
+  /* sizes */
+  --page-min-width: 320px;
+  --container-max-width: 1600px;
+  --container-padding: 50px;
+
+  /* fonts */
+  --open-sans: "Open Sans";
+  --regular: 400;
+  --semibold: 600;
+  --bold: 700;
+  --default-fs: 16px;
+  --default-lh: 32px;
+
+  /* colors */
+  --dark: #333;
+  --white: #fff;
+}
