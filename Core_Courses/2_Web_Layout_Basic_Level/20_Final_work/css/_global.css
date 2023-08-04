@@ -28,3 +28,25 @@ svg {
   color: var(--dark);
   background-color: var(--white);
 }
+
+.page__title {
+  margin-bottom: 20px;
+  font-weight: var(--bold);
+  text-align: center;
+}
+
+.title-color {
+  color: var(--main-purple);
+  text-shadow: 0 1px 10px var(--normal-gray);
+}
+
+.visually-hidden {
+  position: absolute;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}

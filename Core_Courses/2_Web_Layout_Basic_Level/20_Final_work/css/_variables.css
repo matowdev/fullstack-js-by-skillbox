@@ -13,6 +13,12 @@
   --default-lh: 32px;
 
   /* colors */
+  --black: #000;
   --dark: #333;
   --white: #fff;
+  --main-purple: #9d5cd0;
+  --dark-gray: #666;
+  --normal-gray: #999;
+  --light-gray: #cacaca;
+  --very-light-gray: #ececec;
 }
