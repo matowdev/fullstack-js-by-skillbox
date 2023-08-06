@@ -17,10 +17,16 @@
   --dark: #333;
   --white: #fff;
   --main-purple: #9d5cd0;
+  --dark-purple: #7943a4;
+  --light-purple: #c283f3;
+  --very-light-purple: #d1a9f0;
   --dark-gray: #666;
   --normal-gray: #999;
   --light-gray: #cacaca;
   --very-light-gray: #ececec;
+
+  /* transitions */
+  --short: 0.3s;
 }
 
 /* media queries */

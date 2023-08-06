@@ -1,6 +1,6 @@
 .header {
   padding-top: 16px;
-  padding-bottom: 12px;
+  padding-bottom: 11px;
   min-height: 78px;
   background-color: var(--black);
 }
@@ -8,7 +8,7 @@
 .header__container {
   display: flex;
   flex-wrap: wrap;
-  overflow: hidden;
+  overflow: clip;
   outline: 2px solid red;
 }
 
@@ -25,17 +25,34 @@
 .header__search-btn {
   box-sizing: content-box;
   flex-shrink: 0;
-  margin-top: -3px;
-  margin-right: -5px;
+  margin-top: -2px;
+  margin-right: -4px;
   margin-left: auto;
-  padding: 5px 5px;
+  padding: 4px 4px 3px 3px;
   width: 19px;
   height: 19px;
+  /* line-height: 1; */
+  color: var(--white);
   cursor: pointer;
+  outline: none;
+  box-shadow: none !important;
+  transition-property: color, background-color;
+  transition-duration: var(--short);
+  transition-timing-function: ease-in-out;
+}
+
+.header__search-btn:focus-visible:not(:hover) {
+  background-color: var(--dark-purple);
+}
+
+.header__search-btn:active {
+  color: var(--main-purple);
 }
 
 .header__nav {
   flex-basis: 100%;
+  margin-right: -6px;
+  margin-left: -6px;
   outline: 2px solid blue;
 }
 
@@ -45,7 +62,7 @@
 
 .header__list {
   display: flex;
-  column-gap: 25px;
+  column-gap: 13px;
   font-weight: var(--bold);
   font-size: 12px;
   line-height: normal;
@@ -53,7 +70,24 @@
   outline: 2px solid red;
 }
 
-/* media queries */
+.header__item-link {
+  padding-right: 6px;
+  padding-left: 6px;
+  outline: none;
+  transition-property: color, background-color;
+  transition-duration: var(--short);
+  transition-timing-function: ease-in-out;
+}
+
+.header__item-link:focus-visible:not(:hover) {
+  background-color: var(--dark-purple);
+}
+
+.header__item-link:active {
+  color: var(--main-purple);
+}
+
+/* media queries, any-hover */
 
 @media (min-width: 460px) {
   .header__list {
@@ -67,11 +101,26 @@
     width: 188px;
     height: 42px;
   }
+
+  .header__search-btn {
+    width: 28px;
+    height: 28px;
+  }
 }
 
 @media (min-width: 1920px) {
   .header__logo-img {
     width: 173px;
     height: 40px;
+  }
+}
+
+@media (any-hover: hover) {
+  .header__search-btn:hover:not(:active) {
+    color: var(--light-purple);
+  }
+
+  .header__item-link:hover:not(:active) {
+    color: var(--light-purple);
   }
 }
