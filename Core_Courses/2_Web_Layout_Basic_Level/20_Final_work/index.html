@@ -16,7 +16,37 @@
   </h1>
 
   <header class="header page__header" id="header" aria-label="Верхний колонтитул страницы (шапка сайта)">
-    <div class="container header__container" aria-labelledby="header"></div>
+    <div class="container header__container" aria-labelledby="header">
+      <a class="header__logo">
+        <picture>
+          <!-- если/что подкорректировать можно не на 1920 крайняя замена а раньше (css тогда то же) -->
+          <source srcset="images/Blanchard_logo_1920.svg" media="(min-width: 1920px)">
+          <source srcset="images/Blanchard_logo_768.svg" media="(min-width: 768px)">
+          <img class="header__logo-img" src="images/Blanchard_logo_320.svg" width="97" height="22"
+            alt="Логотип: Blanchard - художественная галерея">
+        </picture>
+      </a>
+      <button class="reset-btn header__search-btn" type="button">
+        <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M16.8 8C16.8 11.3137 14.1137 14 10.8 14C7.48629 14 4.8 11.3137 4.8 8C4.8 4.68629 7.48629 2 10.8 2C14.1137 2 16.8 4.68629 16.8 8ZM18.8 8C18.8 12.4183 15.2183 16 10.8 16C8.95277 16 7.25178 15.3739 5.89763 14.3224L2.21597 18.0041L0.801758 16.5898L4.48268 12.9089C3.42809 11.5537 2.8 9.8502 2.8 8C2.8 3.58172 6.38172 0 10.8 0C15.2183 0 18.8 3.58172 18.8 8Z"
+            fill="white" />
+        </svg>
+      </button>
+      <nav class="header__nav">
+        <h2 class="visually-hidden section-title header__nav-title">Навигация по сайту:</h2>
+        <div class="header__nav-wrap">
+          <ul class="reset-list header__list" title="Главное меню">
+            <li class="header__item"><a class="header__item-link" href="#">О&nbsp;нас</a></li>
+            <li class="header__item"><a class="header__item-link" href="#">Галерея</a></li>
+            <li class="header__item"><a class="header__item-link" href="#">Каталог</a></li>
+            <li class="header__item"><a class="header__item-link" href="#">События</a></li>
+            <li class="header__item"><a class="header__item-link" href="#">Проекты</a></li>
+            <li class="header__item"><a class="header__item-link" href="#">Контакты</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
   </header>
 </body>
 

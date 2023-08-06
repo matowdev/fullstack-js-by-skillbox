@@ -50,3 +50,32 @@ svg {
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
 }
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: var(--container-padding);
+  padding-left: var(--container-padding);
+  max-width: var(--container-max-width);
+}
+
+.section-title {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-weight: var(--regular);
+  font-size: 28px;
+  line-height: normal;
+}
+
+.reset-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reset-btn {
+  margin: 0;
+  border: none;
+  padding: 0;
+  background-color: transparent;
+}

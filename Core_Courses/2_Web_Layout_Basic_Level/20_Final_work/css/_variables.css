@@ -2,7 +2,7 @@
   /* sizes */
   --page-min-width: 320px;
   --container-max-width: 1600px;
-  --container-padding: 50px;
+  --container-padding: 15px;
 
   /* fonts */
   --open-sans: "Open Sans";
@@ -21,4 +21,15 @@
   --normal-gray: #999;
   --light-gray: #cacaca;
   --very-light-gray: #ececec;
+}
+
+/* media queries */
+
+@media (min-width: 576px) {
+}
+
+@media (min-width: 768px) {
+  :root {
+    --container-padding: 50px;
+  }
 }
