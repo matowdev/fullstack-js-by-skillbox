@@ -39,3 +39,9 @@
     --container-padding: 50px;
   }
 }
+
+@media (min-width: 1920px) {
+  :root {
+    --container-padding: 0;
+  }
+}

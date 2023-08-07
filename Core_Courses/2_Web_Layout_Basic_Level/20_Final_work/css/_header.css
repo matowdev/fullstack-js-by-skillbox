@@ -1,5 +1,5 @@
 .header {
-  padding-top: 16px;
+  padding-top: 14px;
   padding-bottom: 11px;
   min-height: 78px;
   background-color: var(--black);
@@ -9,13 +9,13 @@
   display: flex;
   flex-wrap: wrap;
   overflow: clip;
-  outline: 2px solid red;
 }
 
 .header__logo {
   flex-shrink: 0;
   margin-right: 24px;
   margin-bottom: 12px;
+  padding-top: 2px;
 }
 
 .header__logo-img {
@@ -25,13 +25,11 @@
 .header__search-btn {
   box-sizing: content-box;
   flex-shrink: 0;
-  margin-top: -2px;
   margin-right: -4px;
   margin-left: auto;
   padding: 4px 4px 3px 3px;
   width: 19px;
   height: 19px;
-  /* line-height: 1; */
   color: var(--white);
   cursor: pointer;
   outline: none;
@@ -53,7 +51,6 @@
   flex-basis: 100%;
   margin-right: -6px;
   margin-left: -6px;
-  outline: 2px solid blue;
 }
 
 .header__nav-title {
@@ -67,7 +64,6 @@
   font-size: 12px;
   line-height: normal;
   color: var(--white);
-  outline: 2px solid red;
 }
 
 .header__item-link {
@@ -90,15 +86,23 @@
 /* media queries, any-hover */
 
 @media (min-width: 460px) {
+  .header__container {
+    overflow: visible;
+  }
+
   .header__list {
     justify-content: space-between;
     column-gap: 0;
+  }
+
+  .header__item-link {
+    padding-bottom: 2px;
   }
 }
 
 @media (min-width: 768px) {
   .header {
-    padding-top: 32px;
+    padding-top: 30px;
     padding-bottom: 25px;
   }
 
@@ -112,7 +116,7 @@
   }
 
   .header__search-btn {
-    margin-top: 3px;
+    margin-top: 5px;
     width: 31px;
     height: 31px;
   }
@@ -125,21 +129,56 @@
   .header__list {
     flex-wrap: wrap;
     row-gap: 2px;
-    margin-left: -4px;
+    margin-left: -6px;
     font-weight: var(--semibold);
     font-size: 18px;
   }
+}
 
-  .header__item-link {
-    padding-right: 4px;
-    padding-left: 4px;
+@media (min-width: 1024px) {
+  .header__list {
+    margin-right: -4px;
   }
 }
 
-@media (min-width: 1920px) {
+@media (min-width: 1366px) {
+  .header {
+    padding-top: 28px;
+    padding-bottom: 30px;
+  }
+
+  .header__container {
+    align-items: center;
+  }
+
+  .header__logo {
+    margin-right: 179px;
+    margin-bottom: 1px;
+  }
+
   .header__logo-img {
     width: 173px;
     height: 40px;
+  }
+
+  .header__search-btn {
+    order: 2;
+    margin-right: -5px;
+    padding-right: 5px;
+  }
+
+  .header__nav {
+    flex-basis: 58%;
+    margin-top: -2px;
+  }
+
+  .header__list {
+    margin-right: 0px;
+  }
+
+  .header__item-link {
+    padding-top: 1px;
+    padding-bottom: 3px;
   }
 }
 
