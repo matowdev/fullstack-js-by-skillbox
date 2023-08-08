@@ -1,0 +1,59 @@
+.btn {
+  position: relative;
+  display: inline-block;
+  border-radius: 100px;
+  padding-top: 11px;
+  padding-right: 17px;
+  padding-bottom: 12px;
+  padding-left: 20px;
+  max-width: 240px;
+  max-height: 80px;
+  font-family: var(--open-sans), sans-serif;
+  font-weight: var(--bold);
+  font-size: 12px;
+  line-height: normal;
+  text-align: center;
+  color: var(--white);
+  background: var(--main-purple);
+  outline: none;
+  /* box-shadow: none !important; */
+  cursor: pointer;
+  transition-property: background-color, box-shadow;
+  transition-duration: var(--short);
+  transition-timing-function: ease-in-out;
+}
+
+.btn:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  bottom: -5px;
+  left: -5px;
+  border: 2px solid var(--light-purple);
+  border-radius: inherit;
+  outline: none;
+  opacity: 0;
+  transition: opacity var(--short) ease-in-out;
+}
+
+.btn:focus-visible:not(:hover)::after {
+  opacity: 1;
+}
+
+.btn:active {
+  background-color: var(--dark-purple);
+  box-shadow: 0 0 0 3px var(--very-light-purple);
+}
+
+/* media queries, any-hover */
+
+@media (any-hover: hover) {
+  .btn:hover:not(:active) {
+    box-shadow: 0 0 0 3px var(--very-light-purple);
+  }
+}

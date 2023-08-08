@@ -1,0 +1,35 @@
+.hero {
+  position: relative;
+  z-index: 1;
+  margin-top: -78px;
+  padding: 128px 13px 50px;
+  min-height: 388px;
+  background-color: var(--dark-gray);
+  background: url("../images/hero_bg_320.jpg") no-repeat center / cover;
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero__content-title {
+  margin-bottom: 11px;
+  font-weight: var(--bold);
+  font-size: 32px;
+  line-height: 28px;
+  text-align: center;
+  color: var(--white);
+}
+
+.hero__content-text {
+  margin-left: 8px;
+  margin-bottom: 39px;
+  max-width: 248px;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  color: var(--white);
+}

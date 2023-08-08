@@ -79,3 +79,13 @@ svg {
   padding: 0;
   background-color: transparent;
 }
+
+.text {
+  margin-top: 0;
+}
+
+.text:not(:last-of-type) {
+  margin-bottom: 0;
+  padding-top: 5px;
+  padding-bottom: 12px;
+}
