@@ -1,0 +1,13 @@
+.about {
+  padding-top: 25px;
+}
+
+.main__about {
+  margin-bottom: 25px;
+}
+
+.about__content-text {
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 28px;
+}

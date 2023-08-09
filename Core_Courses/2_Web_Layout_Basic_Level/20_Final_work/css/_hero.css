@@ -8,6 +8,10 @@
   background: url("../images/hero_bg_320.jpg") no-repeat center / cover;
 }
 
+.main__hero {
+  margin-bottom: 25px;
+}
+
 .hero__content {
   display: flex;
   flex-direction: column;
