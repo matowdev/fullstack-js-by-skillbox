@@ -78,3 +78,19 @@
     letter-spacing: 0.9px;
   }
 }
+
+@media (min-width: 1024px) {
+  .hero {
+    padding: 101px 0 101px;
+    background: url("../images/hero_bg_1024.jpg") no-repeat center / cover;
+  }
+
+  .hero__content-title {
+    margin-bottom: 20px;
+    max-width: 580px;
+  }
+
+  .hero__content-text {
+    max-width: 659px;
+  }
+}
