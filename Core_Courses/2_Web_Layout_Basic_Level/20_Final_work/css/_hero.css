@@ -51,7 +51,30 @@
 
   .hero__content-text {
     margin-left: 0;
-    max-width: 100%;
+    max-width: 500px;
     text-align: left;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero {
+    margin-top: 0;
+    padding: 87px 0 86px;
+    min-height: 621px;
+    background: url("../images/hero_bg_768.jpg") no-repeat center / cover;
+  }
+
+  .hero__content-title {
+    margin-bottom: 19px;
+    font-size: 72px;
+    line-height: 68px;
+  }
+
+  .hero__content-text {
+    margin-bottom: 133px;
+    max-width: 535px;
+    font-size: 18px;
+    line-height: 30px;
+    letter-spacing: 0.9px;
   }
 }
