@@ -25,7 +25,6 @@
 }
 
 .hero__content-text {
-  margin-left: 8px;
   margin-bottom: 39px;
   max-width: 248px;
   font-size: 12px;
@@ -65,17 +64,17 @@
   }
 
   .hero__content-title {
-    margin-bottom: 19px;
+    margin-bottom: 20px;
     font-size: 72px;
     line-height: 68px;
   }
 
   .hero__content-text {
-    margin-bottom: 133px;
+    margin-bottom: 132px;
     max-width: 535px;
+    font-weight: var(--bold);
     font-size: 18px;
     line-height: 30px;
-    letter-spacing: 0.9px;
   }
 }
 
@@ -91,6 +90,21 @@
   }
 
   .hero__content-text {
-    max-width: 659px;
+    margin-bottom: 133px;
+    max-width: 660px;
+  }
+}
+
+@media (min-width: 1366px) {
+  .hero {
+    margin-top: -101px;
+    padding: 247px 0 106px;
+    min-height: 801px;
+    background: url("../images/hero_bg_1920.jpg") no-repeat center / cover;
+  }
+
+  .hero__content-text {
+    margin-bottom: 92px;
+    max-width: 555px;
   }
 }
