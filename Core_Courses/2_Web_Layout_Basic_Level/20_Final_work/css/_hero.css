@@ -33,3 +33,25 @@
   text-align: center;
   color: var(--white);
 }
+
+/* media queries, any-hover */
+
+@media (min-width: 460px) {
+  .hero {
+    min-height: 360px;
+  }
+
+  .hero__content {
+    align-items: flex-start;
+  }
+
+  .hero__content-title {
+    text-align: left;
+  }
+
+  .hero__content-text {
+    margin-left: 0;
+    max-width: 100%;
+    text-align: left;
+  }
+}
