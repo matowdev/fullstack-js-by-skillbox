@@ -1,7 +1,6 @@
 .hero {
   position: relative;
   z-index: 1;
-  margin-top: -78px;
   padding: 128px 13px 50px;
   min-height: 388px;
   background-color: var(--dark-gray);
@@ -9,6 +8,7 @@
 }
 
 .main__hero {
+  margin-top: -78px;
   margin-bottom: 25px;
 }
 
@@ -61,10 +61,14 @@
 
 @media (min-width: 768px) {
   .hero {
-    margin-top: 0;
     padding: 87px 0 86px;
     min-height: 621px;
     background: url("../images/hero_bg_768.jpg") no-repeat center / cover;
+  }
+
+  .main__hero {
+    margin-top: 0;
+    margin-bottom: 40px;
   }
 
   .hero__content-title {
@@ -101,10 +105,14 @@
 
 @media (min-width: 1366px) {
   .hero {
-    margin-top: -101px;
     padding: 247px 0 106px;
     min-height: 801px;
     background: url("../images/hero_bg_1920.jpg") no-repeat center / cover;
+  }
+
+  .main__hero {
+    margin-top: -101px;
+    margin-bottom: 35px;
   }
 
   .hero__content-text {
