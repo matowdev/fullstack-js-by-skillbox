@@ -33,7 +33,7 @@
         <h2 class="visually-hidden section-title header__nav-title">Навигация по сайту:</h2>
         <ul class="reset-list header__list" title="Главное меню">
           <li class="header__item"><a class="header__item-link" href="#about">О&nbsp;нас</a></li>
-          <li class="header__item"><a class="header__item-link" href="#">Галерея</a></li>
+          <li class="header__item"><a class="header__item-link" href="#gallery">Галерея</a></li>
           <li class="header__item"><a class="header__item-link" href="#">Каталог</a></li>
           <li class="header__item"><a class="header__item-link" href="#">События</a></li>
           <li class="header__item"><a class="header__item-link" href="#">Проекты</a></li>
@@ -51,7 +51,7 @@
           <h2 class="section-title hero__content-title">Прикоснитесь к&nbsp;прекрасному</h2>
           <p class="text hero__content-text">Мы&nbsp;вынуждены отталкиваться от&nbsp;того, что реализация намеченных
             плановых заданий создаёт предпосылки для новых предложений</p>
-          <a class="btn hero__btn" href="#" role="button">Подписаться на&nbsp;рассылку</a>
+          <a class="btn hero__content-btn" href="#" role="button">Подписаться на&nbsp;рассылку</a>
         </div>
       </div>
     </section>
@@ -68,6 +68,54 @@
             план целого ряда внеочередных мероприятий с учётом комплекса распределения внутренних резервов и ресурсов.
             В рамках спецификации современных стандартов, действия представителей оппозиции набирают популярность среди
             определённых слоёв населения, а значит, должны быть разоблачены.</p>
+        </div>
+      </div>
+    </section>
+    <!-- 3. -->
+    <section class="gallery main__gallery" id="gallery" aria-label="Секция: Галерея">
+      <div class="container gallery__container">
+        <h2 class="section-title gallery__title">Галерея</h2>
+        <div class="gallery__art">
+          <div class="art-selection gallery__art-selection">
+            <label class="art-selection__label">
+              <input class="art-selection__option visually-hidden" type="checkbox" name="era">
+              <span class="art-selection-check"></span>
+              <span class="art-selection__desc">XIX век</span>
+            </label>
+            <label class="art-selection__label">
+              <input class="art-selection__option visually-hidden" type="checkbox" name="era" checked>
+              <span class="art-selection-check"></span>
+              <span class="art-selection__desc">XX век</span>
+            </label>
+            <label class="art-selection__label">
+              <input class="art-selection__option visually-hidden" type="checkbox" name="era">
+              <span class="art-selection-check"></span>
+              <span class="art-selection__desc">Современность</span>
+            </label>
+          </div>
+          <ul class="reset-list gallery__art-list">
+            <li class="gallery__art-item">
+              <picture>
+                <source srcset="" media="(min-width: 576px)">
+                <img class="gallery__art-painting" src="images/gallery_torso_320.jpg"
+                  alt="Картина: 'Торс (Фигура с розовым лицом)' Малевич К.С.">
+              </picture>
+            </li>
+            <li class="gallery__art-item">
+              <picture>
+                <source srcset="" media="(min-width: 576px)">
+                <img class="gallery__art-painting" src="images/gallery_woman_320.jpg"
+                  alt="Картина: 'Женщина с граблями' Малевич К.С.">
+              </picture>
+            </li>
+            <li class="gallery__art-item">
+              <picture>
+                <source srcset="" media="(min-width: 576px)">
+                <img class="gallery__art-painting" src="images/gallery_rye_320.jpg"
+                  alt="Картина: 'Уборка ржи' Малевич К.С.">
+              </picture>
+            </li>
+          </ul>
         </div>
       </div>
     </section>

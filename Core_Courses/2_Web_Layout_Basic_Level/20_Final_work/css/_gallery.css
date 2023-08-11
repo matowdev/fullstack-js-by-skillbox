@@ -1,0 +1,39 @@
+.gallery {
+  min-height: 1206px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background: url("../images/gallery_bg_320.jpg") no-repeat center / cover;
+}
+
+.main__gallery {
+  margin-top: 25px;
+}
+
+.gallery__title {
+  margin-bottom: 18px;
+  color: var(--white);
+}
+
+.gallery__art-selection {
+  margin-bottom: 37px;
+}
+
+.gallery__art-list {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  row-gap: 30px;
+}
+
+.gallery__art-item {
+  /* max-width: 460px; */
+  min-height: 290px;
+  background-color: var(--dark-gray);
+}
+
+.gallery__art-painting {
+  display: block;
+  text-align: center;
+  object-fit: cover;
+  color: var(--white);
+}
