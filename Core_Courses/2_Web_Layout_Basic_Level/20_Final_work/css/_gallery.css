@@ -79,11 +79,31 @@
 
   .gallery__art-list {
     flex-direction: row;
-    column-gap: 34px;
+    flex-wrap: wrap;
+    gap: 34px;
   }
 
   .gallery__art-item {
-    max-width: 285px;
+    flex-basis: calc(100% / 3 - 34px * 2 / 3);
     min-height: 200px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .gallery {
+    background: url("../images/gallery_bg_1024.jpg") no-repeat center / cover;
+  }
+
+  .main__gallery {
+    margin-top: 30px;
+  }
+
+  .gallery__art-list {
+    gap: 50px;
+  }
+
+  .gallery__art-item {
+    flex-basis: calc(100% / 3 - 50px * 2 / 3);
+    min-height: 275px;
   }
 }
