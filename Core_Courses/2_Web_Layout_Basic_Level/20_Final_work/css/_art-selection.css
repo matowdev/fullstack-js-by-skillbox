@@ -73,6 +73,34 @@
 
 /* media queries, any-hover */
 
+@media (min-width: 460px) {
+  .art-selection {
+    padding-left: 3px;
+  }
+
+  .second-label {
+    padding-left: 25px;
+  }
+
+  .third-label {
+    padding-left: 50px;
+  }
+}
+
+@media (min-width: 768px) {
+  .art-selection,
+  .second-label,
+  .third-label {
+    padding-left: 0;
+  }
+}
+
+@media (min-width: 1366px) {
+  .art-selection {
+    row-gap: 14px;
+  }
+}
+
 @media (any-hover: hover) {
   .art-selection__label:hover .art-selection-check {
     border-color: var(--light-purple);
