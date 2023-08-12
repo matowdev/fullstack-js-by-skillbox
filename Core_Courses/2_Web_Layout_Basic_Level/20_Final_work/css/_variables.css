@@ -31,6 +31,12 @@
 
 /* media queries */
 
+@media (min-width: 460px) {
+  :root {
+    --container-padding: 30px;
+  }
+}
+
 @media (min-width: 768px) {
   :root {
     --container-padding: 50px;
