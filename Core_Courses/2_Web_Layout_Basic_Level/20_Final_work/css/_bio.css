@@ -1,0 +1,32 @@
+.bio__portrait {
+  display: block;
+  text-align: center;
+  object-fit: cover;
+}
+
+.bio__title {
+  margin-top: 0;
+  margin-bottom: -2px;
+  padding-top: 20px;
+  font-weight: var(--semibold);
+  font-size: 24px;
+  line-height: normal;
+}
+
+.bio__title_less {
+  max-width: 288px;
+}
+
+.bio__dates {
+  display: inline-block;
+  margin-bottom: 13px;
+  font-size: 12px;
+  line-height: normal;
+  color: var(--normal-gray);
+}
+
+.bio__text {
+  margin-bottom: 0;
+}
+
+/* media queries, any-hover */
