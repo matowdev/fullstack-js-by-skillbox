@@ -7,8 +7,10 @@
 
 .art-selection__label {
   line-height: 1;
-  cursor: pointer;
   color: var(--white);
+  overflow: clip;
+  cursor: pointer;
+  box-shadow: none !important;
   transition-property: border-color;
   transition-duration: var(--short);
   transition-timing-function: ease-in-out;
@@ -26,6 +28,8 @@
   border: 1px solid;
   width: 12px;
   height: 12px;
+  overflow: clip;
+  box-shadow: none !important;
   transition: border-color var(--short) ease-in-out;
 }
 
@@ -60,6 +64,7 @@
 
 .art-selection__option:checked ~ .art-selection-check::before {
   opacity: 1;
+  color: var(--dark);
   transform: translate(-50%, -50%) scale(1);
 }
 
