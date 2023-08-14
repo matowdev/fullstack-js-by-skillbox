@@ -46,8 +46,14 @@
   .bio__dates {
     margin-bottom: 6px;
   }
+}
 
-  .bio__text {
-    margin-bottom: 50px;
+@media (min-width: 1024px) {
+  .bio__title {
+    margin-bottom: 0px;
+  }
+
+  .bio__dates {
+    margin-bottom: 15px;
   }
 }

@@ -32,7 +32,17 @@
     margin-bottom: 40px;
   }
 
+  .catalog__item:not(:last-child) {
+    margin-bottom: 50px;
+  }
+
   .catalog__item_up {
     margin-top: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .catalog__intro-text {
+    margin-bottom: 39px;
   }
 }
