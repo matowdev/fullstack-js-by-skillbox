@@ -46,3 +46,15 @@
     margin-bottom: 39px;
   }
 }
+
+@media (min-width: 1366px) {
+  .catalog {
+    padding-top: 33px;
+    padding-bottom: 35px;
+  }
+
+  .catalog__intro-text {
+    margin-bottom: 39px;
+    max-width: 1080px;
+  }
+}
