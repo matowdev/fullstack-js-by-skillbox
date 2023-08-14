@@ -30,3 +30,24 @@
 }
 
 /* media queries, any-hover */
+
+@media (min-width: 460px) {
+  .bio__title_less {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .bio__title {
+    margin-bottom: -1px;
+    padding-top: 30px;
+  }
+
+  .bio__dates {
+    margin-bottom: 6px;
+  }
+
+  .bio__text {
+    margin-bottom: 50px;
+  }
+}

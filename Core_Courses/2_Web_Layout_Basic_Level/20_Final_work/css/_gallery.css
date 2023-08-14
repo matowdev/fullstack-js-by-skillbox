@@ -1,5 +1,4 @@
 .gallery {
-  min-height: 1206px;
   padding-top: 50px;
   padding-bottom: 50px;
   background: url("../images/gallery_bg_320.jpg") no-repeat center / cover;
@@ -43,7 +42,6 @@
 
 @media (min-width: 768px) {
   .gallery {
-    min-height: 567px;
     padding-top: 80px;
     padding-bottom: 80px;
     background: url("../images/gallery_bg_768.jpg") no-repeat center / cover;
@@ -51,6 +49,7 @@
 
   .main__gallery {
     margin-top: 31px;
+    margin-bottom: 40px;
   }
 
   .gallery__title {
