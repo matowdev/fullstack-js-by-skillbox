@@ -3,7 +3,7 @@
   padding-bottom: 16px;
 }
 
-.about__content-text {
+.about__text {
   margin-bottom: 0;
   font-size: 14px;
   line-height: 28px;
@@ -17,12 +17,12 @@
     padding-bottom: 40px;
   }
 
-  .about__content-title {
+  .about__title {
     margin-bottom: 16px;
     font-size: 48px;
   }
 
-  .about__content-text {
+  .about__text {
     font-size: var(--default-fs);
     line-height: var(--default-lh);
   }
@@ -46,7 +46,7 @@
     align-items: center;
   }
 
-  .about__content {
+  .about__content-wrap {
     max-width: 1080px;
   }
 }

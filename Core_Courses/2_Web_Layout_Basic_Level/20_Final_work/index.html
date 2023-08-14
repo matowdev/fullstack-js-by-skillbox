@@ -35,7 +35,7 @@
           <li class="header__item"><a class="header__item-link" href="#about">О&nbsp;нас</a></li>
           <li class="header__item"><a class="header__item-link" href="#gallery">Галерея</a></li>
           <li class="header__item"><a class="header__item-link" href="#catalog">Каталог</a></li>
-          <li class="header__item"><a class="header__item-link" href="#">События</a></li>
+          <li class="header__item"><a class="header__item-link" href="#events">События</a></li>
           <li class="header__item"><a class="header__item-link" href="#">Проекты</a></li>
           <li class="header__item"><a class="header__item-link" href="#">Контакты</a></li>
         </ul>
@@ -47,20 +47,20 @@
     <!-- 1. -->
     <section class="hero main__hero" id="hero" aria-label="Секция: Презентация">
       <div class="container hero__container">
-        <div class="hero__content">
-          <h2 class="section-title hero__content-title">Прикоснитесь к&nbsp;прекрасному</h2>
-          <p class="text hero__content-text">Мы&nbsp;вынуждены отталкиваться от&nbsp;того, что реализация намеченных
+        <div class="hero__content-wrap">
+          <h2 class="section-title hero__title">Прикоснитесь к&nbsp;прекрасному</h2>
+          <p class="text hero__text">Мы&nbsp;вынуждены отталкиваться от&nbsp;того, что реализация намеченных
             плановых заданий создаёт предпосылки для новых предложений</p>
-          <a class="btn hero__content-btn" href="#" role="button">Подписаться на&nbsp;рассылку</a>
+          <a class="btn hero__btn" href="#" role="button">Подписаться на&nbsp;рассылку</a>
         </div>
       </div>
     </section>
     <!-- 2. -->
     <section class="about main__about" id="about" aria-label="Секция: О нас">
       <div class="container about__container">
-        <div class="about__content">
-          <h2 class="section-title about__content-title">О&nbsp;нас</h2>
-          <p class="text about__content-text">Ясность нашей позиции очевидна: семантический разбор внешних
+        <div class="about__content-wrap">
+          <h2 class="section-title about__title">О&nbsp;нас</h2>
+          <p class="text about__text">Ясность нашей позиции очевидна: семантический разбор внешних
             противодействий однозначно определяет каждого участника как способного принимать собственные решения касаемо
             распределения внутренних резервов и ресурсов. Не следует, однако, забывать, что высококачественный прототип
             будущего проекта влечёт за собой процесс внедрения и модернизации модели развития. Повседневная практика
@@ -190,6 +190,33 @@
                     мастерской, где юный Микеланджело в течение года овладевал профессиональными навыками. Автор
                     фресковых циклов, в которых выпукло, со всевозможными подробностями показана домашняя жизнь
                     библейских персонажей (в их роли выступают знатные граждане Флоренции в костюмах того времени).</p>
+                </div>
+              </article>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- 5. -->
+    <section class="events main__events" id="events" aria-label="Секция: События">
+      <div class="container events__container">
+        <h2 class="section-title events__title">События</h2>
+        <div class="events__content-wrap">
+          <ul class="events__list">
+            <li class="events__item">
+              <article class="activities events__article">
+                <picture>
+                  <source srcset="images/" media="(min-width: 1366px)">
+                  <source srcset="images/" media="(min-width: 1024px)">
+                  <source srcset="images/" media="(min-width: 768px)">
+                  <img class="activities__poster" src="" alt="">
+                </picture>
+                <div class="activities__wrap">
+                  <small class="activities__venue"></small>
+                  <small class="activities__venue"></small>
+                  <h3 class="activities__title"></h3>
+                  <p class="text activities__text"></p>
+                  <a class="activities__link" href=""></a>
                 </div>
               </article>
             </li>
