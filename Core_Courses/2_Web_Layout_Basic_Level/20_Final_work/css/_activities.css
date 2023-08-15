@@ -1,0 +1,85 @@
+.activities__poster {
+  display: block;
+  min-height: 200px;
+  text-align: center;
+  color: var(--white);
+  background-color: var(--dark-gray);
+  object-fit: cover;
+}
+
+.activities__wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--light-gray);
+  border-bottom: 1px solid var(--light-gray);
+  border-left: 1px solid var(--light-gray);
+  padding: 59px 22px 45px;
+  min-height: 483px;
+}
+
+.activities__venue {
+  position: absolute;
+  top: 18px;
+  right: 17px;
+  display: block;
+  font-weight: var(--regular);
+  font-size: 12px;
+  line-height: 16px;
+  text-align: right;
+  color: var(--normal-gray);
+}
+
+.activities__title {
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-weight: var(--semibold);
+  font-size: 24px;
+  line-height: normal;
+}
+
+.activities__text {
+  margin-bottom: 0;
+  font-weight: var(--regular);
+}
+
+.activities__link {
+  align-self: flex-start;
+  position: relative;
+  margin-top: auto;
+  padding: 0 6px 3px;
+  font-weight: var(--regular);
+  color: var(--main-purple);
+  outline: none;
+  transition-property: color, background-color;
+  transition-duration: var(--short);
+  transition-timing-function: ease-in-out;
+}
+
+.activities__link::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  bottom: 5px;
+  width: 86%;
+  height: 1px;
+  background-color: currentColor;
+  transition: background-color var(--short) ease-in-out;
+}
+
+.activities__link:focus-visible:not(:hover) {
+  color: var(--white);
+  background-color: var(--main-purple);
+}
+
+.activities__link:active {
+  color: var(--dark);
+}
+
+/* media queries, any-hover */
+
+@media (any-hover: hover) {
+  .activities__link:hover:not(:active) {
+    color: var(--dark-purple);
+  }
+}

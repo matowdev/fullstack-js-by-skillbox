@@ -1,0 +1,8 @@
+.events {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.events__item:not(:last-child) {
+  margin-bottom: 20px;
+}

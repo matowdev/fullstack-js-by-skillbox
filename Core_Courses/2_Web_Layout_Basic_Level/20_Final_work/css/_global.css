@@ -87,6 +87,9 @@ svg {
 
 .text:not(:last-of-type) {
   margin-bottom: 0;
-  padding-top: 5px;
+  padding-bottom: 12px;
+}
+
+.text:not(:first-of-type) {
   padding-bottom: 12px;
 }
