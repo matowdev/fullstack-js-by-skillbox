@@ -70,7 +70,9 @@
 
 @media (min-width: 1024px) {
   .bio__portrait {
+    width: 100%;
     min-height: 579px;
+    max-height: 659px;
   }
 
   .bio__title {

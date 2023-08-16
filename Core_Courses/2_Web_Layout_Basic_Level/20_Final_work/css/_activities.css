@@ -121,6 +121,35 @@
   }
 }
 
+@media (min-width: 1024px) {
+  .activities {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .activities__poster {
+    max-height: none;
+  }
+
+  .activities__wrap {
+    flex-grow: 1;
+    padding-bottom: 45px;
+    min-height: 483px;
+  }
+
+  .activities__title {
+    margin-bottom: 5px;
+  }
+
+  .activities__title_down {
+    margin-bottom: 8px;
+  }
+
+  .transfer-title {
+    display: none;
+  }
+}
+
 @media (any-hover: hover) {
   .activities__link:hover:not(:active) {
     color: var(--dark-purple);

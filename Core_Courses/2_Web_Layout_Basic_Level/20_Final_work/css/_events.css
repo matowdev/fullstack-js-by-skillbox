@@ -19,3 +19,20 @@
     margin-bottom: 30px;
   }
 }
+
+@media (min-width: 1024px) {
+  .events__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 27px;
+  }
+
+  .events__item {
+    display: flex;
+    flex-basis: calc(100% / 3 - 27px * 2 / 3);
+  }
+
+  .events__item:not(:last-child) {
+    margin-bottom: 0;
+  }
+}
