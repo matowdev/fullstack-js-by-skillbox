@@ -40,6 +40,14 @@
   line-height: normal;
 }
 
+.transfer-hide {
+  display: none;
+}
+
+.transfer-title {
+  display: none;
+}
+
 .activities__text {
   margin-bottom: 0;
   font-weight: var(--regular);
@@ -90,6 +98,10 @@
   .activities__venue {
     top: 14px;
     right: 28px;
+  }
+
+  .transfer-title {
+    display: inline;
   }
 
   .transfer-paragraph {
@@ -147,6 +159,41 @@
 
   .transfer-title {
     display: none;
+  }
+}
+
+@media (min-width: 1366px) {
+  .activities__poster {
+    min-height: 300px;
+  }
+
+  .activities__wrap {
+    padding: 58px 49px 38px;
+    min-height: 401px;
+  }
+
+  .activities__venue {
+    top: 12px;
+    left: 49px;
+    font-weight: var(--semibold);
+    line-height: normal;
+    text-align: left;
+  }
+
+  .transfer-hide {
+    display: inline;
+  }
+
+  .activities__title {
+    margin-bottom: 9px;
+  }
+
+  .activities__title_down {
+    margin-bottom: 10px;
+  }
+
+  .activities__title_lower {
+    margin-bottom: 10px;
   }
 }
 

@@ -36,3 +36,18 @@
     margin-bottom: 0;
   }
 }
+
+@media (min-width: 1366px) {
+  .events {
+    padding-top: 34px;
+    /* padding-bottom: 40px; */
+  }
+
+  .events__list {
+    gap: 50px;
+  }
+
+  .events__item {
+    flex-basis: calc(100% / 3 - 50px * 2 / 3);
+  }
+}
