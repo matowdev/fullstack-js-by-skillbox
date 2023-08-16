@@ -17,11 +17,6 @@
     padding-bottom: 40px;
   }
 
-  .about__title {
-    margin-bottom: 16px;
-    font-size: 48px;
-  }
-
   .about__text {
     font-size: var(--default-fs);
     line-height: var(--default-lh);

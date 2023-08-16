@@ -93,3 +93,12 @@ svg {
 .text:not(:first-of-type) {
   padding-bottom: 12px;
 }
+
+/* media queries */
+
+@media (min-width: 768px) {
+  .section-title {
+    margin-bottom: 16px;
+    font-size: 48px;
+  }
+}
