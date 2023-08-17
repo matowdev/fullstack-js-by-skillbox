@@ -25,7 +25,7 @@ svg {
   font-size: var(--default-fs);
   line-height: var(--default-lh);
   /* height: auto; */
-  height: 9000px;
+  height: 10000px;
   color: var(--dark);
   background-color: var(--white);
 }

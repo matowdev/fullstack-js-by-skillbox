@@ -1,0 +1,13 @@
+.partners {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+
+.partners__logo {
+  /* flex-shrink: 0; */
+}
+
+.partners__logo-img {
+  display: block;
+}

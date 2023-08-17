@@ -1,0 +1,23 @@
+.projects {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.projects__text {
+  margin-bottom: 20px;
+}
+
+.projects__subtitle {
+  margin-top: 0;
+  margin-bottom: 11px;
+  font-weight: var(--semibold);
+  font-size: 18px;
+}
+
+/* media queries */
+
+@media (min-width: 460px) {
+  .projects {
+    border-bottom: 1px solid var(--light-gray);
+  }
+}
