@@ -55,3 +55,13 @@
     display: none;
   }
 }
+
+@media (min-width: 1024px) {
+  .projects__text {
+    margin-bottom: 20px;
+  }
+
+  .projects__subtitle {
+    margin-bottom: 16px;
+  }
+}

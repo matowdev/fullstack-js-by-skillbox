@@ -43,3 +43,21 @@
     content: url("../images/Institute_logo_768.svg");
   }
 }
+
+@media (min-width: 1024px) {
+  .partners {
+    column-gap: 27px;
+  }
+
+  .partners__logo-img {
+    width: 329px;
+  }
+
+  .first__partner {
+    content: url("../images/Freelands_logo_1024.svg");
+  }
+
+  .second__partner {
+    content: url("../images/Institute_logo_1024.svg");
+  }
+}
