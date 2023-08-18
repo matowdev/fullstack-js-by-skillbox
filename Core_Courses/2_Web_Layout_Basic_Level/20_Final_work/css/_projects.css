@@ -65,3 +65,24 @@
     margin-bottom: 16px;
   }
 }
+
+@media (min-width: 1366px) {
+  .projects {
+    padding-top: 28px;
+    padding-bottom: 69px;
+  }
+
+  .projects__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .projects__content-wrap {
+    max-width: 1080px;
+  }
+
+  .projects__text {
+    margin-bottom: 30px;
+  }
+}
