@@ -3,8 +3,16 @@
   padding-bottom: 25px;
 }
 
+.main__projects {
+  margin-bottom: 25px;
+}
+
 .projects__text {
   margin-bottom: 20px;
+}
+
+.transfer-text {
+  display: none;
 }
 
 .projects__subtitle {
@@ -19,5 +27,31 @@
 @media (min-width: 460px) {
   .projects {
     border-bottom: 1px solid var(--light-gray);
+  }
+}
+
+@media (min-width: 768px) {
+  .projects {
+    padding-top: 40px;
+    padding-bottom: 80px;
+  }
+
+  .projects__text {
+    margin-bottom: 28px;
+  }
+
+  .transfer-text {
+    display: inline;
+  }
+
+  .projects__subtitle {
+    margin-bottom: 29px;
+    font-size: 24px;
+  }
+}
+
+@media (min-width: 769px) {
+  .transfer-text {
+    display: none;
   }
 }

@@ -5,9 +5,41 @@
 }
 
 .partners__logo {
-  /* flex-shrink: 0; */
+  display: flex;
 }
 
 .partners__logo-img {
   display: block;
+  flex-grow: 1;
+}
+
+/* media queries */
+
+@media (min-width: 460px) {
+  .partners {
+    flex-direction: row;
+    justify-content: space-evenly;
+    column-gap: 12px;
+  }
+}
+
+@media (min-width: 768px) {
+  .partners {
+    justify-content: flex-start;
+    column-gap: 35px;
+  }
+
+  .partners__logo-img {
+    flex-grow: 0;
+    width: 316px;
+    height: 122px;
+  }
+
+  .first__partner {
+    content: url("../images/Freelands_logo_768.svg");
+  }
+
+  .second__partner {
+    content: url("../images/Institute_logo_768.svg");
+  }
 }
