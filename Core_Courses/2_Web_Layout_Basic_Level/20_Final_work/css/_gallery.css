@@ -26,9 +26,11 @@
 }
 
 .gallery__art-item {
+  position: relative;
   max-width: 490px;
   min-height: 290px;
   background-color: var(--dark-gray);
+  cursor: help;
 }
 
 .gallery__art-painting {
@@ -38,7 +40,22 @@
   color: var(--white);
 }
 
-/* media queries */
+.gallery__art-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 15px;
+  width: 100%;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  color: var(--white);
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: opacity var(--short) ease-in-out;
+}
+
+/* media queries, any-hover */
 
 @media (min-width: 768px) {
   .gallery {
@@ -119,5 +136,16 @@
   .gallery__art-item {
     flex-basis: calc(100% / 3 - 50px * 2 / 3);
     min-height: 270px;
+  }
+
+  .gallery__art-caption {
+    font-size: 18px;
+    line-height: 20px;
+  }
+}
+
+@media (any-hover: hover) {
+  .gallery__art-item:hover .gallery__art-caption {
+    opacity: 1;
   }
 }
