@@ -1,0 +1,25 @@
+.showroom {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.showroom__caption {
+  margin-bottom: 14px;
+}
+
+.showroom__caption-title {
+  margin-bottom: -2px;
+  font-weight: var(--semibold);
+  font-size: 18px;
+  line-height: normal;
+}
+
+.showroom__caption-address {
+  font-weight: var(--regular);
+  font-size: 14px;
+  line-height: normal;
+}
+
+.showroom__form {
+  margin-bottom: 20px;
+}

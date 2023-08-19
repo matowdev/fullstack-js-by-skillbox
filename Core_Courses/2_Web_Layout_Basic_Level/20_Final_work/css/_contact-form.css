@@ -1,0 +1,18 @@
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.contact-form__input {
+  border: 1px solid var(--dark);
+  border-radius: 100px;
+  padding: 9px 23px;
+  max-width: 324px;
+  min-height: 40px;
+  outline: none;
+}
+
+.contact-form__input::placeholder {
+  color: var(--normal-gray);
+}

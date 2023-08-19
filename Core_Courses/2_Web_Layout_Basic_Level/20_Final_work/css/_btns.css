@@ -49,6 +49,19 @@
   box-shadow: 0 0 0 3px var(--very-light-purple);
 }
 
+.btn_transparent {
+  border: 2px solid var(--main-purple);
+  padding-top: 10px;
+  padding-right: 35px;
+  padding-bottom: 9px;
+  padding-left: 33px;
+  max-width: 128px;
+  min-height: 40px;
+  font-size: 12px;
+  color: var(--main-purple);
+  background-color: transparent;
+}
+
 /* media queries, any-hover */
 
 @media (min-width: 768px) {

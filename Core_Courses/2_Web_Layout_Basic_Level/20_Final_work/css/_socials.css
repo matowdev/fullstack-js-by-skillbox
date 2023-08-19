@@ -1,0 +1,17 @@
+.socials__subtitle {
+  margin-top: 0;
+  margin-bottom: 7px;
+  font-weight: var(--regular);
+  font-size: 18px;
+}
+
+.socials__list {
+  display: flex;
+  column-gap: 20px;
+}
+
+.socials__item {
+  width: 50px;
+  height: 50px;
+  /* outline: 2px solid red; */
+}
