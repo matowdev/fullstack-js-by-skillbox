@@ -6,6 +6,16 @@
 
 .partners__logo {
   display: flex;
+  outline: none;
+  transition: box-shadow var(--short) ease-in-out;
+}
+
+.partners__logo:focus-visible {
+  box-shadow: 0 0 0 1px var(--main-purple);
+}
+
+.partners__logo:active {
+  box-shadow: 0 0 0 1px var(--dark-purple);
 }
 
 .partners__logo-img {
@@ -66,5 +76,11 @@
 @media (min-width: 1366px) {
   .partners {
     gap: 34px;
+  }
+}
+
+@media (any-hover: hover) {
+  .partners__logo:hover:not(:active) {
+    box-shadow: 0 0 0 1px var(--very-light-purple);
   }
 }

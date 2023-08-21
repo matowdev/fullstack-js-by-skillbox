@@ -60,6 +60,21 @@
   font-size: 12px;
   color: var(--main-purple);
   background-color: transparent;
+  transition-property: border, color, background-color, box-shadow;
+  transition-duration: var(--short);
+  transition-timing-function: ease-in-out;
+}
+
+.btn.btn_transparent::after {
+  top: -5px;
+  right: -6px;
+  bottom: -5px;
+  left: -6px;
+}
+
+.btn.btn_transparent:active {
+  border: 2px solid var(--dark-purple);
+  color: var(--white);
 }
 
 /* media queries, any-hover */
@@ -89,5 +104,11 @@
 @media (any-hover: hover) {
   .btn:hover:not(:active) {
     box-shadow: 0 0 0 3px var(--very-light-purple);
+  }
+
+  .btn.btn_transparent:hover:not(:active) {
+    color: var(--white);
+    background-color: var(--main-purple);
+    box-shadow: none;
   }
 }

@@ -51,7 +51,7 @@
           <h2 class="section-title hero__title">Прикоснитесь к&nbsp;прекрасному</h2>
           <p class="text hero__text">Мы&nbsp;вынуждены отталкиваться от&nbsp;того, что реализация намеченных
             плановых заданий создаёт предпосылки для новых предложений</p>
-          <a class="btn hero__btn" href="#" role="button">Подписаться на&nbsp;рассылку</a>
+          <a class="btn hero__btn" href="#" role="button" target="_blank">Подписаться на&nbsp;рассылку</a>
         </div>
       </div>
     </section>
@@ -78,17 +78,17 @@
         <div class="gallery__art">
           <div class="art-selection gallery__art-selection">
             <label class="art-selection__label first-label">
-              <input class="art-selection__option visually-hidden" type="checkbox">
+              <input class="art-selection__option visually-hidden" type="checkbox" name="century">
               <span class="art-selection-check"></span>
               <span class="art-selection__desc">XIX век</span>
             </label>
             <label class="art-selection__label second-label">
-              <input class="art-selection__option visually-hidden" type="checkbox" checked>
+              <input class="art-selection__option visually-hidden" type="checkbox" name="century" checked>
               <span class="art-selection-check"></span>
               <span class="art-selection__desc">XX век</span>
             </label>
             <label class="art-selection__label third-label">
-              <input class="art-selection__option visually-hidden" type="checkbox">
+              <input class="art-selection__option visually-hidden" type="checkbox" name="modernity">
               <span class="art-selection-check"></span>
               <span class="art-selection__desc">Современность</span>
             </label>
@@ -282,11 +282,11 @@
             с не уникальными данными до степени совершённой неузнаваемости.</p>
           <h3 class="projects__subtitle">Партнёры проектов:</h3>
           <div class="partners projects__partners-wrap">
-            <a class="partners__logo" href="#">
+            <a class="partners__logo" href="#" target="_blank" rel="noopener noreferrer">
               <img class="partners__logo-img first__partner" src="images/Freelands_logo_320.svg" width="290"
                 height="100" alt="Логотип партнёра: Freelands Foundation">
             </a>
-            <a class="partners__logo" href="#">
+            <a class="partners__logo" href="#" target="_blank" rel="noopener noreferrer">
               <img class="partners__logo-img second__partner" src="images/Institute_logo_320.svg" width="290"
                 height="100" alt="Логотип партнёра: Institute for Contemporary Art">
             </a>
@@ -304,9 +304,19 @@
           </div>
           <form class="contact-form showroom__form" action="https://jsonplaceholder.typicode.com/users" method="post"
             name="contact-form" autocomplete="off" aria-label="Все поля обязательны">
-            <input class="contact-form__input" type="text" name="name" placeholder="Имя*" required>
-            <input class="contact-form__input" type="tel" name="phone" placeholder="Телефон*" required>
-            <button class="reset-btn btn btn_transparent contact-form__btn" type="submit">Заказать</button>
+            <div class="contact-form__input-wrap">
+              <input class="contact-form__input" id="name" type="text" name="name" placeholder="Имя*" maxlength="15"
+                pattern="[А-Яа-яЁё]+" autocomplete="off" required>
+              <label class="contact-form__message" for="name">Недопустимый формат</label>
+            </div>
+            <div class="contact-form__input-wrap">
+              <input class="contact-form__input" id="phone" type="tel" name="phone" placeholder="Телефон*"
+                maxlength="13" pattern="[0-9+]+" autocomplete="off" required>
+              <label class="contact-form__message" for="phone">Недопустимый формат</label>
+            </div>
+            <div class="contact-form__btns-wrap">
+              <button class="reset-btn btn btn_transparent contact-form__btn" type="submit">Заказать</button>
+            </div>
           </form>
           <div class="socials showroom__socials">
             <h3 class="socials__subtitle">Связаться в один клик</h3>

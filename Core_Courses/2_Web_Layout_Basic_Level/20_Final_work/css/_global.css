@@ -8,6 +8,11 @@ html {
   box-sizing: inherit;
 }
 
+*::selection {
+  color: var(--white);
+  background-color: var(--main-purple);
+}
+
 a {
   text-decoration: none;
   color: inherit;
