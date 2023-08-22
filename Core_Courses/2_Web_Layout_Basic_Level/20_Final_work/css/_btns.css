@@ -2,10 +2,7 @@
   position: relative;
   display: inline-block;
   border-radius: 100px;
-  padding-top: 11px;
-  padding-right: 17px;
-  padding-bottom: 12px;
-  padding-left: 20px;
+  padding: 11px 17px 12px 20px;
   max-width: 240px;
   max-height: 80px;
   font-family: var(--open-sans), sans-serif;
@@ -51,10 +48,7 @@
 
 .btn_transparent {
   border: 2px solid var(--main-purple);
-  padding-top: 10px;
-  padding-right: 35px;
-  padding-bottom: 9px;
-  padding-left: 33px;
+  padding: 10px 35px 9px 33px;
   max-width: 128px;
   min-height: 40px;
   font-size: 12px;
@@ -63,6 +57,10 @@
   transition-property: border, color, background-color, box-shadow;
   transition-duration: var(--short);
   transition-timing-function: ease-in-out;
+}
+
+.btn_transparent::before {
+  content: "Заказать";
 }
 
 .btn.btn_transparent::after {
@@ -81,10 +79,7 @@
 
 @media (min-width: 768px) {
   .btn {
-    padding-top: 22px;
-    padding-right: 35px;
-    padding-bottom: 24px;
-    padding-left: 35px;
+    padding: 22px 35px 24px;
     max-width: 350px;
     max-height: 100px;
     font-size: 18px;
@@ -92,6 +87,20 @@
 
   .btn:not(:last-child) {
     margin-right: 20px;
+  }
+
+  .btn_transparent {
+    padding: 11px 28px 11px;
+    min-width: 317px;
+    max-height: 50px;
+  }
+
+  .btn.btn_transparent:not(:last-child) {
+    margin-right: 0;
+  }
+
+  .btn_transparent::before {
+    content: "Заказать обратный звонок";
   }
 }
 

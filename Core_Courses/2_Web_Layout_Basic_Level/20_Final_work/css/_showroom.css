@@ -23,3 +23,26 @@
 .showroom__form {
   margin-bottom: 20px;
 }
+
+/* media queries, any-hover */
+
+@media (min-width: 768px) {
+  .showroom {
+    padding-top: 19px;
+    padding-bottom: 23px;
+  }
+
+  .showroom__caption {
+    margin-bottom: 6px;
+  }
+
+  .showroom__caption-title {
+    margin-bottom: 3px;
+    font-size: 24px;
+    line-height: var(--default-lh);
+  }
+
+  .showroom__form {
+    margin-bottom: 30px;
+  }
+}

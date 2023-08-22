@@ -17,9 +17,14 @@
   min-height: 40px;
   outline: none;
   cursor: pointer;
+  caret-color: var(--main-purple);
   transition-property: border, color, background-color;
   transition-duration: var(--short);
   transition-timing-function: ease-in-out;
+}
+
+.contact-form__input:not(:first-child) {
+  margin-bottom: 10px;
 }
 
 .contact-form__input::placeholder {
@@ -62,7 +67,8 @@
 .contact-form__btns-wrap {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  align-items: flex-end;
+  gap: 20px 33px;
   padding-top: 18px;
 }
 
@@ -71,6 +77,24 @@
 }
 
 /* media queries, any-hover */
+
+@media (min-width: 768px) {
+  .contact-form {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+  }
+
+  .contact-form__input {
+    padding: 9px 23px;
+    min-width: 324px;
+    min-height: 50px;
+  }
+
+  .contact-form__btns-wrap {
+    padding-top: 0;
+  }
+}
 
 @media (any-hover: hover) {
   .contact-form__input:hover:not(:active) {
