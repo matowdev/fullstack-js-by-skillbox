@@ -6,9 +6,17 @@
   line-height: var(--default-lh);
 }
 
+.socials__subtitle:not(:last-of-type) {
+  margin-bottom: 0;
+}
+
 .socials__list {
   display: flex;
   column-gap: 20px;
+}
+
+.socials__list:not(:last-of-type) {
+  margin-bottom: 10px;
 }
 
 .socials__item-link {

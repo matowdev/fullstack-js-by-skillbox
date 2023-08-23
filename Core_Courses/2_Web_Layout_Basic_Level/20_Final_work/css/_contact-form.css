@@ -109,13 +109,12 @@
 @media (min-width: 1366px) {
   .contact-form {
     justify-content: center;
-    align-items: flex-start;
+    align-items: flex-end;
     flex-basis: calc(32% + 26%);
   }
 
   .contact-form__btns-wrap {
-    align-self: center;
-    margin-bottom: -6px;
+    align-self: flex-end;
   }
 }
 
