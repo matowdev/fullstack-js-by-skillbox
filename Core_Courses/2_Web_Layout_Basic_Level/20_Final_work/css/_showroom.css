@@ -52,3 +52,40 @@
     margin-bottom: 28px;
   }
 }
+
+@media (min-width: 1366px) {
+  .showroom {
+    border-bottom: 1px solid var(--light-gray);
+    padding-top: 21px;
+    padding-bottom: 36px;
+  }
+
+  .main__showroom {
+    margin-bottom: 35px;
+  }
+
+  .showroom__data-wrap {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .showroom__caption {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+  }
+
+  .showroom__caption-title {
+    margin-bottom: 0;
+  }
+
+  .showroom__caption-address {
+    font-size: 16px;
+    line-height: var(--default-lh);
+  }
+
+  .showroom__form {
+    margin-top: -11px;
+    margin-bottom: 0;
+  }
+}

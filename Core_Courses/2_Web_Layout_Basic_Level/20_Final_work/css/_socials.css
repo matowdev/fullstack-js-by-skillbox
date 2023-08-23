@@ -59,6 +59,12 @@
   }
 }
 
+@media (min-width: 1366px) {
+  .socials {
+    margin-top: -7px;
+  }
+}
+
 @media (any-hover: hover) {
   .socials__item-link:hover:not(:active) {
     opacity: 0.5;

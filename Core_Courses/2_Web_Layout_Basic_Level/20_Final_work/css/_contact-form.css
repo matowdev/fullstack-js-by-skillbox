@@ -106,6 +106,19 @@
   }
 }
 
+@media (min-width: 1366px) {
+  .contact-form {
+    justify-content: center;
+    align-items: flex-start;
+    flex-basis: calc(32% + 26%);
+  }
+
+  .contact-form__btns-wrap {
+    align-self: center;
+    margin-bottom: -6px;
+  }
+}
+
 @media (any-hover: hover) {
   .contact-form__input:hover:not(:active) {
     background-color: var(--very-light-gray);
