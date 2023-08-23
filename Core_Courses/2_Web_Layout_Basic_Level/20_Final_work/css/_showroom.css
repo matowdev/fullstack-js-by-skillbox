@@ -46,3 +46,9 @@
     margin-bottom: 30px;
   }
 }
+
+@media (min-width: 1024px) {
+  .showroom__form {
+    margin-bottom: 28px;
+  }
+}

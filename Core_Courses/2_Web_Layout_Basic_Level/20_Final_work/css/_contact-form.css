@@ -96,6 +96,16 @@
   }
 }
 
+@media (min-width: 1024px) {
+  .contact-form {
+    padding-left: 1px;
+  }
+
+  .contact-form__input {
+    min-width: 270px;
+  }
+}
+
 @media (any-hover: hover) {
   .contact-form__input:hover:not(:active) {
     background-color: var(--very-light-gray);

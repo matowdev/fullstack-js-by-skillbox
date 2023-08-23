@@ -104,6 +104,18 @@
   }
 }
 
+@media (min-width: 1024px) {
+  .btn_transparent {
+    margin-bottom: 2px;
+    padding-left: 29px;
+    min-width: 342px;
+  }
+
+  .btn.btn_transparent:not(:first-child) {
+    margin-bottom: 0;
+  }
+}
+
 @media (min-width: 1366px) {
   .btn {
     padding-top: 22px;
