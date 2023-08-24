@@ -51,6 +51,35 @@
 
 /* media queries, any-hover */
 
+@media (min-width: 460px) {
+  .footer__container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 768px) {
+  .footer {
+    padding-top: 40px;
+    padding-bottom: 31px;
+  }
+
+  .page__footer {
+    margin-top: 20px;
+  }
+
+  .footer__logo-img {
+    margin-left: 2px;
+    width: 173px;
+    height: 40px;
+  }
+
+  .footer__socials-link {
+    width: 60px;
+    height: 60px;
+  }
+}
+
 @media (any-hover: hover) {
   .footer__socials-link:hover:not(:active) {
     color: var(--white);
