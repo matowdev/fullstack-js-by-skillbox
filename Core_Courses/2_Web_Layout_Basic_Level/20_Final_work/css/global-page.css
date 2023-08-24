@@ -72,6 +72,10 @@ svg {
   line-height: normal;
 }
 
+.section-title:not(:last-of-type) {
+  margin-bottom: 0;
+}
+
 .reset-list {
   margin: 0;
   padding: 0;

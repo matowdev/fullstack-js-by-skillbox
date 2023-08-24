@@ -46,11 +46,11 @@
     height: 122px;
   }
 
-  .first__partner {
+  .first-partner {
     content: url("../images/Freelands_logo_768.svg");
   }
 
-  .second__partner {
+  .second-partner {
     content: url("../images/Institute_logo_768.svg");
   }
 }
@@ -64,11 +64,11 @@
     width: 329px;
   }
 
-  .first__partner {
+  .first-partner {
     content: url("../images/Freelands_logo_1024.svg");
   }
 
-  .second__partner {
+  .second-partner {
     content: url("../images/Institute_logo_1024.svg");
   }
 }

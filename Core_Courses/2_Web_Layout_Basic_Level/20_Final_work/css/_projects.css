@@ -18,6 +18,10 @@
   font-size: 18px;
 }
 
+.projects__subtitle:not(:last-of-type) {
+  margin-bottom: 0;
+}
+
 /* media queries */
 
 @media (min-width: 460px) {
