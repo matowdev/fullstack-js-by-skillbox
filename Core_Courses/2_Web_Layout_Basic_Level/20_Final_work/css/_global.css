@@ -29,8 +29,7 @@ svg {
   font-family: var(--open-sans), sans-serif;
   font-size: var(--default-fs);
   line-height: var(--default-lh);
-  /* height: auto; */
-  height: 10000px;
+  height: auto;
   color: var(--dark);
   background-color: var(--white);
 }
