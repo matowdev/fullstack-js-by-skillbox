@@ -80,6 +80,27 @@
   }
 }
 
+@media (min-width: 1366px) {
+  .footer {
+    padding-top: 47px;
+    padding-bottom: 48px;
+  }
+
+  .page__footer {
+    margin-top: 0;
+  }
+
+  .footer__logo-img {
+    margin-top: 1px;
+    margin-left: 0;
+  }
+
+  .footer__socials-link {
+    width: 45px;
+    height: 45px;
+  }
+}
+
 @media (any-hover: hover) {
   .footer__socials-link:hover:not(:active) {
     color: var(--white);
