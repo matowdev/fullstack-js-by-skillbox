@@ -1,5 +1,3 @@
-# FullStack_JavaScript_by_Skillbox
-
 My work/projects according to the training program (by blocks and sub-blocks).
 
 **Let's go!!**
@@ -17,3 +15,5 @@ My work/projects according to the training program (by blocks and sub-blocks).
 ---
 
 ![Skillbox](Core_Courses/My_Ex/Images/skillbox.png)
+
+### [// Click](https://go.redav.online/27b5ac6222df4e81)
