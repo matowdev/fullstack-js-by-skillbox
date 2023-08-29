@@ -1,12 +1,8 @@
 .gallery {
   padding-top: 50px;
   padding-bottom: 50px;
+  background-color: var(--black);
   background: url("../images/gallery_bg_320.jpg") no-repeat center / cover;
-}
-
-.main__gallery {
-  margin-top: 25px;
-  margin-bottom: 25px;
 }
 
 .gallery__title {
@@ -64,11 +60,6 @@
     background: url("../images/gallery_bg_768.jpg") no-repeat center / cover;
   }
 
-  .main__gallery {
-    margin-top: 31px;
-    margin-bottom: 40px;
-  }
-
   .gallery__title {
     margin-bottom: 22px;
   }
@@ -90,10 +81,6 @@
     background: url("../images/gallery_bg_1024.jpg") no-repeat center / cover;
   }
 
-  .main__gallery {
-    margin-top: 30px;
-  }
-
   .gallery__art-list {
     gap: 50px;
   }
@@ -108,11 +95,6 @@
   .gallery {
     padding-top: 81px;
     background: url("../images/gallery_bg_1920.jpg") no-repeat center / cover;
-  }
-
-  .main__gallery {
-    margin-top: 23px;
-    margin-bottom: 35px;
   }
 
   .gallery__title {

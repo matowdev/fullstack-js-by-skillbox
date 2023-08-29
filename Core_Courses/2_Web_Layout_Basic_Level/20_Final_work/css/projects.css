@@ -24,20 +24,10 @@
 
 /* media queries */
 
-@media (min-width: 460px) {
-  .projects {
-    border-bottom: 1px solid var(--light-gray);
-  }
-}
-
 @media (min-width: 768px) {
   .projects {
     padding-top: 40px;
     padding-bottom: 80px;
-  }
-
-  .main__projects {
-    margin-bottom: 23px;
   }
 
   .projects__text {

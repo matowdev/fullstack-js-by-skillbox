@@ -1,6 +1,6 @@
 .about {
-  padding-top: 25px;
-  padding-bottom: 16px;
+  padding-top: 50px;
+  padding-bottom: 41px;
 }
 
 .about__text {
@@ -13,8 +13,8 @@
 
 @media (min-width: 768px) {
   .about {
-    padding-top: 39px;
-    padding-bottom: 40px;
+    padding-top: 79px;
+    padding-bottom: 71px;
   }
 
   .about__text {
@@ -25,14 +25,15 @@
 
 @media (min-width: 1024px) {
   .about {
-    padding-top: 40px;
+    padding-top: 80px;
+    padding-bottom: 70px;
   }
 }
 
 @media (min-width: 1366px) {
   .about {
-    padding-top: 34px;
-    padding-bottom: 35px;
+    padding-top: 69px;
+    padding-bottom: 58px;
   }
 
   .about__container {

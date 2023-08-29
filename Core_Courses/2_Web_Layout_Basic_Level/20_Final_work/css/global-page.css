@@ -94,12 +94,7 @@ svg {
 }
 
 .text:not(:last-of-type) {
-  margin-bottom: 0;
-  padding-bottom: 12px;
-}
-
-.text:not(:first-of-type) {
-  padding-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 /* media queries */

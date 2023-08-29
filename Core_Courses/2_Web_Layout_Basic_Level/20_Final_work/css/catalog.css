@@ -1,5 +1,5 @@
 .catalog {
-  padding-top: 25px;
+  padding-top: 50px;
   padding-bottom: 25px;
 }
 
@@ -19,7 +19,7 @@
 
 @media (min-width: 768px) {
   .catalog {
-    padding-top: 40px;
+    padding-top: 80px;
     padding-bottom: 40px;
   }
 
@@ -44,7 +44,7 @@
 
 @media (min-width: 1366px) {
   .catalog {
-    padding-top: 33px;
+    padding-top: 68px;
     padding-bottom: 35px;
   }
 

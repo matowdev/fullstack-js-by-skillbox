@@ -1,6 +1,6 @@
 .showroom {
   padding-top: 25px;
-  padding-bottom: 25px;
+  padding-bottom: 50px;
 }
 
 .showroom__caption {
@@ -32,10 +32,16 @@
 
 /* media queries, any-hover */
 
+@media (min-width: 460px) {
+  .showroom {
+    border-top: 1px solid var(--light-gray);
+  }
+}
+
 @media (min-width: 768px) {
   .showroom {
-    padding-top: 19px;
-    padding-bottom: 23px;
+    padding-top: 42px;
+    padding-bottom: 43px;
   }
 
   .showroom__caption {
@@ -62,7 +68,7 @@
 @media (min-width: 1366px) {
   .showroom {
     border-bottom: 1px solid var(--light-gray);
-    padding-top: 21px;
+    padding-top: 44px;
     padding-bottom: 29px;
   }
 
