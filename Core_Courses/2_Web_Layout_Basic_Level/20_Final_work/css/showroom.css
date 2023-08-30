@@ -67,13 +67,8 @@
 
 @media (min-width: 1366px) {
   .showroom {
-    border-bottom: 1px solid var(--light-gray);
-    padding-top: 44px;
-    padding-bottom: 29px;
-  }
-
-  .main__showroom {
-    margin-bottom: 70px;
+    padding-top: 43px;
+    padding-bottom: 31px;
   }
 
   .showroom__data-wrap {

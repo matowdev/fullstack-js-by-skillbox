@@ -32,14 +32,8 @@
 
 @media (min-width: 1366px) {
   .about {
-    padding-top: 69px;
-    padding-bottom: 58px;
-  }
-
-  .about__container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding-top: 79px;
+    padding-bottom: 70px;
   }
 
   .about__content-wrap {

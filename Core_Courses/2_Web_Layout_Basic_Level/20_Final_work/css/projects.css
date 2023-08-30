@@ -62,14 +62,8 @@
 
 @media (min-width: 1366px) {
   .projects {
-    padding-top: 28px;
-    padding-bottom: 69px;
-  }
-
-  .projects__container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding-top: 39px;
+    padding-bottom: 81px;
   }
 
   .projects__content-wrap {
