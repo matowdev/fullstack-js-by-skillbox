@@ -9,3 +9,6 @@ getRectangularArea(10, 5, 2, 3); // 16
 getRectangularArea(-5, 8, 10, 5); // 45
 getRectangularArea(5, 8, 5, 5); // 0
 getRectangularArea(8, 1, 5, 1); // 0
+
+// вторая задача
+function getFractionalPart(a, b, n) {}
