@@ -1,7 +1,6 @@
 function checkData(data1, data2) {
   data1 || false ? (data1 = data1) : (data1 = 'нет данных');
   data2 || false ? (data2 = data2) : (data2 = 'нет данных');
-
   return getCommonFormat(data1.toString(), data2.toString());
 }
 
