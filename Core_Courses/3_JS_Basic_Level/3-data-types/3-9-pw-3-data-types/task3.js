@@ -1,8 +1,10 @@
 function checkParity(num) {
   num = +num;
-  num % 2 === 0
-    ? console.log(num + ' - число чётное!')
-    : console.log(num + ' - число НЕ чётное..');
+  if (num % 2 === 0) {
+    return console.log(num + ' - число чётное!');
+  } else {
+    return console.log(num + ' - число НЕ чётное..');
+  }
 }
 
 checkParity('10'); // 10 - число чётное!
