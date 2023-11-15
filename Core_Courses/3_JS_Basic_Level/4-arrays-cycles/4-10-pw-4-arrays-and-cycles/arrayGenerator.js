@@ -19,16 +19,16 @@ function getRandomNum(n, m) {
   return randomNum;
 }
 
-function arrayFilling2(n, m, count) {
+function arrayFilling(n, m, count) {
   let newArr = [];
   for (let i = 0; i < count - 1; i++) {
     newArr.push((newArr[i] = getRandomNum(n, m))); // логика i++ и сохранение в "индекс" (при завершающем шаге) увеличивают массив, именно из-за этого приходится от count отнимать - 1, что бы выйти на соответствующую/корректную длину массива
   }
 
-  console.log(newArr);
+  // console.log(newArr);
 }
 
-arrayFilling2(0, 100, 100);
+arrayFilling(0, 100, 100);
 
 // второй вариант
 
@@ -50,4 +50,13 @@ function arrFill(min, max, count) {
 
 // запуск/вывод результата
 let randomFillingArr = arrFill(0, 100, 100);
-console.log(randomFillingArr); // (100) [39, 7, 24, 5, 21, 54, 88, 88, ..]
+console.log(randomFillingArr); // (100) [39, 7, 17, 5, 21, 54, 88, 69, ..]
+
+let randomFillingArr2 = arrFill(2, 5, 50);
+console.log(randomFillingArr2); // (50) [3, 2, 4, 3, 4, 3, 5, 2, 3, 3, ..]
+
+let randomFillingArr3 = arrFill(100, -5, 70);
+console.log(randomFillingArr3); // (70) [-1, 40, 70, 99, 66, 68, 59, ..]
+
+let randomFillingArr4 = arrFill(-3, -10, 42);
+console.log(randomFillingArr4); // (42) [-5, -4, -8, -7, -8, -5, -7, ..]
