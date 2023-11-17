@@ -7,7 +7,7 @@
 let arr1 = [2, 2, 17, 21, 45, 12, 54, 31, 53];
 let arr2 = [12, 44, 23, 5];
 
-// функция объединения/конкатенации двух массивов
+// функция объединения/конкатенации двух массивов (первый вариант)
 function getConcatArr(arr1, arr2) {
   let newArr = [];
 
@@ -20,6 +20,18 @@ function getConcatArr(arr1, arr2) {
   return newArr;
 }
 
+// *функция объединения/конкатенации двух массивов (второй вариант)
+function getConcatArr2(arr1, arr2) {
+  for (let i = 0; i < arr2.length; i++) {
+    arr1.push(arr2[i]);
+  }
+
+  return arr1;
+}
+
 // вызов/получение результатов
 let concatArr = getConcatArr(arr1, arr2);
 console.log(concatArr); // [2, 2, 17, 21, 45, 12, 54, 31, 53, 12, 44, 23, 5]
+
+let concatArr2 = getConcatArr2(arr1, arr2);
+console.log(concatArr2); // [2, 2, 17, 21, 45, 12, 54, 31, 53, 12, 44, 23, 5]
