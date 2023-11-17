@@ -29,7 +29,7 @@ function getShuffledArr(count) {
   return arr;
 }
 
-// инициализация/вывод тестовых массивов
+// вызов/вывод результатов
 let shuffledArr = getShuffledArr(5);
 console.log(shuffledArr); // (5) [2, 5, 1, 3, 4]
 

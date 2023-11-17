@@ -49,7 +49,7 @@ function arrFill(min, max, count) {
   return arr;
 }
 
-// инициализация/вывод тестовых массивов
+// вызов/вывод результатов
 let randomFillingArr = arrFill(0, 100, 100);
 console.log(randomFillingArr); // (100) [39, 7, 17, 5, 21, 54, 88, 69, ..]
 
