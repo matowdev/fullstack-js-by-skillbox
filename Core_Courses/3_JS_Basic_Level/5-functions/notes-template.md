@@ -1,6 +1,6 @@
 # On the topic:
 
-### Video-lecture / Terms of performance:
+### Video-lesson / Terms of performance:
 
 [18.9...]()
 
