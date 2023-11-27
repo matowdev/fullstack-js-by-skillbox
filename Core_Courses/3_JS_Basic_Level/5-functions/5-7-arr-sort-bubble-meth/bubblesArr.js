@@ -2,7 +2,6 @@
 function getSortBubblesArr(arr) {
   for (let i = 0; i < arr.length; i++) {
     for (let j = 0; j < arr.length - 1; j++) {
-      console.log(arr[j]);
       if (arr[j] > arr[j + 1]) {
         // если поменять знак, на < сортировка начнёт работать на убывание
         let temp = arr[j];
