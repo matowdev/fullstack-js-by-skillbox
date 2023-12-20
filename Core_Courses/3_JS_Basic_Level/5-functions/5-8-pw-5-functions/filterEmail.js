@@ -3,8 +3,6 @@
 // 2. Выведите результат выполнения функции в консоль в виде массива.
 
 // первый вариант
-
-// функция для проверки наличия нежелательного имейла (согласно двух списков/массивов)
 function filter(whiteList, blackList) {
   let newList = [];
 
@@ -26,13 +24,10 @@ let whiteList = [
 
 let blackList = ['jsfunc@mail.ru', 'goodday@day.ru'];
 
-// вызов/вывод результатов
 let resultList = filter(whiteList, blackList);
 console.log(resultList); // (3) ['my-email@gmail.ru', 'annavkmail@vk.ru', 'fullname@skill.ru']
 
 // *второй вариант
-
-// функция для проверки наличия нежелательного имейла (согласно двух списков/массивов)
 function filter2(whiteList, blackList) {
   let newList = [];
 
@@ -55,13 +50,10 @@ let whiteList2 = [
 
 let blackList2 = ['jsfunc@mail.ru', 'goodday@day.ru'];
 
-// вызов/вывод результатов
 let resultList2 = filter(whiteList, blackList);
 console.log(resultList2); // (3) ['my-email@gmail.ru', 'annavkmail@vk.ru', 'fullname@skill.ru']
 
 // третий вариант
-
-// функция для проверки наличия нежелательного имейла (согласно двух списков/массивов)
 function filter3(whiteList, blackList) {
   let newList = [];
 
@@ -85,6 +77,5 @@ let whiteList3 = [
 
 let blackList3 = ['jsfunc@mail.ru', 'goodday@day.ru'];
 
-// вызов/вывод результатов
 let resultList3 = filter(whiteList, blackList);
 console.log(resultList3); // (3) ['my-email@gmail.ru', 'annavkmail@vk.ru', 'fullname@skill.ru']

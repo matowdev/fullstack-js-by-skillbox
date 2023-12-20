@@ -1,14 +1,12 @@
 // ? Что нужно сделать (задача 2)
 // В переменных userName, userSurname даны имя и фамилия пользователя. При этом в строках беспорядок с большими и маленькими буквами, и нужно оформить строки единообразно.. далее в notes, по ссылке
 
-// функция проверки передаваемых данных (на пустую строку)
 function checkData(data1, data2) {
   data1 || false ? (data1 = data1) : (data1 = 'нет данных');
   data2 || false ? (data2 = data2) : (data2 = 'нет данных');
   return getCommonFormat(data1.toString(), data2.toString());
 }
 
-// функция приведения к искомому формату (ввод сообщений)
 function getCommonFormat(name, surname) {
   let userName = name;
   let userSurname = surname;
@@ -37,7 +35,6 @@ function getCommonFormat(name, surname) {
     : console.log('операция завершена..');
 }
 
-// вызов/передача аргументов
 checkData(); // Что-то пошло не так..
 checkData('', ''); // Что-то пошло не так..
 checkData('Ада', ''); // Не все данные.. нет имени или фамилии!?

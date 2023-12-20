@@ -3,13 +3,11 @@
 // 2. Вычислите площадь прямоугольника, противоположные углы которого представлены указанными точками.
 // 3. Выведите результат с помощью console.log.
 
-// функция получения площади прямоугольника
 function getRectangularArea(x1, y1, x2, y2) {
   let rectangularArea = Math.abs(x1 - x2) * Math.abs(y1 - y2);
   return console.log('Площадь составляет:', rectangularArea);
 }
 
-// вызов/передача аргументов
 getRectangularArea(2, 3, 10, 5);
 getRectangularArea(10, 5, 2, 3);
 getRectangularArea(-5, 8, 10, 5);
@@ -22,7 +20,6 @@ console.log('');
 // 2. Выведите получившиеся числа с помощью console.log.
 // 3. Выведите результаты их сравнения (>, <, ≥, ≤, ===, ≠) с помощью console.log.
 
-// функция получения дробных частей от чисел с плавающей точкой
 function getFractionalPart(a, b, precision) {
   let partA = Math.floor((a % 1) * Math.pow(10, precision));
   let partB = Math.floor((b % 1) * Math.pow(10, precision));
@@ -32,7 +29,6 @@ function getFractionalPart(a, b, precision) {
   return comparison(partA, partB);
 }
 
-// функция вывода результатов логических сравнений
 function comparison(a, b) {
   console.log('часть A > части B:', a > b);
   console.log('часть A < части B:', a < b);
@@ -43,7 +39,6 @@ function comparison(a, b) {
   return console.log('');
 }
 
-// вызов/передача аргументов
 getFractionalPart(13.123456789, 2.123, 5);
 getFractionalPart(13.890123, 2.891564, 2);
 getFractionalPart(13.890123, 2.891564, 3);
@@ -53,7 +48,6 @@ getFractionalPart(13.890123, 2.891564, 3);
 // 2. Выведите два произвольных числа в консоль с помощью console.log.
 // 3. Сравните два полученных числа. Выведите результаты их сравнения >, <, ≥, ≤, ===, ≠ с помощью console.log.
 
-// функция генерации двух случайных чисел (из диапазона)
 function getRandomNumbers(n, m) {
   let min = Math.min(n, m);
   let num1 = n + Math.random() * (m + 1 - n);
@@ -67,7 +61,6 @@ function getRandomNumbers(n, m) {
   return numComparison(num1, num2);
 }
 
-// функция вывода результатов логических сравнений
 function numComparison(n, m) {
   console.log('число 1 > числа 2:', n > m);
   console.log('число 1 < числа 2:', n < m);
@@ -78,7 +71,6 @@ function numComparison(n, m) {
   return console.log('');
 }
 
-// вызов/передача аргументов
 getRandomNumbers(0, 100);
 getRandomNumbers(2, 5);
 getRandomNumbers(100, -5);

@@ -3,7 +3,6 @@
 // 2. С помощью второго цикла перемешайте этот массив.
 // 3. Выведите получившийся результат на экран с помощью console.log.
 
-// функция для генерации упорядоченного массива
 function getOrderedArr(count) {
   let orderArr = [];
 
@@ -14,7 +13,6 @@ function getOrderedArr(count) {
   return orderArr;
 }
 
-// функция для перемешивания массива
 function getShuffledArr(count) {
   let arr = getOrderedArr(count);
   let temp;
@@ -29,7 +27,6 @@ function getShuffledArr(count) {
   return arr;
 }
 
-// вызов/вывод результатов
 let shuffledArr = getShuffledArr(5);
 console.log(shuffledArr); // (5) [2, 5, 1, 3, 4]
 

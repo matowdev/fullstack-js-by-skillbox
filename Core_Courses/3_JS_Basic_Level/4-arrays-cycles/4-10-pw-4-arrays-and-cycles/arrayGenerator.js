@@ -3,7 +3,6 @@
 // 2. Выведите результат с помощью console.log.
 
 // первый вариант
-
 function getRandomNum(n, m) {
   let range = Math.abs(m - n); // количество возможно сгенерированных чисел (не повторяющихся)
   // console.log(range);
@@ -32,13 +31,10 @@ function arrayFilling(n, m, count) {
 arrayFilling(0, 100, 100);
 
 // *второй вариант
-
-// функция для генерации случайного числа в заданном диапазоне (т.е. в  min, max переданном)
 function getRandomNum(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// функция для наполнения массива случайно генерированными числами
 function arrFill(min, max, count) {
   let arr = [];
 
@@ -49,7 +45,6 @@ function arrFill(min, max, count) {
   return arr;
 }
 
-// вызов/вывод результатов
 let randomFillingArr = arrFill(0, 100, 100);
 console.log(randomFillingArr); // (100) [39, 7, 17, 5, 21, 54, 88, 69, ..]
 

@@ -30,8 +30,6 @@
 // let shuffledArr3 = getShuffledArr(3);
 
 // *первый вариант
-
-// функция поиска индекса элемента в массиве (возврат сообщения)
 function getIndex(arr, n) {
   let resp = false;
 
@@ -46,14 +44,11 @@ function getIndex(arr, n) {
     : console.log(`Такого индекса, как ${n} нет..`);
 }
 
-// вызов/получение результатов
 getIndex(shuffledArr, 3); // Есть такой индекс! Индекс 3
 getIndex(shuffledArr2, 1); // Есть такой индекс! Индекс 1
 getIndex(shuffledArr3, 7); // Такого индекса, как 7 нет..
 
 // второй вариант
-
-// функция поиска индекса элемента в массиве
 // function getIndex(arr, n) {
 //   for (let i = 0; i < arr.length; i++) {
 //     if (arr[i] === n) {
@@ -64,7 +59,6 @@ getIndex(shuffledArr3, 7); // Такого индекса, как 7 нет..
 //   console.log(`Элемент ${n} не найден в массиве`);
 // }
 
-// инициализация
 // getIndex(shuffledArr, 3);
 // getIndex(shuffledArr2, 1);
 // getIndex(shuffledArr3, 7);
