@@ -24,8 +24,8 @@ function getOlderUserArray(allUsers) {
   return olderUser.name;
 }
 
-let result = getOlderUserArray(allUsers);
-console.log(`Имя старшего пользователя - ${result}!`); // Имя старшего пользователя - Надя!
+let userName = getOlderUserArray(allUsers);
+console.log(`Имя старшего пользователя - ${userName}!`); // Имя старшего пользователя - Надя!
 
 // *второй вариант
 function getOlderUserArray2(allUsers) {
@@ -40,5 +40,5 @@ function getOlderUserArray2(allUsers) {
   return olderUser.name;
 }
 
-let result2 = getOlderUserArray2(allUsers);
-console.log(`Имя старшего пользователя - ${result2}!`); // Имя старшего пользователя - Надя!
+let userName2 = getOlderUserArray2(allUsers);
+console.log(`Имя старшего пользователя - ${userName2}!`); // Имя старшего пользователя - Надя!
