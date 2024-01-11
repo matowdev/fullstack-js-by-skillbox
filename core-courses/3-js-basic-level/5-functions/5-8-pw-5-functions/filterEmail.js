@@ -50,7 +50,7 @@ let whiteList2 = [
 
 let blackList2 = ['jsfunc@mail.ru', 'goodday@day.ru'];
 
-let resultList2 = filter(whiteList, blackList);
+let resultList2 = filter2(whiteList, blackList);
 console.log(resultList2); // (3) ['my-email@gmail.ru', 'annavkmail@vk.ru', 'fullname@skill.ru']
 
 // третий вариант
@@ -77,5 +77,5 @@ let whiteList3 = [
 
 let blackList3 = ['jsfunc@mail.ru', 'goodday@day.ru'];
 
-let resultList3 = filter(whiteList, blackList);
+let resultList3 = filter3(whiteList, blackList);
 console.log(resultList3); // (3) ['my-email@gmail.ru', 'annavkmail@vk.ru', 'fullname@skill.ru']
