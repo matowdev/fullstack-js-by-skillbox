@@ -3,7 +3,7 @@
 // 2. Функция должна вернуть с помощью команды return имя старшего пользователя.
 // Созданную функцию нужно вызвать, передав ей два объекта: user1 и user2. Результат, который вернёт функция, необходимо вывести в консоль.
 
-// *первый вариант
+// первый вариант
 let user1 = {
   name: 'Игорь',
   age: 17,
@@ -27,46 +27,26 @@ function getOlderUser(user1, user2) {
 let result = getOlderUser(user1, user2);
 console.log(result + '!'); // Оля!
 
-// второй вариант
-let user3 = {
-  name: 'Игорь',
-  age: 27,
-};
-
-let user4 = {
-  name: 'Оля',
-  age: 21,
-};
-
-function getOlderUser2(user3, user4) {
-  return user3.age > user4.age
-    ? user3.name
-    : user4.age > user3.age
-    ? user4.name
+// *второй вариант
+function getOlderUser2(user1, user2) {
+  return user1.age > user2.age
+    ? user1.name
+    : user2.age > user1.age
+    ? user2.name
     : 'Эти пользователи одного возраста';
 }
 
-let result2 = getOlderUser2(user3, user4);
-console.log(result2 + '!'); // Игорь!
+let result2 = getOlderUser2(user1, user2);
+console.log(result2 + '!'); // Оля!
 
 // третий вариант
-let user5 = {
-  name: 'Игорь',
-  age: 21,
-};
-
-let user6 = {
-  name: 'Оля',
-  age: 21,
-};
-
-function getOlderUser3(user5, user6) {
-  return user5.age === user6.age
+function getOlderUser3(user1, user2) {
+  return user1.age === user2.age
     ? 'Эти пользователи одного возраста'
-    : user5.age > user6.age
-    ? user5.name
-    : user6.name;
+    : user1.age > user2.age
+    ? user1.name
+    : user2.name;
 }
 
-let result3 = getOlderUser3(user5, user6);
-console.log(result3 + '!'); // Эти пользователи одного возраста!
+let result3 = getOlderUser3(user1, user2);
+console.log(result3 + '!'); // Оля!
