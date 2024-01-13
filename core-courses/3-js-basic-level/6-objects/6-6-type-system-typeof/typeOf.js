@@ -25,6 +25,7 @@ function getStringValue(unknown) {
   if (typeof unknown === 'object') {
     return unknown.toString();
   }
+
   return '';
 }
 
@@ -34,6 +35,7 @@ console.log(
     return new Date().getFullYear();
   })
 ); // 2024
+
 console.log(getStringValue([1, 2, 3])); // 1,2,3
 console.log(getStringValue({})); // [object Object]
 console.log(getStringValue(true)); // ' '
