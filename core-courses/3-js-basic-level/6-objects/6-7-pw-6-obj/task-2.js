@@ -21,7 +21,7 @@ function getOlderUserArray(allUsers) {
     }
   }
 
-  return olderUser.name;
+  return olderUser.name || '..не нашли';
 }
 
 let userName = getOlderUserArray(allUsers);
@@ -29,7 +29,31 @@ console.log(`Имя старшего пользователя - ${userName}!`); 
 
 // *второй вариант
 function getOlderUserArray2(allUsers) {
-  let olderUser = allUsers[0];
+  let olderUserAge = 0;
+  let olderUserName = '';
+
+  for (let user of allUsers) {
+    if (user.age > olderUserAge) {
+      olderUserAge = user.age;
+      olderUserName = user.name;
+    }
+  }
+
+  return olderUserName || '..не нашли';
+}
+
+let userName2 = getOlderUserArray2(allUsers);
+console.log(`Имя старшего пользователя - ${userName2}!`); // Имя старшего пользователя - Надя!
+
+// *третий вариант
+function getOlderUserArray3(allUsers) {
+  let olderUser = {};
+
+  if (allUsers.length === 0) {
+    return '..не из кого выбирать, пустой массив';
+  } else {
+    olderUser = allUsers[0];
+  }
 
   for (let user of allUsers) {
     if (user.age > olderUser.age) {
@@ -40,5 +64,5 @@ function getOlderUserArray2(allUsers) {
   return olderUser.name;
 }
 
-let userName2 = getOlderUserArray2(allUsers);
-console.log(`Имя старшего пользователя - ${userName2}!`); // Имя старшего пользователя - Надя!
+let userName3 = getOlderUserArray3(allUsers);
+console.log(`Имя старшего пользователя - ${userName3}!`); // Имя старшего пользователя - Надя!
