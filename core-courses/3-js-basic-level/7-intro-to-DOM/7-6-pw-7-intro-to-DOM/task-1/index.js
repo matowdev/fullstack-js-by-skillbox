@@ -8,7 +8,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     document.body.classList.add('page');
 
-    function createStudentCard(name, age) {
+    function createStudentCard(name = 'не указано', age = '??') {
       let divCard = document.createElement('div');
       let cardHeader = document.createElement('h2');
       let cardSubHeader = document.createElement('span');
