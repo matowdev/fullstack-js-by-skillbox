@@ -1,0 +1,88 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 15px;
+  padding: 20px;
+  font-family: "Roboto Mono", monospace;
+}
+
+.page__message {
+  font-size: 22px;
+  color: lightcoral;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.page__list_hide {
+  display: none;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  border: 1px solid lightslategray;
+  border-radius: 5px;
+  padding: 15px;
+  width: 200px;
+  min-width: 150px;
+  min-height: 225px;
+  cursor: help;
+  box-shadow: 1px 0 10px lightslategray;
+}
+
+.card__header {
+  margin: 0;
+}
+
+.card__sub-header {
+  position: relative;
+}
+
+.card__sub-header::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 150px;
+  top: 33px;
+  right: 0;
+  bottom: 0;
+  left: -1px;
+  border: 1px solid lightslategray;
+  border-radius: 5px;
+  background: no-repeat center / contain url("images/student-3.webp");
+}
+
+.btn {
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  min-width: 330px;
+  max-height: 100px;
+  font-family: "Roboto Mono", monospace;
+  font-size: 18px;
+  background-color: transparent;
+  outline: 2px solid lightslategray;
+  cursor: pointer;
+  box-shadow: 1px 0 10px lightslategray;
+  transition-property: color, background-color, opacity;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+}
+
+.btn:focus-visible:not(:hover) {
+  opacity: 0.5;
+}
+
+.btn:hover:not(:active) {
+  color: white;
+  background-color: lightslategray;
+}
