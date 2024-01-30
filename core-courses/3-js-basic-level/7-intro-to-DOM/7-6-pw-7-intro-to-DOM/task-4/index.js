@@ -13,6 +13,8 @@
       { name: 'Антон', age: 7 },
     ];
 
+    let isListCreated = false;
+
     document.body.classList.add('page');
 
     function createStudentsList(listArr = []) {
@@ -54,7 +56,11 @@
     document.body.append(btnShow);
 
     btnShow.addEventListener('click', function () {
-      createStudentsList(allStudents);
+      if (!isListCreated) {
+        createStudentsList(allStudents);
+        isListCreated = true;
+      }
+
       let cardListElement = document.getElementById('main-list');
 
       if (cardListElement) {
