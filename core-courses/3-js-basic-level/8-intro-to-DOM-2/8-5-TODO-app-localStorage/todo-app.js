@@ -104,35 +104,53 @@
 
       todoList.append(todoSelectedItem.formListItem);
 
+      // ! эксперименты с local storage..
+
       let todoItemDataValue = todoItem.formInput.value;
 
       function formatDataToJson(data) {
         return JSON.stringify(data);
       }
 
-      let jsonItemData = formatDataToJson(todoItemDataValue);
-      console.log(jsonItemData); // "Завершить курс"
-
       function formatJsonToPrimaryData(data) {
         return JSON.parse(data);
       }
-
-      let primaryItemData = formatJsonToPrimaryData(jsonItemData);
-      console.log(primaryItemData); // Завершить курс
 
       function getItemData() {
         return localStorage.getItem('case');
       }
 
-      console.log(getItemData()); // null
-
-      function setItemData() {
-        localStorage.setItem('case', jsonItemData);
+      function setItemData(data) {
+        localStorage.setItem('case', data);
       }
 
-      setItemData();
+      function addToLocalStorage(value) {
+        let storage = getItemData();
 
-      console.log(getItemData()); // "Завершить курс"
+        storage = storage ? formatJsonToPrimaryData(storage) : [];
+
+        storage.push(value);
+        setItemData(formatDataToJson(storage));
+      }
+
+      addToLocalStorage(todoItemDataValue);
+
+      function deleteFromLocalStorage(value) {
+        let storage = formatJsonToPrimaryData(getItemData());
+        let newStorage = [];
+
+        for (let i = 0; i < storage.length; i++) {
+          if (storage[i] !== value) {
+            newStorage.push(storage[i]);
+          }
+        }
+
+        setItemData(formatDataToJson(newStorage));
+      }
+
+      deleteFromLocalStorage('Завершить курс');
+
+      // ! окончание экспериментов
 
       todoItem.formInput.value = ''; // очищение поля для ввода (после добавления дела)
     });
