@@ -21,12 +21,19 @@
     formBtnWrap.classList.add('todo__form-btn-wrap', 'input-group-append');
     formBtn.classList.add('todo__form-btn', 'btn', 'btn-primary');
 
+    formInput.name = 'todo-input';
     formInput.placeholder = 'Введите название дела..';
     formBtn.textContent = 'Добавить!?';
+    formBtn.disabled = true; // изначальное исключение доступности для кнопки "Добавить!?"
 
     formBtnWrap.append(formBtn);
     form.append(formInput);
     form.append(formBtnWrap);
+
+    // определение события, переключение доступности для formBtn (согласно ввода/не ввода данных/дел)
+    formInput.oninput = () => {
+      formBtn.disabled = formInput.value === '';
+    };
 
     return { form, formInput, formBtn };
   }
@@ -111,6 +118,7 @@
       todoList.append(todoSelectedItem.formListItem);
 
       todoItem.formInput.value = ''; // очищение поля для ввода (после добавления дела)
+      todoItem.formInput.oninput(); // обновление состояния поля/кнопки "Добавить!?"
     });
   }
 
