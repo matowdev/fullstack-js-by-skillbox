@@ -3,6 +3,15 @@
   font-family: "Roboto Mono", monospace;
 }
 
+.nav-link {
+  outline: none;
+}
+
 .nav-link:first-child {
   margin-left: -14px;
+}
+
+.nav-link:focus-visible:not(:hover):not(:active) {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }

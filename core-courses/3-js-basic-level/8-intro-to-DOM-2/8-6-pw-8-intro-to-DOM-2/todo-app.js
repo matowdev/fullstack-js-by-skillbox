@@ -40,7 +40,7 @@
   }
 
   // создание/возвращение дела (внутренних кнопок)
-  function createTodoFormListItem(name) {
+  function createTodoFormListItem({ name = '...', done } = {}) {
     let formListItem = document.createElement('li');
     let btnItemGroup = document.createElement('div');
     let doneBtn = document.createElement('button');
@@ -88,7 +88,13 @@
         return;
       }
 
-      let todoSelectedItem = createTodoFormListItem(todoItem.formInput.value);
+      // формирование объекта данных, по элементу списка
+      let todoItemObjData = {
+        name: todoItem.formInput.value,
+        done: false,
+      };
+
+      let todoSelectedItem = createTodoFormListItem(todoItemObjData);
 
       todoSelectedItem.doneBtn.addEventListener('click', function () {
         todoSelectedItem.formListItem.classList.toggle(
