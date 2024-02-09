@@ -83,6 +83,7 @@
     let todoListTitle = createTodoFormListTitle(title);
     let todoItem = createTodoFormElement();
     let todoList = createTodoFormList();
+    let todoArr = [];
 
     todo.append(todoListTitle);
     todo.append(todoItem.form); // из тройного возврата (в/из функции createTodoFormElement()) выбирается form, по сути "весь" составной элемент
@@ -95,23 +96,59 @@
         return;
       }
 
+      // let idGeneration = Math.floor(Math.random() * 10e4);
+
+      let idGeneration =
+        todoArr.length > 0
+          ? Math.max(...todoArr.map((item) => item.id)) + 1
+          : 1;
+
       // формирование объекта данных, по элементу списка
       let todoItemObjData = {
+        id: idGeneration,
         name: todoItem.formInput.value,
         done: false,
       };
 
+      todoArr.push(todoItemObjData);
+      console.log('Массив после добавления дела:', todoArr);
+
+      // передача объекта данных, получение готовой записи/дела
       let todoSelectedItem = createTodoFormListItem(todoItemObjData);
 
       todoSelectedItem.doneBtn.addEventListener('click', function () {
         todoSelectedItem.formListItem.classList.toggle(
           'list-group-item-success'
         );
+
+        let findItemClass = todoSelectedItem.formListItem.classList.contains(
+          'list-group-item-success'
+        );
+
+        let findObjIndex = todoArr.findIndex(
+          (obj) => obj.id === todoItemObjData.id
+        );
+
+        if (findObjIndex !== -1) {
+          todoArr[findObjIndex].done = findItemClass;
+        }
+
+        console.log('Массив после изменения статуса дела:', todoArr);
       });
 
       todoSelectedItem.deleteBtn.addEventListener('click', function () {
         if (confirm('Вы уверены?')) {
           todoSelectedItem.formListItem.remove();
+
+          let findObjIndex = todoArr.findIndex(
+            (obj) => obj.id === todoItemObjData.id
+          );
+
+          if (findObjIndex !== -1) {
+            todoArr.splice(findObjIndex, 1);
+          }
+
+          console.log('Массив после удаления дела:', todoArr);
         }
       });
 
