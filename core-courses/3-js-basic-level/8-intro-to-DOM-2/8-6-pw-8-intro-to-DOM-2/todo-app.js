@@ -1,4 +1,20 @@
 (function () {
+  // работа с localStorage
+  function todoArrToLocalStorage(key, todoArr) {
+    let todoArrToJson = JSON.stringify(todoArr);
+    localStorage.setItem(key, todoArrToJson);
+  }
+
+  function todoArrFromLocalStorage(key) {
+    let todoArrFromJson = localStorage.getItem(key);
+
+    if (todoArrFromJson) {
+      return JSON.parse(todoArrFromJson);
+    } else {
+      return [];
+    }
+  }
+
   // создание/возвращением заголовка, для списка дел
   function createTodoFormListTitle(title) {
     let formListTitle = document.createElement('h2');
@@ -47,7 +63,7 @@
   }
 
   // создание/возвращение дела (внутренних кнопок)
-  function createTodoFormListItem({ name = '...', done } = {}) {
+  function createTodoFormListItem({ id, name = '...', done } = {}) {
     let formListItem = document.createElement('li');
     let btnItemGroup = document.createElement('div');
     let doneBtn = document.createElement('button');
@@ -69,8 +85,12 @@
     deleteBtn.classList.add('todo__item-btn', 'btn', 'btn-danger');
 
     formListItem.textContent = name;
-    doneBtn.textContent = 'Готово';
+    doneBtn.textContent = done ? 'Отменить' : 'Готово'; // изменение статуса дела
     deleteBtn.textContent = 'Удалить';
+
+    if (done) {
+      formListItem.classList.add('list-group-item-success');
+    }
 
     btnItemGroup.append(doneBtn);
     btnItemGroup.append(deleteBtn);
@@ -83,14 +103,28 @@
     let todoListTitle = createTodoFormListTitle(title);
     let todoItem = createTodoFormElement();
     let todoList = createTodoFormList();
-    let todoArr = [];
+    let todoArr = todoArrFromLocalStorage(todoListTitle.textContent); // загрузка списка дел из LocalStorage (если есть)
 
     todo.append(todoListTitle);
-    todo.append(todoItem.form); // из тройного возврата (в/из функции createTodoFormElement()) выбирается form, по сути "весь" составной элемент
+    todo.append(todoItem.form);
     todo.append(todoList);
 
+    // отображение/отрисовка сохранённых дел, т.е. из LocalStorage
+    todoArr.forEach((todoItemObjData) => {
+      let todoSelectedItem = createTodoFormListItem(todoItemObjData);
+
+      addListItemEventListeners(
+        todoSelectedItem,
+        todoItemObjData,
+        todoArr,
+        todoListTitle.textContent
+      );
+
+      todoList.append(todoSelectedItem.formListItem);
+    });
+
     todoItem.form.addEventListener('submit', function (e) {
-      e.preventDefault(); // исключение default перезагрузки страницы, при добавлении дела (как-бы/при отправке формы)
+      e.preventDefault();
 
       if (!todoItem.formInput.value) {
         return;
@@ -111,51 +145,52 @@
       };
 
       todoArr.push(todoItemObjData);
-      console.log('Массив после добавления дела:', todoArr);
 
       // передача объекта данных, получение готовой записи/дела
       let todoSelectedItem = createTodoFormListItem(todoItemObjData);
 
-      todoSelectedItem.doneBtn.addEventListener('click', function () {
-        todoSelectedItem.formListItem.classList.toggle(
-          'list-group-item-success'
-        );
-
-        let findItemClass = todoSelectedItem.formListItem.classList.contains(
-          'list-group-item-success'
-        );
-
-        let findObjIndex = todoArr.findIndex(
-          (obj) => obj.id === todoItemObjData.id
-        );
-
-        if (findObjIndex !== -1) {
-          todoArr[findObjIndex].done = findItemClass;
-        }
-
-        console.log('Массив после изменения статуса дела:', todoArr);
-      });
-
-      todoSelectedItem.deleteBtn.addEventListener('click', function () {
-        if (confirm('Вы уверены?')) {
-          todoSelectedItem.formListItem.remove();
-
-          let findObjIndex = todoArr.findIndex(
-            (obj) => obj.id === todoItemObjData.id
-          );
-
-          if (findObjIndex !== -1) {
-            todoArr.splice(findObjIndex, 1);
-          }
-
-          console.log('Массив после удаления дела:', todoArr);
-        }
-      });
+      addListItemEventListeners(
+        todoSelectedItem,
+        todoItemObjData,
+        todoArr,
+        todoListTitle.textContent
+      );
 
       todoList.append(todoSelectedItem.formListItem);
 
+      todoArrToLocalStorage(todoListTitle.textContent, todoArr); // сохранение обновлений в LocalStorage
+
       todoItem.formInput.value = ''; // очищение поля для ввода (после добавления дела)
-      todoItem.formInput.oninput(); // обновление состояния поля/кнопки "Добавить!?"
+      todoItem.formBtn.disabled = true;
+    });
+  }
+
+  // добавление обработчиков событий для элементов списка дел
+  function addListItemEventListeners(
+    todoSelectedItem,
+    todoItemObjData,
+    todoArr,
+    key
+  ) {
+    todoSelectedItem.doneBtn.addEventListener('click', function () {
+      todoItemObjData.done = !todoItemObjData.done;
+      todoSelectedItem.formListItem.classList.toggle('list-group-item-success');
+      todoSelectedItem.doneBtn.textContent = todoItemObjData.done
+        ? 'Отменить'
+        : 'Готово';
+
+      todoArrToLocalStorage(key, todoArr); // сохранение изменений для/в LocalStorage
+    });
+
+    todoSelectedItem.deleteBtn.addEventListener('click', function () {
+      if (confirm('Вы уверены?')) {
+        todoSelectedItem.formListItem.remove();
+        let index = todoArr.findIndex((item) => item.id === todoItemObjData.id);
+        if (index !== -1) {
+          todoArr.splice(index, 1);
+          todoArrToLocalStorage(key, todoArr); // сохранение изменений для/в LocalStorage
+        }
+      }
     });
   }
 
