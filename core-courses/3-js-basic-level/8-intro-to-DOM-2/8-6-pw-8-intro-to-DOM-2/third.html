@@ -15,7 +15,7 @@
   <script src="todo-app.js" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      createTodoMultiLists(document.getElementById('todo-app'), 'Другие дела:');
+      createTodoMultiLists(document.getElementById('todo-app'), 'Другие дела:', 'Мои');
     })
   </script>
 </head>
@@ -23,9 +23,9 @@
 <body class="page">
   <div class="container page__container mb-5">
     <nav class="nav page__nav">
-      <a class="nav-link" href="index.html">Основные дела</a>
-      <a class="nav-link" href="second.html">Второстепенные дела</a>
-      <a class="nav-link" href="third.html">Другие дела</a>
+      <a class="nav__link nav-link" href="index.html">Основные дела</a>
+      <a class="nav__link nav-link" href="second.html">Второстепенные дела</a>
+      <a class="nav__link nav-link" href="third.html">Другие дела</a>
     </nav>
   </div>
   <div id="todo-app" class="todo container page__container"></div>

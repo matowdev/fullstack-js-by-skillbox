@@ -1,12 +1,12 @@
 (function () {
   // работа с localStorage
-  function todoArrToLocalStorage(key, todoArr) {
+  function todoArrToLocalStorage(key, todoArr, listName) {
     let todoArrToJson = JSON.stringify(todoArr);
-    localStorage.setItem(key, todoArrToJson);
+    localStorage.setItem(`${listName}-${key}`, todoArrToJson);
   }
 
-  function todoArrFromLocalStorage(key) {
-    let todoArrFromJson = localStorage.getItem(key);
+  function todoArrFromLocalStorage(key, listName) {
+    let todoArrFromJson = localStorage.getItem(`${listName}-${key}`);
 
     if (todoArrFromJson) {
       return JSON.parse(todoArrFromJson);
@@ -38,6 +38,7 @@
     formBtn.classList.add('todo__form-btn', 'btn', 'btn-primary');
 
     formInput.name = 'todo-input';
+    formInput.autocomplete = 'off';
     formInput.placeholder = 'Введите название дела..';
     formBtn.textContent = 'Добавить!?';
     formBtn.disabled = true; // изначальное исключение доступности для кнопки "Добавить!?"
@@ -99,11 +100,12 @@
     return { formListItem, doneBtn, deleteBtn };
   }
 
-  function createTodoMultiLists(todo, title = 'Список дел:') {
+  // формирование списка дел (объединение)
+  function createTodoMultiLists(todo, title = 'Список дел:', listName = '...') {
     let todoListTitle = createTodoFormListTitle(title);
     let todoItem = createTodoFormElement();
     let todoList = createTodoFormList();
-    let todoArr = todoArrFromLocalStorage(todoListTitle.textContent); // загрузка списка дел из LocalStorage (если есть)
+    let todoArr = todoArrFromLocalStorage(todoListTitle.textContent, listName); // загрузка списка дел из LocalStorage (если есть)
 
     todo.append(todoListTitle);
     todo.append(todoItem.form);
@@ -117,7 +119,8 @@
         todoSelectedItem,
         todoItemObjData,
         todoArr,
-        todoListTitle.textContent
+        todoListTitle.textContent,
+        listName
       );
 
       todoList.append(todoSelectedItem.formListItem);
@@ -153,12 +156,13 @@
         todoSelectedItem,
         todoItemObjData,
         todoArr,
-        todoListTitle.textContent
+        todoListTitle.textContent,
+        listName
       );
 
       todoList.append(todoSelectedItem.formListItem);
 
-      todoArrToLocalStorage(todoListTitle.textContent, todoArr); // сохранение обновлений в LocalStorage
+      todoArrToLocalStorage(todoListTitle.textContent, todoArr, listName); // сохранение обновлений в LocalStorage
 
       todoItem.formInput.value = ''; // очищение поля для ввода (после добавления дела)
       todoItem.formBtn.disabled = true;
@@ -170,7 +174,8 @@
     todoSelectedItem,
     todoItemObjData,
     todoArr,
-    key
+    key,
+    listName
   ) {
     todoSelectedItem.doneBtn.addEventListener('click', function () {
       todoItemObjData.done = !todoItemObjData.done;
@@ -179,7 +184,7 @@
         ? 'Отменить'
         : 'Готово';
 
-      todoArrToLocalStorage(key, todoArr); // сохранение изменений для/в LocalStorage
+      todoArrToLocalStorage(key, todoArr, listName); // сохранение изменений для/в LocalStorage
     });
 
     todoSelectedItem.deleteBtn.addEventListener('click', function () {
@@ -188,7 +193,7 @@
         let index = todoArr.findIndex((item) => item.id === todoItemObjData.id);
         if (index !== -1) {
           todoArr.splice(index, 1);
-          todoArrToLocalStorage(key, todoArr); // сохранение изменений для/в LocalStorage
+          todoArrToLocalStorage(key, todoArr, listName); // сохранение изменений для/в LocalStorage
         }
       }
     });
