@@ -1,17 +1,96 @@
 .page {
   padding: 20px;
+  height: 100%;
   font-family: "Roboto Mono", monospace;
+  font-size: 18px;
+  background: linear-gradient(to right, #e6dada, #274046);
+  background-attachment: fixed;
+  background-size: cover;
 }
 
-.nav-link {
+.nav__link {
+  border-radius: 0.25rem;
   outline: none;
+  color: #274046;
+  text-shadow: 0 1px 10px #e6dada;
+  transition-property: color, text-shadow, box-shadow;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
 }
 
-.nav-link:first-child {
+.nav__link:first-child {
   margin-left: -14px;
 }
 
-.nav-link:focus-visible:not(:hover):not(:active) {
-  border-color: #80bdff;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+.nav__link:focus-visible:not(:hover):not(:active) {
+  border-radius: 0.25rem;
+  box-shadow: 0 0 0 0.2rem #e6dada;
+}
+
+.nav__link:hover {
+  border-radius: 0.25rem;
+  color: #e6dada;
+  text-shadow: 0 0 0 0.2rem #274046;
+}
+
+.todo__header {
+  color: #274046;
+  text-shadow: 0 1px 10px #e6dada;
+}
+
+.form-control {
+  transition-property: border-color, background-color, box-shadow;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+}
+
+.form-control:focus {
+  border-color: #fff;
+  outline: 0;
+  background-color: #fff;
+  box-shadow: 0 1px 10px #e6dada;
+}
+
+.btn-primary {
+  border-color: #274046;
+  color: #fff;
+  background-color: #274046;
+  transition-property: border-color, color, background-color, box-shadow;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+}
+
+.btn-primary.focus,
+.btn-primary:focus {
+  border-color: #274046;
+  color: #fff;
+  background-color: #274046;
+  box-shadow: 0 1px 10px #e6dada;
+}
+
+.btn-primary:hover {
+  border-color: #e6dada;
+  color: #274046;
+  background-color: #e6dada;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.show > .btn-primary.dropdown-toggle {
+  border-color: #e6dada;
+  color: #274046;
+  background-color: #e6dada;
+}
+
+.btn-primary.disabled,
+.btn-primary:disabled {
+  border-color: #274046;
+  color: #fff;
+  background-color: #274046;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active:focus,
+.btn-primary:not(:disabled):not(.disabled):active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+  box-shadow: 0 1px 10px #e6dada;
 }
