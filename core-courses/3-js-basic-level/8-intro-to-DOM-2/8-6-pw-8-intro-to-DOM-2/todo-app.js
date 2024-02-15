@@ -44,8 +44,7 @@
     formBtn.disabled = true; // изначальное исключение доступности для кнопки "Добавить!?"
 
     formBtnWrap.append(formBtn);
-    form.append(formInput);
-    form.append(formBtnWrap);
+    form.append(formInput, formBtnWrap);
 
     // определение события, переключение доступности для formBtn (согласно ввода/не ввода данных/дел)
     formInput.oninput = () => {
@@ -93,8 +92,7 @@
       formListItem.classList.add('list-group-item-success');
     }
 
-    btnItemGroup.append(doneBtn);
-    btnItemGroup.append(deleteBtn);
+    btnItemGroup.append(doneBtn, deleteBtn);
     formListItem.append(btnItemGroup);
 
     return { formListItem, doneBtn, deleteBtn };
@@ -107,9 +105,7 @@
     let todoList = createTodoFormList();
     let todoArr = todoArrFromLocalStorage(todoListTitle.textContent, listName); // загрузка списка дел из LocalStorage (если есть)
 
-    todo.append(todoListTitle);
-    todo.append(todoItem.form);
-    todo.append(todoList);
+    todo.append(todoListTitle, todoItem.form, todoList);
 
     // отображение/отрисовка сохранённых дел, т.е. из LocalStorage
     todoArr.forEach((todoItemObjData) => {
