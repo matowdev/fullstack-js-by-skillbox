@@ -1,0 +1,23 @@
+.page {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  font-size: 32px;
+}
+
+.page__container {
+  margin-right: auto;
+  margin-left: auto;
+  padding: 20px 50px;
+  max-width: 1200px;
+}
+
+.blocks-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 20px;
+}
+
+.block {
+  padding: 5px;
+}

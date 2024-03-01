@@ -1,0 +1,36 @@
+.page {
+  margin: 0;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  font-size: 32px;
+}
+
+.page__container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 10px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 30px 50px;
+  max-width: 1200px;
+}
+
+.container__input {
+  border: none;
+  border-radius: 5px;
+  padding-left: 10px;
+  width: 350px;
+  height: 50px;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  font-size: 32px;
+  color: lightslategray;
+  caret-color: lightcoral;
+  outline: 2px solid lightslategray;
+}
+
+.container__input-text {
+  color: lightslategray;
+  text-shadow: 0 1px 10px lightslategray;
+}
