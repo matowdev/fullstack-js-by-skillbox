@@ -1,0 +1,8 @@
+.page {
+  padding: 20px;
+  font-family: "Roboto Mono", monospace;
+}
+
+.nav-link:first-child {
+  margin-left: -14px;
+}
