@@ -1,0 +1,67 @@
+/* almendra, regular - 400 - latin */
+@font-face {
+  font-family: "Almendra";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/almendra-v26-latin-regular.woff2") format("woff2");
+}
+
+/* almendra, bold - 700 - latin */
+@font-face {
+  font-family: "Almendra";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/almendra-v26-latin-700.woff2") format("woff2");
+}
+
+/* cormorant-garamond, light - 300 - cyrillic_latin */
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("../fonts/cormorant-garamond-v16-cyrillic_latin-300.woff2")
+    format("woff2");
+}
+
+/* cormorant-garamond, regular - 400 - cyrillic_latin */
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/cormorant-garamond-v16-cyrillic_latin-regular.woff2")
+    format("woff2");
+}
+
+/* cormorant-garamond, medium - 500 - cyrillic_latin */
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/cormorant-garamond-v16-cyrillic_latin-500.woff2")
+    format("woff2");
+}
+
+/* cormorant-garamond, semi bold - 600 - cyrillic_latin */
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../fonts/cormorant-garamond-v16-cyrillic_latin-600.woff2")
+    format("woff2");
+}
+
+/* cormorant-garamond, bold - 700 - cyrillic_latin */
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/cormorant-garamond-v16-cyrillic_latin-700.woff2")
+    format("woff2");
+}
