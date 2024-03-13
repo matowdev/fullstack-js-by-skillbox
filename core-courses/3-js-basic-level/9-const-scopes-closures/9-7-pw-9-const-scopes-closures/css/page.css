@@ -8,10 +8,9 @@ html {
   box-sizing: inherit;
 }
 
-/* ! */
 *::selection {
-  color: black;
-  background-color: black;
+  color: #bd711d;
+  background-color: #e9ce77;
 }
 
 a {
@@ -29,25 +28,13 @@ svg {
   min-width: 320px;
   height: auto;
   font-family: "Almendra", "Cormorant Garamond", sans-serif;
-  font-size: 16px;
-  line-height: 32px;
-  /* ! */
-  color: black;
+  font-size: 32px;
+  line-height: 64px;
+  color: #bd711d;
   background: url(../images/bg-2.jpg) no-repeat fixed center / cover;
 }
 
-.page__title {
-  margin-top: 0;
-  margin-bottom: 20px;
-  font-weight: 700;
-  font-size: 72px;
-  line-height: 64px;
-  color: #bd711d;
-  text-align: center;
-  text-shadow: 0 1px 10px #e9ce77;
-}
-
-.container {
+.page__container {
   margin-right: auto;
   margin-left: auto;
   padding: 120px 30px 10px;
