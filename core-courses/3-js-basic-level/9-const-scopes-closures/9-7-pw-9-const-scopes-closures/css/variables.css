@@ -1,0 +1,25 @@
+:root {
+  /* sizes */
+  --page-min-width: 320px;
+  --container-max-width: 1600px;
+
+  /* fonts */
+  --almendra: "Almendra";
+  --cormorant-garamond: "Cormorant Garamond";
+  --light: 300;
+  --regular: 400;
+  --medium: 500;
+  --semi-bold: 600;
+  --bold: 700;
+  --default-fs: 32px;
+  --default-lh: 64px;
+
+  /* colors */
+  --black: #000;
+  --white: #fff;
+  --dark-gold: #bd711d;
+  --light-gold: #e9ce77;
+
+  /* transitions */
+  --short: 0.3s;
+}

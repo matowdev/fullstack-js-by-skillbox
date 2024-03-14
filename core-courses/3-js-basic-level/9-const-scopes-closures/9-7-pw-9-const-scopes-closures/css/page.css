@@ -9,8 +9,8 @@ html {
 }
 
 *::selection {
-  color: #bd711d;
-  background-color: #e9ce77;
+  color: var(--dark-gold);
+  background-color: var(--light-gold);
 }
 
 a {
@@ -25,18 +25,18 @@ svg {
 }
 
 .page {
-  min-width: 320px;
+  min-width: var(--page-min-width);
   height: auto;
-  font-family: "Almendra", "Cormorant Garamond", sans-serif;
-  font-size: 32px;
-  line-height: 64px;
-  color: #bd711d;
+  font-family: var(--almendra), var(--cormorant-garamond), sans-serif;
+  font-size: var(--default-fs);
+  line-height: var(--default-lh);
+  color: var(--dark-gold);
   background: url(../images/bg-2.jpg) no-repeat fixed center / cover;
 }
 
 .page__container {
   margin-right: auto;
   margin-left: auto;
-  padding: 120px 30px 10px;
-  max-width: 1600px;
+  padding: 105px 30px 10px;
+  max-width: var(--container-max-width);
 }

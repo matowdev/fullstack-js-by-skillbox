@@ -1,3 +1,5 @@
 @import url(fonts.css);
+@import url(variables.css);
 @import url(page.css);
+@import url(btn.css);
 @import url(playfield.css);

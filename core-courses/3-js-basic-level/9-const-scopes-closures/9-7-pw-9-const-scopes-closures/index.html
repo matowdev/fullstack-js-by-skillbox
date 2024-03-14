@@ -11,14 +11,18 @@
 </head>
 
 <body class="page">
-  <div class="playfield page__container">
-    <h1 class="playfield__title">Make your choice..</h1>
-    <ul class="playfield-options">
-      <li class="playfield-options__item playfield-options__item_up">4</li>
-      <li class="playfield-options__item">6</li>
-      <li class="playfield-options__item">8</li>
-    </ul>
-    <a class="playfield__btn" href="#" role="button">Start</a>
+  <div class="page__container">
+    <div class="playfield page__content">
+      <h1 class="playfield__title">Make your choice..</h1>
+      <ul class="playfield-options">
+        <li class="playfield-options__item playfield-options__item_up" id="four" tabindex="0">4</li>
+        <li class="playfield-options__item" id="six" tabindex="0">6</li>
+        <li class="playfield-options__item" id="eight" tabindex="0">8</li>
+      </ul>
+      <div class="playfield__btn-wrap">
+        <button class="btn playfield__btn_start" type="button">Start</button>
+      </div>
+    </div>
   </div>
 </body>
 
