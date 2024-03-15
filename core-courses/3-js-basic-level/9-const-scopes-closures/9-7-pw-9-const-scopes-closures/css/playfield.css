@@ -66,6 +66,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  max-width: 650px;
 }
 
 .playfield__info-link {
@@ -84,6 +85,27 @@
 .playfield__info-link:focus-visible {
   color: var(--dark-gold);
   box-shadow: 0 0 0 2px var(--dark-gold);
+}
+
+.playfield__audio-wrap {
+  position: absolute;
+  left: 0;
+  bottom: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 650px;
+}
+
+.playfield__audio {
+  border: 2px solid var(--light-gold);
+  border-radius: 28px;
+  outline: none;
+  transition: box-shadow var(--short) ease-in-out;
+}
+
+.playfield__audio:focus-visible {
+  border: 2px solid var(--dark-gold);
 }
 
 @media (any-hover: hover) {
