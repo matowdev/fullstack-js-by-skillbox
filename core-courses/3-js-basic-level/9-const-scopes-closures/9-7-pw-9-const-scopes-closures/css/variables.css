@@ -1,6 +1,7 @@
 :root {
   /* sizes */
   --page-min-width: 320px;
+  --container-padding: 30px;
   --container-max-width: 1600px;
 
   /* fonts */

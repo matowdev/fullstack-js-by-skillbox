@@ -11,29 +11,43 @@
 </head>
 
 <body class="page">
-  <div class="page__container">
-    <div class="playfield page__content">
-      <h1 class="playfield__title">Make your choice..</h1>
-      <ul class="playfield-options">
-        <li class="playfield-options__item playfield-options__item_up" id="four" tabindex="0">4</li>
-        <li class="playfield-options__item" id="six" tabindex="0">6</li>
-        <li class="playfield-options__item" id="eight" tabindex="0">8</li>
-      </ul>
-      <div class="playfield__btn-wrap">
-        <button class="btn playfield__btn playfield__btn_start" type="button">Start</button>
+  <header class="header page__header" id="header" aria-label="page-header">
+    <div class="container header__container">
+      <h1 class="header__title">Make your choice..</h1>
+    </div>
+  </header>
+
+  <main class="main page__main" aria-label="page content">
+    <section class="playfield main__playfild" id="playfield" aria-label="gaming-section">
+      <div class="container playfield__container">
+        <div class="playfield__content-wrap">
+          <ul class="playfield__options">
+            <li class="playfield__options-item playfield__options-item_up" id="four" tabindex="0">4</li>
+            <li class="playfield__options-item" id="six" tabindex="0">6</li>
+            <li class="playfield__options-item" id="eight" tabindex="0">8</li>
+          </ul>
+          <div class="playfield__btn-wrap">
+            <button class="btn playfield__btn playfield__btn_start" type="button">Start</button>
+          </div>
+        </div>
       </div>
-      <div class="playfield__info-wrap">
-        <a class="playfield__info-link" href="https://en.wikipedia.org/wiki/Tarot" target="_blank"
-          rel="noopener noreferrer" title="Wikipedia">?</a>
-      </div>
-      <div class="playfield__audio-wrap">
-        <audio class="playfield__audio" controls loop>
+    </section>
+  </main>
+
+  <footer class="footer page__footer" id="footer" aria-label="page-footer">
+    <div class="container footer__container">
+      <div class="footer__audio-wrap">
+        <audio class="footer__audio" controls loop>
           <source src="mp3/sky.mp3" type="audio/mpeg">
           Your browser does not support the audio element.
         </audio>
       </div>
+      <div class="footer__info-wrap">
+        <a class="footer__info-link" href="https://en.wikipedia.org/wiki/Tarot" target="_blank"
+          rel="noopener noreferrer" title="Wikipedia">?</a>
+      </div>
     </div>
-  </div>
+  </footer>
 </body>
 
 </html>
