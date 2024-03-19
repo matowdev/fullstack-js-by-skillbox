@@ -8,6 +8,7 @@
   <link rel="icon" href="images/favicon.png" type="image/png" sizes="32x32">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/footerAudioBtn.js" defer></script>
 </head>
 
 <body class="page">
@@ -44,11 +45,16 @@
               d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z" />
             <title>Play music</title>
           </svg>
+          <svg class="footer__audio-svg-x hidden" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+          </svg>
         </button>
-        <!-- <audio class="footer__audio" controls loop>
+        <audio class="footer__audio hidden" controls loop>
           <source src="mp3/sky.mp3" type="audio/mpeg">
           Your browser does not support the audio element.
-        </audio> -->
+        </audio>
       </div>
       <div class="footer__info-wrap">
         <a class="footer__info-link" href="https://en.wikipedia.org/wiki/Tarot" target="_blank"
