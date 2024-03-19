@@ -17,10 +17,10 @@
     </div>
   </header>
 
-  <main class="main page__main" aria-label="page content">
+  <main class="main page__main" aria-label="page-content">
     <section class="playfield main__playfild" id="playfield" aria-label="gaming-section">
       <div class="container playfield__container">
-        <div class="playfield__content-wrap">
+        <div class="playfield__options-wrap">
           <ul class="playfield__options">
             <li class="playfield__options-item playfield__options-item_up" id="four" tabindex="0">4</li>
             <li class="playfield__options-item" id="six" tabindex="0">6</li>
@@ -37,14 +37,22 @@
   <footer class="footer page__footer" id="footer" aria-label="page-footer">
     <div class="container footer__container">
       <div class="footer__audio-wrap">
-        <audio class="footer__audio" controls loop>
+        <button class="btn footer__audio-btn" type="button">
+          <svg class="footer__audio-svg-play" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z" />
+            <title>Play music</title>
+          </svg>
+        </button>
+        <!-- <audio class="footer__audio" controls loop>
           <source src="mp3/sky.mp3" type="audio/mpeg">
           Your browser does not support the audio element.
-        </audio>
+        </audio> -->
       </div>
       <div class="footer__info-wrap">
         <a class="footer__info-link" href="https://en.wikipedia.org/wiki/Tarot" target="_blank"
-          rel="noopener noreferrer" title="Wikipedia">?</a>
+          rel="noopener noreferrer" title="Info">?</a>
       </div>
     </div>
   </footer>

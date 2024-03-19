@@ -3,7 +3,7 @@
   padding-bottom: 5px;
 }
 
-.playfield__content-wrap {
+.playfield__options-wrap {
   display: flex;
   flex-direction: column;
   justify-content: center;
