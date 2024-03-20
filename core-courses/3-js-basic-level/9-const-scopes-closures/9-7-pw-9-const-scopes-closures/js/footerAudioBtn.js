@@ -1,27 +1,23 @@
 (() => {
   const audioBtn = document.querySelector('.footer__audio-btn');
+  const audio = document.querySelector('.footer__audio');
+  const svgPlay = document.querySelector('.footer__audio-svg-play');
+  const svgX = document.querySelector('.footer__audio-svg-x');
 
   audioBtn.addEventListener('click', () => {
-    const audio = document.querySelector('.footer__audio');
-    const svgPlay = document.querySelector('.footer__audio-svg-play');
-    const svgX = document.querySelector('.footer__audio-svg-x');
-
     audio.classList.toggle('hidden');
 
-    if (!audio.classList.contains('hidden')) {
-      svgPlay.classList.add('hidden');
-      svgX.classList.remove('hidden');
-    } else if (audio.classList.contains('hidden')) {
-      svgPlay.classList.remove('hidden');
-      svgX.classList.add('hidden');
-    }
+    const isHidden = audio.classList.contains('hidden');
 
-    audio.addEventListener('play', () => {
-      audioBtn.classList.add('footer__audio-btn_glow');
-    });
+    svgPlay.classList.toggle('hidden', !isHidden);
+    svgX.classList.toggle('hidden', isHidden);
+  });
 
-    audio.addEventListener('pause', () => {
-      audioBtn.classList.remove('footer__audio-btn_glow');
-    });
+  audio.addEventListener('play', () => {
+    audioBtn.classList.add('footer__audio-btn_glow');
+  });
+
+  audio.addEventListener('pause', () => {
+    audioBtn.classList.remove('footer__audio-btn_glow');
   });
 })();
