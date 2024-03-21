@@ -7,7 +7,7 @@
     'tracks/sky.mp3',
   ];
   let currentTrack = -1;
-  const audioPlayer = document.querySelector('.footer__audio');
+  const audioPlayer = document.querySelector('.footer__audio-player');
 
   audioPlayer.onended = function () {
     currentTrack++;

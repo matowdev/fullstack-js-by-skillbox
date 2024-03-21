@@ -58,7 +58,7 @@
   display: none;
 }
 
-.footer__audio {
+.footer__audio-player {
   position: relative;
   z-index: 1;
   margin-left: -18px;
@@ -68,7 +68,7 @@
   transition: box-shadow var(--short) ease-in-out;
 }
 
-.footer__audio:focus-visible {
+.footer__audio-player:focus-visible {
   border: 2px solid var(--dark-gold);
 }
 
