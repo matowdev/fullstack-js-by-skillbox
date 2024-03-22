@@ -7,9 +7,13 @@
   <title>A pair of tarot cards.. Game!?</title>
   <link rel="icon" href="images/favicon.png" type="image/png" sizes="32x32">
   <link rel="stylesheet" href="css/normalize.css">
+  <!-- <link rel="stylesheet" href="https://unpkg.com/tippy.js@5/dist/backdrop.css"> -->
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/@popperjs/core@2" defer></script>
+  <script src="https://unpkg.com/tippy.js@6" defer></script>
   <script src="js/footerAudioBtn.js" defer></script>
   <script src="js/infinitePlayback.js" defer></script>
+  <script src="js/tippy.js" defer></script>
 </head>
 
 <body class="page">
@@ -29,7 +33,7 @@
             <li class="playfield__options-item" id="eight" tabindex="0">8</li>
           </ul>
           <div class="playfield__btn-wrap">
-            <button class="btn playfield__btn playfield__btn_start" type="button">Start</button>
+            <button class="btn playfield__btn playfield__btn_start" id="start-game" type="button">Start</button>
           </div>
         </div>
       </div>
@@ -39,12 +43,11 @@
   <footer class="footer page__footer" id="footer" aria-label="page-footer">
     <div class="container footer__container">
       <div class="footer__audio-wrap">
-        <button class="btn footer__audio-btn" type="button">
+        <button class="btn footer__audio-btn" id="audio-btn" type="button">
           <svg class="footer__audio-svg-play" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"
             xmlns="http://www.w3.org/2000/svg">
             <path
               d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z" />
-            <title>Play music</title>
           </svg>
           <svg class="footer__audio-svg-x hidden" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"
             xmlns="http://www.w3.org/2000/svg">
@@ -58,8 +61,8 @@
         </audio>
       </div>
       <div class="footer__info-wrap">
-        <a class="footer__info-link" href="https://en.wikipedia.org/wiki/Tarot" target="_blank"
-          rel="noopener noreferrer" title="Info">?</a>
+        <a class="footer__info-link" id="info" href="https://en.wikipedia.org/wiki/Tarot" target="_blank"
+          rel="noopener noreferrer">?</a>
       </div>
     </div>
   </footer>

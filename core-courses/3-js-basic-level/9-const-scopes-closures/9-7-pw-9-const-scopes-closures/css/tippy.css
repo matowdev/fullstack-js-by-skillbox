@@ -1,0 +1,10 @@
+.tippy-box[data-theme~="main"] {
+  font-family: var(--almendra), var(--cormorant-garamond), sans-serif;
+  font-size: var(--tippy-fs);
+  color: var(--white);
+  background-color: var(--light-gold);
+}
+
+.tippy-box[data-theme~="main"] .tippy-arrow {
+  color: var(--dark-gold);
+}
