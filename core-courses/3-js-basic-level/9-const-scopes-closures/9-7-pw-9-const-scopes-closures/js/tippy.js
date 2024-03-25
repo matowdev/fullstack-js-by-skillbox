@@ -1,4 +1,7 @@
 (() => {
+  const audioBtn = document.querySelector('.footer__audio-btn');
+  const audioPlayer = document.querySelector('.footer__audio-player');
+
   function initTippy(selector, content, side) {
     tippy(selector, {
       content: content,
@@ -12,6 +15,22 @@
   initTippy('#four', 'The playing field is 4 by 4 cards', 'right');
   initTippy('#six', 'The playing field is 6 by 4 cards', 'left');
   initTippy('#eight', 'The playing field is 8 by 4 cards', 'right');
-  initTippy('#audio-btn', 'Play music', 'bottom');
   initTippy('#info', 'Info', 'top');
+
+  const audioBtnTippy = tippy(audioBtn, {
+    content: 'Play music',
+    theme: 'main',
+    delay: [50, 100],
+    offset: [8, 12],
+    placement: 'bottom',
+  });
+
+  function updateAudioBtnTippy() {
+    audioBtnTippy.setContent(audioPlayer.paused ? 'Play music' : 'Pause music');
+  }
+
+  audioPlayer.addEventListener('play', updateAudioBtnTippy);
+  audioPlayer.addEventListener('pause', updateAudioBtnTippy);
+
+  updateAudioBtnTippy();
 })();
