@@ -47,6 +47,12 @@
   background-color: var(--dark-gold);
 }
 
+.selected__options-item {
+  border-bottom: 2px solid var(--white);
+  color: var(--white);
+  background-color: var(--light-gold);
+}
+
 .playfield__btn-wrap {
   display: flex;
   flex-wrap: wrap;
