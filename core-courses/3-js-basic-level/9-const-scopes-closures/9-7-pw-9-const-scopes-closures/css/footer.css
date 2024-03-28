@@ -6,6 +6,10 @@
   justify-content: space-between;
 }
 
+.game-footer-container {
+  top: -45px;
+}
+
 .footer__audio-wrap {
   display: flex;
   flex-wrap: wrap;
@@ -14,6 +18,10 @@
   gap: 10px;
   padding-left: 160px;
   max-width: 650px;
+}
+
+.game-audio-wrap {
+  padding-left: 135px;
 }
 
 .footer__audio-btn {

@@ -27,6 +27,15 @@
   background-color: var(--dark-gold);
 }
 
+.game-btn {
+  font-size: 45px;
+  background: var(--light-gold);
+}
+
+.game-btn-back {
+  margin-right: -6px;
+}
+
 @media (any-hover: hover) {
   .btn:hover:not(:active) {
     color: var(--white);

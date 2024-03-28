@@ -36,6 +36,11 @@ svg {
   background: url(../images/bg-2.jpg) no-repeat scroll center / cover;
 }
 
+.game-page {
+  /* zoom: 0.8; */
+  padding-top: 35px;
+}
+
 .container {
   margin-right: auto;
   margin-left: auto;

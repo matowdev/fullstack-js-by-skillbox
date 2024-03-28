@@ -3,6 +3,10 @@
   padding-bottom: 5px;
 }
 
+.game-playfield {
+  padding-top: 5px;
+}
+
 .playfield__options-wrap {
   display: flex;
   flex-direction: column;
@@ -60,9 +64,23 @@
   gap: 15px;
 }
 
-.playfield__btn {
+.game-btn-wrap {
+  column-gap: 150px;
+}
+
+.playfield__btn-start,
+.playfield__btn-back {
   position: relative;
   z-index: 2;
+  min-width: 185px;
+}
+
+.playfield__area {
+  display: flex;
+  margin-bottom: 55px;
+  width: 100%;
+  height: 929px;
+  outline: 2px solid red;
 }
 
 @media (any-hover: hover) {
