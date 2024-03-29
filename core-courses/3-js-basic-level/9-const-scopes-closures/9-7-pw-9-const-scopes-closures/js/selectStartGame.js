@@ -1,4 +1,17 @@
 (() => {
+  const initialPageState = {
+    title: document.querySelector('.header__title').textContent,
+    pageClassList: document.querySelector('.page').className,
+    headerClassList: document.querySelector('.header').className,
+    titleClassList: document.querySelector('.header__title').className,
+    playfieldClassList: document.querySelector('.playfield').className,
+    playfieldBtnWrapClassList: document.querySelector('.playfield__btn-wrap')
+      .className,
+    footerContainerClassList:
+      document.querySelector('.footer__container').className,
+    audioWrapClassList: document.querySelector('.footer__audio-wrap').className,
+  };
+
   const playfieldSizeOptions = document.querySelectorAll(
     '.playfield__options-item'
   );
@@ -20,12 +33,11 @@
     });
   });
 
-  // ? или внутри функции
   const page = document.querySelector('.page');
   const header = document.querySelector('.header');
   const title = document.querySelector('.header__title');
   const playfield = document.querySelector('.playfield');
-  const playfieldArea = document.querySelector('.playfield__options-wrap');
+  const playfieldAreaWrap = document.querySelector('.playfield__options-wrap');
   const playfieldOptionsList = document.querySelector('.playfield__options');
   const playfieldBtnWrap = document.querySelector('.playfield__btn-wrap');
   const startBtn = document.querySelector('.playfield__btn-start');
@@ -33,6 +45,7 @@
   const audioWrap = document.querySelector('.footer__audio-wrap');
   const infoLink = document.querySelector('.footer__info-link');
 
+  const playfieldArea = document.createElement('div');
   const restartBtn = document.createElement('button');
   const backBtn = document.createElement('button');
 
@@ -52,11 +65,13 @@
     header.classList.add('game-header');
     title.classList.add('game-title');
     playfield.classList.add('game-playfield');
+    playfieldOptionsList.classList.add('hidden');
     playfieldBtnWrap.classList.add('game-btn-wrap');
     startBtn.classList.add('hidden');
     footerContainer.classList.add('game-footer-container');
     audioWrap.classList.add('game-audio-wrap');
     infoLink.classList.add('hidden');
+    playfieldArea.classList.add('playfield__area');
     restartBtn.classList.add(
       'btn',
       'playfield__btn-restart',
@@ -70,10 +85,10 @@
       'game-btn-back'
     );
 
-    playfieldOptionsList.outerHTML = '<div class="playfield__area"></div>';
     restartBtn.textContent = 'Restart';
     backBtn.textContent = 'Back';
 
+    playfieldAreaWrap.insertBefore(playfieldArea, playfieldBtnWrap);
     playfieldBtnWrap.append(restartBtn, backBtn);
   }
 
@@ -83,7 +98,37 @@
 
   restartBtn.addEventListener('click', restartSelectedGame);
 
-  function returnToMainMenu() {}
+  function returnToInitialState() {
+    document.querySelector('.header__title').textContent =
+      initialPageState.title;
+    document.querySelector('.page').className = initialPageState.pageClassList;
+    document.querySelector('.header').className =
+      initialPageState.headerClassList;
+    document.querySelector('.header__title').className =
+      initialPageState.titleClassList;
+    document.querySelector('.playfield').className =
+      initialPageState.playfieldClassList;
+    document.querySelector('.playfield__btn-wrap').className =
+      initialPageState.playfieldBtnWrapClassList;
+    document.querySelector('.footer__container').className =
+      initialPageState.footerContainerClassList;
+    document.querySelector('.footer__audio-wrap').className =
+      initialPageState.audioWrapClassList;
 
-  backBtn.addEventListener('click', returnToMainMenu);
+    playfieldArea.remove();
+    restartBtn.remove();
+    backBtn.remove();
+
+    playfieldOptionsList.classList.remove('hidden');
+    startBtn.classList.remove('hidden');
+    infoLink.classList.remove('hidden');
+
+    playfieldSizeOptions.forEach((option) => {
+      option.classList.remove('selected__options-item');
+    });
+
+    selectedOption = null;
+  }
+
+  backBtn.addEventListener('click', returnToInitialState);
 })();
