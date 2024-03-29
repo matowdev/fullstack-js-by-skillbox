@@ -20,7 +20,7 @@
     });
   });
 
-  // или внутри функции
+  // ? или внутри функции
   const page = document.querySelector('.page');
   const header = document.querySelector('.header');
   const title = document.querySelector('.header__title');
@@ -33,6 +33,7 @@
   const audioWrap = document.querySelector('.footer__audio-wrap');
   const infoLink = document.querySelector('.footer__info-link');
 
+  const restartBtn = document.createElement('button');
   const backBtn = document.createElement('button');
 
   function startGame() {
@@ -52,11 +53,16 @@
     title.classList.add('game-title');
     playfield.classList.add('game-playfield');
     playfieldBtnWrap.classList.add('game-btn-wrap');
-    startBtn.classList.add('game-btn', 'game-btn-start');
+    startBtn.classList.add('hidden');
     footerContainer.classList.add('game-footer-container');
     audioWrap.classList.add('game-audio-wrap');
     infoLink.classList.add('hidden');
-
+    restartBtn.classList.add(
+      'btn',
+      'playfield__btn-restart',
+      'game-btn',
+      'game-btn-restart'
+    );
     backBtn.classList.add(
       'btn',
       'playfield__btn-back',
@@ -65,12 +71,19 @@
     );
 
     playfieldOptionsList.outerHTML = '<div class="playfield__area"></div>';
-    startBtn.textContent = 'Restart';
-
+    restartBtn.textContent = 'Restart';
     backBtn.textContent = 'Back';
 
-    playfieldBtnWrap.append(backBtn);
+    playfieldBtnWrap.append(restartBtn, backBtn);
   }
 
   startBtn.addEventListener('click', startGame);
+
+  function restartSelectedGame() {}
+
+  restartBtn.addEventListener('click', restartSelectedGame);
+
+  function returnToMainMenu() {}
+
+  backBtn.addEventListener('click', returnToMainMenu);
 })();

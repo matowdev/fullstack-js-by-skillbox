@@ -68,7 +68,13 @@
   column-gap: 150px;
 }
 
-.playfield__btn-start,
+.playfield__btn-start {
+  position: relative;
+  z-index: 2;
+  min-width: 185px;
+}
+
+.playfield__btn-restart,
 .playfield__btn-back {
   position: relative;
   z-index: 2;
