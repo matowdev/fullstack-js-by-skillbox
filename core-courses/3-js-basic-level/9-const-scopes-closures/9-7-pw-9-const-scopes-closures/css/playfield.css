@@ -81,6 +81,10 @@
   min-width: 185px;
 }
 
+.playfield__btn-back {
+  margin-right: -6px;
+}
+
 .playfield__area {
   display: flex;
   margin-bottom: 55px;

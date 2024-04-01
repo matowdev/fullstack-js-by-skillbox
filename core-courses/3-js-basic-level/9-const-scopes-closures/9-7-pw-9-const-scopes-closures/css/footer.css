@@ -109,6 +109,36 @@
   color: var(--dark-gold);
 }
 
+.footer__timer-wrap {
+  display: flex;
+  gap: 10px 10px;
+  padding-right: 15px;
+}
+
+.footer__timer-btn-wrap {
+  display: flex;
+  align-items: center;
+  column-gap: 1px;
+}
+
+.footer__timer-btn {
+  padding: 5px 5px;
+  max-width: 100px;
+  font-size: 33px;
+  line-height: 35px;
+  box-shadow: none;
+}
+
+.footer__timer-slash {
+  margin-bottom: -5px;
+  font-size: 33px;
+  line-height: 35px;
+}
+
+.footer__timer {
+  font-size: 35px;
+}
+
 @media (any-hover: hover) {
   .footer__audio-btn:hover:not(:active) {
     color: var(--dark-gold);

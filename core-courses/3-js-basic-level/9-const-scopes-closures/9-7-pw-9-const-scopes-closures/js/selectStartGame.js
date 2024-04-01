@@ -48,6 +48,13 @@
   const playfieldArea = document.createElement('div');
   const restartBtn = document.createElement('button');
   const backBtn = document.createElement('button');
+  // add timer
+  const timerWrap = document.createElement('div');
+  const timerBtnWrap = document.createElement('div');
+  const timerBtnOn = document.createElement('button');
+  const timerBtnSlash = document.createElement('span');
+  const timerBtnOff = document.createElement('button');
+  const timer = document.createElement('div');
 
   function startGame() {
     if (selectedOption && selectedOption.id == 'four') {
@@ -72,24 +79,30 @@
     audioWrap.classList.add('game-audio-wrap');
     infoLink.classList.add('hidden');
     playfieldArea.classList.add('playfield__area');
-    restartBtn.classList.add(
-      'btn',
-      'playfield__btn-restart',
-      'game-btn',
-      'game-btn-restart'
-    );
-    backBtn.classList.add(
-      'btn',
-      'playfield__btn-back',
-      'game-btn',
-      'game-btn-back'
-    );
+    restartBtn.classList.add('btn', 'playfield__btn-restart', 'game-btn');
+    backBtn.classList.add('btn', 'playfield__btn-back', 'game-btn');
+    // timer
+    timerWrap.classList.add('footer__timer-wrap');
+    timerBtnWrap.classList.add('footer__timer-btn-wrap');
+    timerBtnOn.classList.add('btn', 'footer__timer-btn');
+    timerBtnSlash.classList.add('footer__timer-slash');
+    timerBtnOff.classList.add('btn', 'footer__timer-btn');
+    timer.classList.add('footer__timer');
 
     restartBtn.textContent = 'Restart';
     backBtn.textContent = 'Back';
+    // timer
+    timerBtnOn.textContent = 'on';
+    timerBtnSlash.textContent = '/';
+    timerBtnOff.textContent = 'off';
+    timer.textContent = '00:00';
 
     playfieldAreaWrap.insertBefore(playfieldArea, playfieldBtnWrap);
     playfieldBtnWrap.append(restartBtn, backBtn);
+    // timer
+    timerBtnWrap.append(timerBtnOn, timerBtnSlash, timerBtnOff);
+    timerWrap.append(timerBtnWrap, timer);
+    footerContainer.append(timerWrap);
   }
 
   startBtn.addEventListener('click', startGame);
@@ -118,6 +131,8 @@
     playfieldArea.remove();
     restartBtn.remove();
     backBtn.remove();
+    // timer
+    timerWrap.remove();
 
     playfieldOptionsList.classList.remove('hidden');
     startBtn.classList.remove('hidden');
