@@ -48,7 +48,6 @@
   const playfieldArea = document.createElement('div');
   const restartBtn = document.createElement('button');
   const backBtn = document.createElement('button');
-  // add timer
   const timerWrap = document.createElement('div');
   const timerBtnWrap = document.createElement('div');
   const timerBtnOn = document.createElement('button');
@@ -56,7 +55,14 @@
   const timerBtnOff = document.createElement('button');
   const timer = document.createElement('div');
 
+  let interval;
+  let selectedTime = 0;
+  let isTimerActive = false;
+
   function startGame() {
+    clearInterval(interval);
+    isTimerActive = false;
+
     if (selectedOption && selectedOption.id == 'four') {
       title.textContent = 'Path to mystery!';
     } else if (selectedOption && selectedOption.id == 'six') {
@@ -81,17 +87,15 @@
     playfieldArea.classList.add('playfield__area');
     restartBtn.classList.add('btn', 'playfield__btn-restart', 'game-btn');
     backBtn.classList.add('btn', 'playfield__btn-back', 'game-btn');
-    // timer
     timerWrap.classList.add('footer__timer-wrap');
     timerBtnWrap.classList.add('footer__timer-btn-wrap');
-    timerBtnOn.classList.add('btn', 'footer__timer-btn');
+    timerBtnOn.classList.add('btn', 'footer__timer-btn', 'game-timer-on');
     timerBtnSlash.classList.add('footer__timer-slash');
-    timerBtnOff.classList.add('btn', 'footer__timer-btn');
+    timerBtnOff.classList.add('btn', 'footer__timer-btn', 'game-timer-off');
     timer.classList.add('footer__timer');
 
     restartBtn.textContent = 'Restart';
     backBtn.textContent = 'Back';
-    // timer
     timerBtnOn.textContent = 'on';
     timerBtnSlash.textContent = '/';
     timerBtnOff.textContent = 'off';
@@ -99,10 +103,58 @@
 
     playfieldAreaWrap.insertBefore(playfieldArea, playfieldBtnWrap);
     playfieldBtnWrap.append(restartBtn, backBtn);
-    // timer
     timerBtnWrap.append(timerBtnOn, timerBtnSlash, timerBtnOff);
     timerWrap.append(timerBtnWrap, timer);
     footerContainer.append(timerWrap);
+
+    const timerFooter = document.querySelector('.footer__timer');
+
+    function setGameTime(minutes) {
+      selectedTime = minutes * 60;
+      timerFooter.textContent = `${minutes}:00`;
+    }
+
+    function updateTimer() {
+      if (selectedTime <= 0) {
+        clearInterval(interval);
+
+        if (isTimerActive) alert("Time's up!");
+
+        isTimerActive = false;
+        return;
+      }
+
+      selectedTime--;
+
+      let minutes = Math.floor(selectedTime / 60);
+      let seconds = selectedTime % 60;
+
+      seconds = seconds < 10 ? '0' + seconds : seconds;
+      timerFooter.textContent = `${minutes}:${seconds}`;
+    }
+
+    if (title.textContent == 'Path to mystery!') {
+      setGameTime(2);
+    } else if (title.textContent == 'Explore and combine!') {
+      setGameTime(4);
+    } else if (title.textContent == 'Find your way to victory!') {
+      setGameTime(6);
+    }
+
+    document.querySelector('.game-timer-on').addEventListener('click', () => {
+      if (!isTimerActive) {
+        clearInterval(interval);
+        interval = setInterval(updateTimer, 1000);
+        isTimerActive = true;
+      }
+    });
+
+    document.querySelector('.game-timer-off').addEventListener('click', () => {
+      if (isTimerActive) {
+        clearInterval(interval);
+        isTimerActive = false;
+      }
+    });
   }
 
   startBtn.addEventListener('click', startGame);
@@ -112,6 +164,8 @@
   restartBtn.addEventListener('click', restartSelectedGame);
 
   function returnToInitialState() {
+    clearInterval(interval);
+
     document.querySelector('.header__title').textContent =
       initialPageState.title;
     document.querySelector('.page').className = initialPageState.pageClassList;
@@ -131,7 +185,6 @@
     playfieldArea.remove();
     restartBtn.remove();
     backBtn.remove();
-    // timer
     timerWrap.remove();
 
     playfieldOptionsList.classList.remove('hidden');

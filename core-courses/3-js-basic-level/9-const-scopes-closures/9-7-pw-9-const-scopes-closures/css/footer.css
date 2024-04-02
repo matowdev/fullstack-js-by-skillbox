@@ -112,7 +112,7 @@
 .footer__timer-wrap {
   display: flex;
   gap: 10px 10px;
-  padding-right: 15px;
+  padding-right: 3px;
 }
 
 .footer__timer-btn-wrap {
@@ -136,6 +136,7 @@
 }
 
 .footer__timer {
+  min-width: 90px;
   font-size: 35px;
 }
 
