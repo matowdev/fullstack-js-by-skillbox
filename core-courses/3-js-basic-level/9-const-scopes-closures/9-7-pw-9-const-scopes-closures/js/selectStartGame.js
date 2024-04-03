@@ -46,6 +46,9 @@
   const infoLink = document.querySelector('.footer__info-link');
 
   const playfieldArea = document.createElement('div');
+  // cardsList
+  const playfieldCardsList = document.createElement('ul');
+  // const playfieldCardsItem = document.createElement('li');
   const restartBtn = document.createElement('button');
   const backBtn = document.createElement('button');
   const timerWrap = document.createElement('div');
@@ -59,9 +62,12 @@
   let selectedTime = 0;
   let isTimerActive = false;
 
+  // ! start game
   function startGame() {
     clearInterval(interval);
     isTimerActive = false;
+
+    playfieldCardsList.innerHTML = '';
 
     if (selectedOption && selectedOption.id == 'four') {
       title.textContent = 'Path to mystery!';
@@ -85,6 +91,9 @@
     audioWrap.classList.add('game-audio-wrap');
     infoLink.classList.add('hidden');
     playfieldArea.classList.add('playfield__area');
+    // cardsList
+    playfieldCardsList.classList.add('playfield__area-list');
+    // playfieldCardsItem.classList.add('playfield__area-item');
     restartBtn.classList.add('btn', 'playfield__btn-restart', 'game-btn');
     backBtn.classList.add('btn', 'playfield__btn-back', 'game-btn');
     timerWrap.classList.add('footer__timer-wrap');
@@ -102,11 +111,55 @@
     timer.textContent = '00:00';
 
     playfieldAreaWrap.insertBefore(playfieldArea, playfieldBtnWrap);
+    // cardsList
+    playfieldArea.append(playfieldCardsList);
     playfieldBtnWrap.append(restartBtn, backBtn);
     timerBtnWrap.append(timerBtnOn, timerBtnSlash, timerBtnOff);
     timerWrap.append(timerBtnWrap, timer);
     footerContainer.append(timerWrap);
 
+    // !
+    let selectedItemValue = selectedOption.value * 2;
+
+    function getPairedNumArr(selectedItemValue) {
+      const pairedNumArr = [];
+
+      for (let i = 1; i <= selectedItemValue; i++) {
+        pairedNumArr.push(i, i);
+      }
+
+      return pairedNumArr;
+    }
+
+    const pairedArr = getPairedNumArr(selectedItemValue);
+
+    function getShuffledArr(pairedArr) {
+      const newArr = [...pairedArr];
+
+      for (let i = newArr.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
+      }
+
+      return newArr;
+    }
+
+    const shuffledArr = getShuffledArr(pairedArr);
+    console.log(shuffledArr);
+
+    function creatingElements(shuffledArr) {
+      for (let i = 0; i < shuffledArr.length; i++) {
+        const playfieldCardsItem = document.createElement('li');
+        playfieldCardsItem.classList.add('playfield__area-item');
+        playfieldCardsItem.setAttribute('value', shuffledArr[i]);
+
+        playfieldCardsList.appendChild(playfieldCardsItem);
+      }
+    }
+
+    creatingElements(shuffledArr);
+
+    // !
     const timerFooter = document.querySelector('.footer__timer');
 
     function setGameTime(minutes) {
@@ -159,10 +212,12 @@
 
   startBtn.addEventListener('click', startGame);
 
+  // !
   function restartSelectedGame() {}
 
   restartBtn.addEventListener('click', restartSelectedGame);
 
+  // !
   function returnToInitialState() {
     clearInterval(interval);
 
