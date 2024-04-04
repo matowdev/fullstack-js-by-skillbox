@@ -86,11 +86,69 @@
 }
 
 .playfield__area {
-  display: flex;
   margin-bottom: 55px;
+  padding-top: 5px;
   width: 100%;
   height: 929px;
-  outline: 2px solid red;
+  outline: 2px solid var(--dark-gold);
+}
+
+.playfield__area_small {
+  padding-top: 15px;
+  padding-right: 390px;
+  padding-left: 390px;
+}
+
+.playfield__area_medium {
+}
+
+.playfield__area_large {
+}
+
+.playfield__area-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.playfield__area-list_small {
+  gap: 18px 28px;
+}
+
+.playfield__area-list_medium {
+}
+
+.playfield__area-list_large {
+}
+
+.playfield__area-item {
+  border-radius: 8px;
+  line-height: 0;
+  background-color: var(--nude);
+  background: url("../images/reverse-side.jpg") no-repeat center / cover;
+  outline: 2px solid var(--nude);
+  box-shadow: 0 1px 10px var(--nude);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.playfield__area-item_small {
+  width: 130px;
+  height: 210px;
+}
+
+.playfield__area-item_medium {
+}
+
+.playfield__area-item_large {
+}
+
+.playfield__area-item picture {
 }
 
 @media (any-hover: hover) {

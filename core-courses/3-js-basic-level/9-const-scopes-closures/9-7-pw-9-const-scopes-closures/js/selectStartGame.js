@@ -145,14 +145,30 @@
     }
 
     const shuffledArr = getShuffledArr(pairedArr);
-    console.log(shuffledArr);
 
     function creatingElements(shuffledArr) {
       for (let i = 0; i < shuffledArr.length; i++) {
         const playfieldCardsItem = document.createElement('li');
+        const playfieldCardsItemImg = document.createElement('picture');
+
         playfieldCardsItem.classList.add('playfield__area-item');
         playfieldCardsItem.setAttribute('value', shuffledArr[i]);
 
+        if (shuffledArr.length == 16) {
+          playfieldArea.classList.add('playfield__area_small');
+          playfieldCardsList.classList.add('playfield__area-list_small');
+          playfieldCardsItem.classList.add('playfield__area-item_small');
+        } else if (shuffledArr.length == 24) {
+          playfieldArea.classList.add('playfield__area_medium');
+          playfieldCardsList.classList.add('playfield__area-list_medium');
+          playfieldCardsItem.classList.add('playfield__area-item_medium');
+        } else if (shuffledArr.length == 32) {
+          playfieldArea.classList.add('playfield__area_large');
+          playfieldCardsList.classList.add('playfield__area-list_large');
+          playfieldCardsItem.classList.add('playfield__area-item_large');
+        }
+
+        playfieldCardsItem.append(playfieldCardsItemImg);
         playfieldCardsList.appendChild(playfieldCardsItem);
       }
     }
@@ -220,6 +236,25 @@
   // !
   function returnToInitialState() {
     clearInterval(interval);
+
+    playfieldArea.classList.remove(
+      'playfield__area_small',
+      'playfield__area_medium',
+      'playfield__area_large'
+    );
+    playfieldCardsList.classList.remove(
+      'playfield__area-list_small',
+      'playfield__area-list_medium',
+      'playfield__area-list_large'
+    );
+    const areaItems = document.querySelectorAll('.playfield__area-item');
+    areaItems.forEach((item) => {
+      item.classList.remove(
+        'playfield__area-item_small',
+        'playfield__area-item_medium',
+        'playfield__area-item_large'
+      );
+    });
 
     document.querySelector('.header__title').textContent =
       initialPageState.title;
