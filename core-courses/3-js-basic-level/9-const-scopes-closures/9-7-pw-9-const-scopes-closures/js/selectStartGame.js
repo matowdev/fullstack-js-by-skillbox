@@ -31,6 +31,23 @@
         selectedOption = this;
       }
     });
+
+    option.addEventListener('keydown', function (event) {
+      if (event.key === 'Enter') {
+        if (this === selectedOption) {
+          this.classList.remove('selected__options-item');
+          selectedOption = null;
+        } else if (selectedOption) {
+          selectedOption.classList.remove('selected__options-item');
+          this.classList.add('selected__options-item');
+          selectedOption = this;
+        } else {
+          this.classList.add('selected__options-item');
+          selectedOption = this;
+        }
+        startGame();
+      }
+    });
   });
 
   const page = document.querySelector('.page');
@@ -46,9 +63,7 @@
   const infoLink = document.querySelector('.footer__info-link');
 
   const playfieldArea = document.createElement('div');
-  // cardsList
   const playfieldCardsList = document.createElement('ul');
-  // const playfieldCardsItem = document.createElement('li');
   const restartBtn = document.createElement('button');
   const backBtn = document.createElement('button');
   const timerWrap = document.createElement('div');
@@ -91,9 +106,7 @@
     audioWrap.classList.add('game-audio-wrap');
     infoLink.classList.add('hidden');
     playfieldArea.classList.add('playfield__area');
-    // cardsList
     playfieldCardsList.classList.add('playfield__area-list');
-    // playfieldCardsItem.classList.add('playfield__area-item');
     restartBtn.classList.add('btn', 'playfield__btn-restart', 'game-btn');
     backBtn.classList.add('btn', 'playfield__btn-back', 'game-btn');
     timerWrap.classList.add('footer__timer-wrap');
@@ -111,7 +124,6 @@
     timer.textContent = '00:00';
 
     playfieldAreaWrap.insertBefore(playfieldArea, playfieldBtnWrap);
-    // cardsList
     playfieldArea.append(playfieldCardsList);
     playfieldBtnWrap.append(restartBtn, backBtn);
     timerBtnWrap.append(timerBtnOn, timerBtnSlash, timerBtnOff);
