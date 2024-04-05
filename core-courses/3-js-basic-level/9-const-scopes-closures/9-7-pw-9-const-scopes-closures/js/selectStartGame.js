@@ -149,7 +149,6 @@
     function creatingElements(shuffledArr) {
       for (let i = 0; i < shuffledArr.length; i++) {
         const playfieldCardsItem = document.createElement('li');
-        const playfieldCardsItemImg = document.createElement('picture');
 
         playfieldCardsItem.classList.add('playfield__area-item');
         playfieldCardsItem.setAttribute('value', shuffledArr[i]);
@@ -168,7 +167,6 @@
           playfieldCardsItem.classList.add('playfield__area-item_large');
         }
 
-        playfieldCardsItem.append(playfieldCardsItemImg);
         playfieldCardsList.appendChild(playfieldCardsItem);
       }
     }
