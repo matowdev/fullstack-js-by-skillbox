@@ -162,7 +162,11 @@
       for (let i = 0; i < shuffledArr.length; i++) {
         const playfieldCardsItem = document.createElement('li');
 
-        playfieldCardsItem.classList.add('playfield__area-item');
+        // ? добавление класса для hover.css (2 файла и подключение в style.css)
+        playfieldCardsItem.classList.add(
+          'playfield__area-item',
+          'hvr-buzz-out'
+        );
         playfieldCardsItem.setAttribute('value', shuffledArr[i]);
 
         if (shuffledArr.length == 16) {
