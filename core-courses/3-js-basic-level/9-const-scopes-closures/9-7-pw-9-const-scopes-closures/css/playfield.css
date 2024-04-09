@@ -151,6 +151,19 @@
   box-shadow: 0 1px 10px var(--nude);
   overflow: hidden;
   cursor: pointer;
+  transition-property: outline, box-shadow, transform;
+  transition-duration: var(--short);
+  transition-timing-function: ease-in-out;
+}
+
+.playfield__area-item:focus-visible {
+  outline: 2px solid var(--dark-gold);
+  box-shadow: 0 1px 20px var(--dark-gold);
+  transform: scale(1.05);
+}
+
+.playfield__area-item:active {
+  outline: 2px solid var(--dark-gold);
 }
 
 .playfield__area-item_small,
@@ -170,5 +183,10 @@
   .playfield__options-item:focus-visible:hover:not(:active) {
     border-bottom: 2px solid var(--dark-gold);
     color: var(--dark-gold);
+  }
+
+  .playfield__area-item:hover {
+    box-shadow: 0 1px 20px var(--dark-gold);
+    transform: scale(1.05);
   }
 }
