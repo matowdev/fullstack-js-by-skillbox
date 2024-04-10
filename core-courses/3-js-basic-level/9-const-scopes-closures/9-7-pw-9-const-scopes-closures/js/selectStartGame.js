@@ -1,4 +1,39 @@
 (() => {
+  const cardBackgroundsArr = [
+    'images/tarot-1.jpg',
+    'images/tarot-2.jpg',
+    'images/tarot-3.jpg',
+    'images/tarot-4.jpg',
+    'images/tarot-5.jpg',
+    'images/tarot-6.jpg',
+    'images/tarot-7.jpg',
+    'images/tarot-8.jpg',
+    'images/tarot-9.jpg',
+    'images/tarot-10.jpg',
+    'images/tarot-11.jpg',
+    'images/tarot-12.jpg',
+    'images/tarot-13.jpg',
+    'images/tarot-14.jpg',
+    'images/tarot-15.jpg',
+    'images/tarot-16.jpg',
+    'images/tarot-17.jpg',
+    'images/tarot-18.jpg',
+    'images/tarot-19.jpg',
+    'images/tarot-20.jpg',
+    'images/tarot-21.jpg',
+    'images/tarot-22.jpg',
+    'images/tarot-23.jpg',
+    'images/tarot-24.jpg',
+    'images/tarot-25.jpg',
+    'images/tarot-26.jpg',
+    'images/tarot-27.jpg',
+    'images/tarot-28.jpg',
+    'images/tarot-29.jpg',
+    'images/tarot-30.jpg',
+    'images/tarot-31.jpg',
+    'images/tarot-32.jpg',
+  ];
+
   const initialPageState = {
     title: document.querySelector('.header__title').textContent,
     pageClassList: document.querySelector('.page').className,
@@ -158,7 +193,7 @@
 
     const shuffledArr = getShuffledArr(pairedArr);
 
-    function creatingElements(shuffledArr) {
+    function createCardsItem(shuffledArr) {
       for (let i = 0; i < shuffledArr.length; i++) {
         const playfieldCardsItem = document.createElement('li');
 
@@ -184,7 +219,65 @@
       }
     }
 
-    creatingElements(shuffledArr);
+    createCardsItem(shuffledArr);
+
+    // !
+    const playfieldCards = document.querySelectorAll(
+      '.playfield__area-list .playfield__area-item'
+    );
+    let selectedCardsArr = [];
+    let isChecked = false;
+
+    playfieldCards.forEach((card) => {
+      card.addEventListener('click', function () {
+        if (isChecked || selectedCardsArr.length >= 2) return;
+
+        const cardValue = card.getAttribute('value');
+
+        if (!card.classList.contains('playfield__area-item_selected')) {
+          // ! уточнить что здесь происходит
+          const alreadySelected = selectedCardsArr.some(
+            (selected) => selected.card === card
+          );
+
+          if (!alreadySelected) {
+            card.classList.add('playfield__area-item_selected');
+            // ! уточнить что здесь происходит (что это за объект такой формируется)
+            selectedCardsArr.push({ card, value: cardValue });
+          }
+
+          if (selectedCardsArr.length === 2) {
+            isChecked = true;
+            setTimeout(checkPairCards, 500);
+          }
+        } else {
+          card.classList.remove('playfield__area-item_selected');
+          // ! уточнить что здесь происходит
+          selectedCardsArr = selectedCardsArr.filter(
+            (selected) => selected.card !== card
+          );
+        }
+      });
+    });
+
+    function checkPairCards() {
+      if (selectedCardsArr[0].value === selectedCardsArr[1].value) {
+        selectedCardsArr.forEach(({ card }) => {
+          card.classList.add('paired');
+          // ! стоит описать, вот был tabindex.. хоп и не стало
+          card.setAttribute('tabindex', '-1');
+        });
+      } else {
+        // ! а здесь { card } это деструктуризация или это просто перебор объектов
+        selectedCardsArr.forEach(({ card }) => {
+          card.classList.remove('playfield__area-item_selected');
+          card.blur();
+        });
+      }
+
+      selectedCardsArr = [];
+      isChecked = false;
+    }
 
     // !
     const timerFooter = document.querySelector('.footer__timer');

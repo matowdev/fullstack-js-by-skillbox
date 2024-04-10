@@ -122,6 +122,7 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  perspective: 1000px;
 }
 
 .playfield__area-list_small,
@@ -154,6 +155,7 @@
   transition-property: outline, box-shadow, transform;
   transition-duration: var(--short);
   transition-timing-function: ease-in-out;
+  transform: rotateY(0deg);
 }
 
 .playfield__area-item:focus-visible {
@@ -173,6 +175,16 @@
   height: 210px;
 }
 
+/* ! Что бы оставалась карты и в приподнятом состоянии и с тенью */
+.playfield__area-item_selected {
+  transform: rotateY(180deg);
+}
+
+.paired {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 @media (any-hover: hover) {
   .playfield__options-item:hover:not(:active) {
     border-bottom: 2px solid var(--white);
@@ -185,7 +197,7 @@
     color: var(--dark-gold);
   }
 
-  .playfield__area-item:hover {
+  .playfield__area-item:hover:not(:focus) {
     box-shadow: 0 1px 20px var(--dark-gold);
     transform: scale(1.05);
   }
