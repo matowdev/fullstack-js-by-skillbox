@@ -122,7 +122,6 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  perspective: 1000px;
 }
 
 .playfield__area-list_small,
@@ -175,7 +174,6 @@
   height: 210px;
 }
 
-/* ! Что бы оставалась карты и в приподнятом состоянии и с тенью */
 .playfield__area-item_selected {
   transform: rotateY(180deg);
 }

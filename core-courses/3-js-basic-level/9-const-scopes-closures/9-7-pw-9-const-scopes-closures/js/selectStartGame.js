@@ -112,7 +112,7 @@
   let selectedTime = 0;
   let isTimerActive = false;
 
-  // ! start game
+  // ! main function / select, start game.. etc.
   function startGame() {
     clearInterval(interval);
     isTimerActive = false;
@@ -235,14 +235,12 @@
         const cardValue = card.getAttribute('value');
 
         if (!card.classList.contains('playfield__area-item_selected')) {
-          // ! уточнить что здесь происходит
           const alreadySelected = selectedCardsArr.some(
             (selected) => selected.card === card
           );
 
           if (!alreadySelected) {
             card.classList.add('playfield__area-item_selected');
-            // ! уточнить что здесь происходит (что это за объект такой формируется)
             selectedCardsArr.push({ card, value: cardValue });
           }
 
@@ -252,7 +250,6 @@
           }
         } else {
           card.classList.remove('playfield__area-item_selected');
-          // ! уточнить что здесь происходит
           selectedCardsArr = selectedCardsArr.filter(
             (selected) => selected.card !== card
           );
@@ -264,11 +261,9 @@
       if (selectedCardsArr[0].value === selectedCardsArr[1].value) {
         selectedCardsArr.forEach(({ card }) => {
           card.classList.add('paired');
-          // ! стоит описать, вот был tabindex.. хоп и не стало
           card.setAttribute('tabindex', '-1');
         });
       } else {
-        // ! а здесь { card } это деструктуризация или это просто перебор объектов
         selectedCardsArr.forEach(({ card }) => {
           card.classList.remove('playfield__area-item_selected');
           card.blur();
