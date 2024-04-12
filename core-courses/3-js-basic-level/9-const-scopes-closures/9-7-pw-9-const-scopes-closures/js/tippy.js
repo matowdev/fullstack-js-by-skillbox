@@ -3,13 +3,17 @@
   const audioPlayer = document.querySelector('.footer__audio-player');
 
   function initTippy(selector, content, side) {
-    tippy(selector, {
-      content: content,
-      theme: 'main',
-      delay: [50, 100],
-      offset: [0, 12],
-      placement: side,
-    });
+    if (typeof tippy === 'function') {
+      tippy(selector, {
+        content: content,
+        theme: 'main',
+        delay: [50, 100],
+        offset: [0, 12],
+        placement: side,
+      });
+    } else {
+      console.error('Tippy.js is not loaded!');
+    }
   }
 
   initTippy('#four', 'The playing field is 4 by 4 cards', 'right');
