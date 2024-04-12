@@ -16,24 +16,9 @@
     'images/tarot-14.jpg',
     'images/tarot-15.jpg',
     'images/tarot-16.jpg',
-    'images/tarot-17.jpg',
-    'images/tarot-18.jpg',
-    'images/tarot-19.jpg',
-    'images/tarot-20.jpg',
-    'images/tarot-21.jpg',
-    'images/tarot-22.jpg',
-    'images/tarot-23.jpg',
-    'images/tarot-24.jpg',
-    'images/tarot-25.jpg',
-    'images/tarot-26.jpg',
-    'images/tarot-27.jpg',
-    'images/tarot-28.jpg',
-    'images/tarot-29.jpg',
-    'images/tarot-30.jpg',
-    'images/tarot-31.jpg',
-    'images/tarot-32.jpg',
   ];
 
+  // фиксация начальных состоянии/классов (у некоторых элементов)
   const initialPageState = {
     title: document.querySelector('.header__title').textContent,
     pageClassList: document.querySelector('.page').className,
@@ -47,6 +32,35 @@
     audioWrapClassList: document.querySelector('.footer__audio-wrap').className,
   };
 
+  // получение существующих, создание новых элементов (дополнительное объявление)
+  const page = document.querySelector('.page');
+  const header = document.querySelector('.header');
+  const title = document.querySelector('.header__title');
+  const playfield = document.querySelector('.playfield');
+  const playfieldAreaWrap = document.querySelector('.playfield__options-wrap');
+  const playfieldOptionsList = document.querySelector('.playfield__options');
+  const playfieldBtnWrap = document.querySelector('.playfield__btn-wrap');
+  const startBtn = document.querySelector('.playfield__btn-start');
+  const footerContainer = document.querySelector('.footer__container');
+  const audioWrap = document.querySelector('.footer__audio-wrap');
+  const infoLink = document.querySelector('.footer__info-link');
+
+  const playfieldArea = document.createElement('div');
+  const playfieldCardsList = document.createElement('ul');
+  const restartBtn = document.createElement('button');
+  const backBtn = document.createElement('button');
+  const timerWrap = document.createElement('div');
+  const timerBtnWrap = document.createElement('div');
+  const timerBtnOn = document.createElement('button');
+  const timerBtnSlash = document.createElement('span');
+  const timerBtnOff = document.createElement('button');
+  const timer = document.createElement('div');
+
+  let interval;
+  let selectedTime = 0;
+  let isTimerActive = false;
+
+  // выделение/фиксация варианта игрового поля 4, 6 или 8 (подтверждение через tab/enter)
   const playfieldSizeOptions = document.querySelectorAll(
     '.playfield__options-item'
   );
@@ -85,51 +99,8 @@
     });
   });
 
-  const page = document.querySelector('.page');
-  const header = document.querySelector('.header');
-  const title = document.querySelector('.header__title');
-  const playfield = document.querySelector('.playfield');
-  const playfieldAreaWrap = document.querySelector('.playfield__options-wrap');
-  const playfieldOptionsList = document.querySelector('.playfield__options');
-  const playfieldBtnWrap = document.querySelector('.playfield__btn-wrap');
-  const startBtn = document.querySelector('.playfield__btn-start');
-  const footerContainer = document.querySelector('.footer__container');
-  const audioWrap = document.querySelector('.footer__audio-wrap');
-  const infoLink = document.querySelector('.footer__info-link');
-
-  const playfieldArea = document.createElement('div');
-  const playfieldCardsList = document.createElement('ul');
-  const restartBtn = document.createElement('button');
-  const backBtn = document.createElement('button');
-  const timerWrap = document.createElement('div');
-  const timerBtnWrap = document.createElement('div');
-  const timerBtnOn = document.createElement('button');
-  const timerBtnSlash = document.createElement('span');
-  const timerBtnOff = document.createElement('button');
-  const timer = document.createElement('div');
-
-  let interval;
-  let selectedTime = 0;
-  let isTimerActive = false;
-
-  // ! main function / select, start game.. etc.
-  function startGame() {
-    clearInterval(interval);
-    isTimerActive = false;
-
-    playfieldCardsList.innerHTML = '';
-
-    if (selectedOption && selectedOption.id == 'four') {
-      title.textContent = 'Path to mystery!';
-    } else if (selectedOption && selectedOption.id == 'six') {
-      title.textContent = 'Explore and combine!';
-    } else if (selectedOption && selectedOption.id == 'eight') {
-      title.textContent = 'Find your way to victory!';
-    } else {
-      alert('Select the playing field and press "Start".');
-      return;
-    }
-
+  // добавление дополнительных/первичных классов, наполнение, вставка элементов в DOM-структуру (при старте игры)
+  function updateUIAfterGameStart() {
     page.classList.add('game-page');
     header.classList.add('game-header');
     title.classList.add('game-title');
@@ -164,64 +135,86 @@
     timerBtnWrap.append(timerBtnOn, timerBtnSlash, timerBtnOff);
     timerWrap.append(timerBtnWrap, timer);
     footerContainer.append(timerWrap);
+  }
 
-    // !
+  // создание дублированного, перемешенного массива (т.е. 16, 24 или 32-е будущих карточки, согласно выбранного поля)
+  function getPairedNumArr(selectedItemValue) {
+    const pairedNumArr = [];
+
+    for (let i = 1; i <= selectedItemValue; i++) {
+      pairedNumArr.push(i, i);
+    }
+
+    return pairedNumArr;
+  }
+
+  function getShuffledArr(pairedArr) {
+    const newArr = [...pairedArr];
+
+    for (let i = newArr.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
+    }
+
+    return newArr;
+  }
+
+  // создание карточек, под соответствующее игровое поле (разная стилизация)
+  function createCardsItem(shuffledArr) {
+    for (let i = 0; i < shuffledArr.length; i++) {
+      const playfieldCardsItem = document.createElement('li');
+
+      playfieldCardsItem.classList.add('playfield__area-item');
+      playfieldCardsItem.setAttribute('value', shuffledArr[i]);
+      playfieldCardsItem.setAttribute('tabindex', '0');
+
+      if (shuffledArr.length == 16) {
+        playfieldArea.classList.add('playfield__area_small');
+        playfieldCardsList.classList.add('playfield__area-list_small');
+        playfieldCardsItem.classList.add('playfield__area-item_small');
+      } else if (shuffledArr.length == 24) {
+        playfieldArea.classList.add('playfield__area_medium');
+        playfieldCardsList.classList.add('playfield__area-list_medium');
+        playfieldCardsItem.classList.add('playfield__area-item_medium');
+      } else if (shuffledArr.length == 32) {
+        playfieldArea.classList.add('playfield__area_large');
+        playfieldCardsList.classList.add('playfield__area-list_large');
+        playfieldCardsItem.classList.add('playfield__area-item_large');
+      }
+
+      playfieldCardsList.appendChild(playfieldCardsItem);
+    }
+  }
+
+  // ! начало игры, кнопка "Start" (ряд подфункций/действий)
+  function startGame() {
+    // предварительные очистки/сбросы
+    clearInterval(interval);
+    isTimerActive = false;
+    playfieldCardsList.innerHTML = '';
+
+    // определение заголовка игрового поля, исходя из размера поля
+    if (selectedOption && selectedOption.id == 'four') {
+      title.textContent = 'Path to mystery!';
+    } else if (selectedOption && selectedOption.id == 'six') {
+      title.textContent = 'Explore and combine!';
+    } else if (selectedOption && selectedOption.id == 'eight') {
+      title.textContent = 'Find your way to victory!';
+    } else {
+      alert('Select the playing field and press "Start".');
+      return;
+    }
+
+    // обновление интерфейса (ввод игрового поля, новых кнопок, таймер)
+    updateUIAfterGameStart();
+
+    // получение/создание карточек
     let selectedItemValue = selectedOption.value * 2;
-
-    function getPairedNumArr(selectedItemValue) {
-      const pairedNumArr = [];
-
-      for (let i = 1; i <= selectedItemValue; i++) {
-        pairedNumArr.push(i, i);
-      }
-
-      return pairedNumArr;
-    }
-
     const pairedArr = getPairedNumArr(selectedItemValue);
-
-    function getShuffledArr(pairedArr) {
-      const newArr = [...pairedArr];
-
-      for (let i = newArr.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1));
-        [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
-      }
-
-      return newArr;
-    }
-
     const shuffledArr = getShuffledArr(pairedArr);
-
-    function createCardsItem(shuffledArr) {
-      for (let i = 0; i < shuffledArr.length; i++) {
-        const playfieldCardsItem = document.createElement('li');
-
-        playfieldCardsItem.classList.add('playfield__area-item');
-        playfieldCardsItem.setAttribute('value', shuffledArr[i]);
-        playfieldCardsItem.setAttribute('tabindex', '0');
-
-        if (shuffledArr.length == 16) {
-          playfieldArea.classList.add('playfield__area_small');
-          playfieldCardsList.classList.add('playfield__area-list_small');
-          playfieldCardsItem.classList.add('playfield__area-item_small');
-        } else if (shuffledArr.length == 24) {
-          playfieldArea.classList.add('playfield__area_medium');
-          playfieldCardsList.classList.add('playfield__area-list_medium');
-          playfieldCardsItem.classList.add('playfield__area-item_medium');
-        } else if (shuffledArr.length == 32) {
-          playfieldArea.classList.add('playfield__area_large');
-          playfieldCardsList.classList.add('playfield__area-list_large');
-          playfieldCardsItem.classList.add('playfield__area-item_large');
-        }
-
-        playfieldCardsList.appendChild(playfieldCardsItem);
-      }
-    }
-
     createCardsItem(shuffledArr);
 
-    // !
+    // организация выбора карточек их сравнение на совпадение (исключение из выбора)
     const playfieldCards = document.querySelectorAll(
       '.playfield__area-list .playfield__area-item'
     );
@@ -274,7 +267,7 @@
       isChecked = false;
     }
 
-    // !
+    // организация внутри-игрового таймера (разное время)
     const timerFooter = document.querySelector('.footer__timer');
 
     function setGameTime(minutes) {
@@ -327,12 +320,12 @@
 
   startBtn.addEventListener('click', startGame);
 
-  // !
+  // перезапуск выбранного игрового поля, кнопка "Restart" (новое расположение карт, таймер за ново)
   function restartSelectedGame() {}
 
   restartBtn.addEventListener('click', restartSelectedGame);
 
-  // !
+  // возврат на основную страницу, кнопка "Back" (очистка/удаление, первичное состояние)
   function returnToInitialState() {
     clearInterval(interval);
 
@@ -346,6 +339,7 @@
       'playfield__area-list_medium',
       'playfield__area-list_large'
     );
+
     const areaItems = document.querySelectorAll('.playfield__area-item');
     areaItems.forEach((item) => {
       item.classList.remove(
