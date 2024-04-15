@@ -220,6 +220,7 @@
     );
     let selectedCardsArr = [];
     let isChecked = false;
+    let cardBackTimer;
 
     playfieldCards.forEach((card) => {
       card.addEventListener('click', function () {
@@ -235,6 +236,15 @@
           if (!alreadySelected) {
             card.classList.add('playfield__area-item_selected');
             selectedCardsArr.push({ card, value: cardValue });
+
+            clearTimeout(cardBackTimer);
+
+            cardBackTimer = setTimeout(() => {
+              card.classList.remove('playfield__area-item_selected');
+              selectedCardsArr = selectedCardsArr.filter(
+                (selected) => selected.card !== card
+              );
+            }, 10000);
           }
 
           if (selectedCardsArr.length === 2) {
@@ -246,6 +256,7 @@
           selectedCardsArr = selectedCardsArr.filter(
             (selected) => selected.card !== card
           );
+          clearTimeout(cardBackTimer);
         }
       });
     });

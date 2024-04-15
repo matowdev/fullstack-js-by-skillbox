@@ -199,4 +199,8 @@
     box-shadow: 0 1px 20px var(--dark-gold);
     transform: scale(1.05);
   }
+
+  .playfield__area-item_selected:hover {
+    box-shadow: 0 1px 20px var(--dark-gold);
+  }
 }
