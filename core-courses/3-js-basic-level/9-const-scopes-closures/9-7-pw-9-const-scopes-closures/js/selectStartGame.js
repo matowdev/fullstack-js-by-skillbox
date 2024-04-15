@@ -215,9 +215,7 @@
     createCardsItem(shuffledArr);
 
     // организация выбора карточек их сравнение на совпадение (исключение из выбора)
-    const playfieldCards = document.querySelectorAll(
-      '.playfield__area-list .playfield__area-item'
-    );
+    const playfieldCards = document.querySelectorAll('.playfield__area-item');
     let selectedCardsArr = [];
     let isChecked = false;
     let cardBackTimer;
@@ -244,6 +242,7 @@
               selectedCardsArr = selectedCardsArr.filter(
                 (selected) => selected.card !== card
               );
+              card.blur();
             }, 10000);
           }
 
@@ -256,6 +255,8 @@
           selectedCardsArr = selectedCardsArr.filter(
             (selected) => selected.card !== card
           );
+          card.blur();
+
           clearTimeout(cardBackTimer);
         }
       });
