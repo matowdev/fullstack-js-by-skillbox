@@ -153,7 +153,7 @@
   cursor: pointer;
   transition-property: outline, box-shadow, transform;
   transition-duration: var(--short);
-  transition-timing-function: ease-in-out;
+  transition-timing-function: ease;
   transform: rotateY(0deg);
 }
 
@@ -195,7 +195,9 @@
     color: var(--dark-gold);
   }
 
-  .playfield__area-item:hover:not(:focus) {
+  .playfield__area-item:hover:not(:focus):not(
+      .playfield__area-item_selected
+    ):not(.paired) {
     box-shadow: 0 1px 20px var(--dark-gold);
     transform: scale(1.05);
   }
