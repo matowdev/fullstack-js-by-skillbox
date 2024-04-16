@@ -174,7 +174,8 @@
   height: 210px;
 }
 
-.playfield__area-item_selected {
+.playfield__area-item_selected,
+.playfield__area-item_selected:focus-visible {
   transform: rotateY(180deg);
 }
 

@@ -220,47 +220,45 @@
     let isChecked = false;
     let cardBackTimer;
 
-    playfieldCards.forEach((card) => {
-      card.addEventListener('click', function () {
-        if (isChecked || selectedCardsArr.length >= 2) return;
+    function cardSelection(card) {
+      if (isChecked || selectedCardsArr.length >= 2) return;
 
-        const cardValue = card.getAttribute('value');
+      const cardValue = card.getAttribute('value');
 
-        if (!card.classList.contains('playfield__area-item_selected')) {
-          const alreadySelected = selectedCardsArr.some(
-            (selected) => selected.card === card
-          );
+      if (!card.classList.contains('playfield__area-item_selected')) {
+        const alreadySelected = selectedCardsArr.some(
+          (selected) => selected.card === card
+        );
 
-          if (!alreadySelected) {
-            card.classList.add('playfield__area-item_selected');
-            selectedCardsArr.push({ card, value: cardValue });
-
-            clearTimeout(cardBackTimer);
-
-            cardBackTimer = setTimeout(() => {
-              card.classList.remove('playfield__area-item_selected');
-              selectedCardsArr = selectedCardsArr.filter(
-                (selected) => selected.card !== card
-              );
-              card.blur();
-            }, 10000);
-          }
-
-          if (selectedCardsArr.length === 2) {
-            isChecked = true;
-            setTimeout(checkPairCards, 500);
-          }
-        } else {
-          card.classList.remove('playfield__area-item_selected');
-          selectedCardsArr = selectedCardsArr.filter(
-            (selected) => selected.card !== card
-          );
-          card.blur();
+        if (!alreadySelected) {
+          card.classList.add('playfield__area-item_selected');
+          selectedCardsArr.push({ card, value: cardValue });
 
           clearTimeout(cardBackTimer);
+
+          cardBackTimer = setTimeout(() => {
+            card.classList.remove('playfield__area-item_selected');
+            selectedCardsArr = selectedCardsArr.filter(
+              (selected) => selected.card !== card
+            );
+            card.blur();
+          }, 10000);
         }
-      });
-    });
+
+        if (selectedCardsArr.length === 2) {
+          isChecked = true;
+          setTimeout(checkPairCards, 500);
+        }
+      } else {
+        card.classList.remove('playfield__area-item_selected');
+        selectedCardsArr = selectedCardsArr.filter(
+          (selected) => selected.card !== card
+        );
+        card.blur();
+
+        clearTimeout(cardBackTimer);
+      }
+    }
 
     function checkPairCards() {
       if (selectedCardsArr[0].value === selectedCardsArr[1].value) {
@@ -278,6 +276,19 @@
       selectedCardsArr = [];
       isChecked = false;
     }
+
+    playfieldCards.forEach((card) => {
+      card.addEventListener('click', function () {
+        cardSelection(card);
+      });
+
+      card.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+          cardSelection(card);
+          event.preventDefault();
+        }
+      });
+    });
 
     // организация внутри-игрового таймера (разное время)
     const timerFooter = document.querySelector('.footer__timer');
