@@ -32,7 +32,7 @@
     audioWrapClassList: document.querySelector('.footer__audio-wrap').className,
   };
 
-  // получение существующих, создание новых элементов (дополнительное объявление)
+  // получение существующих, создание новых элементов (глобальное объявление)
   const page = document.querySelector('.page');
   const header = document.querySelector('.header');
   const title = document.querySelector('.header__title');
@@ -56,11 +56,7 @@
   const timerBtnOff = document.createElement('button');
   const timer = document.createElement('div');
 
-  let interval;
-  let selectedTime = 0;
-  let isTimerActive = false;
-
-  // выделение/фиксация варианта игрового поля 4, 6 или 8 (подтверждение через tab/enter)
+  // выделение/фиксация варианта игрового поля 4, 6 или 8 (мышью, через tab/enter)
   const playfieldSizeOptions = document.querySelectorAll(
     '.playfield__options-item'
   );
@@ -100,7 +96,7 @@
   });
 
   // добавление дополнительных/первичных классов, наполнение, вставка элементов в DOM-структуру (при старте игры)
-  function updateUIAfterGameStart() {
+  function updateUIAfterStartGame() {
     page.classList.add('game-page');
     header.classList.add('game-header');
     title.classList.add('game-title');
@@ -137,7 +133,7 @@
     footerContainer.append(timerWrap);
   }
 
-  // создание дублированного, перемешенного массива (т.е. 16, 24 или 32-е будущих карточки, согласно выбранного поля)
+  // создание дублированного, перемешенного массива (т.е. 16, 24 или 32-е будущих карт(ы), согласно выбранного поля)
   function getPairedNumArr(selectedItemValue) {
     const pairedNumArr = [];
 
@@ -159,7 +155,7 @@
     return newArr;
   }
 
-  // создание карточек, под соответствующее игровое поле (разная стилизация)
+  // создание карт, под соответствующее игровое поле (разная стилизация)
   function createCardsItem(shuffledArr) {
     for (let i = 0; i < shuffledArr.length; i++) {
       const playfieldCardsItem = document.createElement('li');
@@ -186,7 +182,98 @@
     }
   }
 
-  // ! начало игры, кнопка "Start" (ряд подфункций/действий)
+  // взаимодействие с игровыми картами: выбор, их сравнение (исключение из выбора)
+  let selectedCardsArr = [];
+  let isChecked = false;
+  let cardBackTimer;
+
+  function cardSelection(card) {
+    if (isChecked || selectedCardsArr.length >= 2) return;
+
+    const cardValue = card.getAttribute('value');
+
+    if (!card.classList.contains('playfield__area-item_selected')) {
+      const alreadySelected = selectedCardsArr.some(
+        (selected) => selected.card === card
+      );
+
+      if (!alreadySelected) {
+        card.classList.add('playfield__area-item_selected');
+        selectedCardsArr.push({ card, value: cardValue });
+
+        clearTimeout(cardBackTimer);
+
+        cardBackTimer = setTimeout(() => {
+          card.classList.remove('playfield__area-item_selected');
+          selectedCardsArr = selectedCardsArr.filter(
+            (selected) => selected.card !== card
+          );
+          card.blur();
+        }, 10000);
+      }
+
+      if (selectedCardsArr.length === 2) {
+        isChecked = true;
+        setTimeout(checkPairCards, 500);
+      }
+    } else {
+      card.classList.remove('playfield__area-item_selected');
+      selectedCardsArr = selectedCardsArr.filter(
+        (selected) => selected.card !== card
+      );
+      card.blur();
+
+      clearTimeout(cardBackTimer);
+    }
+  }
+
+  function checkPairCards() {
+    if (selectedCardsArr[0].value === selectedCardsArr[1].value) {
+      selectedCardsArr.forEach(({ card }) => {
+        card.classList.add('paired');
+        card.setAttribute('tabindex', '-1');
+      });
+    } else {
+      selectedCardsArr.forEach(({ card }) => {
+        card.classList.remove('playfield__area-item_selected');
+        card.blur();
+      });
+    }
+
+    selectedCardsArr = [];
+    isChecked = false;
+  }
+
+  // организация внутри-игрового таймера (разное время, обновление)
+  let interval;
+  let selectedTime = 0;
+  let isTimerActive = false;
+
+  function setGameTime(minutes, timer) {
+    selectedTime = minutes * 60;
+    timer.textContent = `${minutes}:00`;
+  }
+
+  function updateTimer(timer) {
+    if (selectedTime <= 0) {
+      clearInterval(interval);
+
+      if (isTimerActive) alert("Time's up!");
+
+      isTimerActive = false;
+      return;
+    }
+
+    selectedTime--;
+
+    let minutes = Math.floor(selectedTime / 60);
+    let seconds = selectedTime % 60;
+
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+    timer.textContent = `${minutes}:${seconds}`;
+  }
+
+  // ! начало игры, кнопка "Start" (ряд действий)
   function startGame() {
     // предварительные очистки/сбросы
     clearInterval(interval);
@@ -206,76 +293,16 @@
     }
 
     // обновление интерфейса (ввод игрового поля, новых кнопок, таймера)
-    updateUIAfterGameStart();
+    updateUIAfterStartGame();
 
-    // получение/создание карточек
+    // получение/создание карт
     let selectedItemValue = selectedOption.value * 2;
     const pairedArr = getPairedNumArr(selectedItemValue);
     const shuffledArr = getShuffledArr(pairedArr);
     createCardsItem(shuffledArr);
 
-    // организация выбора карточек их сравнение на совпадение (исключение из выбора)
+    // взаимодействие с картами: выбор, сравнение (мышью, через tab/enter)
     const playfieldCards = document.querySelectorAll('.playfield__area-item');
-    let selectedCardsArr = [];
-    let isChecked = false;
-    let cardBackTimer;
-
-    function cardSelection(card) {
-      if (isChecked || selectedCardsArr.length >= 2) return;
-
-      const cardValue = card.getAttribute('value');
-
-      if (!card.classList.contains('playfield__area-item_selected')) {
-        const alreadySelected = selectedCardsArr.some(
-          (selected) => selected.card === card
-        );
-
-        if (!alreadySelected) {
-          card.classList.add('playfield__area-item_selected');
-          selectedCardsArr.push({ card, value: cardValue });
-
-          clearTimeout(cardBackTimer);
-
-          cardBackTimer = setTimeout(() => {
-            card.classList.remove('playfield__area-item_selected');
-            selectedCardsArr = selectedCardsArr.filter(
-              (selected) => selected.card !== card
-            );
-            card.blur();
-          }, 10000);
-        }
-
-        if (selectedCardsArr.length === 2) {
-          isChecked = true;
-          setTimeout(checkPairCards, 500);
-        }
-      } else {
-        card.classList.remove('playfield__area-item_selected');
-        selectedCardsArr = selectedCardsArr.filter(
-          (selected) => selected.card !== card
-        );
-        card.blur();
-
-        clearTimeout(cardBackTimer);
-      }
-    }
-
-    function checkPairCards() {
-      if (selectedCardsArr[0].value === selectedCardsArr[1].value) {
-        selectedCardsArr.forEach(({ card }) => {
-          card.classList.add('paired');
-          card.setAttribute('tabindex', '-1');
-        });
-      } else {
-        selectedCardsArr.forEach(({ card }) => {
-          card.classList.remove('playfield__area-item_selected');
-          card.blur();
-        });
-      }
-
-      selectedCardsArr = [];
-      isChecked = false;
-    }
 
     playfieldCards.forEach((card) => {
       card.addEventListener('click', function () {
@@ -290,45 +317,24 @@
       });
     });
 
-    // организация внутри-игрового таймера (разное время)
-    const timerFooter = document.querySelector('.footer__timer');
-
-    function setGameTime(minutes) {
-      selectedTime = minutes * 60;
-      timerFooter.textContent = `${minutes}:00`;
-    }
-
-    function updateTimer() {
-      if (selectedTime <= 0) {
-        clearInterval(interval);
-
-        if (isTimerActive) alert("Time's up!");
-
-        isTimerActive = false;
-        return;
-      }
-
-      selectedTime--;
-
-      let minutes = Math.floor(selectedTime / 60);
-      let seconds = selectedTime % 60;
-
-      seconds = seconds < 10 ? '0' + seconds : seconds;
-      timerFooter.textContent = `${minutes}:${seconds}`;
-    }
+    // установка таймера (запуск/отмена)
+    const timer = document.querySelector('.footer__timer');
+    let minutes = 0;
 
     if (title.textContent == 'Path to mystery!') {
-      setGameTime(2);
+      minutes = 2;
     } else if (title.textContent == 'Explore and combine!') {
-      setGameTime(4);
+      minutes = 4;
     } else if (title.textContent == 'Find your way to victory!') {
-      setGameTime(6);
+      minutes = 6;
     }
+
+    setGameTime(minutes, timer);
 
     document.querySelector('.game-timer-on').addEventListener('click', () => {
       if (!isTimerActive) {
         clearInterval(interval);
-        interval = setInterval(updateTimer, 1000);
+        interval = setInterval(() => updateTimer(timer), 1000);
         isTimerActive = true;
       }
     });
