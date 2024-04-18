@@ -103,9 +103,6 @@
       title.textContent = 'Explore and combine!';
     } else if (selectedOption && selectedOption.id == 'eight') {
       title.textContent = 'Find your way to victory!';
-    } else {
-      alert('Select the playing field and press "Start".');
-      return;
     }
   }
 
@@ -162,7 +159,7 @@
     const newArr = [...pairedArr];
 
     for (let i = newArr.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * newArr.length);
+      let j = Math.floor(Math.random() * (i + 1));
       [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
     }
 
@@ -355,6 +352,12 @@
 
   // ! начало игры, кнопка "Start"
   function startGame() {
+    // проверка на выбор игрового поля (4, 6 или 8)
+    if (!selectedOption) {
+      alert('Select the playing field and press "Start".');
+      return;
+    }
+
     definitionGameTitle(); // определение заголовка игры
     updateUIAfterStartGame(); // обновление интерфейса (ввод игрового поля, новых кнопок, таймера)
     setupGame(); // создание карт, организация взаимодействия с ними
@@ -363,12 +366,15 @@
 
   startBtn.addEventListener('click', startGame);
 
-  // перезапуск выбранного игрового поля, кнопка "Restart" (новое расположение карт, таймер за ново)
-  function restartSelectedGame() {}
+  // ! перезапуск выбранного игрового поля, кнопка "Restart" (новое расположение карт, таймер заново)
+  function restartSelectedGame() {
+    setupGame(); // создание карт.. (в данном контексте пересоздание)
+    setupTimer(); // установка таймера (переустановка)
+  }
 
   restartBtn.addEventListener('click', restartSelectedGame);
 
-  // возврат на основную страницу, кнопка "Back" (очистка/удаление, первичное состояние)
+  // ! возврат на основную страницу, кнопка "Back" (очистка/удаление, первичное состояние)
   function returnToInitialState() {
     clearInterval(interval);
 
