@@ -95,7 +95,21 @@
     });
   });
 
-  // добавление дополнительных/первичных классов, наполнение, вставка элементов в DOM-структуру (при старте игры)
+  // определение заголовка игры, исходя из размера выбранного поля
+  function definitionGameTitle() {
+    if (selectedOption && selectedOption.id == 'four') {
+      title.textContent = 'Path to mystery!';
+    } else if (selectedOption && selectedOption.id == 'six') {
+      title.textContent = 'Explore and combine!';
+    } else if (selectedOption && selectedOption.id == 'eight') {
+      title.textContent = 'Find your way to victory!';
+    } else {
+      alert('Select the playing field and press "Start".');
+      return;
+    }
+  }
+
+  // изменение интерфейса (после/при старте игры)
   function updateUIAfterStartGame() {
     page.classList.add('game-page');
     header.classList.add('game-header');
@@ -244,7 +258,7 @@
     isChecked = false;
   }
 
-  // организация внутри-игрового таймера (разное время, обновление)
+  // организация внутри-игрового таймера
   let interval;
   let selectedTime = 0;
   let isTimerActive = false;
@@ -273,27 +287,10 @@
     timer.textContent = `${minutes}:${seconds}`;
   }
 
-  // ! начало игры, кнопка "Start" (ряд действий)
-  function startGame() {
-    // предварительные очистки/сбросы
-    clearInterval(interval);
-    isTimerActive = false;
+  // настройка/подготовка игры (ряд действий)
+  function setupGame() {
+    // предварительная очистка
     playfieldCardsList.innerHTML = '';
-
-    // определение заголовка игрового поля, исходя из размера поля
-    if (selectedOption && selectedOption.id == 'four') {
-      title.textContent = 'Path to mystery!';
-    } else if (selectedOption && selectedOption.id == 'six') {
-      title.textContent = 'Explore and combine!';
-    } else if (selectedOption && selectedOption.id == 'eight') {
-      title.textContent = 'Find your way to victory!';
-    } else {
-      alert('Select the playing field and press "Start".');
-      return;
-    }
-
-    // обновление интерфейса (ввод игрового поля, новых кнопок, таймера)
-    updateUIAfterStartGame();
 
     // получение/создание карт
     let selectedItemValue = selectedOption.value * 2;
@@ -301,7 +298,7 @@
     const shuffledArr = getShuffledArr(pairedArr);
     createCardsItem(shuffledArr);
 
-    // взаимодействие с картами: выбор, сравнение (мышью, через tab/enter)
+    // работа с картами: выбор, сравнение (мышью, через tab/enter)
     const playfieldCards = document.querySelectorAll('.playfield__area-item');
 
     playfieldCards.forEach((card) => {
@@ -316,11 +313,18 @@
         }
       });
     });
+  }
 
-    // установка таймера (запуск/отмена)
+  // подготовка таймера согласно игрового поля
+  function setupTimer() {
+    // предварительные сбросы
+    clearInterval(interval);
+    isTimerActive = false;
+
     const timer = document.querySelector('.footer__timer');
     let minutes = 0;
 
+    // определение времени/минут на игру
     if (title.textContent == 'Path to mystery!') {
       minutes = 2;
     } else if (title.textContent == 'Explore and combine!') {
@@ -329,8 +333,10 @@
       minutes = 6;
     }
 
+    // установка времени/таймера
     setGameTime(minutes, timer);
 
+    // отработка запуска/отмены
     document.querySelector('.game-timer-on').addEventListener('click', () => {
       if (!isTimerActive) {
         clearInterval(interval);
@@ -345,6 +351,14 @@
         isTimerActive = false;
       }
     });
+  }
+
+  // ! начало игры, кнопка "Start"
+  function startGame() {
+    definitionGameTitle(); // определение заголовка игры
+    updateUIAfterStartGame(); // обновление интерфейса (ввод игрового поля, новых кнопок, таймера)
+    setupGame(); // создание карт, организация взаимодействия с ними
+    setupTimer(); // установка таймера
   }
 
   startBtn.addEventListener('click', startGame);
