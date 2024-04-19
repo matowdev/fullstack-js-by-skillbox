@@ -232,8 +232,8 @@
       selectedCardsArr = selectedCardsArr.filter(
         (selected) => selected.card !== card
       );
-      card.blur();
 
+      card.blur();
       clearTimeout(cardBackTimer);
     }
   }
@@ -243,6 +243,8 @@
       selectedCardsArr.forEach(({ card }) => {
         card.classList.add('paired');
         card.setAttribute('tabindex', '-1');
+        // исключение переворота (обратно) последней пары/карты, при всех paired
+        clearTimeout(cardBackTimer);
       });
     } else {
       selectedCardsArr.forEach(({ card }) => {
@@ -358,7 +360,7 @@
     });
   }
 
-  // ** вывод итогового сообщения
+  // ** вывод завершающего сообщения
   function showWinMessage() {
     if (isTimerActive) {
       clearInterval(interval);
