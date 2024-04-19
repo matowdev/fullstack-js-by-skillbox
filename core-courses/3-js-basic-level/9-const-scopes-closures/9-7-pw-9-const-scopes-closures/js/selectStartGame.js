@@ -18,7 +18,7 @@
     'images/tarot-16.jpg',
   ];
 
-  // фиксация начальных состоянии/классов (у некоторых элементов)
+  // ** фиксация начальных состояний/классов (у некоторых элементов)
   const initialPageState = {
     title: document.querySelector('.header__title').textContent,
     pageClassList: document.querySelector('.page').className,
@@ -32,7 +32,7 @@
     audioWrapClassList: document.querySelector('.footer__audio-wrap').className,
   };
 
-  // получение существующих, создание новых элементов (глобальное объявление)
+  // ** получение существующих, создание новых элементов (глобальное объявление)
   const page = document.querySelector('.page');
   const header = document.querySelector('.header');
   const title = document.querySelector('.header__title');
@@ -56,7 +56,7 @@
   const timerBtnOff = document.createElement('button');
   const timer = document.createElement('div');
 
-  // выделение/фиксация варианта игрового поля 4, 6 или 8 (мышью, через tab/enter)
+  // ** выделение/фиксация варианта игрового поля 4, 6 или 8 (мышью, через tab/enter)
   const playfieldSizeOptions = document.querySelectorAll(
     '.playfield__options-item'
   );
@@ -95,7 +95,7 @@
     });
   });
 
-  // определение заголовка игры, исходя из размера выбранного поля
+  // ** определение заголовка игры, исходя из размера выбранного поля
   function definitionGameTitle() {
     if (selectedOption && selectedOption.id == 'four') {
       title.textContent = 'Path to mystery!';
@@ -106,7 +106,7 @@
     }
   }
 
-  // изменение интерфейса (после/при старте игры)
+  // ** изменение интерфейса (после/при старте игры)
   function updateUIAfterStartGame() {
     page.classList.add('game-page');
     header.classList.add('game-header');
@@ -144,7 +144,7 @@
     footerContainer.append(timerWrap);
   }
 
-  // создание дублированного, перемешенного массива (т.е. 16, 24 или 32-е будущих карт(ы), согласно выбранного поля)
+  // ** создание дублированного, перемешенного массива (т.е. 16, 24 или 32-е будущих карт(ы), согласно выбранного поля)
   function getPairedNumArr(selectedItemValue) {
     const pairedNumArr = [];
 
@@ -166,7 +166,7 @@
     return newArr;
   }
 
-  // создание карт, под соответствующее игровое поле (разная стилизация)
+  // ** создание карт, под соответствующее игровое поле (разная стилизация)
   function createCardsItem(shuffledArr) {
     for (let i = 0; i < shuffledArr.length; i++) {
       const playfieldCardsItem = document.createElement('li');
@@ -193,7 +193,7 @@
     }
   }
 
-  // взаимодействие с игровыми картами: выбор, их сравнение (исключение из выбора)
+  // ** взаимодействие с игровыми картами: выбор, их сравнение (исключение из выбора)
   let selectedCardsArr = [];
   let isChecked = false;
   let cardBackTimer;
@@ -251,11 +251,19 @@
       });
     }
 
+    let allCardsPaired =
+      document.querySelectorAll('.playfield__area-item').length ===
+      document.querySelectorAll('.paired').length;
+
+    if (allCardsPaired) {
+      showWinMessage();
+    }
+
     selectedCardsArr = [];
     isChecked = false;
   }
 
-  // организация внутри-игрового таймера
+  // ** организация внутри-игрового таймера
   let interval;
   let selectedTime = 0;
   let isTimerActive = false;
@@ -284,7 +292,7 @@
     timer.textContent = `${minutes}:${seconds}`;
   }
 
-  // настройка/подготовка игры (ряд действий)
+  // ** настройка/подготовка игры (ряд действий)
   function setupGame() {
     // предварительная очистка
     playfieldCardsList.innerHTML = '';
@@ -300,19 +308,19 @@
 
     playfieldCards.forEach((card) => {
       card.addEventListener('click', function () {
-        cardSelection(card);
+        cardSelection(card); // + focus-visible
       });
 
       card.addEventListener('keydown', function (event) {
         if (event.key === 'Enter') {
-          cardSelection(card);
+          cardSelection(card); // + focus-visible
           event.preventDefault();
         }
       });
     });
   }
 
-  // подготовка таймера согласно игрового поля
+  // ** подготовка таймера согласно игрового поля
   function setupTimer() {
     // предварительные сбросы
     clearInterval(interval);
@@ -348,6 +356,16 @@
         isTimerActive = false;
       }
     });
+  }
+
+  // ** вывод итогового сообщения
+  function showWinMessage() {
+    if (isTimerActive) {
+      clearInterval(interval);
+      isTimerActive = false;
+    }
+
+    alert('You found all pairs! Congratulations!');
   }
 
   // ! начало игры, кнопка "Start"
