@@ -170,10 +170,17 @@
   function createCardsItem(shuffledArr) {
     for (let i = 0; i < shuffledArr.length; i++) {
       const playfieldCardsItem = document.createElement('li');
+      const cardFrontSide = document.createElement('img');
+      const cardBackSide = document.createElement('img');
 
       playfieldCardsItem.classList.add('playfield__area-item');
       playfieldCardsItem.setAttribute('value', shuffledArr[i]);
       playfieldCardsItem.setAttribute('tabindex', '0');
+      cardFrontSide.classList.add('front-side');
+      cardBackSide.classList.add('back-side');
+
+      cardFrontSide.src = cardBackgroundsArr[shuffledArr[i] - 1];
+      cardBackSide.src = 'images/reverse-side.jpg';
 
       if (shuffledArr.length == 16) {
         playfieldArea.classList.add('playfield__area_small');
@@ -189,6 +196,7 @@
         playfieldCardsItem.classList.add('playfield__area-item_large');
       }
 
+      playfieldCardsItem.append(cardFrontSide, cardBackSide);
       playfieldCardsList.appendChild(playfieldCardsItem);
     }
   }

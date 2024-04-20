@@ -143,18 +143,18 @@
 }
 
 .playfield__area-item {
+  position: relative;
   border-radius: 8px;
   line-height: 0;
   background-color: var(--nude);
-  background: url("../images/reverse-side.jpg") no-repeat center / cover;
   outline: 2px solid var(--nude);
-  box-shadow: 0 1px 10px var(--nude);
+  box-shadow: 0 1px 20px var(--nude);
   overflow: hidden;
   cursor: pointer;
   transition-property: outline, box-shadow, transform;
   transition-duration: var(--short);
   transition-timing-function: ease;
-  transform: rotateY(0deg);
+  perspective: 1000px;
 }
 
 .playfield__area-item:focus-visible {
@@ -177,6 +177,38 @@
 .playfield__area-item_selected,
 .playfield__area-item_selected:focus-visible {
   transform: rotateY(180deg);
+}
+
+.front-side,
+.back-side {
+  position: absolute;
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  will-change: transform;
+  transition: transform var(--short) ease;
+  transform-style: preserve-3d;
+}
+
+.front-side {
+  filter: contrast(110%);
+}
+
+.front-side {
+  transform: rotateY(180deg) scaleX(-1);
+}
+
+.back-side {
+  transform: rotateY(0deg);
+}
+
+.playfield__area-item_selected .front-side {
+  transform: rotateY(0deg) scaleX(-1);
+}
+
+.playfield__area-item_selected .back-side {
+  transform: rotateY(-180deg);
 }
 
 .paired {
