@@ -33,7 +33,7 @@ svg {
   font-size: var(--default-fs);
   line-height: var(--default-lh);
   color: var(--dark-gold);
-  background: url(../images/bg-2.jpg) no-repeat scroll center / cover;
+  background: url(../images/bg-2.webp) no-repeat scroll center / cover;
 }
 
 .game-page {
