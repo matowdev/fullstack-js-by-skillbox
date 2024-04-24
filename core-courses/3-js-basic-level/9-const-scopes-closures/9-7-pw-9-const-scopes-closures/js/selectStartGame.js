@@ -178,10 +178,11 @@
       playfieldCardsItem.setAttribute('tabindex', '0');
       cardFrontSide.classList.add('front-side');
       cardBackSide.classList.add('back-side');
-      cardFrontSide.setAttribute('width', '130');
-      cardFrontSide.setAttribute('height', '210');
-      cardBackSide.setAttribute('width', '130');
-      cardBackSide.setAttribute('height', '210');
+      // !
+      // cardFrontSide.setAttribute('width', '130');
+      // cardFrontSide.setAttribute('height', '210');
+      // cardBackSide.setAttribute('width', '130');
+      // cardBackSide.setAttribute('height', '210');
 
       cardFrontSide.src = cardBackgroundsArr[shuffledArr[i] - 1];
       cardBackSide.src = 'images/reverse-side.webp';

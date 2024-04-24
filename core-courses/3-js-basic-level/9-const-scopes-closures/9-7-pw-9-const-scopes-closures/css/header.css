@@ -19,3 +19,9 @@
   font-size: 65px;
   text-shadow: 0 1px 10px var(--white);
 }
+
+@media (max-width: 1280px) {
+  .game-title {
+    font-size: 35px;
+  }
+}

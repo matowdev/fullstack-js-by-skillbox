@@ -140,6 +140,41 @@
   font-size: 35px;
 }
 
+@media (max-width: 1400px) {
+  .footer__audio-wrap {
+    padding-left: 100px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .footer__container {
+    justify-content: center;
+  }
+
+  .game-footer-container {
+    top: -15px;
+  }
+
+  .footer__audio-wrap {
+    margin-right: 670px;
+    padding-left: 70px;
+  }
+
+  .footer__timer-wrap {
+    align-items: center;
+  }
+
+  .footer__timer-btn {
+    font-size: 23px;
+    line-height: 25px;
+  }
+
+  .footer__timer {
+    min-width: 50px;
+    font-size: 25px;
+  }
+}
+
 @media (any-hover: hover) {
   .footer__audio-btn:hover:not(:active) {
     color: var(--dark-gold);

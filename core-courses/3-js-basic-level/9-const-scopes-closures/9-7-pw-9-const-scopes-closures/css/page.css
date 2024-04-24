@@ -29,10 +29,12 @@ svg {
   padding-top: 105px;
   min-width: var(--page-min-width);
   height: auto;
+  min-height: 100vh;
   font-family: var(--almendra), var(--cormorant-garamond), sans-serif;
   font-size: var(--default-fs);
   line-height: var(--default-lh);
   color: var(--dark-gold);
+  background-color: var(--nude);
   background: url(../images/bg-2.webp) no-repeat scroll center / cover;
 }
 
@@ -47,4 +49,14 @@ svg {
   padding-right: var(--container-padding);
   padding-left: var(--container-padding);
   max-width: var(--container-max-width);
+}
+
+@media (max-width: 1280px) {
+  .page {
+    background: url(../images/bg-2.webp) no-repeat fixed center / cover;
+  }
+
+  .game-page {
+    padding-top: 25px;
+  }
 }

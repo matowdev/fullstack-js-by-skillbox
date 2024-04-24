@@ -144,6 +144,9 @@
 
 .playfield__area-item {
   position: relative;
+  /* ! */
+  /* display: flex;
+  align-items: center; */
   border-radius: 8px;
   line-height: 0;
   background-color: var(--nude);
@@ -183,25 +186,39 @@
 .back-side {
   position: absolute;
   border-radius: 8px;
-  width: 100%;
-  height: 100%;
+  /* ! */
+  /* width: 100%; */
+  /* height: 100%; */
+  /* ! */
+  /* object-fit: cover; */
   backface-visibility: hidden;
   will-change: transform;
   transition: transform var(--short) ease;
   transform-style: preserve-3d;
 }
 
-.front-side {
+/* .front-side {
   filter: contrast(115%);
   transform: rotateY(180deg) scaleX(-1);
+} */
+
+.front-side {
+  filter: contrast(115%);
+  transform: rotateY(180deg);
 }
 
 .back-side {
+  width: 100%;
+  height: 100%;
   transform: rotateY(0deg);
 }
 
-.playfield__area-item_selected .front-side {
+/* .playfield__area-item_selected .front-side {
   transform: rotateY(0deg) scaleX(-1);
+} */
+
+.playfield__area-item_selected .front-side {
+  transform: rotateY(0deg);
 }
 
 .playfield__area-item_selected .back-side {
@@ -211,6 +228,56 @@
 .paired {
   opacity: 0.5;
   pointer-events: none;
+}
+
+@media (max-width: 1600px) {
+  .playfield__area {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+  }
+
+  .playfield__area_large {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .playfield__area-list_large {
+    width: 1240px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .playfield__btn-restart,
+  .playfield__btn-back {
+    padding: 5px 15px;
+    min-width: 155px;
+    min-height: 55px;
+    font-size: 36px;
+  }
+
+  .playfield__area {
+    margin-bottom: 35px;
+    height: 775px;
+  }
+
+  .playfield__area-list_large {
+    gap: 10px 10px;
+    width: 1010px;
+  }
+
+  .playfield__area-item_small,
+  .playfield__area-item_medium,
+  .playfield__area-item_large {
+    width: 110px;
+    height: 180px;
+  }
+
+  .front-side,
+  .back-side {
+    /* width: 110px;
+    height: 180px; */
+  }
 }
 
 @media (any-hover: hover) {
@@ -233,5 +300,13 @@
 
   .playfield__area-item_selected:hover {
     box-shadow: 0 1px 20px var(--dark-gold);
+  }
+}
+
+@media (any-hover: hover) and (max-width: 1280px) {
+  .playfield__area-item:hover:not(:focus):not(
+      .playfield__area-item_selected
+    ):not(.paired) {
+    transform: scale(1.03);
   }
 }
