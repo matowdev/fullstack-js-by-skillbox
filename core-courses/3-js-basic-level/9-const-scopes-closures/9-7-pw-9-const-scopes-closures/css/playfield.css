@@ -235,6 +235,7 @@
     display: flex;
     justify-content: center;
     align-items: start;
+    margin-bottom: 35px;
   }
 
   .playfield__area_small,
@@ -259,7 +260,6 @@
 
 @media (max-width: 1280px) {
   .playfield__area {
-    margin-bottom: 35px;
     height: 775px;
   }
 

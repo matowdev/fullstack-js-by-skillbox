@@ -112,7 +112,7 @@
 .footer__timer-wrap {
   display: flex;
   gap: 10px 10px;
-  padding-right: 30px;
+  padding-right: 29px;
 }
 
 .footer__timer-btn-wrap {
@@ -140,6 +140,16 @@
   font-size: 35px;
 }
 
+@media (max-width: 1600px) {
+  .page__footer {
+    padding-bottom: 20px;
+  }
+
+  .game-footer-container {
+    top: 5px;
+  }
+}
+
 @media (max-width: 1400px) {
   .footer__audio-wrap {
     padding-left: 100px;
@@ -149,19 +159,17 @@
 @media (max-width: 1280px) {
   .footer__container {
     justify-content: center;
-  }
-
-  .game-footer-container {
-    top: -15px;
+    max-width: 1024px;
   }
 
   .footer__audio-wrap {
-    margin-right: 670px;
     padding-left: 70px;
   }
 
   .footer__timer-wrap {
     align-items: center;
+    margin-left: auto;
+    padding-right: 45px;
   }
 
   .footer__timer-btn {
