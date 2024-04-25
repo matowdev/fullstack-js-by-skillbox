@@ -259,6 +259,11 @@
 }
 
 @media (max-width: 1280px) {
+  .playfield__options-item {
+    font-size: 85px;
+    line-height: 80px;
+  }
+
   .playfield__area {
     height: 775px;
   }
@@ -289,6 +294,11 @@
   .back-side {
     /* width: 110px;
     height: 180px; */
+  }
+
+  .playfield__btn-start {
+    min-width: 155px;
+    font-size: 58px;
   }
 
   .playfield__btn-restart,

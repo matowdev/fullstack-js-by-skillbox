@@ -53,6 +53,7 @@ svg {
 
 @media (max-width: 1280px) {
   .page {
+    padding-top: 75px;
     background: url(../images/bg-2.webp) no-repeat fixed center / cover;
   }
 

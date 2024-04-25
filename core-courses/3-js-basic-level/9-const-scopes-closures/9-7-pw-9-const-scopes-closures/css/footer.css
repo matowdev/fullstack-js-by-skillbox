@@ -140,6 +140,16 @@
   font-size: 35px;
 }
 
+@media (max-width: 1700px) {
+  .footer__audio-wrap {
+    padding-left: 130px;
+  }
+
+  .footer__info-wrap {
+    padding-right: 160px;
+  }
+}
+
 @media (max-width: 1600px) {
   .page__footer {
     padding-bottom: 20px;
@@ -150,20 +160,17 @@
   }
 }
 
-@media (max-width: 1400px) {
-  .footer__audio-wrap {
-    padding-left: 100px;
-  }
-}
-
 @media (max-width: 1280px) {
   .footer__container {
-    justify-content: center;
+    top: 5px;
+  }
+
+  .game-footer-container {
     max-width: 1024px;
   }
 
-  .footer__audio-wrap {
-    padding-left: 70px;
+  .footer__info-link {
+    line-height: 65px;
   }
 
   .footer__timer-wrap {
