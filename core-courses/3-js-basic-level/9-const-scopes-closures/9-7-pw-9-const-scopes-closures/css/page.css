@@ -35,7 +35,7 @@ svg {
   line-height: var(--default-lh);
   color: var(--dark-gold);
   background-color: var(--nude);
-  background: url(../images/bg-2.webp) no-repeat scroll center / cover;
+  background: url(../images/bg-2.jpg) no-repeat scroll center / cover;
 }
 
 .game-page {
@@ -54,7 +54,7 @@ svg {
 @media (max-width: 1280px) {
   .page {
     padding-top: 75px;
-    background: url(../images/bg-2.webp) no-repeat fixed center / cover;
+    background: url(../images/bg-2.jpg) no-repeat fixed center / cover;
   }
 
   .game-page {

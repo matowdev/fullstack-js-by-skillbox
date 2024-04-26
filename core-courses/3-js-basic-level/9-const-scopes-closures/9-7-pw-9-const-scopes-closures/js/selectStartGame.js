@@ -1,22 +1,32 @@
 (() => {
   const cardBackgroundsArr = [
-    'images/tarot-1.webp',
-    'images/tarot-2.webp',
-    'images/tarot-3.webp',
-    'images/tarot-4.webp',
-    'images/tarot-5.webp',
-    'images/tarot-6.webp',
-    'images/tarot-7.webp',
-    'images/tarot-8.webp',
-    'images/tarot-9.webp',
-    'images/tarot-10.webp',
-    'images/tarot-11.webp',
-    'images/tarot-12.webp',
-    'images/tarot-13.webp',
-    'images/tarot-14.webp',
-    'images/tarot-15.webp',
-    'images/tarot-16.webp',
+    'images/tarot-1.jpg',
+    'images/tarot-2.jpg',
+    'images/tarot-3.jpg',
+    'images/tarot-4.jpg',
+    'images/tarot-5.jpg',
+    'images/tarot-6.jpg',
+    'images/tarot-7.jpg',
+    'images/tarot-8.jpg',
+    'images/tarot-9.jpg',
+    'images/tarot-10.jpg',
+    'images/tarot-11.jpg',
+    'images/tarot-12.jpg',
+    'images/tarot-13.jpg',
+    'images/tarot-14.jpg',
+    'images/tarot-15.jpg',
+    'images/tarot-16.jpg',
   ];
+
+  // ** организация предзагрузки изображений
+  preloadImages([...cardBackgroundsArr, 'images/reverse-side.jpg']);
+
+  function preloadImages(images) {
+    images.forEach((image) => {
+      const img = new Image();
+      img.src = image;
+    });
+  }
 
   // ** фиксация начальных состояний/классов (у некоторых элементов)
   const initialPageState = {
@@ -178,14 +188,15 @@
       playfieldCardsItem.setAttribute('tabindex', '0');
       cardFrontSide.classList.add('front-side');
       cardBackSide.classList.add('back-side');
-      // !
-      // cardFrontSide.setAttribute('width', '130');
-      // cardFrontSide.setAttribute('height', '210');
-      // cardBackSide.setAttribute('width', '130');
-      // cardBackSide.setAttribute('height', '210');
+      cardFrontSide.setAttribute('width', '130');
+      cardFrontSide.setAttribute('height', '210');
+      cardBackSide.setAttribute('width', '130');
+      cardBackSide.setAttribute('height', '210');
+      cardFrontSide.setAttribute('alt', '...');
+      cardBackSide.setAttribute('alt', '...');
 
       cardFrontSide.src = cardBackgroundsArr[shuffledArr[i] - 1];
-      cardBackSide.src = 'images/reverse-side.webp';
+      cardBackSide.src = 'images/reverse-side.jpg';
 
       if (shuffledArr.length == 16) {
         playfieldArea.classList.add('playfield__area_small');
