@@ -19,7 +19,7 @@
   initTippy('#four', 'The playing field is 4 by 4 cards', 'right');
   initTippy('#six', 'The playing field is 6 by 4 cards', 'left');
   initTippy('#eight', 'The playing field is 8 by 4 cards', 'right');
-  initTippy('#info', 'Info', 'right');
+  initTippy('#info', 'Info', 'bottom');
 
   const audioBtnTippy = tippy(audioBtn, {
     content: 'Play music',

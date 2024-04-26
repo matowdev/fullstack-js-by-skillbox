@@ -29,6 +29,7 @@
   padding: 1px 5px 0 5px;
   font-size: 115px;
   line-height: 100px;
+  text-align: center;
   outline: none;
   cursor: pointer;
   transition-property: border-bottom, color, background-color;

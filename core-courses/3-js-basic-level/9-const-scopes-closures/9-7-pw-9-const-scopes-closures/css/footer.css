@@ -141,10 +141,6 @@
 }
 
 @media (max-width: 1700px) {
-  .footer__audio-wrap {
-    padding-left: 130px;
-  }
-
   .footer__info-wrap {
     padding-right: 160px;
   }
@@ -155,16 +151,16 @@
     padding-bottom: 20px;
   }
 
+  .footer__container {
+    top: 5px;
+  }
+
   .game-footer-container {
     top: 5px;
   }
 }
 
 @media (max-width: 1280px) {
-  .footer__container {
-    top: 5px;
-  }
-
   .game-footer-container {
     max-width: 1024px;
   }

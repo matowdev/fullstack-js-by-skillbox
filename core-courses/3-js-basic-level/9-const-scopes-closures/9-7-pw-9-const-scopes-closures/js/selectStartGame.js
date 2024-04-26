@@ -184,7 +184,7 @@
       const cardBackSide = document.createElement('img');
 
       playfieldCardsItem.classList.add('playfield__area-item');
-      playfieldCardsItem.setAttribute('value', shuffledArr[i]);
+      playfieldCardsItem.setAttribute('data-value', shuffledArr[i]);
       playfieldCardsItem.setAttribute('tabindex', '0');
       cardFrontSide.classList.add('front-side');
       cardBackSide.classList.add('back-side');
@@ -225,7 +225,7 @@
   function cardSelection(card) {
     if (isChecked || selectedCardsArr.length >= 2) return;
 
-    const cardValue = card.getAttribute('value');
+    const cardValue = card.getAttribute('data-value');
 
     if (!card.classList.contains('playfield__area-item_selected')) {
       const alreadySelected = selectedCardsArr.some(
@@ -324,7 +324,7 @@
     playfieldCardsList.innerHTML = '';
 
     // получение/создание карт
-    let selectedItemValue = selectedOption.value * 2;
+    let selectedItemValue = selectedOption.dataset.value * 2;
     const pairedArr = getPairedNumArr(selectedItemValue);
     const shuffledArr = getShuffledArr(pairedArr);
     createCardsItem(shuffledArr);
