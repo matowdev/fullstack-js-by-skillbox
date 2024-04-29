@@ -16,6 +16,13 @@ My work/projects according to the training program (by blocks and sub-blocks).
 
 ---
 
+### Block: JavaScript "Basic level"
+
+- [proj. Todo app](https://s2kdev.github.io/fullstack-js-by-skillbox/core-courses/3-js-basic-level/8-intro-to-DOM-2/8-6-pw-8-intro-to-DOM-2)
+- [proj. Tarot cards](https://s2kdev.github.io/fullstack-js-by-skillbox/core-courses/3-js-basic-level/9-const-scopes-closures/9-7-pw-9-const-scopes-closures)
+
+---
+
 ![Skillbox](core-courses/some-examples/Images/skillbox.png)
 
 ### [// Click](https://go.redav.online/27b5ac6222df4e81)
