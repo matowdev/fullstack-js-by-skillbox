@@ -320,8 +320,10 @@
 
   // ** настройка/подготовка игры (ряд действий)
   function setupGame() {
-    // предварительная очистка
+    // предварительные сбросы/очистка
     playfieldCardsList.innerHTML = '';
+    selectedCardsArr = [];
+    isChecked = false;
 
     // получение/создание карт
     let selectedItemValue = selectedOption.dataset.value * 2;
@@ -420,7 +422,7 @@
 
   // ! возврат на основную страницу, кнопка "Back" (очистка/удаление, первичное состояние)
   function returnToInitialState() {
-    // предварительные сбросы/очистки
+    // предварительные сбросы/очистка
     clearInterval(interval);
     selectedCardsArr = [];
     isChecked = false;
