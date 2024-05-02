@@ -1,4 +1,4 @@
-// логическое преобразование, согласно: switch/case, Boolean() или двойного !! отрицания
+// ** логическое преобразование, согласно: switch/case, Boolean() или двойного !! отрицания
 function hasSomething(value) {
   // switch (typeof value) {
   //   // для boolean значения, возврат как/есть (true = 1, false = 0)
