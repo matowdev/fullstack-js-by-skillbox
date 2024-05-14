@@ -1,8 +1,4 @@
 (() => {
-  // Этап 1. В HTML файле создайте верстку элементов, которые будут статичны(неизменны).
-
-  // Этап 2. Создайте массив объектов студентов.Добавьте в него объекты студентов, например 5 студентов.
-
   // ** первичные/вводные данные
   const studentsDataArr = [
     {
@@ -46,6 +42,38 @@
       faculty: 'медиа и дизайна',
     },
   ];
+
+  // ** получение существующих, создание новых элементов (глобальное объявление)
+  const dashboard = document.getElementById('dboard');
+  const dboardInput = document.getElementById('dboard-input');
+  const dboardSort = document.getElementById('dboard-sort');
+  const dboardFilter = document.getElementById('dboard-filter');
+  const dboardOutput = document.getElementById('dboard-output');
+
+  const table = document.createElement('table');
+  const tableHead = document.createElement('thead');
+  const tableBody = document.createElement('tbody');
+  const tableHeadTr = document.createElement('tr');
+  const tableHeadThFIO = document.createElement('th');
+  const tableHeadThFaculty = document.createElement('th');
+  const tableHeadThBirthDate = document.createElement('th');
+  const tableHeadThStartYear = document.createElement('th');
+
+  tableHeadThFIO.textContent = 'Ф.И.О.';
+  tableHeadThFaculty.textContent = 'Факультет';
+  tableHeadThBirthDate.textContent = 'Дата рождения и возраст';
+  tableHeadThStartYear.textContent = 'Годы обучения';
+
+  tableHeadTr.append(
+    tableHeadThFIO,
+    tableHeadThFaculty,
+    tableHeadThBirthDate,
+    tableHeadThStartYear
+  );
+  tableHead.append(tableHeadTr);
+  table.append(tableHead, tableBody);
+  dboardOutput.append(table);
+  dashboard.append(dboardInput, dboardSort, dboardFilter, dboardOutput);
 
   // Этап 3. Создайте функцию вывода одного студента в таблицу, по аналогии с тем, как вы делали вывод одного дела в модуле 8. Функция должна вернуть html элемент с информацией и пользователе.У функции должен быть один аргумент - объект студента.
 
