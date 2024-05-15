@@ -6,4 +6,4 @@
 
 ### A few words:
 
-Student dashboard..
+Students dashboard..

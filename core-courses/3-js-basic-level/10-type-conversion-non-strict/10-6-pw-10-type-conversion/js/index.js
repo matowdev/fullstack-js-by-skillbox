@@ -26,7 +26,7 @@
       faculty: 'гражданской инженерии',
     },
     {
-      surname: 'Ильина',
+      surname: 'Мельникова',
       name: 'Екатерина',
       patronymic: 'Владимировна',
       birthDate: new Date(2001, 10, 29),
@@ -75,17 +75,35 @@
   dboardOutput.append(table);
   dashboard.append(dboardInput, dboardSort, dboardFilter, dboardOutput);
 
-  // Этап 3. Создайте функцию вывода одного студента в таблицу, по аналогии с тем, как вы делали вывод одного дела в модуле 8. Функция должна вернуть html элемент с информацией и пользователе.У функции должен быть один аргумент - объект студента.
+  // ** корректировка исходного массива студентов (добавление свойства fullName, изменения в birthDate)
+  const newStudentsDataArr = structuredClone(studentsDataArr);
 
-  function getStudentItem(studentObj) {}
+  // добавление свойства fullName
+  function addFullName(newStudentsDataArr = []) {
+    for (const student of newStudentsDataArr) {
+      student.fullName = `${student.surname} ${student.name} ${student.patronymic}`;
+    }
+  }
 
-  // Этап 4. Создайте функцию отрисовки всех студентов. Аргументом функции будет массив студентов.Функция должна использовать ранее созданную функцию создания одной записи для студента.Цикл поможет вам создать список студентов.Каждый раз при изменении списка студента вы будете вызывать эту функцию для отрисовки таблицы.
+  addFullName(newStudentsDataArr);
 
-  function renderStudentsTable(studentsArray) {}
+  // изменения в birthDate (формат даты, определение возраста, перезапись свойства)
+  function formatBirthDate(newStudentsDataArr = []) {
+    for (const student of newStudentsDataArr) {
+      const todayDate = new Date();
+      const formatBirthDate = student.birthDate.toLocaleDateString('ru-RU');
+      let studentAge =
+        todayDate.getFullYear() - student.birthDate.getFullYear();
+      let birthMonth = todayDate.getMonth() - student.birthDate.getMonth();
+      let birthDay = todayDate.getDate() - student.birthDate.getDate();
 
-  // Этап 5. К форме добавления студента добавьте слушатель события отправки формы, в котором будет проверка введенных данных.Если проверка пройдет успешно, добавляйте объект с данными студентов в массив студентов и запустите функцию отрисовки таблицы студентов, созданную на этапе 4.
+      if (birthMonth < 0 || (birthMonth === 0 && birthDay < 0)) {
+        studentAge--;
+      }
 
-  // Этап 5. Создайте функцию сортировки массива студентов и добавьте события кликов на соответствующие колонки.
+      student.birthDate = `${formatBirthDate} (${studentAge} лет)`;
+    }
+  }
 
-  // Этап 6. Создайте функцию фильтрации массива студентов и добавьте события для элементов формы.
+  formatBirthDate(newStudentsDataArr);
 })();
