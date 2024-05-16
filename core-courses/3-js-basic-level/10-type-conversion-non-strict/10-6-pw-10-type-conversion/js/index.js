@@ -76,7 +76,7 @@
   dboardOutput.append(table);
   dashboard.append(dboardInput, dboardSort, dboardFilter, dboardOutput);
 
-  // ** корректировка исходного массива студентов (добавление свойства fullName, изменения в birthDate)
+  // ** корректировка исходного массива студентов (добавление свойства fullName, изменения в birthDate и в startYear)
   const newStudentsDataArr = structuredClone(studentsDataArr);
 
   // добавление свойства fullName
@@ -90,8 +90,9 @@
 
   // изменения в birthDate (формат даты, определение возраста, перезапись свойства)
   function formatBirthDate(newStudentsDataArr = []) {
+    const todayDate = new Date();
+
     for (const student of newStudentsDataArr) {
-      const todayDate = new Date();
       const formatBirthDate = student.birthDate.toLocaleDateString('ru-RU');
       let studentAge =
         todayDate.getFullYear() - student.birthDate.getFullYear();
@@ -108,7 +109,28 @@
 
   formatBirthDate(newStudentsDataArr);
 
-  // ** до заполнение таблицы, создание элементов (добавление студентов)
+  // изменения в startYear (указание диапазона обучения, определение курса, перезапись свойства)
+  function formatStartYear(newStudentsDataArr = []) {
+    const todayYear = new Date().getFullYear();
+    const todayMonth = new Date().getMonth(); // месяцы начинаются с 0 (нуля)
+
+    for (const student of newStudentsDataArr) {
+      const endStudyYear = student.startYear + 4;
+      let currentCourse = todayYear - student.startYear;
+
+      if (currentCourse > 4 || (currentCourse === 4 && todayMonth > 8)) {
+        student.startYear = `${student.startYear}-${endStudyYear} (закончил(а))`;
+      } else if (currentCourse === 0 && todayMonth > 8) {
+        student.startYear = `${student.startYear}-${endStudyYear} (1 курс)`;
+      } else {
+        student.startYear = `${student.startYear}-${endStudyYear} (${currentCourse} курс)`;
+      }
+    }
+  }
+
+  formatStartYear(newStudentsDataArr);
+
+  // ** до-заполнение таблицы, создание элементов (добавление студентов)
   function addStudentsToTable(newStudentsDataArr = []) {
     for (const student of newStudentsDataArr) {
       const studentTableTr = document.createElement('tr');
