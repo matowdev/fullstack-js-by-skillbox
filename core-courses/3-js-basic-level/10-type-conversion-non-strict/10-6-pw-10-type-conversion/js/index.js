@@ -50,6 +50,7 @@
   const dboardFilter = document.getElementById('dboard-filter');
   const dboardOutput = document.getElementById('dboard-output');
 
+  // организация таблицы
   const table = document.createElement('table');
   const tableHead = document.createElement('thead');
   const tableBody = document.createElement('tbody');
@@ -106,4 +107,30 @@
   }
 
   formatBirthDate(newStudentsDataArr);
+
+  // ** до заполнение таблицы, создание элементов (добавление студентов)
+  function addStudentsToTable(newStudentsDataArr = []) {
+    for (const student of newStudentsDataArr) {
+      const studentTableTr = document.createElement('tr');
+      const studentThFIO = document.createElement('th');
+      const studentThFaculty = document.createElement('th');
+      const studentThBirthDate = document.createElement('th');
+      const studentThStartYear = document.createElement('th');
+
+      studentThFIO.textContent = student.fullName;
+      studentThFaculty.textContent = student.faculty;
+      studentThBirthDate.textContent = student.birthDate;
+      studentThStartYear.textContent = student.startYear;
+
+      studentTableTr.append(
+        studentThFIO,
+        studentThFaculty,
+        studentThBirthDate,
+        studentThStartYear
+      );
+      tableBody.append(studentTableTr);
+    }
+  }
+
+  addStudentsToTable(newStudentsDataArr);
 })();
