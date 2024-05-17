@@ -50,22 +50,33 @@
   const dboardFilter = document.getElementById('dboard-filter');
   const dboardOutput = document.getElementById('dboard-output');
 
-  // организация таблицы
+  // организация таблицы (стилизация)
   const table = document.createElement('table');
   const tableHead = document.createElement('thead');
   const tableBody = document.createElement('tbody');
   const tableHeadTr = document.createElement('tr');
+  const tableHeaderThTag = document.createElement('th');
   const tableHeadThFIO = document.createElement('th');
   const tableHeadThFaculty = document.createElement('th');
   const tableHeadThBirthDate = document.createElement('th');
   const tableHeadThStartYear = document.createElement('th');
 
+  table.classList.add(
+    'dboard__table',
+    'table',
+    'table-bordered',
+    'table-hover'
+  );
+  tableBody.classList.add('dboard__table-body', 'table-group-divider');
+
+  tableHeaderThTag.textContent = '#';
   tableHeadThFIO.textContent = 'Ф.И.О.';
   tableHeadThFaculty.textContent = 'Факультет';
   tableHeadThBirthDate.textContent = 'Дата рождения и возраст';
   tableHeadThStartYear.textContent = 'Годы обучения';
 
   tableHeadTr.append(
+    tableHeaderThTag,
     tableHeadThFIO,
     tableHeadThFaculty,
     tableHeadThBirthDate,
@@ -132,23 +143,26 @@
 
   // ** до-заполнение таблицы, создание элементов (добавление студентов)
   function addStudentsToTable(newStudentsDataArr = []) {
-    for (const student of newStudentsDataArr) {
+    for (const [index, student] of newStudentsDataArr.entries()) {
       const studentTableTr = document.createElement('tr');
-      const studentThFIO = document.createElement('th');
-      const studentThFaculty = document.createElement('th');
-      const studentThBirthDate = document.createElement('th');
-      const studentThStartYear = document.createElement('th');
+      const studentTdNumber = document.createElement('td');
+      const studentTdFIO = document.createElement('td');
+      const studentTdFaculty = document.createElement('td');
+      const studentTdBirthDate = document.createElement('td');
+      const studentTdStartYear = document.createElement('td');
 
-      studentThFIO.textContent = student.fullName;
-      studentThFaculty.textContent = student.faculty;
-      studentThBirthDate.textContent = student.birthDate;
-      studentThStartYear.textContent = student.startYear;
+      studentTdNumber.textContent = index + 1;
+      studentTdFIO.textContent = student.fullName;
+      studentTdFaculty.textContent = student.faculty;
+      studentTdBirthDate.textContent = student.birthDate;
+      studentTdStartYear.textContent = student.startYear;
 
       studentTableTr.append(
-        studentThFIO,
-        studentThFaculty,
-        studentThBirthDate,
-        studentThStartYear
+        studentTdNumber,
+        studentTdFIO,
+        studentTdFaculty,
+        studentTdBirthDate,
+        studentTdStartYear
       );
       tableBody.append(studentTableTr);
     }
