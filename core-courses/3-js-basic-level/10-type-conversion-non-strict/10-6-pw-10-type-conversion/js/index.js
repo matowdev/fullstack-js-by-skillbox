@@ -46,11 +46,13 @@
   // ** получение существующих, создание новых элементов (глобальное объявление)
   const dashboard = document.getElementById('dboard');
   const dboardInput = document.getElementById('dboard-input');
-  const dboardSort = document.getElementById('dboard-sort');
   const dboardFilter = document.getElementById('dboard-filter');
   const dboardOutput = document.getElementById('dboard-output');
 
-  // организация формы (ввод данных о студентах)
+  // организация раскрывающейся формы (ввод данных о студентах)
+  const inputCollapseBtnWrap = document.createElement('div');
+  const inputCollapseBtnShowHide = document.createElement('button');
+  const inputCollapseFormWrap = document.createElement('div');
   const formInputData = document.createElement('form');
   const formInSurnameWrap = document.createElement('div');
   const formInSurnameInput = document.createElement('input');
@@ -74,6 +76,22 @@
   const formInBtnAdd = document.createElement('button');
   const formInBtnClear = document.createElement('button');
 
+  inputCollapseBtnWrap.classList.add(
+    'dboard__input-collapse-btn-wrap',
+    'd-inline-flex',
+    'gap-2'
+  );
+  inputCollapseBtnShowHide.classList.add(
+    'dboard__input-collapse-btn-show-hide',
+    'btn',
+    'btn-primary',
+    'collapsed',
+    'mb-3'
+  );
+  inputCollapseFormWrap.classList.add(
+    'dboard__input-collapse-form-wrap',
+    'collapse'
+  );
   formInputData.classList.add('dboard__input-form', 'mb-3');
   formInSurnameWrap.classList.add(
     'dboard__input-surname-wrap',
@@ -144,6 +162,10 @@
     'btn-secondary'
   );
 
+  inputCollapseBtnShowHide.setAttribute('type', 'button');
+  inputCollapseBtnShowHide.setAttribute('data-bs-toggle', 'collapse');
+  inputCollapseBtnShowHide.setAttribute('data-bs-target', '#collapseShowHide');
+  inputCollapseFormWrap.setAttribute('id', 'collapseShowHide');
   formInputData.setAttribute('action', '#');
   formInSurnameInput.setAttribute('id', 'floatingInputSurname');
   formInSurnameInput.setAttribute('type', 'text');
@@ -158,21 +180,25 @@
   formInPatronymicInput.setAttribute('placeholder', 'Отчество');
   formInPatronymicLabel.setAttribute('for', 'floatingInputPatronymic');
   formInBirthDateInput.setAttribute('id', 'floatingInputBirthday');
-  formInBirthDateInput.setAttribute('type', 'date'); // ?
+  formInBirthDateInput.setAttribute('type', 'date'); // ? mm/dd/yyyy а можно изменить формат ввода
   formInBirthDateInput.setAttribute('placeholder', 'Дата рождения');
   formInBirthDateLabel.setAttribute('for', 'floatingInputBirthday');
   formInStartYearInput.setAttribute('id', 'floatingInputStartYear');
   formInStartYearInput.setAttribute('type', 'number');
   formInStartYearInput.setAttribute('placeholder', 'Год начала обучения');
-  formInStartYearInput.setAttribute('value', '2015'); // ?
+  formInStartYearInput.setAttribute('value', '2015'); // ? нужен диапазон с 2015 - по текущий
   formInStartYearLabel.setAttribute('for', 'floatingInputStartYear');
   formInFacultyInput.setAttribute('id', 'floatingInputFaculty');
   formInFacultyInput.setAttribute('type', 'text');
   formInFacultyInput.setAttribute('placeholder', 'Факультет');
   formInFacultyLabel.setAttribute('for', 'floatingInputFaculty');
+  formInBtnAdd.setAttribute('id', 'in-add-btn');
+  formInBtnClear.setAttribute('id', 'in-clear-btn');
   formInBtnAdd.setAttribute('type', 'submit');
-  formInBtnClear.setAttribute('type', 'button'); // ?
+  formInBtnClear.setAttribute('type', 'button'); // ? тип такой и останется, ..clear тип
 
+  inputCollapseBtnShowHide.textContent =
+    'Развернуть/свернуть форму добавления студентов';
   formInSurnameLabel.textContent = 'Фамилия';
   formInNameLabel.textContent = 'Имя';
   formInPatronymicLabel.textContent = 'Отчество';
@@ -182,6 +208,7 @@
   formInBtnAdd.textContent = 'Добавить студента';
   formInBtnClear.textContent = 'Очистить поля ввода';
 
+  inputCollapseBtnWrap.append(inputCollapseBtnShowHide);
   formInSurnameWrap.append(formInSurnameInput, formInSurnameLabel);
   formInNameWrap.append(formInNameInput, formInNameLabel);
   formInPatronymicWrap.append(formInPatronymicInput, formInPatronymicLabel);
@@ -198,7 +225,8 @@
     formInFacultyWrap,
     formInBtnWrap
   );
-  dboardInput.append(formInputData);
+  inputCollapseFormWrap.append(formInputData);
+  dboardInput.append(inputCollapseBtnWrap, inputCollapseFormWrap);
 
   // организация таблицы (вывод информации о студентах)
   const table = document.createElement('table');
@@ -236,7 +264,9 @@
   tableHead.append(tableHeadTr);
   table.append(tableHead, tableBody);
   dboardOutput.append(table);
-  dashboard.append(dboardInput, dboardSort, dboardFilter, dboardOutput);
+
+  // основные блоки/составляющие панели управления
+  dashboard.append(dboardInput, dboardFilter, dboardOutput);
 
   // ** корректировка исходного массива студентов (добавление свойства fullName, изменения в birthDate и в startYear)
   const newStudentsDataArr = structuredClone(studentsDataArr);
