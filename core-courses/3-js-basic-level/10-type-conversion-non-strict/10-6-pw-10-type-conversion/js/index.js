@@ -164,8 +164,11 @@
 
   inputCollapseBtnShowHide.setAttribute('type', 'button');
   inputCollapseBtnShowHide.setAttribute('data-bs-toggle', 'collapse');
-  inputCollapseBtnShowHide.setAttribute('data-bs-target', '#collapseShowHide');
-  inputCollapseFormWrap.setAttribute('id', 'collapseShowHide');
+  inputCollapseBtnShowHide.setAttribute(
+    'data-bs-target',
+    '#collapseInputShowHide'
+  );
+  inputCollapseFormWrap.setAttribute('id', 'collapseInputShowHide');
   formInputData.setAttribute('action', '#');
   formInSurnameInput.setAttribute('id', 'floatingInputSurname');
   formInSurnameInput.setAttribute('type', 'text');
@@ -193,8 +196,8 @@
   formInFacultyInput.setAttribute('placeholder', 'Факультет');
   formInFacultyLabel.setAttribute('for', 'floatingInputFaculty');
   formInBtnAdd.setAttribute('id', 'in-add-btn');
-  formInBtnClear.setAttribute('id', 'in-clear-btn');
   formInBtnAdd.setAttribute('type', 'submit');
+  formInBtnClear.setAttribute('id', 'in-clear-btn');
   formInBtnClear.setAttribute('type', 'button'); // ? тип такой и останется, ..clear тип
 
   inputCollapseBtnShowHide.textContent =
@@ -227,6 +230,145 @@
   );
   inputCollapseFormWrap.append(formInputData);
   dboardInput.append(inputCollapseBtnWrap, inputCollapseFormWrap);
+
+  // организация раскрывающейся формы (фильтрация данных о студентах)
+  const filterCollapseBtnWrap = document.createElement('div');
+  const filterCollapseBtnShowHide = document.createElement('button');
+  const filterCollapseFormWrap = document.createElement('div');
+  const formFilterData = document.createElement('form');
+  const formFilterFIOWrap = document.createElement('div');
+  const formFilterFIOInput = document.createElement('input');
+  const formFilterFIOLabel = document.createElement('label');
+  const formFilterFacultyWrap = document.createElement('div');
+  const formFilterFacultyInput = document.createElement('input');
+  const formFilterFacultyLabel = document.createElement('label');
+  const formFilterStartYearWrap = document.createElement('div');
+  const formFilterStartYearInput = document.createElement('input');
+  const formFilterStartYearLabel = document.createElement('label');
+  const formFilterEndYearWrap = document.createElement('div');
+  const formFilterEndYearInput = document.createElement('input');
+  const formFilterEndYearLabel = document.createElement('label');
+  const formFilterBtnWrap = document.createElement('div');
+  const formFilterBtnClear = document.createElement('button');
+
+  filterCollapseBtnWrap.classList.add(
+    'dboard__filter-collapse-btn-wrap',
+    'd-inline-flex',
+    'gap-2'
+  );
+  filterCollapseBtnShowHide.classList.add(
+    'dboard__filter-collapse-btn-show-hide',
+    'btn',
+    'btn-primary',
+    'collapsed',
+    'mb-3'
+  );
+  filterCollapseFormWrap.classList.add(
+    'dboard__filter-collapse-form-wrap',
+    'collapse'
+  );
+  formFilterData.classList.add('dboard__filter-form', 'mb-3');
+  formFilterFIOWrap.classList.add(
+    'dboard__filter-fio-wrap',
+    'form-floating',
+    'mb-3'
+  );
+  formFilterFIOInput.classList.add('dboard__filter-fio-input', 'form-control');
+  formFilterFIOLabel.classList.add('dboard__filter-fio-label');
+  formFilterFacultyWrap.classList.add(
+    'dboard__filter-faculty-wrap',
+    'form-floating',
+    'mb-3'
+  );
+  formFilterFacultyInput.classList.add(
+    'dboard__filter-faculty-input',
+    'form-control'
+  );
+  formFilterFacultyLabel.classList.add('dboard__filter-faculty-label');
+  formFilterStartYearWrap.classList.add(
+    'dboard__filter-start-wrap',
+    'form-floating',
+    'mb-3'
+  );
+  formFilterStartYearInput.classList.add(
+    'dboard__filter-start-input',
+    'form-control'
+  );
+  formFilterStartYearLabel.classList.add('dboard__filter-start-label');
+  formFilterEndYearWrap.classList.add(
+    'dboard__filter-end-wrap',
+    'form-floating',
+    'mb-3'
+  );
+  formFilterEndYearInput.classList.add(
+    'dboard__filter-end-input',
+    'form-control'
+  );
+  formFilterEndYearLabel.classList.add('dboard__filter-end-label');
+  formFilterBtnWrap.classList.add(
+    'dboard__filter-btn-wrap',
+    'd-inline-flex',
+    'gap-2'
+  );
+  formFilterBtnClear.classList.add(
+    'dboard__filter-btn-clear',
+    'btn',
+    'btn-secondary'
+  );
+
+  filterCollapseBtnShowHide.setAttribute('type', 'button');
+  filterCollapseBtnShowHide.setAttribute('data-bs-toggle', 'collapse');
+  filterCollapseBtnShowHide.setAttribute(
+    'data-bs-target',
+    '#collapseFilterShowHide'
+  );
+  filterCollapseFormWrap.setAttribute('id', 'collapseFilterShowHide');
+  formFilterData.setAttribute('action', '#');
+  formFilterFIOInput.setAttribute('id', 'floatingFilterFIO');
+  formFilterFIOInput.setAttribute('type', 'text');
+  formFilterFIOInput.setAttribute('placeholder', 'Ф.И.О.');
+  formFilterFIOLabel.setAttribute('for', 'floatingFilterFIO');
+  formFilterFacultyInput.setAttribute('id', 'floatingFilterFaculty');
+  formFilterFacultyInput.setAttribute('type', 'text');
+  formFilterFacultyInput.setAttribute('placeholder', 'Факультет');
+  formFilterFacultyLabel.setAttribute('for', 'floatingFilterFaculty');
+  formFilterStartYearInput.setAttribute('id', 'floatingFilterStartYear');
+  formFilterStartYearInput.setAttribute('type', 'number');
+  formFilterStartYearInput.setAttribute('placeholder', 'Год начала обучения');
+  formFilterStartYearLabel.setAttribute('for', 'floatingFilterStartYear');
+  formFilterEndYearInput.setAttribute('id', 'floatingFilterEndYear');
+  formFilterEndYearInput.setAttribute('type', 'number');
+  formFilterEndYearInput.setAttribute('placeholder', 'Год окончания обучения');
+  formFilterEndYearLabel.setAttribute('for', 'floatingFilterEndYear');
+  formFilterBtnClear.setAttribute('id', 'filter-clear-btn');
+  formFilterBtnClear.setAttribute('type', 'button'); // ? тип такой и останется, ..clear тип
+
+  filterCollapseBtnShowHide.textContent =
+    'Развернуть/свернуть форму фильтрации студентов';
+  formFilterFIOLabel.textContent = 'Ф.И.О.';
+  formFilterFacultyLabel.textContent = 'Факультет';
+  formFilterStartYearLabel.textContent = 'Год начала обучения';
+  formFilterEndYearLabel.textContent = 'Год окончания обучения';
+  formFilterBtnClear.textContent = 'Очистить поля фильтрации';
+
+  filterCollapseBtnWrap.append(filterCollapseBtnShowHide);
+  formFilterFIOWrap.append(formFilterFIOInput, formFilterFIOLabel);
+  formFilterFacultyWrap.append(formFilterFacultyInput, formFilterFacultyLabel);
+  formFilterStartYearWrap.append(
+    formFilterStartYearInput,
+    formFilterStartYearLabel
+  );
+  formFilterEndYearWrap.append(formFilterEndYearInput, formFilterEndYearLabel);
+  formFilterBtnWrap.append(formFilterBtnClear);
+  formFilterData.append(
+    formFilterFIOWrap,
+    formFilterFacultyWrap,
+    formFilterStartYearWrap,
+    formFilterEndYearWrap,
+    formFilterBtnWrap
+  );
+  filterCollapseFormWrap.append(formFilterData);
+  dboardFilter.append(filterCollapseBtnWrap, filterCollapseFormWrap);
 
   // организация таблицы (вывод информации о студентах)
   const table = document.createElement('table');
