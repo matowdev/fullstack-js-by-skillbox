@@ -43,13 +43,13 @@
     },
   ];
 
-  // ** получение существующих, создание новых элементов (глобальное объявление)
+  // ** получение существующих, создание "новых" элементов (глобальное объявление)
   const dashboard = document.getElementById('dboard');
   const dboardInput = document.getElementById('dboard-input');
   const dboardFilter = document.getElementById('dboard-filter');
   const dboardOutput = document.getElementById('dboard-output');
 
-  // организация раскрывающейся формы (ввод данных о студентах)
+  // организация раскрывающейся формы (добавление студента, очистка полей ввода)
   const inputCollapseBtnWrap = document.createElement('div');
   const inputCollapseBtnShowHide = document.createElement('button');
   const inputCollapseFormWrap = document.createElement('div');
@@ -231,7 +231,7 @@
   inputCollapseFormWrap.append(formInputData);
   dboardInput.append(inputCollapseBtnWrap, inputCollapseFormWrap);
 
-  // организация раскрывающейся формы (фильтрация данных о студентах)
+  // организация раскрывающейся формы (фильтрация табличных данных)
   const filterCollapseBtnWrap = document.createElement('div');
   const filterCollapseBtnShowHide = document.createElement('button');
   const filterCollapseFormWrap = document.createElement('div');
@@ -370,7 +370,7 @@
   filterCollapseFormWrap.append(formFilterData);
   dboardFilter.append(filterCollapseBtnWrap, filterCollapseFormWrap);
 
-  // организация таблицы (вывод информации о студентах)
+  // организация таблицы данных о студентам (структура, заголовки колонок)
   const table = document.createElement('table');
   const tableHead = document.createElement('thead');
   const tableBody = document.createElement('tbody');
@@ -464,7 +464,7 @@
 
   formatStartYear(newStudentsDataArr);
 
-  // ** до-заполнение таблицы, создание элементов (добавление студентов)
+  // ** наполнение таблицы данных о студентах (согласно исходного/формирующегося массива)
   function addStudentsToTable(newStudentsDataArr = []) {
     for (const [index, student] of newStudentsDataArr.entries()) {
       const studentTableTr = document.createElement('tr');
@@ -492,4 +492,15 @@
   }
 
   addStudentsToTable(newStudentsDataArr);
+
+  // ** очистка формы добавления студентов, полей ввода (через кнопку)
+  function clearStudentsAddFormInputs() {
+    const allFormInInputs = document.querySelectorAll(
+      '.dboard__input-form input'
+    );
+
+    allFormInInputs.forEach((input) => (input.value = ''));
+  }
+
+  formInBtnClear.addEventListener('click', clearStudentsAddFormInputs);
 })();
