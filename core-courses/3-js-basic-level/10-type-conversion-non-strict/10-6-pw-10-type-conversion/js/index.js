@@ -6,7 +6,7 @@
       name: 'Александра',
       patronymic: 'Михайловна',
       birthDate: new Date(1999, 7, 20),
-      startYear: 2017,
+      startYear: 2020,
       faculty: 'информационных технологий',
     },
     {
@@ -30,7 +30,7 @@
       name: 'Екатерина',
       patronymic: 'Владимировна',
       birthDate: new Date(2001, 10, 29),
-      startYear: 2019,
+      startYear: 2020,
       faculty: 'прикладной математики',
     },
     {
@@ -189,7 +189,7 @@
   formInStartYearInput.setAttribute('id', 'floatingInputStartYear');
   formInStartYearInput.setAttribute('type', 'number');
   formInStartYearInput.setAttribute('placeholder', 'Год начала обучения');
-  formInStartYearInput.setAttribute('value', '2015'); // ? нужен диапазон с 2015 - по текущий
+  formInStartYearInput.setAttribute('value', '2020'); // ? нужен диапазон с 2015 - по текущий
   formInStartYearLabel.setAttribute('for', 'floatingInputStartYear');
   formInFacultyInput.setAttribute('id', 'floatingInputFaculty');
   formInFacultyInput.setAttribute('type', 'text');
@@ -411,22 +411,17 @@
   dashboard.append(dboardInput, dboardFilter, dboardOutput);
 
   // ** корректировка исходного массива студентов (добавление свойства fullName, изменения в birthDate и в startYear)
-  const newStudentsDataArr = structuredClone(studentsDataArr);
-
-  // добавление свойства fullName
-  function addFullName(newStudentsDataArr = []) {
-    for (const student of newStudentsDataArr) {
-      student.fullName = `${student.surname} ${student.name} ${student.patronymic}`;
-    }
-  }
-
-  addFullName(newStudentsDataArr);
-
-  // изменения в birthDate (формат даты, определение возраста, перезапись свойства)
-  function formatBirthDate(newStudentsDataArr = []) {
+  function correctInitArr(studentsDataArr = []) {
+    const newStudentsDataArr = structuredClone(studentsDataArr);
     const todayDate = new Date();
+    const todayYear = new Date().getFullYear();
+    const todayMonth = new Date().getMonth(); // месяцы начинаются с 0 (нуля)
 
     for (const student of newStudentsDataArr) {
+      // добавление свойства fullName
+      student.fullName = `${student.surname} ${student.name} ${student.patronymic}`;
+
+      // изменения в birthDate (формат даты, определение возраста, перезапись свойства)
       const formatBirthDate = student.birthDate.toLocaleDateString('ru-RU');
       let studentAge =
         todayDate.getFullYear() - student.birthDate.getFullYear();
@@ -438,17 +433,8 @@
       }
 
       student.birthDate = `${formatBirthDate} (${studentAge} лет)`;
-    }
-  }
 
-  formatBirthDate(newStudentsDataArr);
-
-  // изменения в startYear (указание диапазона обучения, определение курса, перезапись свойства)
-  function formatStartYear(newStudentsDataArr = []) {
-    const todayYear = new Date().getFullYear();
-    const todayMonth = new Date().getMonth(); // месяцы начинаются с 0 (нуля)
-
-    for (const student of newStudentsDataArr) {
+      // изменения в startYear (указание диапазона обучения, определение курса, перезапись свойства)
       const endStudyYear = student.startYear + 4;
       let currentCourse = todayYear - student.startYear;
 
@@ -460,13 +446,16 @@
         student.startYear = `${student.startYear}-${endStudyYear} (${currentCourse} курс)`;
       }
     }
+
+    return newStudentsDataArr;
   }
 
-  formatStartYear(newStudentsDataArr);
-
   // ** наполнение таблицы данных о студентах (согласно исходного/формирующегося массива)
-  function addStudentsToTable(newStudentsDataArr = []) {
-    for (const [index, student] of newStudentsDataArr.entries()) {
+  function addStudentsToTable(studentsDataArr = []) {
+    tableBody.innerHTML = ''; // предварительная очистка таблицы
+    const updateStudentsDataArr = correctInitArr(studentsDataArr);
+
+    for (const [index, student] of updateStudentsDataArr.entries()) {
       const studentTableTr = document.createElement('tr');
       const studentTdNumber = document.createElement('td');
       const studentTdFIO = document.createElement('td');
@@ -491,7 +480,7 @@
     }
   }
 
-  addStudentsToTable(newStudentsDataArr);
+  addStudentsToTable(studentsDataArr);
 
   // ** очистка формы добавления студентов, полей ввода (через кнопку)
   function clearStudentsAddFormInputs() {
@@ -503,4 +492,20 @@
   }
 
   formInBtnClear.addEventListener('click', clearStudentsAddFormInputs);
+
+  // ** добавление "новых" студентов в таблицу (через форму)
+  formInputData.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    studentsDataArr.push({
+      surname: formInSurnameInput.value,
+      name: formInNameInput.value,
+      patronymic: formInPatronymicInput.value,
+      birthDate: new Date(formInBirthDateInput.value),
+      startYear: parseInt(formInStartYearInput.value),
+      faculty: formInFacultyInput.value, // ? или при валидации указать что нужно с маленькой буквы.. toLowerCase()
+    });
+
+    addStudentsToTable(studentsDataArr);
+  });
 })();
