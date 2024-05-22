@@ -450,33 +450,40 @@
     return newStudentsDataArr;
   }
 
+  // ** создание элементов/строк таблицы данных о студентах (заполнение ячеек)
+  function createStudentTableTrRow(index = 0, student = {}) {
+    const studentTableTr = document.createElement('tr');
+    const studentTdNumber = document.createElement('td');
+    const studentTdFIO = document.createElement('td');
+    const studentTdFaculty = document.createElement('td');
+    const studentTdBirthDate = document.createElement('td');
+    const studentTdStartYear = document.createElement('td');
+
+    studentTdNumber.textContent = index + 1;
+    studentTdFIO.textContent = student.fullName;
+    studentTdFaculty.textContent = student.faculty;
+    studentTdBirthDate.textContent = student.birthDate;
+    studentTdStartYear.textContent = student.startYear;
+
+    studentTableTr.append(
+      studentTdNumber,
+      studentTdFIO,
+      studentTdFaculty,
+      studentTdBirthDate,
+      studentTdStartYear
+    );
+
+    return studentTableTr;
+  }
+
   // ** наполнение таблицы данных о студентах (согласно исходного/формирующегося массива)
   function addStudentsToTable(studentsDataArr = []) {
     tableBody.innerHTML = ''; // предварительная очистка таблицы
     const updateStudentsDataArr = correctInitArr(studentsDataArr);
 
     for (const [index, student] of updateStudentsDataArr.entries()) {
-      const studentTableTr = document.createElement('tr');
-      const studentTdNumber = document.createElement('td');
-      const studentTdFIO = document.createElement('td');
-      const studentTdFaculty = document.createElement('td');
-      const studentTdBirthDate = document.createElement('td');
-      const studentTdStartYear = document.createElement('td');
-
-      studentTdNumber.textContent = index + 1;
-      studentTdFIO.textContent = student.fullName;
-      studentTdFaculty.textContent = student.faculty;
-      studentTdBirthDate.textContent = student.birthDate;
-      studentTdStartYear.textContent = student.startYear;
-
-      studentTableTr.append(
-        studentTdNumber,
-        studentTdFIO,
-        studentTdFaculty,
-        studentTdBirthDate,
-        studentTdStartYear
-      );
-      tableBody.append(studentTableTr);
+      const studentTableTrRow = createStudentTableTrRow(index, student);
+      tableBody.append(studentTableTrRow);
     }
   }
 
@@ -487,13 +494,12 @@
     const allFormInInputs = document.querySelectorAll(
       '.dboard__input-form input'
     );
-
     allFormInInputs.forEach((input) => (input.value = ''));
   }
 
   formInBtnClear.addEventListener('click', clearStudentsAddFormInputs);
 
-  // ** добавление "новых" студентов в таблицу (через форму)
+  // ** добавление "новых" студентов в массив/таблицу (через поля формы)
   formInputData.addEventListener('submit', function (event) {
     event.preventDefault();
 
