@@ -92,7 +92,7 @@
     'dboard__input-collapse-form-wrap',
     'collapse'
   );
-  formInputData.classList.add('dboard__input-form', 'mb-3');
+  formInputData.classList.add('dboard__input-form', 'mb-3', 'needs-validation');
   formInSurnameWrap.classList.add(
     'dboard__input-surname-wrap',
     'form-floating',
@@ -170,30 +170,37 @@
   );
   inputCollapseFormWrap.setAttribute('id', 'collapseInputShowHide');
   formInputData.setAttribute('action', '#');
+  formInputData.setAttribute('novalidate', '');
   formInSurnameInput.setAttribute('id', 'floatingInputSurname');
   formInSurnameInput.setAttribute('type', 'text');
   formInSurnameInput.setAttribute('placeholder', 'Фамилия');
+  formInSurnameInput.setAttribute('required', '');
   formInSurnameLabel.setAttribute('for', 'floatingInputSurname');
   formInNameInput.setAttribute('id', 'floatingInputName');
   formInNameInput.setAttribute('type', 'text');
   formInNameInput.setAttribute('placeholder', 'Имя');
+  formInNameInput.setAttribute('required', '');
   formInNameLabel.setAttribute('for', 'floatingInputName');
   formInPatronymicInput.setAttribute('id', 'floatingInputPatronymic');
   formInPatronymicInput.setAttribute('type', 'text');
   formInPatronymicInput.setAttribute('placeholder', 'Отчество');
+  formInPatronymicInput.setAttribute('required', '');
   formInPatronymicLabel.setAttribute('for', 'floatingInputPatronymic');
   formInBirthDateInput.setAttribute('id', 'floatingInputBirthday');
   formInBirthDateInput.setAttribute('type', 'date'); // ? mm/dd/yyyy а можно изменить формат ввода
   formInBirthDateInput.setAttribute('placeholder', 'Дата рождения');
+  formInBirthDateInput.setAttribute('required', '');
   formInBirthDateLabel.setAttribute('for', 'floatingInputBirthday');
   formInStartYearInput.setAttribute('id', 'floatingInputStartYear');
   formInStartYearInput.setAttribute('type', 'number');
   formInStartYearInput.setAttribute('placeholder', 'Год начала обучения');
   formInStartYearInput.setAttribute('value', '2020'); // ? нужен диапазон с 2015 - по текущий
+  formInStartYearInput.setAttribute('required', '');
   formInStartYearLabel.setAttribute('for', 'floatingInputStartYear');
   formInFacultyInput.setAttribute('id', 'floatingInputFaculty');
   formInFacultyInput.setAttribute('type', 'text');
   formInFacultyInput.setAttribute('placeholder', 'Факультет');
+  formInFacultyInput.setAttribute('required', '');
   formInFacultyLabel.setAttribute('for', 'floatingInputFaculty');
   formInBtnAdd.setAttribute('id', 'in-add-btn');
   formInBtnAdd.setAttribute('type', 'submit');
@@ -476,7 +483,7 @@
     return studentTableTr;
   }
 
-  // ** наполнение таблицы данных о студентах (согласно исходного/формирующегося массива)
+  // ** наполнение таблицы данных о студентах (согласно откорректированного исходного, далее формирующегося массива)
   function addStudentsToTable(studentsDataArr = []) {
     tableBody.innerHTML = ''; // предварительная очистка таблицы
     const updateStudentsDataArr = correctInitArr(studentsDataArr);
@@ -499,19 +506,31 @@
 
   formInBtnClear.addEventListener('click', clearStudentsAddFormInputs);
 
-  // ** добавление "новых" студентов в массив/таблицу (через поля формы)
-  formInputData.addEventListener('submit', function (event) {
-    event.preventDefault();
+  // ** добавление "новых" студентов в массив/таблицу, через поля формы (после валидации)
+  formInputData.addEventListener(
+    'submit',
+    (event) => {
+      event.preventDefault();
 
-    studentsDataArr.push({
-      surname: formInSurnameInput.value,
-      name: formInNameInput.value,
-      patronymic: formInPatronymicInput.value,
-      birthDate: new Date(formInBirthDateInput.value),
-      startYear: parseInt(formInStartYearInput.value),
-      faculty: formInFacultyInput.value, // ? или при валидации указать что нужно с маленькой буквы.. toLowerCase()
-    });
+      if (!formInputData.checkValidity()) {
+        event.stopPropagation();
+        formInputData.classList.add('was-validated');
+      } else {
+        studentsDataArr.push({
+          surname: formInSurnameInput.value.trim(),
+          name: formInNameInput.value.trim(),
+          patronymic: formInPatronymicInput.value.trim(),
+          birthDate: new Date(formInBirthDateInput.value),
+          startYear: parseInt(formInStartYearInput.value),
+          faculty: formInFacultyInput.value.trim(), // ? или при валидации указать что нужно с маленькой буквы toLowerCase()
+        });
 
-    addStudentsToTable(studentsDataArr);
-  });
+        addStudentsToTable(studentsDataArr); // наполнение/обновление таблицы (искомого массива)
+        clearStudentsAddFormInputs(); // очистка полей формы после корректного/валидного добавления студента
+
+        formInputData.classList.remove('was-validated'); // отмена красной обводки у "чистых" полей формы (после добавления)
+      }
+    },
+    false
+  );
 })();
