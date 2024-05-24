@@ -159,9 +159,11 @@
   formInBtnClear.classList.add(
     'dboard__input-btn-clear',
     'btn',
-    'btn-secondary'
+    'btn-secondary',
+    'btn-clear'
   );
 
+  inputCollapseBtnShowHide.setAttribute('id', 'formInputCollapse');
   inputCollapseBtnShowHide.setAttribute('type', 'button');
   inputCollapseBtnShowHide.setAttribute('data-bs-toggle', 'collapse');
   inputCollapseBtnShowHide.setAttribute(
@@ -320,9 +322,11 @@
   formFilterBtnClear.classList.add(
     'dboard__filter-btn-clear',
     'btn',
-    'btn-secondary'
+    'btn-secondary',
+    'btn-clear'
   );
 
+  filterCollapseBtnShowHide.setAttribute('id', 'formFilterCollapse');
   filterCollapseBtnShowHide.setAttribute('type', 'button');
   filterCollapseBtnShowHide.setAttribute('data-bs-toggle', 'collapse');
   filterCollapseBtnShowHide.setAttribute(
@@ -496,15 +500,51 @@
 
   addStudentsToTable(studentsDataArr);
 
-  // ** очистка формы добавления студентов, полей ввода (через кнопку)
-  function clearStudentsAddFormInputs() {
-    const allFormInInputs = document.querySelectorAll(
-      '.dboard__input-form input'
-    );
-    allFormInInputs.forEach((input) => (input.value = ''));
+  // ** очистка полей ввода, форм (через внутренние clear кнопки)
+  const allClearBtn = document.querySelectorAll('.btn-clear');
+  const allFormInInputs = document.querySelectorAll(
+    '.dboard__input-form input'
+  );
+  const allFormFilterInputs = document.querySelectorAll(
+    '.dboard__filter-form input'
+  );
+
+  function clearFormsInputs(event) {
+    const clickedClearBtn = event.target; // определение кнопки, по которой происходит "click"
+
+    if (clickedClearBtn.id === 'in-clear-btn') {
+      allFormInInputs.forEach((input) => (input.value = ''));
+    } else if (clickedClearBtn.id === 'filter-clear-btn') {
+      allFormFilterInputs.forEach((input) => (input.value = ''));
+    }
   }
 
-  formInBtnClear.addEventListener('click', clearStudentsAddFormInputs);
+  allClearBtn.forEach((btn) => {
+    btn.addEventListener('click', (event) => clearFormsInputs(event));
+  });
+
+  // ** очистка форм/полей ввода, снятие "выделений" валидации (после collapse/btn действий)
+  const allCollapseBtn = document.querySelectorAll('.collapsed');
+
+  function clearFormsAfterCollapse(event) {
+    const clickedCollapseBtn = event.target;
+
+    if (clickedCollapseBtn.id === 'formInputCollapse') {
+      setTimeout(() => {
+        allFormInInputs.forEach((input) => (input.value = ''));
+        formInputData.classList.remove('was-validated');
+      }, 500);
+    } else if (clickedCollapseBtn.id === 'formFilterCollapse') {
+      setTimeout(() => {
+        allFormFilterInputs.forEach((input) => (input.value = ''));
+        formFilterData.classList.remove('was-validated');
+      }, 500);
+    }
+  }
+
+  allCollapseBtn.forEach((btn) => {
+    btn.addEventListener('click', (event) => clearFormsAfterCollapse(event));
+  });
 
   // ** добавление "новых" студентов в массив/таблицу, через поля формы (после валидации)
   formInputData.addEventListener(
@@ -525,9 +565,9 @@
           faculty: formInFacultyInput.value.trim(), // ? или при валидации указать что нужно с маленькой буквы toLowerCase()
         });
 
-        addStudentsToTable(studentsDataArr); // наполнение/обновление таблицы (искомого массива)
-        clearStudentsAddFormInputs(); // очистка полей формы после корректного/валидного добавления студента
+        addStudentsToTable(studentsDataArr);
 
+        allFormInInputs.forEach((input) => (input.value = '')); // очистка полей формы (после добавления)
         formInputData.classList.remove('was-validated'); // отмена красной обводки у "чистых" полей формы (после добавления)
       }
     },
