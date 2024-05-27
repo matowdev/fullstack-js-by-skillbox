@@ -400,6 +400,11 @@
   );
   tableHead.classList.add('dboard__table-head');
   tableBody.classList.add('dboard__table-body', 'table-group-divider');
+  tableHeaderThTag.classList.add('dboard__table-head-field');
+  tableHeadThFIO.classList.add('dboard__table-head-field');
+  tableHeadThFaculty.classList.add('dboard__table-head-field');
+  tableHeadThBirthDate.classList.add('dboard__table-head-field');
+  tableHeadThStartYear.classList.add('dboard__table-head-field');
 
   tableHeaderThTag.textContent = '#';
   tableHeadThFIO.textContent = 'Ф.И.О.';
@@ -433,7 +438,7 @@
       student.fullName = `${student.surname} ${student.name} ${student.patronymic}`;
 
       // изменения в birthDate (формат даты, определение возраста, перезапись свойства)
-      const formatBirthDate = student.birthDate.toLocaleDateString('ru-RU');
+      let formatBirthDate = student.birthDate.toLocaleDateString('ru-RU');
       let studentAge =
         todayDate.getFullYear() - student.birthDate.getFullYear();
       let birthMonth = todayDate.getMonth() - student.birthDate.getMonth();
@@ -443,18 +448,18 @@
         studentAge--;
       }
 
-      student.birthDate = `${formatBirthDate} (${studentAge} лет)`;
+      student.birthDateFormatted = `${formatBirthDate} (${studentAge} лет)`;
 
       // изменения в startYear (указание диапазона обучения, определение курса, перезапись свойства)
       const endStudyYear = student.startYear + 4;
       let currentCourse = todayYear - student.startYear;
 
       if (currentCourse > 4 || (currentCourse === 4 && todayMonth > 8)) {
-        student.startYear = `${student.startYear}-${endStudyYear} (закончил(а))`;
+        student.studyPeriod = `${student.startYear}-${endStudyYear} (закончил(а))`;
       } else if (currentCourse === 0 && todayMonth > 8) {
-        student.startYear = `${student.startYear}-${endStudyYear} (1 курс)`;
+        student.studyPeriod = `${student.startYear}-${endStudyYear} (1 курс)`;
       } else {
-        student.startYear = `${student.startYear}-${endStudyYear} (${currentCourse} курс)`;
+        student.studyPeriod = `${student.startYear}-${endStudyYear} (${currentCourse} курс)`;
       }
     }
 
@@ -473,8 +478,8 @@
     studentTdNumber.textContent = index + 1;
     studentTdFIO.textContent = student.fullName;
     studentTdFaculty.textContent = student.faculty;
-    studentTdBirthDate.textContent = student.birthDate;
-    studentTdStartYear.textContent = student.startYear;
+    studentTdBirthDate.textContent = student.birthDateFormatted;
+    studentTdStartYear.textContent = student.studyPeriod;
 
     studentTableTr.append(
       studentTdNumber,
@@ -488,9 +493,11 @@
   }
 
   // ** наполнение таблицы данных о студентах (согласно откорректированного исходного, далее формирующегося массива)
+  let updateStudentsDataArr;
+
   function addStudentsToTable(studentsDataArr = []) {
     tableBody.innerHTML = ''; // предварительная очистка таблицы
-    const updateStudentsDataArr = correctInitArr(studentsDataArr);
+    updateStudentsDataArr = correctInitArr(studentsDataArr);
 
     for (const [index, student] of updateStudentsDataArr.entries()) {
       const studentTableTrRow = createStudentTableTrRow(index, student);
@@ -510,7 +517,7 @@
   );
 
   function clearFormsInputs(event) {
-    const clickedClearBtn = event.target; // определение кнопки, по которой происходит "click"
+    const clickedClearBtn = event.target; // определение кнопки/цели, по которой происходит "click" - событие
 
     if (clickedClearBtn.id === 'in-clear-btn') {
       allFormInInputs.forEach((input) => (input.value = ''));
@@ -520,14 +527,14 @@
   }
 
   allClearBtn.forEach((btn) => {
-    btn.addEventListener('click', (event) => clearFormsInputs(event));
+    btn.addEventListener('click', (event) => clearFormsInputs(event)); // передача события
   });
 
   // ** очистка форм/полей ввода, снятие "выделений" валидации (после collapse/btn действий)
   const allCollapseBtn = document.querySelectorAll('.collapsed');
 
   function clearFormsAfterCollapse(event) {
-    const clickedCollapseBtn = event.target;
+    const clickedCollapseBtn = event.target; // определение кнопки/цели, по которой происходит "click" - событие
 
     if (clickedCollapseBtn.id === 'formInputCollapse') {
       setTimeout(() => {
@@ -543,7 +550,7 @@
   }
 
   allCollapseBtn.forEach((btn) => {
-    btn.addEventListener('click', (event) => clearFormsAfterCollapse(event));
+    btn.addEventListener('click', (event) => clearFormsAfterCollapse(event)); // передача события
   });
 
   // ** добавление "новых" студентов в массив/таблицу, через поля формы (после валидации)
@@ -573,4 +580,32 @@
     },
     false
   );
+
+  // ** сортировка студентов/таблицы, по ячейкам заголовочной строки (по нажатию)
+  const allHeaderRowFields = document.querySelectorAll(
+    '.dboard__table-head-field'
+  );
+
+  function sortStudentsByFormFields(event) {
+    const clickedFormField = event.target.textContent; // определение заглавного поля/ячейки, по которой происходит "click" - событие
+
+    updateStudentsDataArr.sort(function (a, b) {
+      if (clickedFormField === 'Ф.И.О.') {
+        return a.fullName.localeCompare(b.fullName);
+      } else if (clickedFormField === 'Факультет') {
+        return a.faculty.localeCompare(b.faculty);
+      } else if (clickedFormField === 'Дата рождения и возраст') {
+        return new Date(a.birthDate) - new Date(b.birthDate);
+      } else if (clickedFormField === 'Годы обучения') {
+        return a.startYear - b.startYear;
+      }
+      return 0;
+    });
+
+    addStudentsToTable(updateStudentsDataArr);
+  }
+
+  allHeaderRowFields.forEach((field) => {
+    field.addEventListener('click', (event) => sortStudentsByFormFields(event)); // передача события
+  });
 })();
