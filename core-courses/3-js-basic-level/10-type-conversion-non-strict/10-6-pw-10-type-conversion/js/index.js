@@ -426,6 +426,15 @@
   // основные блоки/составляющие панели управления
   dashboard.append(dboardInput, dboardFilter, dboardOutput);
 
+  // ** корректировка исходного массива студентов (добавление свойства id, для последующей сортировки)
+  function correctInitArrAddId(studentsDataArr = []) {
+    studentsDataArr.forEach((student, index) => {
+      student.id = index + 1;
+    });
+  }
+
+  correctInitArrAddId(studentsDataArr);
+
   // ** корректировка исходного массива студентов (добавление свойства fullName, изменения в birthDate и в startYear)
   function correctInitArr(studentsDataArr = []) {
     const newStudentsDataArr = structuredClone(studentsDataArr);
@@ -570,9 +579,10 @@
           birthDate: new Date(formInBirthDateInput.value),
           startYear: parseInt(formInStartYearInput.value),
           faculty: formInFacultyInput.value.trim(), // ? или при валидации указать что нужно с маленькой буквы toLowerCase()
+          id: studentsDataArr.length + 1, // продолжение нумерации, исходя из логики index + 1 для уже присутствующих
         });
 
-        addStudentsToTable(studentsDataArr);
+        addStudentsToTable(studentsDataArr); // наполнение таблицы
 
         allFormInInputs.forEach((input) => (input.value = '')); // очистка полей формы (после добавления)
         formInputData.classList.remove('was-validated'); // отмена красной обводки у "чистых" полей формы (после добавления)
@@ -590,7 +600,9 @@
     const clickedFormField = event.target.textContent; // определение заглавного поля/ячейки, по которой происходит "click" - событие
 
     updateStudentsDataArr.sort(function (a, b) {
-      if (clickedFormField === 'Ф.И.О.') {
+      if (clickedFormField === '#') {
+        return a.id - b.id;
+      } else if (clickedFormField === 'Ф.И.О.') {
         return a.fullName.localeCompare(b.fullName);
       } else if (clickedFormField === 'Факультет') {
         return a.faculty.localeCompare(b.faculty);
@@ -602,7 +614,7 @@
       return 0;
     });
 
-    addStudentsToTable(updateStudentsDataArr);
+    addStudentsToTable(updateStudentsDataArr); // наполнение таблицы, вывод (пере-компоновка)
   }
 
   allHeaderRowFields.forEach((field) => {
