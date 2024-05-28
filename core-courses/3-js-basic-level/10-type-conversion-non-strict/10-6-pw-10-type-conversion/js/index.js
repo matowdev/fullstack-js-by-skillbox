@@ -607,9 +607,19 @@
       } else if (clickedFormField === 'Факультет') {
         return a.faculty.localeCompare(b.faculty);
       } else if (clickedFormField === 'Дата рождения и возраст') {
-        return new Date(a.birthDate) - new Date(b.birthDate);
+        const birthDateComparison =
+          new Date(a.birthDate).setHours(0, 0, 0, 0) -
+          new Date(b.birthDate).setHours(0, 0, 0, 0); // корректировка часов рождения (всем одно)
+        if (birthDateComparison !== 0) {
+          return birthDateComparison;
+        }
+        return a.fullName.localeCompare(b.fullName); // если даты рождения равны
       } else if (clickedFormField === 'Годы обучения') {
-        return a.startYear - b.startYear;
+        const startYearComparison = a.startYear - b.startYear;
+        if (startYearComparison !== 0) {
+          return startYearComparison;
+        }
+        return a.fullName.localeCompare(b.fullName); // если годы начала/окончания равны
       }
       return 0;
     });
