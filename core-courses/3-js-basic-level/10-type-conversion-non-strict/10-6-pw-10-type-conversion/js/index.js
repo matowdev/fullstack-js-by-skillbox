@@ -591,10 +591,11 @@
     false
   );
 
-  // ** сортировка студентов/таблицы, по ячейкам заголовочной строки (по нажатию)
+  // ** сортировка студентов/таблицы, по ячейкам заголовочной строки (по нажатию, по возрастанию/убыванию)
   const allHeaderRowFields = document.querySelectorAll(
     '.dboard__table-head-field'
   );
+  let sortDirectionUpDown = true;
 
   function sortStudentsByFormFields(event) {
     const clickedFormField = event.target.textContent; // определение заглавного поля/ячейки, по которой происходит "click" - событие
@@ -603,23 +604,35 @@
       if (clickedFormField === '#') {
         return a.id - b.id;
       } else if (clickedFormField === 'Ф.И.О.') {
-        return a.fullName.localeCompare(b.fullName);
+        return sortDirectionUpDown
+          ? a.fullName.localeCompare(b.fullName)
+          : b.fullName.localeCompare(a.fullName);
       } else if (clickedFormField === 'Факультет') {
-        return a.faculty.localeCompare(b.faculty);
+        return sortDirectionUpDown
+          ? a.faculty.localeCompare(b.faculty)
+          : b.faculty.localeCompare(a.faculty);
       } else if (clickedFormField === 'Дата рождения и возраст') {
         const birthDateComparison =
           new Date(a.birthDate).setHours(0, 0, 0, 0) -
           new Date(b.birthDate).setHours(0, 0, 0, 0); // корректировка часов рождения (всем одно)
         if (birthDateComparison !== 0) {
-          return birthDateComparison;
+          return sortDirectionUpDown
+            ? birthDateComparison
+            : -birthDateComparison;
         }
-        return a.fullName.localeCompare(b.fullName); // если даты рождения равны
+        return sortDirectionUpDown
+          ? a.fullName.localeCompare(b.fullName)
+          : b.fullName.localeCompare(a.fullName); // если даты рождения равны, по ФИО будет сортировка
       } else if (clickedFormField === 'Годы обучения') {
         const startYearComparison = a.startYear - b.startYear;
         if (startYearComparison !== 0) {
-          return startYearComparison;
+          return sortDirectionUpDown
+            ? startYearComparison
+            : -startYearComparison;
         }
-        return a.fullName.localeCompare(b.fullName); // если годы начала/окончания равны
+        return sortDirectionUpDown
+          ? a.fullName.localeCompare(b.fullName)
+          : b.fullName.localeCompare(a.fullName); // если годы начала/окончания равны, по ФИО будет сортировка
       }
       return 0;
     });
@@ -628,6 +641,9 @@
   }
 
   allHeaderRowFields.forEach((field) => {
-    field.addEventListener('click', (event) => sortStudentsByFormFields(event)); // передача события
+    field.addEventListener('click', (event) => {
+      sortStudentsByFormFields(event); // передача события
+      sortDirectionUpDown = !sortDirectionUpDown; // изменение условия сортировки
+    });
   });
 })();
