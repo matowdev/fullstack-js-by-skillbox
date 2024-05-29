@@ -282,7 +282,11 @@
     'form-floating',
     'mb-3'
   );
-  formFilterFIOInput.classList.add('dboard__filter-fio-input', 'form-control');
+  formFilterFIOInput.classList.add(
+    'dboard__filter-fio-input',
+    'filter-input',
+    'form-control'
+  );
   formFilterFIOLabel.classList.add('dboard__filter-fio-label');
   formFilterFacultyWrap.classList.add(
     'dboard__filter-faculty-wrap',
@@ -291,6 +295,7 @@
   );
   formFilterFacultyInput.classList.add(
     'dboard__filter-faculty-input',
+    'filter-input',
     'form-control'
   );
   formFilterFacultyLabel.classList.add('dboard__filter-faculty-label');
@@ -301,6 +306,7 @@
   );
   formFilterStartYearInput.classList.add(
     'dboard__filter-start-input',
+    'filter-input',
     'form-control'
   );
   formFilterStartYearLabel.classList.add('dboard__filter-start-label');
@@ -311,6 +317,7 @@
   );
   formFilterEndYearInput.classList.add(
     'dboard__filter-end-input',
+    'filter-input',
     'form-control'
   );
   formFilterEndYearLabel.classList.add('dboard__filter-end-label');
@@ -400,11 +407,11 @@
   );
   tableHead.classList.add('dboard__table-head');
   tableBody.classList.add('dboard__table-body', 'table-group-divider');
-  tableHeaderThTag.classList.add('dboard__table-head-field');
-  tableHeadThFIO.classList.add('dboard__table-head-field');
-  tableHeadThFaculty.classList.add('dboard__table-head-field');
-  tableHeadThBirthDate.classList.add('dboard__table-head-field');
-  tableHeadThStartYear.classList.add('dboard__table-head-field');
+  tableHeaderThTag.classList.add('dboard__table-head-cell');
+  tableHeadThFIO.classList.add('dboard__table-head-cell');
+  tableHeadThFaculty.classList.add('dboard__table-head-cell');
+  tableHeadThBirthDate.classList.add('dboard__table-head-cell');
+  tableHeadThStartYear.classList.add('dboard__table-head-cell');
 
   tableHeaderThTag.textContent = '#';
   tableHeadThFIO.textContent = 'Ф.И.О.';
@@ -592,26 +599,26 @@
   );
 
   // ** сортировка студентов/таблицы, по ячейкам заголовочной строки (по нажатию, по возрастанию/убыванию)
-  const allHeaderRowFields = document.querySelectorAll(
-    '.dboard__table-head-field'
+  const allHeaderRowCells = document.querySelectorAll(
+    '.dboard__table-head-cell'
   );
   let sortDirectionUpDown = true;
 
-  function sortStudentsByFormFields(event) {
-    const clickedFormField = event.target.textContent; // определение заглавного поля/ячейки, по которой происходит "click" - событие
+  function sortStudentsByTableCells(event) {
+    const clickedTableCell = event.target.textContent; // определение заглавного поля/ячейки, по которой происходит "click" - событие
 
     updateStudentsDataArr.sort(function (a, b) {
-      if (clickedFormField === '#') {
+      if (clickedTableCell === '#') {
         return a.id - b.id;
-      } else if (clickedFormField === 'Ф.И.О.') {
+      } else if (clickedTableCell === 'Ф.И.О.') {
         return sortDirectionUpDown
           ? a.fullName.localeCompare(b.fullName)
           : b.fullName.localeCompare(a.fullName);
-      } else if (clickedFormField === 'Факультет') {
+      } else if (clickedTableCell === 'Факультет') {
         return sortDirectionUpDown
           ? a.faculty.localeCompare(b.faculty)
           : b.faculty.localeCompare(a.faculty);
-      } else if (clickedFormField === 'Дата рождения и возраст') {
+      } else if (clickedTableCell === 'Дата рождения и возраст') {
         const birthDateComparison =
           new Date(a.birthDate).setHours(0, 0, 0, 0) -
           new Date(b.birthDate).setHours(0, 0, 0, 0); // корректировка часов рождения (всем одно)
@@ -623,7 +630,7 @@
         return sortDirectionUpDown
           ? a.fullName.localeCompare(b.fullName)
           : b.fullName.localeCompare(a.fullName); // если даты рождения равны, по ФИО будет сортировка
-      } else if (clickedFormField === 'Годы обучения') {
+      } else if (clickedTableCell === 'Годы обучения') {
         const startYearComparison = a.startYear - b.startYear;
         if (startYearComparison !== 0) {
           return sortDirectionUpDown
@@ -640,9 +647,9 @@
     addStudentsToTable(updateStudentsDataArr); // наполнение таблицы, вывод (пере-компоновка)
   }
 
-  allHeaderRowFields.forEach((field) => {
-    field.addEventListener('click', (event) => {
-      sortStudentsByFormFields(event); // передача события
+  allHeaderRowCells.forEach((cell) => {
+    cell.addEventListener('click', (event) => {
+      sortStudentsByTableCells(event); // передача события
       sortDirectionUpDown = !sortDirectionUpDown; // изменение условия сортировки
     });
   });
