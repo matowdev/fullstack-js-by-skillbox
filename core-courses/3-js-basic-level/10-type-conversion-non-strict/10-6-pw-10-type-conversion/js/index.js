@@ -196,7 +196,7 @@
   formInStartYearInput.setAttribute('id', 'floatingInputStartYear');
   formInStartYearInput.setAttribute('type', 'number');
   formInStartYearInput.setAttribute('placeholder', 'Год начала обучения');
-  formInStartYearInput.setAttribute('value', '2020'); // ? нужен диапазон с 2015 - по текущий
+  formInStartYearInput.setAttribute('value', '2020'); // ? нужен диапазон с 2020 - по текущий
   formInStartYearInput.setAttribute('required', '');
   formInStartYearLabel.setAttribute('for', 'floatingInputStartYear');
   formInFacultyInput.setAttribute('id', 'floatingInputFaculty');
@@ -207,7 +207,7 @@
   formInBtnAdd.setAttribute('id', 'in-add-btn');
   formInBtnAdd.setAttribute('type', 'submit');
   formInBtnClear.setAttribute('id', 'in-clear-btn');
-  formInBtnClear.setAttribute('type', 'button'); // ? тип такой и останется, ..clear тип
+  formInBtnClear.setAttribute('type', 'button');
 
   inputCollapseBtnShowHide.textContent =
     'Развернуть/свернуть форму добавления студентов';
@@ -258,6 +258,7 @@
   const formFilterEndYearInput = document.createElement('input');
   const formFilterEndYearLabel = document.createElement('label');
   const formFilterBtnWrap = document.createElement('div');
+  const formFilterBtnApplyFilter = document.createElement('button');
   const formFilterBtnClear = document.createElement('button');
 
   filterCollapseBtnWrap.classList.add(
@@ -276,7 +277,11 @@
     'dboard__filter-collapse-form-wrap',
     'collapse'
   );
-  formFilterData.classList.add('dboard__filter-form', 'mb-3');
+  formFilterData.classList.add(
+    'dboard__filter-form',
+    'mb-3',
+    'needs-validation'
+  );
   formFilterFIOWrap.classList.add(
     'dboard__filter-fio-wrap',
     'form-floating',
@@ -326,6 +331,12 @@
     'd-inline-flex',
     'gap-2'
   );
+  formFilterBtnApplyFilter.classList.add(
+    'dboard__filter-btn-filter',
+    'btn',
+    'btn-primary',
+    'btn-filter'
+  );
   formFilterBtnClear.classList.add(
     'dboard__filter-btn-clear',
     'btn',
@@ -342,24 +353,31 @@
   );
   filterCollapseFormWrap.setAttribute('id', 'collapseFilterShowHide');
   formFilterData.setAttribute('action', '#');
+  formFilterData.setAttribute('novalidate', '');
   formFilterFIOInput.setAttribute('id', 'floatingFilterFIO');
   formFilterFIOInput.setAttribute('type', 'text');
   formFilterFIOInput.setAttribute('placeholder', 'Ф.И.О.');
+  // formFilterFIOInput.setAttribute('required', '');
   formFilterFIOLabel.setAttribute('for', 'floatingFilterFIO');
   formFilterFacultyInput.setAttribute('id', 'floatingFilterFaculty');
   formFilterFacultyInput.setAttribute('type', 'text');
   formFilterFacultyInput.setAttribute('placeholder', 'Факультет');
+  // formFilterFacultyInput.setAttribute('required', '');
   formFilterFacultyLabel.setAttribute('for', 'floatingFilterFaculty');
   formFilterStartYearInput.setAttribute('id', 'floatingFilterStartYear');
   formFilterStartYearInput.setAttribute('type', 'number');
   formFilterStartYearInput.setAttribute('placeholder', 'Год начала обучения');
+  // formFilterStartYearInput.setAttribute('required', '');
   formFilterStartYearLabel.setAttribute('for', 'floatingFilterStartYear');
   formFilterEndYearInput.setAttribute('id', 'floatingFilterEndYear');
   formFilterEndYearInput.setAttribute('type', 'number');
   formFilterEndYearInput.setAttribute('placeholder', 'Год окончания обучения');
+  // formFilterEndYearInput.setAttribute('required', '');
   formFilterEndYearLabel.setAttribute('for', 'floatingFilterEndYear');
+  formFilterBtnApplyFilter.setAttribute('id', 'filter-filter-btn');
+  formFilterBtnApplyFilter.setAttribute('type', 'submit');
   formFilterBtnClear.setAttribute('id', 'filter-clear-btn');
-  formFilterBtnClear.setAttribute('type', 'button'); // ? тип такой и останется, ..clear тип
+  formFilterBtnClear.setAttribute('type', 'button');
 
   filterCollapseBtnShowHide.textContent =
     'Развернуть/свернуть форму фильтрации студентов';
@@ -367,6 +385,7 @@
   formFilterFacultyLabel.textContent = 'Факультет';
   formFilterStartYearLabel.textContent = 'Год начала обучения';
   formFilterEndYearLabel.textContent = 'Год окончания обучения';
+  formFilterBtnApplyFilter.textContent = 'Применить фильтр(ы)';
   formFilterBtnClear.textContent = 'Очистить поля фильтрации';
 
   filterCollapseBtnWrap.append(filterCollapseBtnShowHide);
@@ -377,7 +396,7 @@
     formFilterStartYearLabel
   );
   formFilterEndYearWrap.append(formFilterEndYearInput, formFilterEndYearLabel);
-  formFilterBtnWrap.append(formFilterBtnClear);
+  formFilterBtnWrap.append(formFilterBtnClear); // готова к добавлению.. formFilterBtnApplyFilter
   formFilterData.append(
     formFilterFIOWrap,
     formFilterFacultyWrap,
@@ -598,6 +617,32 @@
     false
   );
 
+  // ** фильтрация студентов/таблицы, согласно фильтрационных полей ввода (сразу применение)
+  const allFilterInputs = document.querySelectorAll('.filter-input');
+
+  function filterStudentsByFormInputs() {
+    formFilterData.addEventListener('submit', (event) => {
+      event.preventDefault();
+    });
+
+    if (formFilterFIOInput.value.trim() !== '') {
+      updateStudentsDataArr = updateStudentsDataArr.filter((student) => {
+        if (student.fullName.includes(formFilterFIOInput.value.trim())) {
+          return true;
+        }
+      });
+    }
+
+    addStudentsToTable(updateStudentsDataArr);
+  }
+
+  allFilterInputs.forEach((input) => {
+    input.addEventListener('input', () => {
+      addStudentsToTable(studentsDataArr); // возврат к исходному наполнению/виду таблицы студентов (при backspace в inputs)
+      filterStudentsByFormInputs();
+    });
+  });
+
   // ** сортировка студентов/таблицы, по ячейкам заголовочной строки (по нажатию, по возрастанию/убыванию)
   const allHeaderRowCells = document.querySelectorAll(
     '.dboard__table-head-cell'
@@ -607,7 +652,7 @@
   function sortStudentsByTableCells(event) {
     const clickedTableCell = event.target.textContent; // определение заглавного поля/ячейки, по которой происходит "click" - событие
 
-    updateStudentsDataArr.sort(function (a, b) {
+    updateStudentsDataArr.sort((a, b) => {
       if (clickedTableCell === '#') {
         return a.id - b.id;
       } else if (clickedTableCell === 'Ф.И.О.') {
