@@ -620,17 +620,37 @@
   // ** фильтрация студентов/таблицы, согласно фильтрационных полей ввода (сразу применение)
   const allFilterInputs = document.querySelectorAll('.filter-input');
 
-  function filterStudentsByFormInputs() {
-    formFilterData.addEventListener('submit', (event) => {
-      event.preventDefault();
-    });
+  formFilterData.addEventListener('submit', (event) => {
+    event.preventDefault();
+  });
 
+  function filterStudentsByFormInputs() {
     if (formFilterFIOInput.value.trim() !== '') {
-      updateStudentsDataArr = updateStudentsDataArr.filter((student) => {
-        if (student.fullName.includes(formFilterFIOInput.value.trim())) {
-          return true;
-        }
-      });
+      updateStudentsDataArr = updateStudentsDataArr.filter((student) =>
+        student.fullName.includes(formFilterFIOInput.value.trim())
+      ); // стрелочная функция без {}, таким образом автоматический return true\false, согласно условия
+    }
+
+    if (formFilterFacultyInput.value.trim() !== '') {
+      updateStudentsDataArr = updateStudentsDataArr.filter((student) =>
+        student.faculty.includes(formFilterFacultyInput.value.trim())
+      );
+    }
+
+    if (formFilterStartYearInput.value.trim() !== '') {
+      updateStudentsDataArr = updateStudentsDataArr.filter((student) =>
+        student.startYear
+          .toString()
+          .includes(formFilterStartYearInput.value.trim())
+      );
+    }
+
+    if (formFilterEndYearInput.value.trim() !== '') {
+      updateStudentsDataArr = updateStudentsDataArr.filter((student) =>
+        (student.startYear + 4)
+          .toString()
+          .includes(formFilterEndYearInput.value.trim())
+      );
     }
 
     addStudentsToTable(updateStudentsDataArr);
