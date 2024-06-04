@@ -557,7 +557,17 @@
     if (clickedClearBtn.id === 'in-clear-btn') {
       allFormInInputs.forEach((input) => (input.value = ''));
     } else if (clickedClearBtn.id === 'filter-clear-btn') {
-      allFormFilterInputs.forEach((input) => (input.value = ''));
+      const formFilterInputsValuesArr = [
+        formFilterFIOInput.value,
+        formFilterFacultyInput.value,
+        formFilterStartYearInput.value,
+        formFilterEndYearInput.value,
+      ]; // можно и без массива/дополнительного if, "просто" через операторы && и ||, в основном else..if
+
+      if (formFilterInputsValuesArr.some((value) => value !== '')) {
+        allFormFilterInputs.forEach((input) => (input.value = ''));
+        addStudentsToTable(studentsDataArr);
+      }
     }
   }
 
