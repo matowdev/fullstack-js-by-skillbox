@@ -589,6 +589,10 @@
   });
 
   // ** добавление "новых" студентов в массив/таблицу, через поля формы (после валидации)
+  function toUpFirstLetter(value) {
+    return value[0].toUpperCase() + value.slice(1).toLowerCase();
+  }
+
   formInputData.addEventListener(
     'submit',
     (event) => {
@@ -599,12 +603,12 @@
         formInputData.classList.add('was-validated');
       } else {
         studentsDataArr.push({
-          surname: formInSurnameInput.value.trim(),
-          name: formInNameInput.value.trim(),
-          patronymic: formInPatronymicInput.value.trim(),
+          surname: toUpFirstLetter(formInSurnameInput.value.trim()),
+          name: toUpFirstLetter(formInNameInput.value.trim()),
+          patronymic: toUpFirstLetter(formInPatronymicInput.value.trim()),
           birthDate: new Date(formInBirthDateInput.value),
           startYear: parseInt(formInStartYearInput.value),
-          faculty: formInFacultyInput.value.trim(), // ? или при валидации указать что нужно с маленькой буквы toLowerCase()
+          faculty: formInFacultyInput.value.toLowerCase().trim(),
           id: studentsDataArr.length + 1, // продолжение нумерации, исходя из логики index + 1 для уже присутствующих
         });
 
@@ -627,13 +631,17 @@
   function filterStudentsByFormInputs() {
     if (formFilterFIOInput.value.trim() !== '') {
       updateStudentsDataArr = updateStudentsDataArr.filter((student) =>
-        student.fullName.includes(formFilterFIOInput.value.trim())
+        student.fullName
+          .toLowerCase()
+          .includes(formFilterFIOInput.value.toLowerCase().trim())
       ); // стрелочная функция без {}, таким образом автоматический return true\false, согласно условия
     }
 
     if (formFilterFacultyInput.value.trim() !== '') {
       updateStudentsDataArr = updateStudentsDataArr.filter((student) =>
-        student.faculty.includes(formFilterFacultyInput.value.trim())
+        student.faculty
+          .toLowerCase()
+          .includes(formFilterFacultyInput.value.toLowerCase().trim())
       );
     }
 
