@@ -191,13 +191,20 @@
   formInPatronymicLabel.setAttribute('for', 'floatingInputPatronymic');
   formInBirthDateInput.setAttribute('id', 'floatingInputBirthday');
   formInBirthDateInput.setAttribute('type', 'date');
+  formInBirthDateInput.setAttribute('min', '1900-01-01');
+  formInBirthDateInput.setAttribute(
+    'max',
+    new Date().toISOString().split('T')[0]
+  );
   formInBirthDateInput.setAttribute('placeholder', 'Дата рождения');
   formInBirthDateInput.setAttribute('required', '');
   formInBirthDateLabel.setAttribute('for', 'floatingInputBirthday');
   formInStartYearInput.setAttribute('id', 'floatingInputStartYear');
   formInStartYearInput.setAttribute('type', 'number');
-  formInStartYearInput.setAttribute('placeholder', 'Год начала обучения');
   formInStartYearInput.setAttribute('value', '2020');
+  formInStartYearInput.setAttribute('min', 2000);
+  formInStartYearInput.setAttribute('max', new Date().getFullYear()); // по текущий год
+  formInStartYearInput.setAttribute('placeholder', 'Год начала обучения');
   formInStartYearInput.setAttribute('required', '');
   formInStartYearLabel.setAttribute('for', 'floatingInputStartYear');
   formInFacultyInput.setAttribute('id', 'floatingInputFaculty');
