@@ -137,7 +137,8 @@
   );
   formInStartYearInput.classList.add(
     'dboard__input-start-input',
-    'form-control'
+    'form-control',
+    'start-year'
   );
   formInStartYearLabel.classList.add('dboard__input-start-label');
   formInFacultyWrap.classList.add(
@@ -189,14 +190,14 @@
   formInPatronymicInput.setAttribute('required', '');
   formInPatronymicLabel.setAttribute('for', 'floatingInputPatronymic');
   formInBirthDateInput.setAttribute('id', 'floatingInputBirthday');
-  formInBirthDateInput.setAttribute('type', 'date'); // ? mm/dd/yyyy а можно изменить формат ввода
+  formInBirthDateInput.setAttribute('type', 'date');
   formInBirthDateInput.setAttribute('placeholder', 'Дата рождения');
   formInBirthDateInput.setAttribute('required', '');
   formInBirthDateLabel.setAttribute('for', 'floatingInputBirthday');
   formInStartYearInput.setAttribute('id', 'floatingInputStartYear');
   formInStartYearInput.setAttribute('type', 'number');
   formInStartYearInput.setAttribute('placeholder', 'Год начала обучения');
-  formInStartYearInput.setAttribute('value', '2020'); // ? нужен диапазон с 2020 - по текущий
+  formInStartYearInput.setAttribute('value', '2020');
   formInStartYearInput.setAttribute('required', '');
   formInStartYearLabel.setAttribute('for', 'floatingInputStartYear');
   formInFacultyInput.setAttribute('id', 'floatingInputFaculty');
@@ -583,7 +584,11 @@
 
     if (clickedCollapseBtn.id === 'formInputCollapse') {
       setTimeout(() => {
-        allFormInInputs.forEach((input) => (input.value = ''));
+        allFormInInputs.forEach((input) => {
+          if (!input.classList.contains('start-year')) {
+            input.value = '';
+          }
+        });
         formInputData.classList.remove('was-validated');
       }, 500);
     } else if (clickedCollapseBtn.id === 'formFilterCollapse') {
@@ -598,9 +603,24 @@
     btn.addEventListener('click', (event) => clearFormsAfterCollapse(event)); // передача события
   });
 
-  // ** добавление "новых" студентов в массив/таблицу, через поля формы (после валидации)
+  // ** добавление "новых" студентов в массив/таблицу, через поля формы (после валидации, после проверки по ФИО)
   function toUpFirstLetter(value) {
     return value[0].toUpperCase() + value.slice(1).toLowerCase();
+  }
+
+  // проверка на совпадение по ФИО, в исходном/формирующемся массиве (да/нет)
+  function checkStudentFIO(
+    formInSurname,
+    formInName,
+    formInPatronymic,
+    studentsDataArr
+  ) {
+    return studentsDataArr.some(
+      (student) =>
+        student.surname === formInSurname &&
+        student.name === formInName &&
+        student.patronymic === formInPatronymic
+    );
   }
 
   formInputData.addEventListener(
@@ -612,10 +632,32 @@
         event.stopPropagation();
         formInputData.classList.add('was-validated');
       } else {
+        const formInSurname = toUpFirstLetter(formInSurnameInput.value.trim());
+        const formInName = toUpFirstLetter(formInNameInput.value.trim());
+        const formInPatronymic = toUpFirstLetter(
+          formInPatronymicInput.value.trim()
+        );
+
+        if (
+          checkStudentFIO(
+            formInSurname,
+            formInName,
+            formInPatronymic,
+            studentsDataArr
+          )
+        ) {
+          const formInNotification = confirm(
+            'Совпадение по Ф.И.О! Такой студент уже существует! Всё равно добавить?'
+          );
+          if (!formInNotification) {
+            return; // т.е. не добавление студента (без очистки полей ввода, возможность что-то исправить)
+          }
+        }
+
         studentsDataArr.push({
-          surname: toUpFirstLetter(formInSurnameInput.value.trim()),
-          name: toUpFirstLetter(formInNameInput.value.trim()),
-          patronymic: toUpFirstLetter(formInPatronymicInput.value.trim()),
+          surname: formInSurname,
+          name: formInName,
+          patronymic: formInPatronymic,
           birthDate: new Date(formInBirthDateInput.value),
           startYear: parseInt(formInStartYearInput.value),
           faculty: formInFacultyInput.value.toLowerCase().trim(),
