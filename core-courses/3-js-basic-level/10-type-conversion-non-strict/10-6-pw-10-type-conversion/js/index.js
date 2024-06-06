@@ -57,21 +57,27 @@
   const formInSurnameWrap = document.createElement('div');
   const formInSurnameInput = document.createElement('input');
   const formInSurnameLabel = document.createElement('label');
+  const formInSurnameInvalidFeed = document.createElement('div');
   const formInNameWrap = document.createElement('div');
   const formInNameInput = document.createElement('input');
   const formInNameLabel = document.createElement('label');
+  const formInNameInvalidFeed = document.createElement('div');
   const formInPatronymicWrap = document.createElement('div');
   const formInPatronymicInput = document.createElement('input');
   const formInPatronymicLabel = document.createElement('label');
+  const formInPatronymicInvalidFeed = document.createElement('div');
   const formInBirthDateWrap = document.createElement('div');
   const formInBirthDateInput = document.createElement('input');
   const formInBirthDateLabel = document.createElement('label');
+  const formInBirthDateInvalidFeed = document.createElement('div');
   const formInStartYearWrap = document.createElement('div');
   const formInStartYearInput = document.createElement('input');
   const formInStartYearLabel = document.createElement('label');
+  const formInStartYearInvalidFeed = document.createElement('div');
   const formInFacultyWrap = document.createElement('div');
   const formInFacultyInput = document.createElement('input');
   const formInFacultyLabel = document.createElement('label');
+  const formInFacultyInvalidFeed = document.createElement('div');
   const formInBtnWrap = document.createElement('div');
   const formInBtnAdd = document.createElement('button');
   const formInBtnClear = document.createElement('button');
@@ -103,6 +109,10 @@
     'form-control'
   );
   formInSurnameLabel.classList.add('dboard__input-surname-label');
+  formInSurnameInvalidFeed.classList.add(
+    'dboard__input-surname-feedback',
+    'invalid-feedback'
+  );
   formInNameWrap.classList.add(
     'dboard__input-name-wrap',
     'form-floating',
@@ -110,6 +120,10 @@
   );
   formInNameInput.classList.add('dboard__input-name-input', 'form-control');
   formInNameLabel.classList.add('dboard__input-name-label');
+  formInNameInvalidFeed.classList.add(
+    'dboard__input-name-feedback',
+    'invalid-feedback'
+  );
   formInPatronymicWrap.classList.add(
     'dboard__input-patron-wrap',
     'form-floating',
@@ -120,6 +134,10 @@
     'form-control'
   );
   formInPatronymicLabel.classList.add('dboard__input-patron-label');
+  formInPatronymicInvalidFeed.classList.add(
+    'dboard__input-patron-feedback',
+    'invalid-feedback'
+  );
   formInBirthDateWrap.classList.add(
     'dboard__input-birthday-wrap',
     'form-floating',
@@ -130,6 +148,10 @@
     'form-control'
   );
   formInBirthDateLabel.classList.add('dboard__input-birthday-label');
+  formInBirthDateInvalidFeed.classList.add(
+    'dboard__input-birthday-feedback',
+    'invalid-feedback'
+  );
   formInStartYearWrap.classList.add(
     'dboard__input-start-wrap',
     'form-floating',
@@ -141,6 +163,10 @@
     'start-year'
   );
   formInStartYearLabel.classList.add('dboard__input-start-label');
+  formInStartYearInvalidFeed.classList.add(
+    'dboard__input-start-feedback',
+    'invalid-feedback'
+  );
   formInFacultyWrap.classList.add(
     'dboard__input-faculty-wrap',
     'form-floating',
@@ -151,6 +177,10 @@
     'form-control'
   );
   formInFacultyLabel.classList.add('dboard__input-faculty-label');
+  formInFacultyInvalidFeed.classList.add(
+    'dboard__input-faculty-feedback',
+    'invalid-feedback'
+  );
   formInBtnWrap.classList.add(
     'dboard__input-btn-wrap',
     'd-inline-flex',
@@ -176,16 +206,19 @@
   formInputData.setAttribute('novalidate', '');
   formInSurnameInput.setAttribute('id', 'floatingInputSurname');
   formInSurnameInput.setAttribute('type', 'text');
+  formInSurnameInput.setAttribute('pattern', '[А-Яа-яЁё]+');
   formInSurnameInput.setAttribute('placeholder', 'Фамилия');
   formInSurnameInput.setAttribute('required', '');
   formInSurnameLabel.setAttribute('for', 'floatingInputSurname');
   formInNameInput.setAttribute('id', 'floatingInputName');
   formInNameInput.setAttribute('type', 'text');
+  formInNameInput.setAttribute('pattern', '[А-Яа-яЁё]+');
   formInNameInput.setAttribute('placeholder', 'Имя');
   formInNameInput.setAttribute('required', '');
   formInNameLabel.setAttribute('for', 'floatingInputName');
   formInPatronymicInput.setAttribute('id', 'floatingInputPatronymic');
   formInPatronymicInput.setAttribute('type', 'text');
+  formInPatronymicInput.setAttribute('pattern', '[А-Яа-яЁё]+');
   formInPatronymicInput.setAttribute('placeholder', 'Отчество');
   formInPatronymicInput.setAttribute('required', '');
   formInPatronymicLabel.setAttribute('for', 'floatingInputPatronymic');
@@ -195,7 +228,7 @@
   formInBirthDateInput.setAttribute(
     'max',
     new Date().toISOString().split('T')[0]
-  );
+  ); // по текущую дату/год
   formInBirthDateInput.setAttribute('placeholder', 'Дата рождения');
   formInBirthDateInput.setAttribute('required', '');
   formInBirthDateLabel.setAttribute('for', 'floatingInputBirthday');
@@ -209,6 +242,7 @@
   formInStartYearLabel.setAttribute('for', 'floatingInputStartYear');
   formInFacultyInput.setAttribute('id', 'floatingInputFaculty');
   formInFacultyInput.setAttribute('type', 'text');
+  formInFacultyInput.setAttribute('pattern', '[А-Яа-яЁё]+');
   formInFacultyInput.setAttribute('placeholder', 'Факультет');
   formInFacultyInput.setAttribute('required', '');
   formInFacultyLabel.setAttribute('for', 'floatingInputFaculty');
@@ -220,21 +254,51 @@
   inputCollapseBtnShowHide.textContent =
     'Развернуть/свернуть форму добавления студентов';
   formInSurnameLabel.textContent = 'Фамилия';
+  formInSurnameInvalidFeed.textContent = 'Заполните поле "Фамилия"!';
   formInNameLabel.textContent = 'Имя';
+  formInNameInvalidFeed.textContent = 'Заполните поле "Имя"!';
   formInPatronymicLabel.textContent = 'Отчество';
+  formInPatronymicInvalidFeed.textContent = 'Заполните поле "Отчество"!';
   formInBirthDateLabel.textContent = 'Дата рождения';
+  formInBirthDateInvalidFeed.textContent = 'Укажите дату рождения!';
   formInStartYearLabel.textContent = 'Год начала обучения';
+  formInStartYearInvalidFeed.textContent = 'Укажите год начала обучения!';
   formInFacultyLabel.textContent = 'Факультет';
+  formInFacultyInvalidFeed.textContent = 'Определите факультет!';
   formInBtnAdd.textContent = 'Добавить студента';
   formInBtnClear.textContent = 'Очистить поля ввода';
 
   inputCollapseBtnWrap.append(inputCollapseBtnShowHide);
-  formInSurnameWrap.append(formInSurnameInput, formInSurnameLabel);
-  formInNameWrap.append(formInNameInput, formInNameLabel);
-  formInPatronymicWrap.append(formInPatronymicInput, formInPatronymicLabel);
-  formInBirthDateWrap.append(formInBirthDateInput, formInBirthDateLabel);
-  formInStartYearWrap.append(formInStartYearInput, formInStartYearLabel);
-  formInFacultyWrap.append(formInFacultyInput, formInFacultyLabel);
+  formInSurnameWrap.append(
+    formInSurnameInput,
+    formInSurnameLabel,
+    formInSurnameInvalidFeed
+  );
+  formInNameWrap.append(
+    formInNameInput,
+    formInNameLabel,
+    formInNameInvalidFeed
+  );
+  formInPatronymicWrap.append(
+    formInPatronymicInput,
+    formInPatronymicLabel,
+    formInPatronymicInvalidFeed
+  );
+  formInBirthDateWrap.append(
+    formInBirthDateInput,
+    formInBirthDateLabel,
+    formInBirthDateInvalidFeed
+  );
+  formInStartYearWrap.append(
+    formInStartYearInput,
+    formInStartYearLabel,
+    formInStartYearInvalidFeed
+  );
+  formInFacultyWrap.append(
+    formInFacultyInput,
+    formInFacultyLabel,
+    formInFacultyInvalidFeed
+  );
   formInBtnWrap.append(formInBtnAdd, formInBtnClear);
   formInputData.append(
     formInSurnameWrap,
