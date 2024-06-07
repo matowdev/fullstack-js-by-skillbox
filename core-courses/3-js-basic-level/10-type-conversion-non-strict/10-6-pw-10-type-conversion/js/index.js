@@ -206,7 +206,7 @@
   formInputData.setAttribute('novalidate', '');
   formInSurnameInput.setAttribute('id', 'floatingInputSurname');
   formInSurnameInput.setAttribute('type', 'text');
-  formInSurnameInput.setAttribute('pattern', '[А-Яа-яЁё]+');
+  formInSurnameInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
   formInSurnameInput.setAttribute('placeholder', 'Фамилия');
   formInSurnameInput.setAttribute('required', '');
   formInSurnameLabel.setAttribute('for', 'floatingInputSurname');
@@ -359,11 +359,7 @@
     'form-floating',
     'mb-3'
   );
-  formFilterFIOInput.classList.add(
-    'dboard__filter-fio-input',
-    'filter-input',
-    'form-control'
-  );
+  formFilterFIOInput.classList.add('dboard__filter-fio-input', 'form-control');
   formFilterFIOLabel.classList.add('dboard__filter-fio-label');
   formFilterFacultyWrap.classList.add(
     'dboard__filter-faculty-wrap',
@@ -372,7 +368,6 @@
   );
   formFilterFacultyInput.classList.add(
     'dboard__filter-faculty-input',
-    'filter-input',
     'form-control'
   );
   formFilterFacultyLabel.classList.add('dboard__filter-faculty-label');
@@ -383,7 +378,6 @@
   );
   formFilterStartYearInput.classList.add(
     'dboard__filter-start-input',
-    'filter-input',
     'form-control'
   );
   formFilterStartYearLabel.classList.add('dboard__filter-start-label');
@@ -394,7 +388,6 @@
   );
   formFilterEndYearInput.classList.add(
     'dboard__filter-end-input',
-    'filter-input',
     'form-control'
   );
   formFilterEndYearLabel.classList.add('dboard__filter-end-label');
@@ -614,72 +607,49 @@
 
   addStudentsToTable(studentsDataArr);
 
-  // ** очистка полей ввода, форм (через внутренние clear кнопки)
-  const allClearBtn = document.querySelectorAll('.btn-clear');
-  const allFormInInputs = document.querySelectorAll(
-    '.dboard__input-form input'
-  );
-  const allFormFilterInputs = document.querySelectorAll(
-    '.dboard__filter-form input'
-  );
+  // ** обновление валидационного сообщения (изменение состояния input(a))
+  function updateFormInputValidMsg(input) {
+    const parentNode = input.parentNode;
+    const invalidFeed = parentNode.querySelector('.invalid-feedback');
 
-  function clearFormsInputs(event) {
-    const clickedClearBtn = event.target; // определение кнопки/цели, по которой происходит "click" - событие
+    if (!invalidFeed) return; // если/вдруг такой элемент/сообщение не предусмотренно для input(а)
 
-    if (clickedClearBtn.id === 'in-clear-btn') {
-      allFormInInputs.forEach((input) => (input.value = ''));
-    } else if (clickedClearBtn.id === 'filter-clear-btn') {
-      const formFilterInputsValuesArr = [
-        formFilterFIOInput.value,
-        formFilterFacultyInput.value,
-        formFilterStartYearInput.value,
-        formFilterEndYearInput.value,
-      ]; // можно и без массива/дополнительного if, "просто" через операторы && и ||, в основном else..if
+    input.classList.remove('is-invalid');
 
-      if (formFilterInputsValuesArr.some((value) => value !== '')) {
-        allFormFilterInputs.forEach((input) => (input.value = ''));
-        addStudentsToTable(studentsDataArr);
+    if (input.placeholder) {
+      switch (input.placeholder) {
+        case 'Фамилия':
+          invalidFeed.textContent = 'Заполните поле "Фамилия"!';
+          break;
+        case 'Имя':
+          invalidFeed.textContent = 'Заполните поле "Имя"!';
+          break;
+        case 'Отчество':
+          invalidFeed.textContent = 'Заполните поле "Отчество"!';
+          break;
+        case 'Факультет':
+          invalidFeed.textContent = 'Определите факультет!';
+          break;
+        default:
+          invalidFeed.textContent = 'Заполните поле!';
+          break;
       }
     }
   }
 
-  allClearBtn.forEach((btn) => {
-    btn.addEventListener('click', (event) => clearFormsInputs(event)); // передача события
-  });
-
-  // ** очистка форм/полей ввода, снятие "выделений" валидации (после collapse/btn действий)
-  const allCollapseBtn = document.querySelectorAll('.collapsed');
-
-  function clearFormsAfterCollapse(event) {
-    const clickedCollapseBtn = event.target; // определение кнопки/цели, по которой происходит "click" - событие
-
-    if (clickedCollapseBtn.id === 'formInputCollapse') {
-      setTimeout(() => {
-        allFormInInputs.forEach((input) => {
-          if (!input.classList.contains('start-year')) {
-            input.value = '';
-          }
-        });
-        formInputData.classList.remove('was-validated');
-      }, 500);
-    } else if (clickedCollapseBtn.id === 'formFilterCollapse') {
-      setTimeout(() => {
-        allFormFilterInputs.forEach((input) => (input.value = ''));
-        formFilterData.classList.remove('was-validated');
-      }, 500);
-    }
-  }
-
-  allCollapseBtn.forEach((btn) => {
-    btn.addEventListener('click', (event) => clearFormsAfterCollapse(event)); // передача события
-  });
-
   // ** добавление "новых" студентов в массив/таблицу, через поля формы (после валидации, после проверки по ФИО)
+  const allFormInInputs = document.querySelectorAll(
+    '.dboard__input-form input'
+  );
+  const allFormInTextInputs = document.querySelectorAll(
+    '.dboard__input-form input[type="text"]'
+  );
+
   function toUpFirstLetter(value) {
     return value[0].toUpperCase() + value.slice(1).toLowerCase();
   }
 
-  // проверка на совпадение по ФИО, в исходном/формирующемся массиве (да/нет)
+  // проверка на совпадение по ФИО, в исходном/формирующемся массиве
   function checkStudentFIO(
     formInSurname,
     formInName,
@@ -693,6 +663,23 @@
         student.patronymic === formInPatronymic
     );
   }
+
+  allFormInTextInputs.forEach((textInput) => {
+    textInput.addEventListener('input', (event) => {
+      const target = event.target;
+      const targetParentNode = target.parentNode;
+      const invalidFeed = targetParentNode.querySelector('.invalid-feedback');
+
+      if (/[^а-яА-ЯёЁ-]/.test(target.value)) {
+        target.classList.add('is-invalid');
+        invalidFeed.textContent =
+          'Не корректный ввод! Измените раскладку клавиатуры и/или исключите цифры/знаки, пробелы!';
+      } else {
+        target.classList.remove('is-invalid');
+        updateFormInputValidMsg(target);
+      }
+    });
+  });
 
   formInputData.addEventListener(
     'submit',
@@ -745,7 +732,9 @@
   );
 
   // ** фильтрация студентов/таблицы, согласно фильтрационных полей ввода (сразу применение)
-  const allFilterInputs = document.querySelectorAll('.filter-input');
+  const allFormFilterInputs = document.querySelectorAll(
+    '.dboard__filter-form input'
+  );
 
   formFilterData.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -787,11 +776,69 @@
     addStudentsToTable(updateStudentsDataArr);
   }
 
-  allFilterInputs.forEach((input) => {
+  allFormFilterInputs.forEach((input) => {
     input.addEventListener('input', () => {
       addStudentsToTable(studentsDataArr); // возврат к исходному наполнению/виду таблицы студентов (при backspace в inputs)
       filterStudentsByFormInputs();
     });
+  });
+
+  // ** очистка полей ввода, форм (через внутренние clear кнопки)
+  const allClearBtn = document.querySelectorAll('.btn-clear');
+
+  function clearFormsInputs(event) {
+    const clickedClearBtn = event.target; // определение кнопки/цели, по которой происходит "click" - событие
+
+    if (clickedClearBtn.id === 'in-clear-btn') {
+      allFormInInputs.forEach((input) => {
+        input.value = '';
+        updateFormInputValidMsg(input);
+      });
+    } else if (clickedClearBtn.id === 'filter-clear-btn') {
+      const formFilterInputsValuesArr = [
+        formFilterFIOInput.value,
+        formFilterFacultyInput.value,
+        formFilterStartYearInput.value,
+        formFilterEndYearInput.value,
+      ]; // можно и без массива/дополнительного if, "просто" через операторы && и ||, в основном else..if
+
+      if (formFilterInputsValuesArr.some((value) => value !== '')) {
+        allFormFilterInputs.forEach((input) => (input.value = ''));
+        addStudentsToTable(studentsDataArr);
+      }
+    }
+  }
+
+  allClearBtn.forEach((btn) => {
+    btn.addEventListener('click', (event) => clearFormsInputs(event)); // передача события
+  });
+
+  // ** очистка форм/полей ввода, снятие "выделений" валидации (после collapse/btn действий)
+  const allCollapseBtn = document.querySelectorAll('.collapsed');
+
+  function clearFormsAfterCollapse(event) {
+    const clickedCollapseBtn = event.target; // определение кнопки/цели, по которой происходит "click" - событие
+
+    if (clickedCollapseBtn.id === 'formInputCollapse') {
+      setTimeout(() => {
+        allFormInInputs.forEach((input) => {
+          if (!input.classList.contains('start-year')) {
+            input.value = '';
+          }
+          updateFormInputValidMsg(input);
+        });
+        formInputData.classList.remove('was-validated');
+      }, 500);
+    } else if (clickedCollapseBtn.id === 'formFilterCollapse') {
+      setTimeout(() => {
+        allFormFilterInputs.forEach((input) => (input.value = ''));
+        formFilterData.classList.remove('was-validated');
+      }, 500);
+    }
+  }
+
+  allCollapseBtn.forEach((btn) => {
+    btn.addEventListener('click', (event) => clearFormsAfterCollapse(event)); // передача события
   });
 
   // ** сортировка студентов/таблицы, по ячейкам заголовочной строки (по нажатию, по возрастанию/убыванию)
