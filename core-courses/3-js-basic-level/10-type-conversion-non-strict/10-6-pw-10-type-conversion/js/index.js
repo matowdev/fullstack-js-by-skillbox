@@ -212,13 +212,13 @@
   formInSurnameLabel.setAttribute('for', 'floatingInputSurname');
   formInNameInput.setAttribute('id', 'floatingInputName');
   formInNameInput.setAttribute('type', 'text');
-  formInNameInput.setAttribute('pattern', '[А-Яа-яЁё]+');
+  formInNameInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
   formInNameInput.setAttribute('placeholder', 'Имя');
   formInNameInput.setAttribute('required', '');
   formInNameLabel.setAttribute('for', 'floatingInputName');
   formInPatronymicInput.setAttribute('id', 'floatingInputPatronymic');
   formInPatronymicInput.setAttribute('type', 'text');
-  formInPatronymicInput.setAttribute('pattern', '[А-Яа-яЁё]+');
+  formInPatronymicInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
   formInPatronymicInput.setAttribute('placeholder', 'Отчество');
   formInPatronymicInput.setAttribute('required', '');
   formInPatronymicLabel.setAttribute('for', 'floatingInputPatronymic');
@@ -242,7 +242,7 @@
   formInStartYearLabel.setAttribute('for', 'floatingInputStartYear');
   formInFacultyInput.setAttribute('id', 'floatingInputFaculty');
   formInFacultyInput.setAttribute('type', 'text');
-  formInFacultyInput.setAttribute('pattern', '[А-Яа-яЁё]+');
+  formInFacultyInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
   formInFacultyInput.setAttribute('placeholder', 'Факультет');
   formInFacultyInput.setAttribute('required', '');
   formInFacultyLabel.setAttribute('for', 'floatingInputFaculty');
@@ -431,11 +431,15 @@
   formFilterFacultyLabel.setAttribute('for', 'floatingFilterFaculty');
   formFilterStartYearInput.setAttribute('id', 'floatingFilterStartYear');
   formFilterStartYearInput.setAttribute('type', 'number');
+  formFilterStartYearInput.setAttribute('min', 2000);
+  formFilterStartYearInput.setAttribute('max', new Date().getFullYear()); // с текущего года
   formFilterStartYearInput.setAttribute('placeholder', 'Год начала обучения');
   // formFilterStartYearInput.setAttribute('required', '');
   formFilterStartYearLabel.setAttribute('for', 'floatingFilterStartYear');
   formFilterEndYearInput.setAttribute('id', 'floatingFilterEndYear');
   formFilterEndYearInput.setAttribute('type', 'number');
+  formFilterEndYearInput.setAttribute('min', 2004);
+  formFilterEndYearInput.setAttribute('max', new Date().getFullYear() + 4); // по текущий год + 4
   formFilterEndYearInput.setAttribute('placeholder', 'Год окончания обучения');
   // formFilterEndYearInput.setAttribute('required', '');
   formFilterEndYearLabel.setAttribute('for', 'floatingFilterEndYear');
@@ -612,7 +616,7 @@
     const parentNode = input.parentNode;
     const invalidFeed = parentNode.querySelector('.invalid-feedback');
 
-    if (!invalidFeed) return; // если/вдруг такой элемент/сообщение не предусмотренно для input(а)
+    if (!invalidFeed) return; // если/вдруг такое сообщение не предусмотренно для input(а)
 
     input.classList.remove('is-invalid');
 
@@ -670,6 +674,7 @@
       const targetParentNode = target.parentNode;
       const invalidFeed = targetParentNode.querySelector('.invalid-feedback');
 
+      // только русские буквы и дефис (для двойных-фамилий), без цифр/символов и пробелов
       if (/[^а-яА-ЯёЁ-]/.test(target.value)) {
         target.classList.add('is-invalid');
         invalidFeed.textContent =
