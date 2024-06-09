@@ -243,6 +243,7 @@
   formInFacultyInput.setAttribute('id', 'floatingInputFaculty');
   formInFacultyInput.setAttribute('type', 'text');
   formInFacultyInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
+  formInFacultyInput.setAttribute('minlength', '3');
   formInFacultyInput.setAttribute('placeholder', 'Факультет');
   formInFacultyInput.setAttribute('required', '');
   formInFacultyLabel.setAttribute('for', 'floatingInputFaculty');
@@ -631,8 +632,16 @@
         case 'Отчество':
           invalidFeed.textContent = 'Заполните поле "Отчество"!';
           break;
+        case 'Дата рождения':
+          invalidFeed.textContent =
+            'Укажите дату рождения, в диапазоне: от 1900 года до "текущего"!';
+          break;
+        case 'Год начала обучения':
+          invalidFeed.textContent =
+            'Укажите год начала обучения, в диапазоне: от 2000 по "текущий"!';
+          break;
         case 'Факультет':
-          invalidFeed.textContent = 'Определите факультет!';
+          invalidFeed.textContent = 'Определите факультет (не менее 3-х букв)!';
           break;
         default:
           invalidFeed.textContent = 'Заполните поле!';
@@ -644,9 +653,6 @@
   // ** добавление "новых" студентов в массив/таблицу, через поля формы (после валидации, после проверки по ФИО)
   const allFormInInputs = document.querySelectorAll(
     '.dboard__input-form input'
-  );
-  const allFormInTextInputs = document.querySelectorAll(
-    '.dboard__input-form input[type="text"]'
   );
 
   function toUpFirstLetter(value) {
@@ -668,20 +674,56 @@
     );
   }
 
-  allFormInTextInputs.forEach((textInput) => {
-    textInput.addEventListener('input', (event) => {
+  allFormInInputs.forEach((input) => {
+    input.addEventListener('input', (event) => {
       const target = event.target;
       const targetParentNode = target.parentNode;
       const invalidFeed = targetParentNode.querySelector('.invalid-feedback');
 
-      // только русские буквы и дефис (для двойных-фамилий), без цифр/символов и пробелов
-      if (/[^а-яА-ЯёЁ-]/.test(target.value)) {
-        target.classList.add('is-invalid');
-        invalidFeed.textContent =
-          'Не корректный ввод! Измените раскладку клавиатуры и/или исключите цифры/знаки, пробелы!';
-      } else {
-        target.classList.remove('is-invalid');
-        updateFormInputValidMsg(target);
+      if (target.type === 'text') {
+        // только русские буквы и дефис (для двойных фамилий), без цифр/символов и пробелов
+        if (/[^а-яА-ЯёЁ-]/.test(target.value)) {
+          target.classList.add('is-invalid');
+          invalidFeed.textContent =
+            'Некорректный ввод! Измените раскладку клавиатуры и/или исключите цифры/знаки, пробелы!';
+        } else {
+          target.classList.remove('is-invalid');
+          updateFormInputValidMsg(target);
+        }
+      } else if (target.type === 'number') {
+        // исключение ввода не цифр, через прослушку клавиатуры (ряд исключений)
+        input.addEventListener('keydown', (event) => {
+          const pressedKey = event.key;
+
+          if (
+            !pressedKey.match(/[0-9]/) &&
+            ![
+              'Tab',
+              'Backspace',
+              'ArrowUp',
+              'ArrowRight',
+              'ArrowDown',
+              'ArrowLeft',
+              'Delete',
+            ].includes(pressedKey)
+          ) {
+            target.classList.add('is-invalid');
+            invalidFeed.textContent = 'Некорректный ввод! Только цифры!';
+            event.preventDefault();
+          } else {
+            target.classList.remove('is-invalid');
+            updateFormInputValidMsg(target);
+          }
+        });
+
+        // ограничение по длине ввода
+        if (target.value.length > 4) {
+          target.classList.add('is-invalid');
+          invalidFeed.textContent = 'Некорректный ввод! Не более 4 цифр!';
+        } else {
+          target.classList.remove('is-invalid');
+          updateFormInputValidMsg(target);
+        }
       }
     });
   });
