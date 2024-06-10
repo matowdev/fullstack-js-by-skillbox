@@ -650,6 +650,60 @@
     }
   }
 
+  // ** организация валидации input(ов), исходя из типа (перед валидацией формы)
+  function validationFormInputs(input, event) {
+    const target = event.target;
+    const targetParentNode = target.parentNode;
+    const invalidFeed = targetParentNode.querySelector('.invalid-feedback');
+
+    if (target.type === 'text') {
+      // только русские буквы и дефис (для двойных фамилий), без цифр/символов и пробелов
+      if (/[^а-яА-ЯёЁ-]/.test(target.value)) {
+        target.classList.add('is-invalid');
+        invalidFeed.textContent =
+          'Некорректный ввод! Измените раскладку клавиатуры и/или исключите цифры/знаки, пробелы!';
+      } else {
+        target.classList.remove('is-invalid');
+        updateFormInputValidMsg(target);
+      }
+    } else if (target.type === 'number') {
+      // исключение ввода не цифр, через прослушку клавиатуры (ряд исключений)
+      input.addEventListener('keydown', (event) => {
+        const pressedKey = event.key;
+
+        if (
+          !pressedKey.match(/[0-9]/) &&
+          ![
+            'Tab',
+            'Alt',
+            'Backspace',
+            'ArrowUp',
+            'ArrowRight',
+            'ArrowDown',
+            'ArrowLeft',
+            'Delete',
+          ].includes(pressedKey)
+        ) {
+          target.classList.add('is-invalid');
+          invalidFeed.textContent = 'Некорректный ввод! Только цифры!';
+          event.preventDefault();
+        } else {
+          target.classList.remove('is-invalid');
+          updateFormInputValidMsg(target);
+        }
+      });
+
+      // ограничение по длине ввода
+      if (target.value.length > 4) {
+        target.classList.add('is-invalid');
+        invalidFeed.textContent = 'Некорректный ввод! Не более 4-х цифр!';
+      } else {
+        target.classList.remove('is-invalid');
+        updateFormInputValidMsg(target);
+      }
+    }
+  }
+
   // ** добавление "новых" студентов в массив/таблицу, через поля формы (после валидации, после проверки по ФИО)
   const allFormInInputs = document.querySelectorAll(
     '.dboard__input-form input'
@@ -676,55 +730,7 @@
 
   allFormInInputs.forEach((input) => {
     input.addEventListener('input', (event) => {
-      const target = event.target;
-      const targetParentNode = target.parentNode;
-      const invalidFeed = targetParentNode.querySelector('.invalid-feedback');
-
-      if (target.type === 'text') {
-        // только русские буквы и дефис (для двойных фамилий), без цифр/символов и пробелов
-        if (/[^а-яА-ЯёЁ-]/.test(target.value)) {
-          target.classList.add('is-invalid');
-          invalidFeed.textContent =
-            'Некорректный ввод! Измените раскладку клавиатуры и/или исключите цифры/знаки, пробелы!';
-        } else {
-          target.classList.remove('is-invalid');
-          updateFormInputValidMsg(target);
-        }
-      } else if (target.type === 'number') {
-        // исключение ввода не цифр, через прослушку клавиатуры (ряд исключений)
-        input.addEventListener('keydown', (event) => {
-          const pressedKey = event.key;
-
-          if (
-            !pressedKey.match(/[0-9]/) &&
-            ![
-              'Tab',
-              'Backspace',
-              'ArrowUp',
-              'ArrowRight',
-              'ArrowDown',
-              'ArrowLeft',
-              'Delete',
-            ].includes(pressedKey)
-          ) {
-            target.classList.add('is-invalid');
-            invalidFeed.textContent = 'Некорректный ввод! Только цифры!';
-            event.preventDefault();
-          } else {
-            target.classList.remove('is-invalid');
-            updateFormInputValidMsg(target);
-          }
-        });
-
-        // ограничение по длине ввода
-        if (target.value.length > 4) {
-          target.classList.add('is-invalid');
-          invalidFeed.textContent = 'Некорректный ввод! Не более 4 цифр!';
-        } else {
-          target.classList.remove('is-invalid');
-          updateFormInputValidMsg(target);
-        }
-      }
+      validationFormInputs(input, event); // валидация inputs, потом всей формы
     });
   });
 
