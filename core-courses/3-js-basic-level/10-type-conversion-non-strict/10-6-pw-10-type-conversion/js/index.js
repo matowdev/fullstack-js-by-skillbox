@@ -321,15 +321,19 @@
   const formFilterFIOWrap = document.createElement('div');
   const formFilterFIOInput = document.createElement('input');
   const formFilterFIOLabel = document.createElement('label');
+  const formFilterFIOInvalidFeed = document.createElement('div');
   const formFilterFacultyWrap = document.createElement('div');
   const formFilterFacultyInput = document.createElement('input');
   const formFilterFacultyLabel = document.createElement('label');
+  const formFilterFacultyInvalidFeed = document.createElement('div');
   const formFilterStartYearWrap = document.createElement('div');
   const formFilterStartYearInput = document.createElement('input');
   const formFilterStartYearLabel = document.createElement('label');
+  const formFilterStartYearInvalidFeed = document.createElement('div');
   const formFilterEndYearWrap = document.createElement('div');
   const formFilterEndYearInput = document.createElement('input');
   const formFilterEndYearLabel = document.createElement('label');
+  const formFilterEndYearInvalidFeed = document.createElement('div');
   const formFilterBtnWrap = document.createElement('div');
   const formFilterBtnApplyFilter = document.createElement('button');
   const formFilterBtnClear = document.createElement('button');
@@ -362,6 +366,10 @@
   );
   formFilterFIOInput.classList.add('dboard__filter-fio-input', 'form-control');
   formFilterFIOLabel.classList.add('dboard__filter-fio-label');
+  formFilterFIOInvalidFeed.classList.add(
+    'dboard__filter-fio-feedback',
+    'invalid-feedback'
+  );
   formFilterFacultyWrap.classList.add(
     'dboard__filter-faculty-wrap',
     'form-floating',
@@ -372,6 +380,10 @@
     'form-control'
   );
   formFilterFacultyLabel.classList.add('dboard__filter-faculty-label');
+  formFilterFacultyInvalidFeed.classList.add(
+    'dboard__filter-faculty-feedback',
+    'invalid-feedback'
+  );
   formFilterStartYearWrap.classList.add(
     'dboard__filter-start-wrap',
     'form-floating',
@@ -382,6 +394,10 @@
     'form-control'
   );
   formFilterStartYearLabel.classList.add('dboard__filter-start-label');
+  formFilterStartYearInvalidFeed.classList.add(
+    'dboard__filter-start-feedback',
+    'invalid-feedback'
+  );
   formFilterEndYearWrap.classList.add(
     'dboard__filter-end-wrap',
     'form-floating',
@@ -392,6 +408,10 @@
     'form-control'
   );
   formFilterEndYearLabel.classList.add('dboard__filter-end-label');
+  formFilterEndYearInvalidFeed.classList.add(
+    'dboard__filter-end-feedback',
+    'invalid-feedback'
+  );
   formFilterBtnWrap.classList.add(
     'dboard__filter-btn-wrap',
     'd-inline-flex',
@@ -422,11 +442,13 @@
   formFilterData.setAttribute('novalidate', '');
   formFilterFIOInput.setAttribute('id', 'floatingFilterFIO');
   formFilterFIOInput.setAttribute('type', 'text');
+  formFilterFIOInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
   formFilterFIOInput.setAttribute('placeholder', 'Ф.И.О.');
   // formFilterFIOInput.setAttribute('required', '');
   formFilterFIOLabel.setAttribute('for', 'floatingFilterFIO');
   formFilterFacultyInput.setAttribute('id', 'floatingFilterFaculty');
   formFilterFacultyInput.setAttribute('type', 'text');
+  formFilterFacultyInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
   formFilterFacultyInput.setAttribute('placeholder', 'Факультет');
   // formFilterFacultyInput.setAttribute('required', '');
   formFilterFacultyLabel.setAttribute('for', 'floatingFilterFaculty');
@@ -452,21 +474,38 @@
   filterCollapseBtnShowHide.textContent =
     'Развернуть/свернуть форму фильтрации студентов';
   formFilterFIOLabel.textContent = 'Ф.И.О.';
+  formFilterFIOInvalidFeed.textContent = 'Введите Ф.И.О.!';
   formFilterFacultyLabel.textContent = 'Факультет';
+  formFilterFacultyInvalidFeed.textContent = 'Введите название факультет!';
   formFilterStartYearLabel.textContent = 'Год начала обучения';
+  formFilterStartYearInvalidFeed.textContent = 'Укажите год начала обучения!';
   formFilterEndYearLabel.textContent = 'Год окончания обучения';
+  formFilterEndYearInvalidFeed.textContent = 'Укажите год окончания обучения!';
   formFilterBtnApplyFilter.textContent = 'Применить фильтр(ы)';
   formFilterBtnClear.textContent = 'Очистить поля фильтрации';
 
   filterCollapseBtnWrap.append(filterCollapseBtnShowHide);
-  formFilterFIOWrap.append(formFilterFIOInput, formFilterFIOLabel);
-  formFilterFacultyWrap.append(formFilterFacultyInput, formFilterFacultyLabel);
+  formFilterFIOWrap.append(
+    formFilterFIOInput,
+    formFilterFIOLabel,
+    formFilterFIOInvalidFeed
+  );
+  formFilterFacultyWrap.append(
+    formFilterFacultyInput,
+    formFilterFacultyLabel,
+    formFilterFacultyInvalidFeed
+  );
   formFilterStartYearWrap.append(
     formFilterStartYearInput,
-    formFilterStartYearLabel
+    formFilterStartYearLabel,
+    formFilterStartYearInvalidFeed
   );
-  formFilterEndYearWrap.append(formFilterEndYearInput, formFilterEndYearLabel);
-  formFilterBtnWrap.append(formFilterBtnClear); // готова к добавлению.. formFilterBtnApplyFilter
+  formFilterEndYearWrap.append(
+    formFilterEndYearInput,
+    formFilterEndYearLabel,
+    formFilterEndYearInvalidFeed
+  );
+  formFilterBtnWrap.append(formFilterBtnClear); // готова к добавлению.. и formFilterBtnApplyFilter
   formFilterData.append(
     formFilterFIOWrap,
     formFilterFacultyWrap,
@@ -632,6 +671,9 @@
         case 'Отчество':
           invalidFeed.textContent = 'Заполните поле "Отчество"!';
           break;
+        case 'Ф.И.О.':
+          invalidFeed.textContent = 'Введите Ф.И.О.!';
+          break;
         case 'Дата рождения':
           invalidFeed.textContent =
             'Укажите дату рождения, в диапазоне: от 1900 года до "текущего"!';
@@ -639,6 +681,10 @@
         case 'Год начала обучения':
           invalidFeed.textContent =
             'Укажите год начала обучения, в диапазоне: от 2000 по "текущий"!';
+          break;
+        case 'Год окончания обучения':
+          invalidFeed.textContent =
+            'Укажите год окончания обучения, в диапазоне: от 2004 по "..."!';
           break;
         case 'Факультет':
           invalidFeed.textContent = 'Определите факультет (не менее 3-х букв)!';
@@ -650,66 +696,13 @@
     }
   }
 
-  // ** организация валидации input(ов), исходя из типа (перед валидацией формы)
-  function validationFormInputs(input, event) {
-    const target = event.target;
-    const targetParentNode = target.parentNode;
-    const invalidFeed = targetParentNode.querySelector('.invalid-feedback');
-
-    if (target.type === 'text') {
-      // только русские буквы и дефис (для двойных фамилий), без цифр/символов и пробелов
-      if (/[^а-яА-ЯёЁ-]/.test(target.value)) {
-        target.classList.add('is-invalid');
-        invalidFeed.textContent =
-          'Некорректный ввод! Измените раскладку клавиатуры и/или исключите цифры/знаки, пробелы!';
-      } else {
-        target.classList.remove('is-invalid');
-        updateFormInputValidMsg(target);
-      }
-    } else if (target.type === 'number') {
-      // исключение ввода не цифр, через прослушку клавиатуры (ряд исключений)
-      input.addEventListener('keydown', (event) => {
-        const pressedKey = event.key;
-
-        if (
-          !pressedKey.match(/[0-9]/) &&
-          ![
-            'Tab',
-            'Alt',
-            'Backspace',
-            'ArrowUp',
-            'ArrowRight',
-            'ArrowDown',
-            'ArrowLeft',
-            'Delete',
-          ].includes(pressedKey)
-        ) {
-          target.classList.add('is-invalid');
-          invalidFeed.textContent = 'Некорректный ввод! Только цифры!';
-          event.preventDefault();
-        } else {
-          target.classList.remove('is-invalid');
-          updateFormInputValidMsg(target);
-        }
-      });
-
-      // ограничение по длине ввода
-      if (target.value.length > 4) {
-        target.classList.add('is-invalid');
-        invalidFeed.textContent = 'Некорректный ввод! Не более 4-х цифр!';
-      } else {
-        target.classList.remove('is-invalid');
-        updateFormInputValidMsg(target);
-      }
-    }
-  }
-
   // ** добавление "новых" студентов в массив/таблицу, через поля формы (после валидации, после проверки по ФИО)
   const allFormInInputs = document.querySelectorAll(
     '.dboard__input-form input'
   );
 
   function toUpFirstLetter(value) {
+    if (!value) return ''; // если вдруг "пусто"
     return value[0].toUpperCase() + value.slice(1).toLowerCase();
   }
 
@@ -729,8 +722,66 @@
   }
 
   allFormInInputs.forEach((input) => {
+    if (input.type === 'number') {
+      // исключение ввода не цифр, через прослушку клавиатуры (ряд исключений)
+      input.addEventListener('keydown', (event) => {
+        const pressedKey = event.key;
+        const target = event.target;
+        const targetParentNode = target.parentNode;
+        const invalidFeed = targetParentNode.querySelector('.invalid-feedback');
+
+        if (event.ctrlKey || event.altKey || event.shiftKey) {
+          return;
+        }
+
+        if (
+          !pressedKey.match(/[0-9]/) &&
+          ![
+            'Tab',
+            'Backspace',
+            'Enter',
+            'Delete',
+            'ArrowUp',
+            'ArrowRight',
+            'ArrowDown',
+            'ArrowLeft',
+          ].includes(pressedKey)
+        ) {
+          target.classList.add('is-invalid');
+          invalidFeed.textContent = 'Некорректный ввод! Только цифры!';
+          event.preventDefault();
+        } else {
+          target.classList.remove('is-invalid');
+          updateFormInputValidMsg(target);
+        }
+      });
+    }
+
     input.addEventListener('input', (event) => {
-      validationFormInputs(input, event); // валидация inputs, потом всей формы
+      const target = event.target;
+      const targetParentNode = target.parentNode;
+      const invalidFeed = targetParentNode.querySelector('.invalid-feedback');
+
+      if (target.type === 'text') {
+        // только русские буквы и дефис (для двойных-фамилий), без цифр/символов и пробелов
+        if (/[^а-яА-ЯёЁ-]/.test(target.value)) {
+          target.classList.add('is-invalid');
+          invalidFeed.textContent =
+            'Некорректный ввод! Измените раскладку клавиатуры и/или исключите цифры/знаки, пробелы!';
+        } else {
+          target.classList.remove('is-invalid');
+          updateFormInputValidMsg(target);
+        }
+      } else if (target.type === 'number') {
+        // ограничение по длине ввода
+        if (target.value.length > 4) {
+          target.classList.add('is-invalid');
+          invalidFeed.textContent = 'Некорректный ввод! Не более 4 цифр!';
+        } else {
+          target.classList.remove('is-invalid');
+          updateFormInputValidMsg(target);
+        }
+      }
     });
   });
 
