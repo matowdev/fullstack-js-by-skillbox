@@ -696,32 +696,8 @@
     }
   }
 
-  // ** добавление "новых" студентов в массив/таблицу, через поля формы (после валидации, после проверки по ФИО)
-  const allFormInInputs = document.querySelectorAll(
-    '.dboard__input-form input'
-  );
-
-  function toUpFirstLetter(value) {
-    if (!value) return ''; // если вдруг "пусто"
-    return value[0].toUpperCase() + value.slice(1).toLowerCase();
-  }
-
-  // проверка на совпадение по ФИО, в исходном/формирующемся массиве
-  function checkStudentFIO(
-    formInSurname,
-    formInName,
-    formInPatronymic,
-    studentsDataArr
-  ) {
-    return studentsDataArr.some(
-      (student) =>
-        student.surname === formInSurname &&
-        student.name === formInName &&
-        student.patronymic === formInPatronymic
-    );
-  }
-
-  allFormInInputs.forEach((input) => {
+  // ** организация дополнительной валидации для inputs, согласно их типов (отдельно от валидации всей формы/submit)
+  function additionalFormInputsValidation(input) {
     if (input.type === 'number') {
       // исключение ввода не цифр, через прослушку клавиатуры (ряд исключений)
       input.addEventListener('keydown', (event) => {
@@ -783,6 +759,36 @@
         }
       }
     });
+  }
+
+  // ** добавление "новых" студентов в массив/таблицу, через поля формы (после валидации, после проверки по ФИО)
+  const allFormInInputs = document.querySelectorAll(
+    '.dboard__input-form input'
+  );
+
+  // корректировка регистра, для полей Ф.И.О.
+  function toUpFirstLetter(value) {
+    if (!value) return ''; // если вдруг "пусто"
+    return value[0].toUpperCase() + value.slice(1).toLowerCase();
+  }
+
+  // проверка на совпадение по ФИО, в исходном/формирующемся массиве
+  function checkStudentFIO(
+    formInSurname,
+    formInName,
+    formInPatronymic,
+    studentsDataArr
+  ) {
+    return studentsDataArr.some(
+      (student) =>
+        student.surname === formInSurname &&
+        student.name === formInName &&
+        student.patronymic === formInPatronymic
+    );
+  }
+
+  allFormInInputs.forEach((input) => {
+    additionalFormInputsValidation(input); // дополнительная валидация (на корректный ввод)
   });
 
   formInputData.addEventListener(
@@ -839,6 +845,10 @@
   const allFormFilterInputs = document.querySelectorAll(
     '.dboard__filter-form input'
   );
+
+  allFormFilterInputs.forEach((input) => {
+    additionalFormInputsValidation(input); // валидация (на корректный ввод)
+  });
 
   formFilterData.addEventListener('submit', (event) => {
     event.preventDefault();
