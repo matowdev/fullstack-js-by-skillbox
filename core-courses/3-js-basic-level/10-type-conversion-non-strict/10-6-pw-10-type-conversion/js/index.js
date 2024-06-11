@@ -909,15 +909,27 @@
         updateFormInputValidMsg(input);
       });
     } else if (clickedClearBtn.id === 'filter-clear-btn') {
-      const formFilterInputsValuesArr = [
-        formFilterFIOInput.value,
-        formFilterFacultyInput.value,
-        formFilterStartYearInput.value,
-        formFilterEndYearInput.value,
-      ]; // можно и без массива/дополнительного if, "просто" через операторы && и ||, в основном else..if
+      const formFilterInputsArr = [
+        formFilterFIOInput,
+        formFilterFacultyInput,
+        formFilterStartYearInput,
+        formFilterEndYearInput,
+      ];
+      const formFilterInputsValuesArr = formFilterInputsArr.map(
+        (input) => input.value
+      );
+      const invalidFilterInputs = formFilterInputsArr.some((input) =>
+        input.classList.contains('is-invalid')
+      );
 
-      if (formFilterInputsValuesArr.some((value) => value !== '')) {
-        allFormFilterInputs.forEach((input) => (input.value = ''));
+      if (
+        formFilterInputsValuesArr.some((value) => value !== '') ||
+        invalidFilterInputs
+      ) {
+        allFormFilterInputs.forEach((input) => {
+          input.value = '';
+          updateFormInputValidMsg(input);
+        });
         addStudentsToTable(studentsDataArr);
       }
     }
@@ -945,9 +957,13 @@
       }, 500);
     } else if (clickedCollapseBtn.id === 'formFilterCollapse') {
       setTimeout(() => {
-        allFormFilterInputs.forEach((input) => (input.value = ''));
+        allFormFilterInputs.forEach((input) => {
+          input.value = '';
+          updateFormInputValidMsg(input);
+        });
         formFilterData.classList.remove('was-validated');
       }, 500);
+      addStudentsToTable(studentsDataArr); // возврат к исходному виду таблицы без задержки
     }
   }
 
