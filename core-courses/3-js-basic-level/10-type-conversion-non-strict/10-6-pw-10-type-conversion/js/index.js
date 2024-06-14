@@ -636,6 +636,20 @@
     return studentTableTr;
   }
 
+  // ** создание "пустой" строки для таблицы студентов (при/для фильтрации, пустом массиве)
+  function createEmptyTableMessageRow() {
+    const emptyTableTrRow = document.createElement('tr');
+    const emptyTableTdCell = document.createElement('td');
+
+    emptyTableTdCell.colSpan = 5; // объединение всех колонок
+    emptyTableTdCell.textContent =
+      'Пусто.. измените фильтрацию, добавьте студента!';
+    emptyTableTdCell.style.textAlign = 'center';
+    emptyTableTrRow.append(emptyTableTdCell);
+
+    return emptyTableTrRow;
+  }
+
   // ** наполнение таблицы данных о студентах (согласно откорректированного исходного, далее формирующегося массива)
   let updateStudentsDataArr;
 
@@ -643,9 +657,14 @@
     tableBody.innerHTML = ''; // предварительная очистка таблицы
     updateStudentsDataArr = correctInitArr(studentsDataArr);
 
-    for (const [index, student] of updateStudentsDataArr.entries()) {
-      const studentTableTrRow = createStudentTableTrRow(index, student);
-      tableBody.append(studentTableTrRow);
+    if (updateStudentsDataArr.length === 0) {
+      const emptyTableRow = createEmptyTableMessageRow(); // если массив студентов/таблица данных пуста, вывод сообщения
+      tableBody.append(emptyTableRow);
+    } else {
+      for (const [index, student] of updateStudentsDataArr.entries()) {
+        const studentTableTrRow = createStudentTableTrRow(index, student);
+        tableBody.append(studentTableTrRow);
+      }
     }
   }
 
