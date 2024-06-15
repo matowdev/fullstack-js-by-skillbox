@@ -855,10 +855,43 @@
 
         allFormInInputs.forEach((input) => (input.value = '')); // очистка полей формы (после добавления)
         formInputData.classList.remove('was-validated'); // отмена красной обводки у "чистых" полей формы (после добавления)
+
+        // вывод сообщения об успешном добавлении студента (после перерисовки таблицы)
+        setTimeout(() => {
+          alert('Студент успешно добавлен!');
+          movingToLastNewTableRow(); // выделение/показ только что добавленного студента/строки
+        }, 200);
       }
     },
     false
   );
+
+  // ** перемещение/фиксация области просмотра на только что добавленном студенте/на последней строке (выделение цветом)
+  function movingToLastNewTableRow() {
+    const lastNewTableRow = tableBody.lastElementChild;
+    const defaultRowCellColors = [];
+
+    if (lastNewTableRow) {
+      // перемещение к "новому" студенту/к последней строке таблицы
+      lastNewTableRow.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
+
+      // изменение цвета/выделение строки
+      lastNewTableRow.querySelectorAll('td').forEach((td) => {
+        defaultRowCellColors.push(td.style.color);
+        td.style.color = '#3f2aff';
+      });
+
+      // возврат к default цвету, через несколько секунды
+      setTimeout(() => {
+        lastNewTableRow.querySelectorAll('td').forEach((td, index) => {
+          td.style.color = defaultRowCellColors[index];
+        });
+      }, 2000);
+    }
+  }
 
   // ** фильтрация студентов/таблицы, согласно фильтрационных полей ввода (сразу применение)
   const allFormFilterInputs = document.querySelectorAll(
