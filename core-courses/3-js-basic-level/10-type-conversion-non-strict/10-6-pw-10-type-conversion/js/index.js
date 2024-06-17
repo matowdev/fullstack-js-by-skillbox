@@ -526,6 +526,8 @@
   const tableHeadThFaculty = document.createElement('th');
   const tableHeadThBirthDate = document.createElement('th');
   const tableHeadThStartYear = document.createElement('th');
+  const afterTableLinksWrap = document.createElement('div');
+  const linkToAddStudForm = document.createElement('a');
 
   table.classList.add(
     'dboard__table',
@@ -540,12 +542,22 @@
   tableHeadThFaculty.classList.add('dboard__table-head-cell');
   tableHeadThBirthDate.classList.add('dboard__table-head-cell');
   tableHeadThStartYear.classList.add('dboard__table-head-cell');
+  afterTableLinksWrap.classList.add('dboard__table-after');
+  linkToAddStudForm.classList.add(
+    'dboard__table-after-link',
+    'btn',
+    'btn-outline-primary'
+  );
+
+  linkToAddStudForm.setAttribute('href', '#formInputCollapse');
+  linkToAddStudForm.setAttribute('role', 'button');
 
   tableHeaderThTag.textContent = '#';
   tableHeadThFIO.textContent = 'Ф.И.О.';
   tableHeadThFaculty.textContent = 'Факультет';
   tableHeadThBirthDate.textContent = 'Дата рождения и возраст';
   tableHeadThStartYear.textContent = 'Годы обучения';
+  linkToAddStudForm.textContent = 'Возврат к форме добавления студента..';
 
   tableHeadTr.append(
     tableHeaderThTag,
@@ -556,7 +568,8 @@
   );
   tableHead.append(tableHeadTr);
   table.append(tableHead, tableBody);
-  dboardOutput.append(table);
+  afterTableLinksWrap.append(linkToAddStudForm);
+  dboardOutput.append(table, afterTableLinksWrap);
 
   // основные блоки/составляющие панели управления
   dashboard.append(dboardInput, dboardFilter, dboardOutput);

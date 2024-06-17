@@ -3,8 +3,9 @@
   text-align: center;
 }
 
-/* .dboard__table tr {
-} */
+.dboard__table tr th {
+  cursor: pointer;
+}
 
 /* .dboard__table th,
 .dboard__table td {
