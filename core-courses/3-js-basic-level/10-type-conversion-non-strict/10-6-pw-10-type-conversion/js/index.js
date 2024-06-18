@@ -252,8 +252,7 @@
   formInBtnClear.setAttribute('id', 'in-clear-btn');
   formInBtnClear.setAttribute('type', 'button');
 
-  inputCollapseBtnShowHide.textContent =
-    'Развернуть/свернуть форму добавления студентов';
+  inputCollapseBtnShowHide.textContent = 'Форма добавления студентов';
   formInSurnameLabel.textContent = 'Фамилия';
   formInSurnameInvalidFeed.textContent = 'Заполните поле "Фамилия"!';
   formInNameLabel.textContent = 'Имя';
@@ -471,8 +470,7 @@
   formFilterBtnClear.setAttribute('id', 'filter-clear-btn');
   formFilterBtnClear.setAttribute('type', 'button');
 
-  filterCollapseBtnShowHide.textContent =
-    'Развернуть/свернуть форму фильтрации студентов';
+  filterCollapseBtnShowHide.textContent = 'Форма фильтрации студентов';
   formFilterFIOLabel.textContent = 'Ф.И.О.';
   formFilterFIOInvalidFeed.textContent = 'Введите Ф.И.О.!';
   formFilterFacultyLabel.textContent = 'Факультет';
@@ -549,6 +547,7 @@
     'btn-outline-primary'
   );
 
+  linkToAddStudForm.setAttribute('id', 'linkToAddStudForm');
   linkToAddStudForm.setAttribute('href', '#formInputCollapse');
   linkToAddStudForm.setAttribute('role', 'button');
 
@@ -557,7 +556,7 @@
   tableHeadThFaculty.textContent = 'Факультет';
   tableHeadThBirthDate.textContent = 'Дата рождения и возраст';
   tableHeadThStartYear.textContent = 'Годы обучения';
-  linkToAddStudForm.textContent = 'Возврат к форме добавления студента..';
+  linkToAddStudForm.textContent = 'Обратно';
 
   tableHeadTr.append(
     tableHeaderThTag,
