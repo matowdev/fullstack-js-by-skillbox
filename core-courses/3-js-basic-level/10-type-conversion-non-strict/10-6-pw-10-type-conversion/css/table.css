@@ -1,12 +1,14 @@
 .dboard__table {
-  font-family: var(--roboto-mono);
+  font-family: var(--roboto-mono), sans-serif;
+  font-size: var(--default-fs);
   text-align: center;
 }
 
 .dboard__table tr th {
+  color: var(--starry-night);
   cursor: pointer;
 }
 
-/* .dboard__table th,
-.dboard__table td {
-} */
+.dboard__table #tableThTag {
+  color: var(--fire-red);
+}

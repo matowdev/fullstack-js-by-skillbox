@@ -1,8 +1,9 @@
 .tippy-box[data-theme~="main"] {
   font-family: var(--roboto-mono), sans-serif;
   font-size: var(--default-fs);
-  color: var(--white);
-  background-color: var(--specific-gray);
+  color: var(--starry-night);
+  background-color: var(--white);
+  outline: 1px solid var(--specific-blue);
 }
 
 .tippy-box[data-theme~="main"]::after {
@@ -17,5 +18,7 @@
 }
 
 .tippy-box[data-theme~="main"] .tippy-arrow {
-  color: var(--specific-gray);
+  margin-top: -1px;
+  margin-left: -1px;
+  color: var(--fire-red);
 }

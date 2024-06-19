@@ -1,0 +1,9 @@
+.btn {
+  font-family: var(--roboto-mono), sans-serif;
+  font-size: var(--default-fs);
+}
+
+.dboard__input-collapse-btn-show-hide,
+.dboard__filter-collapse-btn-show-hide {
+  min-width: 280px;
+}

@@ -49,6 +49,8 @@
   const dboardFilter = document.getElementById('dboard-filter');
   const dboardOutput = document.getElementById('dboard-output');
 
+  dboardOutput.classList.add('pb-3');
+
   // организация раскрывающейся формы (добавление студента, очистка полей ввода)
   const inputCollapseBtnWrap = document.createElement('div');
   const inputCollapseBtnShowHide = document.createElement('button');
@@ -85,14 +87,15 @@
   inputCollapseBtnWrap.classList.add(
     'dboard__input-collapse-btn-wrap',
     'd-inline-flex',
-    'gap-2'
+    'flex-wrap',
+    'gap-3',
+    'mb-3'
   );
   inputCollapseBtnShowHide.classList.add(
     'dboard__input-collapse-btn-show-hide',
     'btn',
     'btn-outline-primary',
-    'collapsed',
-    'mb-3'
+    'collapsed'
   );
   inputCollapseFormWrap.classList.add(
     'dboard__input-collapse-form-wrap',
@@ -184,13 +187,18 @@
   formInBtnWrap.classList.add(
     'dboard__input-btn-wrap',
     'd-inline-flex',
-    'gap-2'
+    'flex-wrap',
+    'gap-3'
   );
-  formInBtnAdd.classList.add('dboard__input-btn-add', 'btn', 'btn-primary');
+  formInBtnAdd.classList.add(
+    'dboard__input-btn-add',
+    'btn',
+    'btn-outline-success'
+  );
   formInBtnClear.classList.add(
     'dboard__input-btn-clear',
     'btn',
-    'btn-secondary',
+    'btn-outline-secondary',
     'btn-clear'
   );
 
@@ -340,14 +348,15 @@
   filterCollapseBtnWrap.classList.add(
     'dboard__filter-collapse-btn-wrap',
     'd-inline-flex',
-    'gap-2'
+    'flex-wrap',
+    'gap-3',
+    'mb-3'
   );
   filterCollapseBtnShowHide.classList.add(
     'dboard__filter-collapse-btn-show-hide',
     'btn',
     'btn-outline-primary',
-    'collapsed',
-    'mb-3'
+    'collapsed'
   );
   filterCollapseFormWrap.classList.add(
     'dboard__filter-collapse-form-wrap',
@@ -414,7 +423,8 @@
   formFilterBtnWrap.classList.add(
     'dboard__filter-btn-wrap',
     'd-inline-flex',
-    'gap-2'
+    'flex-wrap',
+    'gap-3'
   );
   formFilterBtnApplyFilter.classList.add(
     'dboard__filter-btn-filter',
@@ -425,7 +435,7 @@
   formFilterBtnClear.classList.add(
     'dboard__filter-btn-clear',
     'btn',
-    'btn-secondary',
+    'btn-outline-secondary',
     'btn-clear'
   );
 
@@ -540,11 +550,16 @@
   tableHeadThFaculty.classList.add('dboard__table-head-cell');
   tableHeadThBirthDate.classList.add('dboard__table-head-cell');
   tableHeadThStartYear.classList.add('dboard__table-head-cell');
-  afterTableLinksWrap.classList.add('dboard__table-after');
+  afterTableLinksWrap.classList.add(
+    'dboard__table-after-wrap',
+    'd-inline-flex',
+    'flex-wrap',
+    'gap-3'
+  );
   linkToAddStudForm.classList.add(
     'dboard__table-after-link',
     'btn',
-    'btn-outline-primary'
+    'btn-outline-secondary'
   );
 
   tableHeaderThTag.setAttribute('id', 'tableThTag');
@@ -561,7 +576,7 @@
   tableHeadThFaculty.textContent = 'Факультет';
   tableHeadThBirthDate.textContent = 'Дата рождения и возраст';
   tableHeadThStartYear.textContent = 'Годы обучения';
-  linkToAddStudForm.textContent = 'Обратно';
+  linkToAddStudForm.textContent = 'Возврат';
 
   tableHeadTr.append(
     tableHeaderThTag,
@@ -661,6 +676,7 @@
     emptyTableTdCell.colSpan = 5; // объединение всех колонок
     emptyTableTdCell.textContent =
       'Пусто.. измените фильтрацию, добавьте студента!';
+    emptyTableTdCell.style.color = '#e10c22';
     emptyTableTdCell.style.textAlign = 'center';
     emptyTableTrRow.append(emptyTableTdCell);
 
@@ -898,7 +914,7 @@
       // изменение цвета/выделение строки
       lastNewTableRow.querySelectorAll('td').forEach((td) => {
         defaultRowCellColors.push(td.style.color);
-        td.style.color = '#3f2aff';
+        td.style.color = '#e10c22';
       });
 
       // возврат к default цвету, через несколько секунды

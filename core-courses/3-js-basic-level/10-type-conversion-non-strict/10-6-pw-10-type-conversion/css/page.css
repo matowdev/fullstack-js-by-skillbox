@@ -46,20 +46,15 @@ svg {
 }
 
 .page {
-  /* position: relative; */
   min-width: var(--page-min-width);
   height: auto;
   min-height: 100vh;
   font-family: var(--roboto-mono), sans-serif;
   font-size: var(--default-fs);
-  color: var(--plum);
-  /* background-color: var(--nude); */
-  /* background: url(../images/bg-2.jpg) no-repeat scroll center / cover; */
+  color: var(--starry-night);
 }
 
 .page__title {
   margin-bottom: 16px;
   padding-top: 10px;
-  /* font-weight: var(--semi-bold); */
-  /* color: var(--specific-blue); */
 }
