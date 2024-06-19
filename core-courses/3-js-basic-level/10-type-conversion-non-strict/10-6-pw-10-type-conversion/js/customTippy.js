@@ -25,6 +25,11 @@
 
     initTippy('#formInputCollapse', 'развернуть/свернуть', 'right');
     initTippy('#formFilterCollapse', 'развернуть/свернуть', 'right');
+    initTippy('#tableThTag', 'вернуть как было', 'right');
+    initTippy('#tableThFIO', 'сортировать ⇵', 'bottom');
+    initTippy('#tableThFaculty', 'сортировать ⇵', 'bottom');
+    initTippy('#tableThBirthDate', 'сортировать ⇵', 'bottom');
+    initTippy('#tableThStartYear', 'сортировать ⇵', 'bottom');
     initTippy('#linkToAddStudForm', 'к форме добавления', 'right');
   });
 })();

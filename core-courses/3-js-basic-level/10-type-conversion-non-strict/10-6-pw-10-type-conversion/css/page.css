@@ -56,3 +56,10 @@ svg {
   /* background-color: var(--nude); */
   /* background: url(../images/bg-2.jpg) no-repeat scroll center / cover; */
 }
+
+.page__title {
+  margin-bottom: 16px;
+  padding-top: 10px;
+  /* font-weight: var(--semi-bold); */
+  /* color: var(--specific-blue); */
+}

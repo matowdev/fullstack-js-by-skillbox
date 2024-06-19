@@ -90,7 +90,7 @@
   inputCollapseBtnShowHide.classList.add(
     'dboard__input-collapse-btn-show-hide',
     'btn',
-    'btn-primary',
+    'btn-outline-primary',
     'collapsed',
     'mb-3'
   );
@@ -345,7 +345,7 @@
   filterCollapseBtnShowHide.classList.add(
     'dboard__filter-collapse-btn-show-hide',
     'btn',
-    'btn-primary',
+    'btn-outline-primary',
     'collapsed',
     'mb-3'
   );
@@ -547,6 +547,11 @@
     'btn-outline-primary'
   );
 
+  tableHeaderThTag.setAttribute('id', 'tableThTag');
+  tableHeadThFIO.setAttribute('id', 'tableThFIO');
+  tableHeadThFaculty.setAttribute('id', 'tableThFaculty');
+  tableHeadThBirthDate.setAttribute('id', 'tableThBirthDate');
+  tableHeadThStartYear.setAttribute('id', 'tableThStartYear');
   linkToAddStudForm.setAttribute('id', 'linkToAddStudForm');
   linkToAddStudForm.setAttribute('href', '#formInputCollapse');
   linkToAddStudForm.setAttribute('role', 'button');
