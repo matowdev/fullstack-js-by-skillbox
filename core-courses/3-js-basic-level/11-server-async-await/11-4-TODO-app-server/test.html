@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test, TODO client/server</title>
+
+  <script>
+    async function loadTodoItems() {
+      const response = await fetch('http://localhost:3000/api/todos');
+      const data = await response.json();
+      console.log(data);
+    }
+
+    loadTodoItems();
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>
