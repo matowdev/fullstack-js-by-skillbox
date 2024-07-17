@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test, TODO client/server</title>
+
+  <script>
+    // загрузка списка TODO-дел с сервера (первичная)
+    async function loadTodoItems() {
+      const response = await fetch('http://localhost:3000/api/todos');
+      const data = await response.json();
+      console.log(data); // [] - "пустой" массив/список (пока что)
+    }
+
+    loadTodoItems();
+
+    // добавление "нового/первого" дела на сервер
+    async function createTodoItem() {
+      const response = await fetch('http://localhost:3000/api/todos', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name: 'Хорошо поработать', owner: 'Сергей' })
+      });
+      const data = await response.json();
+      console.log(data); // {owner: 'Сергей', name: 'Хорошо поработать', done: false, id: '1721211391769'}
+    }
+
+    // createTodoItem();
+
+    // получение дела по id
+    async function getTodoItemById(id) {
+      const response = await fetch(`http://localhost:3000/api/todos/${id}`);
+      const data = await response.json();
+      console.log(data); // {owner: 'Сергей', name: 'Хорошо поработать', done: false, id: '1721211391769'}
+    }
+
+    // getTodoItemById('1721211391769');
+
+    // изменение состояния дела по id (перевод в завершённое)
+    async function markTodoItemAsDone(id) {
+      const response = await fetch(`http://localhost:3000/api/todos/${id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ done: true })
+      });
+      const data = await response.json();
+      console.log(data); // {owner: 'Сергей', name: 'Хорошо поработать', done: true, id: '1721211391769'}
+    }
+
+    // markTodoItemAsDone('1721211391769');
+
+    // удаление дела по id
+    async function deleteTodoItem(id) {
+      const response = await fetch(`http://localhost:3000/api/todos/${id}`, { method: 'DELETE' });
+      if (response.status === 404) console.log('Не удалось удалить дело.. т.к. его не существует!');
+      const data = await response.json();
+      console.log(data); // ..нет дела
+    }
+
+    // deleteTodoItem('1721211391769');
+    deleteTodoItem('1721211391769'); // 404 (Not Found).. Не удалось удалить дело.. т.к. его не существует!
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>
