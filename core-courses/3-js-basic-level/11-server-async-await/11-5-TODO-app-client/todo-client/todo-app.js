@@ -122,25 +122,34 @@
       todoList.append(todoSelectedItem.formListItem);
     });
 
-    todoItem.form.addEventListener('submit', function (e) {
+    // ! добавление ключевого слова "async"
+    todoItem.form.addEventListener('submit', async function (e) {
       e.preventDefault();
 
       if (!todoItem.formInput.value) {
         return;
       }
 
-      // let idGeneration = Math.floor(Math.random() * 10e4);
+      // ! ввод серверной логики (формирование JSON структуры/объекта, отправка на сервер)
+      const response = await fetch('http://localhost:3000/api/todos', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: todoItem.formInput.value.trim(), // название дела берётся из поля ввода
+          owner: 'Сергей',
+        }),
+      });
 
-      let idGeneration =
-        todoArr.length > 0
-          ? Math.max(...todoArr.map((item) => item.id)) + 1
-          : 1;
+      // ! получение серверной записи/дела (объекта)
+      const todoItemFromServer = await response.json();
 
-      // формирование объекта данных, по элементу списка
+      // ! [КОРРЕКТИРОВКА] формирование объекта данных, по элементу списка.. (замена на todoItemFromServer)
       let todoItemObjData = {
-        id: idGeneration,
-        name: todoItem.formInput.value,
-        done: false,
+        id: todoItemFromServer.id,
+        name: todoItemFromServer.name,
+        done: todoItemFromServer.done,
       };
 
       todoArr.push(todoItemObjData);
