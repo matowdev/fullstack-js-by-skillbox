@@ -43,23 +43,23 @@ function drainJson(req) {
  * Проверяет входные данные и создаёт из них корректный объект дела
  * @param {Object} data - Объект с входными данными
  * @throws {TodoApiError} Некорректные данные в аргументе (statusCode 422)
- * @returns {{ name: string, owner: string, done: boolean }} Объект дела
+ * @returns {{ name: string, title: string, done: boolean }} Объект дела
  */
 function makeTodoItemFromData(data) {
   const errors = [];
 
   // составляем объект, где есть только необходимые поля
   const todoItem = {
-    owner: data.owner && String(data.owner),
+    title: data.title && String(data.title),
     name: data.name && String(data.name),
     done: Boolean(data.done),
   };
 
   // проверяем, все ли данные корректные и заполняем объект ошибок, которые нужно отдать клиенту
-  if (!todoItem.owner)
-    errors.push({ field: 'owner', message: 'Не указан ответственный' });
+  if (!todoItem.title)
+    errors.push({ field: 'title', message: 'Не указано название списка дел!' });
   if (!todoItem.name)
-    errors.push({ field: 'name', message: 'Не указан заголовок задачи' });
+    errors.push({ field: 'name', message: 'Не указано дело!?' });
   if (!todoItem.done) todoItem.done = false;
 
   // если есть ошибки, то кидаем ошибку с их списком и 422 статусом
@@ -70,13 +70,13 @@ function makeTodoItemFromData(data) {
 
 /**
  * Возвращает список дел из базы данных
- * @param {{ owner: string }} [params] - Фильтр по владельцу дела
- * @returns {{ name: string, owner: string, done: boolean }[]} Массив дел
+ * @param {{ title: string }} [params] - Фильтр по владельцу дела
+ * @returns {{ name: string, title: string, done: boolean }[]} Массив дел
  */
 function getTodoList(params = {}) {
   const todoList = JSON.parse(readFileSync(DB_FILE) || '[]');
-  if (params.owner)
-    return todoList.filter(({ owner }) => owner === params.owner);
+  if (params.title)
+    return todoList.filter(({ title }) => title === params.title);
   return todoList;
 }
 
@@ -84,11 +84,11 @@ function getTodoList(params = {}) {
  * Создаёт и сохраняет дело в базу данных
  * @throws {TodoApiError} Некорректные данные в аргументе, дело не создано (statusCode 422)
  * @param {Object} data - Данные из тела запроса
- * @returns {{ name: string, owner: string, done: boolean }} Объект дела
+ * @returns {{ name: string, title: string, done: boolean }} Объект дела
  */
 function createTodoItem(data) {
   const newItem = makeTodoItemFromData(data);
-  newItem.id = Date.now().toString();
+  newItem.id = Date.now().toString().slice(8); // ? интересная организация уникального ID, т.е. через Date/toString..
   writeFileSync(DB_FILE, JSON.stringify([...getTodoList(), newItem]), {
     encoding: 'utf8',
   });
@@ -99,7 +99,7 @@ function createTodoItem(data) {
  * Возвращает объект дела по его ID
  * @param {string} itemId - ID дела
  * @throws {TodoApiError} Дело с таким ID не найдено (statusCode 404)
- * @returns {{ name: string, owner: string, done?: boolean }} Объект дела
+ * @returns {{ name: string, title: string, done?: boolean }} Объект дела
  */
 function getTodoItem(itemId) {
   const todoItem = getTodoList().find(({ id }) => id === itemId);
@@ -111,10 +111,10 @@ function getTodoItem(itemId) {
 /**
  * Изменяет дело с указанным ID и сохраняет изменения в базу данных
  * @param {string} itemId - ID изменяемого дела
- * @param {{ name?: string, owner?: string, done?: boolean }} data - Объект с изменяемыми данными
+ * @param {{ name?: string, title?: string, done?: boolean }} data - Объект с изменяемыми данными
  * @throws {TodoApiError} Дело с таким ID не найдено (statusCode 404)
  * @throws {TodoApiError} Некорректные данные в аргументе (statusCode 422)
- * @returns {{ name: string, owner: string, done?: boolean }} Объект дела
+ * @returns {{ name: string, title: string, done?: boolean }} Объект дела
  */
 function updateTodoItem(itemId, data) {
   const todoItems = getTodoList();
@@ -235,14 +235,14 @@ createServer(async (req, res) => {
     console.log('Нажмите CTRL+C, чтобы остановить сервер');
     console.log('Доступные методы:');
     console.log(
-      `GET ${URI_PREFIX} - получить список дел, query параметр owner фильтрует по владельцу`
+      `GET ${URI_PREFIX} - получить список дел, query параметр title фильтрует по названию списка дел`
     );
     console.log(
-      `POST ${URI_PREFIX} - создать дело, в теле запроса нужно передать объект { name: string, owner: string, done?: boolean }`
+      `POST ${URI_PREFIX} - создать дело, в теле запроса нужно передать объект { name: string, title: string, done?: boolean }`
     );
     console.log(`GET ${URI_PREFIX}/{id} - получить дело по его ID`);
     console.log(
-      `PATCH ${URI_PREFIX}/{id} - изменить дело с ID, в теле запроса нужно передать объект { name?: string, owner?: string, done?: boolean }`
+      `PATCH ${URI_PREFIX}/{id} - изменить дело с ID, в теле запроса нужно передать объект { name?: string, title?: string, done?: boolean }`
     );
     console.log(`DELETE ${URI_PREFIX}/{id} - удалить дело по ID`);
   })

@@ -137,8 +137,8 @@
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          title: title.slice(0, -1).toLowerCase(),
           name: todoItem.formInput.value.trim(), // название дела берётся из поля ввода
-          owner: 'Сергей',
         }),
       });
 
