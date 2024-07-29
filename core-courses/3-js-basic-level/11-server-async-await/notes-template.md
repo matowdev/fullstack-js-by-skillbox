@@ -1,8 +1,8 @@
-# On the topic:
+# On the topic: "..." 
 
 ### Video-lesson / Terms of performance:
 
-[18.9...]()
+[18.9. ... .]()
 
 ### A few words:
 
