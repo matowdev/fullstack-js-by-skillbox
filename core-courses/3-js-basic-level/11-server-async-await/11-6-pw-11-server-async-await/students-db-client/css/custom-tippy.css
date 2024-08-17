@@ -1,0 +1,24 @@
+.tippy-box[data-theme~="main"] {
+  font-family: var(--roboto-mono), sans-serif;
+  font-size: var(--default-fs);
+  color: var(--starry-night);
+  background-color: var(--white);
+  outline: 1px solid var(--specific-blue);
+}
+
+.tippy-box[data-theme~="main"]::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 97%;
+  height: 1px;
+  background-color: inherit;
+  transform: translateX(-50%);
+}
+
+.tippy-box[data-theme~="main"] .tippy-arrow {
+  margin-top: -1px;
+  margin-left: -1px;
+  color: var(--fire-red);
+}

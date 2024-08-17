@@ -1,0 +1,45 @@
+/* roboto-mono, light - 300 - cyrillic_latin */
+@font-face {
+  font-family: "Roboto Mono";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("../fonts/roboto-mono-v23-cyrillic_latin-300.woff2") format("woff2");
+}
+
+/* roboto-mono, regular - 400 - cyrillic_latin */
+@font-face {
+  font-family: "Roboto Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/roboto-mono-v23-cyrillic_latin-regular.woff2")
+    format("woff2");
+}
+
+/* roboto-mono, medium - 500 - cyrillic_latin */
+@font-face {
+  font-family: "Roboto Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/roboto-mono-v23-cyrillic_latin-500.woff2") format("woff2");
+}
+
+/* roboto-mono, semi bold - 600 - cyrillic_latin */
+@font-face {
+  font-family: "Roboto Mono";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../fonts/roboto-mono-v23-cyrillic_latin-600.woff2") format("woff2");
+}
+
+/* roboto-mono, bold - 700 - cyrillic_latin */
+@font-face {
+  font-family: "Roboto Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/roboto-mono-v23-cyrillic_latin-700.woff2") format("woff2");
+}

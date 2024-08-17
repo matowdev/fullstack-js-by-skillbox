@@ -1,0 +1,60 @@
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth; /* плавная прокрутка */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+*::selection {
+  color: var(--white);
+  background-color: var(--specific-gray);
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.page {
+  min-width: var(--page-min-width);
+  height: auto;
+  min-height: 100vh;
+  font-family: var(--roboto-mono), sans-serif;
+  font-size: var(--default-fs);
+  color: var(--starry-night);
+}
+
+.page__title {
+  margin-bottom: 16px;
+  padding-top: 10px;
+}

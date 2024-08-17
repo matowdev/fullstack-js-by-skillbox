@@ -1,0 +1,26 @@
+:root {
+  /* sizes */
+  --page-min-width: 320px;
+
+  /* fonts */
+  --roboto-mono: "Roboto Mono";
+  --light: 300;
+  --regular: 400;
+  --medium: 500;
+  --semi-bold: 600;
+  --bold: 700;
+  --default-fs: 16px;
+
+  /* colors */
+  --black: #000;
+  --white: #fff;
+  --fire-red: #e10c22;
+  --light-blue: #1188e4;
+  --specific-blue: #0d6efd;
+  --specific-gray: #85859b;
+  --starry-night: #1c0d29;
+  --plum: #2e2b44;
+
+  /* transitions */
+  --short: 0.3s;
+}

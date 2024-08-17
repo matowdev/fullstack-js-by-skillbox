@@ -1,0 +1,11 @@
+.dboard__input-form,
+.dboard__filter-form,
+.dboard__input-form input,
+.dboard__filter-form input,
+.dboard__input-form input[type="text"],
+.dboard__filter-form input[type="text"],
+.dboard__input-form input[type="number"],
+.dboard__filter-form input[type="number"] {
+  font-family: var(--roboto-mono), sans-serif;
+  font-size: var(--default-fs);
+}
