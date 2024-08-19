@@ -651,6 +651,9 @@
     const studentTdBirthDate = document.createElement('td');
     const studentTdStartYear = document.createElement('td');
 
+    studentTableTr.classList.add('dboard__table-body-row');
+    studentTableTr.setAttribute('id', `body-row-${student.id}`); // формирование строчного ID исходя из ID студента
+
     studentTdNumber.textContent = index + 1;
     studentTdFIO.textContent = student.fullName;
     studentTdFaculty.textContent = student.faculty;
@@ -702,6 +705,50 @@
   }
 
   addStudentsToTable(studentsDataArr);
+
+  // ** выделение элементов/строк таблицы данных о студентах (при клике, с сохранением)
+  // определение целевой body-строки (добавление класса)
+  function selectTableBodyRow(event) {
+    const clickedTableRow = event.currentTarget; // определение строки, по которой происходит "click" - событие
+    clickedTableRow.classList.toggle('dboard__table-body-row_selected');
+  }
+
+  // организация прослушки, для body-строк (для всех)
+  function addClickListenersToBodyRows() {
+    const allBodyRows = document.querySelectorAll('.dboard__table-body-row');
+
+    allBodyRows.forEach((row) => {
+      row.addEventListener('click', (event) => {
+        selectTableBodyRow(event);
+      });
+    });
+  }
+
+  addClickListenersToBodyRows();
+
+  // сохранение "уже" выделенных строк
+  function getSelectedBodyRows() {
+    const selectedBodyRows = [];
+
+    document
+      .querySelectorAll('.dboard__table-body-row_selected')
+      .forEach((row) => {
+        selectedBodyRows.push(row.getAttribute('id')); // по ID
+      });
+
+    return selectedBodyRows;
+  }
+
+  // восстановление ранее выделенных строк (если были)
+  function restoreSelectedBodyRows(selectedBodyRows) {
+    const allBodyRows = document.querySelectorAll('.dboard__table-body-row');
+
+    allBodyRows.forEach((row) => {
+      if (selectedBodyRows.includes(row.getAttribute('id'))) {
+        row.classList.add('dboard__table-body-row_selected');
+      }
+    });
+  }
 
   // ** обновление валидационного сообщения (изменение состояния input(a))
   function updateFormInputValidMsg(input) {
@@ -973,6 +1020,7 @@
     }
 
     addStudentsToTable(updateStudentsDataArr);
+    addClickListenersToBodyRows(); // добавление/заново прослушки для всех строк (кроме заглавной), после пере-компоновки (новой отрисовки), для возможности выделения по клику
   }
 
   allFormFilterInputs.forEach((input) => {
@@ -1029,6 +1077,7 @@
 
   function clearFormsAfterCollapse(event) {
     const clickedCollapseBtn = event.target; // определение кнопки/цели, по которой происходит "click" - событие
+    const selectedBodyRows = getSelectedBodyRows(); // сохранение выделенных строк (если такие есть)
 
     if (clickedCollapseBtn.id === 'formInputCollapse') {
       setTimeout(() => {
@@ -1050,6 +1099,9 @@
       }, 500);
       addStudentsToTable(studentsDataArr); // возврат к исходному виду таблицы без задержки
     }
+
+    addClickListenersToBodyRows(); // добавление/заново прослушки для всех строк (кроме заглавной), после пере-компоновки (новой отрисовки), для возможности выделения по клику
+    restoreSelectedBodyRows(selectedBodyRows); // восстановление выделенных строк (если такие были)
   }
 
   allCollapseBtn.forEach((btn) => {
@@ -1064,6 +1116,7 @@
 
   function sortStudentsByTableCells(event) {
     const clickedTableCell = event.target.textContent; // определение заглавного поля/ячейки, по которой происходит "click" - событие
+    const selectedBodyRows = getSelectedBodyRows(); // сохранение выделенных строк (если такие есть)
 
     updateStudentsDataArr.sort((a, b) => {
       if (clickedTableCell === '#') {
@@ -1103,6 +1156,8 @@
     });
 
     addStudentsToTable(updateStudentsDataArr); // наполнение таблицы, вывод (пере-компоновка)
+    addClickListenersToBodyRows(); // добавление/заново прослушки для всех строк (кроме заглавной), после пере-компоновки (новой отрисовки), для возможности выделения по клику
+    restoreSelectedBodyRows(selectedBodyRows); // восстановление выделенных строк (если такие были)
   }
 
   allHeaderRowCells.forEach((cell) => {

@@ -4,11 +4,16 @@
   text-align: center;
 }
 
-.dboard__table tr th {
+.dboard__table tr th,
+.dboard__table tr td {
   color: var(--starry-night);
   cursor: pointer;
 }
 
 .dboard__table #tableThTag {
   color: var(--fire-red);
+}
+
+.dboard__table-body-row_selected {
+  border-bottom: 5px solid red;
 }
