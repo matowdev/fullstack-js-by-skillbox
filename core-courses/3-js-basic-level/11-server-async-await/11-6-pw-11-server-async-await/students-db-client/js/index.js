@@ -536,6 +536,7 @@
   const tableHeadThStartYear = document.createElement('th');
   const afterTableLinksWrap = document.createElement('div');
   const linkToAddStudForm = document.createElement('a');
+  const deselectBodyRowsBtn = document.createElement('button');
 
   table.classList.add(
     'dboard__table',
@@ -561,6 +562,12 @@
     'btn',
     'btn-outline-secondary'
   );
+  deselectBodyRowsBtn.classList.add(
+    'dboard__table-after-btn',
+    'btn',
+    'btn-outline-secondary',
+    'cancel-btn'
+  );
 
   tableHeaderThTag.setAttribute('id', 'tableThTag');
   tableHeadThFIO.setAttribute('id', 'tableThFIO');
@@ -570,6 +577,8 @@
   linkToAddStudForm.setAttribute('id', 'linkToAddStudForm');
   linkToAddStudForm.setAttribute('href', '#formInputCollapse');
   linkToAddStudForm.setAttribute('role', 'button');
+  deselectBodyRowsBtn.setAttribute('id', 'deselectBtn');
+  deselectBodyRowsBtn.setAttribute('type', 'button');
 
   tableHeaderThTag.textContent = '#';
   tableHeadThFIO.textContent = 'Ф.И.О.';
@@ -577,6 +586,7 @@
   tableHeadThBirthDate.textContent = 'Дата рождения и возраст';
   tableHeadThStartYear.textContent = 'Годы обучения';
   linkToAddStudForm.textContent = 'Возврат';
+  deselectBodyRowsBtn.textContent = 'Отмена';
 
   tableHeadTr.append(
     tableHeaderThTag,
@@ -587,7 +597,7 @@
   );
   tableHead.append(tableHeadTr);
   table.append(tableHead, tableBody);
-  afterTableLinksWrap.append(linkToAddStudForm);
+  afterTableLinksWrap.append(linkToAddStudForm, deselectBodyRowsBtn);
   dboardOutput.append(table, afterTableLinksWrap);
 
   // основные блоки/составляющие панели управления
@@ -749,6 +759,21 @@
       }
     });
   }
+
+  // ** отмена выделения элементов/строк таблицы данных о студентах (и через кнопку)
+  const cancelBtn = document.querySelector('.cancel-btn');
+
+  function deselectBodyRows() {
+    const allSelectedBodyRows = document.querySelectorAll(
+      '.dboard__table-body-row_selected'
+    );
+
+    allSelectedBodyRows.forEach((row) => {
+      row.classList.remove('dboard__table-body-row_selected');
+    });
+  }
+
+  cancelBtn.addEventListener('click', deselectBodyRows); // отработка функции по нажатию
 
   // ** обновление валидационного сообщения (изменение состояния input(a))
   function updateFormInputValidMsg(input) {

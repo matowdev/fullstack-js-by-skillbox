@@ -30,6 +30,7 @@
     initTippy('#tableThFaculty', 'сортировать ⇵', 'bottom');
     initTippy('#tableThBirthDate', 'сортировать ⇵', 'bottom');
     initTippy('#tableThStartYear', 'сортировать ⇵', 'bottom');
-    initTippy('#linkToAddStudForm', 'к форме добавления', 'right');
+    initTippy('#linkToAddStudForm', 'к форме добавления', 'bottom');
+    initTippy('#deselectBtn', 'выделения строк', 'right');
   });
 })();
