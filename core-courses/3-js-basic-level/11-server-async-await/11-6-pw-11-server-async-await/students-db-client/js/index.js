@@ -702,11 +702,13 @@
         tableBody.append(studentTableTrRow);
       }
     }
+
+    addClickListenersToBodyRows(); // добавление прослушки для всех строк (кроме заглавной), при компоновке, после пере-компоновки (новой отрисовки), для возможности выделения по клику
   }
 
   addStudentsToTable(studentsDataArr);
 
-  // ** выделение элементов/строк таблицы данных о студентах (при клике, с сохранением)
+  // ** выделение элементов/строк таблицы данных о студентах (при клике)
   // определение целевой body-строки (добавление класса)
   function selectTableBodyRow(event) {
     const clickedTableRow = event.currentTarget; // определение строки, по которой происходит "click" - событие
@@ -723,8 +725,6 @@
       });
     });
   }
-
-  addClickListenersToBodyRows();
 
   // сохранение "уже" выделенных строк
   function getSelectedBodyRows() {
@@ -921,6 +921,8 @@
           }
         }
 
+        const selectedBodyRows = getSelectedBodyRows(); // сохранение выделенных body-строк (если такие есть)
+
         studentsDataArr.push({
           surname: formInSurname,
           name: formInName,
@@ -932,6 +934,7 @@
         });
 
         addStudentsToTable(studentsDataArr); // наполнение таблицы
+        restoreSelectedBodyRows(selectedBodyRows); // восстановление выделенных body-строк (если такие были)
 
         allFormInInputs.forEach((input) => (input.value = '')); // очистка полей формы (после добавления)
         formInputData.classList.remove('was-validated'); // отмена красной обводки у "чистых" полей формы (после добавления)
@@ -1020,7 +1023,6 @@
     }
 
     addStudentsToTable(updateStudentsDataArr);
-    addClickListenersToBodyRows(); // добавление/заново прослушки для всех строк (кроме заглавной), после пере-компоновки (новой отрисовки), для возможности выделения по клику
   }
 
   allFormFilterInputs.forEach((input) => {
@@ -1077,7 +1079,7 @@
 
   function clearFormsAfterCollapse(event) {
     const clickedCollapseBtn = event.target; // определение кнопки/цели, по которой происходит "click" - событие
-    const selectedBodyRows = getSelectedBodyRows(); // сохранение выделенных строк (если такие есть)
+    const selectedBodyRows = getSelectedBodyRows(); // сохранение выделенных body-строк (если такие есть)
 
     if (clickedCollapseBtn.id === 'formInputCollapse') {
       setTimeout(() => {
@@ -1100,8 +1102,7 @@
       addStudentsToTable(studentsDataArr); // возврат к исходному виду таблицы без задержки
     }
 
-    addClickListenersToBodyRows(); // добавление/заново прослушки для всех строк (кроме заглавной), после пере-компоновки (новой отрисовки), для возможности выделения по клику
-    restoreSelectedBodyRows(selectedBodyRows); // восстановление выделенных строк (если такие были)
+    restoreSelectedBodyRows(selectedBodyRows); // восстановление выделенных body-строк (если такие были)
   }
 
   allCollapseBtn.forEach((btn) => {
@@ -1116,7 +1117,7 @@
 
   function sortStudentsByTableCells(event) {
     const clickedTableCell = event.target.textContent; // определение заглавного поля/ячейки, по которой происходит "click" - событие
-    const selectedBodyRows = getSelectedBodyRows(); // сохранение выделенных строк (если такие есть)
+    const selectedBodyRows = getSelectedBodyRows(); // сохранение выделенных body-строк (если такие есть)
 
     updateStudentsDataArr.sort((a, b) => {
       if (clickedTableCell === '#') {
@@ -1156,8 +1157,7 @@
     });
 
     addStudentsToTable(updateStudentsDataArr); // наполнение таблицы, вывод (пере-компоновка)
-    addClickListenersToBodyRows(); // добавление/заново прослушки для всех строк (кроме заглавной), после пере-компоновки (новой отрисовки), для возможности выделения по клику
-    restoreSelectedBodyRows(selectedBodyRows); // восстановление выделенных строк (если такие были)
+    restoreSelectedBodyRows(selectedBodyRows); // восстановление выделенных body-строк (если такие были)
   }
 
   allHeaderRowCells.forEach((cell) => {
