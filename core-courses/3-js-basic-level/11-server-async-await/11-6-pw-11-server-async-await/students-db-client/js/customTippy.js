@@ -31,6 +31,7 @@
     initTippy('#tableThBirthDate', 'сортировать ⇵', 'bottom');
     initTippy('#tableThStartYear', 'сортировать ⇵', 'bottom');
     initTippy('#linkToAddStudForm', 'к форме добавления', 'bottom');
-    initTippy('#deselectBtn', 'выделения строк', 'right');
+    initTippy('#deselectBtn', 'выделения студента(ов)', 'bottom');
+    initTippy('#deleteBtn', 'выбранного студента(ов)', 'right');
   });
 })();

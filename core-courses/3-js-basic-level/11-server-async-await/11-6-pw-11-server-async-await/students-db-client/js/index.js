@@ -537,6 +537,7 @@
   const afterTableLinksWrap = document.createElement('div');
   const linkToAddStudForm = document.createElement('a');
   const deselectBodyRowsBtn = document.createElement('button');
+  const deleteBodyRowsBtn = document.createElement('button');
 
   table.classList.add(
     'dboard__table',
@@ -568,6 +569,12 @@
     'btn-outline-secondary',
     'cancel-btn'
   );
+  deleteBodyRowsBtn.classList.add(
+    'dboard__table-after-btn',
+    'btn',
+    'btn-outline-danger',
+    'delete-btn'
+  );
 
   tableHeaderThTag.setAttribute('id', 'tableThTag');
   tableHeadThFIO.setAttribute('id', 'tableThFIO');
@@ -579,6 +586,8 @@
   linkToAddStudForm.setAttribute('role', 'button');
   deselectBodyRowsBtn.setAttribute('id', 'deselectBtn');
   deselectBodyRowsBtn.setAttribute('type', 'button');
+  deleteBodyRowsBtn.setAttribute('id', 'deleteBtn');
+  deleteBodyRowsBtn.setAttribute('type', 'button');
 
   tableHeaderThTag.textContent = '#';
   tableHeadThFIO.textContent = 'Ф.И.О.';
@@ -587,6 +596,7 @@
   tableHeadThStartYear.textContent = 'Годы обучения';
   linkToAddStudForm.textContent = 'Возврат';
   deselectBodyRowsBtn.textContent = 'Отмена';
+  deleteBodyRowsBtn.textContent = 'Удаление';
 
   tableHeadTr.append(
     tableHeaderThTag,
@@ -597,7 +607,11 @@
   );
   tableHead.append(tableHeadTr);
   table.append(tableHead, tableBody);
-  afterTableLinksWrap.append(linkToAddStudForm, deselectBodyRowsBtn);
+  afterTableLinksWrap.append(
+    linkToAddStudForm,
+    deselectBodyRowsBtn,
+    deleteBodyRowsBtn
+  );
   dboardOutput.append(table, afterTableLinksWrap);
 
   // основные блоки/составляющие панели управления
@@ -716,7 +730,7 @@
     addClickListenersToBodyRows(); // добавление прослушки для всех строк (кроме заглавной), при компоновке, после пере-компоновки (новой отрисовки), для возможности выделения по клику
   }
 
-  addStudentsToTable(studentsDataArr);
+  addStudentsToTable(studentsDataArr); // наполнение таблицы студентов
 
   // ** выделение элементов/строк таблицы данных о студентах (при клике)
   // определение целевой body-строки (добавление класса)
@@ -774,6 +788,48 @@
   }
 
   cancelBtn.addEventListener('click', deselectBodyRows); // отработка функции по нажатию
+
+  // ** удаление выделенных элементов/строк таблицы данных о студентах (через кнопку "Удалить")
+  const deleteBtn = document.querySelector('.delete-btn');
+
+  function deleteBodyRowsStudents() {
+    const selectedBodyRows = getSelectedBodyRows();
+
+    if (selectedBodyRows.length === 0) {
+      alert('Ни одного студента не выбрано! Некого удалять..((');
+      return;
+    }
+
+    const confirmed = confirm(
+      `Вы уверены, что хотите удалить ${selectedBodyRows.length} студента(ов)?`
+    );
+
+    if (!confirmed) return;
+
+    // организация удаления студентов, согласно ID выделенных строк
+    const studentIdsToDelete = selectedBodyRows.map((rowId) =>
+      parseInt(rowId.replace('body-row-', ''), 10)
+    );
+
+    studentIdsToDelete.forEach((idToDelete) => {
+      const studentIndex = studentsDataArr.findIndex(
+        (student) => student.id === idToDelete
+      );
+
+      if (studentIndex !== -1) {
+        studentsDataArr.splice(studentIndex, 1);
+      }
+    });
+
+    // изменение/корректировка ID оставшихся студентов (для корректной сортировки после добавления "новых" студентов)
+    studentsDataArr.forEach((student, index) => {
+      student.id = index + 1;
+    });
+
+    addStudentsToTable(studentsDataArr); // обновление таблицы студентов (пере-компоновка) после удаления
+  }
+
+  deleteBtn.addEventListener('click', deleteBodyRowsStudents);
 
   // ** обновление валидационного сообщения (изменение состояния input(a))
   function updateFormInputValidMsg(input) {
@@ -958,7 +1014,7 @@
           id: studentsDataArr.length + 1, // продолжение нумерации, исходя из логики index + 1 для уже присутствующих
         });
 
-        addStudentsToTable(studentsDataArr); // наполнение таблицы
+        addStudentsToTable(studentsDataArr); // наполнение таблицы (пере-компоновка) после добавления студента
         restoreSelectedBodyRows(selectedBodyRows); // восстановление выделенных body-строк (если такие были)
 
         allFormInInputs.forEach((input) => (input.value = '')); // очистка полей формы (после добавления)
@@ -1047,7 +1103,7 @@
       );
     }
 
-    addStudentsToTable(updateStudentsDataArr);
+    addStudentsToTable(updateStudentsDataArr); // пере-рисовка (пере-компоновка) таблицы студентов согласно фильтраций
   }
 
   allFormFilterInputs.forEach((input) => {
@@ -1090,7 +1146,7 @@
           input.value = '';
           updateFormInputValidMsg(input);
         });
-        addStudentsToTable(studentsDataArr);
+        addStudentsToTable(studentsDataArr); // возврат к исходному наполнению/виду таблицы студентов
       }
     }
   }
@@ -1181,7 +1237,7 @@
       return 0;
     });
 
-    addStudentsToTable(updateStudentsDataArr); // наполнение таблицы, вывод (пере-компоновка)
+    addStudentsToTable(updateStudentsDataArr); // пере-рисовка (пере-компоновка) после сортировки (прожатия ячеек)
     restoreSelectedBodyRows(selectedBodyRows); // восстановление выделенных body-строк (если такие были)
   }
 
