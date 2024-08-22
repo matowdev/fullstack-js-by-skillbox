@@ -789,7 +789,7 @@
 
   cancelBtn.addEventListener('click', deselectBodyRows); // отработка функции по нажатию
 
-  // ** удаление выделенных элементов/строк таблицы данных о студентах (через кнопку "Удалить")
+  // ** удаление выделенных элементов/строк таблицы данных о студентах (и через кнопку)
   const deleteBtn = document.querySelector('.delete-btn');
 
   function deleteBodyRowsStudents() {
@@ -1045,12 +1045,15 @@
       // изменение цвета/выделение строки
       lastNewTableRow.querySelectorAll('td').forEach((td) => {
         defaultRowCellColors.push(td.style.color);
-        td.style.color = '#e10c22';
+        td.style.fontWeight = 'bold';
+        // td.style.color = '#e10c22'; // красный
+        td.style.color = '#198754'; // или.. зелёный
       });
 
       // возврат к default цвету, через несколько секунды
       setTimeout(() => {
         lastNewTableRow.querySelectorAll('td').forEach((td, index) => {
+          td.style.fontWeight = 'normal';
           td.style.color = defaultRowCellColors[index];
         });
       }, 2000);
