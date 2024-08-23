@@ -1,11 +1,12 @@
 .dboard__table {
   font-family: var(--roboto-mono), sans-serif;
   font-size: var(--default-fs);
-  text-align: center;
 }
 
 .dboard__table tr th,
 .dboard__table tr td {
+  text-align: center;
+  vertical-align: middle;
   color: var(--starry-night);
   cursor: pointer;
 }
@@ -14,6 +15,17 @@
   color: var(--fire-red);
 }
 
+.dboard__table-body-cell_number {
+  min-width: 45px;
+  min-height: 45px;
+}
+
 .dboard__table-body-row_selected {
   border-bottom: 5px solid red;
+}
+
+.btn-close {
+  padding: 2px;
+  text-align: center;
+  vertical-align: middle;
 }

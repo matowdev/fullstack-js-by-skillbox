@@ -676,6 +676,8 @@
     const studentTdStartYear = document.createElement('td');
 
     studentTableTr.classList.add('dboard__table-body-row');
+    studentTdNumber.classList.add('dboard__table-body-cell_number');
+
     studentTableTr.setAttribute('id', `body-row-${student.id}`); // формирование строчного ID исходя из ID студента
 
     studentTdNumber.textContent = index + 1;
@@ -732,13 +734,16 @@
 
   addStudentsToTable(studentsDataArr); // наполнение таблицы студентов
 
-  // ** выделение элементов/строк таблицы данных о студентах (при клике)
-  // определение целевой body-строки (добавление класса)
-  function selectTableBodyRow(event) {
-    const clickedTableRow = event.currentTarget; // определение строки, по которой происходит "click" - событие
-    clickedTableRow.classList.toggle('dboard__table-body-row_selected');
-  }
+  /**
+   * TODO:
+   * прожатие кнопки "Отмена" не убирает "Х" кнопки, более того после "Отмены", повторное выделение/снятие выделения строки, убирает "Х" но не возвращает число, т.е. #-ячейка остаётся "пустой"
+   * на данный момент сортировка сбрасывает "X" кнопки и наверное всё остальное то же сбрасывает..
+   * подписать tooltip(om) "X" кнопку или нет?
+   * попробовать поменять обводку "Х" кнопки на красный
+   * подумать "вообще" стилизация выделения всей строки (сейчас только снизу красный бордюр)
+   */
 
+  // ** выделение (фиксация выделенных) элементов/строк таблицы данных о студентах (при клике, ввод "Х" кнопки)
   // организация прослушки, для body-строк (для всех)
   function addClickListenersToBodyRows() {
     const allBodyRows = document.querySelectorAll('.dboard__table-body-row');
@@ -748,6 +753,30 @@
         selectTableBodyRow(event);
       });
     });
+  }
+
+  // определение целевой body-строки (замена #-числа на "X" кнопку, и обратно)
+  function selectTableBodyRow(event) {
+    const clickedTableRow = event.currentTarget; // определение строки, по которой происходит "click" - событие
+    const firstRowCell = clickedTableRow.querySelector('td:first-child'); // определение первой "#" ячейки строки
+    const deleteXBtn = createXBtn(); // создание "X" кнопки
+
+    clickedTableRow.classList.toggle('dboard__table-body-row_selected');
+
+    if (clickedTableRow.classList.contains('dboard__table-body-row_selected')) {
+      firstRowCell.setAttribute('data-row-number', firstRowCell.textContent); // фиксация числа
+      firstRowCell.textContent = ''; // очищение от числа #-ячейку
+      firstRowCell.appendChild(deleteXBtn); // ввод "X" кнопки
+
+      deleteXBtn.addEventListener('click', (event) => {
+        event.stopPropagation(); // исключение не предвиденных событий/поведения
+        deleteBodyRowsByXBtn(event); // удаление выделенной body-строки (посредствам "X" кнопки)
+      });
+    } else {
+      firstRowCell.textContent = firstRowCell.getAttribute('data-row-number'); // восстановление числа в #-ячейке
+      firstRowCell.removeAttribute('data-number'); // удаление атрибута
+      deleteXBtn.remove(); // удаление "X" кнопки
+    }
   }
 
   // сохранение "уже" выделенных строк
@@ -774,6 +803,19 @@
     });
   }
 
+  // ** создание "X" кнопки (её передача/возврат)
+  function createXBtn() {
+    const deleteXBtn = document.createElement('button');
+
+    deleteXBtn.classList.add('btn-close');
+    deleteXBtn.classList.add('x-delete-btn');
+    deleteXBtn.setAttribute('id', 'xBtn');
+    deleteXBtn.setAttribute('type', 'button');
+    deleteXBtn.setAttribute('aria-label', 'Close');
+
+    return deleteXBtn;
+  }
+
   // ** отмена выделения элементов/строк таблицы данных о студентах (и через кнопку)
   const cancelBtn = document.querySelector('.cancel-btn');
 
@@ -789,10 +831,25 @@
 
   cancelBtn.addEventListener('click', deselectBodyRows); // отработка функции по нажатию
 
-  // ** удаление выделенных элементов/строк таблицы данных о студентах (и через кнопку)
+  // ** удаление выделенных элементов/строк таблицы данных о студентах (через "X" кнопку, не через "внешнюю")
+  function deleteBodyRowsByXBtn(event) {
+    const clickedBodyRow = event.currentTarget.closest('tr');
+    const rowId = clickedBodyRow.id;
+
+    // определение студента/строки (для последующего удаления)
+    const studentIdToDelete = parseInt(rowId.replace('body-row-', ''), 10);
+
+    deleteBodyRowsStudents(
+      [studentIdToDelete],
+      `Вы уверены, что хотите удалить студента?`,
+      event.currentTarget
+    ); // вызов "общей" функции, для удаления студента/строки (передача соответствующих аргументов)
+  }
+
+  // ** удаление выделенных элементов/строк таблицы данных о студентах (через "внешнюю" кнопку, не через "X")
   const deleteBtn = document.querySelector('.delete-btn');
 
-  function deleteBodyRowsStudents() {
+  function deleteBodyRowsByBtn() {
     const selectedBodyRows = getSelectedBodyRows();
 
     if (selectedBodyRows.length === 0) {
@@ -800,16 +857,34 @@
       return;
     }
 
-    const confirmed = confirm(
-      `Вы уверены, что хотите удалить ${selectedBodyRows.length} студента(ов)?`
-    );
-
-    if (!confirmed) return;
-
-    // организация удаления студентов, согласно ID выделенных строк
+    // формирование ID массива, студентов/строк (для последующего удаления)
     const studentIdsToDelete = selectedBodyRows.map((rowId) =>
       parseInt(rowId.replace('body-row-', ''), 10)
     );
+
+    deleteBodyRowsStudents(
+      studentIdsToDelete,
+      `Вы уверены, что хотите удалить ${selectedBodyRows.length} студента(ов)?`
+    ); // вызов "общей" функции, для удаления студента/строки (передача соответствующих аргументов)
+  }
+
+  deleteBtn.addEventListener('click', deleteBodyRowsByBtn);
+
+  // ** удаление выделенных элементов/строк таблицы данных о студентах (ОБЩАЯ ЛОГИКА)
+  function deleteBodyRowsStudents(
+    studentIdsToDelete,
+    confirmMessage = null,
+    currentBtn = null
+  ) {
+    if (confirmMessage) {
+      const confirmed = confirm(confirmMessage);
+      if (!confirmed) {
+        if (currentBtn) {
+          currentBtn.blur(); // снятие фокуса с "X" кнопки, при отмене действия
+        }
+        return;
+      }
+    }
 
     studentIdsToDelete.forEach((idToDelete) => {
       const studentIndex = studentsDataArr.findIndex(
@@ -828,8 +903,6 @@
 
     addStudentsToTable(studentsDataArr); // обновление таблицы студентов (пере-компоновка) после удаления
   }
-
-  deleteBtn.addEventListener('click', deleteBodyRowsStudents);
 
   // ** обновление валидационного сообщения (изменение состояния input(a))
   function updateFormInputValidMsg(input) {
