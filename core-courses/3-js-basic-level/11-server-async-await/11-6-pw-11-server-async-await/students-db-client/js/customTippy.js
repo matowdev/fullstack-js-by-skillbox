@@ -1,9 +1,9 @@
 (() => {
   // в данной реализации прослушка DOMContentLoaded необходима
   document.addEventListener('DOMContentLoaded', () => {
-    function initTippy(selector, content, side) {
+    function initTippy(selector, content, side, customOptions = {}) {
       if (typeof tippy === 'function') {
-        tippy(selector, {
+        const defaultOptions = {
           content: content,
           theme: 'main',
           delay: [50, 0],
@@ -17,7 +17,9 @@
               instance.hide(); // автоматическое скрытие (по истечению времени)
             }, 1000);
           },
-        });
+        };
+
+        tippy(selector, { ...defaultOptions, ...customOptions }); // применение "общих" настроек с возможностью переопределения/индивидуального изменения, согласно customOptions
       } else {
         console.error('Tippy.js is not loaded!');
       }
@@ -25,13 +27,23 @@
 
     initTippy('#formInputCollapse', 'развернуть/свернуть', 'right');
     initTippy('#formFilterCollapse', 'развернуть/свернуть', 'right');
-    initTippy('#tableThTag', 'сбросить сортировку', 'right');
-    initTippy('#tableThFIO', 'сортировать ⇵', 'bottom');
-    initTippy('#tableThFaculty', 'сортировать ⇵', 'bottom');
-    initTippy('#tableThBirthDate', 'сортировать ⇵', 'bottom');
-    initTippy('#tableThStartYear', 'сортировать ⇵', 'bottom');
+    initTippy('#tableThTag', 'сбросить сортировку', 'right', {
+      offset: [0, -2],
+    });
+    initTippy('#tableThFIO', 'сортировать ⇵', 'bottom', {
+      offset: [0, -2],
+    });
+    initTippy('#tableThFaculty', 'сортировать ⇵', 'bottom', {
+      offset: [0, -2],
+    });
+    initTippy('#tableThBirthDate', 'сортировать ⇵', 'bottom', {
+      offset: [0, -2],
+    });
+    initTippy('#tableThStartYear', 'сортировать ⇵', 'bottom', {
+      offset: [0, -2],
+    });
     initTippy('#linkToAddStudForm', 'к форме добавления', 'bottom');
-    initTippy('#deselectBtn', 'выделения студента(ов)', 'bottom');
-    initTippy('#deleteBtn', 'выбранного студента(ов)', 'right');
+    initTippy('#deselectBtn', 'выделения студентов(а)', 'bottom');
+    initTippy('#deleteBtn', 'выбранных(ого) студентов(а)', 'right');
   });
 })();

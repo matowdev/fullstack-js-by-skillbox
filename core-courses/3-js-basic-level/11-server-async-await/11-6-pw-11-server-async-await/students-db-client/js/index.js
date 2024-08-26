@@ -737,8 +737,8 @@
   /**
    * TODO:
    * прожатие кнопки "Отмена" не убирает "Х" кнопки, более того после "Отмены", повторное выделение/снятие выделения строки, убирает "Х" но не возвращает число, т.е. #-ячейка остаётся "пустой"
+   * сделать знак #-сортировку видимой для TAB
    * на данный момент сортировка сбрасывает "X" кнопки и наверное всё остальное то же сбрасывает..
-   * подписать tooltip(om) "X" кнопку или нет?
    * попробовать поменять обводку "Х" кнопки на красный
    * подумать "вообще" стилизация выделения всей строки (сейчас только снизу красный бордюр)
    */
@@ -765,8 +765,10 @@
 
     if (clickedTableRow.classList.contains('dboard__table-body-row_selected')) {
       firstRowCell.setAttribute('data-row-number', firstRowCell.textContent); // фиксация числа
-      firstRowCell.textContent = ''; // очищение от числа #-ячейку
+      firstRowCell.textContent = ''; // очищение от числа #-ячейки
       firstRowCell.appendChild(deleteXBtn); // ввод "X" кнопки
+
+      initTippy('#xBtn', 'удалить', 'left'); // вызов/организация tooltips для "X" кнопок
 
       deleteXBtn.addEventListener('click', (event) => {
         event.stopPropagation(); // исключение не предвиденных событий/поведения
@@ -814,6 +816,36 @@
     deleteXBtn.setAttribute('aria-label', 'Close');
 
     return deleteXBtn;
+  }
+
+  // ** дополнительная организация логики для tooltips (специально/только для появляющихся "X" кнопок)
+  function initTippy(selector, content, side) {
+    if (typeof tippy === 'function') {
+      tippy(selector, {
+        content: content,
+        theme: 'main',
+        delay: [50, 0],
+        offset: [0, 12],
+        placement: side,
+        animation: 'scale', // анимация появления/скрытия (через дополнительный файл/подключение)
+        trigger: 'mouseenter', // только по наведению мыши (исключение вывода по клику, в другом месте)
+
+        onShow(instance) {
+          setTimeout(() => {
+            instance.hide(); // автоматическое скрытие (по истечению времени)
+          }, 1000);
+        },
+
+        // точечная корректировка стилей (для стрелки подсказки)
+        onMount(instance) {
+          const arrowElement = instance.popper.querySelector('.tippy-arrow');
+          arrowElement.style.marginTop = '0px';
+          arrowElement.style.marginRight = '-1px';
+        },
+      });
+    } else {
+      console.error('Tippy.js is not loaded!');
+    }
   }
 
   // ** отмена выделения элементов/строк таблицы данных о студентах (и через кнопку)
@@ -864,7 +896,7 @@
 
     deleteBodyRowsStudents(
       studentIdsToDelete,
-      `Вы уверены, что хотите удалить ${selectedBodyRows.length} студента(ов)?`
+      `Вы уверены, что хотите удалить ${selectedBodyRows.length} студентов(а)?`
     ); // вызов "общей" функции, для удаления студента/строки (передача соответствующих аргументов)
   }
 

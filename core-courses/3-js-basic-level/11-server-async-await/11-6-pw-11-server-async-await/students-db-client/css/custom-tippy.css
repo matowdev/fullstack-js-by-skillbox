@@ -3,7 +3,7 @@
   font-size: var(--default-fs);
   color: var(--starry-night);
   background-color: var(--white);
-  outline: 1px solid var(--specific-blue);
+  outline: 2px solid var(--specific-blue);
 }
 
 .tippy-box[data-theme~="main"]::after {
