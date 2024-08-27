@@ -736,10 +736,8 @@
 
   /**
    * TODO:
-   * прожатие кнопки "Отмена" не убирает "Х" кнопки, более того после "Отмены", повторное выделение/снятие выделения строки, убирает "Х" но не возвращает число, т.е. #-ячейка остаётся "пустой"
-   * сделать знак #-сортировку видимой для TAB
+   * организовать сохранение после одного удаления через "Х" кнопку остальных выделенных (сейчас всё сбрасывается)
    * на данный момент сортировка сбрасывает "X" кнопки и наверное всё остальное то же сбрасывает..
-   * попробовать поменять обводку "Х" кнопки на красный
    * подумать "вообще" стилизация выделения всей строки (сейчас только снизу красный бордюр)
    */
 
@@ -758,26 +756,12 @@
   // определение целевой body-строки (замена #-числа на "X" кнопку, и обратно)
   function selectTableBodyRow(event) {
     const clickedTableRow = event.currentTarget; // определение строки, по которой происходит "click" - событие
-    const firstRowCell = clickedTableRow.querySelector('td:first-child'); // определение первой "#" ячейки строки
-    const deleteXBtn = createXBtn(); // создание "X" кнопки
-
     clickedTableRow.classList.toggle('dboard__table-body-row_selected');
 
     if (clickedTableRow.classList.contains('dboard__table-body-row_selected')) {
-      firstRowCell.setAttribute('data-row-number', firstRowCell.textContent); // фиксация числа
-      firstRowCell.textContent = ''; // очищение от числа #-ячейки
-      firstRowCell.appendChild(deleteXBtn); // ввод "X" кнопки
-
-      initTippy('#xBtn', 'удалить', 'left'); // вызов/организация tooltips для "X" кнопок
-
-      deleteXBtn.addEventListener('click', (event) => {
-        event.stopPropagation(); // исключение не предвиденных событий/поведения
-        deleteBodyRowsByXBtn(event); // удаление выделенной body-строки (посредствам "X" кнопки)
-      });
+      addXBtnToBodyRows(clickedTableRow); // добавление "X" кнопки в выделенную строку
     } else {
-      firstRowCell.textContent = firstRowCell.getAttribute('data-row-number'); // восстановление числа в #-ячейке
-      firstRowCell.removeAttribute('data-number'); // удаление атрибута
-      deleteXBtn.remove(); // удаление "X" кнопки
+      removeXBtnFromBodyRows(clickedTableRow); // удаление "X" кнопки из выделенной строки
     }
   }
 
@@ -805,7 +789,7 @@
     });
   }
 
-  // ** создание "X" кнопки (её передача/возврат)
+  // ** создание "X" кнопки (её передача)
   function createXBtn() {
     const deleteXBtn = document.createElement('button');
 
@@ -816,6 +800,35 @@
     deleteXBtn.setAttribute('aria-label', 'Close');
 
     return deleteXBtn;
+  }
+
+  // ** добавление "X" кнопки в выделенную строку/в первую ячейку (определение первой ячейки)
+  function addXBtnToBodyRows(row) {
+    const firstRowCell = row.querySelector('td:first-child'); // определение первой "#" ячейки строки
+    const deleteXBtn = createXBtn(); // создание "X" кнопки
+
+    firstRowCell.setAttribute('data-row-number', firstRowCell.textContent); // фиксация числа/порядкового номера из #-ячейки
+    firstRowCell.textContent = ''; // очищение от числа #-ячейки
+    firstRowCell.appendChild(deleteXBtn); // ввод "X" кнопки
+
+    initTippy('#xBtn', 'удалить', 'left'); // вызов/организация tooltips для "X" кнопок
+
+    deleteXBtn.addEventListener('click', (event) => {
+      event.stopPropagation(); // исключение не предвиденных событий/поведения
+      deleteBodyRowsByXBtn(event); // удаление выделенной body-строки (посредствам "X" кнопки)
+    });
+  }
+
+  // ** удаление "X" кнопки (возврат числа/порядкового номера в #-ячейку)
+  function removeXBtnFromBodyRows(row) {
+    const firstRowCell = row.querySelector('td:first-child'); // определение первой "#" ячейки строки
+    const deleteXBtn = firstRowCell.querySelector('.x-delete-btn'); // определение "X" кнопки
+
+    if (deleteXBtn) {
+      deleteXBtn.remove(); // удаление "X" кнопки
+      firstRowCell.textContent = firstRowCell.getAttribute('data-row-number'); // восстановление числа/порядкового номера в #-ячейке
+      firstRowCell.removeAttribute('data-row-number'); // удаление атрибута
+    }
   }
 
   // ** дополнительная организация логики для tooltips (специально/только для появляющихся "X" кнопок)
@@ -836,7 +849,7 @@
           }, 1000);
         },
 
-        // точечная корректировка стилей (для стрелки подсказки)
+        // точечная корректировка стилей (для "стрелки" подсказки)
         onMount(instance) {
           const arrowElement = instance.popper.querySelector('.tippy-arrow');
           arrowElement.style.marginTop = '0px';
@@ -858,6 +871,7 @@
 
     allSelectedBodyRows.forEach((row) => {
       row.classList.remove('dboard__table-body-row_selected');
+      removeXBtnFromBodyRows(row); // удаление "X" кнопки из выделенной строки (возврат числа в #-ячейку)
     });
   }
 

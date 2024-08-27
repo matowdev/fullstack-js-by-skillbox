@@ -43,7 +43,7 @@
       offset: [0, -2],
     });
     initTippy('#linkToAddStudForm', 'к форме добавления', 'bottom');
-    initTippy('#deselectBtn', 'выделения студентов(а)', 'bottom');
-    initTippy('#deleteBtn', 'выбранных(ого) студентов(а)', 'right');
+    initTippy('#deselectBtn', 'выделения студентов', 'bottom');
+    initTippy('#deleteBtn', 'выбранных студентов', 'right');
   });
 })();
