@@ -617,14 +617,28 @@
   // основные блоки/составляющие панели управления
   dashboard.append(dboardInput, dboardFilter, dboardOutput);
 
-  // ** корректировка исходного массива студентов (добавление свойства id, для последующей сортировки)
-  function correctInitArrAddId(studentsDataArr = []) {
+  // ** генерация уникального/дополнительного id (для последующих сортировок/фиксаций)
+  function generateUniqueId(length = 8) {
+    const chars =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+
+    for (let i = 0; i < length; i++) {
+      result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+
+    return result;
+  }
+
+  // ** корректировка исходного массива студентов (добавление свойств: id и uniqueId)
+  function correctInitArrAddIds(studentsDataArr = []) {
     studentsDataArr.forEach((student, index) => {
       student.id = index + 1;
+      student.uniqueId = generateUniqueId();
     });
   }
 
-  correctInitArrAddId(studentsDataArr);
+  correctInitArrAddIds(studentsDataArr);
 
   // ** корректировка исходного массива студентов (добавление свойства fullName, изменения в birthDate и в startYear)
   function correctInitArr(studentsDataArr = []) {
@@ -678,7 +692,8 @@
     studentTableTr.classList.add('dboard__table-body-row');
     studentTdNumber.classList.add('dboard__table-body-cell_number');
 
-    studentTableTr.setAttribute('id', `body-row-${student.id}`); // формирование строчного ID исходя из ID студента
+    studentTableTr.setAttribute('id', `body-row-${student.id}`); // добавление строчного ID (исходя из ID студента)
+    studentTableTr.setAttribute('unique-id', `${student.uniqueId}`); // добавление уникального ID
 
     studentTdNumber.textContent = index + 1;
     studentTdFIO.textContent = student.fullName;
@@ -736,8 +751,8 @@
 
   /**
    * TODO:
-   * организовать сохранение после одного удаления через "Х" кнопку остальных выделенных (сейчас всё сбрасывается)
-   * на данный момент сортировка сбрасывает "X" кнопки и наверное всё остальное то же сбрасывает..
+   * проблематика.. сразу прожимаешь все строки -> нажимаешь кнопку "Удалить" -> отменяешь удаление -> прожимаешь "Отмена" выделения -> становятся пустыми #-ячейки?? Момент возникает, что часть логики уже на uniqueId а другая на "просто" id..
+   * после удаления через "X" выделенные строки остаются (кнопки) но сбрасывается сортировка (всё возвращается к порядку как было)
    * подумать "вообще" стилизация выделения всей строки (сейчас только снизу красный бордюр)
    */
 
@@ -765,26 +780,62 @@
     }
   }
 
+  // // сохранение "уже" выделенных строк
+  // function getSelectedBodyRows() {
+  //   const selectedBodyRowsId = [];
+  //   const selectedBodyRowsUniqueId = []; // ...
+
+  //   document
+  //     .querySelectorAll('.dboard__table-body-row_selected')
+  //     .forEach((row) => {
+  //       selectedBodyRowsId.push(row.getAttribute('id')); // по ID
+  //       selectedBodyRowsUniqueId.push(row.getAttribute('unique-id')); // ...
+  //     });
+
+  //   const selectedBodyRowsCommonIds = [
+  //     ...selectedBodyRowsId,
+  //     ...selectedBodyRowsUniqueId,
+  //   ]; //...
+
+  //   return selectedBodyRowsCommonIds;
+  // }
+
+  // // восстановление ранее выделенных строк (если были)
+  // function restoreSelectedBodyRows(selectedBodyRows) {
+  //   const allBodyRows = document.querySelectorAll('.dboard__table-body-row');
+
+  //   allBodyRows.forEach((row) => {
+  //     if (
+  //       selectedBodyRows.includes(row.getAttribute('id')) &&
+  //       selectedBodyRows.includes(row.getAttribute('unique-id')) // ...
+  //     ) {
+  //       row.classList.add('dboard__table-body-row_selected');
+  //       addXBtnToBodyRows(row); // ...
+  //     }
+  //   });
+  // }
+
   // сохранение "уже" выделенных строк
   function getSelectedBodyRows() {
-    const selectedBodyRows = [];
+    const selectedBodyRowsUniqueId = [];
 
     document
       .querySelectorAll('.dboard__table-body-row_selected')
       .forEach((row) => {
-        selectedBodyRows.push(row.getAttribute('id')); // по ID
+        selectedBodyRowsUniqueId.push(row.getAttribute('unique-id')); // фиксация по uniqueId
       });
 
-    return selectedBodyRows;
+    return selectedBodyRowsUniqueId;
   }
 
   // восстановление ранее выделенных строк (если были)
-  function restoreSelectedBodyRows(selectedBodyRows) {
+  function restoreSelectedBodyRows(selectedBodyRowsUniqueId) {
     const allBodyRows = document.querySelectorAll('.dboard__table-body-row');
 
     allBodyRows.forEach((row) => {
-      if (selectedBodyRows.includes(row.getAttribute('id'))) {
+      if (selectedBodyRowsUniqueId.includes(row.getAttribute('unique-id'))) {
         row.classList.add('dboard__table-body-row_selected');
+        addXBtnToBodyRows(row); // последующее добавление "X" кнопки в выделенную строку
       }
     });
   }
@@ -916,18 +967,58 @@
 
   deleteBtn.addEventListener('click', deleteBodyRowsByBtn);
 
-  // ** удаление выделенных элементов/строк таблицы данных о студентах (ОБЩАЯ ЛОГИКА)
+  // // ** удаление выделенных элементов/строк таблицы данных о студентах (ОБЩАЯ ЛОГИКА)
+  // function deleteBodyRowsStudents(
+  //   studentIdsToDelete,
+  //   confirmMessage = null,
+  //   currentBtn = null
+  // ) {
+  //   const selectedBodyRows = getSelectedBodyRows(); // сохранение выделенных body-строк (если такие есть)
+
+  //   if (confirmMessage) {
+  //     const confirmed = confirm(confirmMessage);
+  //     if (!confirmed) {
+  //       if (currentBtn) {
+  //         currentBtn.blur(); // снятие фокуса с "X" кнопки, при отмене действия
+  //       }
+  //       restoreSelectedBodyRows(selectedBodyRows); // восстановление выделенных body-строк (если такие были)
+  //       return;
+  //     }
+  //   }
+
+  //   studentIdsToDelete.forEach((idToDelete) => {
+  //     const studentIndex = studentsDataArr.findIndex(
+  //       (student) => student.id === idToDelete
+  //     );
+
+  //     if (studentIndex !== -1) {
+  //       studentsDataArr.splice(studentIndex, 1);
+  //     }
+  //   });
+
+  //   // изменение/корректировка ID оставшихся студентов (для корректной сортировки после добавления "новых" студентов)
+  //   studentsDataArr.forEach((student, index) => {
+  //     student.id = index + 1;
+  //   });
+
+  //   addStudentsToTable(studentsDataArr); // обновление таблицы студентов (пере-компоновка) после удаления
+  //   restoreSelectedBodyRows(selectedBodyRows); // восстановление выделенных body-строк (если такие были)
+  // }
+
   function deleteBodyRowsStudents(
     studentIdsToDelete,
     confirmMessage = null,
     currentBtn = null
   ) {
+    const selectedBodyRowsUniqueId = getSelectedBodyRows(); // сохранение выделенных body-строк (если такие есть)
+
     if (confirmMessage) {
       const confirmed = confirm(confirmMessage);
       if (!confirmed) {
         if (currentBtn) {
           currentBtn.blur(); // снятие фокуса с "X" кнопки, при отмене действия
         }
+        restoreSelectedBodyRows(selectedBodyRowsUniqueId); // восстановление выделенных body-строк (если такие были)
         return;
       }
     }
@@ -942,12 +1033,13 @@
       }
     });
 
-    // изменение/корректировка ID оставшихся студентов (для корректной сортировки после добавления "новых" студентов)
+    // если важно корректировать ID
     studentsDataArr.forEach((student, index) => {
       student.id = index + 1;
     });
 
     addStudentsToTable(studentsDataArr); // обновление таблицы студентов (пере-компоновка) после удаления
+    restoreSelectedBodyRows(selectedBodyRowsUniqueId); // восстановление выделенных body-строк (если такие были)
   }
 
   // ** обновление валидационного сообщения (изменение состояния input(a))
@@ -1131,6 +1223,7 @@
           startYear: parseInt(formInStartYearInput.value),
           faculty: formInFacultyInput.value.toLowerCase().trim(),
           id: studentsDataArr.length + 1, // продолжение нумерации, исходя из логики index + 1 для уже присутствующих
+          uniqueId: generateUniqueId(), // генерация дополнительного/уникального ID (как и остальных присутствующих)
         });
 
         addStudentsToTable(studentsDataArr); // наполнение таблицы (пере-компоновка) после добавления студента
