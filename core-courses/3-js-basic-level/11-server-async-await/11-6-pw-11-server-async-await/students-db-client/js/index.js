@@ -751,7 +751,6 @@
 
   /**
    * TODO:
-   * проблематика.. сразу прожимаешь все строки -> нажимаешь кнопку "Удалить" -> отменяешь удаление -> прожимаешь "Отмена" выделения -> становятся пустыми #-ячейки?? Момент возникает, что часть логики уже на uniqueId а другая на "просто" id..
    * после удаления через "X" выделенные строки остаются (кнопки) но сбрасывается сортировка (всё возвращается к порядку как было)
    * подумать "вообще" стилизация выделения всей строки (сейчас только снизу красный бордюр)
    */
@@ -780,60 +779,31 @@
     }
   }
 
-  // // сохранение "уже" выделенных строк
-  // function getSelectedBodyRows() {
-  //   const selectedBodyRowsId = [];
-  //   const selectedBodyRowsUniqueId = []; // ...
-
-  //   document
-  //     .querySelectorAll('.dboard__table-body-row_selected')
-  //     .forEach((row) => {
-  //       selectedBodyRowsId.push(row.getAttribute('id')); // по ID
-  //       selectedBodyRowsUniqueId.push(row.getAttribute('unique-id')); // ...
-  //     });
-
-  //   const selectedBodyRowsCommonIds = [
-  //     ...selectedBodyRowsId,
-  //     ...selectedBodyRowsUniqueId,
-  //   ]; //...
-
-  //   return selectedBodyRowsCommonIds;
-  // }
-
-  // // восстановление ранее выделенных строк (если были)
-  // function restoreSelectedBodyRows(selectedBodyRows) {
-  //   const allBodyRows = document.querySelectorAll('.dboard__table-body-row');
-
-  //   allBodyRows.forEach((row) => {
-  //     if (
-  //       selectedBodyRows.includes(row.getAttribute('id')) &&
-  //       selectedBodyRows.includes(row.getAttribute('unique-id')) // ...
-  //     ) {
-  //       row.classList.add('dboard__table-body-row_selected');
-  //       addXBtnToBodyRows(row); // ...
-  //     }
-  //   });
-  // }
-
   // сохранение "уже" выделенных строк
   function getSelectedBodyRows() {
-    const selectedBodyRowsUniqueId = [];
+    const selectedBodyRows = {
+      ids: [],
+      uniqueIds: [],
+    };
 
     document
       .querySelectorAll('.dboard__table-body-row_selected')
       .forEach((row) => {
-        selectedBodyRowsUniqueId.push(row.getAttribute('unique-id')); // фиксация по uniqueId
+        selectedBodyRows.ids.push(row.getAttribute('id')); // фиксация и ID
+        selectedBodyRows.uniqueIds.push(row.getAttribute('unique-id')); // фиксация и uniqueId
       });
 
-    return selectedBodyRowsUniqueId;
+    return selectedBodyRows; // возврат объекта с ID и uniqueId
   }
 
   // восстановление ранее выделенных строк (если были)
-  function restoreSelectedBodyRows(selectedBodyRowsUniqueId) {
+  function restoreSelectedBodyRows(selectedBodyRows) {
     const allBodyRows = document.querySelectorAll('.dboard__table-body-row');
 
     allBodyRows.forEach((row) => {
-      if (selectedBodyRowsUniqueId.includes(row.getAttribute('unique-id'))) {
+      const rowUniqueId = row.getAttribute('unique-id'); // выборка только uniqueId
+
+      if (selectedBodyRows.uniqueIds.includes(rowUniqueId)) {
         row.classList.add('dboard__table-body-row_selected');
         addXBtnToBodyRows(row); // последующее добавление "X" кнопки в выделенную строку
       }
@@ -924,6 +894,14 @@
       row.classList.remove('dboard__table-body-row_selected');
       removeXBtnFromBodyRows(row); // удаление "X" кнопки из выделенной строки (возврат числа в #-ячейку)
     });
+
+    // обновление/добавление заново чисел в #-ячейки (после "Отмены" выделения -> после отмены "Удаления")
+    const allBodyRows = document.querySelectorAll('.dboard__table-body-row');
+
+    allBodyRows.forEach((row, index) => {
+      const firstRowCell = row.querySelector('td:first-child');
+      firstRowCell.textContent = index + 1;
+    });
   }
 
   cancelBtn.addEventListener('click', deselectBodyRows); // отработка функции по нажатию
@@ -949,68 +927,31 @@
   function deleteBodyRowsByBtn() {
     const selectedBodyRows = getSelectedBodyRows();
 
-    if (selectedBodyRows.length === 0) {
+    if (selectedBodyRows.ids.length === 0) {
       alert('Ни одного студента не выбрано! Некого удалять..((');
       return;
     }
 
     // формирование ID массива, студентов/строк (для последующего удаления)
-    const studentIdsToDelete = selectedBodyRows.map((rowId) =>
+    const studentIdsToDelete = selectedBodyRows.ids.map((rowId) =>
       parseInt(rowId.replace('body-row-', ''), 10)
     );
 
     deleteBodyRowsStudents(
       studentIdsToDelete,
-      `Вы уверены, что хотите удалить ${selectedBodyRows.length} студентов(а)?`
+      `Вы уверены, что хотите удалить ${selectedBodyRows.ids.length} студентов(а)?`
     ); // вызов "общей" функции, для удаления студента/строки (передача соответствующих аргументов)
   }
 
   deleteBtn.addEventListener('click', deleteBodyRowsByBtn);
 
-  // // ** удаление выделенных элементов/строк таблицы данных о студентах (ОБЩАЯ ЛОГИКА)
-  // function deleteBodyRowsStudents(
-  //   studentIdsToDelete,
-  //   confirmMessage = null,
-  //   currentBtn = null
-  // ) {
-  //   const selectedBodyRows = getSelectedBodyRows(); // сохранение выделенных body-строк (если такие есть)
-
-  //   if (confirmMessage) {
-  //     const confirmed = confirm(confirmMessage);
-  //     if (!confirmed) {
-  //       if (currentBtn) {
-  //         currentBtn.blur(); // снятие фокуса с "X" кнопки, при отмене действия
-  //       }
-  //       restoreSelectedBodyRows(selectedBodyRows); // восстановление выделенных body-строк (если такие были)
-  //       return;
-  //     }
-  //   }
-
-  //   studentIdsToDelete.forEach((idToDelete) => {
-  //     const studentIndex = studentsDataArr.findIndex(
-  //       (student) => student.id === idToDelete
-  //     );
-
-  //     if (studentIndex !== -1) {
-  //       studentsDataArr.splice(studentIndex, 1);
-  //     }
-  //   });
-
-  //   // изменение/корректировка ID оставшихся студентов (для корректной сортировки после добавления "новых" студентов)
-  //   studentsDataArr.forEach((student, index) => {
-  //     student.id = index + 1;
-  //   });
-
-  //   addStudentsToTable(studentsDataArr); // обновление таблицы студентов (пере-компоновка) после удаления
-  //   restoreSelectedBodyRows(selectedBodyRows); // восстановление выделенных body-строк (если такие были)
-  // }
-
+  // ** удаление выделенных элементов/строк таблицы данных о студентах (ОБЩАЯ ЛОГИКА)
   function deleteBodyRowsStudents(
     studentIdsToDelete,
     confirmMessage = null,
     currentBtn = null
   ) {
-    const selectedBodyRowsUniqueId = getSelectedBodyRows(); // сохранение выделенных body-строк (если такие есть)
+    const selectedBodyRows = getSelectedBodyRows(); // сохранение выделенных body-строк (если такие есть)
 
     if (confirmMessage) {
       const confirmed = confirm(confirmMessage);
@@ -1018,7 +959,7 @@
         if (currentBtn) {
           currentBtn.blur(); // снятие фокуса с "X" кнопки, при отмене действия
         }
-        restoreSelectedBodyRows(selectedBodyRowsUniqueId); // восстановление выделенных body-строк (если такие были)
+        restoreSelectedBodyRows(selectedBodyRows); // восстановление выделенных body-строк (если такие были)
         return;
       }
     }
@@ -1033,13 +974,13 @@
       }
     });
 
-    // если важно корректировать ID
+    // изменение/корректировка ID оставшихся студентов (для корректной сортировки после добавления "новых" студентов)
     studentsDataArr.forEach((student, index) => {
       student.id = index + 1;
     });
 
     addStudentsToTable(studentsDataArr); // обновление таблицы студентов (пере-компоновка) после удаления
-    restoreSelectedBodyRows(selectedBodyRowsUniqueId); // восстановление выделенных body-строк (если такие были)
+    restoreSelectedBodyRows(selectedBodyRows); // восстановление выделенных body-строк (если такие были)
   }
 
   // ** обновление валидационного сообщения (изменение состояния input(a))
