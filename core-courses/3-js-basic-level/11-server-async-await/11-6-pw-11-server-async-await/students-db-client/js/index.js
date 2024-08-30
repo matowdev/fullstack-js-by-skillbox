@@ -577,10 +577,15 @@
   );
 
   tableHeaderThTag.setAttribute('id', 'tableThTag');
+  tableHeaderThTag.setAttribute('tabindex', '0');
   tableHeadThFIO.setAttribute('id', 'tableThFIO');
+  tableHeadThFIO.setAttribute('tabindex', '0');
   tableHeadThFaculty.setAttribute('id', 'tableThFaculty');
+  tableHeadThFaculty.setAttribute('tabindex', '0');
   tableHeadThBirthDate.setAttribute('id', 'tableThBirthDate');
+  tableHeadThBirthDate.setAttribute('tabindex', '0');
   tableHeadThStartYear.setAttribute('id', 'tableThStartYear');
+  tableHeadThStartYear.setAttribute('tabindex', '0');
   linkToAddStudForm.setAttribute('id', 'linkToAddStudForm');
   linkToAddStudForm.setAttribute('href', '#formInputCollapse');
   linkToAddStudForm.setAttribute('role', 'button');
@@ -748,12 +753,6 @@
   }
 
   addStudentsToTable(studentsDataArr); // наполнение таблицы студентов
-
-  /**
-   * TODO:
-   * после удаления через "X" выделенные строки остаются (кнопки) но сбрасывается сортировка (всё возвращается к порядку как было)
-   * подумать "вообще" стилизация выделения всей строки (сейчас только снизу красный бордюр)
-   */
 
   // ** выделение (фиксация выделенных) элементов/строк таблицы данных о студентах (при клике, ввод "Х" кнопки)
   // организация прослушки, для body-строк (для всех)
@@ -925,7 +924,7 @@
   const deleteBtn = document.querySelector('.delete-btn');
 
   function deleteBodyRowsByBtn() {
-    const selectedBodyRows = getSelectedBodyRows();
+    const selectedBodyRows = getSelectedBodyRows(); // сохранение выделенных body-строк (если такие есть)
 
     if (selectedBodyRows.ids.length === 0) {
       alert('Ни одного студента не выбрано! Некого удалять..((');
@@ -1401,6 +1400,15 @@
     cell.addEventListener('click', (event) => {
       sortStudentsByTableCells(event); // передача события
       sortDirectionUpDown = !sortDirectionUpDown; // изменение условия сортировки
+    });
+
+    // отработка сортировки/сброса сортировки через TAB/Enter
+    cell.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        sortStudentsByTableCells(event); // передача события
+        sortDirectionUpDown = !sortDirectionUpDown; // изменение условия сортировки
+      }
     });
   });
 })();
