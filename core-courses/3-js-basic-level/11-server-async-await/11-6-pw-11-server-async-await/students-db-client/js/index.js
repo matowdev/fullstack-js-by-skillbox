@@ -546,7 +546,11 @@
     'table-hover'
   );
   tableHead.classList.add('dboard__table-head');
-  tableBody.classList.add('dboard__table-body', 'table-group-divider');
+  tableBody.classList.add(
+    'dboard__table-body',
+    'table-group-divider',
+    'border-top-color'
+  );
   tableHeaderThTag.classList.add('dboard__table-head-cell');
   tableHeadThFIO.classList.add('dboard__table-head-cell');
   tableHeadThFaculty.classList.add('dboard__table-head-cell');
@@ -699,6 +703,7 @@
 
     studentTableTr.setAttribute('id', `body-row-${student.id}`); // добавление строчного ID (исходя из ID студента)
     studentTableTr.setAttribute('unique-id', `${student.uniqueId}`); // добавление уникального ID
+    studentTableTr.setAttribute('tabindex', '0');
 
     studentTdNumber.textContent = index + 1;
     studentTdFIO.textContent = student.fullName;
@@ -763,6 +768,14 @@
       row.addEventListener('click', (event) => {
         selectTableBodyRow(event);
       });
+
+      // // возможность выделения и через TAB/Enter
+      // row.addEventListener('keydown', (event) => {
+      //   if (event.key === 'Enter') {
+      //     event.preventDefault();
+      //     selectTableBodyRow(event);
+      //   }
+      // });
     });
   }
 
@@ -775,6 +788,11 @@
       addXBtnToBodyRows(clickedTableRow); // добавление "X" кнопки в выделенную строку
     } else {
       removeXBtnFromBodyRows(clickedTableRow); // удаление "X" кнопки из выделенной строки
+
+      const rowIndex = Array.from(clickedTableRow.parentNode.children).indexOf(
+        clickedTableRow
+      ); // определение индекса строки
+      updateBodyRowNumbers(clickedTableRow, rowIndex); // обновление порядкового #-номера (для текущей строки, согласно индекса)
     }
   }
 
@@ -809,6 +827,12 @@
     });
   }
 
+  // ** обновление/добавление заново, порядковых #-номеров (в первые body-ячейки)
+  function updateBodyRowNumbers(row, index) {
+    const firstRowCell = row.querySelector('td:first-child');
+    firstRowCell.textContent = index + 1;
+  }
+
   // ** создание "X" кнопки (её передача)
   function createXBtn() {
     const deleteXBtn = document.createElement('button');
@@ -837,6 +861,14 @@
       event.stopPropagation(); // исключение не предвиденных событий/поведения
       deleteBodyRowsByXBtn(event); // удаление выделенной body-строки (посредствам "X" кнопки)
     });
+
+    // // организация удаления body-строки и через TAB/Enter
+    // deleteXBtn.addEventListener('keydown', (event) => {
+    //   if (event.key === 'Enter') {
+    //     event.preventDefault();
+    //     deleteBodyRowsByXBtn(event);
+    //   }
+    // });
   }
 
   // ** удаление "X" кнопки (возврат числа/порядкового номера в #-ячейку)
@@ -881,7 +913,7 @@
     }
   }
 
-  // ** отмена выделения элементов/строк таблицы данных о студентах (и через кнопку)
+  // ** отмена выделения элементов/строк таблицы данных о студентах (и через кнопку "Отмена")
   const cancelBtn = document.querySelector('.cancel-btn');
 
   function deselectBodyRows() {
@@ -892,14 +924,9 @@
     allSelectedBodyRows.forEach((row) => {
       row.classList.remove('dboard__table-body-row_selected');
       removeXBtnFromBodyRows(row); // удаление "X" кнопки из выделенной строки (возврат числа в #-ячейку)
-    });
 
-    // обновление/добавление заново чисел в #-ячейки (после "Отмены" выделения -> после отмены "Удаления")
-    const allBodyRows = document.querySelectorAll('.dboard__table-body-row');
-
-    allBodyRows.forEach((row, index) => {
-      const firstRowCell = row.querySelector('td:first-child');
-      firstRowCell.textContent = index + 1;
+      const rowIndex = Array.from(row.parentNode.children).indexOf(row); // определение индекса строки
+      updateBodyRowNumbers(row, rowIndex); // обновление порядкового #-номера (для текущей строки, согласно индекса)
     });
   }
 
@@ -954,6 +981,7 @@
 
     if (confirmMessage) {
       const confirmed = confirm(confirmMessage);
+
       if (!confirmed) {
         if (currentBtn) {
           currentBtn.blur(); // снятие фокуса с "X" кнопки, при отмене действия

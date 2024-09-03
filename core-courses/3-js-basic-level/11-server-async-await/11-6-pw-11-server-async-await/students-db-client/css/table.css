@@ -12,6 +12,10 @@
   cursor: pointer;
 }
 
+.border-top-color {
+  border-top: 2px solid var(--starry-night);
+}
+
 .dboard__table #tableThTag {
   font-size: 24px;
   color: var(--fire-red);
@@ -23,7 +27,7 @@
 }
 
 .dboard__table-body-row_selected {
-  border-bottom: 5px solid var(--bootstrap-red);
+  border-bottom: 1px solid var(--bootstrap-red);
 }
 
 .btn-close {
