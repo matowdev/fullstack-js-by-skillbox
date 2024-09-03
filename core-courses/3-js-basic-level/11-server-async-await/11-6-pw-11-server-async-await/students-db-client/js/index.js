@@ -769,13 +769,13 @@
         selectTableBodyRow(event);
       });
 
-      // // возможность выделения и через TAB/Enter
-      // row.addEventListener('keydown', (event) => {
-      //   if (event.key === 'Enter') {
-      //     event.preventDefault();
-      //     selectTableBodyRow(event);
-      //   }
-      // });
+      // возможность выделения и через TAB/Enter
+      row.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          selectTableBodyRow(event);
+        }
+      });
     });
   }
 
@@ -862,13 +862,13 @@
       deleteBodyRowsByXBtn(event); // удаление выделенной body-строки (посредствам "X" кнопки)
     });
 
-    // // организация удаления body-строки и через TAB/Enter
-    // deleteXBtn.addEventListener('keydown', (event) => {
-    //   if (event.key === 'Enter') {
-    //     event.preventDefault();
-    //     deleteBodyRowsByXBtn(event);
-    //   }
-    // });
+    // организация удаления body-строки и через TAB/Enter
+    deleteXBtn.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        deleteBodyRowsByXBtn(event);
+      }
+    });
   }
 
   // ** удаление "X" кнопки (возврат числа/порядкового номера в #-ячейку)
