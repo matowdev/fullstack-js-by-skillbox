@@ -741,6 +741,8 @@
   let updateStudentsDataArr;
 
   function addStudentsToTable(studentsDataArr = []) {
+    const selectedBodyRows = getSelectedBodyRows(); // сохранение выделенных body-строк (если такие есть)
+
     tableBody.innerHTML = ''; // предварительная очистка таблицы
     updateStudentsDataArr = correctInitArr(studentsDataArr);
 
@@ -755,6 +757,7 @@
     }
 
     addClickListenersToBodyRows(); // добавление прослушки для всех строк (кроме заглавной), при компоновке, после пере-компоновки (новой отрисовки), для возможности выделения по клику
+    restoreSelectedBodyRows(selectedBodyRows); // восстановление выделенных body-строк (если такие были)
   }
 
   addStudentsToTable(studentsDataArr); // наполнение таблицы студентов
@@ -977,8 +980,6 @@
     confirmMessage = null,
     currentBtn = null
   ) {
-    const selectedBodyRows = getSelectedBodyRows(); // сохранение выделенных body-строк (если такие есть)
-
     if (confirmMessage) {
       const confirmed = confirm(confirmMessage);
 
@@ -986,7 +987,6 @@
         if (currentBtn) {
           currentBtn.blur(); // снятие фокуса с "X" кнопки, при отмене действия
         }
-        restoreSelectedBodyRows(selectedBodyRows); // восстановление выделенных body-строк (если такие были)
         return;
       }
     }
@@ -1007,7 +1007,6 @@
     });
 
     addStudentsToTable(studentsDataArr); // обновление таблицы студентов (пере-компоновка) после удаления
-    restoreSelectedBodyRows(selectedBodyRows); // восстановление выделенных body-строк (если такие были)
   }
 
   // ** обновление валидационного сообщения (изменение состояния input(a))
@@ -1181,8 +1180,6 @@
           }
         }
 
-        const selectedBodyRows = getSelectedBodyRows(); // сохранение выделенных body-строк (если такие есть)
-
         studentsDataArr.push({
           surname: formInSurname,
           name: formInName,
@@ -1195,7 +1192,6 @@
         });
 
         addStudentsToTable(studentsDataArr); // наполнение таблицы (пере-компоновка) после добавления студента
-        restoreSelectedBodyRows(selectedBodyRows); // восстановление выделенных body-строк (если такие были)
 
         allFormInInputs.forEach((input) => (input.value = '')); // очистка полей формы (после добавления)
         formInputData.classList.remove('was-validated'); // отмена красной обводки у "чистых" полей формы (после добавления)
@@ -1343,7 +1339,6 @@
 
   function clearFormsAfterCollapse(event) {
     const clickedCollapseBtn = event.target; // определение кнопки/цели, по которой происходит "click" - событие
-    const selectedBodyRows = getSelectedBodyRows(); // сохранение выделенных body-строк (если такие есть)
 
     if (clickedCollapseBtn.id === 'formInputCollapse') {
       setTimeout(() => {
@@ -1365,8 +1360,6 @@
       }, 500);
       addStudentsToTable(studentsDataArr); // возврат к исходному виду таблицы без задержки
     }
-
-    restoreSelectedBodyRows(selectedBodyRows); // восстановление выделенных body-строк (если такие были)
   }
 
   allCollapseBtn.forEach((btn) => {
@@ -1381,7 +1374,6 @@
 
   function sortStudentsByTableCells(event) {
     const clickedTableCell = event.target.textContent; // определение заглавного поля/ячейки, по которой происходит "click" - событие
-    const selectedBodyRows = getSelectedBodyRows(); // сохранение выделенных body-строк (если такие есть)
 
     updateStudentsDataArr.sort((a, b) => {
       if (clickedTableCell === '#') {
@@ -1421,7 +1413,6 @@
     });
 
     addStudentsToTable(updateStudentsDataArr); // пере-рисовка (пере-компоновка) после сортировки (прожатия ячеек)
-    restoreSelectedBodyRows(selectedBodyRows); // восстановление выделенных body-строк (если такие были)
   }
 
   allHeaderRowCells.forEach((cell) => {
