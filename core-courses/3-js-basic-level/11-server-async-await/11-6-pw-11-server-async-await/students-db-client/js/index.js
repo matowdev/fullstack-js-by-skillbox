@@ -639,10 +639,10 @@
     return result;
   }
 
-  // ** корректировка исходного массива студентов (добавление свойств: id и uniqueId)
+  // ** корректировка исходного массива студентов (добавление свойств: localId и uniqueId)
   function correctInitArrAddIds(studentsDataArr = []) {
     studentsDataArr.forEach((student, index) => {
-      student.id = index + 1;
+      student.localId = index + 1;
       student.uniqueId = generateUniqueId();
     });
   }
@@ -701,8 +701,8 @@
     studentTableTr.classList.add('dboard__table-body-row');
     studentTdNumber.classList.add('dboard__table-body-cell_number');
 
-    studentTableTr.setAttribute('id', `body-row-${student.id}`); // добавление строчного ID (исходя из ID студента)
-    studentTableTr.setAttribute('unique-id', `${student.uniqueId}`); // добавление уникального ID
+    studentTableTr.setAttribute('id', `body-row-${student.localId}`); // добавление строчного ID (исходя из локального ID студента (не серверного))
+    studentTableTr.setAttribute('data-unique-id', `${student.uniqueId}`); // добавление уникального ID
     studentTableTr.setAttribute('tabindex', '0');
 
     studentTdNumber.textContent = index + 1;
@@ -810,7 +810,7 @@
       .querySelectorAll('.dboard__table-body-row_selected')
       .forEach((row) => {
         selectedBodyRows.ids.push(row.getAttribute('id')); // фиксация и ID
-        selectedBodyRows.uniqueIds.push(row.getAttribute('unique-id')); // фиксация и uniqueId
+        selectedBodyRows.uniqueIds.push(row.getAttribute('data-unique-id')); // фиксация и uniqueId
       });
 
     return selectedBodyRows; // возврат объекта с ID и uniqueId
@@ -821,7 +821,7 @@
     const allBodyRows = document.querySelectorAll('.dboard__table-body-row');
 
     allBodyRows.forEach((row) => {
-      const rowUniqueId = row.getAttribute('unique-id'); // выборка только uniqueId
+      const rowUniqueId = row.getAttribute('data-unique-id'); // выборка только uniqueId
 
       if (selectedBodyRows.uniqueIds.includes(rowUniqueId)) {
         row.classList.add('dboard__table-body-row_selected');
@@ -941,10 +941,10 @@
     const rowId = clickedBodyRow.id;
 
     // определение студента/строки (для последующего удаления)
-    const studentIdToDelete = parseInt(rowId.replace('body-row-', ''), 10);
+    const studentLocalIdToDelete = parseInt(rowId.replace('body-row-', ''), 10);
 
     deleteBodyRowsStudents(
-      [studentIdToDelete],
+      [studentLocalIdToDelete],
       `Вы уверены, что хотите удалить студента?`,
       event.currentTarget
     ); // вызов "общей" функции, для удаления студента/строки (передача соответствующих аргументов)
@@ -961,13 +961,13 @@
       return;
     }
 
-    // формирование ID массива, студентов/строк (для последующего удаления)
-    const studentIdsToDelete = selectedBodyRows.ids.map((rowId) =>
+    // формирование локального ID массива, студентов/строк (для последующего удаления)
+    const studentLocalIdsToDelete = selectedBodyRows.ids.map((rowId) =>
       parseInt(rowId.replace('body-row-', ''), 10)
     );
 
     deleteBodyRowsStudents(
-      studentIdsToDelete,
+      studentLocalIdsToDelete,
       `Вы уверены, что хотите удалить ${selectedBodyRows.ids.length} студентов(а)?`
     ); // вызов "общей" функции, для удаления студента/строки (передача соответствующих аргументов)
   }
@@ -976,7 +976,7 @@
 
   // ** удаление выделенных элементов/строк таблицы данных о студентах (ОБЩАЯ ЛОГИКА)
   function deleteBodyRowsStudents(
-    studentIdsToDelete,
+    studentLocalIdsToDelete,
     confirmMessage = null,
     currentBtn = null
   ) {
@@ -991,9 +991,9 @@
       }
     }
 
-    studentIdsToDelete.forEach((idToDelete) => {
+    studentLocalIdsToDelete.forEach((idToDelete) => {
       const studentIndex = studentsDataArr.findIndex(
-        (student) => student.id === idToDelete
+        (student) => student.localId === idToDelete
       );
 
       if (studentIndex !== -1) {
@@ -1001,9 +1001,9 @@
       }
     });
 
-    // изменение/корректировка ID оставшихся студентов (для корректной сортировки после добавления "новых" студентов)
+    // изменение/корректировка локальных ID оставшихся студентов (для корректной сортировки после добавления "новых" студентов)
     studentsDataArr.forEach((student, index) => {
-      student.id = index + 1;
+      student.localId = index + 1;
     });
 
     addStudentsToTable(studentsDataArr); // обновление таблицы студентов (пере-компоновка) после удаления
@@ -1187,8 +1187,8 @@
           birthDate: new Date(formInBirthDateInput.value),
           startYear: parseInt(formInStartYearInput.value),
           faculty: formInFacultyInput.value.toLowerCase().trim(),
-          id: studentsDataArr.length + 1, // продолжение нумерации, исходя из логики index + 1 для уже присутствующих
-          uniqueId: generateUniqueId(), // генерация дополнительного/уникального ID (как и остальных присутствующих)
+          localId: studentsDataArr.length + 1, // продолжение нумерации, исходя из логики index + 1 для уже присутствующих
+          uniqueId: generateUniqueId(), // генерация дополнительного/уникального ID (как, у уже присутствующих)
         });
 
         addStudentsToTable(studentsDataArr); // наполнение таблицы (пере-компоновка) после добавления студента
@@ -1377,7 +1377,7 @@
 
     updateStudentsDataArr.sort((a, b) => {
       if (clickedTableCell === '#') {
-        return a.id - b.id;
+        return a.localId - b.localId;
       } else if (clickedTableCell === 'Ф.И.О.') {
         return sortDirectionUpDown
           ? a.fullName.localeCompare(b.fullName)
