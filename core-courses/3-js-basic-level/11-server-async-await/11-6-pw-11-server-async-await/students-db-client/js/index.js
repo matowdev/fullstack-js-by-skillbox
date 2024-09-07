@@ -649,16 +649,33 @@
 
   correctInitArrAddIds(studentsDataArr);
 
-  // ** корректировка исходного массива студентов (добавление свойства fullName, изменения в birthDate и в startYear)
+  // ! [new]
+  // ** преобразование строковой даты в объект Date
+  function conversionStringDate(dateString) {
+    const [day, month, year] = dateString.split('.').map(Number); // преобразование в массив числе, деструктуризация в 3-ри переменные
+    return new Date(year, month - 1, day); // возврат полноценного объекта Date
+  }
+
+  // ! [correct]
+  // ** корректировка исходного массива/серверного массива студентов (добавление свойства fullName, изменения/корректировки в/для birthDate и startYear)
   function correctInitArr(studentsDataArr = []) {
-    const newStudentsDataArr = structuredClone(studentsDataArr);
+    const newStudentsDataArr = structuredClone(studentsDataArr); // клонирование входящего массива (локального, серверного)
     const todayDate = new Date();
-    const todayYear = new Date().getFullYear();
-    const todayMonth = new Date().getMonth(); // месяцы начинаются с 0 (нуля)
+    const todayYear = todayDate.getFullYear();
+    const todayMonth = todayDate.getMonth(); // месяцы начинаются с 0 (нуля)
 
     for (const student of newStudentsDataArr) {
-      // добавление свойства fullName
-      student.fullName = `${student.surname} ${student.name} ${student.patronymic}`;
+      student.fullName = `${student.surname} ${student.name} ${student.patronymic}`; // получение "общего" fullName
+
+      // преобразование startYear в число, если нужно
+      if (typeof student.startYear !== 'number') {
+        student.startYear = parseInt(student.startYear, 10);
+      }
+
+      // преобразование birthDate в объект Date, если нужно
+      if (typeof student.birthDate === 'string') {
+        student.birthDate = conversionStringDate(student.birthDate);
+      }
 
       // изменения в birthDate (формат даты, определение возраста, перезапись свойства)
       let formatBirthDate = student.birthDate.toLocaleDateString('ru-RU');
@@ -737,6 +754,38 @@
     return emptyTableTrRow;
   }
 
+  // ! [new]
+  // ** организация запроса, получение данных/списка студентов с сервера (корректировка входящих данных)
+  async function getStudentsServerListData() {
+    try {
+      const response = await fetch('http://localhost:3000/api/students'); // запрос на сервер
+
+      // проверка успешности/выполнения запроса
+      if (!response.ok) {
+        throw new Error(`Ошибка: ${response.status}!`);
+      }
+
+      const data = await response.json(); // преобразование данных в JSON-формат
+      const studentsDataArrWithIds = addLocalAndUniqueIdsToStudents(data); // добавление недостающих полей localId и uniqueId
+
+      addStudentsToTable(studentsDataArrWithIds); // отрисовка данных, наполнение таблицы студентов
+    } catch (error) {
+      console.error('Не удалось загрузить список студентов..', error);
+      alert('Ошибка при загрузке данных с сервера!?');
+    }
+  }
+
+  // добавление недостающих полей в объекты студентов, т.е. полей localId и uniqueId (необходимых для дальнейших отработок)
+  function addLocalAndUniqueIdsToStudents(studentsFromServer) {
+    return studentsFromServer.map((student, index) => ({
+      ...student, // сохранение приходящих/серверных полей
+      localId: index + 1, // добавление localId
+      uniqueId: generateUniqueId(), // добавление uniqueID
+    }));
+  }
+
+  getStudentsServerListData(); // получение данных
+
   // ** наполнение таблицы данных о студентах (согласно откорректированного исходного, далее формирующегося массива)
   let updateStudentsDataArr;
 
@@ -760,7 +809,8 @@
     restoreSelectedBodyRows(selectedBodyRows); // восстановление выделенных body-строк (если такие были)
   }
 
-  addStudentsToTable(studentsDataArr); // наполнение таблицы студентов
+  // ! [delete]
+  // addStudentsToTable(studentsDataArr); // наполнение таблицы студентов
 
   // ** выделение (фиксация выделенных) элементов/строк таблицы данных о студентах (при клике, ввод "Х" кнопки)
   // организация прослушки, для body-строк (для всех)
