@@ -1,48 +1,4 @@
 (() => {
-  // ** первичные/вводные данные
-  const studentsDataArr = [
-    {
-      surname: 'Сергеева',
-      name: 'Александра',
-      patronymic: 'Михайловна',
-      birthDate: new Date(1999, 7, 20),
-      startYear: 2020,
-      faculty: 'информационных технологий',
-    },
-    {
-      surname: 'Нестерова',
-      name: 'Валерия',
-      patronymic: 'Анатольевна',
-      birthDate: new Date(2002, 1, 21),
-      startYear: 2022,
-      faculty: 'мировой экономики',
-    },
-    {
-      surname: 'Морозов',
-      name: 'Артем',
-      patronymic: 'Геннадиевич',
-      birthDate: new Date(2003, 5, 11),
-      startYear: 2021,
-      faculty: 'гражданской инженерии',
-    },
-    {
-      surname: 'Мельникова',
-      name: 'Екатерина',
-      patronymic: 'Владимировна',
-      birthDate: new Date(2001, 10, 29),
-      startYear: 2020,
-      faculty: 'прикладной математики',
-    },
-    {
-      surname: 'Николаев',
-      name: 'Максим',
-      patronymic: 'Алексеевич',
-      birthDate: new Date(2005, 3, 3),
-      startYear: 2023,
-      faculty: 'медиа и дизайна',
-    },
-  ];
-
   // ** получение существующих, создание "новых" элементов (глобальное объявление)
   const dashboard = document.getElementById('dboard');
   const dboardInput = document.getElementById('dboard-input');
@@ -250,7 +206,7 @@
   formInStartYearLabel.setAttribute('for', 'floatingInputStartYear');
   formInFacultyInput.setAttribute('id', 'floatingInputFaculty');
   formInFacultyInput.setAttribute('type', 'text');
-  formInFacultyInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
+  formInFacultyInput.setAttribute('pattern', '[А-Яа-яЁё\\s]+');
   formInFacultyInput.setAttribute('minlength', '3');
   formInFacultyInput.setAttribute('placeholder', 'Факультет');
   formInFacultyInput.setAttribute('required', '');
@@ -639,27 +595,16 @@
     return result;
   }
 
-  // ** корректировка исходного массива студентов (добавление свойств: localId и uniqueId)
-  function correctInitArrAddIds(studentsDataArr = []) {
-    studentsDataArr.forEach((student, index) => {
-      student.localId = index + 1;
-      student.uniqueId = generateUniqueId();
-    });
-  }
-
-  correctInitArrAddIds(studentsDataArr);
-
   // ! [new]
   // ** преобразование строковой даты в объект Date
   function conversionStringDate(dateString) {
-    const [day, month, year] = dateString.split('.').map(Number); // преобразование в массив числе, деструктуризация в 3-ри переменные
-    return new Date(year, month - 1, day); // возврат полноценного объекта Date
+    return new Date(dateString); // возврат "полноценного" объекта Date
   }
 
   // ! [correct]
   // ** корректировка исходного массива/серверного массива студентов (добавление свойства fullName, изменения/корректировки в/для birthDate и startYear)
-  function correctInitArr(studentsDataArr = []) {
-    const newStudentsDataArr = structuredClone(studentsDataArr); // клонирование входящего массива (локального, серверного)
+  function correctInitArr(studentsServerData = []) {
+    const newStudentsDataArr = structuredClone(studentsServerData); // клонирование входящего массива (локального, серверного)
     const todayDate = new Date();
     const todayYear = todayDate.getFullYear();
     const todayMonth = todayDate.getMonth(); // месяцы начинаются с 0 (нуля)
@@ -755,7 +700,9 @@
   }
 
   // ! [new]
-  // ** организация запроса, получение данных/списка студентов с сервера (корректировка входящих данных)
+  // ** [СЕРВЕР] организация запроса, получение данных/списка студентов с сервера (корректировка входящих данных)
+  let studentsDataArrWithIds;
+
   async function getStudentsServerListData() {
     try {
       const response = await fetch('http://localhost:3000/api/students'); // запрос на сервер
@@ -766,7 +713,7 @@
       }
 
       const data = await response.json(); // преобразование данных в JSON-формат
-      const studentsDataArrWithIds = addLocalAndUniqueIdsToStudents(data); // добавление недостающих полей localId и uniqueId
+      studentsDataArrWithIds = addLocalAndUniqueIdsToStudents(data); // добавление недостающих полей localId и uniqueId
 
       addStudentsToTable(studentsDataArrWithIds); // отрисовка данных, наполнение таблицы студентов
     } catch (error) {
@@ -786,14 +733,15 @@
 
   getStudentsServerListData(); // получение данных
 
+  // ! [correct]
   // ** наполнение таблицы данных о студентах (согласно откорректированного исходного, далее формирующегося массива)
   let updateStudentsDataArr;
 
-  function addStudentsToTable(studentsDataArr = []) {
+  function addStudentsToTable(studentsServerData = []) {
     const selectedBodyRows = getSelectedBodyRows(); // сохранение выделенных body-строк (если такие есть)
 
     tableBody.innerHTML = ''; // предварительная очистка таблицы
-    updateStudentsDataArr = correctInitArr(studentsDataArr);
+    updateStudentsDataArr = correctInitArr(studentsServerData);
 
     if (updateStudentsDataArr.length === 0) {
       const emptyTableRow = createEmptyTableMessageRow(); // если массив студентов/таблица данных пуста, вывод сообщения
@@ -808,9 +756,6 @@
     addClickListenersToBodyRows(); // добавление прослушки для всех строк (кроме заглавной), при компоновке, после пере-компоновки (новой отрисовки), для возможности выделения по клику
     restoreSelectedBodyRows(selectedBodyRows); // восстановление выделенных body-строк (если такие были)
   }
-
-  // ! [delete]
-  // addStudentsToTable(studentsDataArr); // наполнение таблицы студентов
 
   // ** выделение (фиксация выделенных) элементов/строк таблицы данных о студентах (при клике, ввод "Х" кнопки)
   // организация прослушки, для body-строк (для всех)
@@ -1024,6 +969,7 @@
 
   deleteBtn.addEventListener('click', deleteBodyRowsByBtn);
 
+  // ! [correct]
   // ** удаление выделенных элементов/строк таблицы данных о студентах (ОБЩАЯ ЛОГИКА)
   function deleteBodyRowsStudents(
     studentLocalIdsToDelete,
@@ -1042,21 +988,21 @@
     }
 
     studentLocalIdsToDelete.forEach((idToDelete) => {
-      const studentIndex = studentsDataArr.findIndex(
+      const studentIndex = updateStudentsDataArr.findIndex(
         (student) => student.localId === idToDelete
       );
 
       if (studentIndex !== -1) {
-        studentsDataArr.splice(studentIndex, 1);
+        updateStudentsDataArr.splice(studentIndex, 1);
       }
     });
 
     // изменение/корректировка локальных ID оставшихся студентов (для корректной сортировки после добавления "новых" студентов)
-    studentsDataArr.forEach((student, index) => {
+    updateStudentsDataArr.forEach((student, index) => {
       student.localId = index + 1;
     });
 
-    addStudentsToTable(studentsDataArr); // обновление таблицы студентов (пере-компоновка) после удаления
+    addStudentsToTable(updateStudentsDataArr); // обновление таблицы студентов (пере-компоновка) после удаления
   }
 
   // ** обновление валидационного сообщения (изменение состояния input(a))
@@ -1146,9 +1092,14 @@
       const targetParentNode = target.parentNode;
       const invalidFeed = targetParentNode.querySelector('.invalid-feedback');
 
+      // ! [correct]
       if (target.type === 'text') {
-        // только русские буквы и дефис (для двойных-фамилий), без цифр/символов и пробелов
-        if (/[^а-яА-ЯёЁ-]/.test(target.value)) {
+        // только русские буквы и дефис (для двойных-фамилий), без цифр/символов и необоснованных пробелов
+        if (
+          /[^а-яА-ЯёЁ\s-]/.test(target.value) ||
+          /\s{2,}/.test(target.value) ||
+          /^\s|\s$/.test(target.value)
+        ) {
           target.classList.add('is-invalid');
           invalidFeed.textContent =
             'Некорректный ввод! Измените раскладку клавиатуры и/или исключите цифры/знаки, пробелы!';
@@ -1169,6 +1120,38 @@
     });
   }
 
+  // ! [new]
+  // ** [СЕРВЕР] отправка данных/добавление "новых" студентов на сервер, получение обратно (проверка статуса)
+  async function addStudentsToServer(studentData) {
+    try {
+      const response = await fetch('http://localhost:3000/api/students', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(studentData),
+      });
+
+      if (!response.ok) {
+        if (response.status === 422) {
+          const errorData = await response.json();
+          throw new Error(
+            `Ошибка валидации: ${errorData.errors
+              .map((e) => e.message)
+              .join(', ')}`
+          );
+        } else {
+          throw new Error(`Ошибка: ${response.status}`);
+        }
+      }
+
+      await getStudentsServerListData(); // обновление списка студентов (в контексте.. перерисовка таблицы)
+    } catch (error) {
+      console.error('Ошибка при добавлении студента..', error);
+      alert('Ошибка при добавлении студента на сервер!');
+    }
+  }
+
   // ** добавление "новых" студентов в массив/таблицу, через поля формы (после валидации, после проверки по ФИО)
   const allFormInInputs = document.querySelectorAll(
     '.dboard__input-form input'
@@ -1180,14 +1163,15 @@
     return value[0].toUpperCase() + value.slice(1).toLowerCase();
   }
 
+  // ! [correct]
   // проверка на совпадение по ФИО, в исходном/формирующемся массиве
   function checkStudentFIO(
     formInSurname,
     formInName,
     formInPatronymic,
-    studentsDataArr
+    updateStudentsDataArr
   ) {
-    return studentsDataArr.some(
+    return updateStudentsDataArr.some(
       (student) =>
         student.surname === formInSurname &&
         student.name === formInName &&
@@ -1199,9 +1183,11 @@
     additionalFormInputsValidation(input); // дополнительная валидация (на корректный ввод)
   });
 
+  // ! [correct]
+  // [СЕРВЕР]
   formInputData.addEventListener(
     'submit',
-    (event) => {
+    async (event) => {
       event.preventDefault();
 
       if (!formInputData.checkValidity()) {
@@ -1213,13 +1199,16 @@
         const formInPatronymic = toUpFirstLetter(
           formInPatronymicInput.value.trim()
         );
+        const formInBirthDate = formInBirthDateInput.value;
+        const formInStartYear = formInStartYearInput.value;
+        const formInFaculty = formInFacultyInput.value.toLowerCase().trim();
 
         if (
           checkStudentFIO(
             formInSurname,
             formInName,
             formInPatronymic,
-            studentsDataArr
+            updateStudentsDataArr
           )
         ) {
           const formInNotification = confirm(
@@ -1230,18 +1219,17 @@
           }
         }
 
-        studentsDataArr.push({
+        // ! [new]
+        const newStudent = {
           surname: formInSurname,
           name: formInName,
           patronymic: formInPatronymic,
-          birthDate: new Date(formInBirthDateInput.value),
-          startYear: parseInt(formInStartYearInput.value),
-          faculty: formInFacultyInput.value.toLowerCase().trim(),
-          localId: studentsDataArr.length + 1, // продолжение нумерации, исходя из логики index + 1 для уже присутствующих
-          uniqueId: generateUniqueId(), // генерация дополнительного/уникального ID (как, у уже присутствующих)
-        });
+          birthDate: formInBirthDate,
+          startYear: formInStartYear,
+          faculty: formInFaculty,
+        };
 
-        addStudentsToTable(studentsDataArr); // наполнение таблицы (пере-компоновка) после добавления студента
+        await addStudentsToServer(newStudent); // добавление студента на сервер
 
         allFormInInputs.forEach((input) => (input.value = '')); // очистка полей формы (после добавления)
         formInputData.classList.remove('was-validated'); // отмена красной обводки у "чистых" полей формы (после добавления)
@@ -1337,7 +1325,7 @@
 
   allFormFilterInputs.forEach((input) => {
     input.addEventListener('input', () => {
-      addStudentsToTable(studentsDataArr); // возврат к исходному наполнению/виду таблицы студентов (при backspace в inputs)
+      addStudentsToTable(updateStudentsDataArr); // возврат к исходному наполнению/виду таблицы студентов (при backspace в inputs)
       filterStudentsByFormInputs();
     });
   });
@@ -1375,7 +1363,7 @@
           input.value = '';
           updateFormInputValidMsg(input);
         });
-        addStudentsToTable(studentsDataArr); // возврат к исходному наполнению/виду таблицы студентов
+        addStudentsToTable(updateStudentsDataArr); // возврат к исходному наполнению/виду таблицы студентов
       }
     }
   }
@@ -1408,7 +1396,7 @@
         });
         formFilterData.classList.remove('was-validated');
       }, 500);
-      addStudentsToTable(studentsDataArr); // возврат к исходному виду таблицы без задержки
+      addStudentsToTable(updateStudentsDataArr); // возврат к исходному виду таблицы без задержки
     }
   }
 
