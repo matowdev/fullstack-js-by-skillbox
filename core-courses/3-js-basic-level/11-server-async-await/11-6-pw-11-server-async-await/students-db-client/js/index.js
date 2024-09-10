@@ -582,19 +582,6 @@
   // основные блоки/составляющие панели управления
   dashboard.append(dboardInput, dboardFilter, dboardOutput);
 
-  // ** генерация уникального/дополнительного id (для последующих сортировок/фиксаций)
-  function generateUniqueId(length = 8) {
-    const chars =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let result = '';
-
-    for (let i = 0; i < length; i++) {
-      result += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-
-    return result;
-  }
-
   // ! [new]
   // ** преобразование строковой даты в объект Date
   function conversionStringDate(dateString) {
@@ -664,7 +651,8 @@
     studentTdNumber.classList.add('dboard__table-body-cell_number');
 
     studentTableTr.setAttribute('id', `body-row-${student.localId}`); // добавление строчного ID (исходя из локального ID студента (не серверного))
-    studentTableTr.setAttribute('data-unique-id', `${student.uniqueId}`); // добавление уникального ID
+    // ! [new]
+    studentTableTr.setAttribute('data-server-id', `${student.id}`); // добавление серверного ID
     studentTableTr.setAttribute('tabindex', '0');
 
     studentTdNumber.textContent = index + 1;
@@ -713,7 +701,7 @@
       }
 
       const data = await response.json(); // преобразование данных в JSON-формат
-      studentsDataArrWithIds = addLocalAndUniqueIdsToStudents(data); // добавление недостающих полей localId и uniqueId
+      studentsDataArrWithIds = addLocalIdsToStudents(data); // добавление недостающего поля, как localId
 
       addStudentsToTable(studentsDataArrWithIds); // отрисовка данных, наполнение таблицы студентов
     } catch (error) {
@@ -722,12 +710,11 @@
     }
   }
 
-  // добавление недостающих полей в объекты студентов, т.е. полей localId и uniqueId (необходимых для дальнейших отработок)
-  function addLocalAndUniqueIdsToStudents(studentsFromServer) {
+  // добавление недостающего поля в объекты студентов, т.е. поля localId (необходимого, для дальнейших отработок)
+  function addLocalIdsToStudents(studentsFromServer) {
     return studentsFromServer.map((student, index) => ({
       ...student, // сохранение приходящих/серверных полей
       localId: index + 1, // добавление localId
-      uniqueId: generateUniqueId(), // добавление uniqueID
     }));
   }
 
@@ -798,17 +785,17 @@
   function getSelectedBodyRows() {
     const selectedBodyRows = {
       ids: [],
-      uniqueIds: [],
+      serverIds: [],
     };
 
     document
       .querySelectorAll('.dboard__table-body-row_selected')
       .forEach((row) => {
         selectedBodyRows.ids.push(row.getAttribute('id')); // фиксация и ID
-        selectedBodyRows.uniqueIds.push(row.getAttribute('data-unique-id')); // фиксация и uniqueId
+        selectedBodyRows.serverIds.push(row.getAttribute('data-server-id')); // фиксация и serverId
       });
 
-    return selectedBodyRows; // возврат объекта с ID и uniqueId
+    return selectedBodyRows; // возврат объекта с ID и serverId
   }
 
   // восстановление ранее выделенных строк (если были)
@@ -816,9 +803,9 @@
     const allBodyRows = document.querySelectorAll('.dboard__table-body-row');
 
     allBodyRows.forEach((row) => {
-      const rowUniqueId = row.getAttribute('data-unique-id'); // выборка только uniqueId
+      const rowServerId = row.getAttribute('data-server-id'); // выборка только serverId
 
-      if (selectedBodyRows.uniqueIds.includes(rowUniqueId)) {
+      if (selectedBodyRows.serverIds.includes(rowServerId)) {
         row.classList.add('dboard__table-body-row_selected');
         addXBtnToBodyRows(row); // последующее добавление "X" кнопки в выделенную строку
       }
@@ -930,21 +917,42 @@
 
   cancelBtn.addEventListener('click', deselectBodyRows); // отработка функции по нажатию
 
+  // ! [new]
+  // ** [СЕРВЕР] организация удаления студентов с сервера (согласно серверных id)
+  async function deleteStudentFromServer(serverId) {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/students/${serverId}`,
+        {
+          method: 'DELETE',
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Ошибка при удалении студента: ${response.status}`);
+      }
+
+      await getStudentsServerListData(); // обновление списка студентов после удаления
+    } catch (error) {
+      console.error('Ошибка при удалении студента с сервера..', error);
+      alert('Не удалось удалить студента с сервера!');
+    }
+  }
+
+  // ! [correct]
   // ** удаление выделенных элементов/строк таблицы данных о студентах (через "X" кнопку, не через "внешнюю")
   function deleteBodyRowsByXBtn(event) {
     const clickedBodyRow = event.currentTarget.closest('tr');
-    const rowId = clickedBodyRow.id;
-
-    // определение студента/строки (для последующего удаления)
-    const studentLocalIdToDelete = parseInt(rowId.replace('body-row-', ''), 10);
+    const studentServerId = clickedBodyRow.getAttribute('data-server-id');
 
     deleteBodyRowsStudents(
-      [studentLocalIdToDelete],
+      [studentServerId],
       `Вы уверены, что хотите удалить студента?`,
       event.currentTarget
     ); // вызов "общей" функции, для удаления студента/строки (передача соответствующих аргументов)
   }
 
+  // ! [correct]
   // ** удаление выделенных элементов/строк таблицы данных о студентах (через "внешнюю" кнопку, не через "X")
   const deleteBtn = document.querySelector('.delete-btn');
 
@@ -956,13 +964,14 @@
       return;
     }
 
-    // формирование локального ID массива, студентов/строк (для последующего удаления)
-    const studentLocalIdsToDelete = selectedBodyRows.ids.map((rowId) =>
-      parseInt(rowId.replace('body-row-', ''), 10)
-    );
+    // формирование серверного ID массива, студентов/строк (для последующего удаления)
+    const studentServerIdsToDelete = selectedBodyRows.ids.map((rowId) => {
+      const row = document.getElementById(rowId);
+      return row.getAttribute('data-server-id'); // получение серверного ID из атрибута
+    });
 
     deleteBodyRowsStudents(
-      studentLocalIdsToDelete,
+      studentServerIdsToDelete,
       `Вы уверены, что хотите удалить ${selectedBodyRows.ids.length} студентов(а)?`
     ); // вызов "общей" функции, для удаления студента/строки (передача соответствующих аргументов)
   }
@@ -972,7 +981,7 @@
   // ! [correct]
   // ** удаление выделенных элементов/строк таблицы данных о студентах (ОБЩАЯ ЛОГИКА)
   function deleteBodyRowsStudents(
-    studentLocalIdsToDelete,
+    studentServerIdsToDelete,
     confirmMessage = null,
     currentBtn = null
   ) {
@@ -987,9 +996,14 @@
       }
     }
 
-    studentLocalIdsToDelete.forEach((idToDelete) => {
+    // ! [new]
+    studentServerIdsToDelete.forEach(async (serverId) => {
+      await deleteStudentFromServer(serverId); // удаление студентов с сервера по серверным ID
+    });
+
+    studentServerIdsToDelete.forEach((serverId) => {
       const studentIndex = updateStudentsDataArr.findIndex(
-        (student) => student.localId === idToDelete
+        (student) => student.id === serverId
       );
 
       if (studentIndex !== -1) {
