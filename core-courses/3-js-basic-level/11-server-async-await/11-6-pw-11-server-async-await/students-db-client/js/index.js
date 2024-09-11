@@ -1301,7 +1301,10 @@
     event.preventDefault();
   });
 
+  // ! [correct]
   function filterStudentsByFormInputs() {
+    updateStudentsDataArr = correctInitArr(studentsDataArrWithIds); // обновление исходного массива, перед фильтрацией
+
     if (formFilterFIOInput.value.trim() !== '') {
       updateStudentsDataArr = updateStudentsDataArr.filter((student) =>
         student.fullName
@@ -1339,7 +1342,6 @@
 
   allFormFilterInputs.forEach((input) => {
     input.addEventListener('input', () => {
-      addStudentsToTable(updateStudentsDataArr); // возврат к исходному наполнению/виду таблицы студентов (при backspace в inputs)
       filterStudentsByFormInputs();
     });
   });
@@ -1377,7 +1379,8 @@
           input.value = '';
           updateFormInputValidMsg(input);
         });
-        addStudentsToTable(updateStudentsDataArr); // возврат к исходному наполнению/виду таблицы студентов
+        // ! [correct]
+        addStudentsToTable(studentsDataArrWithIds); // возврат к исходному наполнению/виду таблицы студентов
       }
     }
   }
