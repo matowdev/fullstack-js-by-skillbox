@@ -409,27 +409,23 @@
   formFilterFIOInput.setAttribute('type', 'text');
   formFilterFIOInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
   formFilterFIOInput.setAttribute('placeholder', 'Ф.И.О.');
-  // formFilterFIOInput.setAttribute('required', '');
   formFilterFIOLabel.setAttribute('for', 'floatingFilterFIO');
   formFilterFacultyInput.setAttribute('id', 'floatingFilterFaculty');
   formFilterFacultyInput.setAttribute('type', 'text');
   formFilterFacultyInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
   formFilterFacultyInput.setAttribute('placeholder', 'Факультет');
-  // formFilterFacultyInput.setAttribute('required', '');
   formFilterFacultyLabel.setAttribute('for', 'floatingFilterFaculty');
   formFilterStartYearInput.setAttribute('id', 'floatingFilterStartYear');
   formFilterStartYearInput.setAttribute('type', 'number');
   formFilterStartYearInput.setAttribute('min', 2000);
   formFilterStartYearInput.setAttribute('max', new Date().getFullYear()); // с текущего года
   formFilterStartYearInput.setAttribute('placeholder', 'Год начала обучения');
-  // formFilterStartYearInput.setAttribute('required', '');
   formFilterStartYearLabel.setAttribute('for', 'floatingFilterStartYear');
   formFilterEndYearInput.setAttribute('id', 'floatingFilterEndYear');
   formFilterEndYearInput.setAttribute('type', 'number');
   formFilterEndYearInput.setAttribute('min', 2004);
   formFilterEndYearInput.setAttribute('max', new Date().getFullYear() + 4); // по текущий год + 4
   formFilterEndYearInput.setAttribute('placeholder', 'Год окончания обучения');
-  // formFilterEndYearInput.setAttribute('required', '');
   formFilterEndYearLabel.setAttribute('for', 'floatingFilterEndYear');
   formFilterBtnApplyFilter.setAttribute('id', 'filter-filter-btn');
   formFilterBtnApplyFilter.setAttribute('type', 'submit');
@@ -582,13 +578,11 @@
   // основные блоки/составляющие панели управления
   dashboard.append(dboardInput, dboardFilter, dboardOutput);
 
-  // ! [new]
   // ** преобразование строковой даты в объект Date
   function conversionStringDate(dateString) {
     return new Date(dateString); // возврат "полноценного" объекта Date
   }
 
-  // ! [correct]
   // ** корректировка исходного массива/серверного массива студентов (добавление свойства fullName, изменения/корректировки в/для birthDate и startYear)
   function correctInitArr(studentsServerData = []) {
     const newStudentsDataArr = structuredClone(studentsServerData); // клонирование входящего массива (локального, серверного)
@@ -651,7 +645,6 @@
     studentTdNumber.classList.add('dboard__table-body-cell_number');
 
     studentTableTr.setAttribute('id', `body-row-${student.localId}`); // добавление строчного ID (исходя из локального ID студента (не серверного))
-    // ! [new]
     studentTableTr.setAttribute('data-server-id', `${student.id}`); // добавление серверного ID
     studentTableTr.setAttribute('tabindex', '0');
 
@@ -687,7 +680,6 @@
     return emptyTableTrRow;
   }
 
-  // ! [new]
   // ** [СЕРВЕР] организация запроса, получение данных/списка студентов с сервера (корректировка входящих данных)
   let studentsDataArrWithIds;
 
@@ -720,7 +712,6 @@
 
   getStudentsServerListData(); // получение данных
 
-  // ! [correct]
   // ** наполнение таблицы данных о студентах (согласно откорректированного исходного, далее формирующегося массива)
   let updateStudentsDataArr;
 
@@ -767,6 +758,11 @@
   // определение целевой body-строки (замена #-числа на "X" кнопку, и обратно)
   function selectTableBodyRow(event) {
     const clickedTableRow = event.currentTarget; // определение строки, по которой происходит "click" - событие
+
+    if (!clickedTableRow) {
+      return;
+    }
+
     clickedTableRow.classList.toggle('dboard__table-body-row_selected');
 
     if (clickedTableRow.classList.contains('dboard__table-body-row_selected')) {
@@ -774,10 +770,12 @@
     } else {
       removeXBtnFromBodyRows(clickedTableRow); // удаление "X" кнопки из выделенной строки
 
-      const rowIndex = Array.from(clickedTableRow.parentNode.children).indexOf(
-        clickedTableRow
-      ); // определение индекса строки
-      updateBodyRowNumbers(clickedTableRow, rowIndex); // обновление порядкового #-номера (для текущей строки, согласно индекса)
+      if (clickedTableRow && clickedTableRow.parentNode) {
+        const rowIndex = Array.from(
+          clickedTableRow.parentNode.children
+        ).indexOf(clickedTableRow); // определение индекса строки
+        updateBodyRowNumbers(clickedTableRow, rowIndex); // обновление порядкового #-номера (для текущей строки, согласно индекса)
+      }
     }
   }
 
@@ -917,7 +915,6 @@
 
   cancelBtn.addEventListener('click', deselectBodyRows); // отработка функции по нажатию
 
-  // ! [new]
   // ** [СЕРВЕР] организация удаления студентов с сервера (согласно серверных id)
   async function deleteStudentFromServer(serverId) {
     try {
@@ -939,7 +936,6 @@
     }
   }
 
-  // ! [correct]
   // ** удаление выделенных элементов/строк таблицы данных о студентах (через "X" кнопку, не через "внешнюю")
   function deleteBodyRowsByXBtn(event) {
     const clickedBodyRow = event.currentTarget.closest('tr');
@@ -952,7 +948,6 @@
     ); // вызов "общей" функции, для удаления студента/строки (передача соответствующих аргументов)
   }
 
-  // ! [correct]
   // ** удаление выделенных элементов/строк таблицы данных о студентах (через "внешнюю" кнопку, не через "X")
   const deleteBtn = document.querySelector('.delete-btn');
 
@@ -978,7 +973,6 @@
 
   deleteBtn.addEventListener('click', deleteBodyRowsByBtn);
 
-  // ! [correct]
   // ** удаление выделенных элементов/строк таблицы данных о студентах (ОБЩАЯ ЛОГИКА)
   function deleteBodyRowsStudents(
     studentServerIdsToDelete,
@@ -996,7 +990,6 @@
       }
     }
 
-    // ! [new]
     studentServerIdsToDelete.forEach(async (serverId) => {
       await deleteStudentFromServer(serverId); // удаление студентов с сервера по серверным ID
     });
@@ -1106,7 +1099,6 @@
       const targetParentNode = target.parentNode;
       const invalidFeed = targetParentNode.querySelector('.invalid-feedback');
 
-      // ! [correct]
       if (target.type === 'text') {
         // только русские буквы и дефис (для двойных-фамилий), без цифр/символов и необоснованных пробелов
         if (
@@ -1134,7 +1126,6 @@
     });
   }
 
-  // ! [new]
   // ** [СЕРВЕР] отправка данных/добавление "новых" студентов на сервер, получение обратно (проверка статуса)
   async function addStudentsToServer(studentData) {
     try {
@@ -1177,7 +1168,6 @@
     return value[0].toUpperCase() + value.slice(1).toLowerCase();
   }
 
-  // ! [correct]
   // проверка на совпадение по ФИО, в исходном/формирующемся массиве
   function checkStudentFIO(
     formInSurname,
@@ -1197,7 +1187,6 @@
     additionalFormInputsValidation(input); // дополнительная валидация (на корректный ввод)
   });
 
-  // ! [correct]
   // [СЕРВЕР]
   formInputData.addEventListener(
     'submit',
@@ -1233,7 +1222,6 @@
           }
         }
 
-        // ! [new]
         const newStudent = {
           surname: formInSurname,
           name: formInName,
@@ -1301,7 +1289,6 @@
     event.preventDefault();
   });
 
-  // ! [correct]
   function filterStudentsByFormInputs() {
     updateStudentsDataArr = correctInitArr(studentsDataArrWithIds); // обновление исходного массива, перед фильтрацией
 
@@ -1379,7 +1366,6 @@
           input.value = '';
           updateFormInputValidMsg(input);
         });
-        // ! [correct]
         addStudentsToTable(studentsDataArrWithIds); // возврат к исходному наполнению/виду таблицы студентов
       }
     }
