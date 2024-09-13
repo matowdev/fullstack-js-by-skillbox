@@ -1,6 +1,6 @@
 .footer__container {
   position: relative;
-  top: -85px;
+  top: 10px;
   z-index: 1;
   display: flex;
   justify-content: space-between;
