@@ -13,7 +13,7 @@
       console.log(data); // [] - "пустой" массив, первично
     }
 
-    getStudentsListData();
+    // getStudentsListData();
 
     // добавление "нового" студента на сервер (в список)
     async function addStudentToList() {
@@ -22,10 +22,10 @@
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name: "Анна", surname: "Сергеевна", lastname: "Матылёнок", birthday: "31.08.1987", studyStart: "2010", faculty: "Экономический", }),
+        body: JSON.stringify({ name: "Анна", surname: "Матылёнок", patronymic: "Сергеевна", birthday: "31.08.1987", studyStart: "2010", faculty: "Экономический", }),
       });
       const data = await response.json();
-      console.log(data); // {name: 'Анна', surname: 'Сергеевна', lastname: 'Матылёнок', birthday: '31.08.1987', studyStart: '2010', …}
+      console.log(data); // {name: 'Анна', surname: 'Матылёнок', patronymic: 'Сергеевна', birthday: '31.08.1987', studyStart: '2010', …}
     }
 
     // addStudentToList();
@@ -34,12 +34,11 @@
     async function getStudentById(id) {
       const response = await fetch(`http://localhost:3000/api/students/${id}`);
       const data = await response.json();
-      // console.log('Согласно ID: ' + id + ', следующие данные: ' + JSON.stringify(data)); // Согласно ID: 1723787618646, следующие данные: {"name":"Анна","surname":"Сергеевна","lastname":"Матылёнок", ...}
-      console.log(data); // {name: 'Анна', surname: 'Сергеевна', lastname: 'Матылёнок', birthday: '31.08.1987', studyStart: '2010', …}
+      console.log(data); // {name: 'Анна', surname: 'Матылёнок', patronymic: 'Сергеевна', birthday: '31.08.1987', studyStart: '2010', …}
     }
 
     const studentId = 1723790919641; // id из db.json
-    getStudentById(studentId);
+    // getStudentById(studentId);
 
     // изменение данных студента по его ID
     async function updateStudentById(id) {
@@ -54,7 +53,7 @@
       console.log(data); // {name: 'Анна', ..., studyStart: '2011', …} - год начало обучения изменился
     }
 
-    updateStudentById(1723790919641);
+    // updateStudentById(1723790919641);
 
     // удаление студента по его ID
     async function deleteStudentById(id) {
