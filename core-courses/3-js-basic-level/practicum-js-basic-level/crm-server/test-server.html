@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test server</title>
+  <script>
+    // получение данных/списка клиентов с сервера
+    async function getClientsListData() {
+      const response = await fetch('http://localhost:3000/api/clients'); // стоит указывать/не забывать про /api/.. согласно "доступных методов"
+      const data = await response.json();
+      console.log(data); // [] - "пустой" массив, первично
+    }
+
+    // getClientsListData();
+
+    // добавление "нового" клиента на сервер (в список)
+    async function addClientToList() {
+      const response = await fetch('http://localhost:3000/api/clients', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: "Анна", surname: "Матылёнок", patronymic: "Сергеевна", contacts: [
+            {
+              type: 'Телефон',
+              value: '+71234567899'
+            },
+            {
+              type: 'Email',
+              value: 'abc@xyz.com'
+            },
+            {
+              type: 'Facebook',
+              value: 'https://facebook.com/ma-the-best'
+            }
+          ],
+        }),
+      });
+      const data = await response.json();
+      console.log(data); // {name: 'Анна', surname: 'Матылёнок', patronymic: 'Сергеевна', contacts: Array(3), id: '1726486416260', …}
+    }
+
+    // addClientToList();
+
+    // получение клиента (нового) по его ID
+    async function getClientById(id) {
+      const response = await fetch(`http://localhost:3000/api/clients/${id}`);
+      const data = await response.json();
+      console.log(data); // {name: 'Анна', surname: 'Матылёнок', patronymic: 'Сергеевна', contacts: Array(3), id: '1726486416260', …}
+    }
+
+    const clientId = 1726486416260; // id из db.json
+    // getClientById(clientId);
+
+    // изменение данных клиента по его ID
+    async function updateClientById(id) {
+      const response = await fetch(`http://localhost:3000/api/clients/${id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          contacts: [
+            {
+              type: 'Телефон',
+              value: '+71299999999'
+            },
+            {
+              type: 'Email',
+              value: 'abc@xyz.com'
+            },
+            {
+              type: 'Facebook',
+              value: 'https://facebook.com/ma-the-best'
+            }
+          ]
+        }),
+      });
+      const data = await response.json();
+      console.log(data); // contacts: Array(3) 0: {type: 'Телефон', value: '+71299999999'} 1: {type: 'Email', value: 'abc@xyz.com'}..
+    }
+
+    // updateClientById(1726486416260);
+
+    // удаление клиента по его ID
+    async function deleteClientById(id) {
+      const response = await fetch(`http://localhost:3000/api/clients/${id}`, {
+        method: 'DELETE',
+      });
+      console.log(response.status); // 200 - успешное удаление
+    }
+
+    // deleteClientById(1726486416260);
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>
