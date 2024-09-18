@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 270.75276 270.93339"
+   height="1024.0002"
+   width="1023.3175"
+   sodipodi:docname="Vlinecoach.svg"
+   inkscape:version="1.2.2 (b0a84865, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <sodipodi:namedview
+     id="namedview498"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="0.2304687"
+     inkscape:cx="512.00012"
+     inkscape:cy="512.00012"
+     inkscape:window-width="1470"
+     inkscape:window-height="920"
+     inkscape:window-x="0"
+     inkscape:window-y="36"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg8" />
+  <title
+     id="title55">Victoria coach logo</title>
+  <defs
+     id="defs2" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Victoria coach logo</dc:title>
+        <dc:date>22 February 2023</dc:date>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Pizza1016</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:publisher>
+          <cc:Agent>
+            <dc:title>Wikipedia</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:source>Public Transport Victoria - https://static.ptv.vic.gov.au/PDFs/Maps/Network-maps/1485494075/PTV_Regional-Train-Coach_Network_Map_2017.pdf</dc:source>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>victoria coach logo</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+        <dc:coverage>Victoria, Australia</dc:coverage>
+        <dc:description>Logo representing the regional Victoria (long-distance) coach network in Australia.</dc:description>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     clip-path="url(#quwpv9ps7a)"
+     id="g116"
+     transform="matrix(11.288889,0,0,11.288889,-1.7154577e-6,0)">
+    <path
+       d="m 15.723,15.22 a 0.4805065,0.4805065 0 1 0 0.005,0.961 0.4805065,0.4805065 0 0 0 -0.005,-0.961 z m -7.444,0 A 0.48100936,0.48100936 0 1 0 8.285,16.182 0.48100936,0.48100936 0 0 0 8.279,15.22 Z"
+       fill="#ffffff"
+       id="path106" />
+    <path
+       d="M 18.143,6.193 18.141,6.176 18.123,5.701 A 1.578,1.578 0 0 0 17.249,4.263 1.157,1.157 0 0 0 17.143,4.205 L 17.134,4.201 C 16.396,3.853 14.378,3.604 12.001,3.604 9.625,3.604 7.606,3.854 6.869,4.201 L 6.859,4.205 A 1.16,1.16 0 0 0 6.754,4.263 1.578,1.578 0 0 0 5.881,5.7 L 5.862,6.175 5.861,6.192 V 6.176 L 5.54,16.51 v 0.014 a 1.607,1.607 0 0 0 0.834,1.405 v 1.012 a 0.9275,0.9275 0 1 0 1.855,0 v -0.803 h 7.544 v 0.803 a 0.9275,0.9275 0 1 0 1.855,0 V 17.93 a 1.608,1.608 0 0 0 0.834,-1.405 V 16.51 L 18.142,6.177 V 6.193 Z M 6.77,6.206 V 6.193 A 0.704,0.704 0 0 1 7.475,5.488 h 9.053 a 0.705,0.705 0 0 1 0.704,0.705 v 0.013 c 0,0 0.007,0.175 0.016,0.479 H 6.754 L 6.77,6.207 Z m 1.51,10.43 a 0.936,0.936 0 1 1 0,-1.872 0.936,0.936 0 0 1 0,1.872 z m 5.239,-0.549 h -3.036 a 0.3875,0.3875 0 1 1 0,-0.775 h 3.036 a 0.3875,0.3875 0 1 1 0,0.775 z m 2.204,0.549 a 0.937,0.937 0 1 1 -0.001,-1.873 0.937,0.937 0 0 1 0,1.873 z m -9.145,-4.3 0.14,-4.45 0.009,-0.292 h 10.548 l 0.009,0.293 0.14,4.45 H 6.578 Z"
+       fill="#ffffff"
+       id="path108" />
+    <path
+       d="M 17.275,7.595 H 6.727 l -0.01,0.292 -0.139,4.45 h 10.845 l -0.14,-4.45 z"
+       fill="#835aa8"
+       id="path110" />
+    <path
+       d="M 12.003,0 A 12,12 0 1 0 24,12.002 12.016,12.016 0 0 0 12.003,0 Z m 6.459,16.525 a 1.607,1.607 0 0 1 -0.835,1.405 v 1.011 a 0.928,0.928 0 0 1 -1.854,0 V 18.139 H 8.229 v 0.802 a 0.928,0.928 0 0 1 -1.855,0 V 17.93 A 1.607,1.607 0 0 1 5.54,16.525 V 16.51 L 5.86,6.177 V 6.193 L 5.861,6.177 5.879,5.702 A 1.578,1.578 0 0 1 6.753,4.263 C 6.787,4.243 6.823,4.223 6.859,4.206 L 6.868,4.201 c 0.738,-0.347 2.756,-0.597 5.133,-0.597 2.377,0 4.394,0.25 5.133,0.597 l 0.01,0.005 c 0.036,0.017 0.07,0.036 0.105,0.057 a 1.578,1.578 0 0 1 0.874,1.439 l 0.018,0.475 0.002,0.016 V 6.177 l 0.32,10.333 z"
+       fill="#835aa8"
+       id="path112" />
+    <path
+       d="M 17.231,6.206 V 6.193 A 0.703,0.703 0 0 0 16.527,5.488 H 7.474 A 0.704,0.704 0 0 0 6.77,6.193 v 0.013 c 0,0 -0.007,0.175 -0.016,0.479 h 10.493 z m -8.953,8.559 a 0.936,0.936 0 1 0 0,1.872 0.936,0.936 0 0 0 0,-1.872 z m 0,1.416 a 0.48202593,0.48202593 0 1 1 0.01,-0.964 0.48252591,0.48252591 0 0 1 -0.01,0.965 z m 5.24,-0.868 h -3.035 a 0.3875,0.3875 0 1 0 0,0.775 h 3.035 a 0.3875,0.3875 0 1 0 0,-0.775 z m 2.204,-0.548 a 0.937,0.937 0 1 0 -0.002,1.873 0.937,0.937 0 0 0 0.002,-1.873 z m 0,1.416 a 0.48150415,0.48150415 0 1 1 0.004,-0.963 0.48200415,0.48200415 0 0 1 -0.004,0.964 z"
+       fill="#835aa8"
+       id="path114" />
+  </g>
+  <defs
+     id="defs121">
+    <clipPath
+       id="quwpv9ps7a">
+      <path
+         fill="#ffffff"
+         d="M 0,0 H 24 V 24 H 0 Z"
+         id="path118" />
+    </clipPath>
+  </defs>
+</svg>
