@@ -10,18 +10,15 @@
   --semi-bold: 600;
   --bold: 700;
   --extra-bold: 800;
-  --default-fs: 16px;
+  --default-fs: 14px;
 
   /* colors */
-  --black: #000;
+  --black: #333;
   --white: #fff;
-  --bootstrap-red: #dc3545;
-  --fire-red: #e10c22;
-  --light-blue: #1188e4;
-  --specific-blue: #0d6efd;
+  --main-purple: #9873FF;
+  --text-gray: #B0B0B0;
   --specific-gray: #85859b;
-  --starry-night: #1c0d29;
-  --plum: #2e2b44;
+  --bg-page: #F5F5F5;
 
   /* transitions */
   --short: 0.3s;

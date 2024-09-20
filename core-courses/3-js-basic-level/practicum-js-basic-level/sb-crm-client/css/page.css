@@ -52,5 +52,22 @@ svg {
   min-height: 100vh;
   font-family: var(--open-sans), sans-serif;
   font-size: var(--default-fs);
-  color: var(--starry-night);
+  color: var(--black);
+  background-color: var(--bg-page);
+}
+
+.page__title {
+  margin-bottom: 16px;
+  padding-top: 10px;
+}
+
+.visually-hidden {
+  position: absolute;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
 }
