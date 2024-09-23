@@ -1,0 +1,17 @@
+.crm__search-form,
+.crm__search-form input,
+.crm__search-form input[type="text"] {
+  font-family: var(--open-sans), sans-serif;
+  font-size: var(--default-fs);
+}
+
+.crm__search-form,
+.crm__search-form input::placeholder {
+  color: var(--text-gray);
+}
+
+.form-control:focus {
+  border-color: var(--main-purple);
+  outline: none;
+  box-shadow: 0 0 0 .25rem rgba(152, 115, 255, .25);
+}
