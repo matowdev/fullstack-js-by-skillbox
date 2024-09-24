@@ -46,4 +46,13 @@
   searchForm.append(searchInputWrap);
   searchFormInputWrap.append(searchForm);
   crmSearch.append(searchLogoWrap, searchFormInputWrap);
+
+  // организация появления/скрытия поля для ввода данных/фильтрационного инпута (по нажатию на logo, на 320px)
+  document
+    .querySelector('.crm__search-logo-img')
+    .addEventListener('click', () => {
+      document
+        .querySelector('.crm__search-data')
+        .classList.toggle('show-search-input');
+    });
 })();
