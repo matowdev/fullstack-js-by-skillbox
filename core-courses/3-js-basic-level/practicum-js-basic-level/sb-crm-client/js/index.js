@@ -30,6 +30,7 @@
   searchInputFeedback.textContent =
     'Введён не корректный запрос.. исключите: английские буквы, цифры!';
 
+  searchLogoImg.setAttribute('id', 'search-logo');
   searchLogoImg.setAttribute('src', 'images/skillbus-logo.svg');
   searchLogoImg.setAttribute('width', '50');
   searchLogoImg.setAttribute('height', '50');

@@ -25,25 +25,28 @@
       }
     }
 
-    initTippy('#formInputCollapse', 'развернуть/свернуть', 'right');
-    initTippy('#formFilterCollapse', 'развернуть/свернуть', 'right');
-    initTippy('#tableThTag', 'сбросить сортировку', 'right', {
-      offset: [0, -2],
-    });
-    initTippy('#tableThFIO', 'сортировать ⇵', 'bottom', {
-      offset: [0, -2],
-    });
-    initTippy('#tableThFaculty', 'сортировать ⇵', 'bottom', {
-      offset: [0, -2],
-    });
-    initTippy('#tableThBirthDate', 'сортировать ⇵', 'bottom', {
-      offset: [0, -2],
-    });
-    initTippy('#tableThStartYear', 'сортировать ⇵', 'bottom', {
-      offset: [0, -2],
-    });
-    initTippy('#linkToAddStudForm', 'к форме добавления', 'bottom');
-    initTippy('#deselectBtn', 'выделения студентов', 'bottom');
-    initTippy('#deleteBtn', 'выбранных студентов', 'right');
+    // инициализация Tippy только/для #search-logo (в зависимости от ширины экрана)
+    function initTippyForSearchLogo() {
+      const isSmallWidth = window.matchMedia('(max-width: 320px)').matches;
+      const searchLogo = document.querySelector('#search-logo');
+
+      if (isSmallWidth && searchLogo && !searchLogo._tippy) {
+        initTippy('#search-logo', 'Показать/скрыть..!?', 'top', {
+          offset: [0, 8],
+        });
+      } else if (!isSmallWidth && searchLogo && searchLogo._tippy) {
+        searchLogo._tippy.destroy(); // исключение всплывающей подсказки, если экран больше 320px
+      }
+    }
+
+    // инициализация Tippy для/всех "остальных" элементов (без учёта ширины экрана)
+    function initTippyForOther() {
+      // initTippy('#another-element', 'Подсказка для другого элемента', 'right');
+    }
+
+    initTippyForSearchLogo();
+    initTippyForOther();
+
+    window.addEventListener('resize', initTippyForSearchLogo); // отслеживание изменения ширины экрана (разрешения)
   });
 })();

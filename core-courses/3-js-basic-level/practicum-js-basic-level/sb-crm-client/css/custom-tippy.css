@@ -1,0 +1,16 @@
+.tippy-box[data-theme~="main"] {
+  border-radius: 0;
+  padding: 5px 10px;
+  font-family: var(--open-sans), sans-serif;
+  font-size: 1em;
+  text-align: center;
+  color: var(--white);
+  background-color: var(--black);
+  /* оптимизация рендеринга (попытка исключить "легкое" размытие текста при появлении) */
+  will-change: transform;
+}
+
+.tippy-box[data-theme~="main"] .tippy-arrow {
+  margin-top: -1px;
+  color: var(--main-purple);
+}
