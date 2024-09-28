@@ -49,6 +49,19 @@
   searchFormInputWrap.append(searchForm);
   crmSearch.append(searchLogoWrap, searchFormInputWrap);
 
+  // организация таблицы данных о клиентах (структура, заголовки колонок)
+  const outputTitle = document.createElement('h2');
+  const outputTable = document.createElement('table');
+  const outputTableHead = document.createElement('thead');
+  const outputTableBody = document.createElement('tbody');
+  const oTableHeadTr = document.createElement('tr');
+  const oTableHeadThId = document.createElement('th');
+  const oTableHeadThFIO = document.createElement('th');
+  const oTableHeadThCreationDT = document.createElement('th');
+  const oTableHeadThChanges = document.createElement('th');
+  const oTableHeadThContacts = document.createElement('th');
+  const oTableHeadThActions = document.createElement('th');
+
   // ** организация появления/скрытия поля для ввода данных/фильтрационного инпута (по нажатию на logo, на 320px)
   document
     .querySelector('.crm__search-logo-img')
@@ -65,7 +78,7 @@
       const targetParentNode = target.parentNode;
       const invalidFeed = targetParentNode.querySelector('.invalid-feedback');
 
-      // принудительное исключение пробелов (в начале строки)
+      // принудительное исключение пробелов (в начале поля для ввода)
       target.value = target.value.replace(/^\s+/, '');
 
       // только русские буквы (без цифр/символов), "один" дефис (для двойных фамилий) и без необоснованных пробелов
