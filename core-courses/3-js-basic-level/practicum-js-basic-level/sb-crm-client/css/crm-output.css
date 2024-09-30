@@ -1,0 +1,63 @@
+.crm__output-title {
+  margin-bottom: 7px;
+  font-weight: var(--semi-bold);
+  font-size: 28px;
+}
+
+.crm__output-table {
+  min-height: 400px;
+  font-family: var(--open-sans), sans-serif;
+  font-weight: var(--regular);
+  background-color: var(--white);
+}
+
+.crm__output-table tr th {
+  border: none;
+  font-weight: var(--regular);
+  color: var(--text-gray);
+  background-color: var(--bg-page);
+}
+
+.crm__output-table tr th,
+.crm__output-table tr td {
+  /* line-height: 32px;
+  text-align: center;
+  vertical-align: middle;
+  color: var(--starry-night); */
+  cursor: pointer;
+}
+
+.crm__output-table .crm__o-table-head-cell {
+  padding-top: 5px;
+  padding-left: 20px;
+}
+
+.crm__o-table-head-cell:focus-visible {
+  outline: solid rgba(152, 115, 255, 0.5);
+}
+
+.crm__output-table #table-th-id {
+  width: 75px;
+  color: var(--main-purple);
+}
+
+.crm__output-table #table-th-fio {
+  width: 280px;
+}
+
+.crm__output-table #table-th-dt {
+  width: 180px;
+}
+
+.crm__output-table #table-th-change {
+  width: 180px;
+}
+
+.crm__output-table #table-th-contact {
+  padding-right: 30px;
+  width: 190px;
+}
+
+.crm__output-table #table-th-action {
+  padding-right: 20px;
+}

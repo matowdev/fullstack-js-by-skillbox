@@ -12,7 +12,7 @@ html {
 
 *::selection {
   color: var(--white);
-  background-color: var(--specific-gray);
+  background-color: var(--main-purple);
 }
 
 body,

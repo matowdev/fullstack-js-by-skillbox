@@ -62,6 +62,51 @@
   const oTableHeadThContacts = document.createElement('th');
   const oTableHeadThActions = document.createElement('th');
 
+  outputTitle.classList.add('crm__output-title');
+  outputTable.classList.add('crm__output-table', 'table', 'table-hover');
+  outputTableHead.classList.add('crm__output-table-head');
+  outputTableBody.classList.add('crm__output-table-body');
+  oTableHeadTr.classList.add('crm__o-table-head-row');
+  oTableHeadThId.classList.add('crm__o-table-head-cell');
+  oTableHeadThFIO.classList.add('crm__o-table-head-cell');
+  oTableHeadThCreationDT.classList.add('crm__o-table-head-cell');
+  oTableHeadThChanges.classList.add('crm__o-table-head-cell');
+  oTableHeadThContacts.classList.add('crm__o-table-head-cell');
+  oTableHeadThActions.classList.add('crm__o-table-head-cell');
+
+  oTableHeadThId.setAttribute('id', 'table-th-id');
+  oTableHeadThId.setAttribute('tabindex', '0');
+  oTableHeadThFIO.setAttribute('id', 'table-th-fio');
+  oTableHeadThFIO.setAttribute('tabindex', '0');
+  oTableHeadThCreationDT.setAttribute('id', 'table-th-dt');
+  oTableHeadThCreationDT.setAttribute('tabindex', '0');
+  oTableHeadThChanges.setAttribute('id', 'table-th-change');
+  oTableHeadThChanges.setAttribute('tabindex', '0');
+  oTableHeadThContacts.setAttribute('id', 'table-th-contact');
+  oTableHeadThContacts.setAttribute('tabindex', '0');
+  oTableHeadThActions.setAttribute('id', 'table-th-action');
+  oTableHeadThActions.setAttribute('tabindex', '0');
+
+  outputTitle.textContent = 'Клиенты';
+  oTableHeadThId.textContent = 'ID';
+  oTableHeadThFIO.textContent = 'Фамилия Имя Отчество';
+  oTableHeadThCreationDT.textContent = 'Дата и время создания';
+  oTableHeadThChanges.textContent = 'Последние изменения';
+  oTableHeadThContacts.textContent = 'Контакты';
+  oTableHeadThActions.textContent = 'Действия';
+
+  oTableHeadTr.append(
+    oTableHeadThId,
+    oTableHeadThFIO,
+    oTableHeadThCreationDT,
+    oTableHeadThChanges,
+    oTableHeadThContacts,
+    oTableHeadThActions
+  );
+  outputTableHead.append(oTableHeadTr);
+  outputTable.append(outputTableHead, outputTableBody);
+  crmOutput.append(outputTitle, outputTable);
+
   // ** организация появления/скрытия поля для ввода данных/фильтрационного инпута (по нажатию на logo, на 320px)
   document
     .querySelector('.crm__search-logo-img')
