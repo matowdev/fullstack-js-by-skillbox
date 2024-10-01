@@ -1,0 +1,227 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+
+1. <!DOCTYPE html PUBLIC ...> — это декларация типа документа (Document Type Declaration, или DOCTYPE), которая указывает браузеру, какой стандарт HTML используется в документе.
+
+2. -//W3C//DTD XHTML 1.0 Transitional//EN — указывает, что документ использует спецификацию XHTML 1.0 Transitional от W3C.
+
+3. http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd — это путь к DTD (Document Type Definition), который определяет правила разметки для XHTML 1.0 Transitional.
+
+4. <html xmlns="http://www.w3.org/1999/xhtml"> — атрибут xmlns задаёт пространство имён, чтобы браузеры знали, что этот документ использует спецификацию XHTML.
+
+-->
+
+<!--
+
+В спецификации XHTML все элементы должны быть самозакрывающимися, если они не имеют содержимого. Это относится ко всем таким тегам, как:
+
+<br /> — перенос строки.
+<img /> — изображение.
+<hr /> — горизонтальная линия.
+<input /> — поле ввода.
+
+-->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Html email template</title>
+
+  <style>
+    body {
+      width: 100% !important;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+      margin: 0;
+      padding: 0;
+      line-height: 100%;
+    }
+
+    [style*="Tahoma"] {
+      font-family: 'Tahoma', arial, sans-serif !important;
+    }
+
+    img {
+      outline: none;
+      text-decoration: none;
+      border: none;
+      -ms-interpolation-mode: bicubic;
+      max-width: 100% !important;
+      margin: 0;
+      padding: 0;
+      display: block;
+    }
+
+    table td {
+      border-collapse: collapse;
+    }
+
+    table {
+      border-collapse: collapse;
+      mso-table-lspace: 0pt;
+      mso-table-rspace: 0pt;
+    }
+
+    /* mso-table-lspace и mso-table-rspace — это нестандартные CSS-свойства, применяемые только в почтовых клиентах Microsoft Outlook. Они помогают обнулить отступы слева и справа от таблиц, чтобы избежать проблем с отображением макета. */
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    .pt-48 {
+      padding-top: 48px;
+    }
+
+    .pb-32 {
+      padding-bottom: 32px;
+    }
+
+    .pb-48 {
+      padding-bottom: 48px;
+    }
+
+    .pb-24 {
+      padding-bottom: 24px;
+    }
+
+    .pb-16 {
+      padding-bottom: 16px;
+    }
+
+    .pb-56 {
+      padding-bottom: 56px;
+    }
+
+    .mini-text {
+      font-size: 12px;
+      line-height: 18px;
+      color: #949494;
+    }
+
+    .mini-text a {
+      color: #1890FF;
+      text-decoration: none;
+    }
+
+    a[href] {
+      color: #1890FF;
+      text-decoration: none;
+    }
+
+    .title h2 {
+      line-height: 24px;
+    }
+
+    .desc p {
+      line-height: 20px;
+    }
+
+    @media (max-width: 700px) {
+      .table-680 {
+        width: 280px !important;
+      }
+
+      .table-560 {
+        width: 240px !important;
+      }
+    }
+  </style>
+</head>
+
+<body style="margin: 0; padding: 0;" bgcolor="#fff">
+  <div style="font-size: 0px; color: #fff; opacity: 0; visibility: hidden; width: 0; height: 0; display: none">Тестовое
+    письмо</div>
+
+  <table cellpadding="0" cellspacing="0" class="table-680" width="680" bgcolor="#fafafa" align="center">
+    <tr>
+      <td>
+        <table class="table-680" cellpadding="0" cellspacing="0" width="680">
+          <tr>
+            <td align="center" class="center">
+              <table width="560" class="table-560" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td class="logo pt-48 pb-32" align="center">
+                    <img src="http://work.maxgraph.ru/mail/logotype.png" alt="Логотип" />
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" class="text pb-48">
+                    <p style="font-family: Tahoma, Geneva, Verdana, sans-serif;">Hi Sam! Here’s your weekly updates</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" class="item pb-48">
+                    <table class="item-table table-560" width="560" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td class="image pb-24">
+                          <img src="http://work.maxgraph.ru/mail/pic-1.png" alt="article-image" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="title pb-16">
+                          <h2 style="font-family: Tahoma, Geneva, Verdana, sans-serif;">Here Are the Best Sneakers of
+                            2019</h2>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="desc">
+                          <p style="font-family: Tahoma, Geneva, Verdana, sans-serif;">We’re still quite early into the
+                            year, but it’s never too soon to highlight our picks for the best sneakers of the year, so
+                            far.</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" class="item pb-56">
+                    <table class="item-table table-560" width="560" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td class="image pb-24">
+                          <img src="http://work.maxgraph.ru/mail/pic-2.png" alt="article-image" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="title pb-16">
+                          <h2 style="font-family: Tahoma, Geneva, Verdana, sans-serif;">8 Drops You Don't Want to Miss
+                            This Week</h2>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="desc">
+                          <p style="font-family: Tahoma, Geneva, Verdana, sans-serif;">
+                            Supreme Fall 2019 Collection Week 2, Palace Fall 2019 Collection Week 5, Travis Scott: Look
+                            Mum I Can Fly Customizable Merch and more.</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="pb-48">
+                    <p class="mini-text pb-16" style="font-family: Tahoma, Geneva, Verdana, sans-serif;">This email was
+                      sent to you as a registered member of prfctfit.com. To update your emails preferences <a
+                        href="#">click here.</a><br /> Use of the service and website is subject to our <a
+                        href="#">Terms of Use</a> and <a href="#">Privacy Statement.</a>
+                    </p>
+                    <p class="mini-text" style="font-family: Tahoma, Geneva, Verdana, sans-serif;">© 2019 PRFCT FIT. All
+                      rights reserved</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+</body>
+
+</html>
