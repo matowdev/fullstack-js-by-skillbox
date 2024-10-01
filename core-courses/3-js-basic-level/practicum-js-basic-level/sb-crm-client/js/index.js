@@ -49,62 +49,71 @@
   searchFormInputWrap.append(searchForm);
   crmSearch.append(searchLogoWrap, searchFormInputWrap);
 
-  // организация таблицы данных о клиентах (структура, заголовки колонок)
+  // организация таблицы данных о клиентах (структура, заголовки колонок, иконки)
   const outputTitle = document.createElement('h2');
   const outputTable = document.createElement('table');
-  const outputTableHead = document.createElement('thead');
-  const outputTableBody = document.createElement('tbody');
-  const oTableHeadTr = document.createElement('tr');
-  const oTableHeadThId = document.createElement('th');
-  const oTableHeadThFIO = document.createElement('th');
-  const oTableHeadThCreationDT = document.createElement('th');
-  const oTableHeadThChanges = document.createElement('th');
-  const oTableHeadThContacts = document.createElement('th');
-  const oTableHeadThActions = document.createElement('th');
+  const outTableHead = document.createElement('thead');
+  const outTableBody = document.createElement('tbody');
+  const outTblHeadTr = document.createElement('tr');
+  const outTblHeadThId = document.createElement('th');
+  const outTblHeadThIdWrap = document.createElement('div');
+  const outTblHeadThIdText = document.createElement('span');
+  const outTblHeadThIdIcon = document.createElement('span');
+  const outTblHeadThFIO = document.createElement('th');
+  const outTblHeadThCreationDT = document.createElement('th');
+  const outTblHeadThChanges = document.createElement('th');
+  const outTblHeadThContacts = document.createElement('th');
+  const outTblHeadThActions = document.createElement('th');
 
   outputTitle.classList.add('crm__output-title');
   outputTable.classList.add('crm__output-table', 'table', 'table-hover');
-  outputTableHead.classList.add('crm__output-table-head');
-  outputTableBody.classList.add('crm__output-table-body');
-  oTableHeadTr.classList.add('crm__o-table-head-row');
-  oTableHeadThId.classList.add('crm__o-table-head-cell');
-  oTableHeadThFIO.classList.add('crm__o-table-head-cell');
-  oTableHeadThCreationDT.classList.add('crm__o-table-head-cell');
-  oTableHeadThChanges.classList.add('crm__o-table-head-cell');
-  oTableHeadThContacts.classList.add('crm__o-table-head-cell');
-  oTableHeadThActions.classList.add('crm__o-table-head-cell');
+  outTableHead.classList.add('crm__output-table-head');
+  outTableBody.classList.add('crm__output-table-body');
+  outTblHeadTr.classList.add('crm__o-table-head-row');
+  outTblHeadThId.classList.add('head-cell', 'crm__o-table-head-cell');
+  outTblHeadThIdWrap.classList.add('head-cell__wrap', 'head-cell__wrap-id');
+  outTblHeadThIdText.classList.add('head-cell__text', 'head-cell__text-id');
+  outTblHeadThIdIcon.classList.add('head-cell__icon', 'head-cell__icon-id');
+  outTblHeadThFIO.classList.add('crm__o-table-head-cell');
+  outTblHeadThCreationDT.classList.add('crm__o-table-head-cell');
+  outTblHeadThChanges.classList.add('crm__o-table-head-cell');
+  outTblHeadThContacts.classList.add('crm__o-table-head-cell');
+  outTblHeadThActions.classList.add('crm__o-table-head-cell');
 
-  oTableHeadThId.setAttribute('id', 'table-th-id');
-  oTableHeadThId.setAttribute('tabindex', '0');
-  oTableHeadThFIO.setAttribute('id', 'table-th-fio');
-  oTableHeadThFIO.setAttribute('tabindex', '0');
-  oTableHeadThCreationDT.setAttribute('id', 'table-th-dt');
-  oTableHeadThCreationDT.setAttribute('tabindex', '0');
-  oTableHeadThChanges.setAttribute('id', 'table-th-change');
-  oTableHeadThChanges.setAttribute('tabindex', '0');
-  oTableHeadThContacts.setAttribute('id', 'table-th-contact');
-  oTableHeadThContacts.setAttribute('tabindex', '0');
-  oTableHeadThActions.setAttribute('id', 'table-th-action');
-  oTableHeadThActions.setAttribute('tabindex', '0');
+  outTblHeadThId.setAttribute('id', 'table-th-id');
+  outTblHeadThId.setAttribute('tabindex', '0');
+  outTblHeadThFIO.setAttribute('id', 'table-th-fio');
+  outTblHeadThFIO.setAttribute('tabindex', '0');
+  outTblHeadThCreationDT.setAttribute('id', 'table-th-dt');
+  outTblHeadThCreationDT.setAttribute('tabindex', '0');
+  outTblHeadThChanges.setAttribute('id', 'table-th-change');
+  outTblHeadThChanges.setAttribute('tabindex', '0');
+  outTblHeadThContacts.setAttribute('id', 'table-th-contact');
+  outTblHeadThContacts.setAttribute('tabindex', '0');
+  outTblHeadThActions.setAttribute('id', 'table-th-action');
+  outTblHeadThActions.setAttribute('tabindex', '0');
 
   outputTitle.textContent = 'Клиенты';
-  oTableHeadThId.textContent = 'ID';
-  oTableHeadThFIO.textContent = 'Фамилия Имя Отчество';
-  oTableHeadThCreationDT.textContent = 'Дата и время создания';
-  oTableHeadThChanges.textContent = 'Последние изменения';
-  oTableHeadThContacts.textContent = 'Контакты';
-  oTableHeadThActions.textContent = 'Действия';
+  outTblHeadThIdText.textContent = 'ID';
+  // outTblHeadThIdIcon.textContent = '+';
+  outTblHeadThFIO.textContent = 'Фамилия Имя Отчество';
+  outTblHeadThCreationDT.textContent = 'Дата и время создания';
+  outTblHeadThChanges.textContent = 'Последние изменения';
+  outTblHeadThContacts.textContent = 'Контакты';
+  outTblHeadThActions.textContent = 'Действия';
 
-  oTableHeadTr.append(
-    oTableHeadThId,
-    oTableHeadThFIO,
-    oTableHeadThCreationDT,
-    oTableHeadThChanges,
-    oTableHeadThContacts,
-    oTableHeadThActions
+  outTblHeadThIdWrap.append(outTblHeadThIdText, outTblHeadThIdIcon);
+  outTblHeadThId.append(outTblHeadThIdWrap);
+  outTblHeadTr.append(
+    outTblHeadThId,
+    outTblHeadThFIO,
+    outTblHeadThCreationDT,
+    outTblHeadThChanges,
+    outTblHeadThContacts,
+    outTblHeadThActions
   );
-  outputTableHead.append(oTableHeadTr);
-  outputTable.append(outputTableHead, outputTableBody);
+  outTableHead.append(outTblHeadTr);
+  outputTable.append(outTableHead, outTableBody);
   crmOutput.append(outputTitle, outputTable);
 
   // ** организация появления/скрытия поля для ввода данных/фильтрационного инпута (по нажатию на logo, на 320px)

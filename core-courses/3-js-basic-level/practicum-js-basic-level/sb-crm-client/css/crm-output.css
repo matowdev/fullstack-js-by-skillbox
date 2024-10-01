@@ -32,10 +32,6 @@
   padding-left: 20px;
 }
 
-.crm__o-table-head-cell:focus-visible {
-  outline: solid rgba(152, 115, 255, 0.5);
-}
-
 .crm__output-table #table-th-id {
   width: 75px;
   color: var(--main-purple);
@@ -60,4 +56,13 @@
 
 .crm__output-table #table-th-action {
   padding-right: 20px;
+}
+
+.crm__o-table-head-cell:focus-visible {
+  outline: solid rgba(152, 115, 255, 0.5);
+}
+
+.head-cell__icon-id {
+  padding-right: 16px;
+  background: url(../images/cell-arrow-up.svg) no-repeat 0px 1px / 17px;
 }
