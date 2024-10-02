@@ -60,25 +60,90 @@
   const outTblHeadThIdText = document.createElement('span');
   const outTblHeadThIdIcon = document.createElement('span');
   const outTblHeadThFIO = document.createElement('th');
+  const outTblHeadThFIOWrap = document.createElement('div');
+  const outTblHeadThFIOText = document.createElement('span');
+  const outTblHeadThFIOIcon = document.createElement('span');
+  const outTblHeadThFIOSort = document.createElement('span');
   const outTblHeadThCreationDT = document.createElement('th');
+  const outTblHeadThDTWrap = document.createElement('div');
+  const outTblHeadThDTText = document.createElement('span');
+  const outTblHeadThDTIcon = document.createElement('span');
   const outTblHeadThChanges = document.createElement('th');
+  const outTblHeadThChangeWrap = document.createElement('div');
+  const outTblHeadThChangeText = document.createElement('span');
+  const outTblHeadThChangeIcon = document.createElement('span');
   const outTblHeadThContacts = document.createElement('th');
+  const outTblHeadThContactWrap = document.createElement('div');
+  const outTblHeadThContactText = document.createElement('span');
   const outTblHeadThActions = document.createElement('th');
+  const outTblHeadThActionWrap = document.createElement('div');
+  const outTblHeadThActionText = document.createElement('span');
 
   outputTitle.classList.add('crm__output-title');
   outputTable.classList.add('crm__output-table', 'table', 'table-hover');
   outTableHead.classList.add('crm__output-table-head');
   outTableBody.classList.add('crm__output-table-body');
   outTblHeadTr.classList.add('crm__o-table-head-row');
-  outTblHeadThId.classList.add('head-cell', 'crm__o-table-head-cell');
+  outTblHeadThId.classList.add(
+    'head-cell',
+    'head-cell-icon',
+    'crm__o-table-head-cell'
+  );
   outTblHeadThIdWrap.classList.add('head-cell__wrap', 'head-cell__wrap-id');
   outTblHeadThIdText.classList.add('head-cell__text', 'head-cell__text-id');
   outTblHeadThIdIcon.classList.add('head-cell__icon', 'head-cell__icon-id');
-  outTblHeadThFIO.classList.add('crm__o-table-head-cell');
-  outTblHeadThCreationDT.classList.add('crm__o-table-head-cell');
-  outTblHeadThChanges.classList.add('crm__o-table-head-cell');
-  outTblHeadThContacts.classList.add('crm__o-table-head-cell');
-  outTblHeadThActions.classList.add('crm__o-table-head-cell');
+  outTblHeadThFIO.classList.add(
+    'head-cell',
+    'head-cell-icon',
+    'crm__o-table-head-cell'
+  );
+  outTblHeadThFIOWrap.classList.add('head-cell__wrap', 'head-cell__wrap-fio');
+  outTblHeadThFIOText.classList.add('head-cell__text', 'head-cell__text-fio');
+  outTblHeadThFIOIcon.classList.add('head-cell__icon', 'head-cell__icon-fio');
+  outTblHeadThFIOSort.classList.add('head-cell__sort', 'head-cell__sort-fio');
+  outTblHeadThCreationDT.classList.add(
+    'head-cell',
+    'head-cell-icon',
+    'crm__o-table-head-cell'
+  );
+  outTblHeadThDTWrap.classList.add('head-cell__wrap', 'head-cell__wrap-dt');
+  outTblHeadThDTText.classList.add('head-cell__text', 'head-cell__text-dt');
+  outTblHeadThDTIcon.classList.add('head-cell__icon', 'head-cell__icon-dt');
+  outTblHeadThChanges.classList.add(
+    'head-cell',
+    'head-cell-icon',
+    'crm__o-table-head-cell'
+  );
+  outTblHeadThChangeWrap.classList.add(
+    'head-cell__wrap',
+    'head-cell__wrap-change'
+  );
+  outTblHeadThChangeText.classList.add(
+    'head-cell__text',
+    'head-cell__text-change'
+  );
+  outTblHeadThChangeIcon.classList.add(
+    'head-cell__icon',
+    'head-cell__icon-change'
+  );
+  outTblHeadThContacts.classList.add('head-cell', 'crm__o-table-head-cell');
+  outTblHeadThContactWrap.classList.add(
+    'head-cell__wrap',
+    'head-cell__wrap-contact'
+  );
+  outTblHeadThContactText.classList.add(
+    'head-cell__text',
+    'head-cell__text-contact'
+  );
+  outTblHeadThActions.classList.add('head-cell', 'crm__o-table-head-cell');
+  outTblHeadThActionWrap.classList.add(
+    'head-cell__wrap',
+    'head-cell__wrap-action'
+  );
+  outTblHeadThActionText.classList.add(
+    'head-cell__text',
+    'head-cell__text-action'
+  );
 
   outTblHeadThId.setAttribute('id', 'table-th-id');
   outTblHeadThId.setAttribute('tabindex', '0');
@@ -95,15 +160,29 @@
 
   outputTitle.textContent = 'Клиенты';
   outTblHeadThIdText.textContent = 'ID';
-  // outTblHeadThIdIcon.textContent = '+';
-  outTblHeadThFIO.textContent = 'Фамилия Имя Отчество';
-  outTblHeadThCreationDT.textContent = 'Дата и время создания';
-  outTblHeadThChanges.textContent = 'Последние изменения';
-  outTblHeadThContacts.textContent = 'Контакты';
-  outTblHeadThActions.textContent = 'Действия';
+  outTblHeadThFIOText.textContent = 'Фамилия Имя Отчество';
+  outTblHeadThFIOSort.textContent = 'А-Я';
+  outTblHeadThDTText.textContent = 'Дата и время создания';
+  outTblHeadThChangeText.textContent = 'Последние изменения';
+  outTblHeadThContactText.textContent = 'Контакты';
+  outTblHeadThActionText.textContent = 'Действия';
 
   outTblHeadThIdWrap.append(outTblHeadThIdText, outTblHeadThIdIcon);
+  outTblHeadThFIOWrap.append(
+    outTblHeadThFIOText,
+    outTblHeadThFIOIcon,
+    outTblHeadThFIOSort
+  );
+  outTblHeadThDTWrap.append(outTblHeadThDTText, outTblHeadThDTIcon);
+  outTblHeadThChangeWrap.append(outTblHeadThChangeText, outTblHeadThChangeIcon);
+  outTblHeadThContactWrap.append(outTblHeadThContactText);
+  outTblHeadThActionWrap.append(outTblHeadThActionText);
   outTblHeadThId.append(outTblHeadThIdWrap);
+  outTblHeadThFIO.append(outTblHeadThFIOWrap);
+  outTblHeadThCreationDT.append(outTblHeadThDTWrap);
+  outTblHeadThChanges.append(outTblHeadThChangeWrap);
+  outTblHeadThContacts.append(outTblHeadThContactWrap);
+  outTblHeadThActions.append(outTblHeadThActionWrap);
   outTblHeadTr.append(
     outTblHeadThId,
     outTblHeadThFIO,

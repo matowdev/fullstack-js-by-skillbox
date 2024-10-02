@@ -34,6 +34,7 @@
 
 .crm__output-table #table-th-id {
   width: 75px;
+  font-weight: var(--semi-bold);
   color: var(--main-purple);
 }
 
@@ -62,7 +63,36 @@
   outline: solid rgba(152, 115, 255, 0.5);
 }
 
-.head-cell__icon-id {
+.head-cell__text {
+  margin-right: 2px;
+}
+
+.head-cell__icon {
   padding-right: 16px;
+  background: url(../images/cell-arrow-down.svg) no-repeat 0px 1px / 17px;
+}
+
+.head-cell__text-id {
+  margin-right: 1px;
+}
+
+.head-cell__icon-id {
   background: url(../images/cell-arrow-up.svg) no-repeat 0px 1px / 17px;
+}
+
+.head-cell__icon-fio {
+  margin-right: 2px;
+}
+
+.head-cell__sort-fio {
+  font-weight: var(--semi-bold);
+  color: var(--main-purple);
+}
+
+.icon-up {
+  transform: rotate(0deg);
+}
+
+.icon-down {
+  transform: rotate(180deg);
 }
