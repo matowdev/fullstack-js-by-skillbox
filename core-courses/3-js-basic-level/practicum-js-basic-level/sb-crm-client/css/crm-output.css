@@ -69,15 +69,18 @@
 
 .head-cell__icon {
   padding-right: 16px;
+}
+
+.head-cell__icon-up {
+  background: url(../images/cell-arrow-up.svg) no-repeat 0px 1px / 17px;
+}
+
+.head-cell__icon-down {
   background: url(../images/cell-arrow-down.svg) no-repeat 0px 1px / 17px;
 }
 
 .head-cell__text-id {
   margin-right: 1px;
-}
-
-.head-cell__icon-id {
-  background: url(../images/cell-arrow-up.svg) no-repeat 0px 1px / 17px;
 }
 
 .head-cell__icon-fio {
@@ -87,12 +90,4 @@
 .head-cell__sort-fio {
   font-weight: var(--semi-bold);
   color: var(--main-purple);
-}
-
-.icon-up {
-  transform: rotate(0deg);
-}
-
-.icon-down {
-  transform: rotate(180deg);
 }

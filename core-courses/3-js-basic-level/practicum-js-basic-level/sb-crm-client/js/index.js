@@ -86,32 +86,44 @@
   outTblHeadTr.classList.add('crm__o-table-head-row');
   outTblHeadThId.classList.add(
     'head-cell',
-    'head-cell-icon',
+    'head-cell-with-icon',
     'crm__o-table-head-cell'
   );
   outTblHeadThIdWrap.classList.add('head-cell__wrap', 'head-cell__wrap-id');
   outTblHeadThIdText.classList.add('head-cell__text', 'head-cell__text-id');
-  outTblHeadThIdIcon.classList.add('head-cell__icon', 'head-cell__icon-id');
+  outTblHeadThIdIcon.classList.add(
+    'head-cell__icon',
+    'head-cell__icon-id',
+    'head-cell__icon-up'
+  );
   outTblHeadThFIO.classList.add(
     'head-cell',
-    'head-cell-icon',
+    'head-cell-with-icon',
     'crm__o-table-head-cell'
   );
   outTblHeadThFIOWrap.classList.add('head-cell__wrap', 'head-cell__wrap-fio');
   outTblHeadThFIOText.classList.add('head-cell__text', 'head-cell__text-fio');
-  outTblHeadThFIOIcon.classList.add('head-cell__icon', 'head-cell__icon-fio');
+  outTblHeadThFIOIcon.classList.add(
+    'head-cell__icon',
+    'head-cell__icon-fio',
+    'head-cell__icon-down'
+  );
   outTblHeadThFIOSort.classList.add('head-cell__sort', 'head-cell__sort-fio');
   outTblHeadThCreationDT.classList.add(
     'head-cell',
-    'head-cell-icon',
+    'head-cell-with-icon',
     'crm__o-table-head-cell'
   );
   outTblHeadThDTWrap.classList.add('head-cell__wrap', 'head-cell__wrap-dt');
   outTblHeadThDTText.classList.add('head-cell__text', 'head-cell__text-dt');
-  outTblHeadThDTIcon.classList.add('head-cell__icon', 'head-cell__icon-dt');
+  outTblHeadThDTIcon.classList.add(
+    'head-cell__icon',
+    'head-cell__icon-dt',
+    'head-cell__icon-down'
+  );
   outTblHeadThChanges.classList.add(
     'head-cell',
-    'head-cell-icon',
+    'head-cell-with-icon',
     'crm__o-table-head-cell'
   );
   outTblHeadThChangeWrap.classList.add(
@@ -124,7 +136,8 @@
   );
   outTblHeadThChangeIcon.classList.add(
     'head-cell__icon',
-    'head-cell__icon-change'
+    'head-cell__icon-change',
+    'head-cell__icon-down'
   );
   outTblHeadThContacts.classList.add('head-cell', 'crm__o-table-head-cell');
   outTblHeadThContactWrap.classList.add(
@@ -240,4 +253,39 @@
 
   const searchFormInput = document.querySelector('.crm__search-form input'); // получение search-инпута
   searchFormInputValidation(searchFormInput);
+
+  // изменение направления стрелки/svg-icon, согласно прожатия по заглавной ячейке (при сортировке данных)
+  const allHeaderRowCells = document.querySelectorAll(
+    '.crm__o-table-head-cell'
+  );
+
+  function changeIconDirection(event) {
+    const headerRowCell = event.currentTarget; // фиксация всей/целиком "th" заглавной ячейки
+    const cellIcon = headerRowCell.querySelector('.head-cell__icon'); // определение иконки внутри ячейки
+    const cellSort = headerRowCell.querySelector('.head-cell__sort'); // определение доп. текста, типа "А-Я"
+
+    // проверка/подтверждение наличия иконки (переключение)
+    if (cellIcon) {
+      cellIcon.classList.toggle('head-cell__icon-up');
+      cellIcon.classList.toggle('head-cell__icon-down');
+    }
+
+    // проверка/подтверждение наличия доп. текста (замена)
+    if (cellSort) {
+      cellSort.textContent = cellSort.textContent === 'А-Я' ? 'Я-А' : 'А-Я';
+    }
+  }
+
+  // организация прослушек "для каждой" заглавной ячейки
+  allHeaderRowCells.forEach((cell) => {
+    cell.addEventListener('click', (event) => changeIconDirection(event)); // передача события
+
+    // отработка сортировки/сброса сортировки через TAB/Enter (изменение направления стелок)
+    cell.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        changeIconDirection(event); // передача события
+      }
+    });
+  });
 })();
