@@ -35,8 +35,10 @@
   searchLogoImg.setAttribute('width', '50');
   searchLogoImg.setAttribute('height', '50');
   searchLogoImg.setAttribute('alt', 'Логотип: Skillbus');
+  searchForm.setAttribute('id', 'search-form');
   searchForm.setAttribute('action', '#');
   searchForm.setAttribute('novalidate', '');
+  searchInput.setAttribute('id', 'search-form-input');
   searchInput.setAttribute('type', 'text');
   searchInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
   searchInput.setAttribute('placeholder', 'Введите запрос');

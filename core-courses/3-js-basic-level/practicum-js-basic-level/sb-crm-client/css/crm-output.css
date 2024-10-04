@@ -1,5 +1,10 @@
+.crm__output-data {
+  padding-right: var(--output-padding);
+  padding-left: var(--output-padding);
+}
+
 .crm__output-title {
-  margin-bottom: 7px;
+  margin-bottom: 25px;
   font-weight: var(--semi-bold);
   font-size: 28px;
 }
@@ -33,30 +38,30 @@
 }
 
 .crm__output-table #table-th-id {
-  width: 75px;
+  width: 85px;
   font-weight: var(--semi-bold);
   color: var(--main-purple);
 }
 
 .crm__output-table #table-th-fio {
-  width: 280px;
+  width: 400px;
 }
 
 .crm__output-table #table-th-dt {
-  width: 180px;
+  width: 220px;
 }
 
 .crm__output-table #table-th-change {
-  width: 180px;
+  width: 200px;
 }
 
 .crm__output-table #table-th-contact {
   padding-right: 30px;
-  width: 190px;
+  /* width: 190px; */
 }
 
 .crm__output-table #table-th-action {
-  padding-right: 20px;
+  /* padding-right: 20px; */
 }
 
 .crm__o-table-head-cell:focus-visible {
@@ -90,4 +95,36 @@
 .head-cell__sort-fio {
   font-weight: var(--semi-bold);
   color: var(--main-purple);
+}
+
+/* media queries, any-hover */
+
+@media (max-width: 992px) {
+  .crm__output-title {
+    margin-bottom: 7px;
+  }
+
+  .crm__output-table #table-th-id {
+    width: 75px;
+  }
+
+  .crm__output-table #table-th-fio {
+    width: 280px;
+  }
+
+  .crm__output-table #table-th-dt {
+    width: 180px;
+  }
+
+  .crm__output-table #table-th-change {
+    width: 180px;
+  }
+
+  .crm__output-table #table-th-contact {
+    width: 190px;
+  }
+
+  .crm__output-table #table-th-action {
+    padding-right: 20px;
+  }
 }

@@ -56,6 +56,11 @@ svg {
   background-color: var(--bg-page);
 }
 
+.page__container {
+  padding: 0;
+  max-width: var(--page-max-width);
+}
+
 .page__title {
   margin-bottom: 16px;
   padding-top: 10px;

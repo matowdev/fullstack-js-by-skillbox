@@ -1,6 +1,8 @@
 :root {
   /* sizes */
   --page-min-width: 320px;
+  --page-max-width: 1366px;
+  --output-padding: 90px;
 
   /* fonts */
   --open-sans: "Open Sans";
