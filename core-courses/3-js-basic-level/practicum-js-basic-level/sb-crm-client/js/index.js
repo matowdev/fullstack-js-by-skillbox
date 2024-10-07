@@ -4,6 +4,9 @@
   const crmSearch = document.getElementById('crm-search');
   const crmOutput = document.getElementById('crm-output');
   const crmAdd = document.getElementById('crm-add');
+  const crmSearchContainer = document.querySelector('.crm__search-container');
+  const crmOutputContainer = document.querySelector('.crm__output-container');
+  const crmAddContainer = document.querySelector('.crm__add-container');
 
   // организация поля для поиска клиентов (фильтрация данных)
   const searchLogoWrap = document.createElement('div');
@@ -49,7 +52,7 @@
   searchInputWrap.append(searchInput, searchInputFeedback);
   searchForm.append(searchInputWrap);
   searchFormInputWrap.append(searchForm);
-  crmSearch.append(searchLogoWrap, searchFormInputWrap);
+  crmSearchContainer.append(searchLogoWrap, searchFormInputWrap);
 
   // организация таблицы данных о клиентах (структура, заголовки колонок, иконки)
   const outputTitle = document.createElement('h2');
@@ -208,7 +211,10 @@
   );
   outTableHead.append(outTblHeadTr);
   outputTable.append(outTableHead, outTableBody);
-  crmOutput.append(outputTitle, outputTable);
+  crmOutputContainer.append(outputTitle, outputTable);
+
+  // основные блоки/составляющие элементы приложения
+  crm.append(crmSearch, crmOutput, crmAdd);
 
   // ** организация появления/скрытия поля для ввода данных/фильтрационного инпута (по нажатию на logo, на 320px)
   document

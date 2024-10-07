@@ -61,11 +61,6 @@ svg {
   max-width: var(--page-max-width);
 }
 
-.page__title {
-  margin-bottom: 16px;
-  padding-top: 10px;
-}
-
 .visually-hidden {
   position: absolute;
   margin: -1px;

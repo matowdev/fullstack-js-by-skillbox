@@ -1,3 +1,9 @@
+.crm__title {
+  margin-bottom: 16px;
+  margin-left: 20px;
+  padding-top: 10px;
+}
+
 .crm__search-form,
 .crm__search-form input,
 .crm__search-form input[type="text"] {

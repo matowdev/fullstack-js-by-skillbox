@@ -1,11 +1,17 @@
 .crm__search-data {
-  display: flex;
-  row-gap: 20px;
-  margin-bottom: 40px;
-  padding: 25px 25px 10px 25px;
+  margin-bottom: 30px;
+  padding-top: 25px;
+  padding-bottom: 5px;
   min-height: 105px;
   background-color: var(--white);
   box-shadow: 0px 9.03px 27.09px 0px rgba(176, 190, 197, 0.32), 0px 3.386px 5.644px 0px rgba(176, 190, 197, 0.32);
+}
+
+.crm__search-container {
+  display: flex;
+  row-gap: 20px;
+  padding-right: var(--container-padding);
+  padding-left: var(--container-padding);
 }
 
 .crm__search-logo-wrap {
@@ -35,12 +41,18 @@
 
 @media (max-width: 320px) {
   .crm__search-data {
+    margin-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 12px;
+    min-height: auto;
+  }
+
+  .crm__search-container {
     flex-wrap: wrap;
     justify-content: center;
     row-gap: 5px;
-    margin-bottom: 20px;
-    padding: 10px 10px 12px 10px;
-    min-height: auto;
+    padding-right: 10px;
+    padding-left: 10px;
   }
 
   .crm__search-logo-wrap {
