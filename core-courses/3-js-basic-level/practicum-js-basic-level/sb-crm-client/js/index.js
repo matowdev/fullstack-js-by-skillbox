@@ -55,6 +55,8 @@
   crmSearchContainer.append(searchLogoWrap, searchFormInputWrap);
 
   // организация таблицы данных о клиентах (структура, заголовки колонок, иконки)
+  const outputTitleWrap = document.createElement('div');
+  const outputTitleHash = document.createElement('span');
   const outputTitle = document.createElement('h2');
   const outputTable = document.createElement('table');
   const outTableHead = document.createElement('thead');
@@ -84,6 +86,8 @@
   const outTblHeadThActionWrap = document.createElement('div');
   const outTblHeadThActionText = document.createElement('span');
 
+  outputTitleWrap.classList.add('crm__output-title-wrap');
+  outputTitleHash.classList.add('crm__output-title-hash');
   outputTitle.classList.add('crm__output-title');
   outputTable.classList.add('crm__output-table', 'table', 'table-hover');
   outTableHead.classList.add('crm__output-table-head');
@@ -163,6 +167,8 @@
     'head-cell__text-action'
   );
 
+  outputTitleHash.setAttribute('id', 'hash-tag-title');
+  outputTitleHash.setAttribute('tabindex', '0');
   outTblHeadThId.setAttribute('id', 'table-th-id');
   outTblHeadThId.setAttribute('tabindex', '0');
   outTblHeadThFIO.setAttribute('id', 'table-th-fio');
@@ -176,6 +182,7 @@
   outTblHeadThActions.setAttribute('id', 'table-th-action');
   outTblHeadThActions.setAttribute('tabindex', '0');
 
+  outputTitleHash.textContent = '#';
   outputTitle.textContent = 'Клиенты';
   outTblHeadThIdText.textContent = 'ID';
   outTblHeadThFIOText.textContent = 'Фамилия Имя Отчество';
@@ -185,6 +192,7 @@
   outTblHeadThContactText.textContent = 'Контакты';
   outTblHeadThActionText.textContent = 'Действия';
 
+  outputTitleWrap.append(outputTitleHash, outputTitle);
   outTblHeadThIdWrap.append(outTblHeadThIdText, outTblHeadThIdIcon);
   outTblHeadThFIOWrap.append(
     outTblHeadThFIOText,
@@ -211,7 +219,7 @@
   );
   outTableHead.append(outTblHeadTr);
   outputTable.append(outTableHead, outTableBody);
-  crmOutputContainer.append(outputTitle, outputTable);
+  crmOutputContainer.append(outputTitleWrap, outputTable);
 
   // основные блоки/составляющие элементы приложения
   crm.append(crmSearch, crmOutput, crmAdd);

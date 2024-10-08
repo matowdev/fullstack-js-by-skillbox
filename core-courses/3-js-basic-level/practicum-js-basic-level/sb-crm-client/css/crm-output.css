@@ -7,10 +7,28 @@
   padding-left: 90px;
 }
 
+.crm__output-title-wrap {
+  display: flex;
+  align-items: center;
+  column-gap: 2px;
+  margin-bottom: 12px;
+}
+
 .crm__output-title {
-  margin-bottom: 15px;
   font-weight: var(--semi-bold);
   font-size: 28px;
+}
+
+.crm__output-title-hash {
+  font-weight: var(--semi-bold);
+  font-size: 32px;
+  line-height: 44px;
+  color: var(--main-purple);
+  cursor: pointer;
+}
+
+.crm__output-title-hash:focus-visible {
+  outline: solid rgba(152, 115, 255, 0.5);
 }
 
 .crm__output-table {
@@ -38,11 +56,11 @@
 }
 
 .crm__output-table .crm__o-table-head-cell {
-  padding-top: 5px;
-  padding-left: 20px;
+  padding: 8px 10px;
 }
 
 .crm__output-table #table-th-id {
+  padding-left: 20px;
   width: 70px;
   font-weight: var(--semi-bold);
   color: var(--main-purple);
@@ -53,7 +71,7 @@
 }
 
 .crm__output-table #table-th-dt {
-  width: 190px;
+  width: 195px;
 }
 
 .crm__output-table #table-th-change {
@@ -61,12 +79,7 @@
 }
 
 .crm__output-table #table-th-contact {
-  padding-right: 30px;
   width: 145px;
-}
-
-.crm__output-table #table-th-action {
-  /* padding-right: 20px; */
 }
 
 .crm__o-table-head-cell:focus-visible {
@@ -105,7 +118,7 @@
 /* media queries, any-hover */
 
 @media (max-width: 992px) {
-  .crm__output-title {
+  .crm__output-title-wrap {
     margin-bottom: 7px;
   }
 
@@ -127,9 +140,5 @@
 
   .crm__output-table #table-th-contact {
     width: 190px;
-  }
-
-  .crm__output-table #table-th-action {
-    padding-right: 20px;
   }
 }
