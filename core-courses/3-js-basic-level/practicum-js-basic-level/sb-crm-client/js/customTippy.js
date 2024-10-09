@@ -27,7 +27,7 @@
 
     // инициализация Tippy только/для #search-logo (в зависимости от ширины экрана)
     function initTippyForSearchLogo() {
-      const isSmallWidth = window.matchMedia('(max-width: 320px)').matches;
+      const isSmallWidth = window.matchMedia('(max-width: 320px)').matches; // уточнение ширины
       const searchLogo = document.querySelector('#search-logo');
 
       if (isSmallWidth && searchLogo && !searchLogo._tippy) {
@@ -41,7 +41,21 @@
 
     // инициализация Tippy для/всех "остальных" элементов (без учёта ширины экрана)
     function initTippyForOther() {
-      // initTippy('#another-element', 'Подсказка для другого элемента', 'right');
+      initTippy('#hash-tag-title', 'сбросить сортировку', 'bottom', {
+        offset: [0, 2],
+      });
+      initTippy('#table-th-id', 'сортировать ⇵', 'bottom', {
+        offset: [0, 2],
+      });
+      initTippy('#table-th-fio', 'сортировать ⇵', 'bottom', {
+        offset: [0, 2],
+      });
+      initTippy('#table-th-dt', 'сортировать ⇵', 'bottom', {
+        offset: [0, 2],
+      });
+      initTippy('#table-th-change', 'сортировать ⇵', 'bottom', {
+        offset: [0, 2],
+      });
     }
 
     initTippyForSearchLogo();

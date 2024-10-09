@@ -12,5 +12,6 @@
 
 .tippy-box[data-theme~="main"] .tippy-arrow {
   margin-top: -1px;
+  margin-right: -1px;
   color: var(--main-purple);
 }

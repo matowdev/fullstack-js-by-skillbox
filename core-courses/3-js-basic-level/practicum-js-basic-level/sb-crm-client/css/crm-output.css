@@ -80,6 +80,11 @@
 
 .crm__output-table #table-th-contact {
   width: 145px;
+  cursor: default;
+}
+
+.crm__output-table #table-th-action {
+  cursor: default;
 }
 
 .crm__o-table-head-cell:focus-visible {
