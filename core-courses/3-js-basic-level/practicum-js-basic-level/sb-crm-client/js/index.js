@@ -221,6 +221,18 @@
   outputTable.append(outTableHead, outTableBody);
   crmOutputContainer.append(outputTitleWrap, outputTable);
 
+  // организация кнопки/модального окна для добавления клиентов (удаления/изменения)
+  const addBtnWrap = document.createElement('div');
+  const addBtn = document.createElement('button');
+  const addModalWrap = document.createElement('div');
+
+  addBtn.classList.add('crm__add-btn');
+
+  addBtn.textContent = 'Добавить клиента';
+
+  addBtnWrap.append(addBtn, addModalWrap);
+  crmAddContainer.append(addBtnWrap);
+
   // основные блоки/составляющие элементы приложения
   crm.append(crmSearch, crmOutput, crmAdd);
 

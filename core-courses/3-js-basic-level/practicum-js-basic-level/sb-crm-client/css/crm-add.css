@@ -1,0 +1,21 @@
+.crm__add-data {}
+
+.crm__add-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: var(--container-padding);
+  padding-left: var(--container-padding);
+}
+
+.crm__add-btn {
+  border: 1px solid var(--main-purple);
+  padding: 12px 25px;
+  min-width: 217px;
+  /* min-height: 47px; */
+  font-family: var(--open-sans), sans-serif;
+  font-weight: var(--semi-bold);
+  font-size: var(--default-fs);
+  color: var(--main-purple);
+  background: transparent;
+}
