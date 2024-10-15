@@ -224,12 +224,21 @@
   // организация кнопки/модального окна для добавления клиентов (удаления/изменения)
   const addBtnWrap = document.createElement('div');
   const addBtn = document.createElement('button');
+  const addBtnDefaultIcon = document.createElement('span');
+  const addBtnWhiteIcon = document.createElement('span');
+  const addBtnGrayIcon = document.createElement('span');
+  const addBtnText = document.createElement('span');
   const addModalWrap = document.createElement('div');
 
   addBtn.classList.add('crm__add-btn');
+  addBtnDefaultIcon.classList.add('crm__add-btn-icon', 'default-add-icon');
+  addBtnWhiteIcon.classList.add('crm__add-btn-icon', 'white-add-icon');
+  addBtnGrayIcon.classList.add('crm__add-btn-icon', 'gray-add-icon');
+  addBtnText.classList.add('crm__add-btn-text');
 
-  addBtn.textContent = 'Добавить клиента';
+  addBtnText.textContent = 'Добавить клиента';
 
+  addBtn.append(addBtnDefaultIcon, addBtnWhiteIcon, addBtnGrayIcon, addBtnText);
   addBtnWrap.append(addBtn, addModalWrap);
   crmAddContainer.append(addBtnWrap);
 
