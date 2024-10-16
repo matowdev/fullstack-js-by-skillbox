@@ -6,6 +6,10 @@
   padding-left: var(--container-padding);
 }
 
+.crm__add-btn-wrap {
+  padding-bottom: 30px;
+}
+
 .crm__add-btn {
   display: flex;
   justify-content: flex-end;
@@ -37,6 +41,10 @@
 
 .crm__add-btn:focus-visible:not(:hover) .white-add-icon {
   opacity: 1;
+}
+
+.crm__add-btn:focus-visible:active {
+  color: var(--gray);
 }
 
 .crm__add-btn:active {

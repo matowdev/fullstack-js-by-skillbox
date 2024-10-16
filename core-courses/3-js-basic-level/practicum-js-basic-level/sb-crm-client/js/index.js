@@ -1,5 +1,6 @@
 (() => {
   // ** получение существующих, создание "новых" элементов (глобальное объявление)
+  const page = document.getElementById('page');
   const crm = document.getElementById('crm');
   const crmSearch = document.getElementById('crm-search');
   const crmOutput = document.getElementById('crm-output');
@@ -229,18 +230,140 @@
   const addBtnGrayIcon = document.createElement('span');
   const addBtnText = document.createElement('span');
   const addModalWrap = document.createElement('div');
+  const addModalDialog = document.createElement('div');
+  const addModalContent = document.createElement('div');
+  const addModalHeader = document.createElement('div');
+  const addModalHeaderTitle = document.createElement('h1');
+  const addModalHeaderXBtn = document.createElement('button');
+  const addModalBody = document.createElement('div');
+  const addModalBodyForm = document.createElement('form');
+  const addModalBodySurnameInputWrap = document.createElement('div');
+  const addModalBodySurnameInput = document.createElement('input');
+  const addModalBodyNameInputWrap = document.createElement('div');
+  const addModalBodyNameInput = document.createElement('input');
+  const addModalBodyPatronymicInputWrap = document.createElement('div');
+  const addModalBodyPatronymicInput = document.createElement('input');
+  const addModalFooter = document.createElement('div');
+  const addModalFooterAddBtnWrap = document.createElement('div');
+  const addModalFooterAddBtn = document.createElement('button');
+  const addModalFooterSaveBtn = document.createElement('button');
+  const addModalFooterCancelBtn = document.createElement('button');
 
+  addBtnWrap.classList.add('crm__add-btn-wrap');
   addBtn.classList.add('crm__add-btn');
   addBtnDefaultIcon.classList.add('crm__add-btn-icon', 'default-add-icon');
   addBtnWhiteIcon.classList.add('crm__add-btn-icon', 'white-add-icon');
   addBtnGrayIcon.classList.add('crm__add-btn-icon', 'gray-add-icon');
   addBtnText.classList.add('crm__add-btn-text');
+  addModalWrap.classList.add('modal', 'crm__add-btn-modal', 'fade');
+  addModalDialog.classList.add(
+    'modal__add-dialog',
+    'modal-dialog',
+    'modal-dialog-centered'
+  );
+  addModalContent.classList.add('modal__add-content-wrap', 'modal-content');
+  addModalHeader.classList.add('modal__add-header', 'modal-header');
+  addModalHeaderTitle.classList.add('modal__add-header-title', 'modal-title');
+  addModalHeaderXBtn.classList.add('modal__add-header-x-btn', 'btn-close');
+  addModalBody.classList.add('modal__add-body', 'modal-body');
+  addModalBodyForm.classList.add('modal__add-body-form');
+  addModalBodySurnameInputWrap.classList.add(
+    'modal__add-body-input-wrap',
+    'add-surname-input-wrap'
+  );
+  addModalBodySurnameInput.classList.add(
+    'modal__add-body-input',
+    'add-surname-input',
+    'form-control'
+  );
+  addModalBodyNameInputWrap.classList.add(
+    'modal__add-body-input-wrap',
+    'add-name-input-wrap'
+  );
+  addModalBodyNameInput.classList.add(
+    'modal__add-body-input',
+    'add-name-input',
+    'form-control'
+  );
+  addModalBodyPatronymicInputWrap.classList.add(
+    'modal__add-body-input-wrap',
+    'add-patronymic-input-wrap'
+  );
+  addModalBodyPatronymicInput.classList.add(
+    'modal__add-body-input',
+    'add-patronymic-input',
+    'form-control'
+  );
+  addModalFooter.classList.add('modal__add-footer', 'modal-footer');
+  addModalFooterAddBtnWrap.classList.add('modal__add-footer-add-btn-wrap');
+  addModalFooterAddBtn.classList.add('modal__add-footer-add-btn');
+  addModalFooterSaveBtn.classList.add('modal__add-footer-save-btn');
+  addModalFooterCancelBtn.classList.add('modal__add-footer-cancel-btn');
+
+  addBtn.setAttribute('id', 'add-btn');
+  addBtn.setAttribute('type', 'button');
+  addBtn.setAttribute('data-bs-toggle', 'modal');
+  addBtn.setAttribute('data-bs-target', '#add-btn-modal');
+  addModalWrap.setAttribute('id', 'add-btn-modal');
+  addModalWrap.setAttribute('tabindex', '-1');
+  addModalWrap.setAttribute('aria-hidden', 'true');
+  addModalHeaderXBtn.setAttribute('type', 'button');
+  addModalHeaderXBtn.setAttribute('data-bs-dismiss', 'modal');
+  addModalHeaderXBtn.setAttribute('aria-label', 'Close');
+  addModalBodyForm.setAttribute('id', 'add-modal-form');
+  addModalBodyForm.setAttribute('action', '#');
+  addModalBodyForm.setAttribute('novalidate', '');
+  addModalBodySurnameInput.setAttribute('id', 'add-surname-input');
+  addModalBodySurnameInput.setAttribute('type', 'text');
+  addModalBodySurnameInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
+  addModalBodySurnameInput.setAttribute('placeholder', 'Фамилия');
+  addModalBodySurnameInput.setAttribute('required', '');
+  addModalBodyNameInput.setAttribute('id', 'add-name-input');
+  addModalBodyNameInput.setAttribute('type', 'text');
+  addModalBodyNameInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
+  addModalBodyNameInput.setAttribute('placeholder', 'Имя');
+  addModalBodyNameInput.setAttribute('required', '');
+  addModalBodyPatronymicInput.setAttribute('id', 'add-patronymic-input');
+  addModalBodyPatronymicInput.setAttribute('type', 'text');
+  addModalBodyPatronymicInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
+  addModalBodyPatronymicInput.setAttribute('placeholder', 'Отчество');
+  addModalBodyPatronymicInput.setAttribute('required', '');
+  addModalFooterAddBtn.setAttribute('id', 'add-modal-footer-add-btn');
+  addModalFooterAddBtn.setAttribute('type', 'button');
+  addModalFooterSaveBtn.setAttribute('id', 'add-modal-footer-save-btn');
+  addModalFooterSaveBtn.setAttribute('type', 'button');
+  addModalFooterCancelBtn.setAttribute('id', 'add-modal-footer-cancel-btn');
+  addModalFooterCancelBtn.setAttribute('type', 'button');
+  addModalFooterCancelBtn.setAttribute('data-bs-dismiss', 'modal');
 
   addBtnText.textContent = 'Добавить клиента';
+  addModalHeaderTitle.textContent = 'Новый клиент';
+  addModalFooterAddBtn.textContent = 'Добавить контакт';
+  addModalFooterSaveBtn.textContent = 'Сохранить';
+  addModalFooterCancelBtn.textContent = 'Отмена';
 
   addBtn.append(addBtnDefaultIcon, addBtnWhiteIcon, addBtnGrayIcon, addBtnText);
-  addBtnWrap.append(addBtn, addModalWrap);
-  crmAddContainer.append(addBtnWrap);
+  addBtnWrap.append(addBtn);
+  addModalHeader.append(addModalHeaderTitle, addModalHeaderXBtn);
+  addModalBodySurnameInputWrap.append(addModalBodySurnameInput);
+  addModalBodyNameInputWrap.append(addModalBodyNameInput);
+  addModalBodyPatronymicInputWrap.append(addModalBodyPatronymicInput);
+  addModalBodyForm.append(
+    addModalBodySurnameInputWrap,
+    addModalBodyNameInputWrap,
+    addModalBodyPatronymicInputWrap
+  );
+  addModalBody.append(addModalBodyForm);
+  addModalFooterAddBtnWrap.append(addModalFooterAddBtn);
+  addModalFooter.append(
+    addModalFooterAddBtnWrap,
+    addModalFooterSaveBtn,
+    addModalFooterCancelBtn
+  );
+  addModalContent.append(addModalHeader, addModalBody, addModalFooter);
+  addModalDialog.append(addModalContent);
+  addModalWrap.append(addModalDialog);
+  crmAddContainer.append(addBtnWrap, addModalWrap);
 
   // основные блоки/составляющие элементы приложения
   crm.append(crmSearch, crmOutput, crmAdd);
