@@ -1,6 +1,5 @@
 (() => {
   // ** получение существующих, создание "новых" элементов (глобальное объявление)
-  const page = document.getElementById('page');
   const crm = document.getElementById('crm');
   const crmSearch = document.getElementById('crm-search');
   const crmOutput = document.getElementById('crm-output');
@@ -13,7 +12,7 @@
   const searchLogoWrap = document.createElement('div');
   const searchLogo = document.createElement('a');
   const searchLogoImg = document.createElement('img');
-  const searchFormInputWrap = document.createElement('div');
+  const searchFormWrap = document.createElement('div');
   const searchForm = document.createElement('form');
   const searchInputWrap = document.createElement('div');
   const searchInput = document.createElement('input');
@@ -22,7 +21,7 @@
   searchLogoWrap.classList.add('crm__search-logo-wrap');
   searchLogo.classList.add('crm__search-logo');
   searchLogoImg.classList.add('crm__search-logo-img');
-  searchFormInputWrap.classList.add('crm__search-form-input-wrap');
+  searchFormWrap.classList.add('crm__search-form-wrap');
   searchForm.classList.add('crm__search-form', 'needs-validation');
   searchInputWrap.classList.add('crm__search-input-wrap');
   searchInput.classList.add('crm__search-input', 'form-control');
@@ -52,8 +51,8 @@
   searchLogoWrap.append(searchLogo);
   searchInputWrap.append(searchInput, searchInputFeedback);
   searchForm.append(searchInputWrap);
-  searchFormInputWrap.append(searchForm);
-  crmSearchContainer.append(searchLogoWrap, searchFormInputWrap);
+  searchFormWrap.append(searchForm);
+  crmSearchContainer.append(searchLogoWrap, searchFormWrap);
 
   // организация таблицы данных о клиентах (структура, заголовки колонок, иконки)
   const outputTitleWrap = document.createElement('div');
@@ -239,10 +238,13 @@
   const addModalBodyForm = document.createElement('form');
   const addModalBodySurnameInputWrap = document.createElement('div');
   const addModalBodySurnameInput = document.createElement('input');
+  const addModalBodySurnameFeedback = document.createElement('div');
   const addModalBodyNameInputWrap = document.createElement('div');
   const addModalBodyNameInput = document.createElement('input');
+  const addModalBodyNameFeedback = document.createElement('div');
   const addModalBodyPatronymicInputWrap = document.createElement('div');
   const addModalBodyPatronymicInput = document.createElement('input');
+  const addModalBodyPatronymicFeedback = document.createElement('div');
   const addModalFooter = document.createElement('div');
   const addModalFooterAddBtnWrap = document.createElement('div');
   const addModalFooterAddBtn = document.createElement('button');
@@ -256,17 +258,13 @@
   addBtnGrayIcon.classList.add('crm__add-btn-icon', 'gray-add-icon');
   addBtnText.classList.add('crm__add-btn-text');
   addModalWrap.classList.add('modal', 'crm__add-btn-modal', 'fade');
-  addModalDialog.classList.add(
-    'modal__add-dialog',
-    'modal-dialog',
-    'modal-dialog-centered'
-  );
+  addModalDialog.classList.add('modal__add-dialog', 'modal-dialog');
   addModalContent.classList.add('modal__add-content-wrap', 'modal-content');
   addModalHeader.classList.add('modal__add-header', 'modal-header');
   addModalHeaderTitle.classList.add('modal__add-header-title', 'modal-title');
   addModalHeaderXBtn.classList.add('modal__add-header-x-btn', 'btn-close');
   addModalBody.classList.add('modal__add-body', 'modal-body');
-  addModalBodyForm.classList.add('modal__add-body-form');
+  addModalBodyForm.classList.add('modal__add-body-form', 'needs-validation');
   addModalBodySurnameInputWrap.classList.add(
     'modal__add-body-input-wrap',
     'add-surname-input-wrap'
@@ -275,6 +273,11 @@
     'modal__add-body-input',
     'add-surname-input',
     'form-control'
+  );
+  addModalBodySurnameFeedback.classList.add(
+    'modal__add-body-input-feedback',
+    'surname-input-feedback',
+    'invalid-feedback'
   );
   addModalBodyNameInputWrap.classList.add(
     'modal__add-body-input-wrap',
@@ -285,6 +288,11 @@
     'add-name-input',
     'form-control'
   );
+  addModalBodyNameFeedback.classList.add(
+    'modal__add-body-input-feedback',
+    'name-input-feedback',
+    'invalid-feedback'
+  );
   addModalBodyPatronymicInputWrap.classList.add(
     'modal__add-body-input-wrap',
     'add-patronymic-input-wrap'
@@ -293,6 +301,11 @@
     'modal__add-body-input',
     'add-patronymic-input',
     'form-control'
+  );
+  addModalBodyPatronymicFeedback.classList.add(
+    'modal__add-body-input-feedback',
+    'patronymic-input-feedback',
+    'invalid-feedback'
   );
   addModalFooter.classList.add('modal__add-footer', 'modal-footer');
   addModalFooterAddBtnWrap.classList.add('modal__add-footer-add-btn-wrap');
@@ -338,6 +351,12 @@
 
   addBtnText.textContent = 'Добавить клиента';
   addModalHeaderTitle.textContent = 'Новый клиент';
+  addModalBodySurnameFeedback.textContent =
+    'Введены не корректные данные.. исключите: английские буквы, цифры!';
+  addModalBodyNameFeedback.textContent =
+    'Введены не корректные данные.. исключите: английские буквы, цифры!';
+  addModalBodyPatronymicFeedback.textContent =
+    'Введены не корректные данные.. исключите: английские буквы, цифры!';
   addModalFooterAddBtn.textContent = 'Добавить контакт';
   addModalFooterSaveBtn.textContent = 'Сохранить';
   addModalFooterCancelBtn.textContent = 'Отмена';
@@ -345,9 +364,18 @@
   addBtn.append(addBtnDefaultIcon, addBtnWhiteIcon, addBtnGrayIcon, addBtnText);
   addBtnWrap.append(addBtn);
   addModalHeader.append(addModalHeaderTitle, addModalHeaderXBtn);
-  addModalBodySurnameInputWrap.append(addModalBodySurnameInput);
-  addModalBodyNameInputWrap.append(addModalBodyNameInput);
-  addModalBodyPatronymicInputWrap.append(addModalBodyPatronymicInput);
+  addModalBodySurnameInputWrap.append(
+    addModalBodySurnameInput,
+    addModalBodySurnameFeedback
+  );
+  addModalBodyNameInputWrap.append(
+    addModalBodyNameInput,
+    addModalBodyNameFeedback
+  );
+  addModalBodyPatronymicInputWrap.append(
+    addModalBodyPatronymicInput,
+    addModalBodyPatronymicFeedback
+  );
   addModalBodyForm.append(
     addModalBodySurnameInputWrap,
     addModalBodyNameInputWrap,
@@ -411,10 +439,10 @@
     });
   }
 
-  const searchFormInput = document.querySelector('.crm__search-form input'); // получение search-инпута
-  searchFormInputValidation(searchFormInput);
+  const searchFormMainInput = document.querySelector('.crm__search-form input'); // получение search-инпута
+  searchFormInputValidation(searchFormMainInput);
 
-  // изменение направления стрелки/svg-icon, согласно прожатия по заглавной ячейке (при сортировке данных)
+  // ** изменение направления стрелки/svg-icon, согласно прожатия по заглавной ячейке (при сортировке данных)
   const allHeaderRowCells = document.querySelectorAll(
     '.crm__o-table-head-cell'
   );
@@ -448,4 +476,45 @@
       }
     });
   });
+
+  // ** организация валидации для ввода данных/в модальном окне (при добавлении нового/клиента)
+  function addModalFormInputValidation(inputs) {
+    inputs.forEach((input) =>
+      input.addEventListener('input', (event) => {
+        const target = event.target;
+        const targetParentNode = target.parentNode;
+        const invalidFeed = targetParentNode.querySelector('.invalid-feedback');
+
+        // принудительное исключение пробелов (в начале поля для ввода)
+        target.value = target.value.replace(/^\s+/, '');
+
+        // только русские буквы (без цифр/символов), "один" дефис (для двойных фамилий) и без необоснованных пробелов
+        if (
+          /[^а-яА-ЯёЁ\s-]/.test(target.value) ||
+          (target.value.match(/-/g) || []).length > 1 ||
+          /\s{2,}/.test(target.value)
+        ) {
+          target.classList.add('is-invalid');
+
+          if (/[^а-яА-ЯёЁ\s-]/.test(target.value)) {
+            invalidFeed.textContent =
+              'Некорректный ввод! Измените раскладку клавиатуры и/или исключите цифры/знаки!';
+          } else if ((target.value.match(/-/g) || []).length > 1) {
+            invalidFeed.textContent = 'Некорректный ввод! Только ОДИН дефис!';
+          } else {
+            invalidFeed.textContent =
+              'Некорректный ввод! Только ОДИН пробел между словами!';
+          }
+        } else {
+          target.classList.remove('is-invalid');
+          invalidFeed.textContent = ''; // очистка сообщения об ошибке
+        }
+      })
+    );
+  }
+
+  const allAddModalFormInputs = document.querySelectorAll(
+    '.modal__add-body-input'
+  ); // получение всех модальных-инпутов
+  addModalFormInputValidation(allAddModalFormInputs);
 })();
