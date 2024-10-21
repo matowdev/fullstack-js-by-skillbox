@@ -25,15 +25,14 @@
   max-width: 580px;
 }
 
-.crm__search-form,
-.crm__search-form input,
-.crm__search-form input[type="text"] {
+.crm__search-form .crm__search-input[type="text"] {
   font-family: var(--open-sans), sans-serif;
+  font-weight: var(--semi-bold);
   font-size: var(--default-fs);
+  color: var(--black);
 }
 
-.crm__search-form,
-.crm__search-form input::placeholder {
+.crm__search-form .crm__search-input::placeholder {
   color: var(--text-gray);
 }
 

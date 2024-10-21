@@ -238,9 +238,11 @@
   const addModalBodyForm = document.createElement('form');
   const addModalBodySurnameInputWrap = document.createElement('div');
   const addModalBodySurnameInput = document.createElement('input');
+  const addModalBodySurnameSpan = document.createElement('span');
   const addModalBodySurnameFeedback = document.createElement('div');
   const addModalBodyNameInputWrap = document.createElement('div');
   const addModalBodyNameInput = document.createElement('input');
+  const addModalBodyNameSpan = document.createElement('span');
   const addModalBodyNameFeedback = document.createElement('div');
   const addModalBodyPatronymicInputWrap = document.createElement('div');
   const addModalBodyPatronymicInput = document.createElement('input');
@@ -248,6 +250,9 @@
   const addModalFooter = document.createElement('div');
   const addModalFooterAddBtnWrap = document.createElement('div');
   const addModalFooterAddBtn = document.createElement('button');
+  const addModalFooterAddBtnStrokeIcon = document.createElement('span');
+  const addModalFooterAddBtnFillIcon = document.createElement('span');
+  const addModalFooterAddBtnText = document.createElement('span');
   const addModalFooterSaveBtn = document.createElement('button');
   const addModalFooterCancelBtn = document.createElement('button');
 
@@ -274,6 +279,10 @@
     'add-surname-input',
     'form-control'
   );
+  addModalBodySurnameSpan.classList.add(
+    'modal__add-body-span',
+    'add-surname-input-span'
+  );
   addModalBodySurnameFeedback.classList.add(
     'modal__add-body-input-feedback',
     'surname-input-feedback',
@@ -287,6 +296,10 @@
     'modal__add-body-input',
     'add-name-input',
     'form-control'
+  );
+  addModalBodyNameSpan.classList.add(
+    'modal__add-body-span',
+    'add-name-input-span'
   );
   addModalBodyNameFeedback.classList.add(
     'modal__add-body-input-feedback',
@@ -309,9 +322,27 @@
   );
   addModalFooter.classList.add('modal__add-footer', 'modal-footer');
   addModalFooterAddBtnWrap.classList.add('modal__add-footer-add-btn-wrap');
-  addModalFooterAddBtn.classList.add('modal__add-footer-add-btn');
-  addModalFooterSaveBtn.classList.add('modal__add-footer-save-btn');
-  addModalFooterCancelBtn.classList.add('modal__add-footer-cancel-btn');
+  addModalFooterAddBtn.classList.add(
+    'modal__add-footer-add-btn',
+    'modal__add-btn'
+  );
+  addModalFooterAddBtnStrokeIcon.classList.add(
+    'modal__add-footer-btn-icon',
+    'stroke-add-modal-icon'
+  );
+  addModalFooterAddBtnFillIcon.classList.add(
+    'modal__add-footer-btn-icon',
+    'fill-add-modal-icon'
+  );
+  addModalFooterAddBtnText.classList.add('modal__add-footer-add-btn-text');
+  addModalFooterSaveBtn.classList.add(
+    'modal__add-footer-save-btn',
+    'modal__add-btn'
+  );
+  addModalFooterCancelBtn.classList.add(
+    'modal__add-footer-cancel-btn',
+    'modal__add-btn'
+  );
 
   addBtn.setAttribute('id', 'add-btn');
   addBtn.setAttribute('type', 'button');
@@ -357,7 +388,9 @@
     'Введены не корректные данные.. исключите: английские буквы, цифры!';
   addModalBodyPatronymicFeedback.textContent =
     'Введены не корректные данные.. исключите: английские буквы, цифры!';
-  addModalFooterAddBtn.textContent = 'Добавить контакт';
+  addModalBodySurnameSpan.textContent = '*';
+  addModalBodyNameSpan.textContent = '*';
+  addModalFooterAddBtnText.textContent = 'Добавить контакт';
   addModalFooterSaveBtn.textContent = 'Сохранить';
   addModalFooterCancelBtn.textContent = 'Отмена';
 
@@ -366,10 +399,12 @@
   addModalHeader.append(addModalHeaderTitle, addModalHeaderXBtn);
   addModalBodySurnameInputWrap.append(
     addModalBodySurnameInput,
+    addModalBodySurnameSpan,
     addModalBodySurnameFeedback
   );
   addModalBodyNameInputWrap.append(
     addModalBodyNameInput,
+    addModalBodyNameSpan,
     addModalBodyNameFeedback
   );
   addModalBodyPatronymicInputWrap.append(
@@ -382,6 +417,11 @@
     addModalBodyPatronymicInputWrap
   );
   addModalBody.append(addModalBodyForm);
+  addModalFooterAddBtn.append(
+    addModalFooterAddBtnStrokeIcon,
+    addModalFooterAddBtnFillIcon,
+    addModalFooterAddBtnText
+  );
   addModalFooterAddBtnWrap.append(addModalFooterAddBtn);
   addModalFooter.append(
     addModalFooterAddBtnWrap,
@@ -492,7 +532,7 @@
         if (
           /[^а-яА-ЯёЁ\s-]/.test(target.value) ||
           (target.value.match(/-/g) || []).length > 1 ||
-          /\s{2,}/.test(target.value)
+          /\s{1,}/.test(target.value)
         ) {
           target.classList.add('is-invalid');
 
@@ -502,8 +542,7 @@
           } else if ((target.value.match(/-/g) || []).length > 1) {
             invalidFeed.textContent = 'Некорректный ввод! Только ОДИН дефис!';
           } else {
-            invalidFeed.textContent =
-              'Некорректный ввод! Только ОДИН пробел между словами!';
+            invalidFeed.textContent = 'Некорректный ввод! Никаких пробелов!';
           }
         } else {
           target.classList.remove('is-invalid');
