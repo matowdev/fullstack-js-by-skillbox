@@ -1,6 +1,7 @@
 .modal__add-dialog {
   position: relative;
   top: 220px;
+  left: 25px;
 }
 
 .modal__add-content-wrap {
@@ -23,7 +24,7 @@
 }
 
 .modal__add-header {
-  margin-bottom: 32px;
+  margin-bottom: 23px;
 }
 
 .modal__add-header-title {
@@ -45,13 +46,13 @@
 }
 
 .modal__add-body {
-  margin-bottom: 95px;
+  margin-bottom: 40px;
 }
 
 .modal__add-body-form {
   display: flex;
   flex-direction: column;
-  row-gap: 30px;
+  row-gap: 28px;
 }
 
 .modal__add-body-form .modal__add-body-input[type="text"] {
@@ -115,11 +116,12 @@
 .modal__add-footer {
   display: flex;
   flex-direction: column;
+  min-height: 110px;
 }
 
 .modal__add-footer-add-btn-wrap {
   position: absolute;
-  bottom: 132px;
+  bottom: 113px;
   display: flex;
   justify-content: center;
   margin: 0;
@@ -171,6 +173,14 @@
   color: var(--light-purple);
 }
 
+.modal__add-footer-add-btn:active .stroke-add-modal-icon {
+  opacity: 0;
+}
+
+.modal__add-footer-add-btn:active .fill-add-modal-icon {
+  opacity: 1;
+}
+
 .modal__add-footer-btn-icon {
   position: absolute;
   left: 20px;
@@ -192,7 +202,7 @@
 
 .modal__add-footer-save-btn {
   margin-bottom: 5px;
-  padding: 17px 35px;
+  padding: 10px 35px;
   min-width: 150px;
   color: var(--white);
   background-color: var(--main-purple);
