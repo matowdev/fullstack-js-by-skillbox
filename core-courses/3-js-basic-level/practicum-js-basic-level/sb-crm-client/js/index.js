@@ -238,14 +238,17 @@
   const addModalBodyForm = document.createElement('form');
   const addModalBodySurnameInputWrap = document.createElement('div');
   const addModalBodySurnameInput = document.createElement('input');
-  const addModalBodySurnameSpan = document.createElement('span');
+  const addModalBodySurnameInputLabel = document.createElement('label');
+  const addModalBodySurnameLabelSpan = document.createElement('span');
   const addModalBodySurnameFeedback = document.createElement('div');
   const addModalBodyNameInputWrap = document.createElement('div');
   const addModalBodyNameInput = document.createElement('input');
-  const addModalBodyNameSpan = document.createElement('span');
+  const addModalBodyNameInputLabel = document.createElement('label');
+  const addModalBodyNameInputLabelSpan = document.createElement('span');
   const addModalBodyNameFeedback = document.createElement('div');
   const addModalBodyPatronymicInputWrap = document.createElement('div');
   const addModalBodyPatronymicInput = document.createElement('input');
+  const addModalBodyPatronymicInputLabel = document.createElement('label');
   const addModalBodyPatronymicFeedback = document.createElement('div');
   const addModalFooter = document.createElement('div');
   const addModalFooterAddBtnWrap = document.createElement('div');
@@ -272,16 +275,21 @@
   addModalBodyForm.classList.add('modal__add-body-form', 'needs-validation');
   addModalBodySurnameInputWrap.classList.add(
     'modal__add-body-input-wrap',
-    'add-surname-input-wrap'
+    'add-surname-input-wrap',
+    'form-floating'
   );
   addModalBodySurnameInput.classList.add(
     'modal__add-body-input',
     'add-surname-input',
     'form-control'
   );
-  addModalBodySurnameSpan.classList.add(
-    'modal__add-body-span',
-    'add-surname-input-span'
+  addModalBodySurnameInputLabel.classList.add(
+    'modal__add-body-input-label',
+    'add-surname-input-labe'
+  );
+  addModalBodySurnameLabelSpan.classList.add(
+    'modal__add-body-label-span',
+    'add-surname-input-label-span'
   );
   addModalBodySurnameFeedback.classList.add(
     'modal__add-body-input-feedback',
@@ -290,16 +298,21 @@
   );
   addModalBodyNameInputWrap.classList.add(
     'modal__add-body-input-wrap',
-    'add-name-input-wrap'
+    'add-name-input-wrap',
+    'form-floating'
   );
   addModalBodyNameInput.classList.add(
     'modal__add-body-input',
     'add-name-input',
     'form-control'
   );
-  addModalBodyNameSpan.classList.add(
-    'modal__add-body-span',
-    'add-name-input-span'
+  addModalBodyNameInputLabel.classList.add(
+    'modal__add-body-input-label',
+    'add-name-input-labe'
+  );
+  addModalBodyNameInputLabelSpan.classList.add(
+    'modal__add-body-label-span',
+    'add-name-input-label-span'
   );
   addModalBodyNameFeedback.classList.add(
     'modal__add-body-input-feedback',
@@ -308,12 +321,17 @@
   );
   addModalBodyPatronymicInputWrap.classList.add(
     'modal__add-body-input-wrap',
-    'add-patronymic-input-wrap'
+    'add-patronymic-input-wrap',
+    'form-floating'
   );
   addModalBodyPatronymicInput.classList.add(
     'modal__add-body-input',
     'add-patronymic-input',
     'form-control'
+  );
+  addModalBodyPatronymicInputLabel.classList.add(
+    'modal__add-body-input-label',
+    'add-patronymic-input-labe'
   );
   addModalBodyPatronymicFeedback.classList.add(
     'modal__add-body-input-feedback',
@@ -357,21 +375,33 @@
   addModalBodyForm.setAttribute('id', 'add-modal-form');
   addModalBodyForm.setAttribute('action', '#');
   addModalBodyForm.setAttribute('novalidate', '');
-  addModalBodySurnameInput.setAttribute('id', 'add-surname-input');
+  addModalBodySurnameInput.setAttribute('id', 'add-surname-floating-input');
   addModalBodySurnameInput.setAttribute('type', 'text');
   addModalBodySurnameInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
   addModalBodySurnameInput.setAttribute('placeholder', 'Фамилия');
   addModalBodySurnameInput.setAttribute('required', '');
-  addModalBodyNameInput.setAttribute('id', 'add-name-input');
+  addModalBodySurnameInputLabel.setAttribute(
+    'for',
+    'add-surname-floating-input'
+  );
+  addModalBodyNameInput.setAttribute('id', 'add-name-floating-input');
   addModalBodyNameInput.setAttribute('type', 'text');
   addModalBodyNameInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
   addModalBodyNameInput.setAttribute('placeholder', 'Имя');
   addModalBodyNameInput.setAttribute('required', '');
-  addModalBodyPatronymicInput.setAttribute('id', 'add-patronymic-input');
+  addModalBodyNameInputLabel.setAttribute('for', 'add-name-floating-input');
+  addModalBodyPatronymicInput.setAttribute(
+    'id',
+    'add-patronymic-floating-input'
+  );
   addModalBodyPatronymicInput.setAttribute('type', 'text');
   addModalBodyPatronymicInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
   addModalBodyPatronymicInput.setAttribute('placeholder', 'Отчество');
   addModalBodyPatronymicInput.setAttribute('required', '');
+  addModalBodyPatronymicInputLabel.setAttribute(
+    'for',
+    'add-patronymic-floating-input'
+  );
   addModalFooterAddBtn.setAttribute('id', 'add-modal-footer-add-btn');
   addModalFooterAddBtn.setAttribute('type', 'button');
   addModalFooterSaveBtn.setAttribute('id', 'add-modal-footer-save-btn');
@@ -382,14 +412,17 @@
 
   addBtnText.textContent = 'Добавить клиента';
   addModalHeaderTitle.textContent = 'Новый клиент';
+  addModalBodySurnameInputLabel.textContent = 'Фамилия';
+  addModalBodySurnameLabelSpan.textContent = '*';
   addModalBodySurnameFeedback.textContent =
     'Введены не корректные данные.. исключите: английские буквы, цифры!';
+  addModalBodyNameInputLabel.textContent = 'Имя';
+  addModalBodyNameInputLabelSpan.textContent = '*';
   addModalBodyNameFeedback.textContent =
     'Введены не корректные данные.. исключите: английские буквы, цифры!';
+  addModalBodyPatronymicInputLabel.textContent = 'Отчество';
   addModalBodyPatronymicFeedback.textContent =
     'Введены не корректные данные.. исключите: английские буквы, цифры!';
-  addModalBodySurnameSpan.textContent = '*';
-  addModalBodyNameSpan.textContent = '*';
   addModalFooterAddBtnText.textContent = 'Добавить контакт';
   addModalFooterSaveBtn.textContent = 'Сохранить';
   addModalFooterCancelBtn.textContent = 'Отмена';
@@ -397,18 +430,21 @@
   addBtn.append(addBtnDefaultIcon, addBtnWhiteIcon, addBtnGrayIcon, addBtnText);
   addBtnWrap.append(addBtn);
   addModalHeader.append(addModalHeaderTitle, addModalHeaderXBtn);
+  addModalBodySurnameInputLabel.append(addModalBodySurnameLabelSpan);
   addModalBodySurnameInputWrap.append(
     addModalBodySurnameInput,
-    addModalBodySurnameSpan,
+    addModalBodySurnameInputLabel,
     addModalBodySurnameFeedback
   );
+  addModalBodyNameInputLabel.append(addModalBodyNameInputLabelSpan);
   addModalBodyNameInputWrap.append(
     addModalBodyNameInput,
-    addModalBodyNameSpan,
+    addModalBodyNameInputLabel,
     addModalBodyNameFeedback
   );
   addModalBodyPatronymicInputWrap.append(
     addModalBodyPatronymicInput,
+    addModalBodyPatronymicInputLabel,
     addModalBodyPatronymicFeedback
   );
   addModalBodyForm.append(

@@ -24,7 +24,7 @@
 }
 
 .modal__add-header {
-  margin-bottom: 23px;
+  margin-bottom: 17px;
 }
 
 .modal__add-header-title {
@@ -52,50 +52,22 @@
 .modal__add-body-form {
   display: flex;
   flex-direction: column;
-  row-gap: 28px;
+  row-gap: 20px;
 }
 
-.modal__add-body-form .modal__add-body-input[type="text"] {
+.modal__add-body-form .modal__add-body-input {
   font-family: var(--open-sans), sans-serif;
   font-weight: var(--semi-bold);
   font-size: var(--default-fs);
 }
 
-.modal__add-body-form .modal__add-body-input::placeholder {
-  color: var(--text-gray);
-}
-
-.modal__add-body-input-wrap {
-  position: relative;
-}
-
-.modal__add-body-input-wrap .modal__add-body-span {
-  position: absolute;
-  top: 50%;
-  font-size: 16px;
-  color: #a86cf3;
-  transform: translateY(-50%);
-  pointer-events: none;
-  visibility: hidden;
-}
-
-.modal__add-body-input-wrap input:placeholder-shown+.modal__add-body-span {
-  visibility: visible;
-}
-
-.modal__add-body-input-wrap .add-surname-input-span {
-  left: 67px;
-}
-
-.modal__add-body-input-wrap .add-name-input-span {
-  left: 31px;
-}
-
-.modal__add-body-input {
+.modal__add-body-input-wrap .modal__add-body-input {
   border: none;
   border-bottom: 1px solid var(--gray);
   border-radius: 0;
-  padding: 4px 2px 4px 1px;
+  padding: 5px 3px;
+  height: 45px;
+  min-height: 45px;
   caret-color: var(--main-purple);
 }
 
@@ -111,6 +83,25 @@
   /* тень только снизу */
   box-shadow: 0 .25rem 0 rgba(220, 53, 69, .25);
   outline: none;
+}
+
+.modal__add-body-input-wrap .modal__add-body-input-label {
+  top: -8px;
+  left: -2px;
+  padding-left: 1px;
+  color: var(--text-gray);
+}
+
+.modal__add-body-label-span {
+  font-size: 16px;
+  color: var(--main-purple);
+}
+
+.form-floating>.form-control-plaintext~label,
+.form-floating>.form-control:focus~label,
+.form-floating>.form-control:not(:placeholder-shown)~label,
+.form-floating>.form-select~label {
+  color: var(--text-gray);
 }
 
 .modal__add-footer {
