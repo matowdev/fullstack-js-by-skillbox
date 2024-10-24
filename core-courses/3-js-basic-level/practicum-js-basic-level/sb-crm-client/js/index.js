@@ -236,6 +236,7 @@
   const addModalHeaderXBtn = document.createElement('button');
   const addModalBody = document.createElement('div');
   const addModalBodyForm = document.createElement('form');
+  const addModalBodyInputsWrap = document.createElement('div');
   const addModalBodySurnameInputWrap = document.createElement('div');
   const addModalBodySurnameInput = document.createElement('input');
   const addModalBodySurnameInputLabel = document.createElement('label');
@@ -250,13 +251,14 @@
   const addModalBodyPatronymicInput = document.createElement('input');
   const addModalBodyPatronymicInputLabel = document.createElement('label');
   const addModalBodyPatronymicFeedback = document.createElement('div');
+  const addModalBodyAddContactsWrap = document.createElement('div');
+  const addModalBodyAddSelectWrap = document.createElement('div');
+  const addModalBodyAddBtn = document.createElement('button');
+  const addModalBodyAddBtnStrokeIcon = document.createElement('span');
+  const addModalBodyAddBtnFillIcon = document.createElement('span');
+  const addModalBodyAddBtnText = document.createElement('span');
+  const addModalBodySaveBtn = document.createElement('button');
   const addModalFooter = document.createElement('div');
-  const addModalFooterAddBtnWrap = document.createElement('div');
-  const addModalFooterAddBtn = document.createElement('button');
-  const addModalFooterAddBtnStrokeIcon = document.createElement('span');
-  const addModalFooterAddBtnFillIcon = document.createElement('span');
-  const addModalFooterAddBtnText = document.createElement('span');
-  const addModalFooterSaveBtn = document.createElement('button');
   const addModalFooterCancelBtn = document.createElement('button');
 
   addBtnWrap.classList.add('crm__add-btn-wrap');
@@ -273,6 +275,7 @@
   addModalHeaderXBtn.classList.add('modal__add-header-x-btn', 'btn-close');
   addModalBody.classList.add('modal__add-body', 'modal-body');
   addModalBodyForm.classList.add('modal__add-body-form', 'needs-validation');
+  addModalBodyInputsWrap.classList.add('modal__add-body-inputs-wrap');
   addModalBodySurnameInputWrap.classList.add(
     'modal__add-body-input-wrap',
     'add-surname-input-wrap',
@@ -338,25 +341,28 @@
     'patronymic-input-feedback',
     'invalid-feedback'
   );
-  addModalFooter.classList.add('modal__add-footer', 'modal-footer');
-  addModalFooterAddBtnWrap.classList.add('modal__add-footer-add-btn-wrap');
-  addModalFooterAddBtn.classList.add(
-    'modal__add-footer-add-btn',
-    'modal__add-btn'
+  addModalBodyAddContactsWrap.classList.add(
+    'modal__add-body-add-contacts-wrap'
   );
-  addModalFooterAddBtnStrokeIcon.classList.add(
-    'modal__add-footer-btn-icon',
+  addModalBodyAddSelectWrap.classList.add(
+    'modal__add-body-add-select-wrap',
+    'd-none'
+  );
+  addModalBodyAddBtn.classList.add('modal__add-body-add-btn', 'modal__add-btn');
+  addModalBodyAddBtnStrokeIcon.classList.add(
+    'modal__add-body-btn-icon',
     'stroke-add-modal-icon'
   );
-  addModalFooterAddBtnFillIcon.classList.add(
-    'modal__add-footer-btn-icon',
+  addModalBodyAddBtnFillIcon.classList.add(
+    'modal__add-body-btn-icon',
     'fill-add-modal-icon'
   );
-  addModalFooterAddBtnText.classList.add('modal__add-footer-add-btn-text');
-  addModalFooterSaveBtn.classList.add(
-    'modal__add-footer-save-btn',
+  addModalBodyAddBtnText.classList.add('modal__add-body-add-btn-text');
+  addModalBodySaveBtn.classList.add(
+    'modal__add-body-save-btn',
     'modal__add-btn'
   );
+  addModalFooter.classList.add('modal__add-footer', 'modal-footer');
   addModalFooterCancelBtn.classList.add(
     'modal__add-footer-cancel-btn',
     'modal__add-btn'
@@ -402,10 +408,10 @@
     'for',
     'add-patronymic-floating-input'
   );
-  addModalFooterAddBtn.setAttribute('id', 'add-modal-footer-add-btn');
-  addModalFooterAddBtn.setAttribute('type', 'button');
-  addModalFooterSaveBtn.setAttribute('id', 'add-modal-footer-save-btn');
-  addModalFooterSaveBtn.setAttribute('type', 'button');
+  addModalBodyAddBtn.setAttribute('id', 'add-modal-body-add-btn');
+  addModalBodyAddBtn.setAttribute('type', 'button');
+  addModalBodySaveBtn.setAttribute('id', 'add-modal-body-save-btn');
+  addModalBodySaveBtn.setAttribute('type', 'button');
   addModalFooterCancelBtn.setAttribute('id', 'add-modal-footer-cancel-btn');
   addModalFooterCancelBtn.setAttribute('type', 'button');
   addModalFooterCancelBtn.setAttribute('data-bs-dismiss', 'modal');
@@ -423,8 +429,8 @@
   addModalBodyPatronymicInputLabel.textContent = 'Отчество';
   addModalBodyPatronymicFeedback.textContent =
     'Введены не корректные данные.. исключите: английские буквы, цифры!';
-  addModalFooterAddBtnText.textContent = 'Добавить контакт';
-  addModalFooterSaveBtn.textContent = 'Сохранить';
+  addModalBodyAddBtnText.textContent = 'Добавить контакт';
+  addModalBodySaveBtn.textContent = 'Сохранить';
   addModalFooterCancelBtn.textContent = 'Отмена';
 
   addBtn.append(addBtnDefaultIcon, addBtnWhiteIcon, addBtnGrayIcon, addBtnText);
@@ -447,23 +453,27 @@
     addModalBodyPatronymicInputLabel,
     addModalBodyPatronymicFeedback
   );
-  addModalBodyForm.append(
+  addModalBodyInputsWrap.append(
     addModalBodySurnameInputWrap,
     addModalBodyNameInputWrap,
     addModalBodyPatronymicInputWrap
   );
+  addModalBodyAddBtn.append(
+    addModalBodyAddBtnStrokeIcon,
+    addModalBodyAddBtnFillIcon,
+    addModalBodyAddBtnText
+  );
+  addModalBodyAddContactsWrap.append(
+    addModalBodyAddSelectWrap,
+    addModalBodyAddBtn
+  );
+  addModalBodyForm.append(
+    addModalBodyInputsWrap,
+    addModalBodyAddContactsWrap,
+    addModalBodySaveBtn
+  );
   addModalBody.append(addModalBodyForm);
-  addModalFooterAddBtn.append(
-    addModalFooterAddBtnStrokeIcon,
-    addModalFooterAddBtnFillIcon,
-    addModalFooterAddBtnText
-  );
-  addModalFooterAddBtnWrap.append(addModalFooterAddBtn);
-  addModalFooter.append(
-    addModalFooterAddBtnWrap,
-    addModalFooterSaveBtn,
-    addModalFooterCancelBtn
-  );
+  addModalFooter.append(addModalFooterCancelBtn);
   addModalContent.append(addModalHeader, addModalBody, addModalFooter);
   addModalDialog.append(addModalContent);
   addModalWrap.append(addModalDialog);
