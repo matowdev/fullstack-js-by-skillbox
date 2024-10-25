@@ -483,13 +483,11 @@
   crm.append(crmSearch, crmOutput, crmAdd);
 
   // ** организация появления/скрытия поля для ввода данных/фильтрационного инпута (по нажатию на logo, на 320px)
-  document
-    .querySelector('.crm__search-logo-img')
-    .addEventListener('click', () => {
-      document
-        .querySelector('.crm__search-data')
-        .classList.toggle('show-search-input');
-    });
+  searchLogoImg.addEventListener('click', () => {
+    document
+      .querySelector('.crm__search-data')
+      .classList.toggle('show-search-input');
+  });
 
   // ** организация валидации для ввода данных/фильтрационного инпута (для формы без submit)
   function searchFormInputValidation(input) {
@@ -525,7 +523,8 @@
     });
   }
 
-  const searchFormMainInput = document.querySelector('.crm__search-form input'); // получение search-инпута
+  // получение заглавного search-инпута (последующая валидация)
+  const searchFormMainInput = document.querySelector('.crm__search-form input');
   searchFormInputValidation(searchFormMainInput);
 
   // ** изменение направления стрелки/svg-icon, согласно прожатия по заглавной ячейке (при сортировке данных)
@@ -598,8 +597,121 @@
     );
   }
 
+  // получение всех add-модальных инпутов (последующая валидация)
   const allAddModalFormInputs = document.querySelectorAll(
     '.modal__add-body-input'
-  ); // получение всех модальных-инпутов
+  );
   addModalFormInputValidation(allAddModalFormInputs);
+
+  // ** динамическое добавление строки контактов в add-модальном окне (по нажатию "Добавить контакт" кнопки)
+  function createAddModalContactsElement() {
+    const addModalContactElement = document.createElement('div');
+    addModalContactElement.classList.add(
+      'modal__add-body-add-contact-element',
+      'input-group'
+    );
+
+    const addModalContactSelect = document.createElement('select');
+    addModalContactSelect.classList.add(
+      'modal__add-body-add-contact-select',
+      'form-select'
+    );
+    addModalContactSelect.setAttribute('id', 'add-modal-select');
+    addModalContactSelect.setAttribute('name', 'Client contacts');
+    addModalContactSelect.innerHTML = `
+        <option value="phone" selected>Телефон</option>
+        <option value="extra-phone">Доп. телефон</option>
+        <option value="email">Email</option>
+        <option value="vk">Vk</option>
+        <option value="facebook">Facebook</option>
+    `;
+
+    const addModalContactInput = document.createElement('input');
+    addModalContactInput.classList.add(
+      'modal__add-body-add-contact-input',
+      'form-control'
+    );
+    // !! нужно добавлять id.. но всем разные
+    // addModalContactInput.setAttribute('id', 'add-modal-contact-input');
+    addModalContactInput.setAttribute('type', 'text');
+    addModalContactInput.setAttribute('placeholder', 'Введите данные контакта');
+
+    const addModalContactXBtn = document.createElement('button');
+    addModalContactXBtn.classList.add(
+      'modal__add-body-add-x-btn',
+      'add-modal-delete-btn'
+    );
+    addModalContactXBtn.setAttribute('type', 'button');
+    addModalContactXBtn.setAttribute('tabindex', '0');
+    addModalContactXBtn.textContent = '✖';
+
+    addModalContactElement.append(
+      addModalContactSelect,
+      addModalContactInput,
+      addModalContactXBtn
+    );
+
+    // отображение изначально скрытой обвёртки/родителя
+    const addBodySelectWrap = document.querySelector(
+      '.modal__add-body-add-select-wrap'
+    );
+    addBodySelectWrap.classList.remove('d-none');
+
+    addBodySelectWrap.append(addModalContactElement); // добавление в DOM строки контактов
+
+    // добавление "не большого" эффекта/задержки появления для "новой" строки контактов (элемента)
+    addModalContactElement.style.opacity = '0';
+    setTimeout(() => {
+      addModalContactElement.style.transition = 'opacity 0.3s ease';
+      addModalContactElement.style.opacity = '1';
+    }, 10);
+
+    // организация удаления строки контактов
+    addModalContactXBtn.addEventListener('click', (event) => {
+      event.stopPropagation(); // исключение не предвиденных событий/поведения
+      deleteModalContactsElement(event); // удаление строки контактов (посредствам "X" кнопки)
+    });
+
+    // организация удаления строки контактов и через TAB/Enter
+    addModalContactXBtn.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        event.stopPropagation(); // исключение не предвиденных событий/поведения
+        deleteModalContactsElement(event); // удаление строки контактов (посредствам "X" кнопки)
+      }
+    });
+  }
+
+  // запуск логики добавления/создания строки контактов
+  addModalBodyAddBtn.addEventListener('click', () => {
+    createAddModalContactsElement();
+  });
+
+  // ** удаление строки контактов в add-модальном окне (через "X" кнопку)
+  function deleteModalContactsElement(event) {
+    const clickedContactsXBtn = event.target;
+
+    // проверка на входящее прожатие/событие
+    if (!clickedContactsXBtn) {
+      return;
+    }
+
+    if (clickedContactsXBtn.classList.contains('add-modal-delete-btn')) {
+      const modalContactsElement = clickedContactsXBtn.closest('div'); // фиксация родительского элемента
+
+      if (modalContactsElement) {
+        modalContactsElement.remove(); // удаление строки контактов
+
+        // проверка на количество строк контактов (нет, скрытие обвёртки/родителя)
+        if (
+          document.querySelectorAll('.modal__add-body-add-contact-element')
+            .length === 0
+        ) {
+          const addBodySelectWrap = document.querySelector(
+            '.modal__add-body-add-select-wrap'
+          );
+          addBodySelectWrap.classList.add('d-none');
+        }
+      }
+    }
+  }
 })();
