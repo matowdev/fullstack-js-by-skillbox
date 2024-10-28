@@ -686,30 +686,40 @@
     createAddModalContactsElement();
   });
 
-  // ** удаление строки контактов в add-модальном окне (через "X" кнопку)
+  // ** удаление строки контактов в add-модальном окне (через "X" кнопку, с/без уточняющего сообщения)
   function deleteModalContactsElement(event) {
     const clickedContactsXBtn = event.target;
 
-    // проверка на входящее прожатие/событие
-    if (!clickedContactsXBtn) {
-      return;
-    }
-
     if (clickedContactsXBtn.classList.contains('add-modal-delete-btn')) {
-      const modalContactsElement = clickedContactsXBtn.closest('div'); // фиксация родительского элемента
+      // фиксация родительского элемента
+      const modalContactsElement = clickedContactsXBtn.closest(
+        '.modal__add-body-add-contact-element'
+      );
 
       if (modalContactsElement) {
-        modalContactsElement.remove(); // удаление строки контактов
+        // определение заполненности инпута в данной строке контакта
+        const currentInput = modalContactsElement.querySelector('input');
+        const isCurrentInputFilled =
+          currentInput && currentInput.value.trim() !== '';
+        let confirmed = true; // изначально подтверждение/confirm не требуется
 
-        // проверка на количество строк контактов (нет, скрытие обвёртки/родителя)
-        if (
-          document.querySelectorAll('.modal__add-body-add-contact-element')
-            .length === 0
-        ) {
-          const addBodySelectWrap = document.querySelector(
-            '.modal__add-body-add-select-wrap'
-          );
-          addBodySelectWrap.classList.add('d-none');
+        if (isCurrentInputFilled) {
+          confirmed = confirm('Вы действительно хотите удалить этот контакт?'); // если/есть данные в инпуте, то тогда confirm/подтверждение при удалении
+        }
+
+        if (confirmed) {
+          modalContactsElement.remove(); // удаление строки контактов
+
+          // проверка на количество строк контактов (нет, скрытие обвёртки/родителя)
+          if (
+            document.querySelectorAll('.modal__add-body-add-contact-element')
+              .length === 0
+          ) {
+            const addBodySelectWrap = document.querySelector(
+              '.modal__add-body-add-select-wrap'
+            );
+            addBodySelectWrap.classList.add('d-none');
+          }
         }
       }
     }
