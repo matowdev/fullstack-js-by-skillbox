@@ -604,7 +604,12 @@
   addModalFormInputValidation(allAddModalFormInputs);
 
   // ** динамическое добавление строки контактов в add-модальном окне (по нажатию "Добавить контакт" кнопки)
+  const addModalContactsArr = [];
+
   function createAddModalContactsElement() {
+    // проверка количества контактов (не более 10)
+    if (addModalContactsArr.length >= 10) return;
+
     const addModalContactElement = document.createElement('div');
     addModalContactElement.classList.add(
       'modal__add-body-add-contact-element',
@@ -616,8 +621,7 @@
       'modal__add-body-add-contact-select',
       'form-select'
     );
-    addModalContactSelect.setAttribute('id', 'add-modal-select');
-    addModalContactSelect.setAttribute('name', 'Client contacts');
+    addModalContactSelect.setAttribute('name', 'contact-options');
     addModalContactSelect.innerHTML = `
         <option value="phone" selected>Телефон</option>
         <option value="extra-phone">Доп. телефон</option>
@@ -631,9 +635,8 @@
       'modal__add-body-add-contact-input',
       'form-control'
     );
-    // !! нужно добавлять id.. но всем разные
-    // addModalContactInput.setAttribute('id', 'add-modal-contact-input');
     addModalContactInput.setAttribute('type', 'text');
+    addModalContactInput.setAttribute('name', 'contact-data');
     addModalContactInput.setAttribute('placeholder', 'Введите данные контакта');
 
     const addModalContactXBtn = document.createElement('button');
@@ -662,9 +665,18 @@
     // добавление "не большого" эффекта/задержки появления для "новой" строки контактов (элемента)
     addModalContactElement.style.opacity = '0';
     setTimeout(() => {
-      addModalContactElement.style.transition = 'opacity 0.3s ease';
+      addModalContactElement.style.transition = 'opacity 0.1s ease';
       addModalContactElement.style.opacity = '1';
     }, 10);
+
+    // добавление контакта в массив
+    addModalContactsArr.push(addModalContactElement);
+
+    // исключение ещё/прожатия кнопки "Добавить контакт", если контактов/уже 10 (вывод сообщения)
+    if (addModalContactsArr.length >= 10) {
+      alert('Десятый контакт.. достаточно!');
+      addModalBodyAddBtn.disabled = true;
+    }
 
     // организация удаления строки контактов
     addModalContactXBtn.addEventListener('click', (event) => {
@@ -709,6 +721,16 @@
 
         if (confirmed) {
           modalContactsElement.remove(); // удаление строки контактов
+
+          // удаление строки контактов и из массива
+          const contactIndex =
+            addModalContactsArr.indexOf(modalContactsElement);
+          if (contactIndex > -1) addModalContactsArr.splice(contactIndex, 1);
+
+          // проверка на количество элементов в массиве, меньше 10.. возврат возможности прожатия кнопки "Добавить контакт"
+          if (addModalContactsArr.length < 10) {
+            addModalBodyAddBtn.disabled = false;
+          }
 
           // проверка на количество строк контактов (нет, скрытие обвёртки/родителя)
           if (
