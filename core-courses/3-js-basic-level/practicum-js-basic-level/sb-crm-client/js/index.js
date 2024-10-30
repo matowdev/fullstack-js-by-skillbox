@@ -662,6 +662,11 @@
 
     addBodySelectWrap.append(addModalContactElement); // добавление в DOM строки контактов
 
+    // добавление отступа/margin-bottom кнопке
+    if (addModalContactsArr.length === 0) {
+      addModalBodyAddBtn.classList.add('add-modal-btn-margin');
+    }
+
     // добавление "не большого" эффекта/задержки появления для "новой" строки контактов (элемента)
     addModalContactElement.style.opacity = '0';
     setTimeout(() => {
@@ -732,7 +737,7 @@
             addModalBodyAddBtn.disabled = false;
           }
 
-          // проверка на количество строк контактов (нет, скрытие обвёртки/родителя)
+          // проверка на количество строк контактов (нет, скрытие обвёртки/родителя и удаление отступа у кнопки)
           if (
             document.querySelectorAll('.modal__add-body-add-contact-element')
               .length === 0
@@ -741,6 +746,7 @@
               '.modal__add-body-add-select-wrap'
             );
             addBodySelectWrap.classList.add('d-none');
+            addModalBodyAddBtn.classList.remove('add-modal-btn-margin');
           }
         }
       }
