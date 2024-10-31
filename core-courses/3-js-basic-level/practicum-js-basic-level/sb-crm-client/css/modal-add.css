@@ -162,7 +162,7 @@
 }
 
 .modal__add-body-add-btn:focus-visible:not(:hover) {
-  color: var(--main-purple);
+  color: var(--cold-purple);
 }
 
 .modal__add-body-add-btn:focus-visible:not(:hover) .stroke-add-modal-icon {
@@ -177,15 +177,23 @@
   color: var(--light-purple);
 }
 
-.modal__add-body-add-btn:active {
+.modal__add-body-add-btn:active:not(:disabled) {
   color: var(--light-purple);
 }
 
-.modal__add-body-add-btn:active .stroke-add-modal-icon {
+.modal__add-body-add-btn:active:not(:disabled) .stroke-add-modal-icon {
   opacity: 0;
 }
 
-.modal__add-body-add-btn:active .fill-add-modal-icon {
+.modal__add-body-add-btn:active:not(:disabled) .fill-add-modal-icon {
+  opacity: 1;
+}
+
+.modal__add-body-add-btn:disabled .stroke-add-modal-icon {
+  opacity: 0;
+}
+
+.modal__add-body-add-btn:disabled .stroke-gray-add-modal-icon {
   opacity: 1;
 }
 
@@ -204,6 +212,11 @@
 .stroke-add-modal-icon {
   background: url("../images/add-plus-stroke.svg") no-repeat center / contain;
   opacity: 1;
+}
+
+.stroke-gray-add-modal-icon {
+  background: url("../images/add-plus-stroke-gray.svg") no-repeat center / contain;
+  opacity: 0;
 }
 
 .fill-add-modal-icon {
@@ -258,15 +271,15 @@
 /* media queries, any-hover */
 
 @media (any-hover: hover) {
-  .modal__add-body-add-btn:hover:not(:active) {
-    color: var(--main-purple);
+  .modal__add-body-add-btn:hover:not(:active):not(:disabled) {
+    color: var(--cold-purple);
   }
 
-  .modal__add-body-add-btn:hover:not(:active) .stroke-add-modal-icon {
+  .modal__add-body-add-btn:hover:not(:active):not(:disabled) .stroke-add-modal-icon {
     opacity: 0;
   }
 
-  .modal__add-body-add-btn:hover:not(:active) .fill-add-modal-icon {
+  .modal__add-body-add-btn:hover:not(:active):not(:disabled) .fill-add-modal-icon {
     opacity: 1;
   }
 

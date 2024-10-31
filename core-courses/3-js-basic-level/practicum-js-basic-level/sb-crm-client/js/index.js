@@ -255,6 +255,7 @@
   const addModalBodyAddSelectWrap = document.createElement('div');
   const addModalBodyAddBtn = document.createElement('button');
   const addModalBodyAddBtnStrokeIcon = document.createElement('span');
+  const addModalBodyAddBtnStrokeIconGray = document.createElement('span');
   const addModalBodyAddBtnFillIcon = document.createElement('span');
   const addModalBodyAddBtnText = document.createElement('span');
   const addModalBodySaveBtn = document.createElement('button');
@@ -352,6 +353,10 @@
   addModalBodyAddBtnStrokeIcon.classList.add(
     'modal__add-body-btn-icon',
     'stroke-add-modal-icon'
+  );
+  addModalBodyAddBtnStrokeIconGray.classList.add(
+    'modal__add-body-btn-icon',
+    'stroke-gray-add-modal-icon'
   );
   addModalBodyAddBtnFillIcon.classList.add(
     'modal__add-body-btn-icon',
@@ -460,6 +465,7 @@
   );
   addModalBodyAddBtn.append(
     addModalBodyAddBtnStrokeIcon,
+    addModalBodyAddBtnStrokeIconGray,
     addModalBodyAddBtnFillIcon,
     addModalBodyAddBtnText
   );
