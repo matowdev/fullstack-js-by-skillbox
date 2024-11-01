@@ -252,7 +252,7 @@
   const addModalBodyPatronymicInputLabel = document.createElement('label');
   const addModalBodyPatronymicFeedback = document.createElement('div');
   const addModalBodyAddContactsWrap = document.createElement('div');
-  const addModalBodyAddSelectWrap = document.createElement('div');
+  const addModalBodyAddContactsRowWrap = document.createElement('div');
   const addModalBodyAddBtn = document.createElement('button');
   const addModalBodyAddBtnStrokeIcon = document.createElement('span');
   const addModalBodyAddBtnStrokeIconGray = document.createElement('span');
@@ -285,6 +285,7 @@
   addModalBodySurnameInput.classList.add(
     'modal__add-body-input',
     'add-surname-input',
+    'add-modal-input',
     'form-control'
   );
   addModalBodySurnameInputLabel.classList.add(
@@ -308,6 +309,7 @@
   addModalBodyNameInput.classList.add(
     'modal__add-body-input',
     'add-name-input',
+    'add-modal-input',
     'form-control'
   );
   addModalBodyNameInputLabel.classList.add(
@@ -331,6 +333,7 @@
   addModalBodyPatronymicInput.classList.add(
     'modal__add-body-input',
     'add-patronymic-input',
+    'add-modal-input',
     'form-control'
   );
   addModalBodyPatronymicInputLabel.classList.add(
@@ -345,8 +348,8 @@
   addModalBodyAddContactsWrap.classList.add(
     'modal__add-body-add-contacts-wrap'
   );
-  addModalBodyAddSelectWrap.classList.add(
-    'modal__add-body-add-select-wrap',
+  addModalBodyAddContactsRowWrap.classList.add(
+    'modal__add-body-add-contacts-row-wrap',
     'd-none'
   );
   addModalBodyAddBtn.classList.add('modal__add-body-add-btn', 'modal__add-btn');
@@ -470,7 +473,7 @@
     addModalBodyAddBtnText
   );
   addModalBodyAddContactsWrap.append(
-    addModalBodyAddSelectWrap,
+    addModalBodyAddContactsRowWrap,
     addModalBodyAddBtn
   );
   addModalBodyForm.append(
@@ -617,52 +620,101 @@
     if (addModalContactsArr.length >= 10) return;
 
     const addModalContactElement = document.createElement('div');
+    const addModalContactCustomSelect = document.createElement('div');
+    const addModalContactDropBtn = document.createElement('button');
+    const addModalContactList = document.createElement('ul');
+    const addModalContactItemExtraPhone = document.createElement('li');
+    const addModalContactItemEmail = document.createElement('li');
+    const addModalContactItemVk = document.createElement('li');
+    const addModalContactItemFacebook = document.createElement('li');
+    const addModalContactHiddenInput = document.createElement('input');
+    const addModalContactInput = document.createElement('input');
+    const addModalContactXBtn = document.createElement('button');
+
     addModalContactElement.classList.add(
       'modal__add-body-add-contact-element',
       'input-group'
     );
-
-    const addModalContactSelect = document.createElement('select');
-    addModalContactSelect.classList.add(
-      'modal__add-body-add-contact-select',
-      'form-select'
+    addModalContactCustomSelect.classList.add(
+      'modal__add-body-add-contact-select'
+      // 'form-select'
     );
-    addModalContactSelect.setAttribute('name', 'contact-options');
-    addModalContactSelect.innerHTML = `
-        <option value="phone" selected>Телефон</option>
-        <option value="extra-phone">Доп. телефон</option>
-        <option value="email">Email</option>
-        <option value="vk">Vk</option>
-        <option value="facebook">Facebook</option>
-    `;
-
-    const addModalContactInput = document.createElement('input');
+    addModalContactDropBtn.classList.add(
+      'modal__add-body-add-contact-drop-btn'
+    );
+    addModalContactList.classList.add('modal__add-body-add-contact-list');
+    addModalContactItemExtraPhone.classList.add(
+      'modal__add-body-add-contact-item',
+      'add-modal-extra-phone-item'
+    );
+    addModalContactItemEmail.classList.add(
+      'modal__add-body-add-contact-item',
+      'add-modal-email-item'
+    );
+    addModalContactItemVk.classList.add(
+      'modal__add-body-add-contact-item',
+      'add-modal-vk-item'
+    );
+    addModalContactItemFacebook.classList.add(
+      'modal__add-body-add-contact-item',
+      'add-modal-facebook-item'
+    );
+    addModalContactHiddenInput.classList.add(
+      'modal__add-body-add-hidden-input'
+    );
     addModalContactInput.classList.add(
       'modal__add-body-add-contact-input',
+      'add-modal-input',
       'form-control'
     );
-    addModalContactInput.setAttribute('type', 'text');
-    addModalContactInput.setAttribute('name', 'contact-data');
-    addModalContactInput.setAttribute('placeholder', 'Введите данные контакта');
-
-    const addModalContactXBtn = document.createElement('button');
     addModalContactXBtn.classList.add(
       'modal__add-body-add-x-btn',
       'add-modal-delete-btn'
     );
+
+    addModalContactCustomSelect.setAttribute('name', 'contact-options');
+    addModalContactDropBtn.setAttribute('id', 'add-modal-drop-btn');
+    addModalContactDropBtn.setAttribute('type', 'button');
+    addModalContactItemExtraPhone.setAttribute('data-value', 'extra-phone');
+    addModalContactItemEmail.setAttribute('data-value', 'email');
+    addModalContactItemVk.setAttribute('data-value', 'vk');
+    addModalContactItemFacebook.setAttribute('data-value', 'facebook');
+    addModalContactHiddenInput.setAttribute('value', 'phone'); // начальное значение, согласно textContent кнопки
+    addModalContactHiddenInput.setAttribute('type', 'hidden');
+    addModalContactHiddenInput.setAttribute('name', 'contact-type');
+    addModalContactInput.setAttribute('type', 'text');
+    addModalContactInput.setAttribute('name', 'contact-data');
+    addModalContactInput.setAttribute('placeholder', 'Введите данные контакта');
     addModalContactXBtn.setAttribute('type', 'button');
     addModalContactXBtn.setAttribute('tabindex', '0');
+
+    addModalContactDropBtn.textContent = 'Телефон';
+    addModalContactItemExtraPhone.textContent = 'Доп. телефон';
+    addModalContactItemEmail.textContent = 'Email';
+    addModalContactItemVk.textContent = 'Vk';
+    addModalContactItemFacebook.textContent = 'Facebook';
     addModalContactXBtn.textContent = '✖';
 
+    addModalContactList.append(
+      addModalContactItemExtraPhone,
+      addModalContactItemEmail,
+      addModalContactItemVk,
+      addModalContactItemFacebook
+    );
+    addModalContactCustomSelect.append(
+      addModalContactDropBtn,
+      addModalContactList
+    );
     addModalContactElement.append(
-      addModalContactSelect,
+      addModalContactCustomSelect,
+      addModalContactHiddenInput,
       addModalContactInput,
       addModalContactXBtn
     );
 
     // отображение изначально скрытой обвёртки/родителя
     const addBodySelectWrap = document.querySelector(
-      '.modal__add-body-add-select-wrap'
+      '.modal__add-body-add-contacts-row-wrap'
     );
     addBodySelectWrap.classList.remove('d-none');
 
@@ -721,7 +773,9 @@
 
       if (modalContactsElement) {
         // определение заполненности инпута в данной строке контакта
-        const currentInput = modalContactsElement.querySelector('input');
+        const currentInput = modalContactsElement.querySelector(
+          '.modal__add-body-add-contact-input'
+        );
         const isCurrentInputFilled =
           currentInput && currentInput.value.trim() !== '';
         let confirmed = true; // изначально подтверждение/confirm не требуется
@@ -749,7 +803,7 @@
               .length === 0
           ) {
             const addBodySelectWrap = document.querySelector(
-              '.modal__add-body-add-select-wrap'
+              '.modal__add-body-add-contacts-row-wrap'
             );
             addBodySelectWrap.classList.add('d-none');
             addModalBodyAddBtn.classList.remove('add-modal-btn-margin');
