@@ -642,7 +642,10 @@
     addModalContactDropBtn.classList.add(
       'modal__add-body-add-contact-drop-btn'
     );
-    addModalContactList.classList.add('modal__add-body-add-contact-list');
+    addModalContactList.classList.add(
+      'modal__add-body-add-contact-list',
+      'd-none'
+    );
     addModalContactItemExtraPhone.classList.add(
       'modal__add-body-add-contact-item',
       'add-modal-extra-phone-item'
@@ -676,9 +679,13 @@
     addModalContactDropBtn.setAttribute('id', 'add-modal-drop-btn');
     addModalContactDropBtn.setAttribute('type', 'button');
     addModalContactItemExtraPhone.setAttribute('data-value', 'extra-phone');
+    addModalContactItemExtraPhone.setAttribute('tabindex', '0');
     addModalContactItemEmail.setAttribute('data-value', 'email');
+    addModalContactItemEmail.setAttribute('tabindex', '0');
     addModalContactItemVk.setAttribute('data-value', 'vk');
+    addModalContactItemVk.setAttribute('tabindex', '0');
     addModalContactItemFacebook.setAttribute('data-value', 'facebook');
+    addModalContactItemFacebook.setAttribute('tabindex', '0');
     addModalContactHiddenInput.setAttribute('value', 'phone'); // начальное значение, согласно textContent кнопки
     addModalContactHiddenInput.setAttribute('type', 'hidden');
     addModalContactHiddenInput.setAttribute('name', 'contact-type');
@@ -740,6 +747,28 @@
       alert('Десятый контакт.. достаточно!');
       addModalBodyAddBtn.disabled = true;
     }
+
+    // показ/скрытие выпадающего списка вариантов/контактов
+    addModalContactDropBtn.addEventListener('click', (event) => {
+      event.currentTarget.focus(); // добавление фокуса кнопке (до момента выбора)
+      event.currentTarget.classList.toggle('arrow-rotate'); // переключение направления стрелки
+      addModalContactList.classList.toggle('d-none');
+    });
+
+    const allModalContactsListItems = document.querySelectorAll(
+      '.modal__add-body-add-contact-item'
+    );
+
+    // замена/обновление содержимого/контента кнопки (согласно значений li/вариантов)
+    addModalContactList.addEventListener('click', (event) => {
+      if (event.target.tagName === 'LI') {
+        const selectedItemValue = event.target.getAttribute('data-value');
+        addModalContactDropBtn.textContent = event.target.textContent;
+        addModalContactList.classList.add('d-none'); // скрытие выпадающего списка
+        addModalContactDropBtn.classList.remove('arrow-rotate'); // возврат направления стрелки
+        addModalContactHiddenInput.value = selectedItemValue; // обновление данных в "скрытом" input (для последующей отправки на сервер)
+      }
+    });
 
     // организация удаления строки контактов
     addModalContactXBtn.addEventListener('click', (event) => {
