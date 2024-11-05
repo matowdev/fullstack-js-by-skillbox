@@ -739,8 +739,7 @@
       addModalContactElement.style.opacity = '1';
     }, 10);
 
-    // добавление контакта в массив
-    addModalContactsArr.push(addModalContactElement);
+    addModalContactsArr.push(addModalContactElement); // добавление контакта во внешний/глобальный массив
 
     // исключение ещё/прожатия кнопки "Добавить контакт", если контактов/уже 10 (вывод сообщения)
     if (addModalContactsArr.length >= 10) {
@@ -750,36 +749,55 @@
 
     // показ/скрытие выпадающего списка вариантов/контактов
     addModalContactDropBtn.addEventListener('click', (event) => {
-      event.currentTarget.focus(); // добавление фокуса кнопке (до момента выбора)
       event.currentTarget.classList.toggle('arrow-rotate'); // переключение направления стрелки
       addModalContactList.classList.toggle('d-none');
+
+      if (!addModalContactList.classList.contains('d-none')) {
+        event.currentTarget.focus(); // добавление фокуса кнопке (до момента выбора)
+      }
     });
 
     const allModalContactsListItems = document.querySelectorAll(
       '.modal__add-body-add-contact-item'
     );
 
-    // замена/обновление содержимого/контента кнопки (согласно значений li/вариантов)
+    // замена/обновление содержимого/контента кнопки, так и через TAB/Enter (согласно значений li/вариантов)
     addModalContactList.addEventListener('click', (event) => {
       if (event.target.tagName === 'LI') {
-        const selectedItemValue = event.target.getAttribute('data-value');
-        addModalContactDropBtn.textContent = event.target.textContent;
-        addModalContactList.classList.add('d-none'); // скрытие выпадающего списка
-        addModalContactDropBtn.classList.remove('arrow-rotate'); // возврат направления стрелки
-        addModalContactHiddenInput.value = selectedItemValue; // обновление данных в "скрытом" input (для последующей отправки на сервер)
+        getContactSelection(event.target); // отработка выбора
       }
     });
 
+    addModalContactList.addEventListener('keydown', (event) => {
+      if (event.target.tagName === 'LI' && event.key === 'Enter') {
+        event.preventDefault(); // исключение непредвиденных событий/поведения
+        getContactSelection(event.target); // отработка выбора
+      }
+    });
+
+    function getContactSelection(target) {
+      const selectedItemValue = target.getAttribute('data-value');
+      addModalContactDropBtn.textContent = target.textContent;
+      addModalContactHiddenInput.value = selectedItemValue; // обновление данных в "скрытом" input (для последующей отправки на сервер)
+      closeBtnDropdown(); // закрытие выпадающего списка
+    }
+
+    function closeBtnDropdown() {
+      addModalContactList.classList.add('d-none'); // скрытие выпадающего списка
+      addModalContactDropBtn.classList.remove('arrow-rotate'); // возврат направления стрелки
+      addModalContactDropBtn.blur(); // снятие фокуса с кнопки (после выбора)
+    }
+
     // организация удаления строки контактов
     addModalContactXBtn.addEventListener('click', (event) => {
-      event.stopPropagation(); // исключение не предвиденных событий/поведения
+      event.stopPropagation(); // исключение непредвиденных событий/поведения
       deleteModalContactsElement(event); // удаление строки контактов (посредствам "X" кнопки)
     });
 
     // организация удаления строки контактов и через TAB/Enter
     addModalContactXBtn.addEventListener('keydown', (event) => {
       if (event.key === 'Enter') {
-        event.stopPropagation(); // исключение не предвиденных событий/поведения
+        event.stopPropagation(); // исключение непредвиденных событий/поведения
         deleteModalContactsElement(event); // удаление строки контактов (посредствам "X" кнопки)
       }
     });
