@@ -256,6 +256,82 @@
   color: var(--text-gray);
 }
 
+.modal__add-body-add-contact-input {
+  border: 1px solid var(--gray);
+  border-radius: 0;
+}
+
+.modal__add-body-add-contact-input::placeholder {
+  font-weight: var(--regular);
+}
+
+.modal__add-body-add-x-btn {
+  position: relative;
+  border: 1px solid var(--gray);
+  border-radius: 0;
+  width: 27px;
+  background: var(--select-gray);
+  outline: none;
+  transition-property: border, box-shadow;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.modal__add-body-add-x-btn:before,
+.modal__add-body-add-x-btn:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  /* отработка клика и на arrow-icon */
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.modal__add-body-add-x-btn:before {
+  background-image: url('../images/delete-contact-btn-gray.svg');
+  opacity: 1;
+}
+
+.modal__add-body-add-x-btn:after {
+  background-image: url('../images/delete-contact-btn-red.svg');
+  opacity: 0;
+}
+
+.modal__add-body-add-x-btn:focus-visible {
+  border-color: var(--bootstrap-red);
+  box-shadow: 0 0 0 .25rem rgba(220, 53, 69, .25);
+  z-index: 1;
+}
+
+.modal__add-body-add-x-btn:focus-visible::before {
+  opacity: 0;
+}
+
+.modal__add-body-add-x-btn:focus-visible:after {
+  opacity: 1;
+}
+
+.modal__add-body-add-x-btn:active {
+  border-color: var(--gray);
+  box-shadow: 0 0 0 .25rem rgba(200, 197, 209, 0.25);
+  z-index: 1;
+}
+
+.modal__add-body-add-x-btn:active:before {
+  opacity: 1;
+}
+
+.modal__add-body-add-x-btn:active:after {
+  opacity: 0;
+}
+
 .modal__add-btn {
   margin: 0;
   border: none;
@@ -403,6 +479,20 @@
 
   .modal__add-body-add-contact-item:hover:not(:active) {
     background-color: var(--select-gray);
+  }
+
+  .modal__add-body-add-x-btn:hover:not(:active) {
+    border-color: var(--bootstrap-red);
+    box-shadow: 0 0 0 .25rem rgba(220, 53, 69, .25);
+    z-index: 10;
+  }
+
+  .modal__add-body-add-x-btn:hover:not(:active):before {
+    opacity: 0;
+  }
+
+  .modal__add-body-add-x-btn:hover:not(:active):after {
+    opacity: 1;
   }
 
   .modal__add-body-save-btn:hover:not(:active) {

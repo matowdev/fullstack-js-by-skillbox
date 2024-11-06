@@ -700,7 +700,6 @@
     addModalContactItemEmail.textContent = 'Email';
     addModalContactItemVk.textContent = 'Vk';
     addModalContactItemFacebook.textContent = 'Facebook';
-    addModalContactXBtn.textContent = '✖';
 
     addModalContactList.append(
       addModalContactItemExtraPhone,
@@ -780,6 +779,7 @@
       addModalContactDropBtn.textContent = target.textContent;
       addModalContactHiddenInput.value = selectedItemValue; // обновление данных в "скрытом" input (для последующей отправки на сервер)
       closeBtnDropdown(); // закрытие выпадающего списка
+      addModalContactInput.focus(); // перевод фокуса на соседний инпут (после выбора в выпадающем списке)
     }
 
     function closeBtnDropdown() {
