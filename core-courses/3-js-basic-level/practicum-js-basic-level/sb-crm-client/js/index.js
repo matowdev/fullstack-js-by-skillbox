@@ -763,23 +763,51 @@
     // замена/обновление содержимого/контента кнопки, так и через TAB/Enter (согласно значений li/вариантов)
     addModalContactList.addEventListener('click', (event) => {
       if (event.target.tagName === 'LI') {
-        getContactSelection(event.target); // отработка выбора
+        getContactDropSelection(event.target); // отработка выбора
       }
     });
 
     addModalContactList.addEventListener('keydown', (event) => {
       if (event.target.tagName === 'LI' && event.key === 'Enter') {
         event.preventDefault(); // исключение непредвиденных событий/поведения
-        getContactSelection(event.target); // отработка выбора
+        getContactDropSelection(event.target); // отработка выбора
       }
     });
 
-    function getContactSelection(target) {
+    function getContactDropSelection(target) {
       const selectedItemValue = target.getAttribute('data-value');
       addModalContactDropBtn.textContent = target.textContent;
       addModalContactHiddenInput.value = selectedItemValue; // обновление данных в "скрытом" input (для последующей отправки на сервер)
+      addDropPhoneOption(); // добавление li/варианта, как "Телефон" в выпадающий список (если сразу не выбрали)
       closeBtnDropdown(); // закрытие выпадающего списка
       addModalContactInput.focus(); // перевод фокуса на соседний инпут (после выбора в выпадающем списке)
+    }
+
+    function addDropPhoneOption() {
+      const isPhoneOption = Array.from(addModalContactList.children).some(
+        (item) => item.getAttribute('data-value') === 'phone'
+      );
+
+      // проверка на наличие "Телефон(а)" в кнопке, среди li/элементов (удаление/добавление в выпадающий список)
+      if (addModalContactDropBtn.textContent === 'Телефон' && isPhoneOption) {
+        const phoneOption = addModalContactList.querySelector(
+          '[data-value="phone"]'
+        );
+        if (phoneOption) phoneOption.remove(); // удаление
+      } else if (
+        addModalContactDropBtn.textContent !== 'Телефон' &&
+        !isPhoneOption
+      ) {
+        const addModalContactItemPhone = document.createElement('li');
+        addModalContactItemPhone.classList.add(
+          'modal__add-body-add-contact-item',
+          'add-modal-phone-item'
+        );
+        addModalContactItemPhone.setAttribute('data-value', 'phone');
+        addModalContactItemPhone.setAttribute('tabindex', '0');
+        addModalContactItemPhone.textContent = 'Телефон';
+        addModalContactList.prepend(addModalContactItemPhone); // добавляем в начало списка
+      }
     }
 
     function closeBtnDropdown() {
