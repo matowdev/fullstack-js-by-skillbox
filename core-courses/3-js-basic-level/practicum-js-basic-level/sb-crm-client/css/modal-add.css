@@ -169,6 +169,11 @@
   font-size: 12px;
   background: transparent;
   outline: none;
+  /* попытка исключить не понятные мерцания кнопки */
+  transform: translateZ(0);
+  /* will-change: border-color, transform, opacity, box-shadow; */
+  /* backface-visibility: hidden; */
+  /* -webkit-font-smoothing: antialiased; */
 }
 
 .modal__add-body-add-contact-drop-btn:after {
@@ -183,6 +188,7 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+  transition: transform 0.1s ease;
   /* отработка клика и на arrow-icon */
   pointer-events: none;
 }
@@ -289,9 +295,9 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+  transition: opacity 0.2s ease;
   /* отработка клика и на arrow-icon */
   pointer-events: none;
-  transition: opacity 0.2s ease;
 }
 
 .modal__add-body-add-x-btn:before {
@@ -479,6 +485,14 @@
 
   .modal__add-body-add-contact-item:hover:not(:active) {
     background-color: var(--select-gray);
+  }
+
+  .modal__add-body-add-contact-drop-btn:hover:after {
+    transform: translateY(-50%) scale(1.2);
+  }
+
+  .modal__add-body-add-contact-drop-btn.arrow-rotate:hover:after {
+    transform: translateY(-50%) rotate(180deg) scale(1.2);
   }
 
   .modal__add-body-add-x-btn:hover:not(:active) {
