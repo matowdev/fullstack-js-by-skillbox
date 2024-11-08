@@ -746,13 +746,45 @@
       addModalBodyAddBtn.disabled = true;
     }
 
-    // показ/скрытие выпадающего списка вариантов/контактов
-    addModalContactDropBtn.addEventListener('click', (event) => {
-      event.currentTarget.classList.toggle('arrow-rotate'); // переключение направления стрелки
-      addModalContactList.classList.toggle('d-none');
+    let isDropdownToggleAllowed = true; // возможность/разрешение на показ выпадающего списка
 
-      if (!addModalContactList.classList.contains('d-none')) {
-        event.currentTarget.focus(); // добавление фокуса кнопке (до момента выбора)
+    // показ/скрытие выпадающего списка вариантов/контактов (открытым может быть только один, переключение)
+    addModalContactDropBtn.addEventListener('click', (event) => {
+      if (!isDropdownToggleAllowed) return; // проверка возможности/разрешения на показ списка
+
+      // попытка исключения хаотичных действий/наложений (задержка)
+      isDropdownToggleAllowed = false;
+      setTimeout(() => (isDropdownToggleAllowed = true), 200);
+
+      const nowClickedDropBtn = event.currentTarget; // фиксация нажатой drop-кнопки
+      const nowShowedDropList = nowClickedDropBtn.nextElementSibling; // фиксация выпадающего списка (следующего за drop-кнопкой)
+
+      // проверка на уже открытый выпадающий список (закрытие)
+      const alreadyOpenDropBtn = document.querySelector('.drop-open');
+
+      if (alreadyOpenDropBtn && alreadyOpenDropBtn !== nowClickedDropBtn) {
+        const alreadyOpenDropList = alreadyOpenDropBtn.nextElementSibling;
+        alreadyOpenDropBtn.classList.remove('arrow-rotate', 'drop-open');
+
+        if (
+          alreadyOpenDropList &&
+          alreadyOpenDropList.classList.contains(
+            'modal__add-body-add-contact-list'
+          )
+        ) {
+          alreadyOpenDropList.classList.add('d-none'); // закрытие ранее открытого списка
+        }
+      }
+
+      nowClickedDropBtn.classList.toggle('arrow-rotate'); // переключение направления стрелки
+      nowShowedDropList.classList.toggle('d-none'); // переключение видимости текущего списка
+
+      // переключение видимости
+      if (nowShowedDropList.classList.contains('d-none')) {
+        nowClickedDropBtn.classList.remove('drop-open');
+      } else {
+        nowClickedDropBtn.classList.add('drop-open');
+        nowClickedDropBtn.focus(); // добавление фокуса кнопке (до момента выбора)
       }
     });
 
