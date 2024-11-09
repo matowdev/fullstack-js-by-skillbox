@@ -169,18 +169,25 @@
 
   outputTitleHash.setAttribute('id', 'hash-tag-title');
   outputTitleHash.setAttribute('tabindex', '0');
+  outputTable.setAttribute('aria-label', 'Таблица данных о клиентах');
   outTblHeadThId.setAttribute('id', 'table-th-id');
   outTblHeadThId.setAttribute('tabindex', '0');
+  outTblHeadThId.setAttribute('scope', 'col');
   outTblHeadThFIO.setAttribute('id', 'table-th-fio');
   outTblHeadThFIO.setAttribute('tabindex', '0');
+  outTblHeadThFIO.setAttribute('scope', 'col');
   outTblHeadThCreationDT.setAttribute('id', 'table-th-dt');
   outTblHeadThCreationDT.setAttribute('tabindex', '0');
+  outTblHeadThCreationDT.setAttribute('scope', 'col');
   outTblHeadThChanges.setAttribute('id', 'table-th-change');
   outTblHeadThChanges.setAttribute('tabindex', '0');
+  outTblHeadThChanges.setAttribute('scope', 'col');
   outTblHeadThContacts.setAttribute('id', 'table-th-contact');
   outTblHeadThContacts.setAttribute('tabindex', '0');
+  outTblHeadThContacts.setAttribute('scope', 'col');
   outTblHeadThActions.setAttribute('id', 'table-th-action');
   outTblHeadThActions.setAttribute('tabindex', '0');
+  outTblHeadThActions.setAttribute('scope', 'col');
 
   outputTitleHash.textContent = '#';
   outputTitle.textContent = 'Клиенты';
@@ -747,6 +754,8 @@
     }
 
     let isDropdownToggleAllowed = true; // возможность/разрешение на показ выпадающего списка
+
+    // ! может вынести в отдельную функцию.. после if.. просто вызов функции() которая всё делает??
 
     // показ/скрытие выпадающего списка вариантов/контактов (открытым может быть только один, переключение)
     addModalContactDropBtn.addEventListener('click', (event) => {
