@@ -92,11 +92,11 @@
   outputTable.classList.add('crm__output-table', 'table', 'table-hover');
   outTableHead.classList.add('crm__output-table-head');
   outTableBody.classList.add('crm__output-table-body');
-  outTblHeadTr.classList.add('crm__o-table-head-row');
+  outTblHeadTr.classList.add('crm__output-table-head-row');
   outTblHeadThId.classList.add(
     'head-cell',
     'head-cell-with-icon',
-    'crm__o-table-head-cell'
+    'crm__output-table-head-cell'
   );
   outTblHeadThIdWrap.classList.add('head-cell__wrap', 'head-cell__wrap-id');
   outTblHeadThIdText.classList.add('head-cell__text', 'head-cell__text-id');
@@ -108,7 +108,7 @@
   outTblHeadThFIO.classList.add(
     'head-cell',
     'head-cell-with-icon',
-    'crm__o-table-head-cell'
+    'crm__output-table-head-cell'
   );
   outTblHeadThFIOWrap.classList.add('head-cell__wrap', 'head-cell__wrap-fio');
   outTblHeadThFIOText.classList.add('head-cell__text', 'head-cell__text-fio');
@@ -121,7 +121,7 @@
   outTblHeadThCreationDT.classList.add(
     'head-cell',
     'head-cell-with-icon',
-    'crm__o-table-head-cell'
+    'crm__output-table-head-cell'
   );
   outTblHeadThDTWrap.classList.add('head-cell__wrap', 'head-cell__wrap-dt');
   outTblHeadThDTText.classList.add('head-cell__text', 'head-cell__text-dt');
@@ -133,7 +133,7 @@
   outTblHeadThChanges.classList.add(
     'head-cell',
     'head-cell-with-icon',
-    'crm__o-table-head-cell'
+    'crm__output-table-head-cell'
   );
   outTblHeadThChangeWrap.classList.add(
     'head-cell__wrap',
@@ -148,7 +148,10 @@
     'head-cell__icon-change',
     'head-cell__icon-down'
   );
-  outTblHeadThContacts.classList.add('head-cell', 'crm__o-table-head-cell');
+  outTblHeadThContacts.classList.add(
+    'head-cell',
+    'crm__output-table-head-cell'
+  );
   outTblHeadThContactWrap.classList.add(
     'head-cell__wrap',
     'head-cell__wrap-contact'
@@ -157,7 +160,7 @@
     'head-cell__text',
     'head-cell__text-contact'
   );
-  outTblHeadThActions.classList.add('head-cell', 'crm__o-table-head-cell');
+  outTblHeadThActions.classList.add('head-cell', 'crm__output-table-head-cell');
   outTblHeadThActionWrap.classList.add(
     'head-cell__wrap',
     'head-cell__wrap-action'
@@ -545,7 +548,7 @@
 
   // ** изменение направления стрелки/svg-icon, согласно прожатия по заглавной ячейке (при сортировке данных)
   const allHeaderRowCells = document.querySelectorAll(
-    '.crm__o-table-head-cell'
+    '.crm__output-table-head-cell'
   );
 
   function changeIconDirection(event) {

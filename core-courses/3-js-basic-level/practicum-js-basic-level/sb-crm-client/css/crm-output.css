@@ -25,10 +25,16 @@
   line-height: 44px;
   color: var(--main-purple);
   cursor: pointer;
+  transition: color var(--short) ease;
 }
 
 .crm__output-title-hash:focus-visible {
+  color: var(--light-purple);
   outline: solid rgba(152, 115, 255, 0.5);
+}
+
+.crm__output-title-hash:active {
+  color: var(--gray);
 }
 
 .crm__output-table {
@@ -55,7 +61,7 @@
   cursor: pointer;
 }
 
-.crm__output-table .crm__o-table-head-cell {
+.crm__output-table .crm__output-table-head-cell {
   padding: 8px 10px;
 }
 
@@ -63,7 +69,7 @@
   padding-left: 20px;
   width: 70px;
   font-weight: var(--semi-bold);
-  color: var(--main-purple);
+  color: var(--text-gray);
 }
 
 .crm__output-table #table-th-fio {
@@ -87,8 +93,21 @@
   cursor: default;
 }
 
-.crm__o-table-head-cell:focus-visible {
+.crm__output-table-head-cell:focus-visible {
   outline: solid rgba(152, 115, 255, 0.5);
+}
+
+.head-cell__text,
+.head-cell__icon,
+.head-cell__sort {
+  transition-property: color, opacity;
+  transition-duration: var(--short);
+  transition-timing-function: ease;
+}
+
+.head-cell__icon,
+.head-cell__sort {
+  opacity: 0.7;
 }
 
 .head-cell__text {
@@ -97,6 +116,30 @@
 
 .head-cell__icon {
   padding-right: 16px;
+}
+
+.head-cell-with-icon:focus-visible .head-cell__text {
+  color: var(--main-purple);
+}
+
+.head-cell-with-icon:focus-visible .head-cell__icon {
+  opacity: 1;
+}
+
+.head-cell-with-icon:focus-visible .head-cell__sort {
+  opacity: 1;
+}
+
+.head-cell-with-icon:active .head-cell__text {
+  color: var(--main-purple);
+}
+
+.head-cell-with-icon:active .head-cell__icon {
+  opacity: 1;
+}
+
+.head-cell-with-icon:active .head-cell__sort {
+  opacity: 1;
 }
 
 .head-cell__icon-up {
@@ -145,5 +188,23 @@
 
   .crm__output-table #table-th-contact {
     width: 190px;
+  }
+}
+
+@media (any-hover: hover) {
+  .crm__output-title-hash:hover:not(:active) {
+    color: var(--light-purple);
+  }
+
+  .head-cell-with-icon:hover:not(:focus-visible):not(:active) .head-cell__text {
+    color: var(--black);
+  }
+
+  .head-cell-with-icon:hover .head-cell__icon {
+    opacity: 1;
+  }
+
+  .head-cell-with-icon:hover .head-cell__sort {
+    opacity: 1;
   }
 }
