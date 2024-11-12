@@ -234,10 +234,6 @@
   // организация кнопки/модального окна для добавления клиентов (удаления/изменения)
   const addBtnWrap = document.createElement('div');
   const addBtn = document.createElement('button');
-  const addBtnDefaultIcon = document.createElement('span');
-  const addBtnWhiteIcon = document.createElement('span');
-  const addBtnGrayIcon = document.createElement('span');
-  const addBtnText = document.createElement('span');
   const addModalWrap = document.createElement('div');
   const addModalDialog = document.createElement('div');
   const addModalContent = document.createElement('div');
@@ -274,10 +270,6 @@
 
   addBtnWrap.classList.add('crm__add-btn-wrap');
   addBtn.classList.add('crm__add-btn');
-  addBtnDefaultIcon.classList.add('crm__add-btn-icon', 'default-add-icon');
-  addBtnWhiteIcon.classList.add('crm__add-btn-icon', 'white-add-icon');
-  addBtnGrayIcon.classList.add('crm__add-btn-icon', 'gray-add-icon');
-  addBtnText.classList.add('crm__add-btn-text');
   addModalWrap.classList.add('modal', 'crm__add-btn-modal', 'fade');
   addModalDialog.classList.add('modal__add-dialog', 'modal-dialog');
   addModalContent.classList.add('modal__add-content-wrap', 'modal-content');
@@ -434,7 +426,7 @@
   addModalFooterCancelBtn.setAttribute('type', 'button');
   addModalFooterCancelBtn.setAttribute('data-bs-dismiss', 'modal');
 
-  addBtnText.textContent = 'Добавить клиента';
+  addBtn.textContent = 'Добавить клиента';
   addModalHeaderTitle.textContent = 'Новый клиент';
   addModalBodySurnameInputLabel.textContent = 'Фамилия';
   addModalBodySurnameLabelSpan.textContent = '*';
@@ -451,7 +443,6 @@
   addModalBodySaveBtn.textContent = 'Сохранить';
   addModalFooterCancelBtn.textContent = 'Отмена';
 
-  addBtn.append(addBtnDefaultIcon, addBtnWhiteIcon, addBtnGrayIcon, addBtnText);
   addBtnWrap.append(addBtn);
   addModalHeader.append(addModalHeaderTitle, addModalHeaderXBtn);
   addModalBodySurnameInputLabel.append(addModalBodySurnameLabelSpan);

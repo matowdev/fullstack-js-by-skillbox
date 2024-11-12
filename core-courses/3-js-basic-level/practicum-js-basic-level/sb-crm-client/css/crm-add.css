@@ -24,23 +24,46 @@
   color: var(--main-purple);
   background: transparent;
   outline: none;
-  overflow: hidden;
   transition-property: border, color, background-color;
-  transition-duration: var(--short);
+  transition-duration: 0.2s;
   transition-timing-function: ease;
+}
+
+.crm__add-btn::before,
+.crm__add-btn::after {
+  content: "";
+  position: absolute;
+  left: 22px;
+  width: 22px;
+  height: 16px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  transition: opacity 0.2s ease;
+}
+
+.crm__add-btn::before {
+  background-image: url('../images/add-client.svg');
+  opacity: 1;
+}
+
+.crm__add-btn::after {
+  opacity: 0;
+}
+
+.crm__add-btn:focus-visible::after {
+  background-image: url('../images/add-client-white.svg');
+  opacity: 1;
+}
+
+.crm__add-btn:active::after {
+  background-image: url('../images/add-client-gray.svg');
+  opacity: 1;
 }
 
 .crm__add-btn:focus-visible:not(:hover) {
   color: var(--white);
   background-color: var(--dark-purple);
-}
-
-.crm__add-btn:focus-visible:not(:hover) .default-add-icon {
-  opacity: 0;
-}
-
-.crm__add-btn:focus-visible:not(:hover) .white-add-icon {
-  opacity: 1;
 }
 
 .crm__add-btn:focus-visible:active {
@@ -53,37 +76,6 @@
   background-color: transparent;
 }
 
-.crm__add-btn:active .default-add-icon {
-  opacity: 0;
-}
-
-.crm__add-btn:active .gray-add-icon {
-  opacity: 1;
-}
-
-.crm__add-btn-icon {
-  position: absolute;
-  left: 27px;
-  width: 22px;
-  height: 16px;
-  transition: opacity var(--short) ease;
-}
-
-.default-add-icon {
-  background: url('../images/add-client.svg') no-repeat center / contain;
-  opacity: 1;
-}
-
-.white-add-icon {
-  background: url('../images/add-client-white.svg') no-repeat center / contain;
-  opacity: 0;
-}
-
-.gray-add-icon {
-  background: url('../images/add-client-gray.svg') no-repeat center / contain;
-  opacity: 0;
-}
-
 /* media queries, any-hover */
 
 @media (any-hover: hover) {
@@ -92,11 +84,12 @@
     background-color: var(--light-purple);
   }
 
-  .crm__add-btn:hover:not(:active) .default-add-icon {
+  .crm__add-btn:hover::before {
     opacity: 0;
   }
 
-  .crm__add-btn:hover:not(:active) .white-add-icon {
+  .crm__add-btn:hover:not(:active)::after {
+    background-image: url('../images/add-client-white.svg');
     opacity: 1;
   }
 }
