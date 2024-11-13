@@ -338,40 +338,80 @@
   opacity: 0;
 }
 
-.modal__add-btn {
+.modal-btn {
   margin: 0;
   border: none;
   padding: 0;
-  font-family: var(--open-sans), sans-serif;
-  font-weight: var(--semi-bold);
-  font-size: var(--default-fs);
   background: transparent;
   outline: none;
-  overflow: hidden;
-  transition-property: color, background-color;
-  transition-duration: var(--short);
-  transition-timing-function: ease;
 }
 
 .modal__add-body-add-btn {
-  position: relative;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  position: relative;
+  border: none;
   padding: 10px 20px;
   min-width: 191px;
+  font-family: var(--open-sans), sans-serif;
+  font-weight: var(--semi-bold);
+  font-size: var(--default-fs);
+  transition-property: color, background-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.modal__add-body-add-btn::before,
+.modal__add-body-add-btn::after {
+  content: "";
+  position: absolute;
+  left: 20px;
+  width: 19px;
+  height: 19px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  transition: opacity 0.2s ease;
+}
+
+.modal__add-body-add-btn::before {
+  background-image: url('../images/add-plus-stroke.svg');
+  opacity: 1;
+}
+
+.modal__add-body-add-btn::after {
+  background-image: url('../images/add-plus-fill.svg');
+  opacity: 0;
+}
+
+.modal__add-body-add-btn:focus-visible::before {
+  opacity: 0;
+}
+
+.modal__add-body-add-btn:focus-visible::after {
+  opacity: 1;
+}
+
+.modal__add-body-add-btn:active::before {
+  opacity: 0;
+}
+
+.modal__add-body-add-btn:active::after {
+  opacity: 1;
+}
+
+.modal__add-body-add-btn:disabled::before {
+  opacity: 0;
+}
+
+.modal__add-body-add-btn:disabled::after {
+  background-image: url('../images/add-plus-stroke-gray.svg');
+  opacity: 1;
 }
 
 .modal__add-body-add-btn:focus-visible:not(:hover) {
   color: var(--cold-purple);
-}
-
-.modal__add-body-add-btn:focus-visible:not(:hover) .stroke-add-modal-icon {
-  opacity: 0;
-}
-
-.modal__add-body-add-btn:focus-visible:not(:hover) .fill-add-modal-icon {
-  opacity: 1;
 }
 
 .modal__add-body-add-btn:focus-visible:active {
@@ -382,47 +422,8 @@
   color: var(--light-purple);
 }
 
-.modal__add-body-add-btn:active:not(:disabled) .stroke-add-modal-icon {
-  opacity: 0;
-}
-
-.modal__add-body-add-btn:active:not(:disabled) .fill-add-modal-icon {
-  opacity: 1;
-}
-
-.modal__add-body-add-btn:disabled .stroke-add-modal-icon {
-  opacity: 0;
-}
-
-.modal__add-body-add-btn:disabled .stroke-gray-add-modal-icon {
-  opacity: 1;
-}
-
 .add-modal-btn-margin {
   margin-bottom: 15px;
-}
-
-.modal__add-body-btn-icon {
-  position: absolute;
-  left: 20px;
-  width: 19px;
-  height: 19px;
-  transition: opacity var(--short) ease;
-}
-
-.stroke-add-modal-icon {
-  background: url("../images/add-plus-stroke.svg") no-repeat center / contain;
-  opacity: 1;
-}
-
-.stroke-gray-add-modal-icon {
-  background: url("../images/add-plus-stroke-gray.svg") no-repeat center / contain;
-  opacity: 0;
-}
-
-.fill-add-modal-icon {
-  background: url("../images/add-plus-fill.svg") no-repeat center / contain;
-  opacity: 0;
 }
 
 .modal__add-body-save-btn {
@@ -432,6 +433,9 @@
   max-width: 150px;
   color: var(--white);
   background-color: var(--main-purple);
+  transition-property: color, background-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
 }
 
 .modal__add-body-save-btn:focus-visible:not(:hover) {
@@ -471,16 +475,17 @@
 /* media queries, any-hover */
 
 @media (any-hover: hover) {
-  .modal__add-body-add-btn:hover:not(:active):not(:disabled) {
-    color: var(--cold-purple);
-  }
-
-  .modal__add-body-add-btn:hover:not(:active):not(:disabled) .stroke-add-modal-icon {
+  .modal__add-body-add-btn:hover:not(:active):not(:disabled)::before {
     opacity: 0;
   }
 
-  .modal__add-body-add-btn:hover:not(:active):not(:disabled) .fill-add-modal-icon {
+  .modal__add-body-add-btn:hover:not(:active):not(:disabled)::after {
+    background-image: url('../images/add-plus-fill.svg');
     opacity: 1;
+  }
+
+  .modal__add-body-add-btn:hover:not(:active):not(:disabled) {
+    color: var(--cold-purple);
   }
 
   .modal__add-body-add-contact-item:hover:not(:active) {

@@ -260,10 +260,6 @@
   const addModalBodyAddContactsWrap = document.createElement('div');
   const addModalBodyAddContactsRowWrap = document.createElement('div');
   const addModalBodyAddBtn = document.createElement('button');
-  const addModalBodyAddBtnStrokeIcon = document.createElement('span');
-  const addModalBodyAddBtnStrokeIconGray = document.createElement('span');
-  const addModalBodyAddBtnFillIcon = document.createElement('span');
-  const addModalBodyAddBtnText = document.createElement('span');
   const addModalBodySaveBtn = document.createElement('button');
   const addModalFooter = document.createElement('div');
   const addModalFooterCancelBtn = document.createElement('button');
@@ -354,28 +350,12 @@
     'modal__add-body-add-contacts-row-wrap',
     'd-none'
   );
-  addModalBodyAddBtn.classList.add('modal__add-body-add-btn', 'modal__add-btn');
-  addModalBodyAddBtnStrokeIcon.classList.add(
-    'modal__add-body-btn-icon',
-    'stroke-add-modal-icon'
-  );
-  addModalBodyAddBtnStrokeIconGray.classList.add(
-    'modal__add-body-btn-icon',
-    'stroke-gray-add-modal-icon'
-  );
-  addModalBodyAddBtnFillIcon.classList.add(
-    'modal__add-body-btn-icon',
-    'fill-add-modal-icon'
-  );
-  addModalBodyAddBtnText.classList.add('modal__add-body-add-btn-text');
-  addModalBodySaveBtn.classList.add(
-    'modal__add-body-save-btn',
-    'modal__add-btn'
-  );
+  addModalBodyAddBtn.classList.add('modal__add-body-add-btn', 'modal-btn');
+  addModalBodySaveBtn.classList.add('modal__add-body-save-btn', 'modal-btn');
   addModalFooter.classList.add('modal__add-footer', 'modal-footer');
   addModalFooterCancelBtn.classList.add(
     'modal__add-footer-cancel-btn',
-    'modal__add-btn'
+    'modal-btn'
   );
 
   addBtn.setAttribute('id', 'add-btn');
@@ -439,7 +419,7 @@
   addModalBodyPatronymicInputLabel.textContent = 'Отчество';
   addModalBodyPatronymicFeedback.textContent =
     'Введены не корректные данные.. исключите: английские буквы, цифры!';
-  addModalBodyAddBtnText.textContent = 'Добавить контакт';
+  addModalBodyAddBtn.textContent = 'Добавить контакт';
   addModalBodySaveBtn.textContent = 'Сохранить';
   addModalFooterCancelBtn.textContent = 'Отмена';
 
@@ -466,12 +446,6 @@
     addModalBodySurnameInputWrap,
     addModalBodyNameInputWrap,
     addModalBodyPatronymicInputWrap
-  );
-  addModalBodyAddBtn.append(
-    addModalBodyAddBtnStrokeIcon,
-    addModalBodyAddBtnStrokeIconGray,
-    addModalBodyAddBtnFillIcon,
-    addModalBodyAddBtnText
   );
   addModalBodyAddContactsWrap.append(
     addModalBodyAddContactsRowWrap,

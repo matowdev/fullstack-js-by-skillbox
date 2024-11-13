@@ -79,17 +79,13 @@
 /* media queries, any-hover */
 
 @media (any-hover: hover) {
-  .crm__add-btn:hover:not(:active) {
-    color: var(--white);
-    background-color: var(--light-purple);
-  }
-
-  .crm__add-btn:hover::before {
-    opacity: 0;
-  }
-
   .crm__add-btn:hover:not(:active)::after {
     background-image: url('../images/add-client-white.svg');
     opacity: 1;
+  }
+
+  .crm__add-btn:hover:not(:active) {
+    color: var(--white);
+    background-color: var(--light-purple);
   }
 }
