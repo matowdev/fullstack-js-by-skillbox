@@ -234,6 +234,7 @@
   // организация кнопки/модального окна для добавления клиентов (удаления/изменения)
   const addBtnWrap = document.createElement('div');
   const addBtn = document.createElement('button');
+  const addBtnIcon = document.createElement('i');
   const addModalWrap = document.createElement('div');
   const addModalDialog = document.createElement('div');
   const addModalContent = document.createElement('div');
@@ -260,12 +261,15 @@
   const addModalBodyAddContactsWrap = document.createElement('div');
   const addModalBodyAddContactsRowWrap = document.createElement('div');
   const addModalBodyAddBtn = document.createElement('button');
+  const addModalBodyAddBtnIconStroke = document.createElement('i');
+  const addModalBodyAddBtnIconFill = document.createElement('i');
   const addModalBodySaveBtn = document.createElement('button');
   const addModalFooter = document.createElement('div');
   const addModalFooterCancelBtn = document.createElement('button');
 
   addBtnWrap.classList.add('crm__add-btn-wrap');
   addBtn.classList.add('crm__add-btn');
+  addBtnIcon.classList.add('crm__add-btn-icon', 'bi', 'bi-person-plus-fill');
   addModalWrap.classList.add('modal', 'crm__add-btn-modal', 'fade');
   addModalDialog.classList.add('modal__add-dialog', 'modal-dialog');
   addModalContent.classList.add('modal__add-content-wrap', 'modal-content');
@@ -351,6 +355,18 @@
     'd-none'
   );
   addModalBodyAddBtn.classList.add('modal__add-body-add-btn', 'modal-btn');
+  addModalBodyAddBtnIconStroke.classList.add(
+    'modal__add-body-add-btn-icon',
+    'bi',
+    'bi-plus-circle',
+    'plus-circle-stroke'
+  );
+  addModalBodyAddBtnIconFill.classList.add(
+    'modal__add-body-add-btn-icon',
+    'bi',
+    'bi-plus-circle-fill',
+    'plus-circle-fill'
+  );
   addModalBodySaveBtn.classList.add('modal__add-body-save-btn', 'modal-btn');
   addModalFooter.classList.add('modal__add-footer', 'modal-footer');
   addModalFooterCancelBtn.classList.add(
@@ -423,6 +439,7 @@
   addModalBodySaveBtn.textContent = 'Сохранить';
   addModalFooterCancelBtn.textContent = 'Отмена';
 
+  addBtn.append(addBtnIcon);
   addBtnWrap.append(addBtn);
   addModalHeader.append(addModalHeaderTitle, addModalHeaderXBtn);
   addModalBodySurnameInputLabel.append(addModalBodySurnameLabelSpan);
@@ -446,6 +463,10 @@
     addModalBodySurnameInputWrap,
     addModalBodyNameInputWrap,
     addModalBodyPatronymicInputWrap
+  );
+  addModalBodyAddBtn.append(
+    addModalBodyAddBtnIconStroke,
+    addModalBodyAddBtnIconFill
   );
   addModalBodyAddContactsWrap.append(
     addModalBodyAddContactsRowWrap,
@@ -605,6 +626,7 @@
     const addModalContactHiddenInput = document.createElement('input');
     const addModalContactInput = document.createElement('input');
     const addModalContactXBtn = document.createElement('button');
+    const addModalContactXBtnIcon = document.createElement('i');
 
     addModalContactElement.classList.add(
       'modal__add-body-add-contact-element',
@@ -649,6 +671,12 @@
       'modal__add-body-add-x-btn',
       'add-modal-delete-btn'
     );
+    addModalContactXBtnIcon.classList.add(
+      'modal__add-body-add-x-btn-icon',
+      'add-modal-delete-btn',
+      'bi',
+      'bi-x-circle'
+    );
 
     addModalContactCustomSelect.setAttribute('name', 'contact-options');
     addModalContactDropBtn.setAttribute('id', 'add-modal-drop-btn');
@@ -686,6 +714,7 @@
       addModalContactDropBtn,
       addModalContactList
     );
+    addModalContactXBtn.append(addModalContactXBtnIcon);
     addModalContactElement.append(
       addModalContactCustomSelect,
       addModalContactHiddenInput,

@@ -17,6 +17,7 @@
   position: relative;
   border: 1px solid var(--main-purple);
   padding: 12px 25px;
+  padding-right: 29px;
   min-width: 217px;
   font-family: var(--open-sans), sans-serif;
   font-weight: var(--semi-bold);
@@ -25,40 +26,15 @@
   background: transparent;
   outline: none;
   transition-property: border, color, background-color;
-  transition-duration: 0.2s;
+  transition-duration: var(--short);
   transition-timing-function: ease;
 }
 
-.crm__add-btn::before,
-.crm__add-btn::after {
-  content: "";
+.crm__add-btn-icon {
   position: absolute;
-  left: 22px;
-  width: 22px;
-  height: 16px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  transition: opacity 0.2s ease;
-}
-
-.crm__add-btn::before {
-  background-image: url('../images/add-client.svg');
-  opacity: 1;
-}
-
-.crm__add-btn::after {
-  opacity: 0;
-}
-
-.crm__add-btn:focus-visible::after {
-  background-image: url('../images/add-client-white.svg');
-  opacity: 1;
-}
-
-.crm__add-btn:active::after {
-  background-image: url('../images/add-client-gray.svg');
-  opacity: 1;
+  top: 8px;
+  left: 27px;
+  font-size: 20px;
 }
 
 .crm__add-btn:focus-visible:not(:hover) {
@@ -79,11 +55,6 @@
 /* media queries, any-hover */
 
 @media (any-hover: hover) {
-  .crm__add-btn:hover:not(:active)::after {
-    background-image: url('../images/add-client-white.svg');
-    opacity: 1;
-  }
-
   .crm__add-btn:hover:not(:active) {
     color: var(--white);
     background-color: var(--light-purple);

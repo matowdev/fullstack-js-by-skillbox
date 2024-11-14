@@ -129,6 +129,64 @@
   color: var(--text-gray);
 }
 
+.modal-btn {
+  margin: 0;
+  border: none;
+  padding: 0;
+  background: transparent;
+  outline: none;
+}
+
+.modal__add-body-add-btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+  border: none;
+  padding: 10px 20px;
+  min-width: 191px;
+  font-family: var(--open-sans), sans-serif;
+  font-weight: var(--semi-bold);
+  font-size: var(--default-fs);
+  transition-property: color, background-color;
+  transition-duration: var(--short);
+  transition-timing-function: ease;
+}
+
+.modal__add-body-add-btn-icon {
+  position: absolute;
+  top: 10px;
+  left: 22px;
+  font-size: 15px;
+  color: var(--main-purple);
+  opacity: 0;
+  transition: opacity var(--short) ease;
+}
+
+.modal__add-body-add-btn-icon.plus-circle-stroke {
+  opacity: 1;
+}
+
+.modal__add-body-add-btn:focus-visible:not(:hover) {
+  color: var(--cold-purple);
+}
+
+.modal__add-body-add-btn:focus-visible:active {
+  color: var(--light-purple);
+}
+
+.modal__add-body-add-btn:active:not(:disabled) {
+  color: var(--light-purple);
+}
+
+.modal__add-body-add-btn:disabled .modal__add-body-add-btn-icon {
+  color: var(--gray);
+}
+
+.add-modal-btn-margin {
+  margin-bottom: 15px;
+}
+
 .modal__add-body-add-contacts-wrap {
   display: flex;
   flex-direction: column;
@@ -278,152 +336,35 @@
   width: 27px;
   background: var(--select-gray);
   outline: none;
-  transition-property: border, box-shadow;
-  transition-duration: 0.2s;
+  transition-property: border, color, box-shadow;
+  transition-duration: var(--short);
   transition-timing-function: ease;
 }
 
-.modal__add-body-add-x-btn:before,
-.modal__add-body-add-x-btn:after {
-  content: '';
+.modal__add-body-add-x-btn-icon {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 20px;
-  height: 20px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  transition: opacity 0.2s ease;
-  /* отработка клика и на arrow-icon */
-  pointer-events: none;
+  font-size: 15px;
+  color: var(--gray);
+  transition: color var(--short) ease;
 }
 
-.modal__add-body-add-x-btn:before {
-  background-image: url('../images/delete-contact-btn-gray.svg');
-  opacity: 1;
-}
-
-.modal__add-body-add-x-btn:after {
-  background-image: url('../images/delete-contact-btn-red.svg');
-  opacity: 0;
-}
-
-.modal__add-body-add-x-btn:focus-visible {
+.modal__add-body-add-x-btn:focus-visible:not(:active) {
   border-color: var(--bootstrap-red);
   box-shadow: 0 0 0 .25rem rgba(220, 53, 69, .25);
   z-index: 1;
 }
 
-.modal__add-body-add-x-btn:focus-visible::before {
-  opacity: 0;
+.modal__add-body-add-x-btn:focus-visible:not(:active) .modal__add-body-add-x-btn-icon {
+  color: var(--bootstrap-red);
 }
 
-.modal__add-body-add-x-btn:focus-visible:after {
-  opacity: 1;
-}
-
-.modal__add-body-add-x-btn:active {
+.modal__add-body-add-x-btn:active:not(:focus-visible) {
   border-color: var(--gray);
   box-shadow: 0 0 0 .25rem rgba(200, 197, 209, 0.25);
   z-index: 1;
-}
-
-.modal__add-body-add-x-btn:active:before {
-  opacity: 1;
-}
-
-.modal__add-body-add-x-btn:active:after {
-  opacity: 0;
-}
-
-.modal-btn {
-  margin: 0;
-  border: none;
-  padding: 0;
-  background: transparent;
-  outline: none;
-}
-
-.modal__add-body-add-btn {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  position: relative;
-  border: none;
-  padding: 10px 20px;
-  min-width: 191px;
-  font-family: var(--open-sans), sans-serif;
-  font-weight: var(--semi-bold);
-  font-size: var(--default-fs);
-  transition-property: color, background-color;
-  transition-duration: 0.2s;
-  transition-timing-function: ease;
-}
-
-.modal__add-body-add-btn::before,
-.modal__add-body-add-btn::after {
-  content: "";
-  position: absolute;
-  left: 20px;
-  width: 19px;
-  height: 19px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  transition: opacity 0.2s ease;
-}
-
-.modal__add-body-add-btn::before {
-  background-image: url('../images/add-plus-stroke.svg');
-  opacity: 1;
-}
-
-.modal__add-body-add-btn::after {
-  background-image: url('../images/add-plus-fill.svg');
-  opacity: 0;
-}
-
-.modal__add-body-add-btn:focus-visible::before {
-  opacity: 0;
-}
-
-.modal__add-body-add-btn:focus-visible::after {
-  opacity: 1;
-}
-
-.modal__add-body-add-btn:active::before {
-  opacity: 0;
-}
-
-.modal__add-body-add-btn:active::after {
-  opacity: 1;
-}
-
-.modal__add-body-add-btn:disabled::before {
-  opacity: 0;
-}
-
-.modal__add-body-add-btn:disabled::after {
-  background-image: url('../images/add-plus-stroke-gray.svg');
-  opacity: 1;
-}
-
-.modal__add-body-add-btn:focus-visible:not(:hover) {
-  color: var(--cold-purple);
-}
-
-.modal__add-body-add-btn:focus-visible:active {
-  color: var(--light-purple);
-}
-
-.modal__add-body-add-btn:active:not(:disabled) {
-  color: var(--light-purple);
-}
-
-.add-modal-btn-margin {
-  margin-bottom: 15px;
 }
 
 .modal__add-body-save-btn {
@@ -434,7 +375,7 @@
   color: var(--white);
   background-color: var(--main-purple);
   transition-property: color, background-color;
-  transition-duration: 0.2s;
+  transition-duration: var(--short);
   transition-timing-function: ease;
 }
 
@@ -475,12 +416,11 @@
 /* media queries, any-hover */
 
 @media (any-hover: hover) {
-  .modal__add-body-add-btn:hover:not(:active):not(:disabled)::before {
+  .modal__add-body-add-btn:hover:not(:active):not(:disabled) .modal__add-body-add-btn-icon.plus-circle-stroke {
     opacity: 0;
   }
 
-  .modal__add-body-add-btn:hover:not(:active):not(:disabled)::after {
-    background-image: url('../images/add-plus-fill.svg');
+  .modal__add-body-add-btn:hover:not(:active):not(:disabled) .modal__add-body-add-btn-icon.plus-circle-fill {
     opacity: 1;
   }
 
@@ -506,12 +446,8 @@
     z-index: 10;
   }
 
-  .modal__add-body-add-x-btn:hover:not(:active):before {
-    opacity: 0;
-  }
-
-  .modal__add-body-add-x-btn:hover:not(:active):after {
-    opacity: 1;
+  .modal__add-body-add-x-btn:hover:not(:active) .modal__add-body-add-x-btn-icon {
+    color: var(--bootstrap-red);
   }
 
   .modal__add-body-save-btn:hover:not(:active) {
