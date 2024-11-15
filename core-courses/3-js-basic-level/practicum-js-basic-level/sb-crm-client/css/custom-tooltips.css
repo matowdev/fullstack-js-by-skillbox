@@ -1,4 +1,5 @@
-.tippy-box[data-theme~="main"] {
+.tooltip {
+  position: relative;
   border-radius: 0;
   padding: 5px 10px;
   font-family: var(--open-sans), sans-serif;
@@ -10,8 +11,9 @@
   will-change: transform;
 }
 
-.tippy-box[data-theme~="main"] .tippy-arrow {
-  margin-top: -1px;
-  margin-right: -1px;
-  color: var(--main-purple);
+.tooltip .tooltip-inner {
+  border-radius: 0;
+  padding: 5px 10px;
+  color: var(--white);
+  background-color: var(--black);
 }
