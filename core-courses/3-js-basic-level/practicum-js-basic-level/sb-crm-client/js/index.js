@@ -380,7 +380,7 @@
   addBtn.setAttribute('data-bs-target', '#add-btn-modal');
   addModalWrap.setAttribute('id', 'add-btn-modal');
   addModalWrap.setAttribute('tabindex', '-1');
-  addModalWrap.setAttribute('aria-hidden', 'true');
+  // addModalWrap.setAttribute('aria-hidden', 'true');
   addModalHeaderXBtn.setAttribute('type', 'button');
   addModalHeaderXBtn.setAttribute('data-bs-dismiss', 'modal');
   addModalHeaderXBtn.setAttribute('aria-label', 'Close');
@@ -854,6 +854,9 @@
       addModalContactDropBtn.blur(); // снятие фокуса с кнопки (после выбора)
     }
 
+    // вызов/инициализация tooltips для "X" кнопки (для кнопки удаления строки контактов)
+    initTippy('.modal__add-body-add-x-btn', 'удалить контакт', 'top');
+
     // организация удаления строки контактов
     addModalContactXBtn.addEventListener('click', (event) => {
       event.stopPropagation(); // исключение непредвиденных событий/поведения
@@ -923,6 +926,35 @@
           }
         }
       }
+    }
+  }
+
+  // ** дополнительная/местная организация логики для tooltips (т.е. помимо customTippy.js)
+  function initTippy(selector, content, side) {
+    if (typeof tippy === 'function') {
+      tippy(selector, {
+        content: content,
+        theme: 'main',
+        delay: [50, 0],
+        offset: [0, 13],
+        placement: side,
+        animation: 'scale', // анимация появления/скрытия (через дополнительный файл/подключение)
+        trigger: 'mouseenter', // только по наведению мыши (исключение вывода по клику, в другом месте)
+
+        onShow(instance) {
+          setTimeout(() => {
+            instance.hide(); // автоматическое скрытие (по истечению времени)
+          }, 1000);
+        },
+
+        // точечная корректировка стилей (для "стрелки" подсказки)
+        onMount(instance) {
+          const arrowElement = instance.popper.querySelector('.tippy-arrow');
+          arrowElement.style.marginBottom = '-1px';
+        },
+      });
+    } else {
+      console.error('Tippy.js is not loaded!');
     }
   }
 })();
