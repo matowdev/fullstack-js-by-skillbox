@@ -487,50 +487,104 @@
   // основные блоки/составляющие элементы приложения
   crm.append(crmSearch, crmOutput, crmAdd);
 
-  // ** организация появления/скрытия поля для ввода данных/фильтрационного инпута (по нажатию на logo, на 320px)
+  // ** появление/скрытие поля для ввода данных/фильтрационного инпута (по нажатию на logo, на 320px)
   searchLogoImg.addEventListener('click', () => {
     document
       .querySelector('.crm__search-data')
       .classList.toggle('show-search-input');
   });
 
-  // ** организация валидации для ввода данных/фильтрационного инпута (для формы без submit)
-  function searchFormInputValidation(input) {
-    input.addEventListener('input', (event) => {
-      const target = event.target;
-      const targetParentNode = target.parentNode;
-      const invalidFeed = targetParentNode.querySelector('.invalid-feedback');
+  // ** организация "ОБЩЕЙ" логики для валидации полей ввода/инпутов (согласно передаваемых параметров)
+  function addInputsValidation(inputs, options) {
+    inputs.forEach((input) =>
+      input.addEventListener('input', (event) => {
+        const target = event.target;
+        const targetParentNode = target.parentNode;
+        const invalidFeed = targetParentNode.querySelector('.invalid-feedback');
 
-      // принудительное исключение пробелов (в начале поля для ввода)
-      target.value = target.value.replace(/^\s+/, '');
+        // принудительное исключение пробелов (в начале полей для ввода)
+        target.value = target.value.replace(/^\s+/, '');
 
-      // только русские буквы (без цифр/символов), "один" дефис (для двойных фамилий) и без необоснованных пробелов
-      if (
-        /[^а-яА-ЯёЁ\s-]/.test(target.value) ||
-        (target.value.match(/-/g) || []).length > 1 ||
-        /\s{2,}/.test(target.value)
-      ) {
-        target.classList.add('is-invalid');
-
-        if (/[^а-яА-ЯёЁ\s-]/.test(target.value)) {
-          invalidFeed.textContent =
-            'Некорректный ввод! Измените раскладку клавиатуры и/или исключите цифры/знаки!';
-        } else if ((target.value.match(/-/g) || []).length > 1) {
-          invalidFeed.textContent = 'Некорректный ввод! Только ОДИН дефис!';
-        } else {
-          invalidFeed.textContent =
-            'Некорректный ввод! Только ОДИН пробел между словами!';
+        // принудительное исключение дефисов (в начале полей для ввода)
+        if (options.singleHyphen) {
+          target.value = target.value.replace(/^-+/, '');
         }
-      } else {
-        target.classList.remove('is-invalid');
-        invalidFeed.textContent = ''; // очистка сообщения об ошибке
-      }
-    });
+
+        // принудительное удаление пробелов после дефисов (дефисов после пробелов)
+        target.value = target.value.replace(/-\s+/g, '-');
+        target.value = target.value.replace(/\s+-/g, '');
+
+        // сбор ошибок/вывод "соответствующих" сообщений
+        const errors = [];
+
+        if (options.allowOnlyRussian && /[^а-яА-ЯёЁ\s-]/.test(target.value)) {
+          errors.push(
+            'Некорректный ввод! Измените раскладку клавиатуры и/или исключите цифры/знаки!'
+          );
+        }
+
+        if (options.singleHyphen) {
+          // дополнительная проверка для двух инпутов (дефисы недопустимы)
+          if (
+            target.classList.contains('add-name-input') ||
+            target.classList.contains('add-patronymic-input')
+          ) {
+            if (/-/.test(target.value)) {
+              errors.push('Дефисы НЕдопустимы!');
+            }
+          } else {
+            if ((target.value.match(/-/g) || []).length > 1) {
+              const hyphenCount = target.value.match(/-/g).length;
+              if (hyphenCount > 1) {
+                errors.push(
+                  'Допускается только ОДИН дефис (для двойных-фамилий)!'
+                );
+              }
+            }
+          }
+        }
+
+        // дополнительная проверка для "modal__add-body-input" (пробелы недопустимы)
+        if (
+          target.classList.contains('modal__add-body-input') &&
+          /\s/.test(target.value)
+        ) {
+          errors.push('Пробелы НЕдопустимы!');
+        } else if (options.noExtraSpaces && /\s{2,}/.test(target.value)) {
+          errors.push('Допускается только ОДИН пробел (подряд)!');
+        } else if (options.noSpaces && /\s/.test(target.value)) {
+          errors.push('Пробелы НЕдопустимы!');
+        }
+
+        // отработка ошибок
+        if (errors.length > 0) {
+          target.classList.add('is-invalid');
+          invalidFeed.textContent = errors.join(' ');
+        } else {
+          target.classList.remove('is-invalid');
+          invalidFeed.textContent = ''; // очистка сообщений об ошибках
+        }
+      })
+    );
   }
 
-  // получение заглавного search-инпута (последующая валидация)
+  // добавление валидации для заглавного фильтрационного инпута ("Введите запрос")
   const searchFormMainInput = document.querySelector('.crm__search-form input');
-  searchFormInputValidation(searchFormMainInput);
+  addInputsValidation([searchFormMainInput], {
+    allowOnlyRussian: true,
+    singleHyphen: true,
+    noExtraSpaces: true,
+  });
+
+  // добавление валидации для ввода данных/в модальном окне (при добавлении нового/клиента)
+  const allAddModalFormInputs = document.querySelectorAll(
+    '.modal__add-body-input'
+  );
+  addInputsValidation(allAddModalFormInputs, {
+    allowOnlyRussian: true,
+    singleHyphen: true,
+    noExtraSpaces: true,
+  });
 
   // ** изменение направления стрелки/svg-icon, согласно прожатия по заглавной ячейке (при сортировке данных)
   const allHeaderRowCells = document.querySelectorAll(
@@ -567,53 +621,11 @@
     });
   });
 
-  // ** организация валидации для ввода данных/в модальном окне (при добавлении нового/клиента)
-  function addModalFormInputValidation(inputs) {
-    inputs.forEach((input) =>
-      input.addEventListener('input', (event) => {
-        const target = event.target;
-        const targetParentNode = target.parentNode;
-        const invalidFeed = targetParentNode.querySelector('.invalid-feedback');
-
-        // принудительное исключение пробелов (в начале поля для ввода)
-        target.value = target.value.replace(/^\s+/, '');
-
-        // только русские буквы (без цифр/символов), "один" дефис (для двойных фамилий) и без необоснованных пробелов
-        if (
-          /[^а-яА-ЯёЁ\s-]/.test(target.value) ||
-          (target.value.match(/-/g) || []).length > 1 ||
-          /\s{1,}/.test(target.value)
-        ) {
-          target.classList.add('is-invalid');
-
-          if (/[^а-яА-ЯёЁ\s-]/.test(target.value)) {
-            invalidFeed.textContent =
-              'Некорректный ввод! Измените раскладку клавиатуры и/или исключите цифры/знаки!';
-          } else if ((target.value.match(/-/g) || []).length > 1) {
-            invalidFeed.textContent = 'Некорректный ввод! Только ОДИН дефис!';
-          } else {
-            invalidFeed.textContent = 'Некорректный ввод! Никаких пробелов!';
-          }
-        } else {
-          target.classList.remove('is-invalid');
-          invalidFeed.textContent = ''; // очистка сообщения об ошибке
-        }
-      })
-    );
-  }
-
-  // получение всех add-модальных инпутов (последующая валидация)
-  const allAddModalFormInputs = document.querySelectorAll(
-    '.modal__add-body-input'
-  );
-  addModalFormInputValidation(allAddModalFormInputs);
-
   // ** динамическое добавление строки контактов в add-модальном окне (по нажатию "Добавить контакт" кнопки)
   const addModalContactsArr = [];
 
   function createAddModalContactsElement() {
-    // проверка количества контактов (не более 10)
-    if (addModalContactsArr.length >= 10) return;
+    if (addModalContactsArr.length >= 10) return; // проверка количества контактов (не более 10)
 
     const addModalContactElement = document.createElement('div');
     const addModalContactCustomSelect = document.createElement('div');
@@ -751,8 +763,6 @@
     }
 
     let isDropdownToggleAllowed = true; // возможность/разрешение на показ выпадающего списка
-
-    // ! может вынести в отдельную функцию.. после if.. просто вызов функции() которая всё делает??
 
     // показ/скрытие выпадающего списка вариантов/контактов (открытым может быть только один, переключение)
     addModalContactDropBtn.addEventListener('click', (event) => {
