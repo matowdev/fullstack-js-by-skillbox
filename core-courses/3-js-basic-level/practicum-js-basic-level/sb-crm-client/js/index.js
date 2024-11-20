@@ -514,46 +514,194 @@
         target.value = target.value.replace(/-\s+/g, '-');
         target.value = target.value.replace(/\s+-/g, '');
 
-        // сбор ошибок/вывод "соответствующих" сообщений
+        // сбор ошибок/соответствующих сообщений
         const errors = [];
 
-        if (options.allowOnlyRussian && /[^а-яА-ЯёЁ\s-]/.test(target.value)) {
-          errors.push(
-            'Некорректный ввод! Измените раскладку клавиатуры и/или исключите цифры/знаки!'
+        // изначально проверка на поля ввода из "динамической" строки контактов
+        if (options.dynamicContactValidation) {
+          const hiddenInput = targetParentNode.querySelector(
+            '.modal__add-body-add-hidden-input'
           );
-        }
 
-        if (options.singleHyphen) {
-          // дополнительная проверка для двух инпутов (дефисы недопустимы)
-          if (
-            target.classList.contains('add-name-input') ||
-            target.classList.contains('add-patronymic-input')
-          ) {
-            if (/-/.test(target.value)) {
-              errors.push('Дефисы НЕдопустимы!');
+          if (hiddenInput) {
+            const contactType = hiddenInput.value;
+
+            switch (contactType) {
+              case 'phone':
+              case 'extra-phone':
+                // первичная проверка на "пустое" поле ввода (выход из проверки соответствия)
+                if (target.value === '') {
+                  invalidFeed.textContent = '';
+                  target.classList.remove('is-invalid');
+                  break;
+                }
+
+                // дополнительные/итоговая проверка вводимых данных (определённые условия для ввода)
+                if (
+                  target.value === '+' || // обязательно начало с "+"
+                  /^\+\d{1,4}\s?$/.test(target.value) || // далее "+X" или "+XXXX " (где X - код страны, 1 – 4 цифры, после пробел)
+                  /^\+\d{1,4} \(\d{0,4}\)?$/.test(target.value) || // дале скобки (...) 2 - 4 цифры, потом пробел
+                  /^\+\d{1,4} \(\d{2,4}\) \d{0,3}$/.test(target.value) || // далее 3 - цифры телефона, дефис
+                  /^\+\d{1,4} \(\d{2,4}\) \d{3}-\d{0,2}$/.test(target.value) || // 2 - цифры, дефис
+                  /^\+\d{1,4} \(\d{2,4}\) \d{3}-\d{2}-\d{0,2}$/.test(
+                    target.value
+                  ) // в конце 2 - цифры
+                ) {
+                  invalidFeed.textContent = '';
+                  target.classList.remove('is-invalid');
+                  // момент с пробелами
+                } else if (/\s{2,}/.test(target.value)) {
+                  errors.push('Только ОДИН пробел (подряд)!');
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent = 'Только ОДИН пробел (подряд)!';
+                } else if (
+                  !/^\+\d{1,4} \(\d{2,4}\) \d{3}-\d{2}-\d{2}$/.test(
+                    target.value
+                  ) // итоговая проверка на вводимый формат
+                ) {
+                  errors.push('Допустимый формат: +X (XXX) XXX-XX-XX');
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Допустимый формат: +X (XXX) XXX-XX-XX';
+                } else {
+                  // если всё корректно (сообщений нет)
+                  invalidFeed.textContent = '';
+                  target.classList.remove('is-invalid');
+                }
+                break;
+
+              case 'email':
+                // первичная проверка на "пустое" поле ввода (выход из проверки соответствия)
+                if (target.value === '') {
+                  invalidFeed.textContent = '';
+                  target.classList.remove('is-invalid');
+                  break;
+                }
+
+                // дополнительные/итоговая проверка вводимых данных (определённые условия для ввода)
+                if (
+                  /^[a-zA-Z0-9]+$/.test(target.value) || // начало, только с букв или цифр
+                  /^[a-zA-Z0-9]+@$/.test(target.value) || // буквы/цифры и символ @
+                  /^[a-zA-Z0-9]+@[a-zA-Z0-9]+$/.test(target.value) || // Буквы/цифры перед и после @
+                  /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.$/.test(target.value) // Частично введенный домен с точкой
+                ) {
+                  invalidFeed.textContent = '';
+                  target.classList.remove('is-invalid');
+                }
+                // Проверка на пробелы
+                else if (/\s/.test(target.value)) {
+                  errors.push('Пробелы в почте не допускаются.');
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent = 'Пробелы в почте не допускаются.';
+                }
+                // Проверка, что почта начинается с буквы или цифры
+                else if (!/^[a-zA-Z0-9]/.test(target.value)) {
+                  errors.push('Почта должна начинаться с буквы или цифры.');
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Почта должна начинаться с буквы или цифры.';
+                }
+                // Проверка, что почта не заканчивается на цифру
+                else if (/\d$/.test(target.value)) {
+                  errors.push('Почта не может заканчиваться на цифру.');
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Почта не может заканчиваться на цифру.';
+                }
+                // Итоговая проверка формата email
+                else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(target.value)) {
+                  errors.push(
+                    'Введите корректную почту, например: example123@gmail.com.'
+                  );
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Введите корректную почту, например: example123@gmail.com.';
+                }
+                // Если все проверки пройдены
+                else {
+                  invalidFeed.textContent = '';
+                  target.classList.remove('is-invalid');
+                }
+                break;
+
+              case 'vk':
+                if (target.value === '') {
+                  errors.length = 0;
+                  break;
+                }
+                if (!/^[a-zA-Z0-9_-]+$/.test(target.value)) {
+                  errors.push('Укажите корректный ID, например: id12345');
+                }
+                break;
+
+              case 'facebook':
+                if (target.value === '') {
+                  errors.length = 0;
+                  break;
+                }
+                if (!/^[a-zA-Z0-9._-]+$/.test(target.value)) {
+                  errors.push(
+                    'Укажите корректное имя пользователя, например: username1'
+                  );
+                }
+                break;
+
+              case 'twitter':
+                if (target.value === '') {
+                  errors.length = 0;
+                  break;
+                }
+                if (!/^@[a-zA-Z0-9_]+$/.test(target.value)) {
+                  errors.push(
+                    'Укажите корректное имя пользователя, например: @Im_123'
+                  );
+                }
+                break;
+
+              default:
+                errors.push('Неизвестный тип контакта!');
+                break;
             }
-          } else {
-            if ((target.value.match(/-/g) || []).length > 1) {
-              const hyphenCount = target.value.match(/-/g).length;
-              if (hyphenCount > 1) {
-                errors.push(
-                  'Допускается только ОДИН дефис (для двойных-фамилий)!'
-                );
+          }
+        } else {
+          if (options.allowOnlyRussian && /[^а-яА-ЯёЁ\s-]/.test(target.value)) {
+            errors.push(
+              'Некорректный ввод! Измените раскладку клавиатуры и/или исключите цифры/знаки!'
+            );
+          }
+
+          if (options.singleHyphen) {
+            // дополнительная проверка для двух инпутов (дефисы недопустимы)
+            if (
+              target.classList.contains('add-name-input') ||
+              target.classList.contains('add-patronymic-input')
+            ) {
+              if (/-/.test(target.value)) {
+                errors.push('Дефисы НЕдопустимы!');
+              }
+            } else {
+              if ((target.value.match(/-/g) || []).length > 1) {
+                const hyphenCount = target.value.match(/-/g).length;
+                if (hyphenCount > 1) {
+                  errors.push(
+                    'Допускается только ОДИН дефис (для двойных-фамилий)!'
+                  );
+                }
               }
             }
           }
-        }
 
-        // дополнительная проверка для "modal__add-body-input" (пробелы недопустимы)
-        if (
-          target.classList.contains('modal__add-body-input') &&
-          /\s/.test(target.value)
-        ) {
-          errors.push('Пробелы НЕдопустимы!');
-        } else if (options.noExtraSpaces && /\s{2,}/.test(target.value)) {
-          errors.push('Допускается только ОДИН пробел (подряд)!');
-        } else if (options.noSpaces && /\s/.test(target.value)) {
-          errors.push('Пробелы НЕдопустимы!');
+          // дополнительная проверка для "modal__add-body-input" (пробелы недопустимы)
+          if (
+            target.classList.contains('modal__add-body-input') &&
+            /\s/.test(target.value)
+          ) {
+            errors.push('Пробелы НЕдопустимы!');
+          } else if (options.noExtraSpaces && /\s{2,}/.test(target.value)) {
+            errors.push('Допускается только ОДИН пробел (подряд)!');
+          } else if (options.noSpaces && /\s/.test(target.value)) {
+            errors.push('Пробелы НЕдопустимы!');
+          }
         }
 
         // отработка ошибок
@@ -639,6 +787,7 @@
     const addModalContactInput = document.createElement('input');
     const addModalContactXBtn = document.createElement('button');
     const addModalContactXBtnIcon = document.createElement('i');
+    const addModalContactFeedback = document.createElement('div');
 
     addModalContactElement.classList.add(
       'modal__add-body-add-contact-element',
@@ -689,6 +838,10 @@
       'bi',
       'bi-x-circle'
     );
+    addModalContactFeedback.classList.add(
+      'modal__add-body-add-contact-feedback',
+      'invalid-feedback'
+    );
 
     addModalContactCustomSelect.setAttribute('name', 'contact-options');
     addModalContactDropBtn.setAttribute('id', 'add-modal-drop-btn');
@@ -706,7 +859,9 @@
     addModalContactHiddenInput.setAttribute('name', 'contact-type');
     addModalContactInput.setAttribute('type', 'text');
     addModalContactInput.setAttribute('name', 'contact-data');
+    // addModalContactInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
     addModalContactInput.setAttribute('placeholder', 'Введите данные контакта');
+    addModalContactInput.setAttribute('required', '');
     addModalContactXBtn.setAttribute('type', 'button');
     addModalContactXBtn.setAttribute('tabindex', '0');
 
@@ -715,6 +870,7 @@
     addModalContactItemEmail.textContent = 'Email';
     addModalContactItemVk.textContent = 'Vk';
     addModalContactItemFacebook.textContent = 'Facebook';
+    addModalContactFeedback.textContent = 'НЕ корректный ввод данных контакта!';
 
     addModalContactList.append(
       addModalContactItemExtraPhone,
@@ -731,7 +887,8 @@
       addModalContactCustomSelect,
       addModalContactHiddenInput,
       addModalContactInput,
-      addModalContactXBtn
+      addModalContactXBtn,
+      addModalContactFeedback
     );
 
     // отображение изначально скрытой обвёртки/родителя
@@ -753,6 +910,11 @@
       addModalContactElement.style.transition = 'opacity 0.1s ease';
       addModalContactElement.style.opacity = '1';
     }, 10);
+
+    // добавление валидации для вводимых данных контакта (при добавлении строки контактов)
+    addInputsValidation([addModalContactInput], {
+      dynamicContactValidation: true,
+    });
 
     addModalContactsArr.push(addModalContactElement); // добавление контакта во внешний/глобальный массив
 
@@ -803,10 +965,6 @@
         nowClickedDropBtn.focus(); // добавление фокуса кнопке (до момента выбора)
       }
     });
-
-    const allModalContactsListItems = document.querySelectorAll(
-      '.modal__add-body-add-contact-item'
-    );
 
     // замена/обновление содержимого/контента кнопки, так и через TAB/Enter (согласно значений li/вариантов)
     addModalContactList.addEventListener('click', (event) => {
