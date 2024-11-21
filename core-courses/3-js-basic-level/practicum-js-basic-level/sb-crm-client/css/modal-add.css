@@ -13,6 +13,10 @@
   outline: none;
 }
 
+.add-modal-content-padding {
+  padding-bottom: 30px;
+}
+
 .modal__add-header,
 .modal__add-body,
 .modal__add-footer {
@@ -291,7 +295,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  padding: 4px 10px;
+  padding: 3px 10px;
   font-size: 12px;
   outline: none;
   cursor: pointer;

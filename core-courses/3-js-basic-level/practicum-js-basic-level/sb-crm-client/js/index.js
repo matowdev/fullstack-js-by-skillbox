@@ -783,6 +783,8 @@
     const addModalContactItemEmail = document.createElement('li');
     const addModalContactItemVk = document.createElement('li');
     const addModalContactItemFacebook = document.createElement('li');
+    const addModalContactItemTwitter = document.createElement('li');
+    const addModalContactItemExtraContact = document.createElement('li');
     const addModalContactHiddenInput = document.createElement('input');
     const addModalContactInput = document.createElement('input');
     const addModalContactXBtn = document.createElement('button');
@@ -820,6 +822,14 @@
       'modal__add-body-add-contact-item',
       'add-modal-facebook-item'
     );
+    addModalContactItemTwitter.classList.add(
+      'modal__add-body-add-contact-item',
+      'add-modal-twitter-item'
+    );
+    addModalContactItemExtraContact.classList.add(
+      'modal__add-body-add-contact-item',
+      'add-modal-extra-contact-item'
+    );
     addModalContactHiddenInput.classList.add(
       'modal__add-body-add-hidden-input'
     );
@@ -854,6 +864,10 @@
     addModalContactItemVk.setAttribute('tabindex', '0');
     addModalContactItemFacebook.setAttribute('data-value', 'facebook');
     addModalContactItemFacebook.setAttribute('tabindex', '0');
+    addModalContactItemTwitter.setAttribute('data-value', 'twitter');
+    addModalContactItemTwitter.setAttribute('tabindex', '0');
+    addModalContactItemExtraContact.setAttribute('data-value', 'extra-contact');
+    addModalContactItemExtraContact.setAttribute('tabindex', '0');
     addModalContactHiddenInput.setAttribute('value', 'phone'); // начальное значение, согласно textContent кнопки
     addModalContactHiddenInput.setAttribute('type', 'hidden');
     addModalContactHiddenInput.setAttribute('name', 'contact-type');
@@ -870,13 +884,17 @@
     addModalContactItemEmail.textContent = 'Email';
     addModalContactItemVk.textContent = 'Vk';
     addModalContactItemFacebook.textContent = 'Facebook';
+    addModalContactItemTwitter.textContent = 'Twitter';
+    addModalContactItemExtraContact.textContent = 'Доп. контакт';
     addModalContactFeedback.textContent = 'НЕ корректный ввод данных контакта!';
 
     addModalContactList.append(
       addModalContactItemExtraPhone,
       addModalContactItemEmail,
       addModalContactItemVk,
-      addModalContactItemFacebook
+      addModalContactItemFacebook,
+      addModalContactItemTwitter,
+      addModalContactItemExtraContact
     );
     addModalContactCustomSelect.append(
       addModalContactDropBtn,
@@ -899,9 +917,10 @@
 
     addBodySelectWrap.append(addModalContactElement); // добавление в DOM строки контактов
 
-    // добавление отступа/margin-bottom кнопке
+    // добавление дополнительных отступов (при появлении строки контактов)
     if (addModalContactsArr.length === 0) {
       addModalBodyAddBtn.classList.add('add-modal-btn-margin');
+      addModalContent.classList.add('add-modal-content-padding');
     }
 
     // добавление "не большого" эффекта/задержки появления для "новой" строки контактов (элемента)
@@ -1081,7 +1100,7 @@
             addModalBodyAddBtn.disabled = false;
           }
 
-          // проверка на количество строк контактов (нет, скрытие обвёртки/родителя и удаление отступа у кнопки)
+          // проверка на количество строк контактов (нет, скрытие обвёртки/родителя и удаление дополнительных отступов)
           if (
             document.querySelectorAll('.modal__add-body-add-contact-element')
               .length === 0
@@ -1091,6 +1110,7 @@
             );
             addBodySelectWrap.classList.add('d-none');
             addModalBodyAddBtn.classList.remove('add-modal-btn-margin');
+            addModalContent.classList.remove('add-modal-content-padding');
           }
         }
       }
