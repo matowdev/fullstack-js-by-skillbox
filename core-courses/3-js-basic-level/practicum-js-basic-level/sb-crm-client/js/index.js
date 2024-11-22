@@ -779,6 +779,7 @@
     const addModalContactCustomSelect = document.createElement('div');
     const addModalContactDropBtn = document.createElement('button');
     const addModalContactList = document.createElement('ul');
+    const addModalContactItemPhone = document.createElement('li');
     const addModalContactItemExtraPhone = document.createElement('li');
     const addModalContactItemEmail = document.createElement('li');
     const addModalContactItemVk = document.createElement('li');
@@ -805,6 +806,10 @@
     addModalContactList.classList.add(
       'modal__add-body-add-contact-list',
       'd-none'
+    );
+    addModalContactItemPhone.classList.add(
+      'modal__add-body-add-contact-item',
+      'add-modal-phone-item'
     );
     addModalContactItemExtraPhone.classList.add(
       'modal__add-body-add-contact-item',
@@ -856,6 +861,8 @@
     addModalContactCustomSelect.setAttribute('name', 'contact-options');
     addModalContactDropBtn.setAttribute('id', 'add-modal-drop-btn');
     addModalContactDropBtn.setAttribute('type', 'button');
+    addModalContactItemPhone.setAttribute('data-value', 'phone');
+    addModalContactItemPhone.setAttribute('tabindex', '0');
     addModalContactItemExtraPhone.setAttribute('data-value', 'extra-phone');
     addModalContactItemExtraPhone.setAttribute('tabindex', '0');
     addModalContactItemEmail.setAttribute('data-value', 'email');
@@ -873,13 +880,13 @@
     addModalContactHiddenInput.setAttribute('name', 'contact-type');
     addModalContactInput.setAttribute('type', 'text');
     addModalContactInput.setAttribute('name', 'contact-data');
-    // addModalContactInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
     addModalContactInput.setAttribute('placeholder', 'Введите данные контакта');
     addModalContactInput.setAttribute('required', '');
     addModalContactXBtn.setAttribute('type', 'button');
     addModalContactXBtn.setAttribute('tabindex', '0');
 
     addModalContactDropBtn.textContent = 'Телефон';
+    addModalContactItemPhone.textContent = 'Телефон';
     addModalContactItemExtraPhone.textContent = 'Доп. телефон';
     addModalContactItemEmail.textContent = 'Email';
     addModalContactItemVk.textContent = 'Vk';
@@ -889,6 +896,7 @@
     addModalContactFeedback.textContent = 'НЕ корректный ввод данных контакта!';
 
     addModalContactList.append(
+      addModalContactItemPhone,
       addModalContactItemExtraPhone,
       addModalContactItemEmail,
       addModalContactItemVk,
@@ -917,10 +925,9 @@
 
     addBodySelectWrap.append(addModalContactElement); // добавление в DOM строки контактов
 
-    // добавление дополнительных отступов (при появлении строки контактов)
+    // организация дополнительных отступов для "Добавить контакт" кнопки (при появлении строки контактов)
     if (addModalContactsArr.length === 0) {
       addModalBodyAddBtn.classList.add('add-modal-btn-margin');
-      addModalContent.classList.add('add-modal-content-padding');
     }
 
     // добавление "не большого" эффекта/задержки появления для "новой" строки контактов (элемента)
@@ -929,6 +936,14 @@
       addModalContactElement.style.transition = 'opacity 0.1s ease';
       addModalContactElement.style.opacity = '1';
     }, 10);
+
+    // скрытие/сразу li/варианта, как "Телефон" (т.к. в drop-btn отображение по умолчанию)
+    if (addModalContactDropBtn.textContent === 'Телефон') {
+      addModalContactItemPhone.style.display = 'none';
+    }
+
+    // обновление/изменение отступов для li/вариантов выпадающего списка (для первого и последнего элементов)
+    updateDropItemPaddings(addModalContactList);
 
     // добавление валидации для вводимых данных контакта (при добавлении строки контактов)
     addInputsValidation([addModalContactInput], {
@@ -1001,37 +1016,44 @@
 
     function getContactDropSelection(target) {
       const selectedItemValue = target.getAttribute('data-value');
+      const previousItemValue = addModalContactHiddenInput.value;
+
       addModalContactDropBtn.textContent = target.textContent;
       addModalContactHiddenInput.value = selectedItemValue; // обновление данных в "скрытом" input (для последующей отправки на сервер)
-      addDropPhoneOption(); // добавление li/варианта, как "Телефон" в выпадающий список (если сразу не выбрали)
+
+      target.style.display = 'none'; // скрытие li/варианта в выпадающем списке (т.е. после выбора, отображения в drop-btn)
+
+      // отображение/снова li/варианта (т.е. до этого скрытого)
+      if (previousItemValue) {
+        const previousItem = addModalContactList.querySelector(
+          `[data-value="${previousItemValue}"]`
+        );
+        if (previousItem) {
+          previousItem.style.display = ''; // сброс display: none;
+        }
+      }
+
+      updateDropItemPaddings(addModalContactList); // обновление/изменение отступов для li/вариантов выпадающего списка (для первого и последнего элементов)
       closeBtnDropdown(); // закрытие выпадающего списка
       addModalContactInput.focus(); // перевод фокуса на соседний инпут (после выбора в выпадающем списке)
     }
 
-    function addDropPhoneOption() {
-      const isPhoneOption = Array.from(addModalContactList.children).some(
-        (item) => item.getAttribute('data-value') === 'phone'
+    function updateDropItemPaddings(dropList) {
+      Array.from(dropList.children).forEach((item) => {
+        item.classList.remove('first-visible', 'last-visible'); // изначальная очистка от дополнительных классов
+      });
+
+      // фиксация li/вариантов находящихся "сейчас" в выпадающем списке
+      const visibleDropItems = Array.from(dropList.children).filter(
+        (item) => item.style.display !== 'none'
       );
 
-      // проверка на наличие "Телефон(а)" в кнопке, среди li/элементов (удаление/добавление в выпадающий список)
-      if (addModalContactDropBtn.textContent === 'Телефон' && isPhoneOption) {
-        const phoneOption = addModalContactList.querySelector(
-          '[data-value="phone"]'
-        );
-        if (phoneOption) phoneOption.remove(); // удаление
-      } else if (
-        addModalContactDropBtn.textContent !== 'Телефон' &&
-        !isPhoneOption
-      ) {
-        const addModalContactItemPhone = document.createElement('li');
-        addModalContactItemPhone.classList.add(
-          'modal__add-body-add-contact-item',
-          'add-modal-phone-item'
-        );
-        addModalContactItemPhone.setAttribute('data-value', 'phone');
-        addModalContactItemPhone.setAttribute('tabindex', '0');
-        addModalContactItemPhone.textContent = 'Телефон';
-        addModalContactList.prepend(addModalContactItemPhone); // добавляем в начало списка
+      // добавление отступов (для первого/последнего элементов списка)
+      if (visibleDropItems.length > 0) {
+        const firstVisibleItem = visibleDropItems[0];
+        const lastVisibleItem = visibleDropItems[visibleDropItems.length - 1];
+        firstVisibleItem.classList.add('first-visible');
+        lastVisibleItem.classList.add('last-visible');
       }
     }
 
@@ -1110,7 +1132,6 @@
             );
             addBodySelectWrap.classList.add('d-none');
             addModalBodyAddBtn.classList.remove('add-modal-btn-margin');
-            addModalContent.classList.remove('add-modal-content-padding');
           }
         }
       }

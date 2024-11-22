@@ -13,10 +13,6 @@
   outline: none;
 }
 
-.add-modal-content-padding {
-  padding-bottom: 30px;
-}
-
 .modal__add-header,
 .modal__add-body,
 .modal__add-footer {
@@ -295,7 +291,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  padding: 3px 10px;
+  padding: 4px 10px;
   font-size: 12px;
   outline: none;
   cursor: pointer;
@@ -304,11 +300,11 @@
   transition-timing-function: ease;
 }
 
-.modal__add-body-add-contact-item:first-child {
-  padding-top: 8px;
+.modal__add-body-add-contact-item.first-visible {
+  padding-top: 9px;
 }
 
-.modal__add-body-add-contact-item:last-child {
+.modal__add-body-add-contact-item.last-visible {
   padding-bottom: 5px;
 }
 
