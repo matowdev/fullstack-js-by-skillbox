@@ -379,8 +379,6 @@
   addBtn.setAttribute('data-bs-toggle', 'modal');
   addBtn.setAttribute('data-bs-target', '#add-btn-modal');
   addModalWrap.setAttribute('id', 'add-btn-modal');
-  addModalWrap.setAttribute('tabindex', '-1');
-  // addModalWrap.setAttribute('aria-hidden', 'true');
   addModalHeaderXBtn.setAttribute('type', 'button');
   addModalHeaderXBtn.setAttribute('data-bs-dismiss', 'modal');
   addModalHeaderXBtn.setAttribute('aria-label', 'Close');
@@ -768,6 +766,27 @@
       }
     });
   });
+
+  // ** организация принудительного удаления атрибута aria-hidden="true" с Bootstrap-модального окна (исключение ошибки с ARIA)
+  const addModal = document.querySelector('.crm__add-btn-modal');
+
+  // мониторинг/ожидание появления соответствующего атрибута
+  const observer = new MutationObserver((mutationsList) => {
+    mutationsList.forEach((mutation) => {
+      if (
+        mutation.type === 'attributes' &&
+        mutation.attributeName === 'aria-hidden'
+      ) {
+        addModal.removeAttribute('aria-hidden'); // принудительное удаление
+      }
+    });
+  });
+
+  // запуск мониторинга
+  observer.observe(addModal, { attributes: true });
+
+  // остановка мониторинга (если более не требуется)
+  // observer.disconnect();
 
   // ** динамическое добавление строки контактов в add-модальном окне (по нажатию "Добавить контакт" кнопки)
   const addModalContactsArr = [];
