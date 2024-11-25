@@ -576,46 +576,85 @@
                   break;
                 }
 
-                // дополнительные/итоговая проверка вводимых данных (определённые условия для ввода)
-                if (
-                  /^[a-zA-Z0-9]+$/.test(target.value) || // начало, только с букв или цифр
-                  /^[a-zA-Z0-9]+@$/.test(target.value) || // буквы/цифры и символ @
-                  /^[a-zA-Z0-9]+@[a-zA-Z0-9]+$/.test(target.value) || // Буквы/цифры перед и после @
-                  /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.$/.test(target.value) // Частично введенный домен с точкой
-                ) {
-                  invalidFeed.textContent = '';
-                  target.classList.remove('is-invalid');
-                }
-                // Проверка на пробелы
-                else if (/\s/.test(target.value)) {
-                  errors.push('Пробелы в почте не допускаются.');
-                  target.classList.add('is-invalid');
-                  invalidFeed.textContent = 'Пробелы в почте не допускаются.';
-                }
-                // Проверка, что почта начинается с буквы или цифры
-                else if (!/^[a-zA-Z0-9]/.test(target.value)) {
-                  errors.push('Почта должна начинаться с буквы или цифры.');
-                  target.classList.add('is-invalid');
-                  invalidFeed.textContent =
-                    'Почта должна начинаться с буквы или цифры.';
-                }
-                // Проверка, что почта не заканчивается на цифру
-                else if (/\d$/.test(target.value)) {
-                  errors.push('Почта не может заканчиваться на цифру.');
-                  target.classList.add('is-invalid');
-                  invalidFeed.textContent =
-                    'Почта не может заканчиваться на цифру.';
-                }
-                // Итоговая проверка формата email
-                else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(target.value)) {
+                // исключение недопустимых символов (вообще)
+                target.value = target.value.replace(
+                  /[=+,!?%#$^&:{}()<>|"'*/\\]/g,
+                  ''
+                );
+
+                // исключение несколько символов "@""
+                if ((target.value.match(/@/g) || []).length > 1) {
                   errors.push(
-                    'Введите корректную почту, например: example123@gmail.com.'
+                    'Почта не может содержать более одного символа "@"!'
                   );
                   target.classList.add('is-invalid');
                   invalidFeed.textContent =
-                    'Введите корректную почту, например: example123@gmail.com.';
+                    'Почта не может содержать более одного символа "@"!';
                 }
-                // Если все проверки пройдены
+
+                // дополнительные/итоговая проверка вводимых данных (определённые условия для ввода)
+                if (/[а-яА-ЯёЁ]/.test(target.value)) {
+                  errors.push(
+                    'Некорректный ввод! Измените раскладку клавиатуры!'
+                  );
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Некорректный ввод! Измените раскладку клавиатуры!';
+                }
+                // исключение ввода точки, дефиса и подчёркивания (в начале строки)
+                else if (/^[._-]/.test(target.value)) {
+                  errors.push(
+                    'Почта не может начинаться с точки, дефиса или подчёркивания!'
+                  );
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Почта не может начинаться с точки, дефиса или подчёркивания!';
+                } else if (!/@/.test(target.value)) {
+                  invalidFeed.textContent = '';
+                  target.classList.remove('is-invalid');
+                }
+                // исключение ввода ряда символов перед "@"
+                else if (/[-_.]@/.test(target.value)) {
+                  errors.push(
+                    'Следующие символы ". - _" не могут стоять перед "@"!'
+                  );
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Следующие символы ". - _" не могут стоять перед "@"!';
+                }
+                // корректировка возможного ввода после "@", в конце строки (ряд исключений)
+                else if (
+                  (/[._-]$/.test(target.value) && !/\.$/.test(target.value)) || // дефис и подчёркивание
+                  /\d$/.test(target.value) || // цифры
+                  (target.value.includes('@') &&
+                    target.value.split('@')[1].split('.').length > 2) // исключение точки (второй после .com)
+                ) {
+                  errors.push(
+                    'Некорректный ввод! Исключите цифры/символы, лишние точки!'
+                  );
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Некорректный ввод! Исключите цифры/символы, лишние точки!';
+                } else if (!/\.[a-zA-Z]{2,}$/.test(target.value)) {
+                  invalidFeed.textContent = '';
+                  target.classList.remove('is-invalid');
+                }
+                // исключение пробелов
+                else if (/\s/.test(target.value)) {
+                  errors.push('Пробелы в почте не допускаются!');
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent = 'Пробелы в почте не допускаются!';
+                }
+                // итоговая проверка на вводимый формат
+                else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(target.value)) {
+                  errors.push(
+                    'Введите корректную почту, например: example_123@gmail.com'
+                  );
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Введите корректную почту, например: example_123@gmail.com';
+                }
+                // если всё корректно (сообщений нет)
                 else {
                   invalidFeed.textContent = '';
                   target.classList.remove('is-invalid');
@@ -767,7 +806,7 @@
     });
   });
 
-  // ** организация принудительного удаления атрибута aria-hidden="true" с Bootstrap-модального окна (исключение ошибки с ARIA)
+  // ** организация принудительного удаления атрибута aria-hidden="true" с add-модального окна (исключение ошибки с ARIA)
   const addModal = document.querySelector('.crm__add-btn-modal');
 
   // мониторинг/ожидание появления соответствующего атрибута
