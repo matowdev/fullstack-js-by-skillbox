@@ -662,24 +662,63 @@
                 break;
 
               case 'vk':
+                // первичная проверка на "пустое" поле ввода (выход из проверки соответствия)
                 if (target.value === '') {
-                  errors.length = 0;
+                  invalidFeed.textContent = '';
+                  target.classList.remove('is-invalid');
                   break;
                 }
-                if (!/^[a-zA-Z0-9_-]+$/.test(target.value)) {
-                  errors.push('Укажите корректный ID, например: id12345');
-                }
-                break;
 
-              case 'facebook':
-                if (target.value === '') {
-                  errors.length = 0;
-                  break;
-                }
-                if (!/^[a-zA-Z0-9._-]+$/.test(target.value)) {
+                // ряд проверок для вводимых данных (определённые условия для ввода)
+                if (/\s/.test(target.value)) {
+                  errors.push('Пробелы недопустимы!'); // исключение пробелов
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent = 'Пробелы недопустимы!';
+                  // только английские буквы
+                } else if (/[а-яА-ЯёЁ]/.test(target.value)) {
                   errors.push(
-                    'Укажите корректное имя пользователя, например: username1'
+                    'Некорректный ввод! Измените раскладку клавиатуры!'
                   );
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Некорректный ввод! Измените раскладку клавиатуры!';
+                }
+                // ввод/начало только с "id"
+                else if (target.value === 'i') {
+                  invalidFeed.textContent = '';
+                  target.classList.remove('is-invalid');
+                } else if (
+                  target.value.startsWith('i') &&
+                  target.value[1] !== 'd'
+                ) {
+                  errors.push('Контакт Vk должен начинаться только с "id"!');
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Контакт Vk должен начинаться только с "id"!';
+                }
+                // ввод/начало не с "id" (если)
+                else if (!/^id/.test(target.value)) {
+                  errors.push(
+                    'Контакт Vk должен начинаться только с "id", например: id12345! '
+                  );
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Контакт Vk должен начинаться только с "id", например: id12345!';
+                } else if (target.value === 'id') {
+                  invalidFeed.textContent = '';
+                  target.classList.remove('is-invalid');
+                }
+                // исключение ввода не цифр после "id"
+                else if (!/^id\d+$/.test(target.value)) {
+                  errors.push('После "id" должны быть только цифры!');
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'После "id" должны быть только цифры!';
+                }
+                // если всё корректно (сообщений нет)
+                else {
+                  invalidFeed.textContent = '';
+                  target.classList.remove('is-invalid');
                 }
                 break;
 
