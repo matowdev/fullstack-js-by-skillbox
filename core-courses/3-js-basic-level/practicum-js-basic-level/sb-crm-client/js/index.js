@@ -715,6 +715,87 @@
                   invalidFeed.textContent =
                     'После "id" должны быть только цифры!';
                 }
+                // определение максимальной длины id
+                else if (target.value.length > 32) {
+                  errors.push('Vk "id" должен быть не более 32 символов!');
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Vk "id" должен быть не более 32 символов!';
+                }
+                // если всё корректно (сообщений нет)
+                else {
+                  invalidFeed.textContent = '';
+                  target.classList.remove('is-invalid');
+                }
+                break;
+
+              case 'facebook':
+                // первичная проверка на "пустое" поле ввода (выход из проверки соответствия)
+                if (target.value === '') {
+                  invalidFeed.textContent = '';
+                  target.classList.remove('is-invalid');
+                  break;
+                }
+
+                // ряд проверок для вводимых данных (определённые условия для ввода)
+                if (/\s/.test(target.value)) {
+                  errors.push('Пробелы недопустимы!'); // исключение пробелов
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent = 'Пробелы недопустимы!';
+                }
+                // только английские буквы
+                else if (/[а-яА-ЯёЁ]/.test(target.value)) {
+                  errors.push(
+                    'Некорректный ввод! Измените раскладку клавиатуры!'
+                  );
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Некорректный ввод! Измените раскладку клавиатуры!';
+                }
+                // определение корректного ввода/никнейма
+                else if (/[^a-zA-Z0-9@_\-.$]/.test(target.value)) {
+                  errors.push('Укажите корректный никнейм, например: user1');
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Укажите корректный никнейм, например: user1';
+                }
+                // исключение ввода более двух точек
+                else if ((target.value.match(/\./g) || []).length > 2) {
+                  errors.push('Никнейм не может содержать более двух точек!');
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Никнейм не может содержать более двух точек!';
+                }
+                // исключение ввода более пяти тире
+                else if ((target.value.match(/-/g) || []).length > 5) {
+                  errors.push('Никнейм не может содержать более пяти тире!');
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Никнейм не может содержать более пяти тире!';
+                }
+                // исключение ввода более десяти нижних подчёркиваний
+                else if ((target.value.match(/_/g) || []).length > 10) {
+                  errors.push(
+                    'Никнейм не может содержать более десяти подчёркиваний!'
+                  );
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Никнейм не может содержать более десяти подчёркиваний!';
+                }
+                // определение максимальной длины никнейма
+                else if (target.value.length > 50) {
+                  errors.push('Никнейм должен быть не более 50 символов!');
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Никнейм должен быть не более 50 символов!';
+                }
+                // определение с чего должен начинаться никнейм
+                else if (!/^[a-zA-Z0-9]/.test(target.value)) {
+                  errors.push('Никнейм должен начинаться с буквы или цифры!');
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Никнейм должен начинаться с буквы или цифры!';
+                }
                 // если всё корректно (сообщений нет)
                 else {
                   invalidFeed.textContent = '';
