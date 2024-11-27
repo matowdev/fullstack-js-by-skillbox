@@ -804,14 +804,84 @@
                 break;
 
               case 'twitter':
+                // первичная проверка на "пустое" поле ввода (выход из проверки соответствия)
                 if (target.value === '') {
-                  errors.length = 0;
+                  invalidFeed.textContent = '';
+                  target.classList.remove('is-invalid');
                   break;
                 }
-                if (!/^@[a-zA-Z0-9_]+$/.test(target.value)) {
+
+                // ряд проверок для вводимых данных (определённые условия для ввода)
+                if (/\s/.test(target.value)) {
+                  errors.push('Пробелы недопустимы!'); // исключение пробелов
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent = 'Пробелы недопустимы!';
+                }
+                // только английские буквы
+                else if (/[а-яА-ЯёЁ]/.test(target.value)) {
+                  errors.push(
+                    'Некорректный ввод! Измените раскладку клавиатуры!'
+                  );
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Некорректный ввод! Измените раскладку клавиатуры!';
+                }
+                // определение корректного ввода/никнейма
+                else if (/[^a-zA-Z0-9@_\-.$]/.test(target.value)) {
                   errors.push(
                     'Укажите корректное имя пользователя, например: @Im_123'
                   );
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Укажите корректное имя пользователя, например: @Im_123';
+                }
+                // исключение ввода более двух точек
+                else if ((target.value.match(/\./g) || []).length > 0) {
+                  errors.push('Имя пользователя не может содержать точки!');
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Имя пользователя не может содержать точки!';
+                }
+                // исключение ввода более трёх тире
+                else if ((target.value.match(/-/g) || []).length > 3) {
+                  errors.push(
+                    'Имя пользователя не может содержать более трёх тире!'
+                  );
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Имя пользователя не может содержать более трёх тире!';
+                }
+                // исключение ввода более десяти нижних подчёркиваний
+                else if ((target.value.match(/_/g) || []).length > 10) {
+                  errors.push(
+                    'Имя пользователя не может содержать более десяти подчёркиваний!'
+                  );
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Имя пользователя не может содержать более десяти подчёркиваний!';
+                }
+                // определение максимальной длины имени пользователя
+                else if (target.value.length > 15) {
+                  errors.push(
+                    'Имя пользователя должно быть не более 15 символов!'
+                  );
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Имя пользователя должно быть не более 15 символов!';
+                }
+                // определение с чего должен начинаться имя пользователя
+                else if (!/^[@]/.test(target.value)) {
+                  errors.push(
+                    'Имя пользователя должно начинаться только со знака "@"!'
+                  );
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Имя пользователя должно начинаться только со знака "@"!';
+                }
+                // если всё корректно (сообщений нет)
+                else {
+                  invalidFeed.textContent = '';
+                  target.classList.remove('is-invalid');
                 }
                 break;
 
