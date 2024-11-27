@@ -835,7 +835,7 @@
                   invalidFeed.textContent =
                     'Укажите корректное имя пользователя, например: @Im_123';
                 }
-                // исключение ввода более двух точек
+                // исключение ввода точек
                 else if ((target.value.match(/\./g) || []).length > 0) {
                   errors.push('Имя пользователя не может содержать точки!');
                   target.classList.add('is-invalid');
@@ -877,6 +877,90 @@
                   target.classList.add('is-invalid');
                   invalidFeed.textContent =
                     'Имя пользователя должно начинаться только со знака "@"!';
+                }
+                // если всё корректно (сообщений нет)
+                else {
+                  invalidFeed.textContent = '';
+                  target.classList.remove('is-invalid');
+                }
+                break;
+
+              case 'extra-contact':
+                // первичная проверка на "пустое" поле ввода (выход из проверки соответствия)
+                if (target.value === '') {
+                  invalidFeed.textContent = '';
+                  target.classList.remove('is-invalid');
+                  break;
+                }
+
+                // ряд проверок для вводимых данных (определённые условия для ввода)
+                if ((target.value.match(/\s/g) || []).length > 1) {
+                  errors.push('Только ОДИН пробел допустим!');
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent = 'Только ОДИН пробел допустим!';
+                }
+                // только английские буквы
+                else if (/[а-яА-ЯёЁ]/.test(target.value)) {
+                  errors.push(
+                    'Некорректный ввод! Измените раскладку клавиатуры!'
+                  );
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Некорректный ввод! Измените раскладку клавиатуры!';
+                }
+                // определение корректного ввода/никнейма
+                else if (/[^a-zA-Z0-9@_:\-.$\s]/.test(target.value)) {
+                  errors.push(
+                    'Укажите доп. контакт, в формате: "название контакта: никнейм", без лишних символов!'
+                  );
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Укажите доп. контакт, в формате: "название контакта: никнейм", без лишних символов!';
+                }
+                // исключение ввода более двух точек
+                else if ((target.value.match(/\./g) || []).length > 2) {
+                  errors.push(
+                    'Доп. контакт не может содержать более двух точек!'
+                  );
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Доп. контакт не может содержать более двух точек!';
+                }
+                // исключение ввода более трёх тире
+                else if ((target.value.match(/-/g) || []).length > 3) {
+                  errors.push(
+                    'Доп. контакт не может содержать более трёх тире!'
+                  );
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Доп. контакт не может содержать более трёх тире!';
+                }
+                // исключение ввода более десяти нижних подчёркиваний
+                else if ((target.value.match(/_/g) || []).length > 10) {
+                  errors.push(
+                    'Доп. контакт не может содержать более десяти подчёркиваний!'
+                  );
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Доп. контакт не может содержать более десяти подчёркиваний!';
+                }
+                // определение максимальной длины имени пользователя
+                else if (target.value.length > 50) {
+                  errors.push(
+                    'Длинна "всего" доп. контакт должна быть не более 50 символов!'
+                  );
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Длинна "всего" доп. контакт должна быть не более 50 символов!';
+                }
+                // определение с чего должен начинаться доп. контакт
+                else if (!/^[a-zA-Z]/.test(target.value)) {
+                  errors.push(
+                    'Доп. контакт должен начинаться только с англ. букв! Типа: "Instagram: @user1"'
+                  );
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Доп. контакт должен начинаться только с англ. букв! Типа: "Instagram: @user1"';
                 }
                 // если всё корректно (сообщений нет)
                 else {
