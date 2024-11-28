@@ -956,11 +956,11 @@
                 // определение с чего должен начинаться доп. контакт
                 else if (!/^[a-zA-Z]/.test(target.value)) {
                   errors.push(
-                    'Доп. контакт должен начинаться только с англ. букв! Типа: "Instagram: @user1"'
+                    'Доп. контакт должен начинаться только с английских букв, например: Instagram: @user1'
                   );
                   target.classList.add('is-invalid');
                   invalidFeed.textContent =
-                    'Доп. контакт должен начинаться только с англ. букв! Типа: "Instagram: @user1"';
+                    'Доп. контакт должен начинаться только с английских букв, например: Instagram: @user1';
                 }
                 // если всё корректно (сообщений нет)
                 else {
@@ -1210,7 +1210,7 @@
     addModalContactHiddenInput.setAttribute('value', 'phone'); // начальное значение, согласно textContent кнопки
     addModalContactHiddenInput.setAttribute('type', 'hidden');
     addModalContactHiddenInput.setAttribute('name', 'contact-type');
-    addModalContactInput.setAttribute('type', 'text');
+    addModalContactInput.setAttribute('type', 'tel');
     addModalContactInput.setAttribute('name', 'contact-data');
     addModalContactInput.setAttribute('placeholder', 'Введите данные контакта');
     addModalContactInput.setAttribute('required', '');
@@ -1365,9 +1365,23 @@
         }
       }
 
+      updateRowInputType(addModalContactInput, selectedItemValue); // обновление атрибута/значения "type" у/для инпута (кому возможно)
       updateDropItemPaddings(addModalContactList); // обновление/изменение отступов для li/вариантов выпадающего списка (для первого и последнего элементов)
       closeBtnDropdown(); // закрытие выпадающего списка
       addModalContactInput.focus(); // перевод фокуса на соседний инпут (после выбора в выпадающем списке)
+    }
+
+    function updateRowInputType(input, contactType) {
+      // объект для сопоставления (кому заменять, на какое значение)
+      const typeMapping = {
+        phone: 'tel',
+        'extra-phone': 'tel',
+        email: 'email',
+      };
+
+      // корректировка атрибута/значения "type" (или будет text)
+      const newType = typeMapping[contactType] || 'text';
+      input.setAttribute('type', newType);
     }
 
     function updateDropItemPaddings(dropList) {
