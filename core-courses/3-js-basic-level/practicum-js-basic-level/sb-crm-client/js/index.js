@@ -1126,6 +1126,7 @@
 
     addModalContactElement.classList.add(
       'modal__add-body-add-contact-element',
+      'modal-contact-element',
       'input-group'
     );
     addModalContactCustomSelect.classList.add(
@@ -1172,6 +1173,7 @@
     );
     addModalContactInput.classList.add(
       'modal__add-body-add-contact-input',
+      'modal-contact-input',
       'add-modal-input',
       'form-control'
     );
@@ -1431,6 +1433,33 @@
   addModalBodyAddBtn.addEventListener('click', () => {
     createAddModalContactsElement();
   });
+
+  // ** организация "УНИВЕРСАЛЬНОЙ" проверки на "пустые" row-контакты, перед закрытием того/иного модального окна (вывод сообщения)
+  function checkEmptyRowContacts(event) {
+    const allContactRows = document.querySelectorAll('.modal-contact-element');
+
+    // определение "пустых" контактов (формирование соответствующего массива)
+    const emptyContacts = Array.from(allContactRows).filter((row) => {
+      const internalInput = row.querySelector('.modal-contact-input');
+      return internalInput && internalInput.value.trim() === '';
+    });
+
+    // исключение закрытия/сворачивания модального окна (если есть "пустые" контакты)
+    if (emptyContacts.length > 0) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      // формирование/вывод сообщения в зависимости от количества контактов
+      const message =
+        emptyContacts.length === 1
+          ? 'Заполните "пустой" контакт или удалите!'
+          : `Заполните "пустые" контакты или удалите!`;
+
+      alert(message);
+    }
+  }
+
+  addModalWrap.addEventListener('hide.bs.modal', checkEmptyRowContacts); // запуск проверки на "пустые" контакты (перед закрытием add-модального окна)
 
   // ** удаление строки контактов в add-модальном окне (через "X" кнопку, с/без уточняющего сообщения)
   function deleteModalContactsElement(event) {
