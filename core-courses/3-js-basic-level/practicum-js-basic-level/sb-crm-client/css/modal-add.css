@@ -183,10 +183,6 @@
   color: var(--gray);
 }
 
-.add-modal-btn-margin {
-  margin-bottom: 15px;
-}
-
 .modal__add-body-add-contacts-wrap {
   display: flex;
   flex-direction: column;

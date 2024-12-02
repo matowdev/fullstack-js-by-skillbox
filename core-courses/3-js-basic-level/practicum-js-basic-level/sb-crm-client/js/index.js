@@ -352,6 +352,7 @@
   );
   addModalBodyAddContactsRowWrap.classList.add(
     'modal__add-body-add-contacts-row-wrap',
+    'modal-contacts-row-wrap',
     'd-none'
   );
   addModalBodyAddBtn.classList.add('modal__add-body-add-btn', 'modal-btn');
@@ -1262,7 +1263,7 @@
 
     // организация дополнительных отступов для "Добавить контакт" кнопки (при появлении строки контактов)
     if (addModalContactsArr.length === 0) {
-      addModalBodyAddBtn.classList.add('add-modal-btn-margin');
+      addModalBodyAddBtn.classList.add('modal-btn-margin');
     }
 
     // добавление "не большого" эффекта/задержки появления для "новой" строки контактов (элемента)
@@ -1477,6 +1478,42 @@
 
   addModalWrap.addEventListener('hidden.bs.modal', closeRowDropdown); // закрытие "возможно" раскрытого выпадающего списка контактов (при закрытие add-модального окна)
 
+  // ** удаление/очистка от невалидных row-контактов (при закрытии модального окна)
+  function removeInvalidRowContacts() {
+    const invalidContactRows = document.querySelectorAll(
+      '.modal-contact-element .is-invalid'
+    );
+
+    invalidContactRows.forEach((invalidInput) => {
+      const contactRow = invalidInput.closest('.modal-contact-element');
+      if (contactRow) {
+        contactRow.remove(); // удаление всего элемента/родителя
+
+        // корректировка массива контактов
+        const contactIndex = addModalContactsArr.indexOf(contactRow);
+        if (contactIndex > -1) {
+          addModalContactsArr.splice(contactIndex, 1);
+        }
+      }
+    });
+
+    // проверка общего количества row-контактов
+    if (addModalContactsArr.length < 10) {
+      addModalBodyAddBtn.disabled = false; // разблокировка кнопки "Добавить контакт", если меньше 10 контактов
+    }
+
+    // скрытие "обвёртки" контактов если в массиве контактов пусто
+    if (addModalContactsArr.length === 0) {
+      const addBodySelectWrap = document.querySelector(
+        '.modal-contacts-row-wrap'
+      );
+      addBodySelectWrap.classList.add('d-none');
+      addModalBodyAddBtn.classList.remove('modal-btn-margin'); // удаление дополнительных отступов
+    }
+  }
+
+  addModalWrap.addEventListener('hidden.bs.modal', removeInvalidRowContacts); // удаление/очистка от невалидных row-контактов (при закрытие add-модального окна)
+
   // ** удаление строки контактов в add-модальном окне (через "X" кнопку, с/без уточняющего сообщения)
   function deleteModalContactsElement(event) {
     const clickedContactsXBtn = event.target;
@@ -1522,7 +1559,7 @@
               '.modal__add-body-add-contacts-row-wrap'
             );
             addBodySelectWrap.classList.add('d-none');
-            addModalBodyAddBtn.classList.remove('add-modal-btn-margin');
+            addModalBodyAddBtn.classList.remove('modal-btn-margin');
           }
         }
       }
