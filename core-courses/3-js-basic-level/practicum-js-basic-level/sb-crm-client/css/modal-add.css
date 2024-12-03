@@ -304,7 +304,7 @@
   padding-bottom: 5px;
 }
 
-.modal__add-body-add-contact-item:focus-visible:not(:hover) {
+.modal__add-body-add-contact-item:focus-visible {
   color: var(--main-purple);
 }
 
@@ -424,7 +424,7 @@
     color: var(--cold-purple);
   }
 
-  .modal__add-body-add-contact-item:hover:not(:active) {
+  .modal__add-body-add-contact-item:hover:not(:focus-visible):not(:active) {
     background-color: var(--select-gray);
   }
 

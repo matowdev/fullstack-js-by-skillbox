@@ -1102,7 +1102,7 @@
   // остановка мониторинга (если более не требуется)
   // observer.disconnect();
 
-  // ** динамическое добавление строки контактов в add-модальном окне (по нажатию "Добавить контакт" кнопки)
+  // ** динамическое добавление строки контактов в add-модальном окне (по нажатию "Добавить контакт" кнопки, объёмная логика.. ряд "внутренних" функций)
   const addModalContactsArr = [];
 
   function createAddModalContactsElement() {
@@ -1325,7 +1325,7 @@
       nowClickedDropBtn.classList.toggle('arrow-rotate'); // переключение направления стрелки
       nowShowedDropList.classList.toggle('d-none'); // переключение видимости текущего списка
 
-      // переключение видимости
+      // переключение видимости у/для списков
       if (nowShowedDropList.classList.contains('d-none')) {
         nowClickedDropBtn.classList.remove('drop-open');
       } else {
@@ -1411,6 +1411,42 @@
       addModalContactDropBtn.blur(); // снятие фокуса с кнопки (после выбора)
     }
 
+    // автоматическое закрытие/скрытие развёрнутого выпадающего drop-списка (при работе НЕ с ним)
+    document.addEventListener('click', (event) => {
+      const openDropdown = document.querySelector('.drop-open');
+      if (openDropdown) {
+        const dropdownList = openDropdown.nextElementSibling;
+
+        // закрытие/скрытие выпадающего списка (если последующий "клик" не по нему, не по drop-кнопке)
+        if (
+          !openDropdown.contains(event.target) &&
+          !dropdownList.contains(event.target)
+        ) {
+          closeBtnDropdown(); // вызов соответствующей функции
+        }
+      }
+    });
+
+    addModalWrap.addEventListener('focusout', (event) => {
+      const openDropdown = document.querySelector('.drop-open');
+      if (openDropdown) {
+        const dropdownList = openDropdown.nextElementSibling;
+
+        // закрытие/скрытие выпадающего списка (если "фокус" перешёл на другой элемент, в другое место)
+        if (
+          !openDropdown.contains(event.relatedTarget) &&
+          !dropdownList.contains(event.relatedTarget)
+        ) {
+          closeBtnDropdown(); // вызов соответствующей функции
+        }
+      }
+    });
+
+    // исключение закрытия выпадающего списка (при работе с ним)
+    addModalContactList.addEventListener('click', (event) => {
+      event.stopPropagation();
+    });
+
     // вызов/инициализация tooltips для "X" кнопки (для кнопки удаления строки контактов)
     initTippy('.modal__add-body-add-x-btn', 'удалить контакт', 'top');
 
@@ -1460,23 +1496,6 @@
   }
 
   addModalWrap.addEventListener('hide.bs.modal', checkEmptyRowContacts); // запуск проверки на "пустые" контакты (перед закрытием add-модального окна)
-
-  // ** организация закрытия развёрнутого/раскрытого выпадающего списка row-контактов (при закрытии модального окна)
-  function closeRowDropdown() {
-    const openRowDropdownBtn = document.querySelector('.drop-open');
-    if (openRowDropdownBtn) {
-      const dropdownList = openRowDropdownBtn.nextElementSibling; // определение следом идущего списка
-      if (
-        dropdownList &&
-        dropdownList.classList.contains('modal-contact-list')
-      ) {
-        dropdownList.classList.add('d-none'); // закрытие списка
-        openRowDropdownBtn.classList.remove('arrow-rotate', 'drop-open'); // корректировка кнопки
-      }
-    }
-  }
-
-  addModalWrap.addEventListener('hidden.bs.modal', closeRowDropdown); // закрытие "возможно" раскрытого выпадающего списка контактов (при закрытие add-модального окна)
 
   // ** удаление/очистка от невалидных row-контактов (при закрытии модального окна)
   function removeInvalidRowContacts() {
