@@ -1304,23 +1304,15 @@
       isDropdownToggleAllowed = false;
       setTimeout(() => (isDropdownToggleAllowed = true), 200);
 
-      const nowClickedDropBtn = event.currentTarget; // фиксация нажатой drop-кнопки
-      const nowShowedDropList = nowClickedDropBtn.nextElementSibling; // фиксация выпадающего списка (следующего за drop-кнопкой)
+      const alreadyOpenDropBtn = document.querySelector('.drop-open'); // фиксация открытого/уже списка (согласно drop-кнопки)
+      const nowClickedDropBtn = event.currentTarget; // фиксация нажатой drop-кнопки (сейчас)
 
-      // проверка на уже открытый выпадающий список (закрытие)
-      const alreadyOpenDropBtn = document.querySelector('.drop-open');
-
+      // закрытие ранее открытого выпадающего списка (если такой был)
       if (alreadyOpenDropBtn && alreadyOpenDropBtn !== nowClickedDropBtn) {
-        const alreadyOpenDropList = alreadyOpenDropBtn.nextElementSibling;
-        alreadyOpenDropBtn.classList.remove('arrow-rotate', 'drop-open');
-
-        if (
-          alreadyOpenDropList &&
-          alreadyOpenDropList.classList.contains('modal-contact-list')
-        ) {
-          alreadyOpenDropList.classList.add('d-none'); // закрытие ранее открытого списка
-        }
+        closeBtnDropdown();
       }
+
+      const nowShowedDropList = nowClickedDropBtn.nextElementSibling; // фиксация "ново-открытого" выпадающего списка (согласно drop-кнопки)
 
       nowClickedDropBtn.classList.toggle('arrow-rotate'); // переключение направления стрелки
       nowShowedDropList.classList.toggle('d-none'); // переключение видимости текущего списка
@@ -1406,39 +1398,40 @@
     }
 
     function closeBtnDropdown() {
-      addModalContactList.classList.add('d-none'); // скрытие выпадающего списка
-      addModalContactDropBtn.classList.remove('arrow-rotate'); // возврат направления стрелки
-      addModalContactDropBtn.blur(); // снятие фокуса с кнопки (после выбора)
+      const openDropdownBtn = document.querySelector('.drop-open'); // фиксация "открывающей" drop-кнопки
+
+      if (openDropdownBtn) {
+        const dropdownList = openDropdownBtn.nextElementSibling; // фиксация выпадающего списка
+        openDropdownBtn.classList.remove('arrow-rotate', 'drop-open'); // возврат направления стрелки, удаление "открывающего" класса
+        dropdownList.classList.add('d-none'); // скрытие выпадающего списка
+        openDropdownBtn.blur(); // снятие фокуса с кнопки (после выбора)
+      }
     }
 
     // автоматическое закрытие/скрытие развёрнутого выпадающего drop-списка (при работе НЕ с ним)
     document.addEventListener('click', (event) => {
-      const openDropdown = document.querySelector('.drop-open');
-      if (openDropdown) {
-        const dropdownList = openDropdown.nextElementSibling;
+      const openDropdownBtn = document.querySelector('.drop-open');
 
-        // закрытие/скрытие выпадающего списка (если последующий "клик" не по нему, не по drop-кнопке)
-        if (
-          !openDropdown.contains(event.target) &&
-          !dropdownList.contains(event.target)
-        ) {
-          closeBtnDropdown(); // вызов соответствующей функции
-        }
+      // закрытие/скрытие выпадающего списка (если последующий "клик" не по нему, не по drop-кнопке)
+      if (
+        openDropdownBtn &&
+        !openDropdownBtn.contains(event.target) &&
+        !openDropdownBtn.nextElementSibling.contains(event.target)
+      ) {
+        closeBtnDropdown(); // вызов соответствующей функции
       }
     });
 
     addModalWrap.addEventListener('focusout', (event) => {
-      const openDropdown = document.querySelector('.drop-open');
-      if (openDropdown) {
-        const dropdownList = openDropdown.nextElementSibling;
+      const openDropdownBtn = document.querySelector('.drop-open');
 
-        // закрытие/скрытие выпадающего списка (если "фокус" перешёл на другой элемент, в другое место)
-        if (
-          !openDropdown.contains(event.relatedTarget) &&
-          !dropdownList.contains(event.relatedTarget)
-        ) {
-          closeBtnDropdown(); // вызов соответствующей функции
-        }
+      // закрытие/скрытие выпадающего списка (если "фокус" перешёл на другой элемент, в другое место)
+      if (
+        openDropdownBtn &&
+        !openDropdownBtn.contains(event.relatedTarget) &&
+        !openDropdownBtn.nextElementSibling.contains(event.relatedTarget)
+      ) {
+        closeBtnDropdown(); // вызов соответствующей функции
       }
     });
 
