@@ -1440,8 +1440,10 @@
       event.stopPropagation();
     });
 
-    // вызов/инициализация tooltips для "X" кнопки (для кнопки удаления строки контактов)
-    initTippy('.modal__add-body-add-x-btn', 'удалить контакт', 'top');
+    // вызов/инициализация tooltips для "X" кнопки (для кнопки удаления строки контактов, с задержкой)
+    setTimeout(() => {
+      initTippy(addModalContactXBtn, 'удалить контакт', 'top');
+    }, 0);
 
     // организация удаления строки контактов
     addModalContactXBtn.addEventListener('click', (event) => {
@@ -1528,15 +1530,22 @@
 
   // ** удаление строки контактов в add-модальном окне (через "X" кнопку, с/без уточняющего сообщения)
   function deleteModalContactsElement(event) {
-    const clickedContactsXBtn = event.target;
+    const clickedContactsXBtn = event.currentTarget; // получение ИМЕННО кнопки, а не/может внутренней иконки (согласно "размазанного" события)
 
-    if (clickedContactsXBtn.classList.contains('add-modal-delete-btn')) {
+    if (clickedContactsXBtn) {
+      tippy.hideAll(); // предварительное скрытие всех/вдруг "активных" tooltips (перед удалением искомой строки)
+
       // фиксация родительского элемента
       const modalContactsElement = clickedContactsXBtn.closest(
         '.modal__add-body-add-contact-element'
       );
 
       if (modalContactsElement) {
+        // удаление/исключение привязанного tooltip (к конкретной строке/кнопке)
+        if (clickedContactsXBtn._tippy) {
+          clickedContactsXBtn._tippy.destroy();
+        }
+
         // определение заполненности инпута в данной строке контакта
         const currentInput = modalContactsElement.querySelector(
           '.modal__add-body-add-contact-input'
@@ -1580,27 +1589,36 @@
 
   // ** дополнительная/местная организация логики для tooltips (т.е. помимо customTippy.js)
   function initTippy(selector, content, side) {
+    // определение входящего элемента (селектор или DOM-элемент, поиск/корректировка)
+    const elements =
+      typeof selector === 'string'
+        ? document.querySelectorAll(selector)
+        : [selector];
+
     if (typeof tippy === 'function') {
-      tippy(selector, {
-        content: content,
-        theme: 'main',
-        delay: [50, 0],
-        offset: [0, 13],
-        placement: side,
-        animation: 'scale', // анимация появления/скрытия (через дополнительный файл/подключение)
-        trigger: 'mouseenter', // только по наведению мыши (исключение вывода по клику, в другом месте)
+      elements.forEach((el) => {
+        if (!el._tippy) {
+          tippy(el, {
+            content,
+            theme: 'main',
+            delay: [50, 0],
+            offset: [0, 13],
+            placement: side,
+            animation: 'scale', // анимация появления/скрытия (через дополнительный файл/подключение)
+            trigger: 'mouseenter', // только по наведению мыши (исключение вывода по клику, в другом месте)
 
-        onShow(instance) {
-          setTimeout(() => {
-            instance.hide(); // автоматическое скрытие (по истечению времени)
-          }, 1000);
-        },
+            onShow(instance) {
+              setTimeout(() => instance.hide(), 1000); // автоматическое скрытие (по истечению времени)
+            },
 
-        // точечная корректировка стилей (для "стрелки" подсказки)
-        onMount(instance) {
-          const arrowElement = instance.popper.querySelector('.tippy-arrow');
-          arrowElement.style.marginBottom = '-1px';
-        },
+            // точечная корректировка стилей (для "стрелки" подсказки)
+            onMount(instance) {
+              const arrowElement =
+                instance.popper.querySelector('.tippy-arrow');
+              arrowElement.style.marginBottom = '-1px';
+            },
+          });
+        }
       });
     } else {
       console.error('Tippy.js is not loaded!');
