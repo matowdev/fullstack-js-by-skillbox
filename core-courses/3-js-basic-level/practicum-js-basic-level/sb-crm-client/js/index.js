@@ -1342,7 +1342,18 @@
 
     function getContactDropSelection(target) {
       const selectedItemValue = target.getAttribute('data-value');
-      const previousItemValue = addModalContactHiddenInput.value;
+      const previousItemValue = addModalContactHiddenInput.value; // фиксация скрытого значения
+
+      // обработка смены/типа контакта (если/с одного "вдруг" на другой решили)
+      if (
+        !changeContactRowType(
+          addModalContactInput,
+          selectedItemValue,
+          previousItemValue
+        )
+      ) {
+        return; // исключение корректировки, если/в confirm отмена
+      }
 
       addModalContactDropBtn.textContent = target.textContent;
       addModalContactHiddenInput.value = selectedItemValue; // обновление данных в "скрытом" input (для последующей отправки на сервер)
@@ -1363,19 +1374,6 @@
       updateDropItemPaddings(addModalContactList); // обновление/изменение отступов для li/вариантов выпадающего списка (для первого и последнего элементов)
       closeBtnDropdown(); // закрытие выпадающего списка
       addModalContactInput.focus(); // перевод фокуса на соседний инпут (после выбора в выпадающем списке)
-    }
-
-    function updateRowInputType(input, contactType) {
-      // объект для сопоставления (кому заменять, на какое значение)
-      const typeMapping = {
-        phone: 'tel',
-        'extra-phone': 'tel',
-        email: 'email',
-      };
-
-      // корректировка атрибута/значения "type" (или будет text)
-      const newType = typeMapping[contactType] || 'text';
-      input.setAttribute('type', newType);
     }
 
     function updateDropItemPaddings(dropList) {
@@ -1464,6 +1462,69 @@
   addModalBodyAddBtn.addEventListener('click', () => {
     createAddModalContactsElement();
   });
+
+  // ** организация замены выбора/типа row-контакта, после начала/внесения данных в инпут (вывод уточняющего сообщения)
+  function changeContactRowType(input, newType, previousType) {
+    const inputCurrentValue = input.value.trim();
+
+    // определение типов контактов, которые схожи/одного формата (замена без изменений)
+    const phoneTypes = ['phone', 'extra-phone'];
+
+    // проверка на схожий/один формат (просто сообщение о смене)
+    if (phoneTypes.includes(previousType) && phoneTypes.includes(newType)) {
+      if (inputCurrentValue) {
+        alert(
+          `Тип контакта: "${
+            previousType === 'phone' ? 'Телефон' : 'Доп. телефон'
+          }" меняется на "${newType === 'phone' ? 'Телефон' : 'Доп. телефон'}".`
+        );
+      }
+      return true; // завершить без подтверждения
+    }
+
+    // если row-инпут не "пустой" запрос на подтверждение действий
+    if (inputCurrentValue) {
+      const userConfirmed = confirm(
+        'Изменить тип контакта? Разные форматы! Внесённые ранее данные будут удалены.. продолжить?'
+      );
+      if (!userConfirmed) {
+        return false; // отмена изменений
+      }
+
+      input.value = ''; // очистка инпута
+    }
+
+    // очистка от уведомлений на некорректный ввод/валидации (от предыдущих типов, кроме схожих/телефонов)
+    if (
+      !phoneTypes.includes(newType) ||
+      (phoneTypes.includes(newType) && !phoneTypes.includes(previousType))
+    ) {
+      const feedback = input
+        .closest('.modal-contact-element')
+        .querySelector('.invalid-feedback');
+      if (feedback) {
+        feedback.textContent = ''; // удаление сообщений
+      }
+      input.classList.remove('is-invalid'); // исключение классов ошибки
+    }
+
+    updateRowInputType(input, newType); // обновление атрибута/значения "type" у/дя инпута (нового выбора)
+    return true; // факт завершения
+  }
+
+  // ** обновление атрибута/значения "type" у/для row-инпута (кому возможно, после выбора)
+  function updateRowInputType(input, contactType) {
+    // объект для сопоставления (кому заменять, на какое значение)
+    const typeMapping = {
+      phone: 'tel',
+      'extra-phone': 'tel',
+      email: 'email',
+    };
+
+    // корректировка атрибута/значения "type" (или будет text)
+    const newType = typeMapping[contactType] || 'text';
+    input.setAttribute('type', newType);
+  }
 
   // ** организация проверки на "пустые" row-контакты, перед закрытием модального окна (вывод сообщения)
   function checkEmptyRowContacts(event) {
