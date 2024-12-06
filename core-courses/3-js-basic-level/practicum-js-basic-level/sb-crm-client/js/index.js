@@ -579,7 +579,7 @@
 
                 // исключение недопустимых символов (вообще)
                 target.value = target.value.replace(
-                  /[=+,!?%#$^&:{}()<>|"'*/\\]/g,
+                  /[=+,`~!?%#$^&:{}()<>|"'*/\\]/g,
                   ''
                 );
 
@@ -1102,7 +1102,7 @@
   // остановка мониторинга (если более не требуется)
   // observer.disconnect();
 
-  // ** динамическое добавление строки контактов в add-модальном окне (по нажатию "Добавить контакт" кнопки, объёмная логика.. ряд "внутренних" функций)
+  // ** динамическое добавление строки контактов в add-модальном окне (по нажатию "Добавить контакт" кнопки)
   const addModalContactsArr = [];
 
   function createAddModalContactsElement() {
@@ -1326,85 +1326,31 @@
       }
     });
 
-    // замена/обновление содержимого/контента кнопки, так и через TAB/Enter (согласно значений li/вариантов)
+    // замена/обновление содержимого/контента кнопки, так.. и через TAB/Enter (согласно значений li/вариантов)
     addModalContactList.addEventListener('click', (event) => {
       if (event.target.tagName === 'LI') {
-        getContactDropSelection(event.target); // отработка выбора
+        getContactDropSelection(
+          event.target,
+          addModalContactDropBtn,
+          addModalContactList,
+          addModalContactHiddenInput,
+          addModalContactInput
+        ); // отработка выбора
       }
     });
 
     addModalContactList.addEventListener('keydown', (event) => {
       if (event.target.tagName === 'LI' && event.key === 'Enter') {
         event.preventDefault(); // исключение непредвиденных событий/поведения
-        getContactDropSelection(event.target); // отработка выбора
+        getContactDropSelection(
+          event.target,
+          addModalContactDropBtn,
+          addModalContactList,
+          addModalContactHiddenInput,
+          addModalContactInput
+        ); // отработка выбора
       }
     });
-
-    function getContactDropSelection(target) {
-      const selectedItemValue = target.getAttribute('data-value');
-      const previousItemValue = addModalContactHiddenInput.value; // фиксация скрытого значения
-
-      // обработка смены/типа контакта (если/с одного "вдруг" на другой решили)
-      if (
-        !changeContactRowType(
-          addModalContactInput,
-          selectedItemValue,
-          previousItemValue
-        )
-      ) {
-        return; // исключение корректировки, если/в confirm отмена
-      }
-
-      addModalContactDropBtn.textContent = target.textContent;
-      addModalContactHiddenInput.value = selectedItemValue; // обновление данных в "скрытом" input (для последующей отправки на сервер)
-
-      target.style.display = 'none'; // скрытие li/варианта в выпадающем списке (т.е. после выбора, отображения в drop-btn)
-
-      // отображение/снова li/варианта (т.е. до этого скрытого)
-      if (previousItemValue) {
-        const previousItem = addModalContactList.querySelector(
-          `[data-value="${previousItemValue}"]`
-        );
-        if (previousItem) {
-          previousItem.style.display = ''; // сброс display: none;
-        }
-      }
-
-      updateRowInputType(addModalContactInput, selectedItemValue); // обновление атрибута/значения "type" у/для инпута (кому возможно)
-      updateDropItemPaddings(addModalContactList); // обновление/изменение отступов для li/вариантов выпадающего списка (для первого и последнего элементов)
-      closeBtnDropdown(); // закрытие выпадающего списка
-      addModalContactInput.focus(); // перевод фокуса на соседний инпут (после выбора в выпадающем списке)
-    }
-
-    function updateDropItemPaddings(dropList) {
-      Array.from(dropList.children).forEach((item) => {
-        item.classList.remove('first-visible', 'last-visible'); // изначальная очистка от дополнительных классов
-      });
-
-      // фиксация li/вариантов находящихся "сейчас" в выпадающем списке
-      const visibleDropItems = Array.from(dropList.children).filter(
-        (item) => item.style.display !== 'none'
-      );
-
-      // добавление отступов (для первого/последнего элементов списка)
-      if (visibleDropItems.length > 0) {
-        const firstVisibleItem = visibleDropItems[0];
-        const lastVisibleItem = visibleDropItems[visibleDropItems.length - 1];
-        firstVisibleItem.classList.add('first-visible');
-        lastVisibleItem.classList.add('last-visible');
-      }
-    }
-
-    function closeBtnDropdown() {
-      const openDropdownBtn = document.querySelector('.drop-open'); // фиксация "открывающей" drop-кнопки
-
-      if (openDropdownBtn) {
-        const dropdownList = openDropdownBtn.nextElementSibling; // фиксация выпадающего списка
-        openDropdownBtn.classList.remove('arrow-rotate', 'drop-open'); // возврат направления стрелки, удаление "открывающего" класса
-        dropdownList.classList.add('d-none'); // скрытие выпадающего списка
-        openDropdownBtn.blur(); // снятие фокуса с кнопки (после выбора)
-      }
-    }
 
     // автоматическое закрытие/скрытие развёрнутого выпадающего drop-списка (при работе НЕ с ним)
     document.addEventListener('click', (event) => {
@@ -1463,7 +1409,92 @@
     createAddModalContactsElement();
   });
 
-  // ** организация замены выбора/типа row-контакта, после начала/внесения данных в инпут (вывод уточняющего сообщения)
+  // ** обработка выбора/типа модального row-контакта из li/вариантов выпадающего drop-списка (замена/обновление содержимого/контента drop-кнопки, ряд других действий)
+  function getContactDropSelection(
+    target,
+    dropBtn,
+    contactList,
+    hiddenInput,
+    contactInput
+  ) {
+    const selectedItemValue = target.getAttribute('data-value');
+    const previousItemValue = hiddenInput.value; // фиксация скрытого значения
+
+    // обработка смены/типа контакта (если/с одного "вдруг" на другой решили)
+    if (
+      !changeContactRowType(contactInput, selectedItemValue, previousItemValue)
+    ) {
+      return; // исключение корректировки, если/в confirm отмена
+    }
+
+    dropBtn.textContent = target.textContent;
+    hiddenInput.value = selectedItemValue; // обновление данных в "скрытом" input (для последующей отправки на сервер)
+
+    target.style.display = 'none'; // скрытие li/варианта в выпадающем списке (т.е. после выбора, отображения в drop-btn)
+
+    // отображение/снова li/варианта (т.е. до этого скрытого)
+    if (previousItemValue) {
+      const previousItem = contactList.querySelector(
+        `[data-value="${previousItemValue}"]`
+      );
+      if (previousItem) {
+        previousItem.style.display = ''; // сброс display: none;
+      }
+    }
+
+    updateRowInputType(contactInput, selectedItemValue); // обновление атрибута/значения "type" у/для инпута (кому возможно)
+    updateDropItemPaddings(contactList); // обновление/изменение отступов для li/вариантов выпадающего списка (для первого и последнего элементов)
+    closeBtnDropdown(); // закрытие выпадающего списка
+    contactInput.focus(); // перевод фокуса на соседний инпут (после выбора в выпадающем списке)
+  }
+
+  // ** обновление атрибута/значения "type" у/для модального row-инпута (кому возможно, после выбора)
+  function updateRowInputType(input, contactType) {
+    // объект для сопоставления (кому заменять, на какое значение)
+    const typeMapping = {
+      phone: 'tel',
+      'extra-phone': 'tel',
+      email: 'email',
+    };
+
+    // корректировка атрибута/значения "type" (или будет text)
+    const newType = typeMapping[contactType] || 'text';
+    input.setAttribute('type', newType);
+  }
+
+  // ** обновление/изменение отступов для модальных li/вариантов выпадающего row-списка (для первого и последнего элементов)
+  function updateDropItemPaddings(dropList) {
+    Array.from(dropList.children).forEach((item) => {
+      item.classList.remove('first-visible', 'last-visible'); // изначальная очистка от дополнительных классов
+    });
+
+    // фиксация li/вариантов находящихся "сейчас" в выпадающем списке
+    const visibleDropItems = Array.from(dropList.children).filter(
+      (item) => item.style.display !== 'none'
+    );
+
+    // добавление отступов (для первого/последнего элементов списка)
+    if (visibleDropItems.length > 0) {
+      const firstVisibleItem = visibleDropItems[0];
+      const lastVisibleItem = visibleDropItems[visibleDropItems.length - 1];
+      firstVisibleItem.classList.add('first-visible');
+      lastVisibleItem.classList.add('last-visible');
+    }
+  }
+
+  // ** организация закрытия/скрытия выпадающего row-списка в модальном окне (снятие фокуса)
+  function closeBtnDropdown() {
+    const openDropdownBtn = document.querySelector('.drop-open'); // фиксация "открывающей" drop-кнопки
+
+    if (openDropdownBtn) {
+      const dropdownList = openDropdownBtn.nextElementSibling; // фиксация выпадающего списка
+      openDropdownBtn.classList.remove('arrow-rotate', 'drop-open'); // возврат направления стрелки, удаление "открывающего" класса
+      dropdownList.classList.add('d-none'); // скрытие выпадающего списка
+      openDropdownBtn.blur(); // снятие фокуса с кнопки (после выбора)
+    }
+  }
+
+  // ** организация замены выбора/типа модального row-контакта, после начала/внесения данных в инпут (вывод уточняющего сообщения)
   function changeContactRowType(input, newType, previousType) {
     const inputCurrentValue = input.value.trim();
 
@@ -1512,18 +1543,63 @@
     return true; // факт завершения
   }
 
-  // ** обновление атрибута/значения "type" у/для row-инпута (кому возможно, после выбора)
-  function updateRowInputType(input, contactType) {
-    // объект для сопоставления (кому заменять, на какое значение)
-    const typeMapping = {
-      phone: 'tel',
-      'extra-phone': 'tel',
-      email: 'email',
-    };
+  // ** удаление строки row-контактов в модальном окне (через "X" кнопку, с/без уточняющего сообщения)
+  function deleteModalContactsElement(event) {
+    const clickedContactsXBtn = event.currentTarget; // получение ИМЕННО кнопки, а не/может внутренней иконки (согласно "размазанного" события)
 
-    // корректировка атрибута/значения "type" (или будет text)
-    const newType = typeMapping[contactType] || 'text';
-    input.setAttribute('type', newType);
+    if (clickedContactsXBtn) {
+      tippy.hideAll(); // предварительное скрытие всех/вдруг "активных" tooltips (перед удалением искомой строки)
+
+      // фиксация родительского элемента
+      const modalContactsElement = clickedContactsXBtn.closest(
+        '.modal__add-body-add-contact-element'
+      );
+
+      if (modalContactsElement) {
+        // удаление/исключение привязанного tooltip (к конкретной строке/кнопке)
+        if (clickedContactsXBtn._tippy) {
+          clickedContactsXBtn._tippy.destroy();
+        }
+
+        // определение заполненности инпута в данной строке контакта
+        const currentInput = modalContactsElement.querySelector(
+          '.modal__add-body-add-contact-input'
+        );
+        const isCurrentInputFilled =
+          currentInput && currentInput.value.trim() !== '';
+        let confirmed = true; // изначально подтверждение/confirm не требуется
+
+        if (isCurrentInputFilled) {
+          confirmed = confirm('Вы действительно хотите удалить этот контакт?'); // если/есть данные в инпуте, то тогда confirm/подтверждение при удалении
+        }
+
+        if (confirmed) {
+          modalContactsElement.remove(); // удаление строки контактов
+
+          // удаление строки контактов и из массива
+          const contactIndex =
+            addModalContactsArr.indexOf(modalContactsElement);
+          if (contactIndex > -1) addModalContactsArr.splice(contactIndex, 1);
+
+          // проверка на количество элементов в массиве, меньше 10.. возврат возможности прожатия кнопки "Добавить контакт"
+          if (addModalContactsArr.length < 10) {
+            addModalBodyAddBtn.disabled = false;
+          }
+
+          // проверка на количество строк контактов (нет, скрытие обвёртки/родителя и удаление дополнительных отступов)
+          if (
+            document.querySelectorAll('.modal__add-body-add-contact-element')
+              .length === 0
+          ) {
+            const addBodySelectWrap = document.querySelector(
+              '.modal__add-body-add-contacts-row-wrap'
+            );
+            addBodySelectWrap.classList.add('d-none');
+            addModalBodyAddBtn.classList.remove('modal-btn-margin');
+          }
+        }
+      }
+    }
   }
 
   // ** организация проверки на "пустые" row-контакты, перед закрытием модального окна (вывод сообщения)
@@ -1588,65 +1664,6 @@
   }
 
   addModalWrap.addEventListener('hidden.bs.modal', removeInvalidRowContacts); // удаление/очистка от невалидных row-контактов (при закрытие add-модального окна)
-
-  // ** удаление строки контактов в add-модальном окне (через "X" кнопку, с/без уточняющего сообщения)
-  function deleteModalContactsElement(event) {
-    const clickedContactsXBtn = event.currentTarget; // получение ИМЕННО кнопки, а не/может внутренней иконки (согласно "размазанного" события)
-
-    if (clickedContactsXBtn) {
-      tippy.hideAll(); // предварительное скрытие всех/вдруг "активных" tooltips (перед удалением искомой строки)
-
-      // фиксация родительского элемента
-      const modalContactsElement = clickedContactsXBtn.closest(
-        '.modal__add-body-add-contact-element'
-      );
-
-      if (modalContactsElement) {
-        // удаление/исключение привязанного tooltip (к конкретной строке/кнопке)
-        if (clickedContactsXBtn._tippy) {
-          clickedContactsXBtn._tippy.destroy();
-        }
-
-        // определение заполненности инпута в данной строке контакта
-        const currentInput = modalContactsElement.querySelector(
-          '.modal__add-body-add-contact-input'
-        );
-        const isCurrentInputFilled =
-          currentInput && currentInput.value.trim() !== '';
-        let confirmed = true; // изначально подтверждение/confirm не требуется
-
-        if (isCurrentInputFilled) {
-          confirmed = confirm('Вы действительно хотите удалить этот контакт?'); // если/есть данные в инпуте, то тогда confirm/подтверждение при удалении
-        }
-
-        if (confirmed) {
-          modalContactsElement.remove(); // удаление строки контактов
-
-          // удаление строки контактов и из массива
-          const contactIndex =
-            addModalContactsArr.indexOf(modalContactsElement);
-          if (contactIndex > -1) addModalContactsArr.splice(contactIndex, 1);
-
-          // проверка на количество элементов в массиве, меньше 10.. возврат возможности прожатия кнопки "Добавить контакт"
-          if (addModalContactsArr.length < 10) {
-            addModalBodyAddBtn.disabled = false;
-          }
-
-          // проверка на количество строк контактов (нет, скрытие обвёртки/родителя и удаление дополнительных отступов)
-          if (
-            document.querySelectorAll('.modal__add-body-add-contact-element')
-              .length === 0
-          ) {
-            const addBodySelectWrap = document.querySelector(
-              '.modal__add-body-add-contacts-row-wrap'
-            );
-            addBodySelectWrap.classList.add('d-none');
-            addModalBodyAddBtn.classList.remove('modal-btn-margin');
-          }
-        }
-      }
-    }
-  }
 
   // ** дополнительная/местная организация логики для tooltips (т.е. помимо customTippy.js)
   function initTippy(selector, content, side) {
