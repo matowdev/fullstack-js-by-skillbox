@@ -1550,9 +1550,13 @@
     if (clickedContactsXBtn) {
       tippy.hideAll(); // предварительное скрытие всех/вдруг "активных" tooltips (перед удалением искомой строки)
 
-      // фиксация родительского элемента
+      // фиксация родительского элемента/"всей" строки контакта
       const modalContactsElement = clickedContactsXBtn.closest(
         '.modal__add-body-add-contact-element'
+      );
+      // фиксация инпута в данной строке контакта (в родительском элементе)
+      const currentInput = modalContactsElement.querySelector(
+        '.modal__add-body-add-contact-input'
       );
 
       if (modalContactsElement) {
@@ -1561,10 +1565,6 @@
           clickedContactsXBtn._tippy.destroy();
         }
 
-        // определение заполненности инпута в данной строке контакта
-        const currentInput = modalContactsElement.querySelector(
-          '.modal__add-body-add-contact-input'
-        );
         const isCurrentInputFilled =
           currentInput && currentInput.value.trim() !== '';
         let confirmed = true; // изначально подтверждение/confirm не требуется
@@ -1597,6 +1597,8 @@
             addBodySelectWrap.classList.add('d-none');
             addModalBodyAddBtn.classList.remove('modal-btn-margin');
           }
+        } else {
+          currentInput.focus(); // возврат фокуса искомому инпуту (после отмены удаления в confirm)
         }
       }
     }
