@@ -286,7 +286,8 @@
   );
   addModalBodySurnameInput.classList.add(
     'modal__add-body-input',
-    'add-surname-input',
+    'modal-main-input',
+    'modal-surname-input',
     'add-modal-input',
     'form-control'
   );
@@ -310,7 +311,8 @@
   );
   addModalBodyNameInput.classList.add(
     'modal__add-body-input',
-    'add-name-input',
+    'modal-main-input',
+    'modal-name-input',
     'add-modal-input',
     'form-control'
   );
@@ -334,7 +336,8 @@
   );
   addModalBodyPatronymicInput.classList.add(
     'modal__add-body-input',
-    'add-patronymic-input',
+    'modal-main-input',
+    'modal-patronymic-input',
     'add-modal-input',
     'form-control'
   );
@@ -493,7 +496,7 @@
       .classList.toggle('show-search-input');
   });
 
-  // ** организация "ОБЩЕЙ" логики для валидации полей ввода/инпутов (согласно передаваемых параметров)
+  // ** организация "общей/универсальной" логики для валидации полей ввода/инпутов (согласно передаваемых параметров)
   function addInputsValidation(inputs, options) {
     inputs.forEach((input) =>
       input.addEventListener('input', (event) => {
@@ -519,7 +522,7 @@
         // проверки для полей ввода/инпутов из "динамической" строки контактов (согласно type="" значений)
         if (options.dynamicContactValidation) {
           const hiddenInput = targetParentNode.querySelector(
-            '.modal__add-body-add-hidden-input'
+            '.modal-hidden-input'
           );
 
           if (hiddenInput) {
@@ -982,11 +985,11 @@
             );
           }
 
+          // дополнительная/опциональная проверка для инпутов, обработка дефисов
           if (options.singleHyphen) {
-            // дополнительная проверка для двух инпутов (дефисы недопустимы)
             if (
-              target.classList.contains('add-name-input') ||
-              target.classList.contains('add-patronymic-input')
+              target.classList.contains('modal-name-input') ||
+              target.classList.contains('modal-patronymic-input')
             ) {
               if (/-/.test(target.value)) {
                 errors.push('Дефисы НЕдопустимы!');
@@ -1003,9 +1006,9 @@
             }
           }
 
-          // дополнительная проверка для "modal__add-body-input" (пробелы недопустимы)
+          // дополнительная/опциональная проверка для инпутов, обработка пробелов
           if (
-            target.classList.contains('modal__add-body-input') &&
+            target.classList.contains('modal-main-input') &&
             /\s/.test(target.value)
           ) {
             errors.push('Пробелы НЕдопустимы!');
@@ -1037,9 +1040,7 @@
   });
 
   // добавление валидации для ввода данных/в модальном окне (при добавлении нового/клиента)
-  const allAddModalFormInputs = document.querySelectorAll(
-    '.modal__add-body-input'
-  );
+  const allAddModalFormInputs = document.querySelectorAll('.modal-main-input');
   addInputsValidation(allAddModalFormInputs, {
     allowOnlyRussian: true,
     singleHyphen: true,
@@ -1171,7 +1172,8 @@
       'add-modal-extra-contact-item'
     );
     addModalContactHiddenInput.classList.add(
-      'modal__add-body-add-hidden-input'
+      'modal__add-body-add-hidden-input',
+      'modal-hidden-input'
     );
     addModalContactInput.classList.add(
       'modal__add-body-add-contact-input',
