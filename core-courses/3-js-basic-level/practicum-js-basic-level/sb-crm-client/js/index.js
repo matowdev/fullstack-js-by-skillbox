@@ -231,260 +231,29 @@
   outputTable.append(outTableHead, outTableBody);
   crmOutputContainer.append(outputTitleWrap, outputTable);
 
-  // организация кнопки/модального окна для добавления клиентов (удаления/изменения)
+  // организация кнопки для добавления "нового" клиента (последующее открытие модального окна)
   const addBtnWrap = document.createElement('div');
   const addBtn = document.createElement('button');
   const addBtnIcon = document.createElement('i');
-  const addModalWrap = document.createElement('div');
-  const addModalDialog = document.createElement('div');
-  const addModalContent = document.createElement('div');
-  const addModalHeader = document.createElement('div');
-  const addModalHeaderTitle = document.createElement('h1');
-  const addModalHeaderXBtn = document.createElement('button');
-  const addModalBody = document.createElement('div');
-  const addModalBodyForm = document.createElement('form');
-  const addModalBodyInputsWrap = document.createElement('div');
-  const addModalBodySurnameInputWrap = document.createElement('div');
-  const addModalBodySurnameInput = document.createElement('input');
-  const addModalBodySurnameInputLabel = document.createElement('label');
-  const addModalBodySurnameLabelSpan = document.createElement('span');
-  const addModalBodySurnameFeedback = document.createElement('div');
-  const addModalBodyNameInputWrap = document.createElement('div');
-  const addModalBodyNameInput = document.createElement('input');
-  const addModalBodyNameInputLabel = document.createElement('label');
-  const addModalBodyNameInputLabelSpan = document.createElement('span');
-  const addModalBodyNameFeedback = document.createElement('div');
-  const addModalBodyPatronymicInputWrap = document.createElement('div');
-  const addModalBodyPatronymicInput = document.createElement('input');
-  const addModalBodyPatronymicInputLabel = document.createElement('label');
-  const addModalBodyPatronymicFeedback = document.createElement('div');
-  const addModalBodyAddContactsWrap = document.createElement('div');
-  const addModalBodyAddContactsRowWrap = document.createElement('div');
-  const addModalBodyAddBtn = document.createElement('button');
-  const addModalBodyAddBtnIconStroke = document.createElement('i');
-  const addModalBodyAddBtnIconFill = document.createElement('i');
-  const addModalBodySaveBtn = document.createElement('button');
-  const addModalFooter = document.createElement('div');
-  const addModalFooterCancelBtn = document.createElement('button');
 
   addBtnWrap.classList.add('crm__add-btn-wrap');
   addBtn.classList.add('crm__add-btn');
   addBtnIcon.classList.add('crm__add-btn-icon', 'bi', 'bi-person-plus-fill');
-  addModalWrap.classList.add('modal', 'crm__add-btn-modal', 'fade');
-  addModalDialog.classList.add('modal__add-dialog', 'modal-dialog');
-  addModalContent.classList.add('modal__add-content-wrap', 'modal-content');
-  addModalHeader.classList.add('modal__add-header', 'modal-header');
-  addModalHeaderTitle.classList.add('modal__add-header-title', 'modal-title');
-  addModalHeaderXBtn.classList.add('modal__add-header-x-btn', 'btn-close');
-  addModalBody.classList.add('modal__add-body', 'modal-body');
-  addModalBodyForm.classList.add('modal__add-body-form', 'needs-validation');
-  addModalBodyInputsWrap.classList.add('modal__add-body-inputs-wrap');
-  addModalBodySurnameInputWrap.classList.add(
-    'modal__add-body-input-wrap',
-    'add-surname-input-wrap',
-    'form-floating'
-  );
-  addModalBodySurnameInput.classList.add(
-    'modal__add-body-input',
-    'modal-main-input',
-    'modal-surname-input',
-    'add-modal-input',
-    'form-control'
-  );
-  addModalBodySurnameInputLabel.classList.add(
-    'modal__add-body-input-label',
-    'add-surname-input-labe'
-  );
-  addModalBodySurnameLabelSpan.classList.add(
-    'modal__add-body-label-span',
-    'add-surname-input-label-span'
-  );
-  addModalBodySurnameFeedback.classList.add(
-    'modal__add-body-input-feedback',
-    'surname-input-feedback',
-    'invalid-feedback'
-  );
-  addModalBodyNameInputWrap.classList.add(
-    'modal__add-body-input-wrap',
-    'add-name-input-wrap',
-    'form-floating'
-  );
-  addModalBodyNameInput.classList.add(
-    'modal__add-body-input',
-    'modal-main-input',
-    'modal-name-input',
-    'add-modal-input',
-    'form-control'
-  );
-  addModalBodyNameInputLabel.classList.add(
-    'modal__add-body-input-label',
-    'add-name-input-labe'
-  );
-  addModalBodyNameInputLabelSpan.classList.add(
-    'modal__add-body-label-span',
-    'add-name-input-label-span'
-  );
-  addModalBodyNameFeedback.classList.add(
-    'modal__add-body-input-feedback',
-    'name-input-feedback',
-    'invalid-feedback'
-  );
-  addModalBodyPatronymicInputWrap.classList.add(
-    'modal__add-body-input-wrap',
-    'add-patronymic-input-wrap',
-    'form-floating'
-  );
-  addModalBodyPatronymicInput.classList.add(
-    'modal__add-body-input',
-    'modal-main-input',
-    'modal-patronymic-input',
-    'add-modal-input',
-    'form-control'
-  );
-  addModalBodyPatronymicInputLabel.classList.add(
-    'modal__add-body-input-label',
-    'add-patronymic-input-labe'
-  );
-  addModalBodyPatronymicFeedback.classList.add(
-    'modal__add-body-input-feedback',
-    'patronymic-input-feedback',
-    'invalid-feedback'
-  );
-  addModalBodyAddContactsWrap.classList.add(
-    'modal__add-body-add-contacts-wrap'
-  );
-  addModalBodyAddContactsRowWrap.classList.add(
-    'modal__add-body-add-contacts-row-wrap',
-    'modal-contacts-row-wrap',
-    'd-none'
-  );
-  addModalBodyAddBtn.classList.add('modal__add-body-add-btn', 'modal-btn');
-  addModalBodyAddBtnIconStroke.classList.add(
-    'modal__add-body-add-btn-icon',
-    'bi',
-    'bi-plus-circle',
-    'plus-circle-stroke'
-  );
-  addModalBodyAddBtnIconFill.classList.add(
-    'modal__add-body-add-btn-icon',
-    'bi',
-    'bi-plus-circle-fill',
-    'plus-circle-fill'
-  );
-  addModalBodySaveBtn.classList.add('modal__add-body-save-btn', 'modal-btn');
-  addModalFooter.classList.add('modal__add-footer', 'modal-footer');
-  addModalFooterCancelBtn.classList.add(
-    'modal__add-footer-cancel-btn',
-    'modal-btn'
-  );
 
   addBtn.setAttribute('id', 'add-btn');
   addBtn.setAttribute('type', 'button');
   addBtn.setAttribute('data-bs-toggle', 'modal');
+  // ! нужно как то увязать id для этой кнопки, т.е. это id от modalWrap который по сути ещё не создан??
+  // ! нужна наверное функция, которая через клик по этой кнопке будет инициировать..
+  // ! const bootstrapModal = new bootstrap.Modal(modal);
+  // ! bootstrapModal.show();
   addBtn.setAttribute('data-bs-target', '#add-btn-modal');
-  addModalWrap.setAttribute('id', 'add-btn-modal');
-  addModalHeaderXBtn.setAttribute('type', 'button');
-  addModalHeaderXBtn.setAttribute('data-bs-dismiss', 'modal');
-  addModalHeaderXBtn.setAttribute('aria-label', 'Close');
-  addModalBodyForm.setAttribute('id', 'add-modal-form');
-  addModalBodyForm.setAttribute('action', '#');
-  addModalBodyForm.setAttribute('novalidate', '');
-  addModalBodySurnameInput.setAttribute('id', 'add-surname-floating-input');
-  addModalBodySurnameInput.setAttribute('type', 'text');
-  addModalBodySurnameInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
-  addModalBodySurnameInput.setAttribute('placeholder', 'Фамилия');
-  addModalBodySurnameInput.setAttribute('required', '');
-  addModalBodySurnameInputLabel.setAttribute(
-    'for',
-    'add-surname-floating-input'
-  );
-  addModalBodyNameInput.setAttribute('id', 'add-name-floating-input');
-  addModalBodyNameInput.setAttribute('type', 'text');
-  addModalBodyNameInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
-  addModalBodyNameInput.setAttribute('placeholder', 'Имя');
-  addModalBodyNameInput.setAttribute('required', '');
-  addModalBodyNameInputLabel.setAttribute('for', 'add-name-floating-input');
-  addModalBodyPatronymicInput.setAttribute(
-    'id',
-    'add-patronymic-floating-input'
-  );
-  addModalBodyPatronymicInput.setAttribute('type', 'text');
-  addModalBodyPatronymicInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
-  addModalBodyPatronymicInput.setAttribute('placeholder', 'Отчество');
-  addModalBodyPatronymicInput.setAttribute('required', '');
-  addModalBodyPatronymicInputLabel.setAttribute(
-    'for',
-    'add-patronymic-floating-input'
-  );
-  addModalBodyAddBtn.setAttribute('id', 'add-modal-body-add-btn');
-  addModalBodyAddBtn.setAttribute('type', 'button');
-  addModalBodySaveBtn.setAttribute('id', 'add-modal-body-save-btn');
-  addModalBodySaveBtn.setAttribute('type', 'button');
-  addModalFooterCancelBtn.setAttribute('id', 'add-modal-footer-cancel-btn');
-  addModalFooterCancelBtn.setAttribute('type', 'button');
-  addModalFooterCancelBtn.setAttribute('data-bs-dismiss', 'modal');
 
   addBtn.textContent = 'Добавить клиента';
-  addModalHeaderTitle.textContent = 'Новый клиент';
-  addModalBodySurnameInputLabel.textContent = 'Фамилия';
-  addModalBodySurnameLabelSpan.textContent = '*';
-  addModalBodySurnameFeedback.textContent =
-    'Введены не корректные данные.. исключите: английские буквы, цифры!';
-  addModalBodyNameInputLabel.textContent = 'Имя';
-  addModalBodyNameInputLabelSpan.textContent = '*';
-  addModalBodyNameFeedback.textContent =
-    'Введены не корректные данные.. исключите: английские буквы, цифры!';
-  addModalBodyPatronymicInputLabel.textContent = 'Отчество';
-  addModalBodyPatronymicFeedback.textContent =
-    'Введены не корректные данные.. исключите: английские буквы, цифры!';
-  addModalBodyAddBtn.textContent = 'Добавить контакт';
-  addModalBodySaveBtn.textContent = 'Сохранить';
-  addModalFooterCancelBtn.textContent = 'Отмена';
 
   addBtn.append(addBtnIcon);
   addBtnWrap.append(addBtn);
-  addModalHeader.append(addModalHeaderTitle, addModalHeaderXBtn);
-  addModalBodySurnameInputLabel.append(addModalBodySurnameLabelSpan);
-  addModalBodySurnameInputWrap.append(
-    addModalBodySurnameInput,
-    addModalBodySurnameInputLabel,
-    addModalBodySurnameFeedback
-  );
-  addModalBodyNameInputLabel.append(addModalBodyNameInputLabelSpan);
-  addModalBodyNameInputWrap.append(
-    addModalBodyNameInput,
-    addModalBodyNameInputLabel,
-    addModalBodyNameFeedback
-  );
-  addModalBodyPatronymicInputWrap.append(
-    addModalBodyPatronymicInput,
-    addModalBodyPatronymicInputLabel,
-    addModalBodyPatronymicFeedback
-  );
-  addModalBodyInputsWrap.append(
-    addModalBodySurnameInputWrap,
-    addModalBodyNameInputWrap,
-    addModalBodyPatronymicInputWrap
-  );
-  addModalBodyAddBtn.append(
-    addModalBodyAddBtnIconStroke,
-    addModalBodyAddBtnIconFill
-  );
-  addModalBodyAddContactsWrap.append(
-    addModalBodyAddContactsRowWrap,
-    addModalBodyAddBtn
-  );
-  addModalBodyForm.append(
-    addModalBodyInputsWrap,
-    addModalBodyAddContactsWrap,
-    addModalBodySaveBtn
-  );
-  addModalBody.append(addModalBodyForm);
-  addModalFooter.append(addModalFooterCancelBtn);
-  addModalContent.append(addModalHeader, addModalBody, addModalFooter);
-  addModalDialog.append(addModalContent);
-  addModalWrap.append(addModalDialog);
-  crmAddContainer.append(addBtnWrap, addModalWrap);
+  crmAddContainer.append(addBtnWrap);
 
   // основные блоки/составляющие элементы приложения
   crm.append(crmSearch, crmOutput, crmAdd);
@@ -1130,7 +899,259 @@
     });
   });
 
-  // ** организация принудительного удаления атрибута aria-hidden="true" с add-модального окна (исключение ошибки с ARIA)
+  // ** создание "универсального" модального окна, для добавления или изменения данных клиента (согласно передаваемого типа)
+  function createModalWindowByType(type, clientData = {}) {
+    const modalId = type === 'add' ? 'add-modal' : 'edit-modal';
+    const modalTitle = type === 'add' ? 'Новый клиент' : 'Изменить данные';
+    const modalCancelBtn = type === 'add' ? 'Отмена' : 'Удалить клиента';
+
+    const modalWrap = document.createElement('div');
+    const modalDialog = document.createElement('div');
+    const modalContent = document.createElement('div');
+    const modalHeader = document.createElement('div');
+    // ! id до-создать, добавить в DOM.. стилизовать
+    const modalHeaderTitleWrap = document.createElement('div');
+    const modalHeaderTitle = document.createElement('h1');
+    const modalHeaderClientId = document.createElement('span');
+    const modalHeaderXBtn = document.createElement('button');
+    const modalBody = document.createElement('div');
+    const modalBodyForm = document.createElement('form');
+    const modalBodyInputsWrap = document.createElement('div');
+    const modalBodySurnameInputWrap = document.createElement('div');
+    const modalBodySurnameInput = document.createElement('input');
+    const modalBodySurnameInputLabel = document.createElement('label');
+    const modalBodySurnameLabelSpan = document.createElement('span');
+    const modalBodySurnameFeedback = document.createElement('div');
+    const modalBodyNameInputWrap = document.createElement('div');
+    const modalBodyNameInput = document.createElement('input');
+    const modalBodyNameInputLabel = document.createElement('label');
+    const modalBodyNameInputLabelSpan = document.createElement('span');
+    const modalBodyNameFeedback = document.createElement('div');
+    const modalBodyPatronymicInputWrap = document.createElement('div');
+    const modalBodyPatronymicInput = document.createElement('input');
+    const modalBodyPatronymicInputLabel = document.createElement('label');
+    const modalBodyPatronymicFeedback = document.createElement('div');
+    const modalBodyAddContactsWrap = document.createElement('div');
+    const modalBodyAddContactsRowWrap = document.createElement('div');
+    const modalBodyAddBtn = document.createElement('button');
+    const modalBodyAddBtnIconStroke = document.createElement('i');
+    const modalBodyAddBtnIconFill = document.createElement('i');
+    const modalBodySaveBtn = document.createElement('button');
+    const modalFooter = document.createElement('div');
+    const modalFooterCancelBtn = document.createElement('button');
+
+    // ! корректировка имён классов.. никакого add, crm
+    modalWrap.classList.add('modal', 'crm__add-btn-modal', 'fade');
+    modalDialog.classList.add('modal__add-dialog', 'modal-dialog');
+    modalContent.classList.add('modal__add-content-wrap', 'modal-content');
+    modalHeader.classList.add('modal__add-header', 'modal-header');
+    modalHeaderTitle.classList.add('modal__add-header-title', 'modal-title');
+    modalHeaderXBtn.classList.add('modal__add-header-x-btn', 'btn-close');
+    modalBody.classList.add('modal__add-body', 'modal-body');
+    modalBodyForm.classList.add('modal__add-body-form', 'needs-validation');
+    modalBodyInputsWrap.classList.add('modal__add-body-inputs-wrap');
+    modalBodySurnameInputWrap.classList.add(
+      'modal__add-body-input-wrap',
+      'add-surname-input-wrap',
+      'form-floating'
+    );
+    modalBodySurnameInput.classList.add(
+      'modal__add-body-input',
+      'modal-main-input',
+      'modal-surname-input',
+      'add-modal-input',
+      'form-control'
+    );
+    modalBodySurnameInputLabel.classList.add(
+      'modal__add-body-input-label',
+      'add-surname-input-labe'
+    );
+    modalBodySurnameLabelSpan.classList.add(
+      'modal__add-body-label-span',
+      'add-surname-input-label-span'
+    );
+    modalBodySurnameFeedback.classList.add(
+      'modal__add-body-input-feedback',
+      'surname-input-feedback',
+      'invalid-feedback'
+    );
+    modalBodyNameInputWrap.classList.add(
+      'modal__add-body-input-wrap',
+      'add-name-input-wrap',
+      'form-floating'
+    );
+    modalBodyNameInput.classList.add(
+      'modal__add-body-input',
+      'modal-main-input',
+      'modal-name-input',
+      'add-modal-input',
+      'form-control'
+    );
+    modalBodyNameInputLabel.classList.add(
+      'modal__add-body-input-label',
+      'add-name-input-labe'
+    );
+    modalBodyNameInputLabelSpan.classList.add(
+      'modal__add-body-label-span',
+      'add-name-input-label-span'
+    );
+    modalBodyNameFeedback.classList.add(
+      'modal__add-body-input-feedback',
+      'name-input-feedback',
+      'invalid-feedback'
+    );
+    modalBodyPatronymicInputWrap.classList.add(
+      'modal__add-body-input-wrap',
+      'add-patronymic-input-wrap',
+      'form-floating'
+    );
+    modalBodyPatronymicInput.classList.add(
+      'modal__add-body-input',
+      'modal-main-input',
+      'modal-patronymic-input',
+      'add-modal-input',
+      'form-control'
+    );
+    modalBodyPatronymicInputLabel.classList.add(
+      'modal__add-body-input-label',
+      'add-patronymic-input-labe'
+    );
+    modalBodyPatronymicFeedback.classList.add(
+      'modal__add-body-input-feedback',
+      'patronymic-input-feedback',
+      'invalid-feedback'
+    );
+    modalBodyAddContactsWrap.classList.add('modal__add-body-add-contacts-wrap');
+    modalBodyAddContactsRowWrap.classList.add(
+      'modal__add-body-add-contacts-row-wrap',
+      'modal-contacts-row-wrap',
+      'd-none'
+    );
+    modalBodyAddBtn.classList.add('modal__add-body-add-btn', 'modal-btn');
+    modalBodyAddBtnIconStroke.classList.add(
+      'modal__add-body-add-btn-icon',
+      'bi',
+      'bi-plus-circle',
+      'plus-circle-stroke'
+    );
+    modalBodyAddBtnIconFill.classList.add(
+      'modal__add-body-add-btn-icon',
+      'bi',
+      'bi-plus-circle-fill',
+      'plus-circle-fill'
+    );
+    modalBodySaveBtn.classList.add('modal__add-body-save-btn', 'modal-btn');
+    modalFooter.classList.add('modal__add-footer', 'modal-footer');
+    modalFooterCancelBtn.classList.add(
+      'modal__add-footer-cancel-btn',
+      'modal-btn'
+    );
+
+    modalWrap.setAttribute('id', 'add-btn-modal');
+    modalHeaderXBtn.setAttribute('type', 'button');
+    modalHeaderXBtn.setAttribute('data-bs-dismiss', 'modal');
+    modalHeaderXBtn.setAttribute('aria-label', 'Close');
+    modalBodyForm.setAttribute('id', 'add-modal-form');
+    modalBodyForm.setAttribute('action', '#');
+    modalBodyForm.setAttribute('novalidate', '');
+    modalBodySurnameInput.setAttribute('id', 'add-surname-floating-input');
+    modalBodySurnameInput.setAttribute('type', 'text');
+    modalBodySurnameInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
+    modalBodySurnameInput.setAttribute('placeholder', 'Фамилия');
+    modalBodySurnameInput.setAttribute('required', '');
+    modalBodySurnameInputLabel.setAttribute(
+      'for',
+      'add-surname-floating-input'
+    );
+    modalBodyNameInput.setAttribute('id', 'add-name-floating-input');
+    modalBodyNameInput.setAttribute('type', 'text');
+    modalBodyNameInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
+    modalBodyNameInput.setAttribute('placeholder', 'Имя');
+    modalBodyNameInput.setAttribute('required', '');
+    modalBodyNameInputLabel.setAttribute('for', 'add-name-floating-input');
+    modalBodyPatronymicInput.setAttribute(
+      'id',
+      'add-patronymic-floating-input'
+    );
+    modalBodyPatronymicInput.setAttribute('type', 'text');
+    modalBodyPatronymicInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
+    modalBodyPatronymicInput.setAttribute('placeholder', 'Отчество');
+    modalBodyPatronymicInput.setAttribute('required', '');
+    modalBodyPatronymicInputLabel.setAttribute(
+      'for',
+      'add-patronymic-floating-input'
+    );
+    modalBodyAddBtn.setAttribute('id', 'add-modal-body-add-btn');
+    modalBodyAddBtn.setAttribute('type', 'button');
+    modalBodySaveBtn.setAttribute('id', 'add-modal-body-save-btn');
+    modalBodySaveBtn.setAttribute('type', 'button');
+    modalFooterCancelBtn.setAttribute('id', 'add-modal-footer-cancel-btn');
+    modalFooterCancelBtn.setAttribute('type', 'button');
+    modalFooterCancelBtn.setAttribute('data-bs-dismiss', 'modal');
+
+    modalHeaderTitle.textContent = 'Новый клиент';
+    modalBodySurnameInputLabel.textContent = 'Фамилия';
+    modalBodySurnameLabelSpan.textContent = '*';
+    modalBodySurnameFeedback.textContent =
+      'Введены не корректные данные.. исключите: английские буквы, цифры!';
+    modalBodyNameInputLabel.textContent = 'Имя';
+    modalBodyNameInputLabelSpan.textContent = '*';
+    modalBodyNameFeedback.textContent =
+      'Введены не корректные данные.. исключите: английские буквы, цифры!';
+    modalBodyPatronymicInputLabel.textContent = 'Отчество';
+    modalBodyPatronymicFeedback.textContent =
+      'Введены не корректные данные.. исключите: английские буквы, цифры!';
+    modalBodyAddBtn.textContent = 'Добавить контакт';
+    modalBodySaveBtn.textContent = 'Сохранить';
+    modalFooterCancelBtn.textContent = 'Отмена';
+
+    modalHeader.append(modalHeaderTitle, modalHeaderXBtn);
+    modalBodySurnameInputLabel.append(modalBodySurnameLabelSpan);
+    modalBodySurnameInputWrap.append(
+      modalBodySurnameInput,
+      modalBodySurnameInputLabel,
+      modalBodySurnameFeedback
+    );
+    modalBodyNameInputLabel.append(modalBodyNameInputLabelSpan);
+    modalBodyNameInputWrap.append(
+      modalBodyNameInput,
+      modalBodyNameInputLabel,
+      modalBodyNameFeedback
+    );
+    modalBodyPatronymicInputWrap.append(
+      modalBodyPatronymicInput,
+      modalBodyPatronymicInputLabel,
+      modalBodyPatronymicFeedback
+    );
+    modalBodyInputsWrap.append(
+      modalBodySurnameInputWrap,
+      modalBodyNameInputWrap,
+      modalBodyPatronymicInputWrap
+    );
+    modalBodyAddBtn.append(modalBodyAddBtnIconStroke, modalBodyAddBtnIconFill);
+    modalBodyAddContactsWrap.append(
+      modalBodyAddContactsRowWrap,
+      modalBodyAddBtn
+    );
+    modalBodyForm.append(
+      modalBodyInputsWrap,
+      modalBodyAddContactsWrap,
+      modalBodySaveBtn
+    );
+    modalBody.append(modalBodyForm);
+    modalFooter.append(modalFooterCancelBtn);
+    modalContent.append(modalHeader, modalBody, modalFooter);
+    modalDialog.append(modalContent);
+    modalWrap.append(modalDialog);
+    crmAddContainer.append(modalWrap);
+  }
+
+  addBtn.addEventListener('click', () => {
+    createModalWindowByType('add');
+  });
+
+  // ! корректировка
+  // ** организация принудительного удаления атрибута aria-hidden="true" с модальных окон (исключение ошибок с ARIA)
   const addModal = document.querySelector('.crm__add-btn-modal');
 
   // мониторинг/ожидание появления соответствующего атрибута
@@ -1151,7 +1172,8 @@
   // остановка мониторинга (если более не требуется)
   // observer.disconnect();
 
-  // ** динамическое добавление строки контактов в add-модальном окне (по нажатию "Добавить контакт" кнопки)
+  // ! корректировка (названия переменных, классов.. содержания комментариев.. всего что связанно с add)
+  // ** организация "динамического" добавления строки контакта/row-contact (по нажатию "Добавить контакт" кнопки, в  модальных/универсальных окнах)
   const addModalContactsArr = [];
 
   function createAddModalContactsElement() {
@@ -1311,6 +1333,7 @@
 
     addBodySelectWrap.append(addModalContactElement); // добавление в DOM строки контактов
 
+    // ! универсальный класс
     // организация дополнительных отступов для "Добавить контакт" кнопки (при появлении строки контактов)
     if (addModalContactsArr.length === 0) {
       addModalBodyAddBtn.classList.add('modal-btn-margin');
@@ -1454,12 +1477,13 @@
     });
   }
 
+  // ! корректировка вызова
   // запуск логики добавления/создания строки контактов
   addModalBodyAddBtn.addEventListener('click', () => {
     createAddModalContactsElement();
   });
 
-  // ** обработка выбора/типа модального row-контакта из li/вариантов выпадающего drop-списка (замена/обновление содержимого/контента drop-кнопки, ряд других действий)
+  // ** обработка выбора/типа строки контакта, согласно вариантов выпадающего drop-btn списка (в модальных/универсальных окнах, ряд сопутствующих действий)
   function getContactDropSelection(
     target,
     dropBtn,
@@ -1498,7 +1522,8 @@
     contactInput.focus(); // перевод фокуса на соседний инпут (после выбора в выпадающем списке)
   }
 
-  // ** обновление атрибута/значения "type" у/для модального row-инпута (кому возможно, после выбора)
+  // ! корректировка
+  // ** обновление атрибута/значения "type" у/для модального row-contact инпута (кому возможно, после выбора)
   function updateRowInputType(input, contactType) {
     // объект для сопоставления (кому заменять, на какое значение)
     const typeMapping = {
@@ -1512,7 +1537,8 @@
     input.setAttribute('type', newType);
   }
 
-  // ** обновление/изменение отступов для модальных li/вариантов выпадающего row-списка (для первого и последнего элементов)
+  // ! корректировка
+  // ** обновление/изменение отступов у/для модального row-contact списка (для первого и последнего li/элементов)
   function updateDropItemPaddings(dropList) {
     Array.from(dropList.children).forEach((item) => {
       item.classList.remove('first-visible', 'last-visible'); // изначальная очистка от дополнительных классов
@@ -1532,7 +1558,8 @@
     }
   }
 
-  // ** организация закрытия/скрытия выпадающего row-списка в модальном окне (снятие фокуса)
+  // ! корректировка
+  // ** организация закрытия/скрытия выпадающего row-contact списка в модальном окне (снятие фокуса)
   function closeBtnDropdown() {
     const openDropdownBtn = document.querySelector('.drop-open'); // фиксация "открывающей" drop-кнопки
 
@@ -1544,6 +1571,7 @@
     }
   }
 
+  // ! корректировка
   // ** организация замены выбора/типа модального row-контакта, после начала/внесения данных в инпут (вывод уточняющего сообщения)
   function changeContactRowType(input, newType, previousType) {
     const inputCurrentValue = input.value.trim();
@@ -1593,7 +1621,8 @@
     return true; // факт завершения
   }
 
-  // ** удаление строки row-контактов в модальном окне (через "X" кнопку, с/без уточняющего сообщения)
+  // ! корректировка
+  // ** удаление строки row-контакта в модальном окне (через "X" кнопку, с/без уточняющего сообщения)
   function deleteModalContactsElement(event) {
     const clickedContactsXBtn = event.currentTarget; // получение ИМЕННО кнопки, а не/может внутренней иконки (согласно "размазанного" события)
 
@@ -1654,7 +1683,8 @@
     }
   }
 
-  // ** организация проверки на "пустые" row-контакты, перед закрытием модального окна (вывод сообщения)
+  // ! корректировка
+  // ** организация проверки на "пустые" row-контакты, перед закрытием соответствующего модального окна (вывод сообщения)
   function checkEmptyRowContacts(event) {
     const allContactRows = document.querySelectorAll('.modal-contact-element');
 
@@ -1681,6 +1711,7 @@
 
   addModalWrap.addEventListener('hide.bs.modal', checkEmptyRowContacts); // запуск проверки на "пустые" контакты (перед закрытием add-модального окна)
 
+  // ! корректировка
   // ** удаление/очистка от невалидных row-контактов (при закрытии модального окна)
   function removeInvalidRowContacts() {
     const invalidContactRows = document.querySelectorAll(
