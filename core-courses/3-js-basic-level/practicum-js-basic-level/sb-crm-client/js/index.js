@@ -247,7 +247,7 @@
   // ! нужна наверное функция, которая через клик по этой кнопке будет инициировать..
   // ! const bootstrapModal = new bootstrap.Modal(modal);
   // ! bootstrapModal.show();
-  addBtn.setAttribute('data-bs-target', '#add-btn-modal');
+  addBtn.setAttribute('data-bs-target', '#add-modal');
 
   addBtn.textContent = 'Добавить клиента';
 
@@ -825,7 +825,7 @@
 
           // дополнительная/опциональная проверка для инпутов, обработка пробелов
           if (
-            target.classList.contains('modal-main-input') &&
+            target.classList.contains('modal__body-input') &&
             /\s/.test(target.value)
           ) {
             errors.push('Пробелы НЕдопустимы!');
@@ -857,7 +857,7 @@
   });
 
   // добавление валидации для ввода данных/в модальном окне (при добавлении нового/клиента)
-  const allAddModalFormInputs = document.querySelectorAll('.modal-main-input');
+  const allAddModalFormInputs = document.querySelectorAll('.modal__body-input');
   addInputsValidation(allAddModalFormInputs, {
     allowOnlyRussian: true,
     singleHyphen: true,
@@ -909,7 +909,6 @@
     const modalDialog = document.createElement('div');
     const modalContent = document.createElement('div');
     const modalHeader = document.createElement('div');
-    // ! id до-создать, добавить в DOM.. стилизовать
     const modalHeaderTitleWrap = document.createElement('div');
     const modalHeaderTitle = document.createElement('h1');
     const modalHeaderClientId = document.createElement('span');
@@ -940,138 +939,134 @@
     const modalFooter = document.createElement('div');
     const modalFooterCancelBtn = document.createElement('button');
 
-    // ! корректировка имён классов.. никакого add, crm
-    modalWrap.classList.add('modal', 'crm__add-btn-modal', 'fade');
-    modalDialog.classList.add('modal__add-dialog', 'modal-dialog');
-    modalContent.classList.add('modal__add-content-wrap', 'modal-content');
-    modalHeader.classList.add('modal__add-header', 'modal-header');
-    modalHeaderTitle.classList.add('modal__add-header-title', 'modal-title');
-    modalHeaderXBtn.classList.add('modal__add-header-x-btn', 'btn-close');
-    modalBody.classList.add('modal__add-body', 'modal-body');
-    modalBodyForm.classList.add('modal__add-body-form', 'needs-validation');
-    modalBodyInputsWrap.classList.add('modal__add-body-inputs-wrap');
+    modalWrap.classList.add('modal', 'crm__modal-wrap', 'fade');
+    modalDialog.classList.add('modal__dialog', 'modal-dialog');
+    modalContent.classList.add('modal__content-wrap', 'modal-content');
+    modalHeader.classList.add('modal__header', 'modal-header');
+    modalHeaderTitleWrap.classList.add('modal__header-title-wrap');
+    modalHeaderTitle.classList.add('modal__header-title', 'modal-title');
+    modalHeaderClientId.classList.add('modal__header-client-id');
+    modalHeaderXBtn.classList.add('modal__header-x-btn', 'btn-close');
+    modalBody.classList.add('modal__body', 'modal-body');
+    modalBodyForm.classList.add('modal__body-form', 'needs-validation');
+    modalBodyInputsWrap.classList.add('modal__body-inputs-wrap');
     modalBodySurnameInputWrap.classList.add(
-      'modal__add-body-input-wrap',
-      'add-surname-input-wrap',
+      'modal__body-input-wrap',
+      'modal-surname-input-wrap',
       'form-floating'
     );
     modalBodySurnameInput.classList.add(
-      'modal__add-body-input',
-      'modal-main-input',
+      'modal__body-input',
       'modal-surname-input',
-      'add-modal-input',
+      'modal-input',
       'form-control'
     );
     modalBodySurnameInputLabel.classList.add(
-      'modal__add-body-input-label',
-      'add-surname-input-labe'
+      'modal__body-input-label',
+      'modal-surname-input-labe'
     );
     modalBodySurnameLabelSpan.classList.add(
-      'modal__add-body-label-span',
-      'add-surname-input-label-span'
+      'modal__body-label-span',
+      'modal-surname-input-label-span'
     );
     modalBodySurnameFeedback.classList.add(
-      'modal__add-body-input-feedback',
-      'surname-input-feedback',
+      'modal__body-input-feedback',
+      'modal-surname-input-feedback',
       'invalid-feedback'
     );
     modalBodyNameInputWrap.classList.add(
-      'modal__add-body-input-wrap',
-      'add-name-input-wrap',
+      'modal__body-input-wrap',
+      'modal-name-input-wrap',
       'form-floating'
     );
     modalBodyNameInput.classList.add(
-      'modal__add-body-input',
-      'modal-main-input',
+      'modal__body-input',
       'modal-name-input',
-      'add-modal-input',
+      'modal-input',
       'form-control'
     );
     modalBodyNameInputLabel.classList.add(
-      'modal__add-body-input-label',
-      'add-name-input-labe'
+      'modal__body-input-label',
+      'modal-name-input-labe'
     );
     modalBodyNameInputLabelSpan.classList.add(
-      'modal__add-body-label-span',
-      'add-name-input-label-span'
+      'modal__body-label-span',
+      'modal-name-input-label-span'
     );
     modalBodyNameFeedback.classList.add(
-      'modal__add-body-input-feedback',
-      'name-input-feedback',
+      'modal__body-input-feedback',
+      'modal-name-input-feedback',
       'invalid-feedback'
     );
     modalBodyPatronymicInputWrap.classList.add(
-      'modal__add-body-input-wrap',
-      'add-patronymic-input-wrap',
+      'modal__body-input-wrap',
+      'modal-patronymic-input-wrap',
       'form-floating'
     );
     modalBodyPatronymicInput.classList.add(
-      'modal__add-body-input',
-      'modal-main-input',
+      'modal__body-input',
       'modal-patronymic-input',
-      'add-modal-input',
+      'modal-input',
       'form-control'
     );
     modalBodyPatronymicInputLabel.classList.add(
-      'modal__add-body-input-label',
-      'add-patronymic-input-labe'
+      'modal__body-input-label',
+      'modal-patronymic-input-labe'
     );
     modalBodyPatronymicFeedback.classList.add(
-      'modal__add-body-input-feedback',
-      'patronymic-input-feedback',
+      'modal__body-input-feedback',
+      'modal-patronymic-input-feedback',
       'invalid-feedback'
     );
-    modalBodyAddContactsWrap.classList.add('modal__add-body-add-contacts-wrap');
+    modalBodyAddContactsWrap.classList.add('modal__body-contacts-wrap');
     modalBodyAddContactsRowWrap.classList.add(
-      'modal__add-body-add-contacts-row-wrap',
+      'modal__body-contacts-row-wrap',
       'modal-contacts-row-wrap',
       'd-none'
     );
-    modalBodyAddBtn.classList.add('modal__add-body-add-btn', 'modal-btn');
+    modalBodyAddBtn.classList.add('modal__body-add-btn', 'modal-btn');
     modalBodyAddBtnIconStroke.classList.add(
-      'modal__add-body-add-btn-icon',
+      'modal__body-add-btn-icon',
       'bi',
       'bi-plus-circle',
       'plus-circle-stroke'
     );
     modalBodyAddBtnIconFill.classList.add(
-      'modal__add-body-add-btn-icon',
+      'modal__body-add-btn-icon',
       'bi',
       'bi-plus-circle-fill',
       'plus-circle-fill'
     );
-    modalBodySaveBtn.classList.add('modal__add-body-save-btn', 'modal-btn');
-    modalFooter.classList.add('modal__add-footer', 'modal-footer');
-    modalFooterCancelBtn.classList.add(
-      'modal__add-footer-cancel-btn',
-      'modal-btn'
-    );
+    modalBodySaveBtn.classList.add('modal__body-save-btn', 'modal-btn');
+    modalFooter.classList.add('modal__footer', 'modal-footer');
+    modalFooterCancelBtn.classList.add('modal__footer-cancel-btn', 'modal-btn');
 
-    modalWrap.setAttribute('id', 'add-btn-modal');
+    modalWrap.setAttribute('id', modalId); // определяется в переменной
+    modalHeaderClientId.setAttribute('id', 'client-id');
     modalHeaderXBtn.setAttribute('type', 'button');
     modalHeaderXBtn.setAttribute('data-bs-dismiss', 'modal');
     modalHeaderXBtn.setAttribute('aria-label', 'Close');
-    modalBodyForm.setAttribute('id', 'add-modal-form');
+    modalBodyForm.setAttribute('id', 'modal-form');
     modalBodyForm.setAttribute('action', '#');
     modalBodyForm.setAttribute('novalidate', '');
-    modalBodySurnameInput.setAttribute('id', 'add-surname-floating-input');
+    modalBodySurnameInput.setAttribute('id', 'modal-surname-floating-input');
     modalBodySurnameInput.setAttribute('type', 'text');
     modalBodySurnameInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
     modalBodySurnameInput.setAttribute('placeholder', 'Фамилия');
     modalBodySurnameInput.setAttribute('required', '');
     modalBodySurnameInputLabel.setAttribute(
       'for',
-      'add-surname-floating-input'
+      'modal-surname-floating-input'
     );
-    modalBodyNameInput.setAttribute('id', 'add-name-floating-input');
+    modalBodyNameInput.setAttribute('id', 'modal-name-floating-input');
     modalBodyNameInput.setAttribute('type', 'text');
     modalBodyNameInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
     modalBodyNameInput.setAttribute('placeholder', 'Имя');
     modalBodyNameInput.setAttribute('required', '');
-    modalBodyNameInputLabel.setAttribute('for', 'add-name-floating-input');
+    modalBodyNameInputLabel.setAttribute('for', 'modal-name-floating-input');
     modalBodyPatronymicInput.setAttribute(
       'id',
-      'add-patronymic-floating-input'
+      'modal-patronymic-floating-input'
     );
     modalBodyPatronymicInput.setAttribute('type', 'text');
     modalBodyPatronymicInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
@@ -1079,17 +1074,18 @@
     modalBodyPatronymicInput.setAttribute('required', '');
     modalBodyPatronymicInputLabel.setAttribute(
       'for',
-      'add-patronymic-floating-input'
+      'modal-patronymic-floating-input'
     );
-    modalBodyAddBtn.setAttribute('id', 'add-modal-body-add-btn');
+    modalBodyAddBtn.setAttribute('id', 'modal-body-add-btn');
     modalBodyAddBtn.setAttribute('type', 'button');
-    modalBodySaveBtn.setAttribute('id', 'add-modal-body-save-btn');
+    modalBodySaveBtn.setAttribute('id', 'modal-body-save-btn');
     modalBodySaveBtn.setAttribute('type', 'button');
-    modalFooterCancelBtn.setAttribute('id', 'add-modal-footer-cancel-btn');
+    modalFooterCancelBtn.setAttribute('id', 'modal-footer-cancel-btn');
     modalFooterCancelBtn.setAttribute('type', 'button');
     modalFooterCancelBtn.setAttribute('data-bs-dismiss', 'modal');
 
-    modalHeaderTitle.textContent = 'Новый клиент';
+    modalHeaderTitle.textContent = modalTitle; // определяется в переменной
+    modalHeaderClientId.textContent = `ID: ${clientData.id || ''}`; // "вытягивается" из входящего объекта
     modalBodySurnameInputLabel.textContent = 'Фамилия';
     modalBodySurnameLabelSpan.textContent = '*';
     modalBodySurnameFeedback.textContent =
@@ -1103,9 +1099,12 @@
       'Введены не корректные данные.. исключите: английские буквы, цифры!';
     modalBodyAddBtn.textContent = 'Добавить контакт';
     modalBodySaveBtn.textContent = 'Сохранить';
-    modalFooterCancelBtn.textContent = 'Отмена';
+    modalFooterCancelBtn.textContent = modalCancelBtn; // определяется в переменной
 
-    modalHeader.append(modalHeaderTitle, modalHeaderXBtn);
+    modalHeaderClientId.style.display = type === 'edit' ? 'inline' : 'none'; // отображение/скрытие ID
+
+    modalHeaderTitleWrap.append(modalHeaderTitle, modalHeaderClientId);
+    modalHeader.append(modalHeaderTitleWrap, modalHeaderXBtn);
     modalBodySurnameInputLabel.append(modalBodySurnameLabelSpan);
     modalBodySurnameInputWrap.append(
       modalBodySurnameInput,
@@ -1179,6 +1178,7 @@
   function createAddModalContactsElement() {
     if (addModalContactsArr.length >= 10) return; // проверка количества контактов (не более 10)
 
+    // ! в CSS то же корректировка..
     const addModalContactElement = document.createElement('div');
     const addModalContactCustomSelect = document.createElement('div');
     const addModalContactDropBtn = document.createElement('button');
@@ -1248,7 +1248,7 @@
     addModalContactInput.classList.add(
       'modal__add-body-add-contact-input',
       'modal-contact-input',
-      'add-modal-input',
+      'modal-input',
       'form-control'
     );
     addModalContactXBtn.classList.add(
@@ -1336,7 +1336,7 @@
     // ! универсальный класс
     // организация дополнительных отступов для "Добавить контакт" кнопки (при появлении строки контактов)
     if (addModalContactsArr.length === 0) {
-      addModalBodyAddBtn.classList.add('modal-btn-margin');
+      addModalBodyAddBtn.classList.add('add-contact-btn-margin');
     }
 
     // добавление "не большого" эффекта/задержки появления для "новой" строки контактов (элемента)
@@ -1674,7 +1674,7 @@
               '.modal__add-body-add-contacts-row-wrap'
             );
             addBodySelectWrap.classList.add('d-none');
-            addModalBodyAddBtn.classList.remove('modal-btn-margin');
+            addModalBodyAddBtn.classList.remove('add-contact-btn-margin');
           }
         } else {
           currentInput.focus(); // возврат фокуса искомому инпуту (после отмены удаления в confirm)
@@ -1742,7 +1742,7 @@
         '.modal-contacts-row-wrap'
       );
       addBodySelectWrap.classList.add('d-none');
-      addModalBodyAddBtn.classList.remove('modal-btn-margin'); // удаление дополнительных отступов
+      addModalBodyAddBtn.classList.remove('add-contact-btn-margin'); // удаление дополнительных отступов
     }
   }
 
