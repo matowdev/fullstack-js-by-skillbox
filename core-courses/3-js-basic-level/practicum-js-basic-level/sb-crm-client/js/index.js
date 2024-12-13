@@ -1,9 +1,5 @@
 (() => {
   // ** получение существующих, создание "новых" элементов (глобальное объявление)
-  const crm = document.getElementById('crm');
-  const crmSearch = document.getElementById('crm-search');
-  const crmOutput = document.getElementById('crm-output');
-  const crmAdd = document.getElementById('crm-add');
   const crmSearchContainer = document.querySelector('.crm__search-container');
   const crmOutputContainer = document.querySelector('.crm__output-container');
   const crmAddContainer = document.querySelector('.crm__add-container');
@@ -231,7 +227,7 @@
   outputTable.append(outTableHead, outTableBody);
   crmOutputContainer.append(outputTitleWrap, outputTable);
 
-  // организация кнопки для добавления "нового" клиента (последующее открытие модального окна)
+  // ** организация кнопки для добавления "нового" клиента (последующее открытие модального окна)
   const addBtnWrap = document.createElement('div');
   const addBtn = document.createElement('button');
   const addBtnIcon = document.createElement('i');
@@ -242,12 +238,6 @@
 
   addBtn.setAttribute('id', 'add-btn');
   addBtn.setAttribute('type', 'button');
-  addBtn.setAttribute('data-bs-toggle', 'modal');
-  // ! нужно как то увязать id для этой кнопки, т.е. это id от modalWrap который по сути ещё не создан??
-  // ! нужна наверное функция, которая через клик по этой кнопке будет инициировать..
-  // ! const bootstrapModal = new bootstrap.Modal(modal);
-  // ! bootstrapModal.show();
-  addBtn.setAttribute('data-bs-target', '#add-modal');
 
   addBtn.textContent = 'Добавить клиента';
 
@@ -255,8 +245,16 @@
   addBtnWrap.append(addBtn);
   crmAddContainer.append(addBtnWrap);
 
-  // основные блоки/составляющие элементы приложения
-  crm.append(crmSearch, crmOutput, crmAdd);
+  // обработка клика по кнопке, создание/отображение модального окна
+  addBtn.addEventListener('click', () => {
+    const modalWrap = createModalWindowByType('add'); // создание по типу "add"
+
+    crmAddContainer.append(modalWrap); // добавление в DOM
+
+    // инициализация через Bootstrap API
+    const bootstrapModal = new bootstrap.Modal(modalWrap);
+    bootstrapModal.show(); // отображение
+  });
 
   // ** появление/скрытие поля для ввода данных/фильтрационного инпута (по нажатию на logo, на 320px)
   searchLogoImg.addEventListener('click', () => {
@@ -1142,12 +1140,9 @@
     modalContent.append(modalHeader, modalBody, modalFooter);
     modalDialog.append(modalContent);
     modalWrap.append(modalDialog);
-    crmAddContainer.append(modalWrap);
-  }
 
-  addBtn.addEventListener('click', () => {
-    createModalWindowByType('add');
-  });
+    return modalWrap; // возврат модального окна (т.е. здесь/без добавления в DOM.. позже, при клике)
+  }
 
   // ! корректировка
   // ** организация принудительного удаления атрибута aria-hidden="true" с модальных окон (исключение ошибок с ARIA)
