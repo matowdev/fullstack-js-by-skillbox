@@ -227,7 +227,7 @@
   outputTable.append(outTableHead, outTableBody);
   crmOutputContainer.append(outputTitleWrap, outputTable);
 
-  // ** организация кнопки для добавления "нового" клиента (последующее открытие модального окна)
+  // ** организация кнопки для добавления "нового" клиента (последующее открытие модального окна, ряд сопутствующих действий)
   const addBtnWrap = document.createElement('div');
   const addBtn = document.createElement('button');
   const addBtnIcon = document.createElement('i');
@@ -254,6 +254,18 @@
     // инициализация через Bootstrap API
     const bootstrapModal = new bootstrap.Modal(modalWrap);
     bootstrapModal.show(); // отображение
+
+    // добавление валидации для вводимых данных/в модальном окне (для "основных" инпутов, ФИО)
+    const allModalBodyFormInputs =
+      modalWrap.querySelectorAll('.modal__body-input');
+    addInputsValidation(allModalBodyFormInputs, {
+      allowOnlyRussian: true,
+      singleHyphen: true,
+      noExtraSpaces: true,
+    });
+
+    // принудительное удаление атрибута aria-hidden="true" с модального окна (исключение ошибки с ARIA)
+    deleteAriaHiddenTrue(modalWrap);
   });
 
   // ** появление/скрытие поля для ввода данных/фильтрационного инпута (по нажатию на logo, на 320px)
@@ -854,14 +866,6 @@
     noExtraSpaces: true,
   });
 
-  // добавление валидации для ввода данных/в модальном окне (при добавлении нового/клиента)
-  const allAddModalFormInputs = document.querySelectorAll('.modal__body-input');
-  addInputsValidation(allAddModalFormInputs, {
-    allowOnlyRussian: true,
-    singleHyphen: true,
-    noExtraSpaces: true,
-  });
-
   // ** изменение направления стрелки/svg-icon, согласно прожатия по заглавной ячейке (при сортировке данных)
   const allHeaderRowCells = document.querySelectorAll(
     '.crm__output-table-head-cell'
@@ -1144,27 +1148,25 @@
     return modalWrap; // возврат модального окна (т.е. здесь/без добавления в DOM.. позже, при клике)
   }
 
-  // ! корректировка
   // ** организация принудительного удаления атрибута aria-hidden="true" с модальных окон (исключение ошибок с ARIA)
-  const addModal = document.querySelector('.crm__add-btn-modal');
-
-  // мониторинг/ожидание появления соответствующего атрибута
-  const observer = new MutationObserver((mutationsList) => {
-    mutationsList.forEach((mutation) => {
-      if (
-        mutation.type === 'attributes' &&
-        mutation.attributeName === 'aria-hidden'
-      ) {
-        addModal.removeAttribute('aria-hidden'); // принудительное удаление
-      }
+  function deleteAriaHiddenTrue(modalWrap) {
+    // мониторинг/ожидание появления соответствующего атрибута
+    const observer = new MutationObserver((mutationsList) => {
+      mutationsList.forEach((mutation) => {
+        if (
+          mutation.type === 'attributes' &&
+          mutation.attributeName === 'aria-hidden'
+        ) {
+          modalWrap.removeAttribute('aria-hidden'); // принудительное удаление
+        }
+      });
     });
-  });
 
-  // запуск мониторинга
-  observer.observe(addModal, { attributes: true });
+    // запуск мониторинга
+    observer.observe(modalWrap, { attributes: true });
 
-  // остановка мониторинга (если более не требуется)
-  // observer.disconnect();
+    // return observer; // можно вернуть observe (если более не требуется)
+  }
 
   // ! корректировка (названия переменных, классов.. содержания комментариев.. всего что связанно с add)
   // ** организация "динамического" добавления строки контакта/row-contact (по нажатию "Добавить контакт" кнопки, в  модальных/универсальных окнах)
