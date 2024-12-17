@@ -56,9 +56,6 @@
       initTippy('#table-th-change', 'сортировать ⇵', 'bottom', {
         offset: [0, 2],
       });
-      initTippy('.modal__add-header-x-btn', 'закрыть', 'left', {
-        offset: [0, 13],
-      });
     }
 
     initTippyForSearchLogo();
