@@ -195,7 +195,7 @@
   color: var(--gray);
 }
 
-.add-contact-btn-margin {
+.modal-contact-btn-margin {
   margin-bottom: 15px;
 }
 
@@ -219,14 +219,14 @@
   width: 100%;
 }
 
-.modal__add-body-add-contact-select {
+.modal__body-add-contact-select {
   position: relative;
   width: 120px;
   height: 37px;
   background-color: var(--select-gray);
 }
 
-.modal__add-body-add-contact-drop-btn {
+.modal__body-add-contact-drop-btn {
   position: relative;
   display: flex;
   justify-content: flex-start;
@@ -246,7 +246,7 @@
   /* -webkit-font-smoothing: antialiased; */
 }
 
-.modal__add-body-add-contact-drop-btn:after {
+.modal__body-add-contact-drop-btn:after {
   content: '';
   position: absolute;
   top: 50%;
@@ -263,28 +263,28 @@
   pointer-events: none;
 }
 
-.modal__add-body-add-contact-drop-btn:focus-visible,
-.modal__add-body-add-contact-drop-btn:focus {
+.modal__body-add-contact-drop-btn:focus-visible,
+.modal__body-add-contact-drop-btn:focus {
   border-color: var(--main-purple);
   box-shadow: 0 0 0 .25rem rgba(152, 115, 255, .25);
   z-index: 5;
 }
 
-.modal__add-body-add-contact-drop-btn:not(:focus-visible),
-.modal__add-body-add-contact-drop-btn:not(:focus) {
+.modal__body-add-contact-drop-btn:not(:focus-visible),
+.modal__body-add-contact-drop-btn:not(:focus) {
   z-index: 3;
 }
 
-.modal__add-body-add-contact-drop-btn.arrow-rotate:focus-visible,
-.modal__add-body-add-contact-drop-btn.arrow-rotate:focus {
+.modal__body-add-contact-drop-btn.arrow-rotate:focus-visible,
+.modal__body-add-contact-drop-btn.arrow-rotate:focus {
   z-index: 6;
 }
 
-.modal__add-body-add-contact-drop-btn.arrow-rotate:after {
+.modal__body-add-contact-drop-btn.arrow-rotate:after {
   transform: translateY(-50%) rotate(180deg);
 }
 
-.modal__add-body-add-contact-list {
+.modal__body-add-contact-list {
   position: absolute;
   left: 0;
   top: 36px;
@@ -299,7 +299,7 @@
   z-index: 4;
 }
 
-.modal__add-body-add-contact-item {
+.modal__body-add-contact-item {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -312,36 +312,36 @@
   transition-timing-function: ease;
 }
 
-.modal__add-body-add-contact-item.first-visible {
+.modal__body-add-contact-item.first-visible {
   padding-top: 9px;
 }
 
-.modal__add-body-add-contact-item.last-visible {
+.modal__body-add-contact-item.last-visible {
   padding-bottom: 5px;
 }
 
-.modal__add-body-add-contact-item:focus-visible {
+.modal__body-add-contact-item:focus-visible {
   color: var(--main-purple);
 }
 
-.modal__add-body-add-contact-item:focus-visible:active {
+.modal__body-add-contact-item:focus-visible:active {
   color: var(--text-gray);
 }
 
-.modal__add-body-add-contact-item:active {
+.modal__body-add-contact-item:active {
   color: var(--text-gray);
 }
 
-.modal__add-body-add-contact-input {
+.modal__body-add-contact-input {
   border: 1px solid var(--gray);
   border-radius: 0;
 }
 
-.modal__add-body-add-contact-input::placeholder {
+.modal__body-add-contact-input::placeholder {
   font-weight: var(--regular);
 }
 
-.modal__add-body-add-x-btn {
+.modal__body-add-x-btn {
   position: relative;
   border: 1px solid var(--gray);
   border-radius: 0;
@@ -353,7 +353,7 @@
   transition-timing-function: ease;
 }
 
-.modal__add-body-add-x-btn-icon {
+.modal__body-add-x-btn-icon {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -363,17 +363,17 @@
   transition: color var(--short) ease;
 }
 
-.modal__add-body-add-x-btn:focus-visible:not(:active) {
+.modal__body-add-x-btn:focus-visible:not(:active) {
   border-color: var(--bootstrap-red);
   box-shadow: 0 0 0 .25rem rgba(220, 53, 69, .25);
   z-index: 1;
 }
 
-.modal__add-body-add-x-btn:focus-visible:not(:active) .modal__add-body-add-x-btn-icon {
+.modal__body-add-x-btn:focus-visible:not(:active) .modal__body-add-x-btn-icon {
   color: var(--bootstrap-red);
 }
 
-.modal__add-body-add-x-btn:active:not(:focus-visible) {
+.modal__body-add-x-btn:active:not(:focus-visible) {
   border-color: var(--gray);
   box-shadow: 0 0 0 .25rem rgba(200, 197, 209, 0.25);
   z-index: 1;
@@ -440,25 +440,25 @@
     color: var(--cold-purple);
   }
 
-  .modal__add-body-add-contact-item:hover:not(:focus-visible):not(:active) {
+  .modal__body-add-contact-item:hover:not(:focus-visible):not(:active) {
     background-color: var(--select-gray);
   }
 
-  .modal__add-body-add-contact-drop-btn:hover:after {
+  .modal__body-add-contact-drop-btn:hover:after {
     transform: translateY(-50%) scale(1.2);
   }
 
-  .modal__add-body-add-contact-drop-btn.arrow-rotate:hover:after {
+  .modal__body-add-contact-drop-btn.arrow-rotate:hover:after {
     transform: translateY(-50%) rotate(180deg) scale(1.2);
   }
 
-  .modal__add-body-add-x-btn:hover:not(:active) {
+  .modal__body-add-x-btn:hover:not(:active) {
     border-color: var(--bootstrap-red);
     box-shadow: 0 0 0 .25rem rgba(220, 53, 69, .25);
     z-index: 10;
   }
 
-  .modal__add-body-add-x-btn:hover:not(:active) .modal__add-body-add-x-btn-icon {
+  .modal__body-add-x-btn:hover:not(:active) .modal__body-add-x-btn-icon {
     color: var(--bootstrap-red);
   }
 
