@@ -902,12 +902,12 @@
   });
 
   // ** создание "универсального" модального окна, для добавления или изменения данных клиента (согласно передаваемого типа)
+  let modalContactsArr = []; // глобальная инициализация массива контактов (будущих row-контактов)
+
   function createModalWindowByType(type, clientData = {}) {
     const modalId = type === 'add' ? 'add-modal' : 'edit-modal';
     const modalTitle = type === 'add' ? 'Новый клиент' : 'Изменить данные';
     const modalCancelBtn = type === 'add' ? 'Отмена' : 'Удалить клиента';
-
-    const modalContactsArr = []; // организация массива контактов (будущих контактов)
 
     const modalWrap = document.createElement('div');
     const modalDialog = document.createElement('div');
@@ -1152,25 +1152,34 @@
       initTippy(modalHeaderXBtn, 'закрыть', 'left');
     }, 0);
 
-    // запуск логики добавления/создания "внутренней" строки контактов (передача объекта/context(a) с необходимыми элементами/сущностями)
+    // запуск логики добавления/создания "внутренней" строки контактов (передача объекта/context(a) с необходимыми элементами)
     modalBodyAddBtn.addEventListener('click', () => {
       createModalContactsElement({
         modalWrap,
+        modalBodyAddContactsRowWrap,
         modalBodyAddBtn,
-        modalContactsArr,
       });
     });
 
     // запуск проверки на "пустые" контакты (перед закрытием модального окна)
-    modalWrap.addEventListener('hide.bs.modal', checkEmptyRowContacts);
+    modalWrap.addEventListener('hide.bs.modal', (event) => {
+      checkEmptyRowContacts(event, modalWrap);
+    });
 
     // удаление/очистка от невалидных row-контактов (при закрытие модального окна, передача объекта/context(a))
-    modalWrap.addEventListener('hidden.bs.modal', () =>
+    modalWrap.addEventListener('hidden.bs.modal', () => {
       removeInvalidRowContacts({
+        modalWrap,
+        modalBodyAddContactsRowWrap,
         modalBodyAddBtn,
-        modalContactsArr,
-      })
-    );
+      });
+
+      if (modalContactsArr.length === 0) {
+        modalBodyAddContactsRowWrap.classList.add('d-none');
+      }
+
+      modalContactsArr = []; // очистка массива
+    });
 
     return modalWrap; // возврат модального окна (т.е. здесь/без добавления в DOM.. позже, при клике)
   }
@@ -1197,7 +1206,7 @@
 
   // ** организация "динамического" добавления строки контакта/row-contact (по нажатию "Добавить контакт" кнопки, в  модальных/универсальных окнах)
   function createModalContactsElement(context = {}) {
-    const { modalWrap, modalBodyAddBtn, modalContactsArr } = context; // получение необходимых элементов/сущностей (через деструктуризациию входящего/передаваемого объекта)
+    const { modalWrap, modalBodyAddContactsRowWrap, modalBodyAddBtn } = context; // получение необходимых элементов (через деструктуризациию входящего/передаваемого объекта)
 
     if (modalContactsArr.length >= 10) return; // проверка количества контактов (не более 10)
 
@@ -1343,12 +1352,8 @@
     );
 
     // отображение изначально скрытой обвёртки/родителя
-    const modalContactsRowWrap = document.querySelector(
-      '.modal__body-contacts-row-wrap'
-    );
-    modalContactsRowWrap.classList.remove('d-none');
-
-    modalContactsRowWrap.append(modalContactElement); // добавление в DOM строки контактов
+    modalBodyAddContactsRowWrap.classList.remove('d-none');
+    modalBodyAddContactsRowWrap.append(modalContactElement); // добавление в DOM строки контактов
 
     // организация дополнительных отступов для "Добавить контакт" кнопки (при появлении строки контактов)
     if (modalContactsArr.length === 0) {
@@ -1375,7 +1380,7 @@
       dynamicContactValidation: true,
     });
 
-    modalContactsArr.push(modalContactElement); // добавление контакта во "внешний" массив
+    modalContactsArr.push(modalContactElement); // добавление контакта во внешний/глобальный массив
 
     // исключение ещё/прожатия кнопки "Добавить контакт", если контактов/уже 10 (вывод сообщения)
     if (modalContactsArr.length >= 10) {
@@ -1393,12 +1398,12 @@
       isDropdownToggleAllowed = false;
       setTimeout(() => (isDropdownToggleAllowed = true), 200);
 
-      const alreadyOpenDropBtn = document.querySelector('.drop-open'); // фиксация открытого/уже списка (согласно drop-кнопки)
+      const alreadyOpenDropBtn = modalWrap.querySelector('.drop-open'); // фиксация открытого/уже списка (согласно drop-кнопки)
       const nowClickedDropBtn = event.currentTarget; // фиксация нажатой drop-кнопки (сейчас)
 
       // закрытие ранее открытого выпадающего списка (если такой был)
       if (alreadyOpenDropBtn && alreadyOpenDropBtn !== nowClickedDropBtn) {
-        closeBtnDropdown();
+        closeBtnDropdown(modalWrap);
       }
 
       const nowShowedDropList = nowClickedDropBtn.nextElementSibling; // фиксация "ново-открытого" выпадающего списка (согласно drop-кнопки)
@@ -1419,6 +1424,7 @@
     modalContactList.addEventListener('click', (event) => {
       if (event.target.tagName === 'LI') {
         getContactDropSelection(event.target, {
+          modalWrap,
           modalContactDropBtn,
           modalContactList,
           modalContactHiddenInput,
@@ -1431,6 +1437,7 @@
       if (event.target.tagName === 'LI' && event.key === 'Enter') {
         event.preventDefault(); // исключение непредвиденных событий/поведения
         getContactDropSelection(event.target, {
+          modalWrap,
           modalContactDropBtn,
           modalContactList,
           modalContactHiddenInput,
@@ -1440,8 +1447,8 @@
     });
 
     // автоматическое закрытие/скрытие развёрнутого выпадающего drop-списка (при работе НЕ с ним)
-    document.addEventListener('click', (event) => {
-      const openDropdownBtn = document.querySelector('.drop-open');
+    modalWrap.addEventListener('click', (event) => {
+      const openDropdownBtn = modalWrap.querySelector('.drop-open');
 
       // закрытие/скрытие выпадающего списка (если последующий "клик" не по нему, не по drop-кнопке)
       if (
@@ -1449,12 +1456,12 @@
         !openDropdownBtn.contains(event.target) &&
         !openDropdownBtn.nextElementSibling.contains(event.target)
       ) {
-        closeBtnDropdown(); // вызов соответствующей функции
+        closeBtnDropdown(modalWrap); // вызов соответствующей функции
       }
     });
 
     modalWrap.addEventListener('focusout', (event) => {
-      const openDropdownBtn = document.querySelector('.drop-open');
+      const openDropdownBtn = modalWrap.querySelector('.drop-open');
 
       // закрытие/скрытие выпадающего списка (если "фокус" перешёл на другой элемент, в другое место)
       if (
@@ -1462,7 +1469,7 @@
         !openDropdownBtn.contains(event.relatedTarget) &&
         !openDropdownBtn.nextElementSibling.contains(event.relatedTarget)
       ) {
-        closeBtnDropdown(); // вызов соответствующей функции
+        closeBtnDropdown(modalWrap); // вызов соответствующей функции
       }
     });
 
@@ -1481,8 +1488,8 @@
       event.stopPropagation(); // исключение непредвиденных событий/поведения
       deleteModalContactsElement(event, {
         modalBodyAddBtn,
-        modalContactsArr,
-      }); // удаление строки контактов (посредствам "X" кнопки, передача объекта/context(a))
+        modalBodyAddContactsRowWrap,
+      }); // удаление строки контактов (посредствам "X", передача context(a))
     });
 
     // организация удаления строки контактов и через TAB/Enter
@@ -1491,8 +1498,8 @@
         event.stopPropagation(); // исключение непредвиденных событий/поведения
         deleteModalContactsElement(event, {
           modalBodyAddBtn,
-          modalContactsArr,
-        }); // удаление строки контактов (посредствам "X" кнопки, передача объекта/context(a))
+          modalBodyAddContactsRowWrap,
+        }); // удаление строки контактов (посредствам "X", передача context(a))
       }
     });
   }
@@ -1501,6 +1508,7 @@
   function getContactDropSelection(target, context = {}) {
     const selectedItemValue = target.getAttribute('data-value');
     const {
+      modalWrap,
       modalContactDropBtn,
       modalContactList,
       modalContactHiddenInput,
@@ -1537,7 +1545,7 @@
 
     updateRowInputType(modalContactInput, selectedItemValue); // обновление атрибута/значения "type" у/для инпута (кому возможно)
     updateDropItemPaddings(modalContactList); // обновление/изменение отступов для li/вариантов выпадающего списка (для первого и последнего элементов)
-    closeBtnDropdown(); // закрытие выпадающего списка
+    closeBtnDropdown(modalWrap); // закрытие выпадающего списка
     modalContactInput.focus(); // перевод фокуса на соседний инпут (после выбора в выпадающем списке)
   }
 
@@ -1576,8 +1584,8 @@
   }
 
   // ** организация закрытия/скрытия выпадающего row-contact списка в модальном окне (снятие фокуса)
-  function closeBtnDropdown() {
-    const openDropdownBtn = document.querySelector('.drop-open'); // фиксация "открывающей" drop-кнопки
+  function closeBtnDropdown(modalWrap) {
+    const openDropdownBtn = modalWrap.querySelector('.drop-open'); // фиксация "открывающей" drop-кнопки
 
     if (openDropdownBtn) {
       const dropdownList = openDropdownBtn.nextElementSibling; // фиксация выпадающего списка
@@ -1640,7 +1648,7 @@
   // ** удаление строки row-контакта в модальном окне (через "X" кнопку, с/без уточняющего сообщения)
   function deleteModalContactsElement(event, context = {}) {
     const clickedContactsXBtn = event.currentTarget; // получение ИМЕННО кнопки, а не/может внутренней иконки (согласно "размазанного" события)
-    const { modalBodyAddBtn, modalContactsArr } = context; // получение необходимых элементов/сущностей (через деструктуризациию входящего/передаваемого объекта)
+    const { modalBodyAddBtn, modalBodyAddContactsRowWrap } = context; // получение необходимых элементов (через деструктуризациию входящего/передаваемого объекта)
 
     if (clickedContactsXBtn) {
       tippy.hideAll(); // предварительное скрытие всех/вдруг "активных" tooltips (перед удалением искомой строки)
@@ -1682,13 +1690,11 @@
 
           // проверка на количество строк контактов (нет, скрытие обвёртки/родителя и удаление дополнительных отступов)
           if (
-            document.querySelectorAll('.modal__body-add-contact-element')
-              .length === 0
+            modalBodyAddContactsRowWrap.querySelectorAll(
+              '.modal__body-add-contact-element'
+            ).length === 0
           ) {
-            const modalContactsRowWrap = document.querySelector(
-              '.modal__body-contacts-row-wrap'
-            );
-            modalContactsRowWrap.classList.add('d-none');
+            modalBodyAddContactsRowWrap.classList.add('d-none');
             modalBodyAddBtn.classList.remove('modal-contact-btn-margin');
           }
         } else {
@@ -1699,8 +1705,8 @@
   }
 
   // ** организация проверки на "пустые" row-контакты, перед закрытием соответствующего модального окна (вывод сообщения)
-  function checkEmptyRowContacts(event) {
-    const allContactRows = document.querySelectorAll('.modal-contact-element');
+  function checkEmptyRowContacts(event, modalWrap) {
+    const allContactRows = modalWrap.querySelectorAll('.modal-contact-element');
 
     // определение "пустых" контактов (формирование соответствующего массива)
     const emptyContacts = Array.from(allContactRows).filter((row) => {
@@ -1724,9 +1730,9 @@
   }
 
   // ** удаление/очистка от невалидных row-контактов (при закрытии модального окна)
-  function removeInvalidRowContacts(context) {
-    const { modalBodyAddBtn, modalContactsArr } = context; // получение необходимых элементов/сущностей (через деструктуризациию входящего/передаваемого объекта)
-    const invalidContactRows = document.querySelectorAll(
+  function removeInvalidRowContacts(context = {}) {
+    const { modalWrap, modalBodyAddContactsRowWrap, modalBodyAddBtn } = context; // получение необходимых элементов (через деструктуризациию входящего/передаваемого объекта)
+    const invalidContactRows = modalWrap.querySelectorAll(
       '.modal-contact-element .is-invalid'
     );
 
@@ -1750,10 +1756,7 @@
 
     // скрытие "обвёртки" контактов если в массиве контактов пусто
     if (modalContactsArr.length === 0) {
-      const modalContactsRowWrap = document.querySelector(
-        '.modal__body-contacts-row-wrap'
-      );
-      modalContactsRowWrap.classList.add('d-none');
+      modalBodyAddContactsRowWrap.classList.add('d-none');
       modalBodyAddBtn.classList.remove('modal-contact-btn-margin'); // удаление дополнительных отступов
     }
   }
