@@ -1161,24 +1161,18 @@
       });
     });
 
-    // запуск проверки на "пустые" контакты (перед закрытием модального окна)
+    // запуск проверки, последующего удаления/сохранения строк контактов в зависимости от состояний/наполнения (при закрытии модального окна, передача объекта/context(a))
     modalWrap.addEventListener('hide.bs.modal', (event) => {
-      checkEmptyRowContacts(event, modalWrap);
-    });
-
-    // удаление/очистка от невалидных row-контактов (при закрытие модального окна, передача объекта/context(a))
-    modalWrap.addEventListener('hidden.bs.modal', () => {
-      removeInvalidRowContacts({
+      deleteModalRowContacts(event, {
         modalWrap,
         modalBodyAddContactsRowWrap,
         modalBodyAddBtn,
       });
+    });
 
-      if (modalContactsArr.length === 0) {
-        modalBodyAddContactsRowWrap.classList.add('d-none');
-      }
-
-      modalContactsArr = []; // очистка массива
+    // очистка массива после закрытия модального окна
+    modalWrap.addEventListener('hidden.bs.modal', () => {
+      modalContactsArr = [];
     });
 
     return modalWrap; // возврат модального окна (т.е. здесь/без добавления в DOM.. позже, при клике)
@@ -1704,61 +1698,58 @@
     }
   }
 
-  // ** организация проверки на "пустые" row-контакты, перед закрытием соответствующего модального окна (вывод сообщения)
-  function checkEmptyRowContacts(event, modalWrap) {
-    const allContactRows = modalWrap.querySelectorAll('.modal-contact-element');
-
-    // определение "пустых" контактов (формирование соответствующего массива)
-    const emptyContacts = Array.from(allContactRows).filter((row) => {
-      const internalInput = row.querySelector('.modal-contact-input');
-      return internalInput && internalInput.value.trim() === '';
-    });
-
-    // исключение закрытия/сворачивания модального окна (если есть "пустые" контакты)
-    if (emptyContacts.length > 0) {
-      event.preventDefault();
-      event.stopPropagation();
-
-      // формирование/вывод сообщения в зависимости от количества контактов
-      const message =
-        emptyContacts.length === 1
-          ? 'Заполните "пустой" контакт или удалите!'
-          : `Заполните "пустые" контакты или удалите!`;
-
-      alert(message);
-    }
-  }
-
-  // ** удаление/очистка от невалидных row-контактов (при закрытии модального окна)
-  function removeInvalidRowContacts(context = {}) {
+  // ** проверка/последующее удаление незаполненных/невалидных, "просто" row-контактов (при закрытии модального окна)
+  function deleteModalRowContacts(event, context = {}) {
     const { modalWrap, modalBodyAddContactsRowWrap, modalBodyAddBtn } = context; // получение необходимых элементов (через деструктуризациию входящего/передаваемого объекта)
-    const invalidContactRows = modalWrap.querySelectorAll(
-      '.modal-contact-element .is-invalid'
+    const allContactRows = Array.from(
+      modalWrap.querySelectorAll('.modal-contact-element') // фиксация всех строк контактов
     );
 
-    invalidContactRows.forEach((invalidInput) => {
-      const contactRow = invalidInput.closest('.modal-contact-element');
-      if (contactRow) {
-        contactRow.remove(); // удаление всего элемента/родителя
+    // определение заполненных/валидных контактов (хотя бы одного)
+    const validContactsExist = allContactRows.some((row) => {
+      const input = row.querySelector('.modal-contact-input');
+      return (
+        input &&
+        input.value.trim() !== '' &&
+        !input.classList.contains('is-invalid')
+      );
+    });
 
-        // корректировка массива контактов
+    // отработка уточняющего сообщения (если есть заполненные/валидные контакты)
+    if (validContactsExist) {
+      const userConfirmed = confirm(
+        'Есть не сохранённые данные! Закрыть окно?'
+      );
+
+      if (!userConfirmed) {
+        event.preventDefault(); // исключение закрытия модального окна
+        event.stopPropagation(); // исключение передачи данного события (выше)
+        return; // при "Cancel" по confirm, всё остаётся как было (т.е. вообще/без удалений)
+      }
+    }
+
+    // удаления "любых" строк, через задержку (ряд дополнительных действий)
+    allContactRows.forEach((contactRow) => {
+      setTimeout(() => {
+        // удаление, обновление массива
+        contactRow.remove();
         const contactIndex = modalContactsArr.indexOf(contactRow);
         if (contactIndex > -1) {
           modalContactsArr.splice(contactIndex, 1);
         }
-      }
+
+        // проверка общего количества row-контактов
+        if (modalContactsArr.length < 10) {
+          modalBodyAddBtn.disabled = false; // разблокировка кнопки "Добавить контакт", если меньше 10 контактов
+        }
+
+        // скрытие "обвёртки" контактов если в массиве контактов пусто
+        if (modalContactsArr.length === 0) {
+          modalBodyAddContactsRowWrap.classList.add('d-none');
+          modalBodyAddBtn.classList.remove('modal-contact-btn-margin'); // удаление дополнительных отступов
+        }
+      }, 500); // минимальная задержка (что бы не видеть удаления при анимации/закрытия)
     });
-
-    // проверка общего количества row-контактов
-    if (modalContactsArr.length < 10) {
-      modalBodyAddBtn.disabled = false; // разблокировка кнопки "Добавить контакт", если меньше 10 контактов
-    }
-
-    // скрытие "обвёртки" контактов если в массиве контактов пусто
-    if (modalContactsArr.length === 0) {
-      modalBodyAddContactsRowWrap.classList.add('d-none');
-      modalBodyAddBtn.classList.remove('modal-contact-btn-margin'); // удаление дополнительных отступов
-    }
   }
 
   // ** дополнительная/местная организация логики для tooltips (т.е. помимо customTippy.js)
