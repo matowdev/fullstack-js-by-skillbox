@@ -1724,7 +1724,23 @@
       if (!userConfirmed) {
         event.preventDefault(); // исключение закрытия модального окна
         event.stopPropagation(); // исключение передачи данного события (выше)
-        return; // при "Cancel" по confirm, всё остаётся как было (т.е. вообще/без удалений)
+
+        // организация/перевод focus на кнопку "Сохранить" (при введённых данных, при "cancel" в confirm)
+        const saveButton = modalWrap.querySelector('#modal-body-save-btn');
+        if (saveButton) {
+          // установка через задержку (без задержки не фокусируется)
+          setTimeout(() => {
+            saveButton.classList.add('custom-focus'); // добавление "класса" для выделения
+            saveButton.focus(); // добавление фокуса (программно)
+
+            // очистка выделения (при переводе фокуса)
+            saveButton.addEventListener('blur', () => {
+              saveButton.classList.remove('custom-focus');
+            });
+          }, 100); // минимальная задержка
+        }
+
+        return; // при "cancel" по confirm, всё остаётся как было (т.е. вообще/без удалений)
       }
     }
 

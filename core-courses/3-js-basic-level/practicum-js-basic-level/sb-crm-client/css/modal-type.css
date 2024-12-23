@@ -403,6 +403,10 @@
   background-color: var(--gray);
 }
 
+.modal__body-save-btn.custom-focus {
+  background-color: var(--dark-purple);
+}
+
 .modal__footer {
   display: flex;
   flex-direction: column;
