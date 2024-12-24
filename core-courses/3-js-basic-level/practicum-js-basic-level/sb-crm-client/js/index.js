@@ -1161,13 +1161,24 @@
       });
     });
 
-    // запуск проверки, последующего удаления/сохранения строк контактов в зависимости от состояний/наполнения (при закрытии модального окна, передача объекта/context(a))
+    // отработка/момента закрытия модального окна (ряд сопутствующих действий, передача объекта/context(a))
     modalWrap.addEventListener('hide.bs.modal', (event) => {
-      deleteModalRowContacts(event, {
+      const context = {
         modalWrap,
         modalBodyAddContactsRowWrap,
         modalBodyAddBtn,
-      });
+      };
+
+      // проверка на наличие валидных данных в инпутах: основных, контактных (хотя бы в одном.. отработка confirm)
+      const hasAnyData = checkModalInputsBeforeClose(event, context);
+
+      // если/там "cancel" в confirm, перевод focus на кнопку "Сохранить"
+      if (!hasAnyData) {
+        return; // т.е. без/вообще удалений инпутов (и "пустые" и не валидные остаются.. пока)
+      }
+
+      // если/там "ок" в confirm, отработка удаления и "пустых", и невалидных контактов (если такие были)
+      deleteModalRowContacts(context);
     });
 
     // очистка массива после закрытия модального окна
@@ -1196,6 +1207,50 @@
     observer.observe(modalWrap, { attributes: true });
 
     // return observer; // можно вернуть observe (если более не требуется)
+  }
+
+  // ** организация проверки на наличие валидных данных в модальных инпутах: основных, контактных (отработка "уточняющего" confirm, возврат true/false)
+  function checkModalInputsBeforeClose(event, context = {}) {
+    const { modalWrap } = context; // получение необходимого элемента (через деструктуризациию входящего/передаваемого объекта)
+    const modalInputs = Array.from(modalWrap.querySelectorAll('.modal-input')); // фиксация всех модальных инпутов
+
+    // определение заполненных/валидных инпутов (хотя бы одного)
+    const hasValidInputs = modalInputs.some((input) => {
+      return (
+        input.value.trim() !== '' && !input.classList.contains('is-invalid')
+      );
+    });
+
+    // отработка уточняющего сообщения (если есть заполненные/валидные инпуты)
+    if (hasValidInputs) {
+      const userConfirmed = confirm(
+        'Есть не сохранённые данные! Закрыть окно?'
+      );
+
+      if (!userConfirmed) {
+        event.preventDefault(); // исключение закрытия модального окна
+        event.stopPropagation(); // исключение передачи данного события (выше)
+
+        // организация/перевод focus на кнопку "Сохранить" (при введённых данных, при "cancel" в confirm)
+        const saveButton = modalWrap.querySelector('#modal-body-save-btn');
+        if (saveButton) {
+          // установка через задержку (без задержки не фокусируется)
+          setTimeout(() => {
+            saveButton.classList.add('custom-focus'); // добавление "класса" для выделения
+            saveButton.focus(); // добавление "программного/TAB" фокуса
+
+            // очистка выделения кнопки (при переводе фокуса)
+            saveButton.addEventListener('blur', () => {
+              saveButton.classList.remove('custom-focus');
+            });
+          }, 100); // минимальная задержка
+        }
+
+        return false; // т.е. при "cancel" в confirm, всё остаётся как было (т.е. вообще/без удалений)
+      }
+    }
+
+    return true; // т.е. при "ok" в confirm, всё можно очищать.. удалять и "пустые", и невалидные контакты
   }
 
   // ** организация "динамического" добавления строки контакта/row-contact (по нажатию "Добавить контакт" кнопки, в  модальных/универсальных окнах)
@@ -1664,10 +1719,12 @@
 
         const isCurrentInputFilled =
           currentInput && currentInput.value.trim() !== '';
+        const isCurrentInputValid =
+          currentInput && !currentInput.classList.contains('is-invalid');
         let confirmed = true; // изначально подтверждение/confirm не требуется
 
-        if (isCurrentInputFilled) {
-          confirmed = confirm('Вы действительно хотите удалить этот контакт?'); // если/есть данные в инпуте, то тогда confirm/подтверждение при удалении
+        if (isCurrentInputFilled && isCurrentInputValid) {
+          confirmed = confirm('Вы действительно хотите удалить этот контакт?'); // если/есть валидные данные в инпуте, то тогда confirm/подтверждение при удалении (так, сразу удаление)
         }
 
         if (confirmed) {
@@ -1698,73 +1755,47 @@
     }
   }
 
-  // ** проверка/последующее удаление незаполненных/невалидных, "просто" row-контактов (при закрытии модального окна)
-  function deleteModalRowContacts(event, context = {}) {
+  // ** проверка/последующее удаление незаполненных/невалидных row-контактов (при закрытии модального окна)
+  function deleteModalRowContacts(context = {}) {
     const { modalWrap, modalBodyAddContactsRowWrap, modalBodyAddBtn } = context; // получение необходимых элементов (через деструктуризациию входящего/передаваемого объекта)
+
+    if (!modalWrap) return; // если modalWrap "вообще" не определён, выход из функции
+
     const allContactRows = Array.from(
-      modalWrap.querySelectorAll('.modal-contact-element') // фиксация всех строк контактов
+      modalWrap.querySelectorAll('.modal-contact-element') // фиксация всех строк контактов (если имеются)
     );
 
-    // определение заполненных/валидных контактов (хотя бы одного)
-    const validContactsExist = allContactRows.some((row) => {
-      const input = row.querySelector('.modal-contact-input');
-      return (
-        input &&
-        input.value.trim() !== '' &&
-        !input.classList.contains('is-invalid')
-      );
-    });
-
-    // отработка уточняющего сообщения (если есть заполненные/валидные контакты)
-    if (validContactsExist) {
-      const userConfirmed = confirm(
-        'Есть не сохранённые данные! Закрыть окно?'
-      );
-
-      if (!userConfirmed) {
-        event.preventDefault(); // исключение закрытия модального окна
-        event.stopPropagation(); // исключение передачи данного события (выше)
-
-        // организация/перевод focus на кнопку "Сохранить" (при введённых данных, при "cancel" в confirm)
-        const saveButton = modalWrap.querySelector('#modal-body-save-btn');
-        if (saveButton) {
-          // установка через задержку (без задержки не фокусируется)
-          setTimeout(() => {
-            saveButton.classList.add('custom-focus'); // добавление "класса" для выделения
-            saveButton.focus(); // добавление фокуса (программно)
-
-            // очистка выделения (при переводе фокуса)
-            saveButton.addEventListener('blur', () => {
-              saveButton.classList.remove('custom-focus');
-            });
-          }, 100); // минимальная задержка
-        }
-
-        return; // при "cancel" по confirm, всё остаётся как было (т.е. вообще/без удалений)
-      }
-    }
-
-    // удаления "любых" строк, через задержку (ряд дополнительных действий)
+    // перебор полученных контактов (ряд дополнительных действий)
     allContactRows.forEach((contactRow) => {
+      // отработка через задержку
       setTimeout(() => {
-        // удаление, обновление массива
-        contactRow.remove();
-        const contactIndex = modalContactsArr.indexOf(contactRow);
-        if (contactIndex > -1) {
-          modalContactsArr.splice(contactIndex, 1);
-        }
+        const rowInput = contactRow.querySelector('.modal-contact-input'); // фиксация контактных инпутов
 
-        // проверка общего количества row-контактов
-        if (modalContactsArr.length < 10) {
-          modalBodyAddBtn.disabled = false; // разблокировка кнопки "Добавить контакт", если меньше 10 контактов
-        }
+        // проверка/удаление только "пустых" и невалидных строк
+        if (
+          !rowInput ||
+          rowInput.value.trim() === '' ||
+          rowInput.classList.contains('is-invalid')
+        ) {
+          contactRow.remove();
+          // обновление массива
+          const contactIndex = modalContactsArr.indexOf(contactRow);
+          if (contactIndex > -1) {
+            modalContactsArr.splice(contactIndex, 1);
+          }
 
-        // скрытие "обвёртки" контактов если в массиве контактов пусто
-        if (modalContactsArr.length === 0) {
-          modalBodyAddContactsRowWrap.classList.add('d-none');
-          modalBodyAddBtn.classList.remove('modal-contact-btn-margin'); // удаление дополнительных отступов
+          // проверка общего количества row-контактов
+          if (modalContactsArr.length < 10) {
+            modalBodyAddBtn.disabled = false; // разблокировка кнопки "Добавить контакт", если меньше 10 контактов
+          }
+
+          // скрытие "обвёртки" контактов если в массиве контактов пусто
+          if (modalContactsArr.length === 0) {
+            modalBodyAddContactsRowWrap.classList.add('d-none');
+            modalBodyAddBtn.classList.remove('modal-contact-btn-margin'); // удаление дополнительных отступов
+          }
         }
-      }, 500); // минимальная задержка (что бы не видеть удаления при анимации/закрытия)
+      }, 500); // минимальная задержка (чтобы не видеть удаления при анимации/закрытии)
     });
   }
 
