@@ -912,6 +912,23 @@
   let modalContactsArr = []; // глобальная инициализация массива контактов (будущих row-контактов)
 
   function createModalWindowByType(type, clientData = {}) {
+    // проверка входящего аргумента/параметра "type" (отработка по default)
+    const validTypes = ['add', 'edit'];
+    if (!validTypes.includes(type)) {
+      console.error(`Invalid type: "${type}". Defaulting to "add"!`);
+      type = 'add';
+    }
+
+    // при типе "edit" проверка наличия/корректности свойства id
+    if (
+      type === 'edit' &&
+      (!clientData.id || typeof clientData.id !== 'string')
+    ) {
+      console.warn(
+        'Missing or invalid "id" in clientData! Some features may not work as expected!'
+      );
+    }
+
     const modalId = type === 'add' ? 'add-modal' : 'edit-modal';
     const modalTitle = type === 'add' ? 'Новый клиент' : 'Изменить данные';
     const modalCancelBtn = type === 'add' ? 'Отмена' : 'Удалить клиента';
