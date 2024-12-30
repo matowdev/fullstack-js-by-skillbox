@@ -1098,7 +1098,7 @@
     modalBodyPatronymicInput.setAttribute('type', 'text');
     modalBodyPatronymicInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
     modalBodyPatronymicInput.setAttribute('placeholder', 'Отчество');
-    modalBodyPatronymicInput.setAttribute('required', '');
+    // modalBodyPatronymicInput.setAttribute('required', ''); // !!!
     modalBodyPatronymicInputLabel.setAttribute(
       'for',
       'modal-patronymic-floating-input'
@@ -1106,7 +1106,7 @@
     modalBodyAddBtn.setAttribute('id', 'modal-body-add-btn');
     modalBodyAddBtn.setAttribute('type', 'button');
     modalBodySaveBtn.setAttribute('id', 'modal-body-save-btn');
-    modalBodySaveBtn.setAttribute('type', 'button');
+    modalBodySaveBtn.setAttribute('type', 'submit');
     modalFooterCancelBtn.setAttribute('id', 'modal-footer-cancel-btn');
     modalFooterCancelBtn.setAttribute('type', 'button');
     modalFooterCancelBtn.setAttribute('data-bs-dismiss', 'modal');
@@ -1115,15 +1115,12 @@
     modalHeaderClientId.textContent = `ID: ${clientData.id || ''}`; // "вытягивается" из входящего объекта
     modalBodySurnameInputLabel.textContent = 'Фамилия';
     modalBodySurnameLabelSpan.textContent = '*';
-    modalBodySurnameFeedback.textContent =
-      'Введены не корректные данные.. исключите: английские буквы, цифры!';
+    modalBodySurnameFeedback.textContent = 'Заполните поле "Фамилия"!';
     modalBodyNameInputLabel.textContent = 'Имя';
     modalBodyNameInputLabelSpan.textContent = '*';
-    modalBodyNameFeedback.textContent =
-      'Введены не корректные данные.. исключите: английские буквы, цифры!';
+    modalBodyNameFeedback.textContent = 'Заполните поле "Имя"!';
     modalBodyPatronymicInputLabel.textContent = 'Отчество';
-    modalBodyPatronymicFeedback.textContent =
-      'Введены не корректные данные.. исключите: английские буквы, цифры!';
+    // modalBodyPatronymicFeedback.textContent = 'Заполните поле "Отчество"!'; // !!!
     modalBodyAddBtn.textContent = 'Добавить контакт';
     modalBodySaveBtn.textContent = 'Сохранить';
     modalFooterCancelBtn.textContent = modalCancelBtn; // определяется в переменной
@@ -1209,6 +1206,9 @@
     modalWrap.addEventListener('hidden.bs.modal', () => {
       modalContactsArr = [];
     });
+
+    // обработка "submit" события для формы (общая валидация, ряд действий)
+    handleModalFormSubmit({ modalBodyForm, type, clientData });
 
     return modalWrap; // возврат модального окна (т.е. здесь/без добавления в DOM.. позже, при клике)
   }
@@ -1403,7 +1403,7 @@
     modalContactItemFacebook.textContent = 'Facebook';
     modalContactItemTwitter.textContent = 'Twitter';
     modalContactItemExtraContact.textContent = 'Доп. контакт';
-    modalContactFeedback.textContent = 'НЕ корректный ввод данных контакта!';
+    modalContactFeedback.textContent = 'Заполните поле контакта или удалите!';
 
     modalContactList.append(
       modalContactItemPhone,
@@ -1859,5 +1859,121 @@
     } else {
       console.error('Tippy.js is not loaded!');
     }
+  }
+
+  // ** универсальная обработка модальных форм их "submit" событий, т.е. при добавление/изменении данных клиента (после валидаций, после проверки по ФИО)
+  // ! за основу берётся students-db..
+
+  //   const allFormInInputs = document.querySelectorAll(
+  //     '.dboard__input-form input'
+  //   );
+  //
+  //   // корректировка регистра, для полей Ф.И.О.
+  //   function toUpFirstLetter(value) {
+  //     if (!value) return ''; // если вдруг "пусто"
+  //     return value[0].toUpperCase() + value.slice(1).toLowerCase();
+  //   }
+  //
+  //   // проверка на совпадение по ФИО, в исходном/формирующемся массиве
+  //   function checkStudentFIO(
+  //     formInSurname,
+  //     formInName,
+  //     formInPatronymic,
+  //     updateStudentsDataArr
+  //   ) {
+  //     return updateStudentsDataArr.some(
+  //       (student) =>
+  //         student.surname === formInSurname &&
+  //         student.name === formInName &&
+  //         student.patronymic === formInPatronymic
+  //     );
+  //   }
+  //
+  //   allFormInInputs.forEach((input) => {
+  //     additionalFormInputsValidation(input); // дополнительная валидация (на корректный ввод)
+  //   });
+
+  function handleModalFormSubmit(context = {}) {
+    const { modalBodyForm, type, clientData } = context; // получение необходимых элементов (через деструктуризациию входящего/передаваемого объекта)
+
+    // проверка наличия входящих аргументов/параметров (нет.. возврат)
+    if (!modalBodyForm || !type || !clientData) {
+      console.error(
+        'Событие "submit" невозможно.. недостаточно входящих параметров!?'
+      );
+      return;
+    }
+
+    // [СЕРВЕР]
+    modalBodyForm.addEventListener(
+      'submit',
+      async (event) => {
+        event.preventDefault();
+
+        if (!modalBodyForm.checkValidity()) {
+          event.stopPropagation();
+          modalBodyForm.classList.add('was-validated');
+        } else {
+          //           const formInSurname = toUpFirstLetter(
+          //             formInSurnameInput.value.trim()
+          //           );
+          //           const formInName = toUpFirstLetter(formInNameInput.value.trim());
+          //           const formInPatronymic = toUpFirstLetter(
+          //             formInPatronymicInput.value.trim()
+          //           );
+          //           const formInBirthDate = formInBirthDateInput.value;
+          //           const formInStartYear = formInStartYearInput.value;
+          //           const formInFaculty = formInFacultyInput.value.toLowerCase().trim();
+          //
+          //           if (
+          //             checkStudentFIO(
+          //               formInSurname,
+          //               formInName,
+          //               formInPatronymic,
+          //               updateStudentsDataArr
+          //             )
+          //           ) {
+          //             const formInNotification = confirm(
+          //               'Совпадение по Ф.И.О! Такой студент уже существует! Всё равно добавить?'
+          //             );
+          //             if (!formInNotification) {
+          //               return; // т.е. не добавление студента (без очистки полей ввода, возможность что-то исправить)
+          //             }
+          //           }
+
+          // ! условие согласно ДЗ
+          /*
+          Каждый контакт представляет из себя следующий набор данных:
+          - Имя
+          - Фамилия
+          - Отчество
+          - Массив объектов с контактными данными, где каждый объект содержит:
+          - Тип контакта (телефон, email, VK и т.п.)
+          - Значение контакта (номер телефона, адрес email, ссылка на страницу в VK и т.п.)
+          */
+
+          // const newStudent = {
+          //   surname: formInSurname,
+          //   name: formInName,
+          //   patronymic: formInPatronymic,
+          //   birthDate: formInBirthDate,
+          //   startYear: formInStartYear,
+          //   faculty: formInFaculty,
+          // };
+
+          // await addStudentsToServer(newStudent); // добавление студента на сервер
+
+          // allFormInInputs.forEach((input) => (input.value = '')); // очистка полей формы (после добавления)
+          modalForm.classList.remove('was-validated'); // отмена красной обводки у "чистых" полей формы (после добавления)
+
+          // вывод сообщения об успешном добавлении студента (после перерисовки таблицы)
+          setTimeout(() => {
+            alert('Клиент успешно добавлен!');
+            // movingToLastNewTableRow(); // выделение/показ только что добавленного студента/строки
+          }, 200);
+        }
+      },
+      false
+    );
   }
 })();
