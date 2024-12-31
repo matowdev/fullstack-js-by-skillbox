@@ -1890,7 +1890,7 @@
   //   }
   //
   //   allFormInInputs.forEach((input) => {
-  //     additionalFormInputsValidation(input); // дополнительная валидация (на корректный ввод)
+  //     additionalFormInputsValidation(input); // !! дополнительная валидация (на корректный ввод)
   //   });
 
   function handleModalFormSubmit(context = {}) {
@@ -1964,7 +1964,7 @@
           // await addStudentsToServer(newStudent); // добавление студента на сервер
 
           // allFormInInputs.forEach((input) => (input.value = '')); // очистка полей формы (после добавления)
-          modalForm.classList.remove('was-validated'); // отмена красной обводки у "чистых" полей формы (после добавления)
+          // modalForm.classList.remove('was-validated'); // отмена красной обводки у "чистых" полей формы (после добавления)
 
           // вывод сообщения об успешном добавлении студента (после перерисовки таблицы)
           setTimeout(() => {
