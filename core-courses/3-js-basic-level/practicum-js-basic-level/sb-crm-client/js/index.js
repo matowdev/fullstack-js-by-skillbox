@@ -298,6 +298,17 @@
         // сбор ошибок/соответствующих сообщений
         const errors = [];
 
+        // возврат предусмотренных/валидационных сообщений при очистке от введённых данных в состоянии "submit" (т.е. если ввели и очистили поле)
+        if (target.classList.contains('modal__body-add-contact-input')) {
+          if (target.value.trim() === '') {
+            errors.push('Заполните поле контакта или удалите!'); // для/у row-контактов
+          }
+        } else if (!target.classList.contains('modal-patronymic-input')) {
+          if (target.value.trim() === '') {
+            errors.push(`Заполните поле "${target.placeholder}"!`); // для/у "основных" инпутов ФИО
+          }
+        }
+
         // проверки для полей ввода/инпутов из "динамической" строки контактов (согласно type="" значений)
         if (options.dynamicContactValidation) {
           const hiddenInput = targetParentNode.querySelector(
