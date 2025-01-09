@@ -1087,6 +1087,7 @@
     modalBodyForm.setAttribute('id', 'modal-form');
     modalBodyForm.setAttribute('action', '#');
     modalBodyForm.setAttribute('novalidate', '');
+    modalBodyForm.setAttribute('autocomplete', 'off');
     modalBodySurnameInput.setAttribute('id', 'modal-surname-floating-input');
     modalBodySurnameInput.setAttribute('type', 'text');
     modalBodySurnameInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
@@ -1915,7 +1916,7 @@
       return;
     }
 
-    // [СЕРВЕР]
+    // [СЕРВЕР] / обработка события "submit"
     modalBodyForm.addEventListener(
       'submit',
       async (event) => {
@@ -1925,62 +1926,10 @@
           event.stopPropagation();
           modalBodyForm.classList.add('was-validated');
         } else {
-          //           const formInSurname = toUpFirstLetter(
-          //             formInSurnameInput.value.trim()
-          //           );
-          //           const formInName = toUpFirstLetter(formInNameInput.value.trim());
-          //           const formInPatronymic = toUpFirstLetter(
-          //             formInPatronymicInput.value.trim()
-          //           );
-          //           const formInBirthDate = formInBirthDateInput.value;
-          //           const formInStartYear = formInStartYearInput.value;
-          //           const formInFaculty = formInFacultyInput.value.toLowerCase().trim();
-          //
-          //           if (
-          //             checkStudentFIO(
-          //               formInSurname,
-          //               formInName,
-          //               formInPatronymic,
-          //               updateStudentsDataArr
-          //             )
-          //           ) {
-          //             const formInNotification = confirm(
-          //               'Совпадение по Ф.И.О! Такой студент уже существует! Всё равно добавить?'
-          //             );
-          //             if (!formInNotification) {
-          //               return; // т.е. не добавление студента (без очистки полей ввода, возможность что-то исправить)
-          //             }
-          //           }
-
-          // ! условие согласно ДЗ
-          /*
-          Каждый контакт представляет из себя следующий набор данных:
-          - Имя
-          - Фамилия
-          - Отчество
-          - Массив объектов с контактными данными, где каждый объект содержит:
-          - Тип контакта (телефон, email, VK и т.п.)
-          - Значение контакта (номер телефона, адрес email, ссылка на страницу в VK и т.п.)
-          */
-
-          // const newStudent = {
-          //   surname: formInSurname,
-          //   name: formInName,
-          //   patronymic: formInPatronymic,
-          //   birthDate: formInBirthDate,
-          //   startYear: formInStartYear,
-          //   faculty: formInFaculty,
-          // };
-
-          // await addStudentsToServer(newStudent); // добавление студента на сервер
-
-          // allFormInInputs.forEach((input) => (input.value = '')); // очистка полей формы (после добавления)
-          // modalForm.classList.remove('was-validated'); // отмена красной обводки у "чистых" полей формы (после добавления)
-
-          // вывод сообщения об успешном добавлении студента (после перерисовки таблицы)
+          // вывод сообщения об успешном добавлении клиента (после перерисовки таблицы)
           setTimeout(() => {
             alert('Клиент успешно добавлен!');
-            // movingToLastNewTableRow(); // выделение/показ только что добавленного студента/строки
+            // movingToLastNewTableRow(); // выделение/показ только что добавленного клиента/строки
           }, 200);
         }
       },
