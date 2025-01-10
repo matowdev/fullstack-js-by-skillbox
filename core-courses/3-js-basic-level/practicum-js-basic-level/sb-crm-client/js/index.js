@@ -258,7 +258,7 @@
     // добавление валидации для вводимых данных/в модальном окне (для "основных" инпутов, ФИО)
     const allModalBodyFormInputs =
       modalWrap.querySelectorAll('.modal__body-input');
-    addInputsValidation(allModalBodyFormInputs, {
+    mainInputsValidation(allModalBodyFormInputs, {
       allowOnlyRussian: true,
       singleHyphen: true,
       noExtraSpaces: true,
@@ -276,7 +276,7 @@
   });
 
   // ** организация "общей/универсальной" логики для валидации полей ввода/инпутов (согласно передаваемых параметров)
-  function addInputsValidation(inputs, options) {
+  function mainInputsValidation(inputs, options) {
     inputs.forEach((input) =>
       input.addEventListener('input', (event) => {
         const target = event.target;
@@ -298,14 +298,16 @@
         // сбор ошибок/соответствующих сообщений
         const errors = [];
 
-        // возврат предусмотренных/валидационных сообщений при очистке от введённых данных в состоянии "submit" (т.е. если ввели и очистили поле)
-        if (target.classList.contains('modal__body-add-contact-input')) {
+        // возврат предусмотренных/валидационных сообщений при очистке от введённых данных в состоянии "submit" (т.е. если ввели и очистили поле.. сразу)
+        if (target.closest('form').classList.contains('was-submitted')) {
           if (target.value.trim() === '') {
-            errors.push('Заполните поле контакта или удалите!'); // для/у row-контактов
-          }
-        } else if (!target.classList.contains('modal-patronymic-input')) {
-          if (target.value.trim() === '') {
-            errors.push(`Заполните поле "${target.placeholder}"!`); // для/у "основных" инпутов ФИО
+            if (target.classList.contains('modal__body-add-contact-input')) {
+              errors.push('Заполните поле контакта или удалите!'); // для/у row-контактов
+            } else if (!target.classList.contains('modal-patronymic-input')) {
+              errors.push(`Заполните поле "${target.placeholder}"!`); // для/у инпутов, как "Фамилия", "Имя"
+            } else {
+              errors.push('Заполните поле "Отчество" или оставьте его пустым!'); // для/у инпута "Отчество"
+            }
           }
         }
 
@@ -878,11 +880,56 @@
 
   // добавление валидации для заглавного фильтрационного инпута ("Введите запрос")
   const searchFormMainInput = document.querySelector('.crm__search-form input');
-  addInputsValidation([searchFormMainInput], {
+  mainInputsValidation([searchFormMainInput], {
     allowOnlyRussian: true,
     singleHyphen: true,
     noExtraSpaces: true,
   });
+
+  // ** организация "дополнительной" логики для валидации полей ввода/инпутов в модальных окнах (при/в "submit" состояниях)
+  function additionalFormInputsValidation(allModalInputs, modalBodyForm) {
+    const validErrors = [];
+
+    allModalInputs.forEach((input) => {
+      const parent = input.parentNode;
+      const feedback = parent.querySelector('.invalid-feedback');
+
+      if (input.value.trim() === '') {
+        // определение/вывод сообщения в зависимости от "класса" инпута
+        if (input.classList.contains('modal__body-add-contact-input')) {
+          validErrors.push('Заполните поле контакта или удалите!');
+          if (feedback)
+            feedback.textContent = 'Заполните поле контакта или удалите!';
+        } else if (!input.classList.contains('modal-patronymic-input')) {
+          validErrors.push(`Заполните поле "${input.placeholder}"!`);
+          if (feedback)
+            feedback.textContent = `Заполните поле "${input.placeholder}"!`;
+        } else if (input.classList.contains('modal-patronymic-input')) {
+          // !! не складывать в массив.. что бы проходить проверку ... || validErrors.length > 0 и тем самым получать сообщение о добавлении.. после "submit"
+          // индивидуальное сообщение для поля "Отчество"
+          // validErrors.push(
+          //   'Заполните поле "Отчество" или оставьте его пустым!'
+          // );
+          if (feedback)
+            feedback.textContent =
+              'Заполните поле "Отчество" или оставьте его пустым!';
+        }
+
+        input.classList.add('is-invalid'); // выделение инпута "красным"
+      } else {
+        // а если данные валидны, отмена выделения/исключение сообщения
+        input.classList.remove('is-invalid');
+        if (feedback) feedback.textContent = '';
+      }
+    });
+
+    // добавление кастомного "класса-состояния" для формы (на основе этого последующая отработка)
+    if (validErrors.length > 0) {
+      modalBodyForm.classList.add('was-submitted');
+    }
+
+    return validErrors; // возврат массива ошибок/сообщений
+  }
 
   // ** изменение направления стрелки/svg-icon, согласно прожатия по заглавной ячейке (при сортировке данных)
   const allHeaderRowCells = document.querySelectorAll(
@@ -1110,7 +1157,7 @@
     modalBodyPatronymicInput.setAttribute('type', 'text');
     modalBodyPatronymicInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
     modalBodyPatronymicInput.setAttribute('placeholder', 'Отчество');
-    // modalBodyPatronymicInput.setAttribute('required', ''); // !!!
+    // modalBodyPatronymicInput.setAttribute('required', '');
     modalBodyPatronymicInputLabel.setAttribute(
       'for',
       'modal-patronymic-floating-input'
@@ -1132,7 +1179,7 @@
     modalBodyNameInputLabelSpan.textContent = '*';
     modalBodyNameFeedback.textContent = 'Заполните поле "Имя"!';
     modalBodyPatronymicInputLabel.textContent = 'Отчество';
-    // modalBodyPatronymicFeedback.textContent = 'Заполните поле "Отчество"!'; // !!!
+    modalBodyPatronymicFeedback.textContent = 'Заполните поле "Отчество"!';
     modalBodyAddBtn.textContent = 'Добавить контакт';
     modalBodySaveBtn.textContent = 'Сохранить';
     modalFooterCancelBtn.textContent = modalCancelBtn; // определяется в переменной
@@ -1461,7 +1508,7 @@
     updateDropItemPaddings(modalContactList);
 
     // добавление валидации для вводимых данных контакта (при добавлении строки контактов)
-    addInputsValidation([modalContactInput], {
+    mainInputsValidation([modalContactInput], {
       dynamicContactValidation: true,
     });
 
@@ -1922,7 +1969,14 @@
       async (event) => {
         event.preventDefault();
 
-        if (!modalBodyForm.checkValidity()) {
+        // отработка "дополнительной" валидации инпутов/формы, в момент "submit" (т.е. при прожатии "Сохранить", всё ли корректно/заполнено)
+        const allModalInputs = modalBodyForm.querySelectorAll('.modal-input');
+        const validErrors = additionalFormInputsValidation(
+          allModalInputs,
+          modalBodyForm
+        );
+
+        if (!modalBodyForm.checkValidity() || validErrors.length > 0) {
           event.stopPropagation();
           modalBodyForm.classList.add('was-validated');
         } else {
