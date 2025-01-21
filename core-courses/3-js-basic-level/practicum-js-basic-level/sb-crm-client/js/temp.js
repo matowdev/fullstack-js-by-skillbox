@@ -101,3 +101,74 @@ function handleModalFormSubmit(context = {}) {
     false
   );
 }
+
+// !!
+function handleModalFormSubmit(context = {}) {
+  const { modalBodyForm, type, clientData } = context; // получение необходимых элементов
+  const saveButton = modalBodyForm.querySelector('#modal-body-save-btn'); // фиксация кнопки "Сохранить"
+
+  // проверка наличия входящих аргументов
+  if (!modalBodyForm || !type || !clientData) {
+    console.error(
+      'Событие "submit" невозможно.. недостаточно входящих параметров!?'
+    );
+    return;
+  }
+
+  // обработка инпутов / увязка с состоянием кнопки "Сохранить"
+  const allModalInputs = modalBodyForm.querySelectorAll('.modal-input');
+  allModalInputs.forEach((input) => {
+    input.addEventListener('input', () => {
+      updateSaveButtonState(modalBodyForm, saveButton); // обновление состояния кнопки "Сохранить"
+    });
+  });
+
+  // обработка события "submit"
+  modalBodyForm.addEventListener(
+    'submit',
+    async (event) => {
+      event.preventDefault();
+
+      // блокировка кнопки "Сохранить" после первого "submit"
+      saveButton.disabled = true;
+
+      // проверка валидности всей формы
+      const validErrors = additionalFormInputsValidation(
+        allModalInputs,
+        modalBodyForm
+      );
+
+      if (!modalBodyForm.checkValidity() || validErrors.length > 0) {
+        event.stopPropagation(); // остановка распространения события
+        modalBodyForm.classList.add('was-validated'); // добавление CSS класса
+        updateSaveButtonState(modalBodyForm, saveButton); // проверка состояния кнопки "Сохранить" после валидации
+      } else {
+        saveButton.disabled = false; // разблокировка кнопки "Сохранить", если форма валидна
+
+        // вывод сообщения об успешном добавлении клиента
+        setTimeout(() => {
+          alert('Клиент успешно добавлен!');
+          // movingToLastNewTableRow(); // выделение/показ только что добавленного клиента/строки
+        }, 200);
+      }
+    },
+    false
+  );
+}
+
+// ** организация блокировки/доступности для модальной кнопки "Сохранить" (доступна для прожатия или нет)
+function updateSaveButtonState(modalBodyForm, saveButton) {
+  const allModalInputs = Array.from(
+    modalBodyForm.querySelectorAll('.modal-input')
+  );
+  const hasInvalidInputs = allModalInputs.some(
+    (input) =>
+      input.classList.contains('is-invalid') &&
+      !input.classList.contains('modal-patronymic-input')
+  );
+
+  // обновление/изменение состояния кнопки и прозрачности
+  saveButton.disabled = hasInvalidInputs;
+  saveButton.style.opacity = hasInvalidInputs ? '0.5' : '1';
+  saveButton.style.cursor = hasInvalidInputs ? 'not-allowed' : 'pointer';
+}
