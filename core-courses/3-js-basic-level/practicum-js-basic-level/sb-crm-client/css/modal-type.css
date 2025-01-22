@@ -111,6 +111,10 @@
   min-height: 45px;
 }
 
+.modal__body-inputs-wrap .modal__body-input.is-invalid {
+  border-bottom: 1px solid var(--bootstrap-red);
+}
+
 .modal__body-input:focus {
   border-color: var(--main-purple);
   /* тень только снизу */

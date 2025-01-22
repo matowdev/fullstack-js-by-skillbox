@@ -894,25 +894,32 @@
       const parent = input.parentNode;
       const feedback = parent.querySelector('.invalid-feedback');
 
-      if (input.value.trim() === '') {
+      if (input.value.trim() === '' || !input.checkValidity()) {
         // определение/вывод сообщения в зависимости от "класса" инпута
-        if (input.classList.contains('modal__body-add-contact-input')) {
-          validErrors.push('Заполните поле контакта или удалите!');
-          if (feedback)
-            feedback.textContent = 'Заполните поле контакта или удалите!';
-        } else if (!input.classList.contains('modal-patronymic-input')) {
-          validErrors.push(`Заполните поле "${input.placeholder}"!`);
-          if (feedback)
-            feedback.textContent = `Заполните поле "${input.placeholder}"!`;
-        } else if (input.classList.contains('modal-patronymic-input')) {
-          // индивидуальное сообщение для поля "Отчество", НО без добавления в массив ошибок
-          if (feedback)
-            feedback.textContent =
-              'Заполните поле "Отчество" или оставьте его пустым!';
+        if (!input.classList.contains('is-invalid')) {
+          if (input.classList.contains('modal__body-add-contact-input')) {
+            validErrors.push('Заполните поле контакта или удалите!');
+            if (feedback)
+              feedback.textContent = 'Заполните поле контакта или удалите!';
+          } else if (!input.classList.contains('modal-patronymic-input')) {
+            validErrors.push(`Заполните поле "${input.placeholder}"!`);
+            if (feedback)
+              feedback.textContent = `Заполните поле "${input.placeholder}"!`;
+          } else if (input.classList.contains('modal-patronymic-input')) {
+            // индивидуальное сообщение для поля "Отчество", НО без добавления в массив ошибок
+            if (feedback)
+              feedback.textContent =
+                'Заполните поле "Отчество" или оставьте его пустым!';
+          }
+
+          input.classList.add('is-invalid'); // выделение инпута "красным"
+        }
+      } else {
+        // отображение ошибок
+        if (input.classList.contains('is-invalid')) {
+          return; // если "is-invalid".. оставляем
         }
 
-        input.classList.add('is-invalid'); // выделение инпута "красным"
-      } else {
         // а если данные валидны, отмена выделения/исключение сообщения
         input.classList.remove('is-invalid');
         if (feedback) feedback.textContent = '';
