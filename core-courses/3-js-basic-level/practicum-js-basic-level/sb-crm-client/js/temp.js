@@ -102,6 +102,46 @@ function handleModalFormSubmit(context = {}) {
   );
 }
 
+// ? ВАРИАНТ функции handleModalFormSubmit() с которым было "ЗЕЛЁНОЕ" выделение контактных инпутов
+function handleModalFormSubmit(context = {}) {
+  const { modalBodyForm, type, clientData } = context; // получение необходимых элементов (через деструктуризациию входящего/передаваемого объекта)
+
+  // проверка наличия входящих аргументов/параметров (нет.. возврат)
+  if (!modalBodyForm || !type || !clientData) {
+    console.error(
+      'Событие "submit" невозможно.. недостаточно входящих параметров!?'
+    );
+    return;
+  }
+
+  // [СЕРВЕР] / обработка события "submit"
+  modalBodyForm.addEventListener(
+    'submit',
+    async (event) => {
+      event.preventDefault();
+
+      // отработка "дополнительной" валидации инпутов/формы, в момент "submit" (т.е. при прожатии "Сохранить", всё ли корректно/заполнено)
+      const allModalInputs = modalBodyForm.querySelectorAll('.modal-input');
+      const validErrors = additionalFormInputsValidation(
+        allModalInputs,
+        modalBodyForm
+      );
+
+      if (!modalBodyForm.checkValidity() || validErrors.length > 0) {
+        event.stopPropagation();
+        modalBodyForm.classList.add('was-validated');
+      } else {
+        // вывод сообщения об успешном добавлении клиента (после перерисовки таблицы)
+        setTimeout(() => {
+          alert('Клиент успешно добавлен!');
+          // movingToLastNewTableRow(); // выделение/показ только что добавленного клиента/строки
+        }, 200);
+      }
+    },
+    false
+  );
+}
+
 // !!
 function handleModalFormSubmit(context = {}) {
   const { modalBodyForm, type, clientData } = context; // получение необходимых элементов

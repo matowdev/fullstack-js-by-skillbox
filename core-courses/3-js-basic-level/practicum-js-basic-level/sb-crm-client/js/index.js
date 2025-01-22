@@ -1972,14 +1972,46 @@
           modalBodyForm
         );
 
-        if (!modalBodyForm.checkValidity() || validErrors.length > 0) {
+        // "дополнительная" проверка на наличие "invalid-feedback" у контактных инпутов (т.к. всё не просто с 'was-validated')
+        const hasInvalidFeedback = Array.from(
+          modalBodyForm.querySelectorAll('.modal__body-add-contact-input')
+        ).some((input) => {
+          const feedback =
+            input.parentElement.querySelector('.invalid-feedback');
+          return feedback && feedback.textContent.trim() !== '';
+        });
+
+        if (
+          !modalBodyForm.checkValidity() ||
+          validErrors.length > 0 ||
+          hasInvalidFeedback
+        ) {
           event.stopPropagation();
-          modalBodyForm.classList.add('was-validated');
         } else {
-          // вывод сообщения об успешном добавлении клиента (после перерисовки таблицы)
+          modalBodyForm.classList.add('was-validated'); // если всё "ок", т.е. нет ошибок, невалидных сообщений.. добавление всей форме валидационного класса (для/по Bootstrap)
+
           setTimeout(() => {
-            alert('Клиент успешно добавлен!');
-            // movingToLastNewTableRow(); // выделение/показ только что добавленного клиента/строки
+            alert('Клиент успешно добавлен!'); // вывод сообщения об успешном добавлении клиента
+
+            // очистка всех полей формы (удаление классов/сообщений ошибок)
+            allModalInputs.forEach((input) => {
+              input.value = '';
+              input.classList.remove('is-invalid');
+            });
+            modalBodyForm.classList.remove('was-validated'); // удаление класса "was-validated"
+
+            // закрытие модального окна (через/посредствам Bootstrap API)
+            const bootstrapModal = bootstrap.Modal.getInstance(
+              modalBodyForm.closest('.modal')
+            );
+            if (bootstrapModal) {
+              bootstrapModal.hide();
+            }
+
+            // и напоследок.. выделение/показ только что добавленного клиента/строки
+            setTimeout(() => {
+              // movingToLastNewTableRow();
+            }, 300); // временная задержка, больше.. чтобы модальное окно успело закрыться
           }, 200);
         }
       },
