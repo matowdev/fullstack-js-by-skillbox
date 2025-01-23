@@ -1694,6 +1694,21 @@
     updateRowInputType(modalContactInput, selectedItemValue); // обновление атрибута/значения "type" у/для инпута (кому возможно)
     updateDropItemPaddings(modalContactList); // обновление/изменение отступов для li/вариантов выпадающего списка (для первого и последнего элементов)
     closeBtnDropdown(modalWrap); // закрытие выпадающего списка
+
+    // возврат класса/состояния "is-invalid" строке контакта, при смене типа контакта из drop-down меню (когда форма уже/в "was-submitted")
+    const modalForm = modalWrap.querySelector('form');
+    if (modalForm.classList.contains('was-submitted')) {
+      const invalidFeed = modalContactInput
+        .closest('.modal-contact-element')
+        .querySelector('.invalid-feedback');
+
+      // возврат/добавление "is-invalid", сообщения
+      if (modalContactInput.value.trim() === '') {
+        modalContactInput.classList.add('is-invalid');
+        invalidFeed.textContent = 'Заполните поле контакта или удалите!';
+      }
+    }
+
     modalContactInput.focus(); // перевод фокуса на соседний инпут (после выбора в выпадающем списке)
   }
 
