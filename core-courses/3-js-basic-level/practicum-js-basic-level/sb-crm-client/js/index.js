@@ -1507,13 +1507,26 @@
       modalContactItemPhone.style.display = 'none';
     }
 
-    // обновление/изменение отступов для li/вариантов выпадающего списка (для первого и последнего элементов)
-    updateDropItemPaddings(modalContactList);
-
     // добавление валидации для вводимых данных контакта (при добавлении строки контактов)
     mainInputsValidation([modalContactInput], {
       dynamicContactValidation: true,
     });
+
+    // добавление класса/состояния "is-invalid" пустой строке контакта, при появлении (если форма уже/в "was-submitted")
+    const modalForm = modalWrap.querySelector('form');
+    if (modalForm.classList.contains('was-submitted')) {
+      const invalidFeed =
+        modalContactElement.querySelector('.invalid-feedback');
+
+      // добавление "is-invalid", сообщения
+      if (modalContactInput.value.trim() === '') {
+        modalContactInput.classList.add('is-invalid');
+        invalidFeed.textContent = 'Заполните поле контакта или удалите!';
+      }
+    }
+
+    // обновление/изменение отступов для li/вариантов выпадающего списка (для первого и последнего элементов)
+    updateDropItemPaddings(modalContactList);
 
     modalContactsArr.push(modalContactElement); // добавление контакта во внешний/глобальный массив
 
