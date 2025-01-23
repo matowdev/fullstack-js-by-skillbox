@@ -1342,6 +1342,8 @@
   // ** организация "динамического" добавления строки контакта/row-contact (по нажатию "Добавить контакт" кнопки, в  модальных/универсальных окнах)
   function createModalContactsElement(context = {}) {
     const { modalWrap, modalBodyAddContactsRowWrap, modalBodyAddBtn } = context; // получение необходимых элементов (через деструктуризациию входящего/передаваемого объекта)
+    const modalBodyForm = modalWrap.querySelector('form');
+    const saveButton = modalWrap.querySelector('#modal-body-save-btn');
 
     if (modalContactsArr.length >= 10) return; // проверка количества контактов (не более 10)
 
@@ -1525,6 +1527,9 @@
       }
     }
 
+    // обновление состояния кнопки "Сохранить" (согласно действий с контактными инпутами)
+    updateSaveButtonState(modalBodyForm, saveButton);
+
     // обновление/изменение отступов для li/вариантов выпадающего списка (для первого и последнего элементов)
     updateDropItemPaddings(modalContactList);
 
@@ -1635,6 +1640,7 @@
     modalContactXBtn.addEventListener('click', (event) => {
       event.stopPropagation(); // исключение непредвиденных событий/поведения
       deleteModalContactsElement(event, {
+        modalBodyForm,
         modalBodyAddBtn,
         modalBodyAddContactsRowWrap,
       }); // удаление строки контактов (посредствам "X", передача context(a))
@@ -1645,6 +1651,7 @@
       if (event.key === 'Enter') {
         event.stopPropagation(); // исключение непредвиденных событий/поведения
         deleteModalContactsElement(event, {
+          modalBodyForm,
           modalBodyAddBtn,
           modalBodyAddContactsRowWrap,
         }); // удаление строки контактов (посредствам "X", передача context(a))
@@ -1811,7 +1818,9 @@
   // ** удаление строки row-контакта в модальном окне (через "X" кнопку, с/без уточняющего сообщения)
   function deleteModalContactsElement(event, context = {}) {
     const clickedContactsXBtn = event.currentTarget; // получение ИМЕННО кнопки, а не/может внутренней иконки (согласно "размазанного" события)
-    const { modalBodyAddBtn, modalBodyAddContactsRowWrap } = context; // получение необходимых элементов (через деструктуризациию входящего/передаваемого объекта)
+    const { modalBodyForm, modalBodyAddBtn, modalBodyAddContactsRowWrap } =
+      context; // получение необходимых элементов (через деструктуризациию входящего/передаваемого объекта)
+    const saveButton = modalBodyForm.querySelector('#modal-body-save-btn'); // фиксация кнопки "Сохранить"
 
     if (clickedContactsXBtn) {
       tippy.hideAll(); // предварительное скрытие всех/вдруг "активных" tooltips (перед удалением искомой строки)
@@ -1862,6 +1871,9 @@
             modalBodyAddContactsRowWrap.classList.add('d-none');
             modalBodyAddBtn.classList.remove('modal-contact-btn-margin');
           }
+
+          // обновление состояния кнопки "Сохранить" (после удалений строк контактов)
+          updateSaveButtonState(modalBodyForm, saveButton);
         } else {
           currentInput.focus(); // возврат фокуса искомому инпуту (после отмены удаления в confirm)
         }
@@ -1994,6 +2006,8 @@
       return;
     }
 
+    const saveButton = modalBodyForm.querySelector('#modal-body-save-btn'); // фиксация кнопки "Сохранить"
+
     // [СЕРВЕР] / обработка события "submit"
     modalBodyForm.addEventListener(
       'submit',
@@ -2016,41 +2030,94 @@
           return feedback && feedback.textContent.trim() !== '';
         });
 
+        // обновление состояния кнопки "Сохранить" (доступна, не доступна)
+        updateSaveButtonState(modalBodyForm, saveButton);
+
         if (
           !modalBodyForm.checkValidity() ||
           validErrors.length > 0 ||
           hasInvalidFeedback
         ) {
           event.stopPropagation();
-        } else {
-          modalBodyForm.classList.add('was-validated'); // если всё "ок", т.е. нет ошибок, невалидных сообщений.. добавление всей форме валидационного класса (для/по Bootstrap)
-
-          setTimeout(() => {
-            alert('Клиент успешно добавлен!'); // вывод сообщения об успешном добавлении клиента
-
-            // очистка всех полей формы (удаление классов/сообщений ошибок)
-            allModalInputs.forEach((input) => {
-              input.value = '';
-              input.classList.remove('is-invalid');
-            });
-            modalBodyForm.classList.remove('was-validated'); // удаление класса "was-validated"
-
-            // закрытие модального окна (через/посредствам Bootstrap API)
-            const bootstrapModal = bootstrap.Modal.getInstance(
-              modalBodyForm.closest('.modal')
-            );
-            if (bootstrapModal) {
-              bootstrapModal.hide();
-            }
-
-            // и напоследок.. выделение/показ только что добавленного клиента/строки
-            setTimeout(() => {
-              // movingToLastNewTableRow();
-            }, 300); // временная задержка, больше.. чтобы модальное окно успело закрыться
-          }, 200);
+          return; // если есть ошибки, прекращение отработки
         }
+
+        modalBodyForm.classList.add('was-validated'); // если всё "ок", т.е. нет ошибок, невалидных сообщений.. добавление всей форме валидационного класса (для/по Bootstrap)
+
+        setTimeout(() => {
+          alert('Клиент успешно добавлен!'); // вывод сообщения об успешном добавлении клиента
+
+          // очистка всех полей формы (удаление классов/сообщений ошибок)
+          allModalInputs.forEach((input) => {
+            input.value = '';
+            input.classList.remove('is-invalid');
+          });
+          modalBodyForm.classList.remove('was-validated'); // удаление класса "was-validated"
+
+          // закрытие модального окна (через/посредствам Bootstrap API)
+          const bootstrapModal = bootstrap.Modal.getInstance(
+            modalBodyForm.closest('.modal')
+          );
+          if (bootstrapModal) {
+            bootstrapModal.hide();
+          }
+
+          // и напоследок.. выделение/показ только что добавленного клиента/строки
+          setTimeout(() => {
+            // movingToLastNewTableRow();
+          }, 300); // временная задержка, больше.. чтобы модальное окно успело закрыться
+        }, 200);
       },
       false
     );
+
+    // обновление состояния кнопки "Сохранить" (согласно ввода данных)
+    modalBodyForm.addEventListener('input', () =>
+      updateSaveButtonState(modalBodyForm, saveButton)
+    );
+  }
+
+  // ** организация блокировки доступности для модальной кнопки "Сохранить" (при "submit")
+  function updateSaveButtonState(modalBodyForm, saveButton) {
+    const allModalInputs = Array.from(
+      modalBodyForm.querySelectorAll('.modal-input')
+    );
+
+    // проверка на наличие невалидных инпутов (за исключением поля "Отчество", его "конкретного" сообщения)
+    const hasInvalidInputs = allModalInputs.some((input) => {
+      if (input.classList.contains('modal-patronymic-input')) {
+        const feedback = input
+          .closest('.modal__body-input-wrap')
+          .querySelector('.invalid-feedback');
+        if (
+          feedback &&
+          feedback.textContent.trim() !==
+            'Заполните поле "Отчество" или оставьте его пустым!'
+        ) {
+          return true; // другие сообщения.. кнопка "Сохранить" будет не доступной
+        }
+        return false; // нужное сообщение.. будет доступна
+      }
+      return input.classList.contains('is-invalid');
+    });
+
+    // проверка обязательных полей ФИО (за исключением поля "Отчество")
+    const requiredInputsEmpty = allModalInputs.some(
+      (input) =>
+        input.required &&
+        !input.classList.contains('modal-patronymic-input') &&
+        input.value.trim() === ''
+    );
+
+    // проверка состояния модальной-формы (наличие "was-submitted", да/нет)
+    const wasSubmitted = modalBodyForm.classList.contains('was-submitted');
+
+    // блокировка кнопки, если был "submit" (если/есть, появились невалидные инпуты)
+    saveButton.disabled =
+      wasSubmitted && (hasInvalidInputs || requiredInputsEmpty);
+
+    // обновление/изменение состояния кнопки и прозрачности
+    saveButton.style.opacity = saveButton.disabled ? '0.5' : '1';
+    saveButton.style.cursor = saveButton.disabled ? 'help' : 'pointer';
   }
 })();
