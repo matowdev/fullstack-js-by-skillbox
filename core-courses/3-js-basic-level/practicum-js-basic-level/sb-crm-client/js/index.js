@@ -373,10 +373,18 @@
                 }
 
                 // исключение недопустимых символов (вообще)
-                target.value = target.value.replace(
-                  /[=+,`~!?%#$^&:{}()<>|"'*/\\]/g,
-                  ''
-                );
+                const invalidCharacters = /[=+,`;~!?%#№$^&:{}()<>|"'*/\\]/g;
+
+                if (invalidCharacters.test(target.value)) {
+                  errors.push(
+                    'Введите корректную почту, например: example_123@gmail.com'
+                  );
+                  target.classList.add('is-invalid');
+                  invalidFeed.textContent =
+                    'Введите корректную почту, например: example_123@gmail.com';
+                }
+
+                target.value = target.value.replace(invalidCharacters, '');
 
                 // отдельная обработка пробелов через событие "beforeinput" (попытка исключить непонятный возврат "каретки" в начало строки/инпута при вводе пробела)
                 target.addEventListener('beforeinput', (event) => {
@@ -889,6 +897,31 @@
   // ** организация "дополнительной" логики для валидации полей ввода/инпутов в модальных окнах (при/в "submit" состояниях)
   function additionalFormInputsValidation(allModalInputs, modalBodyForm) {
     const validErrors = [];
+    // определение минимального количества букв/символов (для каждого инпут/типа поля)
+    const minLengths = {
+      'modal-surname-input': 3,
+      'modal-name-input': 2,
+      'modal-patronymic-input': 5,
+      'modal-contact-input': {
+        phone: 18,
+        'extra-phone': 18,
+        vk: 7,
+        email: 6,
+        facebook: 5,
+        twitter: 3,
+        'extra-contact': 3,
+      },
+    };
+    // использование названий как в drop-down меню
+    const contactTypeLabels = {
+      phone: 'Телефон',
+      'extra-phone': 'Доп. телефон',
+      vk: 'Vk',
+      email: 'Email',
+      facebook: 'Facebook',
+      twitter: 'Twitter',
+      'extra-contact': 'Доп. контакт',
+    };
 
     allModalInputs.forEach((input) => {
       const parent = input.parentNode;
@@ -915,14 +948,51 @@
           input.classList.add('is-invalid'); // выделение инпута "красным"
         }
       } else {
-        // отображение ошибок
-        if (input.classList.contains('is-invalid')) {
-          return; // если "is-invalid".. оставляем
+        // проверка минимальной длины вводимых данных
+        const inputClass = Object.keys(minLengths).find((className) =>
+          input.classList.contains(className)
+        );
+
+        // для полей ФИО
+        if (inputClass && typeof minLengths[inputClass] === 'number') {
+          if (input.value.length < minLengths[inputClass]) {
+            const fieldName = {
+              'modal-surname-input': 'Фамилия',
+              'modal-name-input': 'Имя',
+              'modal-patronymic-input': 'Отчество',
+            }[inputClass];
+
+            validErrors.push(
+              `Поле "${fieldName}" должно быть не менее ${minLengths[inputClass]} символов!`
+            );
+            input.classList.add('is-invalid');
+            if (feedback)
+              feedback.textContent = validErrors[validErrors.length - 1];
+          }
         }
 
-        // а если данные валидны, отмена выделения/исключение сообщения
-        input.classList.remove('is-invalid');
-        if (feedback) feedback.textContent = '';
+        // для строк контактов
+        if (input.classList.contains('modal-contact-input')) {
+          const hiddenInput = parent.querySelector('.modal-hidden-input');
+          const contactType = hiddenInput ? hiddenInput.value : '';
+          const minLength = minLengths['modal-contact-input'][contactType] || 0;
+          const contactLabel = contactTypeLabels[contactType] || 'Контакт';
+
+          if (input.value.length < minLength) {
+            validErrors.push(
+              `Поле "${contactLabel}" должно быть не менее ${minLength} символов!`
+            );
+            input.classList.add('is-invalid');
+            if (feedback)
+              feedback.textContent = validErrors[validErrors.length - 1];
+          }
+        }
+
+        // Если данные валидны, убираем ошибки
+        if (!input.classList.contains('is-invalid')) {
+          input.classList.remove('is-invalid');
+          if (feedback) feedback.textContent = '';
+        }
       }
     });
 
@@ -2091,8 +2161,8 @@
           .querySelector('.invalid-feedback');
         if (
           feedback &&
-          feedback.textContent.trim() !==
-            'Заполните поле "Отчество" или оставьте его пустым!'
+          feedback.textContent.trim() &&
+          input.value.trim() !== ''
         ) {
           return true; // другие сообщения.. кнопка "Сохранить" будет не доступной
         }
