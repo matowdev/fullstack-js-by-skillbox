@@ -1334,6 +1334,9 @@
       deleteModalRowContacts(context);
     });
 
+    // корректировка z-index у/для drop-btn кнопки
+    handleDropDownZIndex(modalWrap);
+
     // очистка массива после закрытия модального окна
     modalWrap.addEventListener('hidden.bs.modal', () => {
       modalContactsArr = [];
@@ -1574,6 +1577,9 @@
       modalContactElement.style.opacity = '1';
     }, 10);
 
+    // корректировка z-index у/для drop-btn кнопки
+    handleDropDownZIndex(modalWrap);
+
     // скрытие/сразу li/варианта, как "Телефон" (т.к. в drop-btn отображение по умолчанию)
     if (modalContactDropBtn.textContent === 'Телефон') {
       modalContactItemPhone.style.display = 'none';
@@ -1787,6 +1793,23 @@
     }
 
     modalContactInput.focus(); // перевод фокуса на соседний инпут (после выбора в выпадающем списке)
+  }
+
+  // ** корректировка z-index у/для drop-btn из строки контакта (при "focus" перекрытие соседнего row-contact инпута)
+  function handleDropDownZIndex(modalWrap) {
+    const dropDownButtons = modalWrap.querySelectorAll(
+      '.modal__body-add-contact-drop-btn'
+    );
+
+    dropDownButtons.forEach((button) => {
+      button.addEventListener('focus', () => {
+        button.style.zIndex = '5'; // увеличение z-index при "focus"
+      });
+
+      button.addEventListener('blur', () => {
+        button.style.zIndex = '3'; // возврат z-index к default значению
+      });
+    });
   }
 
   // ** обновление атрибута/значения "type" у/для модального row-contact инпута (кому возможно, после выбора)
