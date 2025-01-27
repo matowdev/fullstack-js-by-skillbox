@@ -275,6 +275,10 @@
       .classList.toggle('show-search-input');
   });
 
+  // TODO:
+  // ** наполнение таблицы данных о клиентах (согласно откорректированного исходного, далее формирующегося массива)
+  let updateClientsDataArr = [];
+
   // ** организация "общей/универсальной" логики для валидации полей ввода/инпутов (согласно передаваемых параметров)
   function mainInputsValidation(inputs, options) {
     inputs.forEach((input) =>
@@ -1335,7 +1339,7 @@
     });
 
     // корректировка z-index у/для drop-btn кнопки
-    handleDropDownZIndex(modalWrap);
+    correctDropDownZIndex(modalWrap);
 
     // очистка массива после закрытия модального окна
     modalWrap.addEventListener('hidden.bs.modal', () => {
@@ -1578,7 +1582,7 @@
     }, 10);
 
     // корректировка z-index у/для drop-btn кнопки
-    handleDropDownZIndex(modalWrap);
+    correctDropDownZIndex(modalWrap);
 
     // скрытие/сразу li/варианта, как "Телефон" (т.к. в drop-btn отображение по умолчанию)
     if (modalContactDropBtn.textContent === 'Телефон') {
@@ -1796,7 +1800,7 @@
   }
 
   // ** корректировка z-index у/для drop-btn из строки контакта (при "focus" перекрытие соседнего row-contact инпута)
-  function handleDropDownZIndex(modalWrap) {
+  function correctDropDownZIndex(modalWrap) {
     const dropDownButtons = modalWrap.querySelectorAll(
       '.modal__body-add-contact-drop-btn'
     );
@@ -2056,37 +2060,59 @@
     }
   }
 
-  // ** универсальная обработка модальных форм их "submit" событий, т.е. при добавление/изменении данных клиента (после валидаций, после проверки по ФИО)
-  // ! за основу берётся students-db..
+  // ** [СЕРВЕР] отправка данных/добавление клиентов на сервер, получение обратно (проверка статуса)
+  async function addClientToServer(clientData) {
+    try {
+      const response = await fetch('http://localhost:3000/api/clients', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(clientData),
+      });
 
-  //   const allFormInInputs = document.querySelectorAll(
-  //     '.dboard__input-form input'
-  //   );
-  //
-  //   // корректировка регистра, для полей Ф.И.О.
-  //   function toUpFirstLetter(value) {
-  //     if (!value) return ''; // если вдруг "пусто"
-  //     return value[0].toUpperCase() + value.slice(1).toLowerCase();
-  //   }
-  //
-  //   // проверка на совпадение по ФИО, в исходном/формирующемся массиве
-  //   function checkStudentFIO(
-  //     formInSurname,
-  //     formInName,
-  //     formInPatronymic,
-  //     updateStudentsDataArr
-  //   ) {
-  //     return updateStudentsDataArr.some(
-  //       (student) =>
-  //         student.surname === formInSurname &&
-  //         student.name === formInName &&
-  //         student.patronymic === formInPatronymic
-  //     );
-  //   }
-  //
-  //   allFormInInputs.forEach((input) => {
-  //     additionalFormInputsValidation(input); // !! дополнительная валидация (на корректный ввод)
-  //   });
+      if (!response.ok) {
+        if (response.status === 422) {
+          const errorData = await response.json();
+          throw new Error(
+            `Ошибка валидации: ${errorData.errors
+              .map((e) => e.message)
+              .join(', ')}`
+          );
+        } else {
+          throw new Error(`Ошибка: ${response.status}`);
+        }
+      }
+
+      // TODO:
+      // await getClientsServerListData(); // обновление списка студентов (в контексте.. перерисовка таблицы)
+    } catch (error) {
+      console.error('Ошибка при добавлении клиента..', error);
+      alert('Ошибка при добавлении клиента на сервер!');
+    }
+  }
+
+  // ** универсальная обработка модальных форм их "submit" событий, т.е. при добавление/изменении данных клиента (после валидаций, после проверки по ФИО)
+  // корректировка регистра, для полей ФИО
+  function toUpFirstLetter(value) {
+    if (!value) return ''; // если вдруг "пусто"
+    return value[0].toUpperCase() + value.slice(1).toLowerCase();
+  }
+
+  // проверка на совпадение по ФИО, в исходном/формирующемся массиве
+  function checkClientFIO(
+    formInSurname,
+    formInName,
+    formInPatronymic,
+    updateClientsDataArr
+  ) {
+    return updateClientsDataArr.some(
+      (client) =>
+        client.surname === formInSurname &&
+        client.name === formInName &&
+        client.patronymic === formInPatronymic
+    );
+  }
 
   function handleModalFormSubmit(context = {}) {
     const { modalBodyForm, type, clientData } = context; // получение необходимых элементов (через деструктуризациию входящего/передаваемого объекта)
@@ -2137,29 +2163,86 @@
 
         modalBodyForm.classList.add('was-validated'); // если всё "ок", т.е. нет ошибок, невалидных сообщений.. добавление всей форме валидационного класса (для/по Bootstrap)
 
-        setTimeout(() => {
-          alert('Клиент успешно добавлен!'); // вывод сообщения об успешном добавлении клиента
+        // фиксация/обработка вводимых данных, ФИО/контакты (формирование объекта "client")
+        const formInSurname = toUpFirstLetter(
+          modalBodyForm.querySelector('.modal-surname-input').value.trim()
+        );
+        const formInName = toUpFirstLetter(
+          modalBodyForm.querySelector('.modal-name-input').value.trim()
+        );
+        const formInPatronymicInput = modalBodyForm.querySelector(
+          '.modal-patronymic-input'
+        );
+        const formInPatronymic = formInPatronymicInput
+          ? toUpFirstLetter(formInPatronymicInput.value.trim())
+          : '';
 
-          // очистка всех полей формы (удаление классов/сообщений ошибок)
-          allModalInputs.forEach((input) => {
-            input.value = '';
-            input.classList.remove('is-invalid');
-          });
-          modalBodyForm.classList.remove('was-validated'); // удаление класса "was-validated"
+        // фиксация контактов
+        const formInContacts = Array.from(
+          modalBodyForm.querySelectorAll('.contact-row')
+        ).map((row) => ({
+          type: row.querySelector('.contact-type').value.trim(),
+          value: row.querySelector('.contact-value').value.trim(),
+        }));
 
-          // закрытие модального окна (через/посредствам Bootstrap API)
-          const bootstrapModal = bootstrap.Modal.getInstance(
-            modalBodyForm.closest('.modal')
+        // проверка на совпадение по ФИО
+        if (
+          checkClientFIO(
+            formInSurname,
+            formInName,
+            formInPatronymic,
+            updateClientsDataArr
+          )
+        ) {
+          const formInNotification = confirm(
+            'Совпадение по Ф.И.О! Такой клиент уже существует! Всё равно добавить?'
           );
-          if (bootstrapModal) {
-            bootstrapModal.hide();
+          if (!formInNotification) {
+            return; // не добавляем клиента
           }
+        }
 
-          // и напоследок.. выделение/показ только что добавленного клиента/строки
+        // итоговый объект клиента (передаваемый на сервер)
+        const client = {
+          surname: formInSurname,
+          name: formInName,
+          patronymic: formInPatronymic,
+          contacts: formInContacts,
+        };
+
+        try {
+          await addClientToServer(client); // отправка клиента на сервер
+
           setTimeout(() => {
-            // movingToLastNewTableRow();
-          }, 300); // временная задержка, больше.. чтобы модальное окно успело закрыться
-        }, 200);
+            alert('Клиент успешно добавлен!'); // вывод сообщения об успешном добавлении клиента
+
+            // очистка всех полей формы (удаление классов/сообщений ошибок)
+            allModalInputs.forEach((input) => {
+              input.value = '';
+              input.classList.remove('is-invalid');
+            });
+            modalBodyForm.classList.remove('was-validated'); // удаление класса "was-validated"
+
+            // закрытие модального окна (через/посредствам Bootstrap API)
+            const bootstrapModal = bootstrap.Modal.getInstance(
+              modalBodyForm.closest('.modal')
+            );
+            if (bootstrapModal) {
+              bootstrapModal.hide();
+            }
+
+            // и напоследок.. выделение/показ только что добавленного клиента/строки
+            setTimeout(() => {
+              // TODO:
+              // movingToLastNewTableRow();
+            }, 300); // временная задержка, больше.. чтобы модальное окно успело закрыться
+          }, 200);
+        } catch (error) {
+          console.error('Ошибка при добавлении клиента:', error);
+          alert(
+            'Не удалось добавить клиента! Проверьте данные и попробуйте снова!?'
+          );
+        }
       },
       false
     );
