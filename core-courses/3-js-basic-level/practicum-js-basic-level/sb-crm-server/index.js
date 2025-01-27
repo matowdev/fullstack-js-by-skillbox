@@ -54,8 +54,8 @@ function makeClientFromData(data) {
 
   // составляем объект, где есть только необходимые поля
   const client = {
-    name: asString(data.name),
     surname: asString(data.surname),
+    name: asString(data.name),
     patronymic: asString(data.patronymic),
     contacts: Array.isArray(data.contacts)
       ? data.contacts.map((contact) => ({
@@ -66,9 +66,9 @@ function makeClientFromData(data) {
   };
 
   // проверяем, все ли данные корректные и заполняем объект ошибок, которые нужно отдать клиенту
-  if (!client.name) errors.push({ field: "name", message: "Не указано имя!" });
   if (!client.surname)
     errors.push({ field: "surname", message: "Не указана фамилия!" });
+  if (!client.name) errors.push({ field: "name", message: "Не указано имя!" });
   if (client.contacts.some((contact) => !contact.type || !contact.value))
     errors.push({
       field: "contacts",
@@ -92,8 +92,8 @@ function getClientList(params = {}) {
     const search = params.search.trim().toLowerCase();
     return clients.filter((client) =>
       [
-        client.name,
         client.surname,
+        client.name,
         client.patronymic,
         ...client.contacts.map(({ value }) => value),
       ].some((str) => str.toLowerCase().includes(search))
