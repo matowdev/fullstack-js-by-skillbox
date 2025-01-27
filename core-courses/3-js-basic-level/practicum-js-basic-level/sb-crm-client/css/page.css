@@ -1,7 +1,7 @@
 html {
   box-sizing: border-box;
-  scroll-behavior: smooth;
   /* плавная прокрутка */
+  scroll-behavior: smooth;
 }
 
 *,

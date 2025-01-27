@@ -2233,8 +2233,7 @@
 
             // и напоследок.. выделение/показ только что добавленного клиента/строки
             setTimeout(() => {
-              // TODO:
-              // movingToLastNewTableRow();
+              movingToLastNewTableRow(); // перемещение фокуса
             }, 300); // временная задержка, больше.. чтобы модальное окно успело закрыться
           }, 200);
         } catch (error) {
@@ -2295,5 +2294,40 @@
     // обновление/изменение состояния кнопки и прозрачности
     saveButton.style.opacity = saveButton.disabled ? '0.5' : '1';
     saveButton.style.cursor = saveButton.disabled ? 'help' : 'pointer';
+  }
+
+  // ** перемещение/фиксация области просмотра на только что добавленном клиенте/на последней строке (выделение цветом)
+  function movingToLastNewTableRow() {
+    if (!outputTable) {
+      console.error('Таблица НЕ обнаружена!');
+      return;
+    }
+
+    const lastNewTableRow = outTableBody.lastElementChild;
+    const defaultRowCellColors = [];
+
+    if (lastNewTableRow) {
+      // перемещение к "новому" клиенту/к последней строке таблицы
+      lastNewTableRow.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
+
+      // изменение цвета/выделение строки
+      lastNewTableRow.querySelectorAll('td').forEach((td) => {
+        defaultRowCellColors.push(td.style.color);
+        td.style.fontWeight = 'bold';
+        // td.style.color = '#e10c22'; // красный
+        td.style.color = '#198754'; // или.. зелёный
+      });
+
+      // возврат к default цвету, через несколько секунды
+      setTimeout(() => {
+        lastNewTableRow.querySelectorAll('td').forEach((td, index) => {
+          td.style.fontWeight = 'normal';
+          td.style.color = defaultRowCellColors[index];
+        });
+      }, 2000);
+    }
   }
 })();
