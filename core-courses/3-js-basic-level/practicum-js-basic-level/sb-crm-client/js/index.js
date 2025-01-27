@@ -2179,11 +2179,24 @@
 
         // фиксация контактов
         const formInContacts = Array.from(
-          modalBodyForm.querySelectorAll('.contact-row')
-        ).map((row) => ({
-          type: row.querySelector('.contact-type').value.trim(),
-          value: row.querySelector('.contact-value').value.trim(),
-        }));
+          modalBodyForm.querySelectorAll('.modal__body-add-contact-element')
+        )
+          .map((contact) => {
+            const contactType = contact
+              .querySelector('input[name="contact-type"]')
+              ?.value.trim(); // фиксация типа контакта из "скрытого" инпута
+            const contactValue = contact
+              .querySelector('input[name="contact-data"]')
+              ?.value.trim(); // фиксация введённых данных из "основного" инпута
+
+            // проверка на наличие значений
+            if (contactType && contactValue) {
+              return { type: contactType, value: contactValue };
+            }
+
+            return null; // если данные некорректны, пропуск/далее
+          })
+          .filter((contact) => contact !== null); // исключение некорректных/null контактов
 
         // проверка на совпадение по ФИО
         if (
@@ -2303,8 +2316,8 @@
       return;
     }
 
-    const lastNewTableRow = outTableBody.lastElementChild;
-    const defaultRowCellColors = [];
+    const lastNewTableRow = outTableBody.lastElementChild; // фиксация последней строки
+    const defaultRowCellColors = []; // для цветов
 
     if (lastNewTableRow) {
       // перемещение к "новому" клиенту/к последней строке таблицы
