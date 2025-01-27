@@ -275,6 +275,40 @@
       .classList.toggle('show-search-input');
   });
 
+  // ** [СЕРВЕР] организация запроса, получение данных/списка клиентов с сервера (корректировка входящих данных)
+  let clientsDataArrWithIds;
+
+  async function getClientsServerListData() {
+    try {
+      const response = await fetch('http://localhost:3000/api/clients'); // запрос на сервер
+
+      // проверка успешности/выполнения запроса
+      if (!response.ok) {
+        throw new Error(`Ошибка: ${response.status}!`);
+      }
+
+      const data = await response.json(); // преобразование данных в JSON-формат
+      clientsDataArrWithIds = addLocalIdsToClients(data); // добавление поля localId
+
+      // ! ТЕСТИРОВАНИЕ
+      // addClientsToTable(clientsDataArrWithIds); // отрисовка данных, наполнение таблицы клиентов
+      console.log(clientsDataArrWithIds); // ? ВЫВОД МАССИВА ОБЪЕКТОВ
+    } catch (error) {
+      console.error('Не удалось загрузить список клиентов..', error);
+      alert('Ошибка при загрузке данных с сервера!?');
+    }
+  }
+
+  // добавление поля localId (необходимого/возможно, для дальнейших отработок)
+  function addLocalIdsToClients(clientsFromServer) {
+    return clientsFromServer.map((client, index) => ({
+      ...client, // сохранение приходящих/серверных полей
+      localId: index + 1, // добавление localId
+    }));
+  }
+
+  getClientsServerListData(); // получение данных о клиентах (с сервера)
+
   // TODO:
   // ** наполнение таблицы данных о клиентах (согласно откорректированного исходного, далее формирующегося массива)
   let updateClientsDataArr = [];
@@ -897,116 +931,6 @@
     singleHyphen: true,
     noExtraSpaces: true,
   });
-
-  // ** организация "дополнительной" логики для валидации полей ввода/инпутов в модальных окнах (при/в "submit" состояниях)
-  function additionalFormInputsValidation(allModalInputs, modalBodyForm) {
-    const validErrors = [];
-    // определение минимального количества букв/символов (для каждого инпут/типа поля)
-    const minLengths = {
-      'modal-surname-input': 3,
-      'modal-name-input': 2,
-      'modal-patronymic-input': 5,
-      'modal-contact-input': {
-        phone: 18,
-        'extra-phone': 18,
-        vk: 7,
-        email: 6,
-        facebook: 5,
-        twitter: 3,
-        'extra-contact': 3,
-      },
-    };
-    // использование названий как в drop-down меню
-    const contactTypeLabels = {
-      phone: 'Телефон',
-      'extra-phone': 'Доп. телефон',
-      vk: 'Vk',
-      email: 'Email',
-      facebook: 'Facebook',
-      twitter: 'Twitter',
-      'extra-contact': 'Доп. контакт',
-    };
-
-    allModalInputs.forEach((input) => {
-      const parent = input.parentNode;
-      const feedback = parent.querySelector('.invalid-feedback');
-
-      if (input.value.trim() === '' || !input.checkValidity()) {
-        // определение/вывод сообщения в зависимости от "класса" инпута
-        if (!input.classList.contains('is-invalid')) {
-          if (input.classList.contains('modal__body-add-contact-input')) {
-            validErrors.push('Заполните поле контакта или удалите!');
-            if (feedback)
-              feedback.textContent = 'Заполните поле контакта или удалите!';
-          } else if (!input.classList.contains('modal-patronymic-input')) {
-            validErrors.push(`Заполните поле "${input.placeholder}"!`);
-            if (feedback)
-              feedback.textContent = `Заполните поле "${input.placeholder}"!`;
-          } else if (input.classList.contains('modal-patronymic-input')) {
-            // индивидуальное сообщение для поля "Отчество", НО без добавления в массив ошибок
-            if (feedback)
-              feedback.textContent =
-                'Заполните поле "Отчество" или оставьте его пустым!';
-          }
-
-          input.classList.add('is-invalid'); // выделение инпута "красным"
-        }
-      } else {
-        // проверка минимальной длины вводимых данных
-        const inputClass = Object.keys(minLengths).find((className) =>
-          input.classList.contains(className)
-        );
-
-        // для полей ФИО
-        if (inputClass && typeof minLengths[inputClass] === 'number') {
-          if (input.value.length < minLengths[inputClass]) {
-            const fieldName = {
-              'modal-surname-input': 'Фамилия',
-              'modal-name-input': 'Имя',
-              'modal-patronymic-input': 'Отчество',
-            }[inputClass];
-
-            validErrors.push(
-              `Поле "${fieldName}" должно быть не менее ${minLengths[inputClass]} символов!`
-            );
-            input.classList.add('is-invalid');
-            if (feedback)
-              feedback.textContent = validErrors[validErrors.length - 1];
-          }
-        }
-
-        // для строк контактов
-        if (input.classList.contains('modal-contact-input')) {
-          const hiddenInput = parent.querySelector('.modal-hidden-input');
-          const contactType = hiddenInput ? hiddenInput.value : '';
-          const minLength = minLengths['modal-contact-input'][contactType] || 0;
-          const contactLabel = contactTypeLabels[contactType] || 'Контакт';
-
-          if (input.value.length < minLength) {
-            validErrors.push(
-              `Поле "${contactLabel}" должно быть не менее ${minLength} символов!`
-            );
-            input.classList.add('is-invalid');
-            if (feedback)
-              feedback.textContent = validErrors[validErrors.length - 1];
-          }
-        }
-
-        // Если данные валидны, убираем ошибки
-        if (!input.classList.contains('is-invalid')) {
-          input.classList.remove('is-invalid');
-          if (feedback) feedback.textContent = '';
-        }
-      }
-    });
-
-    // добавление кастомного "класса-состояния" для формы (на основе этого последующая отработка)
-    if (validErrors.length > 0) {
-      modalBodyForm.classList.add('was-submitted');
-    }
-
-    return validErrors; // возврат массива ошибок/сообщений
-  }
 
   // ** изменение направления стрелки/svg-icon, согласно прожатия по заглавной ячейке (при сортировке данных)
   const allHeaderRowCells = document.querySelectorAll(
@@ -2084,8 +2008,7 @@
         }
       }
 
-      // TODO:
-      // await getClientsServerListData(); // обновление списка студентов (в контексте.. перерисовка таблицы)
+      await getClientsServerListData(); // обновление списка клиентов (в контексте.. перерисовка таблицы)
     } catch (error) {
       console.error('Ошибка при добавлении клиента..', error);
       alert('Ошибка при добавлении клиента на сервер!');
@@ -2263,6 +2186,116 @@
     modalBodyForm.addEventListener('input', () =>
       updateSaveButtonState(modalBodyForm, saveButton)
     );
+  }
+
+  // ** организация "дополнительной" логики для валидации полей ввода/инпутов в модальных окнах (при/в "submit" состояниях)
+  function additionalFormInputsValidation(allModalInputs, modalBodyForm) {
+    const validErrors = [];
+    // определение минимального количества букв/символов (для каждого инпут/типа поля)
+    const minLengths = {
+      'modal-surname-input': 3,
+      'modal-name-input': 2,
+      'modal-patronymic-input': 5,
+      'modal-contact-input': {
+        phone: 18,
+        'extra-phone': 18,
+        vk: 7,
+        email: 6,
+        facebook: 5,
+        twitter: 3,
+        'extra-contact': 3,
+      },
+    };
+    // использование названий как в drop-down меню
+    const contactTypeLabels = {
+      phone: 'Телефон',
+      'extra-phone': 'Доп. телефон',
+      vk: 'Vk',
+      email: 'Email',
+      facebook: 'Facebook',
+      twitter: 'Twitter',
+      'extra-contact': 'Доп. контакт',
+    };
+
+    allModalInputs.forEach((input) => {
+      const parent = input.parentNode;
+      const feedback = parent.querySelector('.invalid-feedback');
+
+      if (input.value.trim() === '' || !input.checkValidity()) {
+        // определение/вывод сообщения в зависимости от "класса" инпута
+        if (!input.classList.contains('is-invalid')) {
+          if (input.classList.contains('modal__body-add-contact-input')) {
+            validErrors.push('Заполните поле контакта или удалите!');
+            if (feedback)
+              feedback.textContent = 'Заполните поле контакта или удалите!';
+          } else if (!input.classList.contains('modal-patronymic-input')) {
+            validErrors.push(`Заполните поле "${input.placeholder}"!`);
+            if (feedback)
+              feedback.textContent = `Заполните поле "${input.placeholder}"!`;
+          } else if (input.classList.contains('modal-patronymic-input')) {
+            // индивидуальное сообщение для поля "Отчество", НО без добавления в массив ошибок
+            if (feedback)
+              feedback.textContent =
+                'Заполните поле "Отчество" или оставьте его пустым!';
+          }
+
+          input.classList.add('is-invalid'); // выделение инпута "красным"
+        }
+      } else {
+        // проверка минимальной длины вводимых данных
+        const inputClass = Object.keys(minLengths).find((className) =>
+          input.classList.contains(className)
+        );
+
+        // для полей ФИО
+        if (inputClass && typeof minLengths[inputClass] === 'number') {
+          if (input.value.length < minLengths[inputClass]) {
+            const fieldName = {
+              'modal-surname-input': 'Фамилия',
+              'modal-name-input': 'Имя',
+              'modal-patronymic-input': 'Отчество',
+            }[inputClass];
+
+            validErrors.push(
+              `Поле "${fieldName}" должно содержать не менее ${minLengths[inputClass]} символов!`
+            );
+            input.classList.add('is-invalid');
+            if (feedback)
+              feedback.textContent = validErrors[validErrors.length - 1];
+          }
+        }
+
+        // для строк контактов
+        if (input.classList.contains('modal-contact-input')) {
+          const hiddenInput = parent.querySelector('.modal-hidden-input');
+          const contactType = hiddenInput ? hiddenInput.value : '';
+          const minLength = minLengths['modal-contact-input'][contactType] || 0;
+          const contactLabel = contactTypeLabels[contactType] || 'Контакт';
+
+          if (input.value.length < minLength) {
+            validErrors.push(
+              `Поле "${contactLabel}" должно содержать не менее ${minLength} символов!`
+            );
+            input.classList.add('is-invalid');
+            if (feedback)
+              feedback.textContent = validErrors[validErrors.length - 1];
+          }
+        }
+
+        // Если данные валидны, убираем ошибки
+        if (!input.classList.contains('is-invalid')) {
+          input.classList.remove('is-invalid');
+          if (feedback) feedback.textContent = '';
+        }
+      }
+    });
+
+    // добавление кастомного "класса-состояния" для формы (на основе этого последующая отработка)
+    if (validErrors.length > 0) {
+      modalBodyForm.classList.add('was-submitted');
+    }
+
+    return validErrors; // возврат массива ошибок/сообщений
   }
 
   // ** организация блокировки доступности для модальной кнопки "Сохранить" (при "submit")
