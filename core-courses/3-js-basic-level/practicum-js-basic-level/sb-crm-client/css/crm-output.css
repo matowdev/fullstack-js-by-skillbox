@@ -54,20 +54,21 @@
 
 .crm__output-table tr th,
 .crm__output-table tr td {
-  /* line-height: 32px;
+  line-height: 32px;
   text-align: center;
   vertical-align: middle;
-  color: var(--starry-night); */
+  color: var(--black);
   cursor: pointer;
 }
 
 .crm__output-table .crm__output-table-head-cell {
   padding: 8px 10px;
+  text-align: start;
 }
 
 .crm__output-table #table-th-id {
   padding-left: 20px;
-  width: 70px;
+  width: 80px;
   font-weight: var(--semi-bold);
   color: var(--text-gray);
 }
@@ -85,6 +86,7 @@
 }
 
 .crm__output-table #table-th-contact {
+  padding-left: 20px;
   width: 145px;
   cursor: default;
 }

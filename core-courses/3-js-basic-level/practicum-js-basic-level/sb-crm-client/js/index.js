@@ -249,9 +249,7 @@
       const data = await response.json(); // преобразование данных в JSON-формат
       clientsDataArrWithIds = addLocalIdsToClients(data); // добавление поля localId
 
-      // ! ТЕСТИРОВАНИЕ
-      // addClientsToTable(clientsDataArrWithIds); // отрисовка данных, наполнение таблицы клиентов
-      // console.log(clientsDataArrWithIds); // ? ВЫВОД МАССИВА ОБЪЕКТОВ
+      addClientsToTable(clientsDataArrWithIds); // отрисовка данных, наполнение таблицы клиентов
     } catch (error) {
       console.error('Не удалось загрузить список клиентов..', error);
       alert('Ошибка при загрузке данных с сервера!?');
@@ -277,11 +275,8 @@
 
     outTableBody.innerHTML = ''; // предварительная очистка таблицы
     updateClientsDataArr = correctInitArr(clientsServerData);
-    // ! ТЕСТИРОВАНИЕ
-    // console.log(updateClientsDataArr); // ? ВЫВОД МАССИВА ОБЪЕКТОВ
 
     if (updateClientsDataArr.length === 0) {
-      // TODO:
       const emptyTableRow = createEmptyTableMessageRow(); // если массив клиентов/таблица данных пуста, вывод сообщения
       outTableBody.append(emptyTableRow);
     } else {
@@ -331,6 +326,23 @@
   // ** преобразование строковой даты в объект Date
   function conversionStringDate(dateString) {
     return new Date(dateString); // возврат "полноценного" объекта Date
+  }
+
+  // ** создание "пустой" строки для таблицы клиентов (при/для фильтрации, пустом массиве)
+  function createEmptyTableMessageRow() {
+    const emptyTableTrRow = document.createElement('tr');
+    const emptyTableTdCell = document.createElement('td');
+
+    emptyTableTdCell.colSpan = 6; // объединение всех колонок
+    emptyTableTdCell.textContent =
+      'Пусто.. измените фильтрацию, добавьте клиента!?';
+    emptyTableTdCell.style.fontWeight = '500';
+    emptyTableTdCell.style.fontSize = '16px';
+    emptyTableTdCell.style.color = '#dc3545';
+    emptyTableTdCell.style.textAlign = 'center';
+    emptyTableTrRow.append(emptyTableTdCell);
+
+    return emptyTableTrRow;
   }
 
   // ** изменение направления стрелки/svg-icon, согласно прожатия по заглавной ячейке (при сортировке данных)
