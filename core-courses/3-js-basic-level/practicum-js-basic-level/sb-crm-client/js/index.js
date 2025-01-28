@@ -227,47 +227,6 @@
   outputTable.append(outTableHead, outTableBody);
   crmOutputContainer.append(outputTitleWrap, outputTable);
 
-  // ** организация кнопки для добавления "нового" клиента (последующее открытие модального окна, ряд сопутствующих действий)
-  const addBtnWrap = document.createElement('div');
-  const addBtn = document.createElement('button');
-  const addBtnIcon = document.createElement('i');
-
-  addBtnWrap.classList.add('crm__add-btn-wrap');
-  addBtn.classList.add('crm__add-btn');
-  addBtnIcon.classList.add('crm__add-btn-icon', 'bi', 'bi-person-plus-fill');
-
-  addBtn.setAttribute('id', 'add-btn');
-  addBtn.setAttribute('type', 'button');
-
-  addBtn.textContent = 'Добавить клиента';
-
-  addBtn.append(addBtnIcon);
-  addBtnWrap.append(addBtn);
-  crmAddContainer.append(addBtnWrap);
-
-  // обработка клика по кнопке, создание/отображение модального окна
-  addBtn.addEventListener('click', () => {
-    const modalWrap = createModalWindowByType('add'); // создание по типу "add"
-
-    crmAddContainer.append(modalWrap); // добавление в DOM
-
-    // инициализация через Bootstrap API
-    const bootstrapModal = new bootstrap.Modal(modalWrap);
-    bootstrapModal.show(); // отображение
-
-    // добавление валидации для вводимых данных/в модальном окне (для "основных" инпутов, ФИО)
-    const allModalBodyFormInputs =
-      modalWrap.querySelectorAll('.modal__body-input');
-    mainInputsValidation(allModalBodyFormInputs, {
-      allowOnlyRussian: true,
-      singleHyphen: true,
-      noExtraSpaces: true,
-    });
-
-    // принудительное удаление атрибута aria-hidden="true" с модального окна (исключение ошибки с ARIA)
-    deleteAriaHiddenTrue(modalWrap);
-  });
-
   // ** появление/скрытие поля для ввода данных/фильтрационного инпута (по нажатию на logo, на 320px)
   searchLogoImg.addEventListener('click', () => {
     document
@@ -292,7 +251,7 @@
 
       // ! ТЕСТИРОВАНИЕ
       // addClientsToTable(clientsDataArrWithIds); // отрисовка данных, наполнение таблицы клиентов
-      console.log(clientsDataArrWithIds); // ? ВЫВОД МАССИВА ОБЪЕКТОВ
+      // console.log(clientsDataArrWithIds); // ? ВЫВОД МАССИВА ОБЪЕКТОВ
     } catch (error) {
       console.error('Не удалось загрузить список клиентов..', error);
       alert('Ошибка при загрузке данных с сервера!?');
@@ -309,9 +268,105 @@
 
   getClientsServerListData(); // получение данных о клиентах (с сервера)
 
-  // TODO:
-  // ** наполнение таблицы данных о клиентах (согласно откорректированного исходного, далее формирующегося массива)
+  // ** наполнение таблицы данных о клиентах (согласно откорректированного/формирующегося массива)
   let updateClientsDataArr = [];
+
+  function addClientsToTable(clientsServerData = []) {
+    // ??
+    // const selectedBodyRows = getSelectedBodyRows(); // сохранение выделенных body-строк (если такие есть)
+
+    outTableBody.innerHTML = ''; // предварительная очистка таблицы
+    updateClientsDataArr = correctInitArr(clientsServerData);
+    // ! ТЕСТИРОВАНИЕ
+    // console.log(updateClientsDataArr); // ? ВЫВОД МАССИВА ОБЪЕКТОВ
+
+    if (updateClientsDataArr.length === 0) {
+      // TODO:
+      const emptyTableRow = createEmptyTableMessageRow(); // если массив клиентов/таблица данных пуста, вывод сообщения
+      outTableBody.append(emptyTableRow);
+    } else {
+      for (const [index, client] of updateClientsDataArr.entries()) {
+        // TODO:
+        const clientTableTrRow = createClientTableTrRow(index, client);
+        outTableBody.append(clientTableTrRow);
+      }
+    }
+
+    // ??
+    // addClickListenersToBodyRows(); // добавление прослушки для всех строк (кроме заглавной), при компоновке, после пере-компоновки (новой отрисовки), для возможности выделения по клику
+    // restoreSelectedBodyRows(selectedBodyRows); // восстановление выделенных body-строк (если такие были)
+  }
+
+  // ** корректировка исходного/серверного массива клиентов (обработка ID, добавление свойства fullName и временных свойств)
+  function correctInitArr(clientsServerData = []) {
+    const newClientsDataArr = structuredClone(clientsServerData); // клонирование входящего массива (серверного)
+
+    for (const client of newClientsDataArr) {
+      client.shortId = client.id.slice(-6); // сокращение серверного ID (до 6 цифр)
+      client.fullName = `${client.surname} ${client.name} ${client.patronymic}`; // получение "общего" fullName
+
+      // преобразование серверных "createdAt" и "updatedAt" в отдельные поля, как даты и времени
+      if (client.createdAt) {
+        const createdAtDate = conversionStringDate(client.createdAt);
+        client.createdAtDate = createdAtDate.toLocaleDateString('ru-RU'); // дата создания
+        client.createdAtTime = createdAtDate.toLocaleTimeString('ru-RU', {
+          hour: '2-digit',
+          minute: '2-digit',
+        }); // время создания
+      }
+
+      if (client.updatedAt) {
+        const updatedAtDate = conversionStringDate(client.updatedAt);
+        client.updatedAtDate = updatedAtDate.toLocaleDateString('ru-RU'); // дата изменений
+        client.updatedAtTime = updatedAtDate.toLocaleTimeString('ru-RU', {
+          hour: '2-digit',
+          minute: '2-digit',
+        }); // время изменений
+      }
+    }
+
+    return newClientsDataArr; // передача откорректированного/дополненного массива
+  }
+
+  // ** преобразование строковой даты в объект Date
+  function conversionStringDate(dateString) {
+    return new Date(dateString); // возврат "полноценного" объекта Date
+  }
+
+  // ** изменение направления стрелки/svg-icon, согласно прожатия по заглавной ячейке (при сортировке данных)
+  const allHeaderRowCells = document.querySelectorAll(
+    '.crm__output-table-head-cell'
+  );
+
+  function changeIconDirection(event) {
+    const headerRowCell = event.currentTarget; // фиксация всей/целиком "th" заглавной ячейки
+    const cellIcon = headerRowCell.querySelector('.head-cell__icon'); // определение иконки внутри ячейки
+    const cellSort = headerRowCell.querySelector('.head-cell__sort'); // определение доп. текста, типа "А-Я"
+
+    // проверка/подтверждение наличия иконки (переключение)
+    if (cellIcon) {
+      cellIcon.classList.toggle('head-cell__icon-up');
+      cellIcon.classList.toggle('head-cell__icon-down');
+    }
+
+    // проверка/подтверждение наличия доп. текста (замена)
+    if (cellSort) {
+      cellSort.textContent = cellSort.textContent === 'А-Я' ? 'Я-А' : 'А-Я';
+    }
+  }
+
+  // организация прослушек "для каждой" заглавной ячейки
+  allHeaderRowCells.forEach((cell) => {
+    cell.addEventListener('click', (event) => changeIconDirection(event)); // передача события
+
+    // отработка сортировки/сброса сортировки через TAB/Enter (изменение направления стелок)
+    cell.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        changeIconDirection(event); // передача события
+      }
+    });
+  });
 
   // ** организация "общей/универсальной" логики для валидации полей ввода/инпутов (согласно передаваемых параметров)
   function mainInputsValidation(inputs, options) {
@@ -932,39 +987,45 @@
     noExtraSpaces: true,
   });
 
-  // ** изменение направления стрелки/svg-icon, согласно прожатия по заглавной ячейке (при сортировке данных)
-  const allHeaderRowCells = document.querySelectorAll(
-    '.crm__output-table-head-cell'
-  );
+  // ** организация кнопки для добавления "нового" клиента (последующее открытие модального окна, ряд сопутствующих действий)
+  const addBtnWrap = document.createElement('div');
+  const addBtn = document.createElement('button');
+  const addBtnIcon = document.createElement('i');
 
-  function changeIconDirection(event) {
-    const headerRowCell = event.currentTarget; // фиксация всей/целиком "th" заглавной ячейки
-    const cellIcon = headerRowCell.querySelector('.head-cell__icon'); // определение иконки внутри ячейки
-    const cellSort = headerRowCell.querySelector('.head-cell__sort'); // определение доп. текста, типа "А-Я"
+  addBtnWrap.classList.add('crm__add-btn-wrap');
+  addBtn.classList.add('crm__add-btn');
+  addBtnIcon.classList.add('crm__add-btn-icon', 'bi', 'bi-person-plus-fill');
 
-    // проверка/подтверждение наличия иконки (переключение)
-    if (cellIcon) {
-      cellIcon.classList.toggle('head-cell__icon-up');
-      cellIcon.classList.toggle('head-cell__icon-down');
-    }
+  addBtn.setAttribute('id', 'add-btn');
+  addBtn.setAttribute('type', 'button');
 
-    // проверка/подтверждение наличия доп. текста (замена)
-    if (cellSort) {
-      cellSort.textContent = cellSort.textContent === 'А-Я' ? 'Я-А' : 'А-Я';
-    }
-  }
+  addBtn.textContent = 'Добавить клиента';
 
-  // организация прослушек "для каждой" заглавной ячейки
-  allHeaderRowCells.forEach((cell) => {
-    cell.addEventListener('click', (event) => changeIconDirection(event)); // передача события
+  addBtn.append(addBtnIcon);
+  addBtnWrap.append(addBtn);
+  crmAddContainer.append(addBtnWrap);
 
-    // отработка сортировки/сброса сортировки через TAB/Enter (изменение направления стелок)
-    cell.addEventListener('keydown', (event) => {
-      if (event.key === 'Enter') {
-        event.preventDefault();
-        changeIconDirection(event); // передача события
-      }
+  // обработка клика по кнопке, создание/отображение модального окна
+  addBtn.addEventListener('click', () => {
+    const modalWrap = createModalWindowByType('add'); // создание по типу "add"
+
+    crmAddContainer.append(modalWrap); // добавление в DOM
+
+    // инициализация через Bootstrap API
+    const bootstrapModal = new bootstrap.Modal(modalWrap);
+    bootstrapModal.show(); // отображение
+
+    // добавление валидации для вводимых данных/в модальном окне (для "основных" инпутов, ФИО)
+    const allModalBodyFormInputs =
+      modalWrap.querySelectorAll('.modal__body-input');
+    mainInputsValidation(allModalBodyFormInputs, {
+      allowOnlyRussian: true,
+      singleHyphen: true,
+      noExtraSpaces: true,
     });
+
+    // принудительное удаление атрибута aria-hidden="true" с модального окна (исключение ошибки с ARIA)
+    deleteAriaHiddenTrue(modalWrap);
   });
 
   // ** создание "универсального" модального окна, для добавления или изменения данных клиента (согласно передаваемого типа)
