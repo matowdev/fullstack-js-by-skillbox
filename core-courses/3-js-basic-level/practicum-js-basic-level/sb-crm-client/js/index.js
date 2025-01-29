@@ -280,9 +280,8 @@
       const emptyTableRow = createEmptyTableMessageRow(); // если массив клиентов/таблица данных пуста, вывод сообщения
       outTableBody.append(emptyTableRow);
     } else {
-      for (const [index, client] of updateClientsDataArr.entries()) {
-        // TODO:
-        const clientTableTrRow = createClientTableTrRow(index, client);
+      for (const client of updateClientsDataArr) {
+        const clientTableTrRow = createClientsTableTrRow(client); // создание элементов/строк таблицы, наполнение
         outTableBody.append(clientTableTrRow);
       }
     }
@@ -343,6 +342,230 @@
     emptyTableTrRow.append(emptyTableTdCell);
 
     return emptyTableTrRow;
+  }
+
+  // ** создание элементов/строк таблицы данных о клиентах (заполнение ячеек)
+  function createClientsTableTrRow(client = {}) {
+    const clientTableTr = document.createElement('tr');
+    const clientTdID = document.createElement('td');
+    const clientTdFIO = document.createElement('td');
+    const clientTdCreateDateTime = document.createElement('td');
+    const clientTdCreateDateTimeWrap = document.createElement('div');
+    const clientTdCreateDate = document.createElement('span');
+    const clientTdCreateTime = document.createElement('span');
+    const clientTdUpdateDateTime = document.createElement('td');
+    const clientTdUpdateDateTimeWrap = document.createElement('div');
+    const clientTdUpdateDate = document.createElement('span');
+    const clientTdUpdateTime = document.createElement('span');
+    const clientTdContacts = document.createElement('td');
+    const clientTdContactsWrap = document.createElement('div');
+    const clientTdContactsList = createContactsCell(client.contacts); // динамическое создание/наполнение ячейки (с ul/li, ссылками, иконками)
+    const clientTdActionsBtns = document.createElement('td');
+    const clientTdActionsBtnsWrap = document.createElement('div');
+    const clientTdActionsBtnEdit = document.createElement('button');
+    const clientTdActionsBtnEditIconPen = document.createElement('i');
+    const clientTdActionsBtnEditIconLap = document.createElement('i');
+    const clientTdActionsBtnDelete = document.createElement('button');
+    const clientTdActionsBtnDeleteIconX = document.createElement('i');
+    const clientTdActionsBtnDeleteIconLap = document.createElement('i');
+
+    clientTableTr.classList.add('crm__output-table-body-row');
+    clientTdID.classList.add('crm__output-table-body-cell_id');
+    clientTdFIO.classList.add('crm__output-table-body-cell_fio');
+    clientTdCreateDateTime.classList.add(
+      'crm__output-table-body-cell_crt-d-time'
+    );
+    clientTdCreateDateTimeWrap.classList.add(
+      'crm__output-table-body-cell_crt-d-time-wrap'
+    );
+    clientTdCreateDate.classList.add('crm__output-table-body-cell_crt-date');
+    clientTdCreateTime.classList.add('crm__output-table-body-cell_crt-time');
+    clientTdUpdateDateTime.classList.add(
+      'crm__output-table-body-cell_chg-d-time'
+    );
+    clientTdUpdateDateTimeWrap.classList.add(
+      'crm__output-table-body-cell_chg-d-time-wrap'
+    );
+    clientTdUpdateDate.classList.add('crm__output-table-body-cell_chg-date');
+    clientTdUpdateTime.classList.add('crm__output-table-body-cell_chg-time');
+    clientTdContacts.classList.add('crm__output-table-body-cell_contacts');
+    clientTdContactsWrap.classList.add(
+      'crm__output-table-body-cell_contacts-wrap'
+    );
+    clientTdContactsList.classList.add(
+      'crm__output-table-body-cell_contacts-list'
+    );
+    clientTdActionsBtns.classList.add(
+      'crm__output-table-body-cell_actions-btns'
+    );
+    clientTdActionsBtnsWrap.classList.add(
+      'crm__output-table-body-cell_actions-btns-wrap'
+    );
+    clientTdActionsBtnEdit.classList.add(
+      'crm__output-table-body-cell_actions-btn-edit',
+      'table-row-btn'
+    );
+    clientTdActionsBtnEditIconPen.classList.add(
+      'crm__output-table-body-cell_actions-btn-edit-icon-pen',
+      'table-row-btn-icon',
+      'bi',
+      'bi-pencil-fill'
+    );
+    clientTdActionsBtnEditIconLap.classList.add(
+      'crm__output-table-body-cell_actions-btn-edit-icon-lap',
+      'table-row-btn-icon',
+      'bi',
+      'bi-download'
+    );
+    clientTdActionsBtnDelete.classList.add(
+      'crm__output-table-body-cell_actions-btn-delete',
+      'table-row-btn'
+    );
+    clientTdActionsBtnDeleteIconX.classList.add(
+      'crm__output-table-body-cell_actions-btn-delete-icon-x',
+      'table-row-btn-icon',
+      'bi',
+      'bi-x-circle'
+    );
+    clientTdActionsBtnDeleteIconLap.classList.add(
+      'crm__output-table-body-cell_actions-btn-delete-icon-lap',
+      'table-row-btn-icon',
+      'bi',
+      'bi-upload'
+    );
+
+    clientTableTr.setAttribute('id', `body-row-${client.localId}`); // добавление строчного ID (исходя из локального ID клиента (не серверного))
+    clientTableTr.setAttribute('data-server-id', `${client.id}`); // добавление серверного ID
+    clientTableTr.setAttribute('tabindex', '0');
+
+    clientTdID.textContent = client.shortId;
+    clientTdFIO.textContent = client.fullName;
+    clientTdCreateDate.textContent = client.createdAtDate;
+    clientTdCreateTime.textContent = client.createdAtTime;
+    clientTdUpdateDate.textContent = client.updatedAtDate;
+    clientTdUpdateTime.textContent = client.updatedAtTime;
+    clientTdActionsBtnEdit.textContent = 'Изменить';
+    clientTdActionsBtnDelete.textContent = 'Удалить';
+
+    clientTdActionsBtnEdit.append(
+      clientTdActionsBtnEditIconPen,
+      clientTdActionsBtnEditIconLap
+    );
+    clientTdActionsBtnDelete.append(
+      clientTdActionsBtnDeleteIconX,
+      clientTdActionsBtnDeleteIconLap
+    );
+
+    clientTdCreateDateTimeWrap.append(clientTdCreateDate, clientTdCreateTime);
+    clientTdUpdateDateTimeWrap.append(clientTdUpdateDate, clientTdUpdateTime);
+    clientTdContactsWrap.append(clientTdContactsList);
+    clientTdActionsBtnsWrap.append(
+      clientTdActionsBtnEdit,
+      clientTdActionsBtnDelete
+    );
+
+    clientTdCreateDateTime.append(clientTdCreateDateTimeWrap);
+    clientTdUpdateDateTime.append(clientTdUpdateDateTimeWrap);
+    clientTdContacts.append(clientTdContactsWrap);
+    clientTdActionsBtns.append(clientTdActionsBtnsWrap);
+
+    clientTableTr.append(
+      clientTdID,
+      clientTdFIO,
+      clientTdCreateDateTime,
+      clientTdUpdateDateTime,
+      clientTdContacts,
+      clientTdActionsBtns
+    );
+
+    return clientTableTr;
+  }
+
+  // ** организация "динамического" наполнения ячейки контактов (в строке/таблице о клиентах)
+  function createContactsCell(contacts = []) {
+    const contactsList = document.createElement('ul');
+
+    // подготовка иконок, ссылок (для последующего формирования "li" элементов)
+    const contactIconsLinks = {
+      phone: { icon: 'bi-telephone-fill', linkPrefix: 'tel:' },
+      'extra-phone': { icon: 'bi-telephone-plus-fill', linkPrefix: 'tel:' },
+      email: { icon: 'bi-envelope-at-fill', linkPrefix: 'mailto:' },
+      vk: { icon: 'bi-person-rolodex', linkPrefix: 'https://vk.com/' },
+      facebook: { icon: 'bi-facebook', linkPrefix: 'https://facebook.com/' },
+      twitter: { icon: 'bi-twitter', linkPrefix: 'https://twitter.com/' },
+      'extra-contact': { icon: 'bi-send-plus', linkPrefix: '' },
+    };
+
+    // проверка, создание/наполнение "li" элементов (согласно объекта данных)
+    if (contacts.length === 0) {
+      const emptyLi = document.createElement('li');
+      emptyLi.classList.add('crm__output-table-body-cell_contacts-empty-item');
+      emptyLi.innerHTML = `<i class="crm__output-table-body-cell_contacts-empty-item-i table-row-contacts-icon bi bi-dash-lg"></i>`;
+      contactsList.append(emptyLi);
+    } else {
+      contacts.forEach(({ type, value }) => {
+        const contactData =
+          contactIconsLinks[type] || contactIconsLinks['extra-contact'];
+        const contactLi = document.createElement('li');
+        contactLi.classList.add('crm__output-table-body-cell_contacts-item');
+
+        const contactLink = document.createElement('a');
+        contactLink.classList.add(
+          'crm__output-table-body-cell_contacts-item-link'
+        );
+        contactLink.href = contactData.linkPrefix + value;
+
+        // если email, открытие окна сразу для написания письма
+        if (type === 'email') {
+          contactLink.href = `https://mail.google.com/mail/?view=cm&fs=1&to=${value}`;
+        } else {
+          contactLink.href = contactData.linkPrefix + value;
+        }
+
+        // исключение действий для/с дополнительными контактами
+        if (type === 'extra-contact') {
+          contactLink.href = 'javascript:void(0);'; // исключение перехода
+          contactLink.addEventListener('click', (event) =>
+            event.preventDefault()
+          ); // отмена кликов
+        }
+
+        contactLink.setAttribute('target', '_blank');
+
+        contactLink.innerHTML = `<i class="crm__output-table-body-cell_contacts-item-i table-row-contacts-icon bi ${contactData.icon}"></i>`;
+
+        // вызов/инициализация tooltips
+        tippy(contactLi, {
+          content: `<span style="color: #B89EFF; font-weight: bold;">${
+            type.charAt(0).toUpperCase() + type.slice(1)
+          }:</span>
+          <span style="color: #fff;">${value}</span>`,
+          allowHTML: true, // возможность использовать HTML-теги внутри tooltip структуры
+          theme: 'main',
+          offset: [0, 8],
+          placement: 'top',
+          animation: 'scale', // анимация появления/скрытия (через дополнительный файл/подключение)
+          trigger: 'mouseenter', // только по наведению мыши (исключение вывода по клику, в другом месте)
+
+          onShow(instance) {
+            setTimeout(() => {
+              instance.hide(); // автоматическое скрытие (по истечению времени)
+            }, 2000);
+          },
+
+          // точечная корректировка стилей (для "стрелки" подсказки)
+          onMount(instance) {
+            const arrowElement = instance.popper.querySelector('.tippy-arrow');
+            arrowElement.style.marginBottom = '-1px';
+          },
+        });
+
+        contactLi.append(contactLink);
+        contactsList.append(contactLi);
+      });
+    }
+
+    return contactsList; // возврат списка контактов/ячейки
   }
 
   // ** изменение направления стрелки/svg-icon, согласно прожатия по заглавной ячейке (при сортировке данных)

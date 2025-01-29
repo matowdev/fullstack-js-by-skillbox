@@ -165,7 +165,6 @@
   justify-content: flex-end;
   align-items: center;
   position: relative;
-  border: none;
   padding: 10px 20px;
   min-width: 191px;
   font-family: var(--open-sans), sans-serif;
