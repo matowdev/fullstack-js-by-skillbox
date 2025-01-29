@@ -580,7 +580,7 @@
 
     const clientServerId = row.getAttribute('data-server-id'); // фиксация серверного id (из атрибута)
 
-    // определение клиента в "общем" массиве
+    // определение клиента в "общем" массиве клиентов
     const clientData = updateClientsDataArr.find(
       (client) => client.id === clientServerId
     );
