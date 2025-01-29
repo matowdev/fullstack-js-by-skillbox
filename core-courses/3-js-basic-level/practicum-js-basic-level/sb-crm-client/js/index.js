@@ -403,7 +403,8 @@
     );
     clientTdActionsBtnEdit.classList.add(
       'crm__output-table-body-cell_actions-btn-edit',
-      'table-row-btn'
+      'table-row-btn',
+      'table-row-btn-edit'
     );
     clientTdActionsBtnEditIconPen.classList.add(
       'crm__output-table-body-cell_actions-btn-edit-icon-pen',
@@ -419,7 +420,8 @@
     );
     clientTdActionsBtnDelete.classList.add(
       'crm__output-table-body-cell_actions-btn-delete',
-      'table-row-btn'
+      'table-row-btn',
+      'table-row-btn-delete'
     );
     clientTdActionsBtnDeleteIconX.classList.add(
       'crm__output-table-body-cell_actions-btn-delete-icon-x',
@@ -566,6 +568,81 @@
     }
 
     return contactsList; // возврат списка контактов/ячейки
+  }
+
+  // ** удаление элементов/строк таблицы данных о клиентах (через "Удалить" кнопку)
+  const getOutputTable = document.querySelector('.crm__output-table');
+
+  function deleteBodyRowsByBtn(event) {
+    const row = event.target.closest('tr'); // фиксация всей строки
+    if (!row || !event.target.classList.contains('table-row-btn-delete'))
+      return;
+
+    const clientServerId = row.getAttribute('data-server-id'); // фиксация серверного id (из атрибута)
+
+    // вызов "общей" функции, для удаления клиента/строки (передача соответствующих аргументов)
+    deleteBodyRowsClients(
+      [clientServerId],
+      `Вы уверены, что хотите удалить клиента?`,
+      event.target
+    );
+  }
+
+  // добавление обработчика события на таблицу (делегирование)
+  getOutputTable.addEventListener('click', deleteBodyRowsByBtn);
+
+  // ** удаление элементов/строк таблицы данных о клиентах (ОБЩАЯ ЛОГИКА)
+  function deleteBodyRowsClients(
+    clientsServerIdsToDelete,
+    confirmMessage = null,
+    currentBtn = null
+  ) {
+    if (confirmMessage) {
+      const confirmed = confirm(confirmMessage);
+
+      if (!confirmed) {
+        if (currentBtn) {
+          currentBtn.blur(); // снятие фокуса с кнопки, при отмене действия
+        }
+        return;
+      }
+    }
+
+    clientsServerIdsToDelete.forEach(async (serverId) => {
+      await deleteClientsFromServer(serverId); // удаление клиентов с сервера по серверным ID
+    });
+
+    updateClientsDataArr = updateClientsDataArr.filter(
+      (client) => !clientsServerIdsToDelete.includes(client.id)
+    ); // обновление массива
+
+    // изменение/корректировка локальных ID оставшихся клиентов (для корректной сортировки после добавления "новых" клиентов)
+    updateClientsDataArr.forEach((client, index) => {
+      client.localId = index + 1;
+    });
+
+    addClientsToTable(updateClientsDataArr); // обновление таблицы клиентов (пере-компоновка) после удаления
+  }
+
+  // ** [СЕРВЕР] организация удаления клиентов с сервера (согласно серверных id)
+  async function deleteClientsFromServer(serverId) {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/clients/${serverId}`,
+        {
+          method: 'DELETE',
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Ошибка при удалении клиента: ${response.status}`);
+      }
+
+      // await getClientsServerListData(); // обновление списка клиентов после удаления
+    } catch (error) {
+      console.error('Ошибка при удалении клиента с сервера..', error);
+      alert('Не удалось удалить клиента с сервера!');
+    }
   }
 
   // ** изменение направления стрелки/svg-icon, согласно прожатия по заглавной ячейке (при сортировке данных)
@@ -2658,9 +2735,8 @@
       // изменение цвета/выделение строки
       lastNewTableRow.querySelectorAll('td').forEach((td) => {
         defaultRowCellColors.push(td.style.color);
-        td.style.fontWeight = 'bold';
-        // td.style.color = '#e10c22'; // красный
-        td.style.color = '#198754'; // или.. зелёный
+        td.style.fontWeight = '500';
+        td.style.color = '#7458c2'; // --cold-purple
       });
 
       // возврат к default цвету, через несколько секунды
