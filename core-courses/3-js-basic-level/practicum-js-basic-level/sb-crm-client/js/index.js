@@ -570,13 +570,46 @@
     return contactsList; // возврат списка контактов/ячейки
   }
 
-  // ** удаление элементов/строк таблицы данных о клиентах (через "Удалить" кнопку)
+  // ** редактирование данных клиента, элементов/строк таблицы (через "Изменить" кнопку)
   const getOutputTable = document.querySelector('.crm__output-table');
 
+  function editClientByBtn(event) {
+    const row = event.target.closest('tr'); // фиксация всей строки
+
+    if (!row || !event.target.classList.contains('table-row-btn-edit')) return; // не нашли, возврат
+
+    const clientServerId = row.getAttribute('data-server-id'); // фиксация серверного id (из атрибута)
+
+    // определение клиента в "общем" массиве
+    const clientData = updateClientsDataArr.find(
+      (client) => client.id === clientServerId
+    );
+    if (!clientData) {
+      console.error(`Ошибка: клиент с ID ${clientServerId} не найден!`);
+      return;
+    }
+
+    // открытие модального окна
+    const modalWrap = createModalWindowByType('edit', clientData);
+    crmAddContainer.append(modalWrap);
+
+    // инициализация модального окна, через Bootstrap API
+    const bootstrapModal = new bootstrap.Modal(modalWrap);
+    bootstrapModal.show();
+
+    // принудительное удаление атрибута aria-hidden="true" с модального окна (исключение ошибки с ARIA)
+    deleteAriaHiddenTrue(modalWrap);
+  }
+
+  // добавление обработчика события на таблицу (редактирование данных)
+  getOutputTable.addEventListener('click', editClientByBtn);
+
+  // ** удаление элементов/строк таблицы данных о клиентах (через "Удалить" кнопку)
   function deleteBodyRowsByBtn(event) {
     const row = event.target.closest('tr'); // фиксация всей строки
+
     if (!row || !event.target.classList.contains('table-row-btn-delete'))
-      return;
+      return; // не нашли, возврат
 
     const clientServerId = row.getAttribute('data-server-id'); // фиксация серверного id (из атрибута)
 
@@ -588,7 +621,7 @@
     );
   }
 
-  // добавление обработчика события на таблицу (делегирование)
+  // добавление обработчика события на таблицу (удаление строки)
   getOutputTable.addEventListener('click', deleteBodyRowsByBtn);
 
   // ** удаление элементов/строк таблицы данных о клиентах (ОБЩАЯ ЛОГИКА)
@@ -1323,7 +1356,7 @@
 
     crmAddContainer.append(modalWrap); // добавление в DOM
 
-    // инициализация через Bootstrap API
+    // инициализация модального окна, через Bootstrap API
     const bootstrapModal = new bootstrap.Modal(modalWrap);
     bootstrapModal.show(); // отображение
 
@@ -1545,7 +1578,9 @@
     modalFooterCancelBtn.setAttribute('data-bs-dismiss', 'modal');
 
     modalHeaderTitle.textContent = modalTitle; // определяется в переменной
-    modalHeaderClientId.textContent = `ID: ${clientData.id || ''}`; // "вытягивается" из входящего объекта
+    modalHeaderClientId.textContent = `ID: ${
+      clientData.id ? String(clientData.id).slice(-6) : ''
+    }`; // "вытягивается" из входящего объекта
     modalBodySurnameInputLabel.textContent = 'Фамилия';
     modalBodySurnameLabelSpan.textContent = '*';
     modalBodySurnameFeedback.textContent = 'Заполните поле "Фамилия"!';

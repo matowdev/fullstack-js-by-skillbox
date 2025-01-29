@@ -224,7 +224,6 @@
 
 .crm__output-table-body-cell_contacts-item-i {
   color: var(--light-purple);
-  opacity: 0.7;
 }
 
 .crm__output-table-body-row .crm__output-table-body-cell_actions-btns {
@@ -353,7 +352,6 @@
 
   .crm__output-table-body-cell_contacts-item-i:hover:not(:active) {
     color: var(--dark-purple);
-    opacity: 0.7;
   }
 
 
