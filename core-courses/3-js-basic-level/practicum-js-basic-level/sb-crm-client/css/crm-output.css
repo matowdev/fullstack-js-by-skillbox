@@ -39,7 +39,7 @@
 
 .crm__output-table {
   margin-bottom: 0;
-  min-height: 322px;
+  /* min-height: 322px; */
   font-family: var(--open-sans), sans-serif;
   font-weight: var(--regular);
   background-color: var(--white);
@@ -54,27 +54,22 @@
 
 .crm__output-table tr th,
 .crm__output-table tr td {
-  line-height: 32px;
-  text-align: center;
   vertical-align: middle;
-  color: var(--black);
   cursor: pointer;
 }
 
 .crm__output-table .crm__output-table-head-cell {
-  padding: 8px 10px;
+  padding: 8px 8px;
   text-align: start;
 }
 
 .crm__output-table #table-th-id {
-  padding-left: 20px;
-  width: 80px;
-  font-weight: var(--semi-bold);
-  color: var(--text-gray);
+  padding-left: 15px;
+  width: 95px;
 }
 
 .crm__output-table #table-th-fio {
-  width: 355px;
+  width: 360px;
 }
 
 .crm__output-table #table-th-dt {
@@ -86,8 +81,7 @@
 }
 
 .crm__output-table #table-th-contact {
-  padding-left: 20px;
-  width: 145px;
+  width: 130px;
   cursor: default;
 }
 
@@ -165,6 +159,153 @@
   color: var(--main-purple);
 }
 
+.crm__output-table-body {
+  color: var(--black);
+}
+
+.crm__output-table-body-row {
+  border-bottom: 1px solid var(--text-gray);
+  height: 65px;
+}
+
+.crm__output-table-body-row .crm__output-table-body-cell_id {
+  padding-left: 15px;
+  color: var(--text-gray);
+}
+
+.crm__output-table-body-cell_crt-date,
+.crm__output-table-body-cell_chg-date {
+  margin-right: 8px;
+}
+
+.crm__output-table-body-cell_crt-time,
+.crm__output-table-body-cell_chg-time {
+  color: var(--text-gray);
+}
+
+.crm__output-table-body-cell_contacts-list {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1px 2px;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.crm__output-table-body-cell_contacts-empty-item,
+.crm__output-table-body-cell_contacts-item {
+  position: relative;
+  padding: 2px;
+  width: 20px;
+  height: 20px;
+  font-family: var(--open-sans), sans-serif;
+  font-size: var(--default-fs);
+  transition-property: color, background-color;
+  transition-duration: var(--short);
+  transition-timing-function: ease;
+}
+
+.table-row-contacts-icon {
+  position: absolute;
+  top: 0;
+  left: 3px;
+  font-size: 14px;
+  transition-property: color, opacity;
+  transition-duration: var(--short);
+  transition-timing-function: ease;
+}
+
+.crm__output-table-body-cell_contacts-empty-item-i {
+  color: var(--bootstrap-red);
+}
+
+.crm__output-table-body-cell_contacts-item-i {
+  color: var(--light-purple);
+  opacity: 0.7;
+}
+
+.crm__output-table-body-row .crm__output-table-body-cell_actions-btns {
+  padding-left: 0;
+}
+
+.crm__output-table-body-cell_actions-btns-wrap {
+  display: flex;
+  justify-content: flex-start;
+  column-gap: 5px;
+}
+
+.table-row-btn {
+  margin: 0;
+  border: none;
+  padding: 0;
+  background: transparent;
+  outline: none;
+}
+
+.crm__output-table-body-cell_actions-btn-edit,
+.crm__output-table-body-cell_actions-btn-delete {
+  display: flex;
+  /* justify-content: flex-end; */
+  align-items: center;
+  position: relative;
+  padding: 2px 2px 0;
+  padding-left: 29px;
+  width: 100px;
+  font-family: var(--open-sans), sans-serif;
+  font-size: var(--default-fs);
+  transition-property: color, background-color;
+  transition-duration: var(--short);
+  transition-timing-function: ease;
+}
+
+.table-row-btn-icon {
+  position: absolute;
+  top: 2px;
+  left: 12px;
+  font-size: 14px;
+  opacity: 0;
+  transition-property: color, opacity;
+  transition-duration: var(--short);
+  transition-timing-function: ease;
+}
+
+.crm__output-table-body-cell_actions-btn-edit .crm__output-table-body-cell_actions-btn-edit-icon-pen {
+  color: var(--light-purple);
+  opacity: 0.7;
+}
+
+.crm__output-table-body-cell_actions-btn-edit:focus-visible:not(:hover) {
+  color: var(--cold-purple);
+}
+
+.crm__output-table-body-cell_actions-btn-edit:focus-visible:active {
+  color: var(--cold-purple);
+}
+
+.crm__output-table-body-cell_actions-btn-edit:active {
+  color: var(--cold-purple);
+}
+
+.crm__output-table-body-cell_actions-btn-delete .crm__output-table-body-cell_actions-btn-delete-icon-x {
+  color: var(--bootstrap-red);
+  opacity: 0.7;
+}
+
+.crm__output-table-body-cell_actions-btn-delete:focus-visible:not(:hover) {
+  color: var(--bootstrap-red);
+}
+
+.crm__output-table-body-cell_actions-btn-delete:focus-visible:active {
+  color: var(--bootstrap-red);
+}
+
+.crm__output-table-body-cell_actions-btn-delete:active {
+  color: var(--bootstrap-red);
+}
+
 /* media queries, any-hover */
 
 @media (max-width: 992px) {
@@ -199,7 +340,7 @@
   }
 
   .head-cell-with-icon:hover:not(:focus-visible):not(:active) .head-cell__text {
-    color: var(--black);
+    color: var(--light-purple);
   }
 
   .head-cell-with-icon:hover .head-cell__icon {
@@ -208,5 +349,37 @@
 
   .head-cell-with-icon:hover .head-cell__sort {
     opacity: 1;
+  }
+
+  .crm__output-table-body-cell_contacts-item-i:hover:not(:active) {
+    color: var(--dark-purple);
+    opacity: 0.7;
+  }
+
+
+  .crm__output-table-body-cell_actions-btn-edit:hover:not(:active):not(:focus-visible) .crm__output-table-body-cell_actions-btn-edit-icon-pen {
+    opacity: 0;
+  }
+
+  .crm__output-table-body-cell_actions-btn-edit:hover:not(:active):not(:focus-visible) .crm__output-table-body-cell_actions-btn-edit-icon-lap {
+    color: var(--main-purple);
+    opacity: 0.7;
+  }
+
+  .crm__output-table-body-cell_actions-btn-edit:hover:not(:active) {
+    color: var(--light-purple);
+  }
+
+  .crm__output-table-body-cell_actions-btn-delete:hover:not(:active):not(:focus-visible) .crm__output-table-body-cell_actions-btn-delete-icon-x {
+    opacity: 0;
+  }
+
+  .crm__output-table-body-cell_actions-btn-delete:hover:not(:active):not(:focus-visible) .crm__output-table-body-cell_actions-btn-delete-icon-lap {
+    color: var(--bootstrap-red);
+    opacity: 0.7;
+  }
+
+  .crm__output-table-body-cell_actions-btn-delete:hover:not(:active) {
+    color: var(--bootstrap-red);
   }
 }
