@@ -2758,29 +2758,38 @@
     }
 
     const lastNewTableRow = outTableBody.lastElementChild; // фиксация последней строки
-    const defaultRowCellColors = []; // для цветов
+    if (!lastNewTableRow) return; // нет строки.. возврат
 
-    if (lastNewTableRow) {
-      // перемещение к "новому" клиенту/к последней строке таблицы
-      lastNewTableRow.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center',
-      });
+    // кого предстоит перекрасить/выделить
+    const highlightClasses = [
+      'crm__output-table-body-cell_fio',
+      'crm__output-table-body-cell_crt-d-time',
+      'crm__output-table-body-cell_chg-d-time',
+    ];
 
-      // изменение цвета/выделение строки
-      lastNewTableRow.querySelectorAll('td').forEach((td) => {
-        defaultRowCellColors.push(td.style.color);
-        td.style.fontWeight = '500';
+    const defaultColorsMap = new Map(); // хранение исходных цветов/красок
+
+    // перемещение к "новому" клиенту/к последней строке таблицы
+    lastNewTableRow.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+    });
+
+    // изменение цвета/выделение строки
+    lastNewTableRow.querySelectorAll('td').forEach((td) => {
+      if (highlightClasses.some((cls) => td.classList.contains(cls))) {
+        defaultColorsMap.set(td, td.style.color); // сохранение default цвета
+        td.style.fontWeight = 'bold';
         td.style.color = '#7458c2'; // --cold-purple
-      });
+      }
+    });
 
-      // возврат к default цвету, через несколько секунды
-      setTimeout(() => {
-        lastNewTableRow.querySelectorAll('td').forEach((td, index) => {
-          td.style.fontWeight = 'normal';
-          td.style.color = defaultRowCellColors[index];
-        });
-      }, 2000);
-    }
+    // возврат к default цвету, через несколько секунды
+    setTimeout(() => {
+      defaultColorsMap.forEach((color, td) => {
+        td.style.fontWeight = 'normal';
+        td.style.color = color;
+      });
+    }, 2000);
   }
 })();
