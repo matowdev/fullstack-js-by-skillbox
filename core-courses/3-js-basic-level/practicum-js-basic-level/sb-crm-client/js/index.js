@@ -249,10 +249,15 @@
       const data = await response.json(); // преобразование данных в JSON-формат
       clientsDataArrWithIds = addLocalIdsToClients(data); // добавление поля localId
 
-      addClientsToTable(clientsDataArrWithIds); // отрисовка данных, наполнение таблицы клиентов
+      if (clientsDataArrWithIds.length > 0) {
+        addClientsToTable(clientsDataArrWithIds); // отрисовка данных, наполнение таблицы клиентов
+      } else {
+        outTableBody.append(createEmptyTableMessageRow()); // если данных нет, вывод/добавление "пустой" строки
+      }
     } catch (error) {
       console.error('Не удалось загрузить список клиентов..', error);
-      alert('Ошибка при загрузке данных с сервера!?');
+      outTableBody.innerHTML = ''; // очистка таблицы
+      outTableBody.append(createEmptyTableMessageRow()); // если ошибка, вывод/добавление "пустой" строки
     }
   }
 
@@ -334,7 +339,7 @@
 
     emptyTableTdCell.colSpan = 6; // объединение всех колонок
     emptyTableTdCell.textContent =
-      'Пусто.. измените фильтрацию, добавьте клиента!?';
+      'Пусто.. измените фильтрацию, добавьте клиента!? Запустите сервер?';
     emptyTableTdCell.style.fontWeight = '500';
     emptyTableTdCell.style.fontSize = '16px';
     emptyTableTdCell.style.color = '#dc3545';

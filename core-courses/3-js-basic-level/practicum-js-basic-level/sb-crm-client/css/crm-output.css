@@ -58,6 +58,10 @@
   cursor: pointer;
 }
 
+/* .table-hover tbody tr:not(.table-dark) {
+  --bs-table-hover-bg: rgba(0, 0, 0, 0.02) !important;
+} */
+
 .crm__output-table .crm__output-table-head-cell {
   padding: 8px 8px;
   text-align: start;
@@ -349,6 +353,10 @@
   .head-cell-with-icon:hover .head-cell__sort {
     opacity: 1;
   }
+
+  /* .crm__output-table-body-row:hover {
+    border-bottom: 1px solid var(--main-purple);
+  } */
 
   .crm__output-table-body-cell_contacts-item-i:hover:not(:active) {
     color: var(--dark-purple);
