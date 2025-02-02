@@ -252,12 +252,12 @@
       if (clientsDataArrWithIds.length > 0) {
         addClientsToTable(clientsDataArrWithIds); // отрисовка данных, наполнение таблицы клиентов
       } else {
-        outTableBody.append(createEmptyTableMessageRow()); // если данных нет, вывод/добавление "пустой" строки
+        outTableBody.append(createEmptyTableMessageRow()); // если данных нет, вывод/добавление строки-сообщения
       }
     } catch (error) {
       console.error('Не удалось загрузить список клиентов..', error);
       outTableBody.innerHTML = ''; // очистка таблицы
-      outTableBody.append(createEmptyTableMessageRow()); // если ошибка, вывод/добавление "пустой" строки
+      outTableBody.append(createEmptyTableMessageRow()); // если ошибка, вывод/добавление строки-сообщения
     }
   }
 
