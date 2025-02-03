@@ -594,9 +594,64 @@
       return;
     }
 
-    // открытие модального окна
+    // ?
+    const originalClientData = JSON.parse(JSON.stringify(clientData)); // создание копии данных клиента (приходящих с сервера)
     const modalWrap = createModalWindowByType('edit', clientData);
-    crmAddContainer.append(modalWrap);
+
+    // фиксация элементов формы
+    const inputSurname = modalWrap.querySelector(
+      '#modal-surname-floating-input'
+    );
+    const inputName = modalWrap.querySelector('#modal-name-floating-input');
+    const inputPatronymic = modalWrap.querySelector(
+      '#modal-patronymic-floating-input'
+    );
+    const addContactBtn = modalWrap.querySelector('.modal__body-add-btn');
+
+    if (!addContactBtn) {
+      console.error('Ошибка: Кнопка "Добавить контакт" не найдена!');
+      return;
+    }
+
+    // восстановление ФИО
+    if (inputSurname) inputSurname.value = clientData.surname || '';
+    if (inputName) inputName.value = clientData.name || '';
+    if (inputPatronymic) inputPatronymic.value = clientData.patronymic || '';
+
+    // восстановление списка контактов (как бы через прожатие "Добавить контакт")
+    if (clientData.contacts && clientData.contacts.length > 0) {
+      clientData.contacts.forEach((contact) => {
+        addContactBtn.click();
+
+        const lastContact = modalContactsArr[modalContactsArr.length - 1]; // фиксация "крайнего" контакта
+
+        if (!lastContact) {
+          console.error('Ошибка: Не удалось создать строку контакта!');
+          return;
+        }
+
+        // обновление контактных данных
+        const dropBtn = lastContact.querySelector(
+          '.modal__body-add-contact-drop-btn'
+        );
+        const hiddenInput = lastContact.querySelector(
+          '.modal__body-add-hidden-input'
+        );
+        const contactInput = lastContact.querySelector(
+          '.modal__body-add-contact-input'
+        );
+
+        if (dropBtn && hiddenInput && contactInput) {
+          dropBtn.textContent = convertContactTypeToText(contact.type); // определение типа контакта (для/в drop-down)
+          hiddenInput.value = contact.type;
+          contactInput.value = contact.value || '';
+        } else {
+          console.error('Ошибка: Ожидаемые элементы контакта не найдены!');
+        }
+      });
+    }
+
+    crmAddContainer.append(modalWrap); // добавление модального окна
 
     // инициализация модального окна, через Bootstrap API
     const bootstrapModal = new bootstrap.Modal(modalWrap);
@@ -608,6 +663,21 @@
 
   // добавление обработчика события на таблицу (редактирование данных)
   getOutputTable.addEventListener('click', editClientByBtn);
+
+  // определение типа контакта, для отображения в drop-down кнопке контакта (при восстановлении данных)
+  function convertContactTypeToText(type) {
+    const typeMap = {
+      phone: 'Телефон',
+      'extra-phone': 'Доп. телефон',
+      email: 'Email',
+      vk: 'Vk',
+      facebook: 'Facebook',
+      twitter: 'Twitter',
+      'extra-contact': 'Доп. контакт',
+    };
+
+    return typeMap[type] || 'Телефон';
+  }
 
   // ** удаление элементов/строк таблицы данных о клиентах (через "Удалить" кнопку)
   function deleteBodyRowsByBtn(event) {
