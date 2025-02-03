@@ -172,6 +172,10 @@
   height: 65px;
 }
 
+.crm__output-table-body-row:focus-visible {
+  outline: solid rgba(152, 115, 255, 0.5);
+}
+
 .crm__output-table-body-row .crm__output-table-body-cell_id {
   padding-left: 15px;
   color: var(--text-gray);
@@ -210,6 +214,16 @@
   transition-property: color, background-color;
   transition-duration: var(--short);
   transition-timing-function: ease;
+}
+
+.crm__output-table-body-cell_contacts-item:focus-within {
+  border: none;
+  border-bottom: 1px solid var(--light-purple);
+  outline: none;
+}
+
+.crm__output-table-body-cell_contacts-item:focus-within .crm__output-table-body-cell_contacts-item-i {
+  color: var(--dark-purple);
 }
 
 .table-row-contacts-icon {
