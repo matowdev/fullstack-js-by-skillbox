@@ -580,7 +580,6 @@
 
   function editClientByBtn(event) {
     const row = event.target.closest('tr'); // фиксация всей строки
-
     if (!row || !event.target.classList.contains('table-row-btn-edit')) return; // не нашли, возврат
 
     const clientServerId = row.getAttribute('data-server-id'); // фиксация серверного id (из атрибута)
@@ -594,18 +593,12 @@
       return;
     }
 
-    // ?
-    const originalClientData = JSON.parse(JSON.stringify(clientData)); // создание копии данных клиента (приходящих с сервера)
-    const modalWrap = createModalWindowByType('edit', clientData);
+    const modalWrap = createModalWindowByType('edit', clientData); // создание "универсального" модального окна (согласно передаваемого типа)
 
     // фиксация элементов формы
-    const inputSurname = modalWrap.querySelector(
-      '#modal-surname-floating-input'
-    );
-    const inputName = modalWrap.querySelector('#modal-name-floating-input');
-    const inputPatronymic = modalWrap.querySelector(
-      '#modal-patronymic-floating-input'
-    );
+    const inputSurname = modalWrap.querySelector('.modal-surname-input');
+    const inputName = modalWrap.querySelector('.modal-name-input');
+    const inputPatronymic = modalWrap.querySelector('.modal-patronymic-input');
     const addContactBtn = modalWrap.querySelector('.modal__body-add-btn');
 
     if (!addContactBtn) {
@@ -656,6 +649,15 @@
     // инициализация модального окна, через Bootstrap API
     const bootstrapModal = new bootstrap.Modal(modalWrap);
     bootstrapModal.show();
+
+    // добавление валидации для вводимых/корректируемых данных/в модальном окне (для "основных" инпутов, ФИО)
+    const allModalBodyFormInputs =
+      modalWrap.querySelectorAll('.modal__body-input');
+    mainInputsValidation(allModalBodyFormInputs, {
+      allowOnlyRussian: true,
+      singleHyphen: true,
+      noExtraSpaces: true,
+    });
 
     // принудительное удаление атрибута aria-hidden="true" с модального окна (исключение ошибки с ARIA)
     deleteAriaHiddenTrue(modalWrap);
@@ -2498,6 +2500,40 @@
     }
   }
 
+  // ** [СЕРВЕР] корректировка данных/клиентов на сервере, получение обратно (проверка статуса)
+  async function editClientOnServer(clientId, clientData) {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/clients/${clientId}`,
+        {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(clientData),
+        }
+      );
+
+      if (!response.ok) {
+        if (response.status === 422) {
+          const errorData = await response.json();
+          throw new Error(
+            `Ошибка валидации: ${errorData.errors
+              .map((e) => e.message)
+              .join(', ')}`
+          );
+        } else {
+          throw new Error(`Ошибка: ${response.status}`);
+        }
+      }
+
+      await getClientsServerListData(); // Обновляем список клиентов (перерисовка таблицы)
+    } catch (error) {
+      console.error('Ошибка при обновлении клиента..', error);
+      alert('Ошибка при обновлении клиента на сервере!');
+    }
+  }
+
   // ** универсальная обработка модальных форм их "submit" событий, т.е. при добавление/изменении данных клиента (после валидаций, после проверки по ФИО)
   // корректировка регистра, для полей ФИО
   function toUpFirstLetter(value) {
@@ -2604,8 +2640,9 @@
           })
           .filter((contact) => contact !== null); // исключение некорректных/null контактов
 
-        // проверка на совпадение по ФИО
+        // проверка на совпадение по ФИО в таблице (только/если, это добавление "нового" клиента)
         if (
+          type === 'add' &&
           checkClientFIO(
             formInSurname,
             formInName,
@@ -2630,11 +2667,19 @@
         };
 
         try {
-          await addClientToServer(client); // отправка клиента на сервер
+          if (type === 'add') {
+            await addClientToServer(client); // отправка клиента на сервер
+            alert('Клиент успешно добавлен!');
+          } else if (type === 'edit' && clientData.id) {
+            await editClientOnServer(clientData.id, client); // изменение данных клиента на сервере
+            alert('Клиент успешно обновлён!');
+          } else {
+            throw new Error(
+              'Неизвестный тип модального окна или отсутствует ID клиента!'
+            );
+          }
 
           setTimeout(() => {
-            alert('Клиент успешно добавлен!'); // вывод сообщения об успешном добавлении клиента
-
             // очистка всех полей формы (удаление классов/сообщений ошибок)
             allModalInputs.forEach((input) => {
               input.value = '';
@@ -2650,15 +2695,24 @@
               bootstrapModal.hide();
             }
 
-            // и напоследок.. выделение/показ только что добавленного клиента/строки
-            setTimeout(() => {
-              movingToLastNewTableRow(); // перемещение фокуса
-            }, 300); // временная задержка, больше.. чтобы модальное окно успело закрыться
+            if (type === 'add') {
+              // и напоследок.. выделение/показ только что добавленного клиента/строки
+              setTimeout(() => {
+                movingToLastNewTableRow(); // перемещение фокуса
+              }, 300); // временная задержка, больше.. чтобы модальное окно успело закрыться
+            }
           }, 200);
         } catch (error) {
-          console.error('Ошибка при добавлении клиента:', error);
+          console.error(
+            `Ошибка при ${
+              type === 'add' ? 'добавлении' : 'обновлении'
+            } клиента:`,
+            error
+          );
           alert(
-            'Не удалось добавить клиента! Проверьте данные и попробуйте снова!?'
+            `Не удалось ${
+              type === 'add' ? 'добавить' : 'обновить'
+            } клиента! Проверьте данные и попробуйте снова!?`
           );
         }
       },
