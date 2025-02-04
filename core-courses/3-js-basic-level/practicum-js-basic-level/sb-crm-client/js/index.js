@@ -2695,10 +2695,14 @@
               bootstrapModal.hide();
             }
 
+            // выделение/показ только что добавленного/от редактируемого клиента/строки (исходя из типа)
             if (type === 'add') {
-              // и напоследок.. выделение/показ только что добавленного клиента/строки
               setTimeout(() => {
-                movingToLastNewTableRow(); // перемещение фокуса
+                moveToAndHighlightClientRow('add'); // перемещение фокуса на только, что добавленного клиента
+              }, 300); // временная задержка, больше.. чтобы модальное окно успело закрыться
+            } else if (type === 'edit' && clientData.id) {
+              setTimeout(() => {
+                moveToAndHighlightClientRow('edit', clientData.id); // перемещение фокуса на только, что от редактируемого клиента
               }, 300); // временная задержка, больше.. чтобы модальное окно успело закрыться
             }
           }, 200);
@@ -2879,17 +2883,31 @@
     saveButton.style.cursor = saveButton.disabled ? 'help' : 'pointer';
   }
 
-  // ** перемещение/фиксация области просмотра на только что добавленном клиенте/на последней строке (выделение цветом)
-  function movingToLastNewTableRow() {
+  // ** перемещение/фиксация области просмотра на только что добавленном/от редактируемом клиенте, соответствующей строке (выделение цветом)
+  function moveToAndHighlightClientRow(type, clientId = null) {
     if (!outputTable) {
       console.error('Таблица НЕ обнаружена!');
       return;
     }
 
-    const lastNewTableRow = outTableBody.lastElementChild; // фиксация последней строки
-    if (!lastNewTableRow) return; // нет строки.. возврат
+    let clientRow;
 
-    // кого предстоит перекрасить/выделить
+    if (type === 'add') {
+      clientRow = outTableBody.lastElementChild; // фиксация последней строки
+    } else if (type === 'edit' && clientId) {
+      clientRow = outTableBody.querySelector(`[data-server-id="${clientId}"]`); // фиксация строки по ID
+    }
+
+    if (!clientRow) {
+      console.warn(
+        `Не удалось найти строку клиента (${
+          type === 'add' ? 'последнюю' : `ID: ${clientId}`
+        })`
+      );
+      return; // нет строк.. возврат
+    }
+
+    // кого предстоит перекрасить/выделить (какие ячейки?)
     const highlightClasses = [
       'crm__output-table-body-cell_fio',
       'crm__output-table-body-cell_crt-d-time',
@@ -2898,14 +2916,14 @@
 
     const defaultColorsMap = new Map(); // хранение исходных цветов/красок
 
-    // перемещение к "новому" клиенту/к последней строке таблицы
-    lastNewTableRow.scrollIntoView({
+    // перемещение к соответствующей строке таблицы
+    clientRow.scrollIntoView({
       behavior: 'smooth',
       block: 'center',
     });
 
     // изменение цвета/выделение строки
-    lastNewTableRow.querySelectorAll('td').forEach((td) => {
+    clientRow.querySelectorAll('td').forEach((td) => {
       if (highlightClasses.some((cls) => td.classList.contains(cls))) {
         defaultColorsMap.set(td, td.style.color); // сохранение default цвета
         td.style.fontWeight = 'bold';
