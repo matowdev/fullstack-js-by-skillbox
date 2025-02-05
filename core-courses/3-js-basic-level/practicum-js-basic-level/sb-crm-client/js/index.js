@@ -1733,13 +1733,15 @@
         modalWrap,
         modalBodyAddContactsRowWrap,
         modalBodyAddBtn,
+        modalType: type, // передача типа модального окна (или "add" / или "edit")
+        initialData: clientData, // передача копии исходных данных клиента (с сервера)
       };
 
-      // проверка на наличие валидных данных в инпутах: основных, контактных (хотя бы в одном.. отработка confirm)
-      const hasAnyData = checkModalInputsBeforeClose(event, context);
+      // проверка на наличие "валидных" данных в инпутах: основных, контактных / проверка на изменение клиентских данных при "edit" (хотя бы в одном.. отработка confirm)
+      const hasAnyChangeData = checkModalInputsBeforeClose(event, context);
 
       // если/там "cancel" в confirm, перевод focus на кнопку "Сохранить"
-      if (!hasAnyData) {
+      if (!hasAnyChangeData) {
         return; // т.е. без/вообще удалений инпутов (и "пустые" и не валидные остаются.. пока)
       }
 
@@ -1781,10 +1783,65 @@
     // return observer; // можно вернуть observe (если более не требуется)
   }
 
-  // ** организация проверки на наличие валидных данных в модальных инпутах: основных, контактных (отработка "уточняющего" confirm, возврат true/false)
+  // ** организация проверки на наличие валидных данных в модальных инпутах: основных, контактных / проверка на изменение клиентских данных при/в "edit" модальном окне (отработка "уточняющего" confirm или нет)
   function checkModalInputsBeforeClose(event, context = {}) {
-    const { modalWrap } = context; // получение необходимого элемента (через деструктуризациию входящего/передаваемого объекта)
+    const { modalWrap, modalType, initialData } = context; // получение необходимого элемента (через деструктуризациию входящего/передаваемого объекта)
     const modalInputs = Array.from(modalWrap.querySelectorAll('.modal-input')); // фиксация всех модальных инпутов
+
+    // фиксация ФИО из "edit" окна (далее для сравнения)
+    const formInSurname = toUpFirstLetter(
+      modalWrap.querySelector('.modal-surname-input').value.trim()
+    );
+    const formInName = toUpFirstLetter(
+      modalWrap.querySelector('.modal-name-input').value.trim()
+    );
+    const formInPatronymicInput = modalWrap.querySelector(
+      '.modal-patronymic-input'
+    );
+    const formInPatronymic = formInPatronymicInput
+      ? toUpFirstLetter(formInPatronymicInput.value.trim())
+      : '';
+
+    // фиксация контактов из "edit" окна (далее для сравнения)
+    const formInContacts = Array.from(
+      modalWrap.querySelectorAll('.modal__body-add-contact-element')
+    )
+      .map((contact) => {
+        const contactType = contact
+          .querySelector('input[name="contact-type"]')
+          ?.value.trim(); // фиксация типа контакта из "скрытого" инпута
+        const contactValue = contact
+          .querySelector('input[name="contact-data"]')
+          ?.value.trim(); // фиксация введённых данных из "основного" инпута
+
+        // проверка на наличие значений
+        if (contactType && contactValue) {
+          return { type: contactType, value: contactValue };
+        }
+
+        return null; // если данные некорректны, пропуск/далее
+      })
+      .filter((contact) => contact !== null); // исключение некорректных/null контактов
+
+    // проверка изменений в ФИО/контактах, если это "edit" модальное окно (т.е. надо будет выводить confirm или нет)
+    if (modalType === 'edit' && initialData) {
+      const isNameChanged = initialData.name !== formInName;
+      const isSurnameChanged = initialData.surname !== formInSurname;
+      const isPatronymicChanged = initialData.patronymic !== formInPatronymic;
+      const isContactsLengthChanged =
+        initialData.contacts.length !== formInContacts.length;
+
+      const hasDataChanged =
+        isNameChanged ||
+        isSurnameChanged ||
+        isPatronymicChanged ||
+        isContactsLengthChanged;
+
+      // если ничего не поменялось при "edit", уточняющее сообщение "Есть не сохранённые данные! Закрыть окно?".. НЕ выводим
+      if (!hasDataChanged) {
+        return true;
+      }
+    }
 
     // определение заполненных/валидных инпутов (хотя бы одного)
     const hasValidInputs = modalInputs.some((input) => {
