@@ -337,6 +337,8 @@
     const emptyTableTrRow = document.createElement('tr');
     const emptyTableTdCell = document.createElement('td');
 
+    emptyTableTrRow.classList.add('crm__output-table-body-empty-row');
+
     emptyTableTdCell.colSpan = 6; // объединение всех колонок
     emptyTableTdCell.textContent =
       'Пусто.. измените фильтрацию, добавьте клиента!? Запустите сервер?';

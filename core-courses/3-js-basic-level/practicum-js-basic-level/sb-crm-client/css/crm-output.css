@@ -39,10 +39,43 @@
 
 .crm__output-table {
   margin-bottom: 0;
-  /* min-height: 322px; */
+  border-collapse: collapse;
+  width: 100%;
+  height: 322px;
   font-family: var(--open-sans), sans-serif;
   font-weight: var(--regular);
   background-color: var(--white);
+}
+
+.crm__output-table thead {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.crm__output-table thead tr {
+  display: table-row;
+  width: 100%;
+}
+
+.crm__output-table thead th {
+  text-align: left;
+}
+
+.crm__output-table tbody {
+  display: table;
+  width: 100%;
+}
+
+.crm__output-table tbody tr {
+  display: table-row;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.crm__output-table tbody td {
+  width: auto;
+  text-align: left;
 }
 
 .crm__output-table tr th {
@@ -58,6 +91,17 @@
   cursor: pointer;
 }
 
+.crm__output-table-body-empty-row {
+  width: 100%;
+  height: 65px;
+  text-align: center;
+}
+
+.crm__output-table-body-empty-row td {
+  width: 100%;
+  text-align: center;
+}
+
 .table-hover tbody tr:not(.table-dark) {
   --bs-table-hover-bg: rgba(0, 0, 0, 0.02) !important;
 }
@@ -67,26 +111,34 @@
   text-align: start;
 }
 
-.crm__output-table #table-th-id {
-  padding-left: 15px;
+.crm__output-table #table-th-id,
+.crm__output-table .crm__output-table-body-cell_id {
+  padding-left: 20px;
   width: 95px;
 }
 
-.crm__output-table #table-th-fio {
+.crm__output-table #table-th-fio,
+.crm__output-table .crm__output-table-body-cell_fio {
   width: 360px;
 }
 
-.crm__output-table #table-th-dt {
+.crm__output-table #table-th-dt,
+.crm__output-table .crm__output-table-body-cell_crt-d-time {
   width: 195px;
 }
 
-.crm__output-table #table-th-change {
+.crm__output-table #table-th-change,
+.crm__output-table .crm__output-table-body-cell_chg-d-time {
   width: 195px;
 }
 
 .crm__output-table #table-th-contact {
-  width: 130px;
   cursor: default;
+}
+
+.crm__output-table #table-th-contact,
+.crm__output-table .crm__output-table #table-th-contact {
+  width: 130px;
 }
 
 .crm__output-table #table-th-action {
@@ -177,7 +229,6 @@
 }
 
 .crm__output-table-body-row .crm__output-table-body-cell_id {
-  padding-left: 15px;
   color: var(--text-gray);
 }
 
