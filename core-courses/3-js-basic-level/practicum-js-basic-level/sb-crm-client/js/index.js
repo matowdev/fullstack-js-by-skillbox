@@ -702,7 +702,7 @@
   getOutputTable.addEventListener('click', deleteBodyRowsByBtn);
 
   // ** удаление элементов/строк таблицы данных о клиентах (ОБЩАЯ ЛОГИКА)
-  function deleteBodyRowsClients(
+  async function deleteBodyRowsClients(
     clientsServerIdsToDelete,
     confirmMessage = null,
     currentBtn = null
@@ -1713,6 +1713,11 @@
     modalDialog.append(modalContent);
     modalWrap.append(modalDialog);
 
+    // корректировка Bootstrap атрибута для кнопки "Отмена/Удалить клиента" (т.к. при "edit" нужны другие действия)
+    if (type === 'edit') {
+      modalFooterCancelBtn.removeAttribute('data-bs-dismiss');
+    }
+
     // вызов/инициализация tooltips для "X" модальной кнопки (для кнопки закрытия модального окна, с задержкой)
     setTimeout(() => {
       initTippy(modalHeaderXBtn, 'закрыть', 'left');
@@ -1759,6 +1764,34 @@
 
     // обработка "submit" события для формы (общая валидация, ряд действий)
     handleModalFormSubmit({ modalBodyForm, type, clientData });
+
+    // организация удаления клиента/строки, через внутреннюю кнопку "Удалить клинта" (при "edit" модальном окне)
+    if (type === 'edit') {
+      modalFooterCancelBtn.addEventListener('click', async (event) => {
+        event.preventDefault(); // исключение закрытия модального окна
+
+        const clientServerId = clientData.id; // фиксация серверного ID клиента
+        if (!clientServerId) {
+          console.error('Ошибка: отсутствует ID клиента для удаления!');
+          return;
+        }
+
+        // вызов "confirm" для подтверждения удаления
+        const confirmed = confirm('Вы уверены, что хотите удалить клиента?');
+        if (!confirmed) {
+          return;
+        }
+
+        // отработка удаления клиента/строки
+        await deleteBodyRowsClients([clientServerId], null, event.target);
+
+        // закрытие модального окна после удаления
+        const modalInstance = bootstrap.Modal.getInstance(modalWrap);
+        if (modalInstance) {
+          modalInstance.hide();
+        }
+      });
+    }
 
     return modalWrap; // возврат модального окна (т.е. здесь/без добавления в DOM.. позже, при клике)
   }
