@@ -2759,43 +2759,44 @@
         try {
           if (type === 'add') {
             await addClientToServer(client); // отправка клиента на сервер
-            alert('Клиент успешно добавлен!');
           } else if (type === 'edit' && clientData.id) {
             await editClientOnServer(clientData.id, client); // изменение данных клиента на сервере
-            alert('Клиент успешно обновлён!');
           } else {
             throw new Error(
               'Неизвестный тип модального окна или отсутствует ID клиента!'
             );
           }
 
+          // по-шаговая отработка setTimeout/задержек, т.е. валидное выделение формы/инпутов и потом/уже.. вывод сообщений, очистка/закрытие, перемещение фокуса
           setTimeout(() => {
-            // очистка всех полей формы (удаление классов/сообщений ошибок)
-            allModalInputs.forEach((input) => {
-              input.value = '';
-              input.classList.remove('is-invalid');
-            });
-            modalBodyForm.classList.remove('was-validated'); // удаление класса "was-validated"
-
-            // закрытие модального окна (через/посредствам Bootstrap API)
-            const bootstrapModal = bootstrap.Modal.getInstance(
-              modalBodyForm.closest('.modal')
+            alert(
+              type === 'add'
+                ? 'Клиент успешно добавлен!'
+                : 'Клиент успешно обновлён!'
             );
-            if (bootstrapModal) {
-              bootstrapModal.hide();
-            }
 
-            // выделение/показ только что добавленного/от редактируемого клиента/строки (исходя из типа)
-            if (type === 'add') {
+            setTimeout(() => {
+              // очистка всех полей формы (удаление классов/сообщений ошибок)
+              allModalInputs.forEach((input) => {
+                input.value = '';
+                input.classList.remove('is-invalid');
+              });
+              modalBodyForm.classList.remove('was-validated'); // удаление класса "was-validated"
+
+              // закрытие модального окна (через/посредствам Bootstrap API)
+              const bootstrapModal = bootstrap.Modal.getInstance(
+                modalBodyForm.closest('.modal')
+              );
+              if (bootstrapModal) {
+                bootstrapModal.hide();
+              }
+
+              // выделение/показ только что добавленного/от редактируемого клиента/строки (исходя из типа)
               setTimeout(() => {
-                moveToAndHighlightClientRow('add'); // перемещение фокуса на только, что добавленного клиента
+                moveToAndHighlightClientRow(type, clientData.id); // перемещение фокуса на только, что добавленного/изменённого клиента
               }, 300); // временная задержка, больше.. чтобы модальное окно успело закрыться
-            } else if (type === 'edit' && clientData.id) {
-              setTimeout(() => {
-                moveToAndHighlightClientRow('edit', clientData.id); // перемещение фокуса на только, что от редактируемого клиента
-              }, 300); // временная задержка, больше.. чтобы модальное окно успело закрыться
-            }
-          }, 200);
+            }, 200);
+          }, 100);
         } catch (error) {
           console.error(
             `Ошибка при ${
@@ -3027,6 +3028,6 @@
         td.style.fontWeight = 'normal';
         td.style.color = color;
       });
-    }, 2000);
+    }, 3000);
   }
 })();
