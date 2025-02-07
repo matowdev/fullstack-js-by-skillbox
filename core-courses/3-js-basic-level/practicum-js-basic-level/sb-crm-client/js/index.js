@@ -90,9 +90,9 @@
   outTableBody.classList.add('crm__output-table-body');
   outTblHeadTr.classList.add('crm__output-table-head-row');
   outTblHeadThId.classList.add(
+    'crm__output-table-head-cell',
     'head-cell',
-    'head-cell-with-icon',
-    'crm__output-table-head-cell'
+    'head-cell-with-icon'
   );
   outTblHeadThIdWrap.classList.add('head-cell__wrap', 'head-cell__wrap-id');
   outTblHeadThIdText.classList.add('head-cell__text', 'head-cell__text-id');
@@ -102,9 +102,9 @@
     'head-cell__icon-up'
   );
   outTblHeadThFIO.classList.add(
+    'crm__output-table-head-cell',
     'head-cell',
-    'head-cell-with-icon',
-    'crm__output-table-head-cell'
+    'head-cell-with-icon'
   );
   outTblHeadThFIOWrap.classList.add('head-cell__wrap', 'head-cell__wrap-fio');
   outTblHeadThFIOText.classList.add('head-cell__text', 'head-cell__text-fio');
@@ -115,9 +115,9 @@
   );
   outTblHeadThFIOSort.classList.add('head-cell__sort', 'head-cell__sort-fio');
   outTblHeadThCreationDT.classList.add(
+    'crm__output-table-head-cell',
     'head-cell',
-    'head-cell-with-icon',
-    'crm__output-table-head-cell'
+    'head-cell-with-icon'
   );
   outTblHeadThDTWrap.classList.add('head-cell__wrap', 'head-cell__wrap-dt');
   outTblHeadThDTText.classList.add('head-cell__text', 'head-cell__text-dt');
@@ -127,9 +127,9 @@
     'head-cell__icon-down'
   );
   outTblHeadThChanges.classList.add(
+    'crm__output-table-head-cell',
     'head-cell',
-    'head-cell-with-icon',
-    'crm__output-table-head-cell'
+    'head-cell-with-icon'
   );
   outTblHeadThChangeWrap.classList.add(
     'head-cell__wrap',
@@ -145,8 +145,8 @@
     'head-cell__icon-down'
   );
   outTblHeadThContacts.classList.add(
-    'head-cell',
-    'crm__output-table-head-cell'
+    'crm__output-table-head-cell',
+    'head-cell'
   );
   outTblHeadThContactWrap.classList.add(
     'head-cell__wrap',
@@ -156,7 +156,7 @@
     'head-cell__text',
     'head-cell__text-contact'
   );
-  outTblHeadThActions.classList.add('head-cell', 'crm__output-table-head-cell');
+  outTblHeadThActions.classList.add('crm__output-table-head-cell', 'head-cell');
   outTblHeadThActionWrap.classList.add(
     'head-cell__wrap',
     'head-cell__wrap-action'
@@ -3032,4 +3032,71 @@
       });
     }, 3000);
   }
+
+  // ** сортировка клиентов/таблицы, по ячейкам заголовочной строки (по нажатию, по возрастанию/убыванию)
+  const allHeaderRowCellsForSort = document.querySelectorAll(
+    '.crm__output-table-head-cell'
+  );
+  let sortDirectionUpDown = true;
+
+  function sortClientsByTableCells(event) {
+    const clickedTableCell = event.target.textContent; // определение заглавного поля/ячейки, по которой происходит "click" - событие, фиксация контента
+
+    console.log(clickedTableCell);
+
+    updateClientsDataArr.sort((a, b) => {
+      if (clickedTableCell === 'ID') {
+        return a.shortId - b.shortId;
+      } else if (clickedTableCell === 'Фамилия Имя Отчество') {
+        return sortDirectionUpDown
+          ? a.fullName.localeCompare(b.fullName)
+          : b.fullName.localeCompare(a.fullName);
+      } else if (clickedTableCell === 'Дата и время создания') {
+        return sortDirectionUpDown
+          ? a.faculty.localeCompare(b.faculty)
+          : b.faculty.localeCompare(a.faculty);
+      } else if (clickedTableCell === 'Последние изменения') {
+        const birthDateComparison =
+          new Date(a.birthDate).setHours(0, 0, 0, 0) -
+          new Date(b.birthDate).setHours(0, 0, 0, 0); // корректировка часов рождения (всем одно)
+        if (birthDateComparison !== 0) {
+          return sortDirectionUpDown
+            ? birthDateComparison
+            : -birthDateComparison;
+        }
+        return sortDirectionUpDown
+          ? a.fullName.localeCompare(b.fullName)
+          : b.fullName.localeCompare(a.fullName); // если даты рождения равны, по ФИО будет сортировка
+      } else if (clickedTableCell === 'Годы обучения') {
+        const startYearComparison = a.startYear - b.startYear;
+        if (startYearComparison !== 0) {
+          return sortDirectionUpDown
+            ? startYearComparison
+            : -startYearComparison;
+        }
+        return sortDirectionUpDown
+          ? a.fullName.localeCompare(b.fullName)
+          : b.fullName.localeCompare(a.fullName); // если годы начала/окончания равны, по ФИО будет сортировка
+      }
+      return 0;
+    });
+
+    addClientsToTable(updateClientsDataArr); // пере-рисовка (пере-компоновка) после сортировки (прожатия ячеек)
+  }
+
+  allHeaderRowCellsForSort.forEach((cell) => {
+    cell.addEventListener('click', (event) => {
+      sortClientsByTableCells(event); // передача события
+      sortDirectionUpDown = !sortDirectionUpDown; // изменение условия сортировки
+    });
+
+    // отработка сортировки/сброса сортировки через TAB/Enter
+    cell.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        sortClientsByTableCells(event); // передача события
+        sortDirectionUpDown = !sortDirectionUpDown; // изменение условия сортировки
+      }
+    });
+  });
 })();
