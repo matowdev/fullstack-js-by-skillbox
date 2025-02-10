@@ -3084,4 +3084,14 @@
       }
     });
   });
+
+  // ** организация сброса сортировки таблицы клиентов (через/посредствам прожатия #-хэштега)
+  const hashTagReset = document.getElementById('hash-tag-title'); // фиксация #-хэштега (перед заголовком "Клиенты")
+
+  function resetTableSorting() {
+    getClientsServerListData(); // обновление/перерисовка таблицы, как было.. (согласно серверных данных)
+    sortDirectionUpDown = true; // корректировка "флага" направления сортировки (который инициализируется выше)
+  }
+
+  hashTagReset.addEventListener('click', resetTableSorting); // прослушка/применение
 })();
