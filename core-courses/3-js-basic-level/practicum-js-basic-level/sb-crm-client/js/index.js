@@ -3037,51 +3037,36 @@
   const allHeaderRowCellsForSort = document.querySelectorAll(
     '.crm__output-table-head-cell'
   );
-  let sortDirectionUpDown = true;
+  let sortDirectionUpDown = true; // "флаг" для работы с направлением сортировки
 
   function sortClientsByTableCells(event) {
-    const clickedTableCell = event.target.textContent; // определение заглавного поля/ячейки, по которой происходит "click" - событие, фиксация контента
+    const clickedTableCell = event.target.closest('th'); // определение заглавного поля/ячейки, по которой происходит "click" - событие, фиксация
 
-    console.log(clickedTableCell);
+    if (!clickedTableCell) return; // если клик не по "th", отмена действий
 
     updateClientsDataArr.sort((a, b) => {
-      if (clickedTableCell === 'ID') {
-        return a.shortId - b.shortId;
-      } else if (clickedTableCell === 'Фамилия Имя Отчество') {
+      if (clickedTableCell.id === 'table-th-id') {
+        return sortDirectionUpDown
+          ? b.shortId - a.shortId
+          : a.shortId - b.shortId;
+      } else if (clickedTableCell.id === 'table-th-fio') {
         return sortDirectionUpDown
           ? a.fullName.localeCompare(b.fullName)
           : b.fullName.localeCompare(a.fullName);
-      } else if (clickedTableCell === 'Дата и время создания') {
+      } else if (clickedTableCell.id === 'table-th-dt') {
         return sortDirectionUpDown
-          ? a.faculty.localeCompare(b.faculty)
-          : b.faculty.localeCompare(a.faculty);
-      } else if (clickedTableCell === 'Последние изменения') {
-        const birthDateComparison =
-          new Date(a.birthDate).setHours(0, 0, 0, 0) -
-          new Date(b.birthDate).setHours(0, 0, 0, 0); // корректировка часов рождения (всем одно)
-        if (birthDateComparison !== 0) {
-          return sortDirectionUpDown
-            ? birthDateComparison
-            : -birthDateComparison;
-        }
+          ? new Date(b.createdAt) - new Date(a.createdAt)
+          : new Date(a.createdAt) - new Date(b.createdAt);
+      } else if (clickedTableCell.id === 'table-th-change') {
         return sortDirectionUpDown
-          ? a.fullName.localeCompare(b.fullName)
-          : b.fullName.localeCompare(a.fullName); // если даты рождения равны, по ФИО будет сортировка
-      } else if (clickedTableCell === 'Годы обучения') {
-        const startYearComparison = a.startYear - b.startYear;
-        if (startYearComparison !== 0) {
-          return sortDirectionUpDown
-            ? startYearComparison
-            : -startYearComparison;
-        }
-        return sortDirectionUpDown
-          ? a.fullName.localeCompare(b.fullName)
-          : b.fullName.localeCompare(a.fullName); // если годы начала/окончания равны, по ФИО будет сортировка
+          ? new Date(a.updatedAt) - new Date(b.updatedAt)
+          : new Date(b.updatedAt) - new Date(a.updatedAt);
       }
+
       return 0;
     });
 
-    addClientsToTable(updateClientsDataArr); // пере-рисовка (пере-компоновка) после сортировки (прожатия ячеек)
+    addClientsToTable(updateClientsDataArr); // пере-рисовка (пере-компоновка) таблицы после сортировки (прожатия ячеек)
   }
 
   allHeaderRowCellsForSort.forEach((cell) => {
