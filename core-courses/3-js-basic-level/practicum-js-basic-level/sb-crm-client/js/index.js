@@ -40,7 +40,7 @@
   searchInput.setAttribute('id', 'search-form-input');
   searchInput.setAttribute('type', 'text');
   searchInput.setAttribute('pattern', '[А-Яа-яЁё\\-]+');
-  searchInput.setAttribute('placeholder', 'Введите запрос');
+  searchInput.setAttribute('placeholder', 'Введите запрос.. ФИО');
   searchInput.setAttribute('required', '');
 
   searchLogo.append(searchLogoImg);
@@ -3085,13 +3085,46 @@
     });
   });
 
-  // ** организация сброса сортировки таблицы клиентов (через/посредствам прожатия #-хэштега)
+  // ** организация сброса сортировки/фильтрации таблицы клиентов (через/посредствам прожатия #-хэштега, как было..)
   const hashTagReset = document.getElementById('hash-tag-title'); // фиксация #-хэштега (перед заголовком "Клиенты")
+  const formFilterInput = document.getElementById('search-form-input'); // фиксация поля поиска
 
   function resetTableSorting() {
     getClientsServerListData(); // обновление/перерисовка таблицы, как было.. (согласно серверных данных)
     sortDirectionUpDown = true; // корректировка "флага" направления сортировки (который инициализируется выше)
+
+    setTimeout(() => {
+      formFilterInput.value = ''; // очистка фильтрационного поля/инпута, по сути.. возврат как было
+      formFilterInput.classList.remove('is-invalid'); // исключение "невалидных" выделений/сообщений (после очистки)
+    }, 0); // пока.. "нулевая" задержка (будет большой объём данных в таблице, можно будет подкорректировать)
   }
 
   hashTagReset.addEventListener('click', resetTableSorting); // прослушка/применение
+
+  // ** фильтрация клиентов/таблицы, согласно фильтрационного поля ввода (сразу применение)
+  searchForm.addEventListener('submit', (event) => {
+    event.preventDefault(); // исключение отправки
+  });
+
+  function filterClientsBySearchForm() {
+    const searchValue = formFilterInput.value.trim().toLowerCase(); // определение "пустой" строки
+    updateClientsDataArr = correctInitArr(clientsDataArrWithIds); // обновление исходного массива, перед фильтрацией
+
+    // отработка поиска/фильтрации, только/если строка не "пустая"
+    if (searchValue) {
+      updateClientsDataArr = updateClientsDataArr.filter((clients) =>
+        clients.fullName.toLowerCase().includes(searchValue)
+      ); // стрелочная функция без {}, таким образом автоматический return true\false, согласно условия
+    }
+
+    addClientsToTable(updateClientsDataArr); // пере-рисовка (пере-компоновка) таблицы клиентов согласно фильтрации
+  }
+
+  // отработка "дебаунс" задержки (если много данных, что бы снизить нагрузку)
+  let debounceTimer;
+
+  formFilterInput.addEventListener('input', () => {
+    clearTimeout(debounceTimer); // очистка предыдущей задержки
+    debounceTimer = setTimeout(filterClientsBySearchForm, 600); // применение фильтрации не сразу
+  });
 })();

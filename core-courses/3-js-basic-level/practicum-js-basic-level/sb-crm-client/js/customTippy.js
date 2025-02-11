@@ -41,7 +41,7 @@
 
     // инициализация Tippy для/всех "остальных" элементов (без учёта ширины экрана)
     function initTippyForOther() {
-      initTippy('#hash-tag-title', 'сбросить сортировку', 'bottom', {
+      initTippy('#hash-tag-title', 'к исходному виду', 'bottom', {
         offset: [0, 2],
       });
       initTippy('#table-th-id', 'сортировать ⇵', 'bottom', {
