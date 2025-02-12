@@ -54,6 +54,7 @@
   const outputTitleWrap = document.createElement('div');
   const outputTitleHash = document.createElement('span');
   const outputTitle = document.createElement('h2');
+  const outputTableWrap = document.createElement('div');
   const outputTable = document.createElement('table');
   const outTableHead = document.createElement('thead');
   const outTableBody = document.createElement('tbody');
@@ -85,6 +86,7 @@
   outputTitleWrap.classList.add('crm__output-title-wrap');
   outputTitleHash.classList.add('crm__output-title-hash');
   outputTitle.classList.add('crm__output-title');
+  outputTableWrap.classList.add('crm__output-table-wrap', 'table-responsive');
   outputTable.classList.add('crm__output-table', 'table', 'table-hover');
   outTableHead.classList.add('crm__output-table-head');
   outTableBody.classList.add('crm__output-table-body');
@@ -225,7 +227,8 @@
   );
   outTableHead.append(outTblHeadTr);
   outputTable.append(outTableHead, outTableBody);
-  crmOutputContainer.append(outputTitleWrap, outputTable);
+  outputTableWrap.append(outputTable);
+  crmOutputContainer.append(outputTitleWrap, outputTableWrap);
 
   // ** появление/скрытие поля для ввода данных/фильтрационного инпута (по нажатию на logo, на 320px)
   searchLogoImg.addEventListener('click', () => {

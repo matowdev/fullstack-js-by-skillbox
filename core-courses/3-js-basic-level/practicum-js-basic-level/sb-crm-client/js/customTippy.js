@@ -31,7 +31,7 @@
       const searchLogo = document.querySelector('#search-logo');
 
       if (isSmallWidth && searchLogo && !searchLogo._tippy) {
-        initTippy('#search-logo', 'Показать/скрыть..!?', 'top', {
+        initTippy('#search-logo', 'Показать/скрыть', 'top', {
           offset: [0, 8],
         });
       } else if (!isSmallWidth && searchLogo && searchLogo._tippy) {

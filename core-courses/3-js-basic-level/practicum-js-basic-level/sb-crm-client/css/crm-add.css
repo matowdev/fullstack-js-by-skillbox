@@ -54,6 +54,21 @@
 
 /* media queries, any-hover */
 
+@media (max-width: 320px) {
+  .crm__add-btn {
+    padding: 8px 20px;
+    padding-left: 40px;
+    min-width: 150px;
+    font-size: 13px;
+  }
+
+  .crm__add-btn-icon {
+    top: 6px;
+    left: 18px;
+    font-size: 16px;
+  }
+}
+
 @media (any-hover: hover) {
   .crm__add-btn:hover:not(:active) {
     color: var(--white);

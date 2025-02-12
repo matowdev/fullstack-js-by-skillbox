@@ -37,6 +37,10 @@
   color: var(--gray);
 }
 
+.crm__output-table-wrap {
+  padding: 3px;
+}
+
 .crm__output-table {
   margin-bottom: 0;
   border-collapse: collapse;
@@ -45,37 +49,12 @@
   font-family: var(--open-sans), sans-serif;
   font-weight: var(--regular);
   background-color: var(--white);
-}
-
-.crm__output-table thead {
-  display: table;
-  width: 100%;
   table-layout: fixed;
-}
-
-.crm__output-table thead tr {
-  display: table-row;
-  width: 100%;
-}
-
-.crm__output-table thead th {
-  text-align: left;
 }
 
 .crm__output-table tbody {
   display: table;
-  width: 100%;
-}
-
-.crm__output-table tbody tr {
-  display: table-row;
-  width: 100%;
-  table-layout: fixed;
-}
-
-.crm__output-table tbody td {
-  width: auto;
-  text-align: left;
+  width: 1180px;
 }
 
 .crm__output-table tr th {
@@ -137,7 +116,7 @@
 }
 
 .crm__output-table #table-th-contact,
-.crm__output-table .crm__output-table #table-th-contact {
+.crm__output-table .crm__output-table-body-cell_contacts {
   width: 130px;
 }
 
@@ -319,7 +298,6 @@
 .crm__output-table-body-cell_actions-btn-edit,
 .crm__output-table-body-cell_actions-btn-delete {
   display: flex;
-  /* justify-content: flex-end; */
   align-items: center;
   position: relative;
   padding: 2px 2px 0;
@@ -379,29 +357,64 @@
 
 /* media queries, any-hover */
 
-@media (max-width: 992px) {
+@media (max-width: 1024px) {
+  .crm__output-container {
+    padding-right: 45px;
+    padding-left: 45px;
+  }
+}
+
+@media (max-width: 768px) {
+  .crm__output-container {
+    padding-right: 25px;
+    padding-left: 25px;
+  }
+}
+
+@media (max-width: 320px) {
+  .crm__output-data {
+    margin-bottom: 25px;
+  }
+
+  .crm__output-container {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
   .crm__output-title-wrap {
-    margin-bottom: 7px;
+    margin-bottom: 2px;
+    justify-content: center;
   }
 
-  .crm__output-table #table-th-id {
-    width: 75px;
+  .crm__output-title {
+    font-size: 22px;
   }
 
-  .crm__output-table #table-th-fio {
-    width: 280px;
+  .crm__output-title-hash {
+    font-size: 28px;
+    line-height: 40px;
   }
 
-  .crm__output-table #table-th-dt {
-    width: 180px;
+  .crm__output-table {
+    height: 354px;
   }
 
-  .crm__output-table #table-th-change {
-    width: 180px;
+  .crm__output-table-head {
+    font-size: 11px;
+    line-height: 12px;
   }
 
-  .crm__output-table #table-th-contact {
-    width: 190px;
+  .crm__output-table-body {
+    font-size: 13px;
+  }
+
+  .crm__output-table-body-cell_id {
+    font-size: 13px;
+  }
+
+  .crm__output-table-body-cell_actions-btn-edit,
+  .crm__output-table-body-cell_actions-btn-delete {
+    font-size: 13px;
   }
 }
 
