@@ -278,9 +278,6 @@
   let updateClientsDataArr = [];
 
   function addClientsToTable(clientsServerData = []) {
-    // ??
-    // const selectedBodyRows = getSelectedBodyRows(); // сохранение выделенных body-строк (если такие есть)
-
     outTableBody.innerHTML = ''; // предварительная очистка таблицы
     updateClientsDataArr = correctInitArr(clientsServerData);
 
@@ -293,10 +290,6 @@
         outTableBody.append(clientTableTrRow);
       }
     }
-
-    // ??
-    // addClickListenersToBodyRows(); // добавление прослушки для всех строк (кроме заглавной), при компоновке, после пере-компоновки (новой отрисовки), для возможности выделения по клику
-    // restoreSelectedBodyRows(selectedBodyRows); // восстановление выделенных body-строк (если такие были)
   }
 
   // ** корректировка исходного/серверного массива клиентов (обработка ID, добавление свойства fullName и временных свойств)
@@ -3121,6 +3114,7 @@
     }
 
     addClientsToTable(updateClientsDataArr); // пере-рисовка (пере-компоновка) таблицы клиентов согласно фильтрации
+    highlightSearchMatches(searchValue); // выделение/подсветка совпадений в строке ФИО (согласно вводимых данных в search-инпут)
   }
 
   // отработка "дебаунс" задержки (если много данных, что бы снизить нагрузку)
@@ -3130,4 +3124,23 @@
     clearTimeout(debounceTimer); // очистка предыдущей задержки
     debounceTimer = setTimeout(filterClientsBySearchForm, 600); // применение фильтрации не сразу
   });
+
+  // ** организация выделения/подсветки совпадений в ФИО ячейках/таблице (согласно вводимых данных в search-инпут)
+  function highlightSearchMatches(searchValue) {
+    const allFioCells = document.querySelectorAll(
+      '.crm__output-table-body-cell_fio'
+    ); // фиксация ФИО строк
+
+    allFioCells.forEach((cell) => {
+      cell.innerHTML = cell.textContent; // очистка предыдущих выделений (если были)
+
+      if (searchValue) {
+        const regex = new RegExp(`(${searchValue})`, 'gi'); // логика выделения/подсветки.. добавления background(a)
+        cell.innerHTML = cell.textContent.replace(
+          regex,
+          `<span style="background: #9873FF; color: #fff; padding: 1px 2px;">$1</span>`
+        );
+      }
+    });
+  }
 })();
