@@ -688,12 +688,20 @@
 
     const clientServerId = row.getAttribute('data-server-id'); // фиксация серверного id (из атрибута)
 
-    // вызов "общей" функции, для удаления клиента/строки (передача соответствующих аргументов)
-    deleteBodyRowsClients(
-      [clientServerId],
-      `Вы уверены, что хотите удалить клиента?`,
-      event.target
-    );
+    if (!clientServerId) {
+      console.error('Ошибка: отсутствует ID клиента для удаления!');
+      return; // нет ID или не корректен, возврат
+    }
+
+    // вызов/создание "отдельного" модального окна, для последующего удаления клиента/строки
+    const deleteModal = createDeleteModalWindow(clientServerId);
+    document.body.append(deleteModal);
+    // инициализация модального окна, через Bootstrap API
+    const modalInstance = new bootstrap.Modal(deleteModal);
+    modalInstance.show(); // отображение
+
+    // принудительное удаление атрибута aria-hidden="true" с модального окна (исключение ошибки с ARIA)
+    deleteAriaHiddenTrue(deleteModal);
   }
 
   // добавление обработчика события на таблицу (удаление строки)
@@ -702,18 +710,11 @@
   // ** удаление элементов/строк таблицы данных о клиентах (ОБЩАЯ ЛОГИКА)
   async function deleteBodyRowsClients(
     clientsServerIdsToDelete,
-    confirmMessage = null,
     currentBtn = null
   ) {
-    if (confirmMessage) {
-      const confirmed = confirm(confirmMessage);
-
-      if (!confirmed) {
-        if (currentBtn) {
-          currentBtn.blur(); // снятие фокуса с кнопки, при отмене действия
-        }
-        return;
-      }
+    // если кнопка передаётся, снятие фокуса (после прожатия)
+    if (currentBtn) {
+      currentBtn.blur();
     }
 
     clientsServerIdsToDelete.forEach(async (serverId) => {
@@ -1781,7 +1782,7 @@
         }
 
         // отработка удаления клиента/строки
-        await deleteBodyRowsClients([clientServerId], null, event.target);
+        await deleteBodyRowsClients([clientServerId], event.target);
 
         // закрытие модального окна после удаления
         const modalInstance = bootstrap.Modal.getInstance(modalWrap);
@@ -1792,6 +1793,66 @@
     }
 
     return modalWrap; // возврат модального окна (т.е. здесь/без добавления в DOM.. позже, при клике)
+  }
+
+  // TODO: стилизация по аналогии (расположение окна..)
+  // ** создание "отдельного" модального окна, для удаления клиента из таблицы (при прожатии "Удалить" кнопки)
+  function createDeleteModalWindow(clientId) {
+    const deleteModalWrap = document.createElement('div');
+    deleteModalWrap.classList.add(
+      'modal-delete',
+      'crm__delete-modal-wrap',
+      'modal',
+      'fade'
+    );
+    deleteModalWrap.setAttribute('id', 'modal-delete-client');
+    deleteModalWrap.setAttribute('tabindex', '-1');
+
+    deleteModalWrap.innerHTML = `
+      <div class="modal-delete__dialog modal-dialog">
+        <div class="modal-delete__content-wrap modal-content">
+          <div class="modal-delete__header modal-header">
+            <h2 class="modal-delete__header-title modal-title">Удалить клиента</h2>
+            <button class="modal-delete__header-x-btn btn-close" data-bs-dismiss="modal" type="button" aria-label="Закрыть"></button>
+          </div>
+          <div class="modal-delete__body modal-body">
+            <p class="modal-delete__body-text">Вы действительно хотите удалить данного клиента?</p>
+          </div>
+          <div class="modal-delete__footer modal-footer">
+            <div class="modal-delete__footer-btns-wrap">
+              <button class="modal-delete__footer-delete-btn modal-delete-btn" id="modal-footer-delete-btn" type="button">Удалить</button>
+              <button class="modal-delete__footer-cancel-btn modal-delete-btn" id="modal-footer-cancel-btn" type="button" data-bs-dismiss="modal">Отмена</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // фиксация внутренней "свеже" созданной "X" кнопки
+    const deleteModalXBtn = deleteModalWrap.querySelector(
+      '.modal-delete__header-x-btn'
+    );
+    // фиксация внутренней "свеже" созданной "Удалить" кнопки
+    const deleteModalBtn = deleteModalWrap.querySelector(
+      '.modal-delete__footer-delete-btn'
+    );
+
+    // вызов/инициализация tooltips для "X" модальной кнопки (для кнопки закрытия модального окна, с задержкой)
+    setTimeout(() => {
+      initTippy(deleteModalXBtn, 'закрыть', 'left');
+    }, 0);
+
+    // организация удаления клиента/строки
+    deleteModalBtn.addEventListener('click', async () => {
+      await deleteBodyRowsClients([clientId]);
+      // закрытие модального окна, через Bootstrap API
+      const modalInstance = bootstrap.Modal.getInstance(deleteModalWrap);
+      if (modalInstance) {
+        modalInstance.hide(); // скрытие
+      }
+    });
+
+    return deleteModalWrap; // передача/возврат модального окна
   }
 
   // ** организация принудительного удаления атрибута aria-hidden="true" с модальных окон (исключение ошибок с ARIA)
@@ -2534,7 +2595,7 @@
             content,
             theme: 'main',
             delay: [50, 0],
-            offset: [0, 13],
+            offset: [0, 10],
             placement: side,
             animation: 'scale', // анимация появления/скрытия (через дополнительный файл/подключение)
             trigger: 'mouseenter', // только по наведению мыши (исключение вывода по клику, в другом месте)

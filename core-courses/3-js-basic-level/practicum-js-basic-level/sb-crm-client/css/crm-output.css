@@ -201,6 +201,7 @@
 .crm__output-table-body-row {
   border-bottom: 1px solid var(--text-gray);
   height: 65px;
+  transition: border-bottom var(--short) ease;
 }
 
 .crm__output-table-body-row:focus-visible {
