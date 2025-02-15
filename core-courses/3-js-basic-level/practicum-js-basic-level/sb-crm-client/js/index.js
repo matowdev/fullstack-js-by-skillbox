@@ -1795,7 +1795,6 @@
     return modalWrap; // возврат модального окна (т.е. здесь/без добавления в DOM.. позже, при клике)
   }
 
-  // TODO: стилизация по аналогии (расположение окна..)
   // ** создание "отдельного" модального окна, для удаления клиента из таблицы (при прожатии "Удалить" кнопки)
   function createDeleteModalWindow(clientId) {
     const deleteModalWrap = document.createElement('div');
@@ -1844,7 +1843,14 @@
 
     // организация удаления клиента/строки
     deleteModalBtn.addEventListener('click', async () => {
-      await deleteBodyRowsClients([clientId]);
+      // вызов "confirm" для подтверждения удаления
+      const confirmed = confirm('Вы уверены?');
+      if (!confirmed) {
+        return; // нет, возврат
+      }
+
+      await deleteBodyRowsClients([clientId]); // запуск логики удаления
+
       // закрытие модального окна, через Bootstrap API
       const modalInstance = bootstrap.Modal.getInstance(deleteModalWrap);
       if (modalInstance) {
@@ -3087,7 +3093,7 @@
         td.style.fontWeight = 'normal';
         td.style.color = color;
       });
-    }, 3000);
+    }, 2000);
   }
 
   // ** сортировка клиентов/таблицы, по ячейкам заголовочной строки (по нажатию, по возрастанию/убыванию)
