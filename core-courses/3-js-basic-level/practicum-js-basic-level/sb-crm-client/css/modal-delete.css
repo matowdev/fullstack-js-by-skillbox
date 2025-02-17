@@ -1,7 +1,15 @@
+.modal {
+  padding-right: 0px !important;
+}
+
+body.modal-open {
+  padding-right: 0px !important;
+}
+
 .modal-delete__dialog {
   position: relative;
-  top: 220px;
-  left: 25px;
+  top: 210px;
+  max-width: 450px;
 }
 
 .modal-delete__content-wrap {
@@ -11,7 +19,6 @@
   border: none;
   border-radius: 0;
   padding: 25px 30px;
-  max-width: 450px;
   outline: none;
 }
 
@@ -27,10 +34,12 @@
 }
 
 .modal-delete__header {
+  display: flex;
   margin-bottom: 11px;
 }
 
 .modal-delete__header-title {
+  margin-right: 10px;
   font-weight: var(--bold);
   font-size: 18px;
   color: var(--black);
@@ -39,7 +48,7 @@
 .modal-delete__header .modal-delete__header-x-btn {
   position: relative;
   top: -12px;
-  right: -110px;
+  right: -105px;
   padding: 5px;
 }
 
@@ -119,6 +128,56 @@
 }
 
 /* media queries, any-hover */
+
+@media (max-width: 576px) {
+  .modal-delete__dialog {
+    top: 230px;
+    margin: 0 auto;
+    max-width: 300px;
+  }
+
+  .modal-delete__header .modal-delete__header-x-btn {
+    right: -32px;
+  }
+}
+
+@media (max-width: 320px) {
+  .modal-delete__dialog {
+    top: 170px;
+  }
+
+  .modal-backdrop {
+    width: 100vh;
+    height: 100vh;
+  }
+
+  .modal-delete__header-title {
+    font-size: 14px;
+  }
+
+  .modal-delete__header .modal-delete__header-x-btn {
+    right: -52px;
+  }
+
+  .modal-delete__body {
+    margin-bottom: 15px;
+  }
+
+
+  .modal-delete__body-text {
+    font-size: 12px;
+  }
+
+  .modal-delete__footer-delete-btn {
+    padding: 5px 25px;
+    max-width: 100px;
+    font-size: 13px;
+  }
+
+  .modal-delete__footer-cancel-btn {
+    font-size: 13px;
+  }
+}
 
 @media (any-hover: hover) {
   .modal-delete__footer-delete-btn:hover:not(:active) {

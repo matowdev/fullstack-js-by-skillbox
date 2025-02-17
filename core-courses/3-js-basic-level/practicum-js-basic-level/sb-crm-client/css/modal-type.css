@@ -1,7 +1,15 @@
+.modal {
+  padding-right: 0px !important;
+}
+
+body.modal-open {
+  padding-right: 0px !important;
+}
+
 .modal__dialog {
   position: relative;
-  top: 220px;
-  left: 25px;
+  top: 210px;
+  max-width: 450px;
 }
 
 .modal__content-wrap {
@@ -9,7 +17,6 @@
   border-radius: 0;
   padding-top: 25px;
   padding-bottom: 25px;
-  max-width: 450px;
   outline: none;
 }
 
@@ -32,6 +39,7 @@
 
 .modal__header-title-wrap {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: baseline;
 }
@@ -440,6 +448,41 @@
 }
 
 /* media queries, any-hover */
+
+@media (max-width: 576px) {
+  .modal__dialog {
+    top: 230px;
+    margin: 0 auto;
+    max-width: 300px;
+  }
+
+  .modal__header-title-wrap {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 320px) {
+  .modal__dialog {
+    top: 170px;
+  }
+
+  .modal-backdrop {
+    width: 100vh;
+    height: 100vh;
+  }
+
+  .modal__header {
+    margin-bottom: 12px;
+  }
+
+  .modal__header-title {
+    font-size: 14px;
+  }
+
+  .modal__header-client-id {
+    font-size: 10px;
+  }
+}
 
 @media (any-hover: hover) {
   .modal__body-add-btn:hover:not(:active):not(:disabled) .modal__body-add-btn-icon.plus-circle-stroke {
