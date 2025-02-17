@@ -15,7 +15,10 @@
 }
 
 .crm__search-logo-wrap {
+  display: flex;
+  flex-wrap: wrap;
   flex-shrink: 0;
+  gap: 10px;
   margin-right: 55px;
 }
 

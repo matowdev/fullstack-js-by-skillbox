@@ -9,14 +9,10 @@
 
 .crm__output-title-wrap {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   column-gap: 2px;
   margin-bottom: 12px;
-}
-
-.crm__output-title {
-  font-weight: var(--semi-bold);
-  font-size: 28px;
 }
 
 .crm__output-title-hash {
@@ -37,6 +33,15 @@
   color: var(--gray);
 }
 
+.crm__output-title {
+  font-weight: var(--semi-bold);
+  font-size: 28px;
+}
+
+.crm__output-title:not(:last-of-type) {
+  margin-right: 10px;
+}
+
 .crm__output-table-wrap {
   padding: 3px;
 }
@@ -50,6 +55,10 @@
   font-weight: var(--regular);
   background-color: var(--white);
   table-layout: fixed;
+}
+
+.crm__output-table:not(:last-of-type) {
+  margin-bottom: 10px;
 }
 
 .crm__output-table tbody {
@@ -106,18 +115,27 @@
   width: 195px;
 }
 
+.crm__output-table #table-th-dt {
+  padding-left: 4px;
+}
+
 .crm__output-table #table-th-change,
 .crm__output-table .crm__output-table-body-cell_chg-d-time {
   width: 195px;
 }
 
-.crm__output-table #table-th-contact {
-  cursor: default;
+.crm__output-table #table-th-change {
+  padding-left: 3px;
 }
 
 .crm__output-table #table-th-contact,
 .crm__output-table .crm__output-table-body-cell_contacts {
   width: 130px;
+}
+
+.crm__output-table #table-th-contact {
+  padding-left: 3px;
+  cursor: default;
 }
 
 .crm__output-table #table-th-action {
@@ -212,6 +230,16 @@
   color: var(--text-gray);
 }
 
+.crm__output-table-body-cell_crt-d-time-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.crm__output-table-body-cell_chg-d-time-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .crm__output-table-body-cell_crt-date,
 .crm__output-table-body-cell_chg-date {
   margin-right: 8px;
@@ -284,8 +312,10 @@
 
 .crm__output-table-body-cell_actions-btns-wrap {
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-start;
-  column-gap: 5px;
+  column-gap: 2px;
+  width: 205px;
 }
 
 .table-row-btn {

@@ -170,14 +170,17 @@ body.modal-open {
 
 .modal__body-add-btn {
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-end;
   align-items: center;
   position: relative;
   padding: 10px 20px;
   min-width: 191px;
+  max-width: 191px;
   font-family: var(--open-sans), sans-serif;
   font-weight: var(--semi-bold);
   font-size: var(--default-fs);
+  text-align: end;
   transition-property: color, background-color;
   transition-duration: var(--short);
   transition-timing-function: ease;
@@ -215,6 +218,10 @@ body.modal-open {
 
 .modal-contact-btn-margin {
   margin-bottom: 15px;
+}
+
+.modal-contact-btn-margin:not(:last-of-type) {
+  margin-bottom: 0;
 }
 
 .modal__body-contacts-wrap {

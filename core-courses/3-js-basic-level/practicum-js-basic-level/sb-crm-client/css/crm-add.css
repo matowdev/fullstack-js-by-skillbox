@@ -2,16 +2,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  column-gap: 10px;
   padding-right: var(--container-padding);
   padding-left: var(--container-padding);
 }
 
 .crm__add-btn-wrap {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
   padding-bottom: 30px;
 }
 
 .crm__add-btn {
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-end;
   align-items: center;
   position: relative;
@@ -19,12 +24,14 @@
   padding: 12px 25px;
   padding-right: 29px;
   min-width: 217px;
+  max-width: 217px;
   font-family: var(--open-sans), sans-serif;
   font-weight: var(--semi-bold);
   font-size: var(--default-fs);
   color: var(--main-purple);
   background: transparent;
   outline: none;
+  text-align: right;
   transition-property: border, color, background-color;
   transition-duration: var(--short);
   transition-timing-function: ease;

@@ -34,21 +34,23 @@ body.modal-open {
 }
 
 .modal-delete__header {
-  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  column-gap: 5px;
   margin-bottom: 11px;
 }
 
 .modal-delete__header-title {
-  margin-right: 10px;
   font-weight: var(--bold);
   font-size: 18px;
   color: var(--black);
 }
 
 .modal-delete__header .modal-delete__header-x-btn {
-  position: relative;
-  top: -12px;
-  right: -105px;
+  position: absolute;
+  top: 22px;
+  right: 17px;
   padding: 5px;
 }
 
@@ -65,6 +67,14 @@ body.modal-open {
   max-width: 275px;
   color: var(--black);
   text-align: center;
+}
+
+.modal-delete__body-text:not(:last-of-type) {
+  margin-bottom: 10px;
+}
+
+.modal-delete__footer {
+  column-gap: 10px;
 }
 
 .modal-delete__footer-btns-wrap {
@@ -137,7 +147,7 @@ body.modal-open {
   }
 
   .modal-delete__header .modal-delete__header-x-btn {
-    right: -32px;
+    right: 15px;
   }
 }
 
@@ -156,7 +166,7 @@ body.modal-open {
   }
 
   .modal-delete__header .modal-delete__header-x-btn {
-    right: -52px;
+    right: 15px;
   }
 
   .modal-delete__body {
