@@ -1838,7 +1838,7 @@
 
     // вызов/инициализация tooltips для "X" модальной кнопки (для кнопки закрытия модального окна, с задержкой)
     setTimeout(() => {
-      initTippy(deleteModalXBtn, 'закрыть', 'left');
+      initTippy(deleteModalXBtn, 'закрыть', 'left', { offset: [0, 9] });
     }, 0);
 
     // организация удаления клиента/строки
@@ -2277,7 +2277,9 @@
 
     // вызов/инициализация tooltips для "X" кнопки (для кнопки удаления строки контактов, с задержкой)
     setTimeout(() => {
-      initTippy(modalContactXBtn, 'удалить контакт', 'top');
+      initTippy(modalContactXBtn, 'удалить контакт', 'top', {
+        offset: [0, 15],
+      });
     }, 0);
 
     // организация удаления строки контактов
@@ -2587,7 +2589,7 @@
   }
 
   // ** дополнительная/местная организация логики для tooltips (т.е. помимо customTippy.js)
-  function initTippy(selector, content, side) {
+  function initTippy(selector, content, side, customOptions = {}) {
     // определение входящего элемента (селектор или DOM-элемент, поиск/корректировка)
     const elements =
       typeof selector === 'string'
@@ -2605,6 +2607,9 @@
             placement: side,
             animation: 'scale', // анимация появления/скрытия (через дополнительный файл/подключение)
             trigger: 'mouseenter', // только по наведению мыши (исключение вывода по клику, в другом месте)
+
+            // переопределение default параметров, согласно объекта customOptions (если передавались)
+            ...customOptions,
 
             onShow(instance) {
               setTimeout(() => instance.hide(), 1000); // автоматическое скрытие (по истечению времени)
