@@ -237,12 +237,53 @@
       .classList.toggle('show-search-input');
   });
 
-  // ** [СЕРВЕР] организация запроса, получение данных/списка клиентов с сервера (корректировка входящих данных)
-  let clientsDataArrWithIds;
+  // TODO: что бы перейти на "полностью" [СЕРВЕРНУЮ] логику/обратно.. нужно пошагово просмотреть весь файл и раскомментировать закомментированный код, при этом комментируя/удаляя код/строки помеченные, как [FOR DEMO - sessionStorage] в полном объёме (т.е. некоторые инициализации переменных, доп. функций проводились каждой логике свои)
 
-  async function getClientsServerListData() {
+  // ** [СЕРВЕР] организация запроса, получение данных/списка клиентов с сервера (корректировка входящих данных)
+  // ?? следует раскомментировать (полностью)
+  //   let clientsDataArrWithIds;
+  //
+  //   async function getClientsServerListData() {
+  //     try {
+  //       const response = await fetch('http://localhost:3000/api/clients'); // запрос на сервер
+  //
+  //       // проверка успешности/выполнения запроса
+  //       if (!response.ok) {
+  //         throw new Error(`Ошибка: ${response.status}!`);
+  //       }
+  //
+  //       const data = await response.json(); // преобразование данных в JSON-формат
+  //       clientsDataArrWithIds = addLocalIdsToClients(data); // добавление поля localId
+  //
+  //       if (clientsDataArrWithIds.length > 0) {
+  //         addClientsToTable(clientsDataArrWithIds); // отрисовка данных, наполнение таблицы клиентов
+  //       } else {
+  //         outTableBody.append(createEmptyTableMessageRow()); // если данных нет, вывод/добавление строки-сообщения
+  //       }
+  //     } catch (error) {
+  //       console.error('Не удалось загрузить список клиентов..', error);
+  //       outTableBody.innerHTML = ''; // очистка таблицы
+  //       outTableBody.append(createEmptyTableMessageRow()); // если ошибка, вывод/добавление строки-сообщения
+  //     }
+  //   }
+  //
+  //   // добавление поля localId (необходимого/возможно, для дальнейших отработок)
+  //   function addLocalIdsToClients(clientsFromServer) {
+  //     return clientsFromServer.map((client, index) => ({
+  //       ...client, // сохранение приходящих/серверных полей
+  //       localId: index + 1, // добавление localId
+  //     }));
+  //   }
+  //
+  //   getClientsServerListData(); // получение данных о клиентах (с сервера)
+
+  // !! [FOR DEMO - sessionStorage] фиксация исходных данных/серверных данных, для сохранения в sessionStorage
+  let clientsDataArrWithIds;
+  let updateClientsDataArr = [];
+
+  async function addClientsDataToStorage() {
     try {
-      const response = await fetch('http://localhost:3000/api/clients'); // запрос на сервер
+      const response = await fetch('http://localhost:3000/api/clients');
 
       // проверка успешности/выполнения запроса
       if (!response.ok) {
@@ -250,21 +291,34 @@
       }
 
       const data = await response.json(); // преобразование данных в JSON-формат
-      clientsDataArrWithIds = addLocalIdsToClients(data); // добавление поля localId
+      sessionStorage.setItem('demoClients', JSON.stringify(data)); // добавление/сохранение в Session storage
 
-      if (clientsDataArrWithIds.length > 0) {
-        addClientsToTable(clientsDataArrWithIds); // отрисовка данных, наполнение таблицы клиентов
-      } else {
-        outTableBody.append(createEmptyTableMessageRow()); // если данных нет, вывод/добавление строки-сообщения
-      }
+      return data; // возврат массива данных
     } catch (error) {
-      console.error('Не удалось загрузить список клиентов..', error);
-      outTableBody.innerHTML = ''; // очистка таблицы
+      console.error('Ошибка загрузки списка клиентов с сервера!', error);
+      return []; //  если ошибка возврат "пустого" массива
+    }
+  }
+
+  // !! [FOR DEMO - sessionStorage] получение данных/списка из Session storage (корректировка входящих данных)
+  async function getClientsListDataFromStorage() {
+    let savedClients = await addClientsDataToStorage(); // получение данных из Session storage
+
+    // обновление Session storage
+    sessionStorage.setItem('demoClients', JSON.stringify(savedClients));
+
+    // корректировка данных (добавление поля localId)
+    clientsDataArrWithIds = savedClients || [];
+    updateClientsDataArr = addLocalIdsToClients(clientsDataArrWithIds);
+
+    if (updateClientsDataArr.length > 0) {
+      addClientsToTable(updateClientsDataArr); // отрисовка данных, наполнение таблицы клиентов
+    } else {
       outTableBody.append(createEmptyTableMessageRow()); // если ошибка, вывод/добавление строки-сообщения
     }
   }
 
-  // добавление поля localId (необходимого/возможно, для дальнейших отработок)
+  // !! [FOR DEMO - sessionStorage] добавление поля localId (необходимого/возможно, для дальнейших отработок)
   function addLocalIdsToClients(clientsFromServer) {
     return clientsFromServer.map((client, index) => ({
       ...client, // сохранение приходящих/серверных полей
@@ -272,10 +326,12 @@
     }));
   }
 
-  getClientsServerListData(); // получение данных о клиентах (с сервера)
+  // !! [FOR DEMO - sessionStorage]
+  getClientsListDataFromStorage(); // получение данных о клиентах (из Session storage)
 
   // ** наполнение таблицы данных о клиентах (согласно откорректированного/формирующегося массива)
-  let updateClientsDataArr = [];
+  // ?? следует раскомментировать
+  // let updateClientsDataArr = [];
 
   function addClientsToTable(clientsServerData = []) {
     outTableBody.innerHTML = ''; // предварительная очистка таблицы
@@ -717,9 +773,10 @@
       currentBtn.blur();
     }
 
-    clientsServerIdsToDelete.forEach(async (serverId) => {
-      await deleteClientsFromServer(serverId); // удаление клиентов с сервера по серверным ID
-    });
+    // ?? следует раскомментировать
+    // clientsServerIdsToDelete.forEach(async (serverId) => {
+    //   await deleteClientsFromServer(serverId); // удаление клиентов с сервера по серверным ID
+    // });
 
     updateClientsDataArr = updateClientsDataArr.filter(
       (client) => !clientsServerIdsToDelete.includes(client.id)
@@ -730,29 +787,33 @@
       client.localId = index + 1;
     });
 
+    // !! [FOR DEMO - sessionStorage] ..одна строчка
+    sessionStorage.setItem('demoClients', JSON.stringify(updateClientsDataArr)); // обновление данных в Session storage
+
     addClientsToTable(updateClientsDataArr); // обновление таблицы клиентов (пере-компоновка) после удаления
   }
 
   // ** [СЕРВЕР] организация удаления клиентов с сервера (согласно серверных id)
-  async function deleteClientsFromServer(serverId) {
-    try {
-      const response = await fetch(
-        `http://localhost:3000/api/clients/${serverId}`,
-        {
-          method: 'DELETE',
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error(`Ошибка при удалении клиента: ${response.status}`);
-      }
-
-      // await getClientsServerListData(); // обновление списка клиентов после удаления
-    } catch (error) {
-      console.error('Ошибка при удалении клиента с сервера..', error);
-      alert('Не удалось удалить клиента с сервера!');
-    }
-  }
+  // ?? следует раскомментировать (полностью)
+  //   async function deleteClientsFromServer(serverId) {
+  //     try {
+  //       const response = await fetch(
+  //         `http://localhost:3000/api/clients/${serverId}`,
+  //         {
+  //           method: 'DELETE',
+  //         }
+  //       );
+  //
+  //       if (!response.ok) {
+  //         throw new Error(`Ошибка при удалении клиента: ${response.status}`);
+  //       }
+  //
+  //       // await getClientsServerListData(); // обновление списка клиентов после удаления (комментировалась не при/для [FOR DEMO - sessionStorage].. а ранее)
+  //     } catch (error) {
+  //       console.error('Ошибка при удалении клиента с сервера..', error);
+  //       alert('Не удалось удалить клиента с сервера!');
+  //     }
+  //   }
 
   // ** изменение направления стрелки/svg-icon, согласно прожатия по заглавной ячейке (при сортировке данных)
   const allHeaderRowCells = document.querySelectorAll(
@@ -1841,15 +1902,34 @@
       initTippy(deleteModalXBtn, 'закрыть', 'left', { offset: [0, 9] });
     }, 0);
 
+    // ?? следует раскомментировать
     // организация удаления клиента/строки
-    deleteModalBtn.addEventListener('click', async () => {
+    //     deleteModalBtn.addEventListener('click', async () => {
+    //       // вызов "confirm" для подтверждения удаления
+    //       const confirmed = confirm('Вы уверены?');
+    //       if (!confirmed) {
+    //         return; // нет, возврат
+    //       }
+    //
+    //       await deleteBodyRowsClients([clientId]); // запуск логики удаления
+    //
+    //       // закрытие модального окна, через Bootstrap API
+    //       const modalInstance = bootstrap.Modal.getInstance(deleteModalWrap);
+    //       if (modalInstance) {
+    //         modalInstance.hide(); // скрытие
+    //       }
+    //     });
+
+    // !! [FOR DEMO - sessionStorage] ..весь блок до return
+    // организация удаления клиента/строки
+    deleteModalBtn.addEventListener('click', () => {
       // вызов "confirm" для подтверждения удаления
       const confirmed = confirm('Вы уверены?');
       if (!confirmed) {
         return; // нет, возврат
       }
 
-      await deleteBodyRowsClients([clientId]); // запуск логики удаления
+      deleteClientFromStorage(clientId); // организация удаления из Session storage
 
       // закрытие модального окна, через Bootstrap API
       const modalInstance = bootstrap.Modal.getInstance(deleteModalWrap);
@@ -1859,6 +1939,27 @@
     });
 
     return deleteModalWrap; // передача/возврат модального окна
+  }
+
+  // !! [FOR DEMO - sessionStorage] организация удаления клиентов из Session storage (согласно передаваемых id)
+  function deleteClientFromStorage(clientId) {
+    if (!clientId) {
+      console.error('Ошибка: отсутствует ID клиента для удаления!');
+      return;
+    }
+
+    // обновление массива (кто на удаление)
+    clientsDataArrWithIds = clientsDataArrWithIds.filter(
+      (client) => client.id !== clientId
+    );
+
+    // внесение изменений в Session storage
+    sessionStorage.setItem(
+      'demoClients',
+      JSON.stringify(clientsDataArrWithIds)
+    );
+
+    addClientsToTable(clientsDataArrWithIds); // перерисовка таблицы
   }
 
   // ** организация принудительного удаления атрибута aria-hidden="true" с модальных окон (исключение ошибок с ARIA)
@@ -2629,71 +2730,6 @@
     }
   }
 
-  // ** [СЕРВЕР] отправка данных/добавление клиентов на сервер, получение обратно (проверка статуса)
-  async function addClientToServer(clientData) {
-    try {
-      const response = await fetch('http://localhost:3000/api/clients', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(clientData),
-      });
-
-      if (!response.ok) {
-        if (response.status === 422) {
-          const errorData = await response.json();
-          throw new Error(
-            `Ошибка валидации: ${errorData.errors
-              .map((e) => e.message)
-              .join(', ')}`
-          );
-        } else {
-          throw new Error(`Ошибка: ${response.status}`);
-        }
-      }
-
-      await getClientsServerListData(); // обновление списка клиентов (в контексте.. перерисовка таблицы)
-    } catch (error) {
-      console.error('Ошибка при добавлении клиента..', error);
-      alert('Ошибка при добавлении клиента на сервер!');
-    }
-  }
-
-  // ** [СЕРВЕР] корректировка данных/клиентов на сервере, получение обратно (проверка статуса)
-  async function editClientOnServer(clientId, clientData) {
-    try {
-      const response = await fetch(
-        `http://localhost:3000/api/clients/${clientId}`,
-        {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(clientData),
-        }
-      );
-
-      if (!response.ok) {
-        if (response.status === 422) {
-          const errorData = await response.json();
-          throw new Error(
-            `Ошибка валидации: ${errorData.errors
-              .map((e) => e.message)
-              .join(', ')}`
-          );
-        } else {
-          throw new Error(`Ошибка: ${response.status}`);
-        }
-      }
-
-      await getClientsServerListData(); // Обновляем список клиентов (перерисовка таблицы)
-    } catch (error) {
-      console.error('Ошибка при обновлении клиента..', error);
-      alert('Ошибка при обновлении клиента на сервере!');
-    }
-  }
-
   // ** универсальная обработка модальных форм их "submit" событий, т.е. при добавление/изменении данных клиента (после валидаций, после проверки по ФИО)
   // корректировка регистра, для полей ФИО
   function toUpFirstLetter(value) {
@@ -2818,19 +2854,47 @@
           }
         }
 
+        // ?? следует раскомментировать
         // итоговый объект клиента (передаваемый на сервер)
+        // const client = {
+        //   surname: formInSurname,
+        //   name: formInName,
+        //   patronymic: formInPatronymic,
+        //   contacts: formInContacts,
+        // };
+
+        // !! [FOR DEMO - sessionStorage] "расширенный" объект client (т.к. нет серверных полей.. добавление самостоятельно)
         const client = {
+          id: type === 'edit' ? clientData.id : Date.now().toString(), // генерация ID
           surname: formInSurname,
           name: formInName,
           patronymic: formInPatronymic,
+          fullName: `${formInSurname} ${formInName} ${formInPatronymic}`.trim(), // целое ФИО
+          createdAt:
+            type === 'edit'
+              ? clientData.createdAt
+              : new Date().toLocaleString(), // дата создания
+          updatedAt: new Date().toLocaleString(), // дата изменения
           contacts: formInContacts,
         };
 
         try {
+          // ?? следует раскомментировать
+          // if (type === 'add') {
+          //   await addClientToServer(client); // отправка клиента на сервер
+          // } else if (type === 'edit' && clientData.id) {
+          //   await editClientOnServer(clientData.id, client); // изменение данных клиента на сервере
+          // } else {
+          //   throw new Error(
+          //     'Неизвестный тип модального окна или отсутствует ID клиента!'
+          //   );
+          // }
+
+          // !! [FOR DEMO - sessionStorage] временные изменения в/для Session storage (обновление/перерисовка таблицы)
           if (type === 'add') {
-            await addClientToServer(client); // отправка клиента на сервер
+            addNewClientToStorage(client); // добавление клинта в Session storage
           } else if (type === 'edit' && clientData.id) {
-            await editClientOnServer(clientData.id, client); // изменение данных клиента на сервере
+            updateClientInStorage(client); // изменение данных клиента в Session storage
           } else {
             throw new Error(
               'Неизвестный тип модального окна или отсутствует ID клиента!'
@@ -2888,6 +2952,105 @@
     modalBodyForm.addEventListener('input', () =>
       updateSaveButtonState(modalBodyForm, saveButton)
     );
+  }
+
+  // ** [СЕРВЕР] отправка данных/добавление клиентов на сервер, получение обратно (проверка статуса)
+  // ?? следует раскомментировать (полностью)
+  //   async function addClientToServer(clientData) {
+  //     try {
+  //       const response = await fetch('http://localhost:3000/api/clients', {
+  //         method: 'POST',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         },
+  //         body: JSON.stringify(clientData),
+  //       });
+  //
+  //       if (!response.ok) {
+  //         if (response.status === 422) {
+  //           const errorData = await response.json();
+  //           throw new Error(
+  //             `Ошибка валидации: ${errorData.errors
+  //               .map((e) => e.message)
+  //               .join(', ')}`
+  //           );
+  //         } else {
+  //           throw new Error(`Ошибка: ${response.status}`);
+  //         }
+  //       }
+  //
+  //       await getClientsServerListData(); // обновление списка клиентов (в контексте.. перерисовка таблицы)
+  //     } catch (error) {
+  //       console.error('Ошибка при добавлении клиента..', error);
+  //       alert('Ошибка при добавлении клиента на сервер!');
+  //     }
+  //   }
+
+  // ** [СЕРВЕР] корректировка данных/клиентов на сервере, получение обратно (проверка статуса)
+  // ?? следует раскомментировать (полностью)
+  //   async function editClientOnServer(clientId, clientData) {
+  //     try {
+  //       const response = await fetch(
+  //         `http://localhost:3000/api/clients/${clientId}`,
+  //         {
+  //           method: 'PATCH',
+  //           headers: {
+  //             'Content-Type': 'application/json',
+  //           },
+  //           body: JSON.stringify(clientData),
+  //         }
+  //       );
+  //
+  //       if (!response.ok) {
+  //         if (response.status === 422) {
+  //           const errorData = await response.json();
+  //           throw new Error(
+  //             `Ошибка валидации: ${errorData.errors
+  //               .map((e) => e.message)
+  //               .join(', ')}`
+  //           );
+  //         } else {
+  //           throw new Error(`Ошибка: ${response.status}`);
+  //         }
+  //       }
+  //
+  //       await getClientsServerListData(); // обновляем данных/списка клиентов (в контексте.. перерисовка таблицы)
+  //     } catch (error) {
+  //       console.error('Ошибка при обновлении клиента..', error);
+  //       alert('Ошибка при обновлении клиента на сервере!');
+  //     }
+  //   }
+
+  // !! [FOR DEMO - sessionStorage] добавление "новых" клиентов/данных в Session storage
+  function addNewClientToStorage(newClient) {
+    if (!clientsDataArrWithIds) {
+      clientsDataArrWithIds = []; // если, что то не так с массивом.. создание
+    }
+
+    // сразу добавление в массив, следом в Session storage
+    clientsDataArrWithIds.push(newClient);
+    sessionStorage.setItem(
+      'demoClients',
+      JSON.stringify(clientsDataArrWithIds)
+    );
+
+    addClientsToTable(clientsDataArrWithIds); // перерисовка таблицы
+  }
+
+  // !! [FOR DEMO - sessionStorage] корректировка данных/клиентов в Session storage
+  function updateClientInStorage(updatedClient) {
+    // корректировка искомого массива
+    clientsDataArrWithIds = clientsDataArrWithIds.map((client) =>
+      client.id === updatedClient.id ? updatedClient : client
+    );
+
+    // внесение изменений в Session storage
+    sessionStorage.setItem(
+      'demoClients',
+      JSON.stringify(clientsDataArrWithIds)
+    );
+
+    addClientsToTable(clientsDataArrWithIds); // перерисовка таблицы
   }
 
   // ** организация "дополнительной" логики для валидации полей ввода/инпутов в модальных окнах (при/в "submit" состояниях)
@@ -3153,21 +3316,44 @@
     });
   });
 
-  // ** организация сброса сортировки/фильтрации таблицы клиентов (через/посредствам прожатия #-хэштега, как было..)
+  // ** организация сброса сортировки/фильтрации таблицы клиентов (через/посредствам прожатия #-хэштега, как было.. на сервере)
+  // ?? следует раскомментировать (полностью)
+  //   const hashTagReset = document.getElementById('hash-tag-title'); // фиксация #-хэштега (перед заголовком "Клиенты")
+  //   const formFilterInput = document.getElementById('search-form-input'); // фиксация поля поиска
+  //
+  //   function resetTableSorting() {
+  //     getClientsServerListData(); // обновление/перерисовка таблицы, как было.. (согласно серверных данных)
+  //     sortDirectionUpDown = true; // корректировка "флага" направления сортировки (который инициализируется выше)
+  //
+  //     setTimeout(() => {
+  //       formFilterInput.value = ''; // очистка фильтрационного поля/инпута, после прожатия по #-хэштегу
+  //       formFilterInput.classList.remove('is-invalid'); // исключение "невалидных" выделений/сообщений (после очистки)
+  //     }, 0); // пока.. "нулевая" задержка (будет большой объём данных в таблице, можно будет подкорректировать)
+  //   }
+  //
+  //   hashTagReset.addEventListener('click', resetTableSorting); // прослушка/применение
+
+  // !! [FOR DEMO - sessionStorage] организация сброса сортировки/фильтрации таблицы клиентов (через/посредствам прожатия #-хэштега, как было.. в Session storage)
   const hashTagReset = document.getElementById('hash-tag-title'); // фиксация #-хэштега (перед заголовком "Клиенты")
   const formFilterInput = document.getElementById('search-form-input'); // фиксация поля поиска
 
-  function resetTableSorting() {
-    getClientsServerListData(); // обновление/перерисовка таблицы, как было.. (согласно серверных данных)
+  function resetTableSortingWithoutServer() {
+    let savedClients = JSON.parse(sessionStorage.getItem('demoClients')) || []; // фиксация данных из Session storage
+
+    // обновление искомого массив (согласно него будет осуществляться возврат.. как было)
+    clientsDataArrWithIds = savedClients;
+    updateClientsDataArr = addLocalIdsToClients(clientsDataArrWithIds);
+
+    addClientsToTable(updateClientsDataArr); // обновление/перерисовка таблицы, как было.. (согласно искомого массива)
     sortDirectionUpDown = true; // корректировка "флага" направления сортировки (который инициализируется выше)
 
     setTimeout(() => {
-      formFilterInput.value = ''; // очистка фильтрационного поля/инпута, по сути.. возврат как было
+      formFilterInput.value = ''; // очистка фильтрационного поля/инпута, после прожатия по #-хэштегу
       formFilterInput.classList.remove('is-invalid'); // исключение "невалидных" выделений/сообщений (после очистки)
     }, 0); // пока.. "нулевая" задержка (будет большой объём данных в таблице, можно будет подкорректировать)
   }
 
-  hashTagReset.addEventListener('click', resetTableSorting); // прослушка/применение
+  hashTagReset.addEventListener('click', resetTableSortingWithoutServer); // прослушка/применение
 
   // ** фильтрация клиентов/таблицы, согласно фильтрационного поля ввода (сразу применение)
   searchForm.addEventListener('submit', (event) => {

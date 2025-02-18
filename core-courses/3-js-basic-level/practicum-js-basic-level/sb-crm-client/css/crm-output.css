@@ -61,6 +61,11 @@
   margin-bottom: 10px;
 }
 
+.crm__output-table thead {
+  display: table;
+  width: 1180px;
+}
+
 .crm__output-table tbody {
   display: table;
   width: 1180px;
@@ -433,6 +438,14 @@
   .crm__output-table-head {
     font-size: 11px;
     line-height: 12px;
+  }
+
+  .head-cell__icon-up {
+    background-size: 13px;
+  }
+
+  .head-cell__icon-down {
+    background-size: 13px;
   }
 
   .crm__output-table-body {
