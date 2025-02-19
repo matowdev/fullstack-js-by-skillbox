@@ -280,6 +280,7 @@
   // !! [FOR DEMO - sessionStorage] фиксация исходных данных/серверных данных, для сохранения в sessionStorage
   let clientsDataArrWithIds;
   let updateClientsDataArr = [];
+  let clientsServerDataArr = []; // потом/будет использоваться для генерации storage ID
 
   async function addClientsDataToStorage() {
     try {
@@ -292,6 +293,8 @@
 
       const data = await response.json(); // преобразование данных в JSON-формат
       sessionStorage.setItem('demoClients', JSON.stringify(data)); // добавление/сохранение в Session storage
+
+      clientsServerDataArr = data; // "дополнительно" фиксируем входящий серверный массив
 
       return data; // возврат массива данных
     } catch (error) {
@@ -2865,7 +2868,7 @@
 
         // !! [FOR DEMO - sessionStorage] "расширенный" объект client (т.к. нет серверных полей.. добавление самостоятельно)
         const client = {
-          id: type === 'edit' ? clientData.id : Date.now().toString(), // генерация ID
+          id: type === 'edit' ? clientData.id : generateClientStorageId(), // генерация custom ID
           surname: formInSurname,
           name: formInName,
           patronymic: formInPatronymic,
@@ -2952,6 +2955,19 @@
     modalBodyForm.addEventListener('input', () =>
       updateSaveButtonState(modalBodyForm, saveButton)
     );
+  }
+
+  // !! [FOR DEMO - sessionStorage] генерация custom ID номеров для "новых" клиентов (продолжение порядка.. до 99 потом нужно/будет корректировать)
+  function generateClientStorageId() {
+    const orderPrefix = clientsServerDataArr.length; // фиксация длинны серверного массива (ранее/выше приходящего)
+
+    // генерация случайных/дополнительных цифр для ID (т.е. генерация 5-ти цифр, если в массиве < 10 клиентов, если больше.. то генерация 4-х цифр)
+    const randomDigits =
+      clientsServerDataArr.length < 10
+        ? Math.floor(10000 + Math.random() * 90000) // 5 цифр
+        : Math.floor(1000 + Math.random() * 9000); // 4 цифры
+
+    return `${orderPrefix}${randomDigits}`; // возврат сформированного ID
   }
 
   // ** [СЕРВЕР] отправка данных/добавление клиентов на сервер, получение обратно (проверка статуса)
