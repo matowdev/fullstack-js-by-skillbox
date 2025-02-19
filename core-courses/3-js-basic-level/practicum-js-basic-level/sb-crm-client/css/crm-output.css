@@ -57,6 +57,10 @@
   table-layout: fixed;
 }
 
+.table {
+  width: 1180px;
+}
+
 .crm__output-table:not(:last-of-type) {
   margin-bottom: 10px;
 }
