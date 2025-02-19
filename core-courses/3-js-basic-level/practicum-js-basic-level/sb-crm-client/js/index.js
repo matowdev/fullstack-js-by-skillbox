@@ -567,6 +567,20 @@
       emptyLi.innerHTML = `<i class="crm__output-table-body-cell_contacts-empty-item-i table-row-contacts-icon bi bi-dash-lg"></i>`;
       contactsList.append(emptyLi);
     } else {
+      // соблюдение порядка отображения контактов ("строго" как в drop-down меню, так и будет в ячейке/таблице)
+      contacts.sort((a, b) => {
+        const order = [
+          'phone',
+          'extra-phone',
+          'email',
+          'vk',
+          'facebook',
+          'twitter',
+          'extra-contact',
+        ];
+        return order.indexOf(a.type) - order.indexOf(b.type);
+      });
+
       contacts.forEach(({ type, value }) => {
         const contactData =
           contactIconsLinks[type] || contactIconsLinks['extra-contact'];
