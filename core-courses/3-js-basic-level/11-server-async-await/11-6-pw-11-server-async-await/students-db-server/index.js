@@ -207,7 +207,7 @@ module.exports = createServer(async (req, res) => {
   }
 
   // убираем из запроса префикс URI, разбиваем его на путь и параметры
-  const [uri, query] = req.url.substr(URI_PREFIX.length).split("?");
+  const [uri, query] = req.url.slice(URI_PREFIX.length).split("?");
   const queryParams = {};
 
   // параметры могут отсутствовать вообще или иметь вид a=b&b=c
@@ -235,7 +235,7 @@ module.exports = createServer(async (req, res) => {
       } else {
         // /api/students/{id}
         // параметр {id} из URI запроса
-        const itemId = uri.substr(1);
+        const itemId = uri.slice(1);
         if (req.method === "GET") return getStudent(itemId);
         if (req.method === "PATCH")
           return updateStudent(itemId, await drainJson(req));
