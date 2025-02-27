@@ -1393,13 +1393,21 @@
       }, 500);
     } else if (clickedCollapseBtn.id === 'formFilterCollapse') {
       setTimeout(() => {
+        let isFilterUsed = false; // флаг применения фильтрации (сразу.. нет)
+
         allFormFilterInputs.forEach((input) => {
+          if (input.value.trim() !== '') {
+            isFilterUsed = true; // была фильтрация
+          }
           input.value = '';
           updateFormInputValidMsg(input);
         });
         formFilterData.classList.remove('was-validated');
-      }, 500);
-      addStudentsToTable(updateStudentsDataArr); // возврат к исходному виду таблицы без задержки
+        // исходя из флага, отработка разных массивов для отрисовки таблицы (что бы не сбрасывать сортировку, при закрытии формы)
+        addStudentsToTable(
+          isFilterUsed ? studentsDataArrWithIds : updateStudentsDataArr
+        ); // возврат к исходному виду таблицы
+      }, 100);
     }
   }
 
