@@ -168,7 +168,81 @@ function deleteClient(itemId) {
 }
 
 // создаём новый файл с базой данных, если он не существует
-if (!existsSync(DB_FILE)) writeFileSync(DB_FILE, "[]", { encoding: "utf8" });
+// ?? следует раскомментировать
+// if (!existsSync(DB_FILE)) writeFileSync(DB_FILE, "[]", { encoding: "utf8" });
+
+// !! [FOR DEMO - Render] автоматическое создание db.json при первом запуске на Render
+if (!existsSync(DB_FILE)) {
+  const defaultData = [
+    {
+      surname: "Скворцов",
+      name: "Денис",
+      patronymic: "Юрьевич",
+      contacts: [
+        { type: "phone", value: "+7 (987) 333-55-77" },
+        { type: "extra-phone", value: "+9 (566) 678-22-11" },
+        { type: "email", value: "skvor@gmail.com" },
+        { type: "vk", value: "id345678" },
+        { type: "facebook", value: "dskvor88" },
+        { type: "twitter", value: "@skvor" },
+      ],
+      id: "1738150048864",
+      updatedAt: "2025-02-03T08:15:58.537Z",
+      createdAt: "2025-01-29T11:27:28.864Z",
+    },
+    {
+      surname: "Куприянов",
+      name: "Арсений",
+      patronymic: "Валерьевич",
+      contacts: [
+        { type: "phone", value: "+9 (211) 543-01-00" },
+        { type: "email", value: "kpv@gmail.com" },
+      ],
+      id: "1738156123828",
+      updatedAt: "2025-01-29T13:08:43.828Z",
+      createdAt: "2025-01-29T13:08:43.828Z",
+    },
+    {
+      surname: "Константинопольская",
+      name: "Людмила",
+      patronymic: "Александровна",
+      contacts: [
+        { type: "phone", value: "+5 (866) 449-13-12" },
+        { type: "email", value: "konsta@gmail.com" },
+        { type: "facebook", value: "kalexa91" },
+      ],
+      id: "1738156235186",
+      updatedAt: "2025-01-29T13:10:35.186Z",
+      createdAt: "2025-01-29T13:10:35.186Z",
+    },
+    {
+      surname: "Дмитриевский",
+      name: "Олег",
+      patronymic: "Алексеевич",
+      contacts: [{ type: "phone", value: "+9 (888) 399-99-91" }],
+      id: "1738156379829",
+      updatedAt: "2025-02-04T06:57:27.611Z",
+      createdAt: "2025-01-29T13:11:19.829Z",
+    },
+    {
+      surname: "Александрова",
+      name: "Татьяна",
+      patronymic: "Павловна",
+      contacts: [
+        { type: "phone", value: "+6 (344) 678-00-00" },
+        { type: "email", value: "tata@gmail.com" },
+        { type: "vk", value: "id891267" },
+      ],
+      id: "1738156451839",
+      updatedAt: "2025-02-05T06:12:12.786Z",
+      createdAt: "2025-01-29T13:12:51.839Z",
+    },
+  ];
+
+  writeFileSync(DB_FILE, JSON.stringify(defaultData, null, 2), {
+    encoding: "utf8",
+  });
+}
 
 // создаём HTTP сервер, переданная функция будет реагировать на все запросы к нему
 module.exports = createServer(async (req, res) => {
