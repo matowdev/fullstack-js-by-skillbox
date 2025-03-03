@@ -284,10 +284,23 @@
 
   async function addClientsDataToStorage() {
     try {
+      const tableBody = document.querySelector('.crm__output-table-body');
+      const spinnerRow = createLoadingSpinnerRow(); // создание спиннера
+      tableBody.append(spinnerRow); // добавление в таблицу
+
+      console.log('Ждём ответ от Render-сервера..');
+
+      // await new Promise((resolve) => setTimeout(resolve, 5000)); // искусственная задержка.. имитация "просыпания" Render-сервера
+
       // ! запрос на RENDER-сервер (а не на локальный, согласно маршрута.. ВНИМАНИЕ)
       const response = await fetch(
         'https://skillbus-crm.onrender.com/api/clients'
       );
+
+      // удаление спиннера после получения ответа/подгрузки клиентов
+      spinnerRow.remove();
+
+      console.log('Ответ получен! Данные должны быть отображены!');
 
       // проверка успешности/выполнения запроса
       if (!response.ok) {
@@ -302,6 +315,10 @@
       return data; // возврат массива данных
     } catch (error) {
       console.error('Ошибка загрузки списка клиентов с сервера!', error);
+
+      // удаление спиннера, если запрос завершился ошибкой
+      document.querySelector('.crm__output-table-body-loading-row')?.remove();
+
       return []; //  если ошибка возврат "пустого" массива
     }
   }
@@ -407,6 +424,21 @@
     emptyTableTrRow.append(emptyTableTdCell);
 
     return emptyTableTrRow;
+  }
+
+  // ** создание строки с индикатором загрузки (спиннера.. для улучшения UX при "просыпании" Render-сервера)
+  function createLoadingSpinnerRow() {
+    const loadingTableTrRow = document.createElement('tr');
+    const loadingTableTdCell = document.createElement('td');
+
+    loadingTableTrRow.classList.add('crm__output-table-body-loading-row');
+
+    loadingTableTdCell.colSpan = 6; // объединение всех колонок
+    loadingTableTdCell.innerHTML = '<div class="spinner"></div>';
+    loadingTableTdCell.style.textAlign = 'center';
+    loadingTableTrRow.append(loadingTableTdCell);
+
+    return loadingTableTrRow;
   }
 
   // ** создание элементов/строк таблицы данных о клиентах (заполнение ячеек)

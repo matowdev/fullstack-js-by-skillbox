@@ -1,0 +1,26 @@
+.crm__output-table-body-loading-row td {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: none;
+  height: 325px;
+}
+
+.spinner {
+  width: 90px;
+  height: 90px;
+  border: 15px solid var(--light-purple);
+  border-top-color: var(--main-purple);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
