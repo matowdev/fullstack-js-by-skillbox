@@ -8,7 +8,8 @@ const { createServer } = require("http");
 // const DB_FILE = process.env.DB_FILE || "./db.json";
 
 // !! [FOR DEMO - Render] организация временной папки /tmp/db.json, для работы с Render
-const DB_FILE = process.env.DB_FILE || "/tmp/db.json";
+const isRender = process.env.RENDER || false; // проверка/понимание, где запускается сервер.. на Render
+const DB_FILE = isRender ? "/tmp/db.json" : "./db.json";
 
 // номер порта, на котором будет запущен сервер
 const PORT = process.env.PORT || 3000;
