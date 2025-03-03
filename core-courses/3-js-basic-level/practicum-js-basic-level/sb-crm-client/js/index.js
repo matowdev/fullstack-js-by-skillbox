@@ -284,7 +284,10 @@
 
   async function addClientsDataToStorage() {
     try {
-      const response = await fetch('http://localhost:3000/api/clients');
+      // ! запрос на RENDER-сервер (а не на локальный, согласно маршрута.. ВНИМАНИЕ)
+      const response = await fetch(
+        'https://skillbus-crm.onrender.com/api/clients'
+      );
 
       // проверка успешности/выполнения запроса
       if (!response.ok) {
