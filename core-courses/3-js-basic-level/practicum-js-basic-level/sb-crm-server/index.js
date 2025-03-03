@@ -254,9 +254,7 @@ module.exports = createServer(async (req, res) => {
   // выводим инструкцию, как только сервер запустился...
   .on("listening", () => {
     if (process.env.NODE_ENV !== "test") {
-      console.log(
-        `Сервер CRM запущен. Вы можете использовать его по адресу http://localhost:${PORT}`
-      );
+      console.log(`Сервер CRM запущен на порту: ${PORT}..`);
       console.log("Нажмите CTRL+C, чтобы остановить сервер");
       console.log("Доступные методы:");
       console.log(
