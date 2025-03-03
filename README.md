@@ -21,6 +21,7 @@ My work/projects according to the training program (by blocks and sub-blocks).
 - [proj. Todo app](https://matowdev.github.io/fullstack-js-by-skillbox/core-courses/3-js-basic-level/8-intro-to-DOM-2/8-6-pw-8-intro-to-DOM-2)
 - [proj. Tarot cards](https://matowdev.github.io/fullstack-js-by-skillbox/core-courses/3-js-basic-level/9-const-scopes-closures/9-7-pw-9-const-scopes-closures)
 - [proj. Students dashboard](https://matowdev.github.io/fullstack-js-by-skillbox/core-courses/3-js-basic-level/10-type-conversion-non-strict/10-6-pw-10-type-conversion)
+- [proj. Skillbus-CRM](https://matowdev.github.io/fullstack-js-by-skillbox/core-courses/3-js-basic-level/practicum-js-basic-level/sb-crm-client)
 
 ---
 
