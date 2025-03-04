@@ -22,7 +22,7 @@
 
 ### Внешний вид приложения
 
-![Игра "Tarot cards"]()
+![Игра "Tarot cards"](https://github.com/matowdev/fullstack-js-by-skillbox/blob/0a993570367cc5bda5028ddbd943a56a4a09647c/core-courses/3-js-basic-level/9-const-scopes-closures/9-7-pw-9-const-scopes-closures/images/final-app-view.png?raw=true)
 
 ---
 
