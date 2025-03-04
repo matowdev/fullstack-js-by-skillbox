@@ -54,6 +54,7 @@ project-root/
 │── js/                  # JavaScript-логика проекта
 │── libs/                # Подключенные библиотеки
 │── index.html           # Главный HTML-файл
+│── README.md            # Описание проекта
 ```
 
 ---
