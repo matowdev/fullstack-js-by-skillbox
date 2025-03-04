@@ -24,7 +24,7 @@
 
 ### Внешний вид приложения
 
-![Skillbus-CRM]()
+![Skillbus-CRM](https://github.com/matowdev/fullstack-js-by-skillbox/blob/main/core-courses/3-js-basic-level/practicum-js-basic-level/sb-crm-client/images/final-app-view.png?raw=true)
 
 ---
 
