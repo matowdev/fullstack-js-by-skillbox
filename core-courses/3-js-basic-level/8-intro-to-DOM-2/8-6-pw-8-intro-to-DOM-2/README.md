@@ -19,6 +19,12 @@
 
 ---
 
+### Внешний вид приложения
+
+![Панель управления студентами](https://github.com/matowdev/fullstack-js-by-skillbox/blob/32ba6856e5ccafa00d1083a2398582961f548a4e/core-courses/3-js-basic-level/8-intro-to-DOM-2/8-6-pw-8-intro-to-DOM-2/images/final-app-view.png?raw=true)
+
+---
+
 ### Используемые технологии и библиотеки
 
 #### Front-end:
