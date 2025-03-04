@@ -26,5 +26,3 @@ My work/projects according to the training program (by blocks and sub-blocks).
 ---
 
 ![Skillbox](core-courses/some-examples/Images/skillbox.png)
-
-### [// Click](https://go.redav.online/27b5ac6222df4e81)
