@@ -1,9 +1,14 @@
 .crm__output-table-body-loading-row td {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border-bottom: none;
   height: 325px;
+}
+
+.spinner-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 10px;
 }
 
 .spinner {
@@ -22,5 +27,25 @@
 
   100% {
     transform: rotate(360deg);
+  }
+}
+
+.spinner-text {
+  font-size: 16px;
+  color: var(--text-gray);
+}
+
+/* media queries, any-hover */
+
+@media (max-width: 320px) {
+  .spinner {
+    width: 50px;
+    height: 50px;
+    border: 10px solid var(--light-purple);
+    border-top-color: var(--main-purple);
+  }
+
+  .spinner-text {
+    font-size: 13px;
   }
 }

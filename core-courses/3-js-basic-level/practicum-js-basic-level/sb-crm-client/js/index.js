@@ -434,7 +434,12 @@
     loadingTableTrRow.classList.add('crm__output-table-body-loading-row');
 
     loadingTableTdCell.colSpan = 6; // объединение всех колонок
-    loadingTableTdCell.innerHTML = '<div class="spinner"></div>';
+    loadingTableTdCell.innerHTML = `
+    <div class="spinner-wrap">
+    <div class="spinner"></div>
+    <span class="spinner-text">Идёт загрузка данных.. подождите!</span>
+    </div>
+    `;
     loadingTableTdCell.style.textAlign = 'center';
     loadingTableTrRow.append(loadingTableTdCell);
 
