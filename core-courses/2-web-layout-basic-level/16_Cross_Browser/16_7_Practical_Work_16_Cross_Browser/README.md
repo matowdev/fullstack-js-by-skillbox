@@ -18,6 +18,12 @@
 
 ---
 
+### Внешний вид
+
+![Euclid](https://github.com/matowdev/fullstack-js-by-skillbox/blob/06741070c74a74799901d07f8e1cc05f2f642ddd/core-courses/2-web-layout-basic-level/16_Cross_Browser/16_7_Practical_Work_16_Cross_Browser/img/final-view.png?raw=true)
+
+---
+
 ### Используемые технологии и библиотеки
 
 #### Front-end:
