@@ -19,6 +19,12 @@
 
 ---
 
+### Внешний вид
+
+![Skillbox - востребованные специалисты](https://github.com/matowdev/fullstack-js-by-skillbox/blob/2f426af98287f534f1924da74174bdf62da77bc3/core-courses/2-web-layout-basic-level/17_Grids/17_7_Practical_Work_17_Grids_v2/img/final-view.png?raw=true)
+
+---
+
 ### Используемые технологии и библиотеки
 
 #### Front-end:
