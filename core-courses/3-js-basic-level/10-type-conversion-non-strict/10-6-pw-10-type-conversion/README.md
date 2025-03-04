@@ -20,7 +20,7 @@
 
 ### Внешний вид приложения
 
-![Панель управления студентами](https://github.com/matowdev/fullstack-js-by-skillbox/blob/38e1657cd76a8db7659c0d9c899d6b70dc1f5120/core-courses/3-js-basic-level/10-type-conversion-non-strict/10-6-pw-10-type-conversion/images/final-app-view.jpg?raw=true)
+![Панель управления студентами](https://github.com/matowdev/fullstack-js-by-skillbox/blob/main/core-courses/3-js-basic-level/10-type-conversion-non-strict/10-6-pw-10-type-conversion/images/final-app-view.png?raw=true)
 
 ---
 
