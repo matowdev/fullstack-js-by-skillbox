@@ -18,6 +18,12 @@
 
 ---
 
+### Внешний вид
+
+![Lionic](https://github.com/matowdev/fullstack-js-by-skillbox/blob/8e4adfda0d51a13c7fbfe0dd2d3f65e81eed8e8f/core-courses/2-web-layout-basic-level/18_Animation/18_5_Ready-made_solutions/img/final-view.png?raw=true)
+
+---
+
 ### Используемые технологии и библиотеки
 
 #### Front-end:
@@ -39,6 +45,7 @@ project-root/
 │── libs/               # Сторонние библиотеки
 │── index.html          # Главный HTML-файл
 │── main.js             # Основной JS-файл
+│── README.md           # Описание проекта
 ```
 
 ---
