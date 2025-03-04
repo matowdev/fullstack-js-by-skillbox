@@ -21,7 +21,7 @@
 
 ---
 
-### Внешний вид приложения
+### Внешний вид
 
 ![Blanchard - художественная галерея](https://github.com/matowdev/fullstack-js-by-skillbox/blob/d7acc3869bdc10e48efb2621a94bb9a71f0e8997/core-courses/2-web-layout-basic-level/20_Final_work/images/final-view.png?raw=true)
 
