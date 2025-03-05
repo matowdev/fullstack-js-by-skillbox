@@ -4,7 +4,13 @@ const { existsSync, readFileSync, writeFileSync } = require("fs");
 const { createServer } = require("http");
 
 // файл для базы данных
-const DB_FILE = process.env.DB_FILE || "./db.json";
+// ?? следует раскомментировать
+// const DB_FILE = process.env.DB_FILE || "./db.json";
+
+// !! [FOR DEMO - Render] организация временной папки /tmp/db.json, для работы с Render (две строчки)
+const isRender = process.env.RENDER || false; // проверка/понимание, где запускается сервер.. на Render
+const DB_FILE = isRender ? "/tmp/db.json" : "./db.json";
+
 // номер порта, на котором будет запущен сервер
 const PORT = process.env.PORT || 3000;
 // префикс URI для всех методов приложения
@@ -260,9 +266,7 @@ module.exports = createServer(async (req, res) => {
   // выводим инструкцию, как только сервер запустился...
   .on("listening", () => {
     if (process.env.NODE_ENV !== "test") {
-      console.log(
-        `Сервер Students запущен. Вы можете использовать его по адресу http://localhost:${PORT}`
-      );
+      console.log(`Сервер SD-CRM запущен на порту: ${PORT}..`);
       console.log("Нажмите CTRL+C, чтобы остановить сервер");
       console.log("Доступные методы:");
       console.log(
