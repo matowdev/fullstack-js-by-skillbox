@@ -180,7 +180,73 @@ function deleteStudent(itemId) {
 }
 
 // создаём новый файл с базой данных, если он не существует
-if (!existsSync(DB_FILE)) writeFileSync(DB_FILE, "[]", { encoding: "utf8" });
+// ?? следует раскомментировать
+// if (!existsSync(DB_FILE)) writeFileSync(DB_FILE, "[]", { encoding: "utf8" });
+
+// !! [FOR DEMO - Render] автоматическое/самостоятельное создание db.json/данных.. далее/выше, как temp-данных (при/для корректного запуска Render-логики, первично/при перезагрузке)
+if (!existsSync(DB_FILE)) {
+  const defaultData = [
+    {
+      name: "Александра",
+      surname: "Сергеева",
+      patronymic: "Михайловна",
+      birthDate: "1999-08-20",
+      startYear: "2020",
+      faculty: "информационных технологий",
+      id: "1725876539939",
+      updatedAt: "2024-09-09T10:08:59.939Z",
+      createdAt: "2024-09-09T10:08:59.939Z",
+    },
+    {
+      name: "Валерия",
+      surname: "Нестерова",
+      patronymic: "Анатольевна",
+      birthDate: "2002-01-21",
+      startYear: "2022",
+      faculty: "мировой экономики",
+      id: "1725876623985",
+      updatedAt: "2024-09-09T10:10:23.985Z",
+      createdAt: "2024-09-09T10:10:23.985Z",
+    },
+    {
+      name: "Артем",
+      surname: "Морозов",
+      patronymic: "Геннадиевич",
+      birthDate: "2003-05-11",
+      startYear: "2021",
+      faculty: "гражданской инженерии",
+      id: "1725876692925",
+      updatedAt: "2024-09-09T10:11:32.925Z",
+      createdAt: "2024-09-09T10:11:32.925Z",
+    },
+    {
+      name: "Екатерина",
+      surname: "Мельникова",
+      patronymic: "Владимировна",
+      birthDate: "2001-10-29",
+      startYear: "2020",
+      faculty: "прикладной математики",
+      id: "1725876751501",
+      updatedAt: "2024-09-09T10:12:31.501Z",
+      createdAt: "2024-09-09T10:12:31.501Z",
+    },
+    {
+      name: "Максим",
+      surname: "Николаев",
+      patronymic: "Алексеевич",
+      birthDate: "2005-03-03",
+      startYear: "2023",
+      faculty: "медиа и дизайна",
+      id: "1725876806310",
+      updatedAt: "2024-09-09T10:13:26.310Z",
+      createdAt: "2024-09-09T10:13:26.310Z",
+    },
+  ];
+
+  writeFileSync(DB_FILE, JSON.stringify(defaultData, null, 2), {
+    encoding: "utf8",
+  });
+}
 
 // создаём HTTP сервер, переданная функция будет реагировать на все запросы к нему
 module.exports = createServer(async (req, res) => {
