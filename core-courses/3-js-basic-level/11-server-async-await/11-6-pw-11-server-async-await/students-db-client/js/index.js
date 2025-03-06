@@ -666,13 +666,14 @@
   }
 
   // ** создание "пустой" строки для таблицы студентов (при/для фильтрации, пустом массиве)
-  function createEmptyTableMessageRow() {
+  function createEmptyTableMessageRow(
+    message = 'Пусто.. измените фильтрацию, добавьте студента!?'
+  ) {
     const emptyTableTrRow = document.createElement('tr');
     const emptyTableTdCell = document.createElement('td');
 
     emptyTableTdCell.colSpan = 5; // объединение всех колонок
-    emptyTableTdCell.textContent =
-      'Пусто.. измените фильтрацию, добавьте студента!';
+    emptyTableTdCell.textContent = message;
     emptyTableTdCell.style.color = '#e10c22';
     emptyTableTdCell.style.textAlign = 'center';
     emptyTableTrRow.append(emptyTableTdCell);
@@ -680,12 +681,78 @@
     return emptyTableTrRow;
   }
 
-  // ** [СЕРВЕР] организация запроса, получение данных/списка студентов с сервера (корректировка входящих данных)
-  let studentsDataArrWithIds;
+  // TODO: что бы перейти на "полностью" [СЕРВЕРНУЮ] логику/обратно.. нужно пошагово просмотреть весь файл и раскомментировать закомментированный код, при этом комментируя/удаляя код/строки помеченные, как [FOR DEMO - sessionStorage] в полном объёме (т.е. некоторые инициализации переменных, доп. функций проводились каждой логике свои)
 
-  async function getStudentsServerListData() {
+  // ** [СЕРВЕР] организация запроса, получение данных/списка студентов с сервера (корректировка входящих данных)
+  // ?? следует раскомментировать (полностью)
+  // let studentsDataArrWithIds;
+
+  //   async function getStudentsServerListData() {
+  //     try {
+  //       const response = await fetch('http://localhost:3000/api/students'); // запрос на сервер
+  //
+  //       // проверка успешности/выполнения запроса
+  //       if (!response.ok) {
+  //         throw new Error(`Ошибка: ${response.status}!`);
+  //       }
+  //
+  //       const data = await response.json(); // преобразование данных в JSON-формат
+  //       studentsDataArrWithIds = addLocalIdsToStudents(data); // добавление недостающего поля, как localId
+  //
+  //       addStudentsToTable(studentsDataArrWithIds); // отрисовка данных, наполнение таблицы студентов
+  //     } catch (error) {
+  //       console.error('Не удалось загрузить список студентов..', error);
+  //       alert('Ошибка при загрузке данных с сервера!');
+  //       tableBody.append(
+  //         createEmptyTableMessageRow(
+  //           'Нет данных! Запустите/перезапустите сервер!'
+  //         )
+  //       ); // если ошибка, вывод/добавление строки-сообщения
+  //     }
+  //   }
+  //
+  //   // добавление недостающего поля в объекты студентов, т.е. поля localId (необходимого, для дальнейших отработок)
+  //   function addLocalIdsToStudents(studentsFromServer) {
+  //     return studentsFromServer.map((student, index) => ({
+  //       ...student, // сохранение приходящих/серверных полей
+  //       localId: index + 1, // добавление localId
+  //     }));
+  //   }
+  //
+  //   getStudentsServerListData(); // получение данных
+
+  // !! [FOR DEMO - sessionStorage] фиксация исходных данных/серверных данных, для сохранения в sessionStorage
+  let studentsDataArrWithIds;
+  let updateStudentsDataArr;
+  let studentsServerDataArr = []; // потом/будет использоваться для генерации storage ID
+
+  async function addStudentsDataToStorage() {
     try {
+      // ??
+      // const tableBody = document.querySelector('.dboard__table-body');
+      // const spinnerRow = createLoadingSpinnerRow(); // создание спиннера
+      // tableBody.append(spinnerRow); // добавление в таблицу
+
+      // ??
+      // console.log('Ждём ответ от Render-сервера..');
+
+      // ??
+      // await new Promise((resolve) => setTimeout(resolve, 5000)); // искусственная задержка.. имитация "просыпания" Render-сервера
+
       const response = await fetch('http://localhost:3000/api/students'); // запрос на сервер
+
+      // ??
+      // ! Запрос на RENDER-сервер (а не на локальный, согласно маршрута.. ВНИМАНИЕ)
+      // const response = await fetch(
+      //   'https://students-dashboard-crm.onrender.com/api/students'
+      // );
+
+      // ??
+      // удаление спиннера после получения ответа/подгрузки студентов
+      // spinnerRow.remove();
+
+      // ??
+      // console.log('Ответ получен! Данные должны быть отображены!');
 
       // проверка успешности/выполнения запроса
       if (!response.ok) {
@@ -693,16 +760,46 @@
       }
 
       const data = await response.json(); // преобразование данных в JSON-формат
-      studentsDataArrWithIds = addLocalIdsToStudents(data); // добавление недостающего поля, как localId
+      sessionStorage.setItem('demoStudents', JSON.stringify(data)); // добавление/сохранение в Session storage
 
-      addStudentsToTable(studentsDataArrWithIds); // отрисовка данных, наполнение таблицы студентов
+      studentsServerDataArr = data; // "дополнительно" фиксируем входящий серверный массив
+
+      return data; // возврат массива данных
     } catch (error) {
-      console.error('Не удалось загрузить список студентов..', error);
-      alert('Ошибка при загрузке данных с сервера!?');
+      console.error('Ошибка загрузки списка студентов с сервера!', error);
+
+      // ??
+      // удаление спиннера, если запрос завершился ошибкой
+      // document.querySelector('.dboard__table-body-loading-row')?.remove();
+
+      return []; //  если ошибка, возврат "пустого" массива
     }
   }
 
-  // добавление недостающего поля в объекты студентов, т.е. поля localId (необходимого, для дальнейших отработок)
+  // !! [FOR DEMO - sessionStorage] получение данных/списка из Session storage (корректировка входящих данных)
+  async function getStudentsListDataFromStorage() {
+    let savedStudents = await addStudentsDataToStorage(); // получение данных из Session storage
+
+    // обновление Session storage
+    sessionStorage.setItem('demoStudents', JSON.stringify(savedStudents));
+
+    // корректировка данных (добавление поля localId)
+    studentsDataArrWithIds = savedStudents || [];
+    updateStudentsDataArr = addLocalIdsToStudents(studentsDataArrWithIds);
+
+    if (updateStudentsDataArr.length > 0) {
+      addStudentsToTable(updateStudentsDataArr); // отрисовка данных, наполнение таблицы студентов
+    } else {
+      alert('Ошибка при загрузке данных с сервера!');
+      tableBody.append(
+        createEmptyTableMessageRow(
+          'Нет данных! Запустите/перезапустите сервер!'
+        )
+      ); // если ошибка, вывод/добавление строки-сообщения
+    }
+  }
+
+  // !! [FOR DEMO - sessionStorage] добавление поля localId (необходимого/возможно, для дальнейших отработок)
   function addLocalIdsToStudents(studentsFromServer) {
     return studentsFromServer.map((student, index) => ({
       ...student, // сохранение приходящих/серверных полей
@@ -710,10 +807,12 @@
     }));
   }
 
-  getStudentsServerListData(); // получение данных
+  // !! [FOR DEMO - sessionStorage]
+  getStudentsListDataFromStorage(); // получение данных о клиентах (из Session storage)
 
   // ** наполнение таблицы данных о студентах (согласно откорректированного исходного, далее формирующегося массива)
-  let updateStudentsDataArr;
+  // ?? следует раскомментировать
+  // let updateStudentsDataArr;
 
   function addStudentsToTable(studentsServerData = []) {
     const selectedBodyRows = getSelectedBodyRows(); // сохранение выделенных body-строк (если такие есть)
@@ -916,25 +1015,26 @@
   cancelBtn.addEventListener('click', deselectBodyRows); // отработка функции по нажатию
 
   // ** [СЕРВЕР] организация удаления студентов с сервера (согласно серверных id)
-  async function deleteStudentFromServer(serverId) {
-    try {
-      const response = await fetch(
-        `http://localhost:3000/api/students/${serverId}`,
-        {
-          method: 'DELETE',
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error(`Ошибка при удалении студента: ${response.status}`);
-      }
-
-      await getStudentsServerListData(); // обновление списка студентов после удаления
-    } catch (error) {
-      console.error('Ошибка при удалении студента с сервера..', error);
-      alert('Не удалось удалить студента с сервера!');
-    }
-  }
+  // ?? следует раскомментировать (полностью)
+  //   async function deleteStudentFromServer(serverId) {
+  //     try {
+  //       const response = await fetch(
+  //         `http://localhost:3000/api/students/${serverId}`,
+  //         {
+  //           method: 'DELETE',
+  //         }
+  //       );
+  //
+  //       if (!response.ok) {
+  //         throw new Error(`Ошибка при удалении студента: ${response.status}`);
+  //       }
+  //
+  //       await getStudentsServerListData(); // обновление списка студентов после удаления
+  //     } catch (error) {
+  //       console.error('Ошибка при удалении студента с сервера..', error);
+  //       alert('Не удалось удалить студента с сервера!');
+  //     }
+  //   }
 
   // ** удаление выделенных элементов/строк таблицы данных о студентах (через "X" кнопку, не через "внешнюю")
   function deleteBodyRowsByXBtn(event) {
@@ -990,9 +1090,10 @@
       }
     }
 
-    studentServerIdsToDelete.forEach(async (serverId) => {
-      await deleteStudentFromServer(serverId); // удаление студентов с сервера по серверным ID
-    });
+    // ?? следует раскомментировать
+    // studentServerIdsToDelete.forEach(async (serverId) => {
+    //   await deleteStudentFromServer(serverId); // удаление студентов с сервера по серверным ID
+    // });
 
     studentServerIdsToDelete.forEach((serverId) => {
       const studentIndex = updateStudentsDataArr.findIndex(
@@ -1008,6 +1109,12 @@
     updateStudentsDataArr.forEach((student, index) => {
       student.localId = index + 1;
     });
+
+    // !! [FOR DEMO - sessionStorage] ..одна строчка
+    sessionStorage.setItem(
+      'demoStudents',
+      JSON.stringify(updateStudentsDataArr)
+    ); // обновление данных в Session storage
 
     addStudentsToTable(updateStudentsDataArr); // обновление таблицы студентов (пере-компоновка) после удаления
   }
@@ -1126,35 +1233,65 @@
     });
   }
 
+  // !! [FOR DEMO - sessionStorage] генерация custom ID номеров для "новых" студентов (продолжение порядка.. до 99 потом нужно/будет корректировать)
+  function generateStudentStorageId() {
+    const orderPrefix = studentsServerDataArr.length; // фиксация длинны серверного массива (ранее/выше приходящего)
+
+    // генерация случайных/дополнительных цифр для ID (т.е. генерация 5-ти цифр, если в массиве < 10 студентов, если больше.. то генерация 4-х цифр)
+    const randomDigits =
+      studentsServerDataArr.length < 10
+        ? Math.floor(10000 + Math.random() * 90000) // 5 цифр
+        : Math.floor(1000 + Math.random() * 9000); // 4 цифры
+
+    return `${orderPrefix}${randomDigits}`; // возврат сформированного ID
+  }
+
   // ** [СЕРВЕР] отправка данных/добавление "новых" студентов на сервер, получение обратно (проверка статуса)
-  async function addStudentsToServer(studentData) {
-    try {
-      const response = await fetch('http://localhost:3000/api/students', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(studentData),
-      });
+  // ?? следует раскомментировать (полностью)
+  //   async function addStudentsToServer(studentData) {
+  //     try {
+  //       const response = await fetch('http://localhost:3000/api/students', {
+  //         method: 'POST',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         },
+  //         body: JSON.stringify(studentData),
+  //       });
+  //
+  //       if (!response.ok) {
+  //         if (response.status === 422) {
+  //           const errorData = await response.json();
+  //           throw new Error(
+  //             `Ошибка валидации: ${errorData.errors
+  //               .map((e) => e.message)
+  //               .join(', ')}`
+  //           );
+  //         } else {
+  //           throw new Error(`Ошибка: ${response.status}`);
+  //         }
+  //       }
+  //
+  //       await getStudentsServerListData(); // обновление списка студентов (в контексте.. перерисовка таблицы)
+  //     } catch (error) {
+  //       console.error('Ошибка при добавлении студента..', error);
+  //       alert('Ошибка при добавлении студента на сервер!');
+  //     }
+  //   }
 
-      if (!response.ok) {
-        if (response.status === 422) {
-          const errorData = await response.json();
-          throw new Error(
-            `Ошибка валидации: ${errorData.errors
-              .map((e) => e.message)
-              .join(', ')}`
-          );
-        } else {
-          throw new Error(`Ошибка: ${response.status}`);
-        }
-      }
-
-      await getStudentsServerListData(); // обновление списка студентов (в контексте.. перерисовка таблицы)
-    } catch (error) {
-      console.error('Ошибка при добавлении студента..', error);
-      alert('Ошибка при добавлении студента на сервер!');
+  // !! [FOR DEMO - sessionStorage] добавление "новых" студентов/данных в Session storage (целая функция)
+  function addNewStudentToStorage(newStudent) {
+    if (!studentsDataArrWithIds) {
+      studentsDataArrWithIds = []; // если что-то не так с массивом — создаём пустой
     }
+
+    // Добавление в массив, следом в Session storage
+    studentsDataArrWithIds.push(newStudent);
+    sessionStorage.setItem(
+      'demoStudents',
+      JSON.stringify(studentsDataArrWithIds)
+    );
+
+    addStudentsToTable(studentsDataArrWithIds); // перерисовка таблицы
   }
 
   // ** добавление "новых" студентов в массив/таблицу, через поля формы (после валидации, после проверки по ФИО)
@@ -1222,7 +1359,19 @@
           }
         }
 
+        // ?? следует раскомментировать
+        // const newStudent = {
+        //   surname: formInSurname,
+        //   name: formInName,
+        //   patronymic: formInPatronymic,
+        //   birthDate: formInBirthDate,
+        //   startYear: formInStartYear,
+        //   faculty: formInFaculty,
+        // };
+
+        // !! [FOR DEMO - sessionStorage] "расширенный" объект newStudent (т.к. нет серверных полей.. добавление самостоятельно)
         const newStudent = {
+          id: generateStudentStorageId(), // генерация custom ID
           surname: formInSurname,
           name: formInName,
           patronymic: formInPatronymic,
@@ -1231,7 +1380,11 @@
           faculty: formInFaculty,
         };
 
-        await addStudentsToServer(newStudent); // добавление студента на сервер
+        // ?? следует раскомментировать
+        // await addStudentsToServer(newStudent); // добавление студента на сервер
+
+        // !! [FOR DEMO - sessionStorage] временные изменения в/для Session storage (обновление/перерисовка таблицы ..ОДНА строчка)
+        addNewStudentToStorage(newStudent); // добавление студента в Session storage
 
         allFormInInputs.forEach((input) => (input.value = '')); // очистка полей формы (после добавления)
         formInputData.classList.remove('was-validated'); // отмена красной обводки у "чистых" полей формы (после добавления)
