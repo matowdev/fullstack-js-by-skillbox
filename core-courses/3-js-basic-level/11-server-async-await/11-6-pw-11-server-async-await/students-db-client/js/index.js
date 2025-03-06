@@ -672,10 +672,10 @@
     const emptyTableTrRow = document.createElement('tr');
     const emptyTableTdCell = document.createElement('td');
 
+    emptyTableTrRow.classList.add('dboard__table-body-empty-row');
+
     emptyTableTdCell.colSpan = 5; // объединение всех колонок
     emptyTableTdCell.textContent = message;
-    emptyTableTdCell.style.color = '#e10c22';
-    emptyTableTdCell.style.textAlign = 'center';
     emptyTableTrRow.append(emptyTableTdCell);
 
     return emptyTableTrRow;
@@ -790,7 +790,6 @@
     if (updateStudentsDataArr.length > 0) {
       addStudentsToTable(updateStudentsDataArr); // отрисовка данных, наполнение таблицы студентов
     } else {
-      alert('Ошибка при загрузке данных с сервера!');
       tableBody.append(
         createEmptyTableMessageRow(
           'Нет данных! Запустите/перезапустите сервер!'
@@ -1445,6 +1444,12 @@
   function filterStudentsByFormInputs() {
     updateStudentsDataArr = correctInitArr(studentsDataArrWithIds); // обновление исходного массива, перед фильтрацией
 
+    // фиксация вводимых данных
+    let searchFIO = formFilterFIOInput.value.trim().toLowerCase();
+    let searchFaculty = formFilterFacultyInput.value.trim().toLowerCase();
+    let searchStartYear = formFilterStartYearInput.value.trim();
+    let searchEndYear = formFilterEndYearInput.value.trim();
+
     if (formFilterFIOInput.value.trim() !== '') {
       updateStudentsDataArr = updateStudentsDataArr.filter((student) =>
         student.fullName
@@ -1478,13 +1483,61 @@
     }
 
     addStudentsToTable(updateStudentsDataArr); // пере-рисовка (пере-компоновка) таблицы студентов согласно фильтраций
+    highlightStudentSearchMatches({
+      searchFIO,
+      searchFaculty,
+      searchStartYear,
+      searchEndYear,
+    }); // выделение совпадений (передача контекста)
   }
+
+  // отработка "дебаунс" задержки (если много данных, что бы снизить нагрузку)
+  let debounceTimer;
 
   allFormFilterInputs.forEach((input) => {
     input.addEventListener('input', () => {
-      filterStudentsByFormInputs();
+      clearTimeout(debounceTimer); // очистка предыдущей задержки
+      debounceTimer = setTimeout(filterStudentsByFormInputs, 600); // применение фильтрации не сразу
     });
   });
+
+  // ** организация выделения/подсветки совпадений в таблице (согласно вводимых данных в фильтрационные поля)
+  function highlightStudentSearchMatches(searchValues) {
+    const { searchFIO, searchFaculty, searchStartYear, searchEndYear } =
+      searchValues; // получение необходимых элементов/значений (через деструктуризациию входящего/передаваемого объекта)
+
+    const allRows = document.querySelectorAll('.dboard__table-body-row');
+
+    allRows.forEach((row) => {
+      // фиксация данных/ячеек с данными, для последующего сравнения (выделения в них совпадений)
+      let fioCell = row.children[1]; // ФИО
+      let facultyCell = row.children[2]; // факультет
+      let studyYearsCell = row.children[4]; // годы обучения (год начала и окончания)
+
+      // очистка предыдущих выделений (если были)
+      fioCell.innerHTML = fioCell.textContent;
+      facultyCell.innerHTML = facultyCell.textContent;
+      studyYearsCell.innerHTML = studyYearsCell.textContent;
+
+      // логика выделения/подсветки.. добавления background(a)
+      function highlightMatch(cell, searchValue) {
+        if (searchValue) {
+          const regex = new RegExp(`(${searchValue})`, 'gi');
+          cell.innerHTML = cell.textContent.replace(
+            regex,
+            // `<span style="padding: 1px 2px; color: #fff; background: #0d6efd;">$1</span>`
+            `<span style="color: #fff; box-shadow: inset 2em 2em #0d6efd;">$1</span>`
+          );
+        }
+      }
+
+      // инициализация выделений
+      highlightMatch(fioCell, searchFIO);
+      highlightMatch(facultyCell, searchFaculty);
+      highlightMatch(studyYearsCell, searchStartYear);
+      highlightMatch(studyYearsCell, searchEndYear);
+    });
+  }
 
   // ** очистка полей ввода, форм (через внутренние clear кнопки)
   const allClearBtn = document.querySelectorAll('.btn-clear');
