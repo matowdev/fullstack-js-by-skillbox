@@ -88,14 +88,13 @@
   cursor: pointer;
 }
 
-.crm__output-table-body-empty-row {
-  width: 100%;
-  height: 65px;
-  text-align: center;
-}
-
 .crm__output-table-body-empty-row td {
+  border-bottom: none;
   width: 100%;
+  height: 325px;
+  font-weight: var(--medium);
+  font-size: 17px;
+  color: var(--bootstrap-red);
   text-align: center;
 }
 
@@ -453,6 +452,10 @@
   }
 
   .crm__output-table-body {
+    font-size: 13px;
+  }
+
+  .crm__output-table-body-empty-row td {
     font-size: 13px;
   }
 

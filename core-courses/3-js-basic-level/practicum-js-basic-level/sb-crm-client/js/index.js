@@ -258,12 +258,12 @@
   //       if (clientsDataArrWithIds.length > 0) {
   //         addClientsToTable(clientsDataArrWithIds); // отрисовка данных, наполнение таблицы клиентов
   //       } else {
-  //         outTableBody.append(createEmptyTableMessageRow()); // если данных нет, вывод/добавление строки-сообщения
+  //         outTableBody.append(createEmptyTableMessageRow('Нет данных! Запустите/перезапустите сервер!')); // если данных нет, вывод/добавление строки-сообщения
   //       }
   //     } catch (error) {
   //       console.error('Не удалось загрузить список клиентов..', error);
   //       outTableBody.innerHTML = ''; // очистка таблицы
-  //       outTableBody.append(createEmptyTableMessageRow()); // если ошибка, вывод/добавление строки-сообщения
+  //       outTableBody.append(createEmptyTableMessageRow('Нет данных! Запустите/перезапустите сервер!')); // если ошибка, вывод/добавление строки-сообщения
   //     }
   //   }
   //
@@ -337,7 +337,11 @@
     if (updateClientsDataArr.length > 0) {
       addClientsToTable(updateClientsDataArr); // отрисовка данных, наполнение таблицы клиентов
     } else {
-      outTableBody.append(createEmptyTableMessageRow()); // если ошибка, вывод/добавление строки-сообщения
+      outTableBody.append(
+        createEmptyTableMessageRow(
+          'Нет данных! Запустите/перезапустите сервер!'
+        )
+      ); // если ошибка, вывод/добавление строки-сообщения
     }
   }
 
@@ -408,19 +412,16 @@
   }
 
   // ** создание "пустой" строки для таблицы клиентов (при/для фильтрации, пустом массиве)
-  function createEmptyTableMessageRow() {
+  function createEmptyTableMessageRow(
+    message = 'Пусто.. измените фильтрацию, добавьте студента!?'
+  ) {
     const emptyTableTrRow = document.createElement('tr');
     const emptyTableTdCell = document.createElement('td');
 
     emptyTableTrRow.classList.add('crm__output-table-body-empty-row');
 
     emptyTableTdCell.colSpan = 6; // объединение всех колонок
-    emptyTableTdCell.textContent =
-      'Пусто.. измените фильтрацию, добавьте клиента!? Запустите сервер?';
-    emptyTableTdCell.style.fontWeight = '500';
-    emptyTableTdCell.style.fontSize = '16px';
-    emptyTableTdCell.style.color = '#dc3545';
-    emptyTableTdCell.style.textAlign = 'center';
+    emptyTableTdCell.textContent = message;
     emptyTableTrRow.append(emptyTableTdCell);
 
     return emptyTableTrRow;
@@ -437,7 +438,7 @@
     loadingTableTdCell.innerHTML = `
     <div class="spinner-wrap">
     <div class="spinner"></div>
-    <span class="spinner-text">Идёт загрузка данных.. подождите!</span>
+    <span class="spinner-text">Идёт загрузка данных.. подождите! 10.. 30.. 50 секунд!</span>
     </div>
     `;
     loadingTableTdCell.style.textAlign = 'center';
