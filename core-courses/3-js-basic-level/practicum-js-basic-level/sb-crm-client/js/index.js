@@ -300,12 +300,12 @@
       // удаление спиннера после получения ответа/подгрузки клиентов
       spinnerRow.remove();
 
-      console.log('Ответ получен! Данные должны быть отображены!');
-
       // проверка успешности/выполнения запроса
       if (!response.ok) {
         throw new Error(`Ошибка: ${response.status}!`);
       }
+
+      console.log('Ответ получен! Данные должны быть отображены!');
 
       const data = await response.json(); // преобразование данных в JSON-формат
       sessionStorage.setItem('demoClients', JSON.stringify(data)); // добавление/сохранение в Session storage
