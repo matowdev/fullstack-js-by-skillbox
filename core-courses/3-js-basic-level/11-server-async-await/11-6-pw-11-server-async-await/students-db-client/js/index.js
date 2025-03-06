@@ -733,26 +733,22 @@
       // const spinnerRow = createLoadingSpinnerRow(); // создание спиннера
       // tableBody.append(spinnerRow); // добавление в таблицу
 
-      // ??
-      // console.log('Ждём ответ от Render-сервера..');
+      console.log('Ждём ответ от Render-сервера..');
 
-      // ??
       // await new Promise((resolve) => setTimeout(resolve, 5000)); // искусственная задержка.. имитация "просыпания" Render-сервера
 
-      const response = await fetch('http://localhost:3000/api/students'); // запрос на сервер
+      // const response = await fetch('http://localhost:3000/api/students'); // запрос на локальный сервер (так было, перед Render логикой, т.е. данные обновлялись от туда, т.е. работа с sessionStorage.. но при обновлении, получение данных с локального сервера)
 
-      // ??
       // ! Запрос на RENDER-сервер (а не на локальный, согласно маршрута.. ВНИМАНИЕ)
-      // const response = await fetch(
-      //   'https://students-dashboard-crm.onrender.com/api/students'
-      // );
+      const response = await fetch(
+        'https://students-dashboard-crm.onrender.com/api/students'
+      );
 
       // ??
       // удаление спиннера после получения ответа/подгрузки студентов
       // spinnerRow.remove();
 
-      // ??
-      // console.log('Ответ получен! Данные должны быть отображены!');
+      console.log('Ответ получен! Данные должны быть отображены!');
 
       // проверка успешности/выполнения запроса
       if (!response.ok) {
@@ -1526,7 +1522,7 @@
           cell.innerHTML = cell.textContent.replace(
             regex,
             // `<span style="padding: 1px 2px; color: #fff; background: #0d6efd;">$1</span>`
-            `<span style="color: #fff; box-shadow: inset 2em 2em #0d6efd;">$1</span>`
+            `<span style="color: #fff; box-shadow: inset 2em 2em #0d6efd; outline: 1px solid #0d6efd;">$1</span>`
           );
         }
       }
