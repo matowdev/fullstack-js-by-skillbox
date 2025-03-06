@@ -681,6 +681,26 @@
     return emptyTableTrRow;
   }
 
+  // ** создание строки с индикатором загрузки (спиннера.. для улучшения UX при "просыпании" Render-сервера)
+  function createLoadingSpinnerRow() {
+    const loadingTableTrRow = document.createElement('tr');
+    const loadingTableTdCell = document.createElement('td');
+
+    loadingTableTrRow.classList.add('dboard__table-body-loading-row');
+
+    loadingTableTdCell.colSpan = 5; // объединение всех колонок
+    loadingTableTdCell.innerHTML = `
+      <div class="spinner-wrap">
+      <div class="spinner"></div>
+      <span class="spinner-text">Идёт загрузка данных.. подождите! 10.. 30.. 50 секунд!</span>
+      </div>
+      `;
+    loadingTableTdCell.style.textAlign = 'center';
+    loadingTableTrRow.append(loadingTableTdCell);
+
+    return loadingTableTrRow;
+  }
+
   // TODO: что бы перейти на "полностью" [СЕРВЕРНУЮ] логику/обратно.. нужно пошагово просмотреть весь файл и раскомментировать закомментированный код, при этом комментируя/удаляя код/строки помеченные, как [FOR DEMO - sessionStorage] в полном объёме (т.е. некоторые инициализации переменных, доп. функций проводились каждой логике свои)
 
   // ** [СЕРВЕР] организация запроса, получение данных/списка студентов с сервера (корректировка входящих данных)
@@ -728,10 +748,9 @@
 
   async function addStudentsDataToStorage() {
     try {
-      // ??
-      // const tableBody = document.querySelector('.dboard__table-body');
-      // const spinnerRow = createLoadingSpinnerRow(); // создание спиннера
-      // tableBody.append(spinnerRow); // добавление в таблицу
+      const tableBody = document.querySelector('.dboard__table-body'); // фиксация тела таблицы
+      const spinnerRow = createLoadingSpinnerRow(); // создание спиннера
+      tableBody.append(spinnerRow); // добавление в таблицу
 
       console.log('Ждём ответ от Render-сервера..');
 
@@ -744,16 +763,15 @@
         'https://students-dashboard-crm.onrender.com/api/students'
       );
 
-      // ??
       // удаление спиннера после получения ответа/подгрузки студентов
-      // spinnerRow.remove();
-
-      console.log('Ответ получен! Данные должны быть отображены!');
+      spinnerRow.remove();
 
       // проверка успешности/выполнения запроса
       if (!response.ok) {
         throw new Error(`Ошибка: ${response.status}!`);
       }
+
+      console.log('Ответ получен! Данные должны быть отображены!');
 
       const data = await response.json(); // преобразование данных в JSON-формат
       sessionStorage.setItem('demoStudents', JSON.stringify(data)); // добавление/сохранение в Session storage
@@ -764,9 +782,8 @@
     } catch (error) {
       console.error('Ошибка загрузки списка студентов с сервера!', error);
 
-      // ??
       // удаление спиннера, если запрос завершился ошибкой
-      // document.querySelector('.dboard__table-body-loading-row')?.remove();
+      document.querySelector('.dboard__table-body-loading-row')?.remove();
 
       return []; //  если ошибка, возврат "пустого" массива
     }

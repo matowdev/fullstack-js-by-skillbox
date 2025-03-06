@@ -23,7 +23,8 @@
 
 .dboard__table .dboard__table-body-empty-row td {
   width: 100%;
-  /* height: 325px; */
+  height: 245px;
+  font-weight: var(--medium);
   font-size: 17px;
   color: var(--bootstrap-red);
   text-align: center;
