@@ -12,8 +12,8 @@
 }
 
 .spinner {
-  width: 90px;
-  height: 90px;
+  width: 80px;
+  height: 80px;
   border: 15px solid var(--light-purple);
   border-top-color: var(--main-purple);
   border-radius: 50%;
@@ -31,7 +31,7 @@
 }
 
 .spinner-text {
-  font-size: 16px;
+  font-size: 17px;
   color: var(--text-gray);
 }
 
