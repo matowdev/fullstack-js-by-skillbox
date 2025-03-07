@@ -29,7 +29,7 @@
 
 ### Внешний вид приложения
 
-![Students-dashboard-CRM]()
+![Students-dashboard-CRM](https://github.com/matowdev/fullstack-js-by-skillbox/blob/main/core-courses/3-js-basic-level/11-server-async-await/11-6-pw-11-server-async-await/students-db-client/images/final-app-view.png?raw=true)
 
 ---
 
@@ -41,7 +41,7 @@
 - **Bootstrap 5.3.3** – стилизация элементов и адаптивность.
 - **jQuery 3.7.1** – вспомогательные манипуляции с DOM.
 - **Tippy.js 6.3.7** – всплывающие подсказки для элементов интерфейса.
-- **Session Storage** – сохранение данных на клиенте между обновлениями страницы.
+- **Session storage** – сохранение данных на клиенте между обновлениями страницы.
 
 #### Back-end:
 
