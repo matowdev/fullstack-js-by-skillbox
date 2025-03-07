@@ -12,8 +12,8 @@
 }
 
 .spinner {
-  width: 90px;
-  height: 90px;
+  width: 80px;
+  height: 80px;
   border: 15px solid var(--light-blue);
   border-top-color: var(--specific-blue);
   border-radius: 50%;
