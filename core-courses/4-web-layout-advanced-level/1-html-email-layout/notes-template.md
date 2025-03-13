@@ -1,4 +1,4 @@
-# On the topic: "..." 
+# On the topic: "..."
 
 ### Video-lesson / Terms of performance:
 
