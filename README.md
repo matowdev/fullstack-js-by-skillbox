@@ -26,4 +26,4 @@ My work/projects according to the training program (by blocks and sub-blocks).
 
 ---
 
-![Skillbox](core-courses/some-examples/Images/skillbox.png)
+![Skillbox](https://github.com/matowdev/fullstack-js-by-skillbox/blob/main/core-courses/some-examples/Images/skillbox.png?raw=true)
