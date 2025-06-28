@@ -1,0 +1,45 @@
+.page {
+  padding: 20px;
+}
+
+.vk:hover {
+  fill: #F8FBFE;
+  stroke: #AC58F5;
+  stroke-width: 0.5;
+}
+
+.vk {
+  stroke: #AC58F5;
+  stroke-width: 1;
+  stroke-dasharray: 10 5;
+}
+
+.vk:hover {
+  stroke-dasharray: 10 0;
+}
+
+/* --- */
+
+.balloon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  /* border: 1px solid; */
+}
+
+.balloon path {
+  fill: none;
+  stroke: url(#stripes);
+  stroke-width: 2;
+  stroke-dasharray: 550 0;
+  animation: dasharray 5s infinite alternate;
+}
+
+@keyframes dasharray {
+  100% {
+    stroke-dasharray: 0 500;
+  }
+}
