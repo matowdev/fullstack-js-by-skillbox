@@ -1,0 +1,29 @@
+.page {
+  font-family: sans-serif;
+  padding: 2rem;
+  color: #333;
+}
+
+.page__icon {
+  margin-right: 8px;
+  width: 32px;
+  height: 32px;
+  fill: currentColor;
+  vertical-align: middle;
+}
+
+.icon-camera-special {
+  width: 48px;
+  height: 48px;
+  color: #d94b4b;
+}
+
+.settings-link {
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: #007bff;
+}
+
+.settings-link:hover {
+  text-decoration: underline;
+}

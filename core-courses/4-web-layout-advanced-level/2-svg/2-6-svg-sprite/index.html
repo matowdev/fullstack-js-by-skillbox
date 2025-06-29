@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SVG-sprite</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body class="page">
+  <h1 class="page__title">Демонстрация иконок из SVG-спрайта</h1>
+
+  <p class="page__description">
+    <svg class="page__icon">
+      <use href="./sprite.svg#icon-home"></use>
+    </svg>
+    Это главная страница.
+  </p>
+
+  <p class="page__description">
+    <a class="page__link settings-link" href="#">
+      <svg class="page__icon">
+        <use href="./sprite.svg#icon-settings"></use>
+      </svg>
+      Перейти в настройки
+    </a>
+  </p>
+
+  <p class="page__description">
+    А это другая иконка, с особым стилем:
+    <svg class="page__icon icon-camera-special">
+      <use href="./sprite.svg#icon-camera"></use>
+    </svg>
+  </p>
+</body>
+
+</html>
