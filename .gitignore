@@ -1,3 +1,4 @@
+# логи и временные файлы
 *.log
 *.ini
 *.pdf
@@ -5,11 +6,12 @@
 *.pptx
 *.mp4
 *.webm
-*.url
 *.7z
 *.zip
 *.url
 	
-Additional_Material/
-AMR/
+# зависимости
+node_modules/
+
+# разное
 .vscode/
