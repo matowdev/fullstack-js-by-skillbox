@@ -1,0 +1,39 @@
+$main-background: #f2f2f2;
+$main-color: lightcoral;
+
+@mixin makeContainer {
+  margin: 0 auto;
+  padding: 20px;
+  background: darken($color: $main-background, $amount: 10%);
+}
+
+.page {
+  font-family: sans-serif;
+  font-size: 18px;
+  color: $main-color;
+  background: $main-background;
+
+  .page__header {
+    color: darkred;
+  }
+}
+
+.page__container {
+  @include makeContainer();
+}
+
+.section {
+  @include makeContainer();
+  background: darken($color: $main-background, $amount: 15%);
+  text-align: center;
+
+  &__text {
+    text-shadow: 0 1px 1px lightslategray;
+  }
+
+  &__info {
+    font-weight: bold;
+    font-size: 14px;
+    color: darken($color: $main-color, $amount: 30%);
+  }
+}

@@ -1,0 +1,36 @@
+.page {
+  font-family: sans-serif;
+  font-size: 18px;
+  color: lightcoral;
+  background: #f2f2f2;
+}
+
+.page .page__header {
+  color: darkred;
+}
+
+.page__container {
+  margin: 0 auto;
+  padding: 20px;
+  background: rgb(216.5, 216.5, 216.5);
+}
+
+.section {
+  margin: 0 auto;
+  padding: 20px;
+  background: rgb(216.5, 216.5, 216.5);
+  background: rgb(203.75, 203.75, 203.75);
+  text-align: center;
+}
+
+.section__text {
+  text-shadow: 0 1px 1px lightslategray;
+}
+
+.section__info {
+  font-weight: bold;
+  font-size: 14px;
+  color: rgb(192.2887323944, 22.7112676056, 22.7112676056);
+}
+
+/*# sourceMappingURL=style.css.map */
