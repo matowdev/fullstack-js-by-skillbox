@@ -1,0 +1,42 @@
+//- <!DOCTYPE html>
+//- <html lang="en">
+//-
+//- <head>
+//-   <meta charset="UTF-8">
+//-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//-   <title>Intro to PUG</title>
+//- </head>
+//-
+//- <body class="page">
+//-   <div class="page__container">
+//-     <h1 class="page__header">Lorem, ipsum dolor.</h1>
+//-     <p class="page__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis labore, iste reiciendis
+//-       aperiam blanditiis dolore!</p>
+//-   </div>
+//-   <section class="section page__section">
+//-     <p class="section__text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo totam nisi, commodi vel
+//-       repudiandae animi!</p>
+//-     <span class="section__info">2025</span>
+//-   </section>
+//- </body>
+//-
+//- </html>
+
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Intro to PUG
+  body
+    - var content = [{text: 'Lorem ipsum dolor sit amet.', info: 2025}, {text: 'Deserunt, aut.', info: 2026}];
+    div.page__container
+      h1.page__header Lorem, ipsum dolor.
+      p.page__text Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis labore, iste reiciendis aperiam blanditiis dolore!
+    each el in content
+      section.section.page__section
+        p.section__text= el.text
+        span.section__info= el.info
+
+
+
